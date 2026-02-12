@@ -1,0 +1,384 @@
+---
+title: "Get Command Spec"
+description: "Get LaTeX command specifications and documentation"
+---
+
+## Endpoint
+
+```
+POST /mcp/get_latex_command_spec
+```
+
+## Description
+
+Retrieves detailed specifications, syntax, and usage information for LaTeX commands from TikZ, PGFPlots, and related packages.
+
+## Request
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `command` | string | Yes | Command name (without backslash) |
+| `package` | string | No | Package name (tikz, pgfplots, pgf) |
+| `context` | string | No | Usage context (axis, node, path, plot) |
+
+### Example Request
+
+```json
+{
+  "tool": "get_latex_command_spec",
+  "arguments": {
+    "command": "addplot",
+    "package": "pgfplots",
+    "context": "axis"
+  }
+}
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "command": "addplot",
+  "package": "pgfplots",
+  "syntax": "\\addplot[options] {function | coordinates | table};",
+  "description": "Adds a plot to the current axis environment",
+  "parameters": [
+    {
+      "name": "options",
+      "type": "key-value list",
+      "required": false,
+      "description": "Plot styling options"
+    },
+    {
+      "name": "plot_specification",
+      "type": "expression | coordinates | table",
+      "required": true,
+      "description": "Data to plot"
+    }
+  ],
+  "options": [
+    {
+      "name": "color",
+      "type": "color",
+      "default": "black",
+      "description": "Line/marker color"
+    },
+    {
+      "name": "mark",
+      "type": "marker style",
+      "default": "none",
+      "description": "Marker symbol",
+      "values": ["*", "o", "square", "triangle", "x", "+", "none"]
+    },
+    {
+      "name": "thick",
+      "type": "boolean",
+      "default": false,
+      "description": "Use thick line width"
+    }
+  ],
+  "examples": [
+    {
+      "code": "\\addplot[blue, thick] {x^2};",
+      "description": "Plot quadratic function in blue"
+    },
+    {
+      "code": "\\addplot[mark=*, only marks] coordinates {(0,0) (1,1) (2,4)};",
+      "description": "Plot discrete points with markers"
+    }
+  ],
+  "related_commands": ["addplot3", "addlegendentry", "closedcycle"],
+  "package_version": "1.18",
+  "documentation_url": "https://pgfplots.sourceforge.net/"
+}
+```
+
+## Common Commands
+
+### PGFPlots Commands
+
+#### addplot
+Adds a 2D plot to an axis.
+
+```latex
+\addplot[options] {expression};
+\addplot[options] coordinates {(x1,y1) (x2,y2) ...};
+\addplot[options] table {file.dat};
+```
+
+#### addplot3
+Adds a 3D plot to an axis.
+
+```latex
+\addplot3[options] {expression};
+\addplot3[surf] {x*y};
+```
+
+#### begin{axis}
+Creates a 2D axis environment.
+
+```latex
+\begin{axis}[options]
+  % plot commands
+\end{axis}
+```
+
+#### addlegendentry
+Adds a legend entry for the last plot.
+
+```latex
+\addlegendentry{Label}
+```
+
+### TikZ Commands
+
+#### node
+Creates a node (text box with optional shape).
+
+```latex
+\node[options] (name) at (coordinate) {text};
+```
+
+#### draw
+Draws a path.
+
+```latex
+\draw[options] (start) -- (end);
+```
+
+#### fill
+Fills a shape.
+
+```latex
+\fill[options] (x1,y1) rectangle (x2,y2);
+```
+
+#### tikzset
+Sets TikZ options.
+
+```latex
+\tikzset{style/.style={options}}
+```
+
+## Request by Context
+
+### Axis Context
+
+Get commands used within axis environments:
+
+```json
+{
+  "tool": "get_latex_command_spec",
+  "arguments": {
+    "context": "axis"
+  }
+}
+```
+
+Returns: `addplot`, `addplot3`, `addlegendentry`, `closedcycle`
+
+### Node Context
+
+Get node-related commands:
+
+```json
+{
+  "tool": "get_latex_command_spec",
+  "arguments": {
+    "context": "node"
+  }
+}
+```
+
+Returns: `node`, `coordinate`, `pic`
+
+### Path Context
+
+Get path drawing commands:
+
+```json
+{
+  "tool": "get_latex_command_spec",
+  "arguments": {
+    "context": "path"
+  }
+}
+```
+
+Returns: `draw`, `fill`, `filldraw`, `shade`, `clip`
+
+## Detailed Example Response
+
+### Query: \begin{axis}
+
+```json
+{
+  "command": "begin{axis}",
+  "package": "pgfplots",
+  "syntax": "\\begin{axis}[options] ... \\end{axis}",
+  "description": "Creates a 2D plotting environment",
+  "options": [
+    {
+      "name": "xlabel",
+      "type": "text",
+      "description": "X-axis label"
+    },
+    {
+      "name": "ylabel",
+      "type": "text",
+      "description": "Y-axis label"
+    },
+    {
+      "name": "title",
+      "type": "text",
+      "description": "Plot title"
+    },
+    {
+      "name": "xmin",
+      "type": "number",
+      "description": "Minimum x value"
+    },
+    {
+      "name": "xmax",
+      "type": "number",
+      "description": "Maximum x value"
+    },
+    {
+      "name": "grid",
+      "type": "none|major|minor|both",
+      "default": "none",
+      "description": "Grid line style"
+    },
+    {
+      "name": "legend pos",
+      "type": "position",
+      "values": ["north west", "north east", "south west", "south east", "outer north east"],
+      "description": "Legend position"
+    }
+  ],
+  "examples": [
+    {
+      "code": "\\begin{axis}[xlabel={x}, ylabel={y}, grid=major]\n\\addplot {x^2};\n\\end{axis}",
+      "description": "Simple axis with labels and grid"
+    }
+  ]
+}
+```
+
+## Usage Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { MCPClient } from '@modelcontextprotocol/sdk';
+
+const client = new MCPClient();
+
+// Get command specification
+const spec = await client.callTool({
+  name: 'get_latex_command_spec',
+  arguments: {
+    command: 'node',
+    package: 'tikz'
+  }
+});
+
+console.log(`Syntax: ${spec.syntax}`);
+console.log(`Options: ${spec.options.length}`);
+```
+
+### Python
+
+```python
+import requests
+
+response = requests.post('http://localhost:3000/mcp/get_latex_command_spec', json={
+    'command': 'addplot',
+    'package': 'pgfplots'
+})
+
+spec = response.json()
+print(f"Command: \\{spec['command']}")
+print(f"Description: {spec['description']}")
+
+for option in spec['options']:
+    print(f"  {option['name']}: {option['description']}")
+```
+
+### cURL
+
+```bash
+curl -X POST http://localhost:3000/mcp/get_latex_command_spec \
+  -H "Content-Type: application/json" \
+  -d '{
+    "command": "draw",
+    "package": "tikz"
+  }'
+```
+
+## Error Responses
+
+### Command Not Found
+
+```json
+{
+  "error": "Command not found",
+  "message": "Command 'invalid_command' not found in package 'pgfplots'",
+  "suggestions": ["addplot", "addplot3", "addlegendentry"]
+}
+```
+
+### Package Not Specified
+
+```json
+{
+  "error": "Ambiguous command",
+  "message": "Command 'node' exists in multiple packages",
+  "packages": ["tikz", "forest", "tikz-qtree"],
+  "suggestion": "Specify package parameter"
+}
+```
+
+## Command Categories
+
+### Plotting Commands
+- `addplot`, `addplot3`: Add plots
+- `addlegendentry`: Add legend entries
+- `closedcycle`: Close plot path
+
+### Axis Commands
+- `begin{axis}`, `end{axis}`: 2D axis
+- `begin{semilogxaxis}`: Semi-log axis
+- `begin{polaraxis}`: Polar axis
+
+### Node Commands
+- `node`: Create node
+- `coordinate`: Define coordinate
+- `pic`: Reusable graphic
+
+### Path Commands
+- `draw`: Draw path
+- `fill`: Fill shape
+- `filldraw`: Draw and fill
+- `shade`: Gradient fill
+- `clip`: Clipping path
+
+### Style Commands
+- `tikzset`: Set TikZ styles
+- `pgfplotsset`: Set PGFPlots styles
+
+## Related Endpoints
+
+- [Get Chart Example](chart-example) - Get complete examples
+- [Search Knowledge](search) - Search for commands
+- [API Overview](overview) - API documentation
+
+## Related Topics
+
+- [TikZ Knowledge](../knowledge/tikz)
+- [PGFPlots Knowledge](../knowledge/pgfplots)
+- [Quick Start](../quickstart)

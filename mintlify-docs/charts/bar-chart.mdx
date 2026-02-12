@@ -1,0 +1,96 @@
+---
+title: "Bar Chart"
+description: "Create bar charts using TikZ and PGFPlots"
+---
+
+## Overview
+
+Bar charts are excellent for comparing discrete categories or values. PGFPlots provides powerful tools for creating both vertical and horizontal bar charts.
+
+## Vertical Bar Chart
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    xlabel={Category},
+    ylabel={Value},
+    symbolic x coords={A,B,C,D,E},
+    xtick=data
+]
+\addplot coordinates {(A,10) (B,25) (C,15) (D,30) (E,20)};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Horizontal Bar Chart
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xbar,
+    xlabel={Value},
+    ylabel={Category},
+    symbolic y coords={A,B,C,D,E},
+    ytick=data
+]
+\addplot coordinates {(10,A) (25,B) (15,C) (30,D) (20,E)};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Grouped Bar Chart
+
+Compare multiple series side by side:
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    bar width=0.3cm,
+    xlabel={Category},
+    ylabel={Value},
+    symbolic x coords={A,B,C,D},
+    xtick=data,
+    legend pos=north west
+]
+\addplot coordinates {(A,10) (B,25) (C,15) (D,30)};
+\addlegendentry{Series 1}
+
+\addplot coordinates {(A,15) (B,20) (C,25) (D,20)};
+\addlegendentry{Series 2}
+\end{axis}
+\end{tikzpicture}
+```
+
+## Stacked Bar Chart
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    xlabel={Category},
+    ylabel={Total Value},
+    symbolic x coords={A,B,C,D},
+    xtick=data
+]
+\addplot coordinates {(A,10) (B,15) (C,20) (D,25)};
+\addplot coordinates {(A,5) (B,10) (C,15) (D,10)};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Styling Options
+
+- `ybar`: Create vertical bar chart
+- `xbar`: Create horizontal bar chart
+- `bar width=<width>`: Set bar width
+- `bar shift=<shift>`: Shift bars for grouping
+- `fill=<color>`: Fill bar color
+- `draw=<color>`: Border color
+
+## Related Topics
+
+- [Line Chart](line-chart)
+- [3D Plot](3d-plot)
+- [PGFPlots Knowledge](../knowledge/pgfplots)

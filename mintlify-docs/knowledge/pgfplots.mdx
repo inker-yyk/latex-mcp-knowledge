@@ -1,0 +1,301 @@
+---
+title: "PGFPlots Knowledge"
+description: "PGFPlots commands, options, and plotting techniques"
+---
+
+## What is PGFPlots?
+
+PGFPlots is a LaTeX package built on top of TikZ/PGF that provides a high-level interface for creating 2D and 3D plots. It's particularly suited for scientific and technical plotting.
+
+## Basic Structure
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+  % axis options
+]
+\addplot[options] {function};
+% or
+\addplot[options] coordinates {(x1,y1) (x2,y2) ...};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Axis Configuration
+
+### Basic Axis Options
+
+```latex
+\begin{axis}[
+  xlabel={X Label},
+  ylabel={Y Label},
+  title={Plot Title},
+  width=10cm,
+  height=6cm,
+  grid=major,
+  legend pos=north west
+]
+```
+
+### Axis Limits
+
+```latex
+\begin{axis}[
+  xmin=0, xmax=10,
+  ymin=-5, ymax=5,
+  domain=0:360  % For function plots
+]
+```
+
+### Axis Scaling
+
+```latex
+\begin{axis}[
+  xmode=log,  % Logarithmic x-axis
+  ymode=log,  % Logarithmic y-axis
+  axis equal  % Equal scaling
+]
+```
+
+## Plotting Data
+
+### Function Plotting
+
+```latex
+\addplot[domain=0:360, samples=100] {sin(x)};
+\addplot[domain=0:10] {x^2};
+\addplot[domain=-5:5] {exp(-x^2)};
+```
+
+### Coordinate Plotting
+
+```latex
+\addplot coordinates {
+  (0,0) (1,1) (2,4) (3,9) (4,16)
+};
+```
+
+### Table Data
+
+```latex
+\addplot table {
+  X Y
+  0 0
+  1 1
+  2 4
+  3 9
+};
+
+% Or from file
+\addplot table {data.dat};
+```
+
+## Plot Styles
+
+### Line Styles
+
+```latex
+\addplot[color=blue, thick] {x};
+\addplot[color=red, dashed] {x^2};
+\addplot[color=green, dotted, ultra thick] {x^3};
+```
+
+### Markers
+
+```latex
+\addplot[mark=*] coordinates {(0,0) (1,1) (2,4)};
+\addplot[mark=square*] coordinates {(0,0) (1,2) (2,5)};
+\addplot[mark=triangle*] coordinates {(0,1) (1,3) (2,4)};
+\addplot[only marks] coordinates {(0,0) (1,1) (2,2)};
+```
+
+### Fill and Area
+
+```latex
+\addplot[fill=blue!20] {x^2} \closedcycle;
+\addplot[area style] {x} \closedcycle;
+```
+
+## Legends
+
+```latex
+\addplot {x};
+\addlegendentry{Linear}
+
+\addplot {x^2};
+\addlegendentry{Quadratic}
+
+% Legend position
+legend pos=north west
+legend pos=south east
+legend pos=outer north east
+```
+
+## Multiple Plots
+
+```latex
+\begin{axis}
+\addplot[blue] {x};
+\addplot[red] {x^2};
+\addplot[green] {x^3};
+\legend{Linear, Quadratic, Cubic}
+\end{axis}
+```
+
+## Bar Plots
+
+```latex
+\begin{axis}[
+  ybar,
+  symbolic x coords={A,B,C,D},
+  xtick=data
+]
+\addplot coordinates {(A,10) (B,20) (C,15) (D,25)};
+\end{axis}
+```
+
+### Grouped Bars
+
+```latex
+\begin{axis}[ybar, bar width=7pt]
+\addplot coordinates {(A,10) (B,20) (C,15)};
+\addplot coordinates {(A,15) (B,18) (C,22)};
+\end{axis}
+```
+
+### Stacked Bars
+
+```latex
+\begin{axis}[ybar stacked]
+\addplot coordinates {(A,10) (B,20) (C,15)};
+\addplot coordinates {(A,5) (B,10) (C,8)};
+\end{axis}
+```
+
+## 3D Plots
+
+### 3D Surface
+
+```latex
+\begin{axis}[
+  3d box,
+  xlabel={x}, ylabel={y}, zlabel={z}
+]
+\addplot3[surf, domain=-2:2, domain y=-2:2] {x^2 + y^2};
+\end{axis}
+```
+
+### 3D Line
+
+```latex
+\begin{axis}[3d box]
+\addplot3[blue, thick] coordinates {
+  (0,0,0) (1,1,1) (2,0,2) (3,1,3)
+};
+\end{axis}
+```
+
+### Mesh Plot
+
+```latex
+\begin{axis}
+\addplot3[mesh, domain=0:1, domain y=0:1] {x*y};
+\end{axis}
+```
+
+## Color Maps
+
+```latex
+\begin{axis}[
+  colormap/hot,
+  colorbar
+]
+\addplot3[surf] {x*y};
+\end{axis}
+```
+
+Available colormaps:
+- `colormap/hot`
+- `colormap/cool`
+- `colormap/bluered`
+- `colormap/greenyellow`
+- `colormap/blackwhite`
+
+## Error Bars
+
+```latex
+\addplot[error bars/.cd, y dir=both, y explicit]
+coordinates {
+  (0,0) +- (0,0.5)
+  (1,1) +- (0,0.3)
+  (2,4) +- (0,0.8)
+};
+```
+
+## Tick Configuration
+
+```latex
+\begin{axis}[
+  xtick={0,1,2,3,4},
+  xticklabels={Zero,One,Two,Three,Four},
+  ytick={0,5,...,20},
+  minor tick num=4
+]
+```
+
+## Grid Customization
+
+```latex
+\begin{axis}[
+  grid=both,
+  grid style={line width=.1pt, draw=gray!10},
+  major grid style={line width=.2pt,draw=gray!50}
+]
+```
+
+## Annotations
+
+```latex
+\addplot {x^2};
+\node[pin=120:{Local Maximum}] at (axis cs:2,4) {};
+\draw[red,->] (axis cs:1,1) -- (axis cs:2,4);
+```
+
+## Best Practices
+
+1. **Use `samples` appropriately**: More samples = smoother curves but slower compilation
+2. **Set explicit domains**: Avoid unnecessary computation
+3. **Use `compat` level**: `\pgfplotsset{compat=1.18}` for latest features
+4. **Optimize data**: Use `table` for large datasets
+5. **Label your plots**: Always include axis labels and legends
+
+## Performance Tips
+
+```latex
+% Reduce compilation time
+\pgfplotsset{
+  compat=1.18,
+  every axis/.append style={
+    max space between ticks=40
+  }
+}
+```
+
+## MCP API Usage
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "pgfplots 3d surface",
+    "category": "pgfplots"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ Knowledge](tikz)
+- [Line Chart](../charts/line-chart)
+- [Bar Chart](../charts/bar-chart)
+- [3D Plot](../charts/3d-plot)

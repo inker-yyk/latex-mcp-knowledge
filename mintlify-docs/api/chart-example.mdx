@@ -1,0 +1,334 @@
+---
+title: "Get Chart Example"
+description: "Retrieve LaTeX chart examples and templates"
+---
+
+## Endpoint
+
+```
+POST /mcp/get_chart_example
+```
+
+## Description
+
+Retrieves complete LaTeX chart examples based on chart type and desired features. Returns ready-to-use LaTeX code with optional customization.
+
+## Request
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `chart_type` | string | Yes | Type of chart (line_chart, bar_chart, scatter_plot, 3d_plot, flowchart, node_graph) |
+| `features` | array | No | List of desired features (legend, grid, multiple_series, etc.) |
+| `style` | string | No | Visual style (minimal, professional, academic, colorful) |
+| `data_source` | string | No | Data source type (inline, csv, table, function) |
+| `complexity` | string | No | Complexity level (basic, intermediate, advanced) |
+
+### Example Request
+
+```json
+{
+  "tool": "get_chart_example",
+  "arguments": {
+    "chart_type": "line_chart",
+    "features": ["multiple_series", "legend", "grid"],
+    "style": "professional",
+    "data_source": "inline",
+    "complexity": "intermediate"
+  }
+}
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "chart_type": "line_chart",
+  "latex_code": "\\begin{tikzpicture}\n\\begin{axis}[...]\n...\n\\end{axis}\n\\end{tikzpicture}",
+  "description": "Line chart with two series, legend, and grid",
+  "required_packages": ["pgfplots"],
+  "features": ["multiple_series", "legend", "grid"],
+  "customization_hints": [
+    "Modify colors with color= option",
+    "Adjust line width with thick/thin",
+    "Change legend position with legend pos="
+  ],
+  "related_examples": [
+    "bar_chart_with_legend",
+    "scatter_plot_multiple"
+  ]
+}
+```
+
+### Example LaTeX Code
+
+```latex
+\documentclass{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Time (s)},
+    ylabel={Value},
+    title={Professional Line Chart},
+    legend pos=north west,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt, draw=gray!50}
+]
+
+% Series 1
+\addplot[color=blue, thick, mark=*] coordinates {
+    (0,1.0) (1,1.5) (2,2.2) (3,2.8) (4,3.5)
+    (5,4.0) (6,4.3) (7,4.8) (8,5.2) (9,5.5)
+};
+\addlegendentry{Series A}
+
+% Series 2
+\addplot[color=red, thick, mark=square*] coordinates {
+    (0,0.8) (1,1.2) (2,1.8) (3,2.5) (4,3.0)
+    (5,3.6) (6,4.2) (7,4.6) (8,5.0) (9,5.3)
+};
+\addlegendentry{Series B}
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+```
+
+## Chart Types
+
+### line_chart
+Line charts for continuous data and trends.
+
+Features:
+- `single_series`: One data series
+- `multiple_series`: Multiple data series
+- `smooth`: Smooth curves
+- `markers`: Data point markers
+- `legend`: Legend
+- `grid`: Grid lines
+- `error_bars`: Error bars
+
+### bar_chart
+Bar charts for categorical data.
+
+Features:
+- `vertical`: Vertical bars
+- `horizontal`: Horizontal bars
+- `grouped`: Grouped bars
+- `stacked`: Stacked bars
+- `legend`: Legend
+- `custom_colors`: Custom color scheme
+
+### scatter_plot
+Scatter plots for point data.
+
+Features:
+- `single_group`: One group
+- `multiple_groups`: Multiple groups
+- `trend_line`: Trend/regression line
+- `markers`: Custom markers
+- `labels`: Point labels
+
+### 3d_plot
+Three-dimensional plots.
+
+Features:
+- `surface`: Surface plot
+- `line`: 3D line plot
+- `scatter`: 3D scatter plot
+- `mesh`: Mesh plot
+- `colormap`: Color mapping
+- `colorbar`: Color bar
+
+### flowchart
+Flowcharts and process diagrams.
+
+Features:
+- `simple`: Simple linear flow
+- `decision`: Decision branches
+- `loops`: Loop structures
+- `custom_shapes`: Custom node shapes
+- `colors`: Colored nodes
+
+### node_graph
+Network and graph visualizations.
+
+Features:
+- `directed`: Directed edges
+- `weighted`: Weighted edges
+- `tree`: Tree structure
+- `circular`: Circular layout
+- `labels`: Edge labels
+
+## Style Options
+
+### minimal
+Clean, simple style with minimal decoration.
+
+### professional
+Business-appropriate styling with subtle colors.
+
+### academic
+Style suitable for academic papers and publications.
+
+### colorful
+Vibrant colors for presentations and posters.
+
+## Data Source Types
+
+### inline
+Data embedded directly in LaTeX code using coordinates.
+
+```latex
+\addplot coordinates {(0,0) (1,1) (2,4)};
+```
+
+### csv
+Data loaded from CSV file.
+
+```latex
+\addplot table[col sep=comma] {data.csv};
+```
+
+### table
+Data in table format within LaTeX.
+
+```latex
+\addplot table {
+  X Y
+  0 0
+  1 1
+};
+```
+
+### function
+Mathematical function evaluation.
+
+```latex
+\addplot[domain=0:10] {x^2};
+```
+
+## Complexity Levels
+
+- **basic**: Simple, single-feature examples
+- **intermediate**: Multiple features, moderate customization
+- **advanced**: Complex charts with advanced features
+
+## Usage Examples
+
+### Get Basic Line Chart
+
+```json
+{
+  "tool": "get_chart_example",
+  "arguments": {
+    "chart_type": "line_chart",
+    "complexity": "basic"
+  }
+}
+```
+
+### Get Professional Bar Chart with CSV Data
+
+```json
+{
+  "tool": "get_chart_example",
+  "arguments": {
+    "chart_type": "bar_chart",
+    "style": "professional",
+    "data_source": "csv",
+    "features": ["grouped", "legend"]
+  }
+}
+```
+
+### Get Advanced 3D Surface Plot
+
+```json
+{
+  "tool": "get_chart_example",
+  "arguments": {
+    "chart_type": "3d_plot",
+    "features": ["surface", "colormap", "colorbar"],
+    "complexity": "advanced"
+  }
+}
+```
+
+## Error Responses
+
+### Invalid Chart Type
+
+```json
+{
+  "error": "Invalid chart type",
+  "message": "Chart type 'invalid_type' is not supported",
+  "valid_types": ["line_chart", "bar_chart", "scatter_plot", "3d_plot", "flowchart", "node_graph"]
+}
+```
+
+### Incompatible Features
+
+```json
+{
+  "error": "Incompatible features",
+  "message": "Feature 'stacked' is not compatible with chart type 'line_chart'",
+  "suggestion": "Use 'bar_chart' for stacked visualization"
+}
+```
+
+## Related Endpoints
+
+- [Search Knowledge Base](search) - Search for specific techniques
+- [Get Command Spec](command-spec) - Get command documentation
+- [Submit Feedback](feedback) - Report issues or suggestions
+
+## Code Samples
+
+### JavaScript/TypeScript
+
+```typescript
+import { MCPClient } from '@modelcontextprotocol/sdk';
+
+const client = new MCPClient();
+
+const response = await client.callTool({
+  name: 'get_chart_example',
+  arguments: {
+    chart_type: 'line_chart',
+    features: ['legend', 'grid']
+  }
+});
+
+console.log(response.latex_code);
+```
+
+### Python
+
+```python
+import requests
+
+response = requests.post('http://localhost:3000/mcp/get_chart_example', json={
+    'chart_type': 'bar_chart',
+    'features': ['grouped', 'legend'],
+    'style': 'professional'
+})
+
+data = response.json()
+print(data['latex_code'])
+```
+
+## Related Topics
+
+- [API Overview](overview)
+- [Search API](search)
+- [Chart Types](../charts/line-chart)

@@ -1,0 +1,89 @@
+---
+title: "3D Plot"
+description: "Create 3D plots using TikZ and PGFPlots"
+---
+
+## Overview
+
+PGFPlots supports creating three-dimensional plots for visualizing complex mathematical functions and data.
+
+## Basic 3D Surface Plot
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    3d box,
+    xlabel={x},
+    ylabel={y},
+    zlabel={z}
+]
+\addplot3[surf, domain=-2:2, domain y=-2:2] {x^2 + y^2};
+\end{axis}
+\end{tikzpicture}
+```
+
+## 3D Line Plot
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    view={60}{30},
+    xlabel={x},
+    ylabel={y},
+    zlabel={z}
+]
+\addplot3[color=blue, thick, samples=100, domain=0:360]
+    ({cos(x)}, {sin(x)}, {x/360});
+\end{axis}
+\end{tikzpicture}
+```
+
+## 3D Scatter Plot
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    3d box,
+    xlabel={X},
+    ylabel={Y},
+    zlabel={Z}
+]
+\addplot3[only marks, mark=*] coordinates {
+    (1,2,3) (2,3,4) (3,1,2) (4,4,5) (5,2,3)
+};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Mesh Plot
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    3d box,
+    colormap/cool
+]
+\addplot3[mesh, domain=-3:3, domain y=-3:3] {exp(-x^2-y^2)};
+\end{axis}
+\end{tikzpicture}
+```
+
+## View Angle
+
+Control the viewing angle with the `view` option:
+
+```latex
+view={<azimuth>}{<elevation>}
+```
+
+Common views:
+- `view={0}{90}`: Top view
+- `view={0}{0}`: Front view
+- `view={90}{0}`: Side view
+- `view={45}{45}`: Isometric view
+
+## Related Topics
+
+- [Line Chart](line-chart)
+- [Scatter Plot](scatter-plot)
+- [PGFPlots Knowledge](../knowledge/pgfplots)

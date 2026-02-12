@@ -1,0 +1,367 @@
+---
+title: "Submit Feedback"
+description: "Submit feedback, bug reports, and improvement suggestions"
+---
+
+## Endpoint
+
+```
+POST /mcp/submit_feedback
+```
+
+## Description
+
+Submit feedback about the knowledge base, report errors in examples, or suggest improvements to the MCP server.
+
+## Request
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `type` | string | Yes | Feedback type (bug, improvement, question, other) |
+| `category` | string | Yes | Category (documentation, api, examples, performance) |
+| `title` | string | Yes | Brief title/summary |
+| `description` | string | Yes | Detailed description |
+| `context` | object | No | Additional context (command, chart_type, etc.) |
+| `severity` | string | No | Severity level (low, medium, high, critical) |
+| `contact` | string | No | Contact information for follow-up |
+
+### Example Request
+
+```json
+{
+  "tool": "submit_feedback",
+  "arguments": {
+    "type": "bug",
+    "category": "examples",
+    "title": "Bar chart example has syntax error",
+    "description": "The grouped bar chart example in the documentation contains a missing semicolon on line 15, causing compilation to fail.",
+    "context": {
+      "chart_type": "bar_chart",
+      "example_id": "grouped_bars",
+      "page": "/charts/bar-chart"
+    },
+    "severity": "medium",
+    "contact": "user@example.com"
+  }
+}
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "feedback_id": "fb_abc123xyz",
+  "message": "Thank you for your feedback! We'll review it shortly.",
+  "estimated_review_time": "1-2 business days",
+  "tracking_url": "https://github.com/org/repo/issues/123"
+}
+```
+
+## Feedback Types
+
+### bug
+Report errors, incorrect information, or broken functionality.
+
+**Use for:**
+- Syntax errors in examples
+- Incorrect command documentation
+- Broken links
+- API errors
+
+**Example:**
+```json
+{
+  "type": "bug",
+  "category": "examples",
+  "title": "3D plot example missing required package",
+  "description": "The 3D surface plot example fails to compile because it's missing \\usepackage{pgfplots}",
+  "severity": "high"
+}
+```
+
+### improvement
+Suggest enhancements or additional features.
+
+**Use for:**
+- Missing chart types
+- Additional examples
+- New features
+- Better documentation
+
+**Example:**
+```json
+{
+  "type": "improvement",
+  "category": "examples",
+  "title": "Add polar plot examples",
+  "description": "It would be helpful to have more examples of polar coordinate plots, especially with custom angular tick labels."
+}
+```
+
+### question
+Ask questions about usage or clarify documentation.
+
+**Use for:**
+- How-to questions
+- Clarification requests
+- Usage guidance
+
+**Example:**
+```json
+{
+  "type": "question",
+  "category": "api",
+  "title": "How to use custom colormap with MCP API?",
+  "description": "The documentation shows how to use built-in colormaps, but I need to create a custom colormap. Is this possible through the API?"
+}
+```
+
+### other
+General feedback or suggestions that don't fit other categories.
+
+## Categories
+
+### documentation
+Issues with written documentation, guides, or tutorials.
+
+### api
+Problems with the MCP API endpoints or responses.
+
+### examples
+Issues with code examples or templates.
+
+### performance
+Performance-related feedback (slow queries, compilation issues).
+
+## Severity Levels
+
+### low
+Minor issues that don't affect functionality.
+- Typos
+- Formatting issues
+- Minor suggestions
+
+### medium
+Issues that affect usability but have workarounds.
+- Non-critical bugs
+- Missing examples
+- Unclear documentation
+
+### high
+Significant issues that affect core functionality.
+- Major bugs
+- Incorrect information
+- Broken features
+
+### critical
+Severe issues that prevent usage.
+- Complete failures
+- Data loss
+- Security vulnerabilities
+
+## Context Object
+
+Provide additional context to help us understand and reproduce issues:
+
+```json
+{
+  "context": {
+    "chart_type": "line_chart",
+    "command": "addplot",
+    "package": "pgfplots",
+    "package_version": "1.18",
+    "latex_distribution": "TeX Live 2023",
+    "page": "/charts/line-chart",
+    "example_id": "multi_series",
+    "error_message": "! Package pgfplots Error: ...",
+    "user_code": "\\addplot[...] {...};"
+  }
+}
+```
+
+## Usage Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { MCPClient } from '@modelcontextprotocol/sdk';
+
+const client = new MCPClient();
+
+await client.callTool({
+  name: 'submit_feedback',
+  arguments: {
+    type: 'bug',
+    category: 'examples',
+    title: 'Example compilation error',
+    description: 'The flowchart example fails to compile with error...',
+    context: {
+      chart_type: 'flowchart',
+      error_message: 'Undefined control sequence'
+    },
+    severity: 'medium',
+    contact: 'developer@example.com'
+  }
+});
+```
+
+### Python
+
+```python
+import requests
+
+response = requests.post('http://localhost:3000/mcp/submit_feedback', json={
+    'type': 'improvement',
+    'category': 'examples',
+    'title': 'Add more 3D plot examples',
+    'description': 'Would love to see examples of 3D parametric surfaces',
+    'severity': 'low'
+})
+
+result = response.json()
+print(f"Feedback ID: {result['feedback_id']}")
+```
+
+### cURL
+
+```bash
+curl -X POST http://localhost:3000/mcp/submit_feedback \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "question",
+    "category": "api",
+    "title": "Data format for table input",
+    "description": "What format should CSV data be in for table plots?",
+    "contact": "user@example.com"
+  }'
+```
+
+## Response Examples
+
+### Bug Report Accepted
+
+```json
+{
+  "status": "success",
+  "feedback_id": "fb_bug_001",
+  "message": "Bug report received. We'll investigate and fix this issue.",
+  "priority": "high",
+  "estimated_review_time": "24 hours",
+  "tracking_url": "https://github.com/org/repo/issues/456"
+}
+```
+
+### Improvement Suggestion
+
+```json
+{
+  "status": "success",
+  "feedback_id": "fb_improve_002",
+  "message": "Thank you for your suggestion! We'll consider it for the next release.",
+  "estimated_review_time": "1 week"
+}
+```
+
+### Question Submitted
+
+```json
+{
+  "status": "success",
+  "feedback_id": "fb_question_003",
+  "message": "Question received. Check your email for a response.",
+  "estimated_response_time": "48 hours"
+}
+```
+
+## Error Responses
+
+### Missing Required Field
+
+```json
+{
+  "error": "Validation error",
+  "message": "Missing required field: description",
+  "required_fields": ["type", "category", "title", "description"]
+}
+```
+
+### Invalid Feedback Type
+
+```json
+{
+  "error": "Invalid type",
+  "message": "Feedback type 'invalid' is not recognized",
+  "valid_types": ["bug", "improvement", "question", "other"]
+}
+```
+
+## Best Practices
+
+### When Reporting Bugs
+
+1. **Be Specific**: Provide exact error messages and line numbers
+2. **Include Context**: Package versions, LaTeX distribution, etc.
+3. **Minimal Example**: Provide the smallest code that reproduces the issue
+4. **Expected vs Actual**: Describe what you expected and what happened
+
+### Example Bug Report
+
+```json
+{
+  "type": "bug",
+  "category": "examples",
+  "title": "Bar chart example missing closing brace",
+  "description": "The grouped bar chart example at /charts/bar-chart is missing a closing brace on line 23. This causes compilation to fail with error 'Runaway argument'.\n\nExpected: Code should compile without errors\nActual: Compilation fails with error\n\nMinimal example:\n\\begin{axis}[ybar\n  % missing ]\n",
+  "context": {
+    "page": "/charts/bar-chart",
+    "line": 23,
+    "error_message": "! Runaway argument?",
+    "latex_distribution": "TeX Live 2023"
+  },
+  "severity": "high",
+  "contact": "user@example.com"
+}
+```
+
+### When Suggesting Improvements
+
+1. **Explain Use Case**: Why is this improvement needed?
+2. **Provide Examples**: Show what you'd like to see
+3. **Consider Alternatives**: Mention if you've tried workarounds
+
+## Tracking Your Feedback
+
+After submitting feedback, you'll receive a `feedback_id` that you can use to track the status:
+
+```json
+{
+  "tool": "get_feedback_status",
+  "arguments": {
+    "feedback_id": "fb_abc123xyz"
+  }
+}
+```
+
+## Related Endpoints
+
+- [Search Knowledge](search) - Search before reporting
+- [API Overview](overview) - API documentation
+- [Get Chart Example](chart-example) - Get examples
+
+## Community
+
+Join our community to discuss feedback and suggestions:
+- GitHub Discussions
+- Discord Server
+- Mailing List
+
+## Related Topics
+
+- [Contributing Guide](../quickstart)
+- [API Overview](overview)
+- [Knowledge Base](../knowledge/overview)

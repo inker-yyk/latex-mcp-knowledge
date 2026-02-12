@@ -1,0 +1,194 @@
+---
+title: "TikZ Knowledge"
+description: "TikZ commands, syntax, and best practices"
+---
+
+## What is TikZ?
+
+TikZ is a powerful LaTeX package for creating graphics programmatically. It provides a high-level interface for drawing nodes, paths, shapes, and complex diagrams.
+
+## Basic Syntax
+
+### Creating a TikZ Picture
+
+```latex
+\begin{tikzpicture}
+  % Your drawing commands here
+\end{tikzpicture}
+```
+
+## Nodes
+
+### Basic Node
+
+```latex
+\node at (0,0) {Text};
+\node[circle, draw] at (1,1) {Circle};
+\node[rectangle, draw, fill=blue!20] at (2,0) {Rectangle};
+```
+
+### Node Options
+
+- `draw`: Draw the node border
+- `fill=<color>`: Fill color
+- `circle`, `rectangle`, `diamond`: Shape
+- `minimum size=<size>`: Minimum size
+- `inner sep=<size>`: Inner padding
+- `outer sep=<size>`: Outer padding
+
+### Node Positioning
+
+```latex
+\node (A) at (0,0) {A};
+\node (B) [right=of A] {B};
+\node (C) [above=of A] {C};
+\node (D) [below right=of A] {D};
+```
+
+## Paths and Lines
+
+### Drawing Lines
+
+```latex
+\draw (0,0) -- (1,1);  % Straight line
+\draw (0,0) to[bend left] (1,1);  % Curved line
+\draw (0,0) .. controls (0.5,1) .. (1,0);  % Bezier curve
+```
+
+### Path Operations
+
+- `--`: Straight line
+- `|-`: Vertical then horizontal
+- `-|`: Horizontal then vertical
+- `..`: Smooth curve
+- `to`: Path with options
+
+### Line Styles
+
+```latex
+\draw[thick] (0,0) -- (1,0);
+\draw[dashed] (0,0) -- (1,0);
+\draw[dotted] (0,0) -- (1,0);
+\draw[->] (0,0) -- (1,0);  % Arrow
+\draw[<->] (0,0) -- (1,0);  % Double arrow
+```
+
+## Shapes
+
+### Basic Shapes
+
+```latex
+\draw (0,0) circle (1cm);
+\draw (0,0) ellipse (2cm and 1cm);
+\draw (0,0) rectangle (2,1);
+\draw (0,0) -- (1,0) -- (0.5,1) -- cycle;  % Triangle
+```
+
+### Rounded Corners
+
+```latex
+\draw[rounded corners=5pt] (0,0) rectangle (2,1);
+```
+
+## Colors
+
+```latex
+\draw[red] (0,0) -- (1,1);
+\draw[blue!50] (0,0) -- (1,1);  % 50% blue
+\draw[red!50!blue] (0,0) -- (1,1);  % Mix red and blue
+\fill[green!20] (0,0) rectangle (1,1);
+```
+
+## Coordinate Systems
+
+### Cartesian Coordinates
+
+```latex
+\draw (0,0) -- (1,2);
+```
+
+### Polar Coordinates
+
+```latex
+\draw (0:1) -- (45:1) -- (90:1);
+```
+
+### Relative Coordinates
+
+```latex
+\draw (0,0) -- +(1,0) -- +(0,1);  % Relative to last point
+\draw (0,0) -- ++(1,0) -- ++(0,1);  % Update current point
+```
+
+## Loops and Iteration
+
+```latex
+\foreach \x in {0,1,2,3,4} {
+  \draw (\x,0) circle (2pt);
+}
+
+\foreach \x in {0,...,4} {
+  \draw (\x,0) -- (\x,1);
+}
+```
+
+## Scopes and Styles
+
+```latex
+\begin{scope}[red, thick]
+  \draw (0,0) -- (1,1);
+  \draw (1,0) -- (0,1);
+\end{scope}
+
+\tikzset{
+  mystyle/.style={draw=blue, fill=blue!20, thick}
+}
+\node[mystyle] at (0,0) {Styled};
+```
+
+## Advanced Features
+
+### Clipping
+
+```latex
+\begin{scope}
+  \clip (0,0) rectangle (2,2);
+  \draw[red] (1,1) circle (1.5cm);
+\end{scope}
+```
+
+### Transformations
+
+```latex
+\draw[rotate=45] (0,0) rectangle (1,1);
+\draw[scale=2] (0,0) circle (1);
+\draw[shift={(2,2)}] (0,0) -- (1,1);
+```
+
+## Best Practices
+
+1. **Use Named Nodes**: Name important nodes for easier referencing
+2. **Define Styles**: Create reusable styles for consistency
+3. **Comment Your Code**: Explain complex paths and calculations
+4. **Use Relative Positioning**: Makes repositioning easier
+5. **Organize with Scopes**: Group related drawing operations
+
+## MCP API Usage
+
+Query TikZ knowledge:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "tikz node positioning",
+    "category": "tikz"
+  }
+}
+```
+
+## Related Topics
+
+- [PGFPlots Knowledge](pgfplots)
+- [Flowchart](../charts/flowchart)
+- [Node Graph](../charts/node-graph)

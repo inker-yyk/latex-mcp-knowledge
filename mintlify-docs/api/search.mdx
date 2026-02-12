@@ -1,0 +1,446 @@
+---
+title: "Search API"
+description: "Search the LaTeX knowledge base via MCP API"
+---
+
+## Endpoint
+
+```
+POST /mcp/search_latex_knowledge
+```
+
+## Description
+
+Search the comprehensive LaTeX charting knowledge base for commands, examples, techniques, and documentation.
+
+## Request
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `query` | string | Yes | Search query (keywords, commands, or phrases) |
+| `category` | string | No | Filter by category (tikz, pgfplots, charts, all) |
+| `limit` | number | No | Maximum results to return (default: 10, max: 50) |
+| `offset` | number | No | Pagination offset (default: 0) |
+| `filters` | object | No | Additional filters |
+
+### Filters Object
+
+```json
+{
+  "chart_type": "line_chart|bar_chart|scatter_plot|3d_plot|flowchart|node_graph",
+  "complexity": "basic|intermediate|advanced",
+  "has_example": true,
+  "package": "tikz|pgfplots|pgf"
+}
+```
+
+### Example Request
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "line chart with legend",
+    "category": "charts",
+    "limit": 5,
+    "filters": {
+      "has_example": true,
+      "complexity": "intermediate"
+    }
+  }
+}
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "results": [
+    {
+      "title": "Line Chart with Legend",
+      "type": "example",
+      "category": "charts",
+      "snippet": "Create a line chart with a legend using PGFPlots...",
+      "content": "\\begin{tikzpicture}\n\\begin{axis}[legend pos=north west]\n...",
+      "url": "/charts/line-chart#with-legend",
+      "relevance": 0.95,
+      "tags": ["line", "legend", "pgfplots"],
+      "complexity": "intermediate",
+      "related": ["bar-chart-legend", "multiple-series"]
+    },
+    {
+      "title": "Legend Configuration",
+      "type": "documentation",
+      "category": "pgfplots",
+      "snippet": "Configure legend position, style, and entries...",
+      "content": "Legend options: legend pos, legend style, legend entries...",
+      "url": "/knowledge/pgfplots#legends",
+      "relevance": 0.87,
+      "tags": ["legend", "configuration"]
+    }
+  ],
+  "total": 42,
+  "query": "line chart with legend",
+  "time_ms": 23,
+  "suggestions": ["multiple line series", "custom legend style", "legend positioning"]
+}
+```
+
+## Result Types
+
+### example
+Complete code examples with compilable LaTeX.
+
+```json
+{
+  "type": "example",
+  "title": "Multi-Series Line Chart",
+  "content": "\\begin{tikzpicture}...",
+  "required_packages": ["pgfplots"],
+  "chart_type": "line_chart",
+  "features": ["multiple_series", "legend", "grid"]
+}
+```
+
+### documentation
+Documentation entries explaining concepts and commands.
+
+```json
+{
+  "type": "documentation",
+  "title": "PGFPlots Axis Options",
+  "content": "Axis configuration options include...",
+  "commands": ["xlabel", "ylabel", "xmin", "xmax"]
+}
+```
+
+### command
+Specific command specifications.
+
+```json
+{
+  "type": "command",
+  "title": "\\addplot",
+  "syntax": "\\addplot[options] {data};",
+  "package": "pgfplots",
+  "options": [...]
+}
+```
+
+### technique
+Tips, tricks, and best practices.
+
+```json
+{
+  "type": "technique",
+  "title": "Optimizing Plot Compilation",
+  "content": "To speed up compilation, reduce samples...",
+  "category": "performance"
+}
+```
+
+## Search Operators
+
+### Exact Phrase
+Use quotes for exact phrases:
+```json
+{
+  "query": "\"axis configuration\""
+}
+```
+
+### Boolean Operators
+Combine terms with AND, OR, NOT:
+```json
+{
+  "query": "tikz AND flowchart NOT 3d"
+}
+```
+
+### Wildcard
+Use asterisk for wildcard matching:
+```json
+{
+  "query": "plot*"
+}
+```
+Matches: plot, plots, plotting, plotted, etc.
+
+### Command Search
+Search for specific commands:
+```json
+{
+  "query": "\\addplot"
+}
+```
+
+## Category Filtering
+
+### tikz
+TikZ-specific content (nodes, paths, shapes).
+
+```json
+{
+  "query": "node positioning",
+  "category": "tikz"
+}
+```
+
+### pgfplots
+PGFPlots content (plots, axes, data visualization).
+
+```json
+{
+  "query": "axis configuration",
+  "category": "pgfplots"
+}
+```
+
+### charts
+Chart type examples and templates.
+
+```json
+{
+  "query": "bar chart",
+  "category": "charts"
+}
+```
+
+### all
+Search across all categories (default).
+
+```json
+{
+  "query": "3d visualization",
+  "category": "all"
+}
+```
+
+## Pagination
+
+Retrieve results in pages:
+
+```json
+{
+  "query": "line chart",
+  "limit": 10,
+  "offset": 0  // First page
+}
+
+{
+  "query": "line chart",
+  "limit": 10,
+  "offset": 10  // Second page
+}
+```
+
+Response includes pagination info:
+```json
+{
+  "results": [...],
+  "total": 42,
+  "limit": 10,
+  "offset": 0,
+  "has_more": true,
+  "next_offset": 10
+}
+```
+
+## Usage Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { MCPClient } from '@modelcontextprotocol/sdk';
+
+const client = new MCPClient();
+
+// Basic search
+const results = await client.callTool({
+  name: 'search_latex_knowledge',
+  arguments: {
+    query: 'bar chart with colors',
+    category: 'charts',
+    limit: 5
+  }
+});
+
+console.log(`Found ${results.total} results`);
+results.results.forEach(r => {
+  console.log(`${r.title}: ${r.snippet}`);
+});
+
+// Search with filters
+const filtered = await client.callTool({
+  name: 'search_latex_knowledge',
+  arguments: {
+    query: '3d plot',
+    filters: {
+      complexity: 'advanced',
+      has_example: true,
+      chart_type: '3d_plot'
+    }
+  }
+});
+```
+
+### Python
+
+```python
+import requests
+
+# Search for examples
+response = requests.post('http://localhost:3000/mcp/search_latex_knowledge', json={
+    'query': 'flowchart decision node',
+    'category': 'tikz',
+    'limit': 10,
+    'filters': {
+        'has_example': True
+    }
+})
+
+data = response.json()
+print(f"Found {data['total']} results")
+
+for result in data['results']:
+    print(f"{result['title']} (relevance: {result['relevance']})")
+    print(f"  {result['snippet']}")
+    print(f"  URL: {result['url']}\n")
+
+# Paginated search
+def search_all(query):
+    all_results = []
+    offset = 0
+    limit = 10
+
+    while True:
+        response = requests.post('http://localhost:3000/mcp/search_latex_knowledge', json={
+            'query': query,
+            'limit': limit,
+            'offset': offset
+        })
+        data = response.json()
+        all_results.extend(data['results'])
+
+        if not data.get('has_more'):
+            break
+        offset = data['next_offset']
+
+    return all_results
+```
+
+### cURL
+
+```bash
+# Basic search
+curl -X POST http://localhost:3000/mcp/search_latex_knowledge \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "scatter plot with markers",
+    "category": "charts",
+    "limit": 5
+  }'
+
+# Search with filters
+curl -X POST http://localhost:3000/mcp/search_latex_knowledge \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "node graph",
+    "filters": {
+      "chart_type": "node_graph",
+      "complexity": "basic"
+    }
+  }'
+```
+
+## Common Search Queries
+
+### By Chart Type
+```json
+{"query": "line chart multiple series"}
+{"query": "bar chart stacked"}
+{"query": "3d surface plot colormap"}
+{"query": "flowchart with decision nodes"}
+{"query": "scatter plot with trend line"}
+```
+
+### By Feature
+```json
+{"query": "legend configuration"}
+{"query": "axis labels and titles"}
+{"query": "grid customization"}
+{"query": "color schemes"}
+{"query": "error bars"}
+```
+
+### By Command
+```json
+{"query": "\\addplot options"}
+{"query": "\\node positioning"}
+{"query": "\\draw path styles"}
+{"query": "\\begin{axis} configuration"}
+```
+
+## Error Responses
+
+### Empty Query
+
+```json
+{
+  "error": "Invalid query",
+  "message": "Query parameter cannot be empty",
+  "suggestion": "Provide a search term or command name"
+}
+```
+
+### Invalid Category
+
+```json
+{
+  "error": "Invalid category",
+  "message": "Category 'invalid' is not recognized",
+  "valid_categories": ["tikz", "pgfplots", "charts", "all"]
+}
+```
+
+### No Results
+
+```json
+{
+  "results": [],
+  "total": 0,
+  "query": "nonexistent command",
+  "suggestions": ["similar command 1", "similar command 2"],
+  "did_you_mean": "\\addplot"
+}
+```
+
+## Performance
+
+- **Fast**: Average response time < 50ms
+- **Scalable**: Handles complex queries efficiently
+- **Cached**: Frequently used queries are cached
+
+## Related Endpoints
+
+- [Get Chart Example](chart-example) - Get complete examples
+- [Get Command Spec](command-spec) - Get command details
+- [Submit Feedback](feedback) - Report issues
+
+## Tips for Better Results
+
+1. **Be Specific**: Use specific terms like "3d surface plot" instead of just "3d"
+2. **Use Commands**: Search by command name for precise results
+3. **Filter by Category**: Narrow down results by specifying category
+4. **Check Suggestions**: Look at suggested queries if results are not relevant
+5. **Use Filters**: Apply filters for more targeted results
+
+## Related Topics
+
+- [Knowledge Base](../knowledge/overview)
+- [Search Documentation](../knowledge/search)
+- [API Overview](overview)

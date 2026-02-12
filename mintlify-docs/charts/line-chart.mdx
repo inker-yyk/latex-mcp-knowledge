@@ -1,0 +1,103 @@
+---
+title: "Line Chart"
+description: "Create line charts using TikZ and PGFPlots"
+---
+
+## Overview
+
+Line charts are one of the most common chart types for visualizing data trends over time or continuous variables. In LaTeX, you can create professional line charts using PGFPlots.
+
+## Basic Line Chart
+
+Here's a simple example of a line chart:
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={x},
+    ylabel={f(x)},
+    title={Simple Line Chart}
+]
+\addplot[color=blue, thick] coordinates {
+    (0,0)
+    (1,1)
+    (2,4)
+    (3,9)
+    (4,16)
+};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Multiple Lines
+
+You can plot multiple lines on the same chart:
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Time},
+    ylabel={Value},
+    title={Multiple Line Chart},
+    legend pos=north west
+]
+\addplot[color=red, thick] coordinates {
+    (0,1) (1,2) (2,3) (3,4) (4,5)
+};
+\addlegendentry{Series A}
+
+\addplot[color=blue, thick, dashed] coordinates {
+    (0,2) (1,3) (2,2) (3,4) (4,3)
+};
+\addlegendentry{Series B}
+\end{axis}
+\end{tikzpicture}
+```
+
+## Smooth Lines
+
+Create smooth curved lines:
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={x},
+    ylabel={sin(x)},
+    domain=0:360,
+    samples=50
+]
+\addplot[color=blue, smooth, thick] {sin(x)};
+\end{axis}
+\end{tikzpicture}
+```
+
+## Styling Options
+
+Common styling options for line charts:
+
+- `color=<color>`: Set line color
+- `thick`, `ultra thick`, `thin`: Set line width
+- `dashed`, `dotted`, `dashdotted`: Set line style
+- `smooth`: Smooth the line
+- `mark=*`: Add markers at data points
+- `mark size=<size>`: Set marker size
+
+## MCP API Usage
+
+Query line chart examples using the MCP API:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "line chart pgfplots",
+    "category": "charts"
+  }
+}
+```
+
+## Related Topics
+
+- [Bar Chart](bar-chart)
+- [Scatter Plot](scatter-plot)
+- [PGFPlots Knowledge](../knowledge/pgfplots)
