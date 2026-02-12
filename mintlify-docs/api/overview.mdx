@@ -1,0 +1,351 @@
+---
+title: API Overview
+description: 'Complete reference for the LaTeX Chart Knowledge MCP API'
+---
+
+# API Overview
+
+The LaTeX Chart Knowledge Base provides a RESTful API implementing the Model Context Protocol (MCP) for programmatic access to 5,171 structured knowledge items.
+
+## Base URL
+
+<CodeGroup>
+```bash Production
+https://your-domain.mintlify.app/mcp
+```
+
+```bash Local Development
+http://localhost:3000/mcp
+```
+</CodeGroup>
+
+## Authentication
+
+Currently, the API is open access. Future versions may require authentication via Bearer tokens.
+
+```bash
+# Future authentication
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example"
+```
+
+## Available Endpoints
+
+### 1. Get Chart Examples
+
+Retrieve executable LaTeX code examples by chart type.
+
+```http
+GET /api/mcp/latex/chart/example
+```
+
+[View full documentation →](/api/chart-example)
+
+### 2. Query Command Specifications
+
+Get TikZ/PGFPlots command syntax and parameters.
+
+```http
+GET /api/mcp/latex/chart/command
+```
+
+[View full documentation →](/api/command-spec)
+
+### 3. Get Human Feedback
+
+Retrieve warnings, notes, and best practices.
+
+```http
+GET /api/mcp/latex/chart/feedback
+```
+
+[View full documentation →](/api/feedback)
+
+### 4. Universal Search
+
+Full-text search across all knowledge types.
+
+```http
+GET /api/mcp/latex/chart/search
+```
+
+[View full documentation →](/api/search)
+
+## Response Format
+
+All API responses follow this standard structure:
+
+```json
+{
+  "success": true|false,
+  "data": [...],  // Array of knowledge items
+  "meta": {
+    "total": 100,         // Total matching items
+    "count": 10,          // Items in this response
+    "page": 1,            // Current page
+    "query_time_ms": 15.3 // Query execution time
+  }
+}
+```
+
+## Knowledge Item Schema
+
+### Executable Example
+
+```json
+{
+  "id": "abc123def456",
+  "type": "executable_example",
+  "macro_package": "pgfplots",
+  "metadata": {
+    "chart_type": "line_chart",
+    "category": "code_example",
+    "tags": ["pgfplots", "line_chart", "example"],
+    "source_file": "/path/to/manual.tex",
+    "schema_version": "1.0.0",
+    "created_at": "2026-02-12T00:00:00Z"
+  },
+  "content": {
+    "description": "Basic line chart example",
+    "code": "\\begin{tikzpicture}...\\end{tikzpicture}",
+    "options": "[...]",
+    "dependencies": ["tikz", "pgfplots"],
+    "parameters": ["xlabel", "ylabel"],
+    "output_type": "visual"
+  },
+  "mcp_metadata": {
+    "searchable_fields": ["chart_type", "macro_package", "description"],
+    "priority": 10,
+    "quality_score": 0.9,
+    "executable": true
+  }
+}
+```
+
+### Command Specification
+
+```json
+{
+  "id": "cmd123",
+  "type": "command_specification",
+  "macro_package": "tikz",
+  "metadata": {
+    "command_name": "\\draw",
+    "category": "latex_command",
+    "tags": ["tikz", "command"],
+    "source_file": "/path/to/manual.tex",
+    "schema_version": "1.0.0",
+    "created_at": "2026-02-12T00:00:00Z"
+  },
+  "content": {
+    "description": "Draw a path",
+    "syntax": "\\draw[options] path;",
+    "parameters": [
+      {"name": "options", "type": "optional"},
+      {"name": "path", "type": "required"}
+    ],
+    "examples": ["\\draw (0,0) -- (1,1);"],
+    "notes": []
+  },
+  "mcp_metadata": {
+    "searchable_fields": ["command_name", "description", "macro_package"],
+    "priority": 8,
+    "quality_score": 0.8
+  }
+}
+```
+
+## Chart Types
+
+The API recognizes the following chart types:
+
+| Type | Description | Count |
+|------|-------------|-------|
+| `line_chart` | Line graphs | ~800 |
+| `bar_chart` | Bar/column charts | ~400 |
+| `scatter_plot` | Scatter plots | ~300 |
+| `3d_plot` | 3D surface/mesh plots | ~500 |
+| `flowchart` | Flowcharts/diagrams | ~600 |
+| `node_graph` | Node-based graphs | ~400 |
+| `pie_chart` | Pie charts | ~50 |
+| `other` | Other chart types | ~1,100 |
+
+## Macro Packages
+
+| Package | Description | Items |
+|---------|-------------|-------|
+| `tikz` | TikZ/PGF graphics | 3,697 |
+| `pgfplots` | PGFPlots charting | 1,474 |
+
+## Rate Limits
+
+<Info>
+**Current Limits**: No rate limiting enforced
+
+**Future Plans**:
+- Free tier: 100 requests/minute
+- Authenticated: 1,000 requests/minute
+</Info>
+
+## Error Responses
+
+### 400 Bad Request
+
+```json
+{
+  "success": false,
+  "data": [],
+  "meta": {
+    "error": "Invalid parameter 'chart_type'"
+  }
+}
+```
+
+### 404 Not Found
+
+```json
+{
+  "success": false,
+  "data": [],
+  "meta": {
+    "error": "No examples found matching criteria"
+  }
+}
+```
+
+### 500 Internal Server Error
+
+```json
+{
+  "success": false,
+  "data": [],
+  "meta": {
+    "error": "Internal server error"
+  }
+}
+```
+
+## Quick Examples
+
+### Get 5 Line Chart Examples
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=line_chart&limit=5"
+```
+
+### Search for "axis" Commands
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/command?search=axis"
+```
+
+### Find PGFPlots Examples
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?macro_package=pgfplots&limit=10"
+```
+
+### Universal Search
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/search?q=scatter+plot&limit=20"
+```
+
+## Client Libraries
+
+### Python
+
+```python
+import requests
+
+class LaTeXChartAPI:
+    def __init__(self, base_url="https://your-domain.mintlify.app/mcp"):
+        self.base_url = base_url
+
+    def get_examples(self, chart_type=None, macro_package=None, limit=10):
+        params = {"limit": limit}
+        if chart_type:
+            params["chart_type"] = chart_type
+        if macro_package:
+            params["macro_package"] = macro_package
+
+        response = requests.get(
+            f"{self.base_url}/api/mcp/latex/chart/example",
+            params=params
+        )
+        return response.json()
+
+# Usage
+api = LaTeXChartAPI()
+examples = api.get_examples(chart_type="line_chart", limit=5)
+```
+
+### JavaScript/TypeScript
+
+```typescript
+class LaTeXChartAPI {
+  constructor(private baseUrl: string = "https://your-domain.mintlify.app/mcp") {}
+
+  async getExamples(params: {
+    chartType?: string;
+    macroPackage?: string;
+    limit?: number;
+  }) {
+    const url = new URL(`${this.baseUrl}/api/mcp/latex/chart/example`);
+    if (params.chartType) url.searchParams.set("chart_type", params.chartType);
+    if (params.macroPackage) url.searchParams.set("macro_package", params.macroPackage);
+    if (params.limit) url.searchParams.set("limit", params.limit.toString());
+
+    const response = await fetch(url.toString());
+    return response.json();
+  }
+}
+
+// Usage
+const api = new LaTeXChartAPI();
+const examples = await api.getExamples({ chartType: "line_chart", limit: 5 });
+```
+
+## MCP Protocol Compliance
+
+This API implements the Model Context Protocol (MCP) v1.0, ensuring compatibility with:
+
+- Claude Code / Claude Desktop
+- GPT-4 with function calling
+- Custom LLM agents
+- RAG (Retrieval-Augmented Generation) systems
+
+### MCP-Specific Fields
+
+All knowledge items include `mcp_metadata`:
+
+```json
+{
+  "mcp_metadata": {
+    "searchable_fields": ["field1", "field2"],  // Fields to search
+    "priority": 10,                             // Ranking priority (1-10)
+    "quality_score": 0.9,                       // Quality score (0-1)
+    "executable": true                          // Is code executable?
+  }
+}
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Chart Examples API" icon="chart-line" href="/api/chart-example">
+    Get executable code examples
+  </Card>
+
+  <Card title="Command Specs API" icon="terminal" href="/api/command-spec">
+    Query command documentation
+  </Card>
+
+  <Card title="Feedback API" icon="comment" href="/api/feedback">
+    Access best practices
+  </Card>
+
+  <Card title="Search API" icon="magnifying-glass" href="/api/search">
+    Universal knowledge search
+  </Card>
+</CardGroup>

@@ -1,0 +1,198 @@
+---
+title: Quick Start
+description: 'Get started with LaTeX Chart Knowledge Base in 5 minutes'
+---
+
+# Quick Start Guide
+
+This guide will help you start using the LaTeX Chart Knowledge Base immediately.
+
+## Option 1: Browse the Documentation (No Setup Required)
+
+The easiest way to get started is browsing our web interface:
+
+<Steps>
+  <Step title="Explore Examples">
+    Visit the [Examples](/examples/basic) page to see 4,000+ working LaTeX code samples
+  </Step>
+
+  <Step title="Search for Specific Charts">
+    Use the search functionality or navigate by [chart type](/charts/line-chart)
+  </Step>
+
+  <Step title="Copy and Use">
+    Copy any example code and use it in your LaTeX documents
+  </Step>
+</Steps>
+
+## Option 2: Use the MCP API
+
+For programmatic access or AI model integration:
+
+### Step 1: Get an API Key (Optional)
+
+```bash
+# Currently, the API is open access
+# Future versions may require authentication
+```
+
+### Step 2: Make Your First Request
+
+<CodeGroup>
+```bash cURL
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=line_chart&limit=5"
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example",
+    params={
+        "chart_type": "line_chart",
+        "limit": 5
+    }
+)
+
+examples = response.json()
+print(examples["data"][0]["content"]["code"])
+```
+
+```javascript JavaScript
+const response = await fetch(
+  'https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=line_chart&limit=5'
+);
+
+const examples = await response.json();
+console.log(examples.data[0].content.code);
+```
+</CodeGroup>
+
+### Step 3: Get Specific Chart Types
+
+```bash
+# Line charts
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=line_chart"
+
+# Bar charts
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=bar_chart"
+
+# 3D plots
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=3d_plot"
+
+# Flowcharts
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example?chart_type=flowchart"
+```
+
+## Option 3: Integrate with Claude/GPT
+
+### For Claude Desktop
+
+Add this MCP server to your Claude Desktop configuration:
+
+```json
+{
+  "mcpServers": {
+    "latex-charts": {
+      "url": "https://your-domain.mintlify.app/mcp",
+      "description": "LaTeX chart generation knowledge base"
+    }
+  }
+}
+```
+
+### For Custom Models
+
+Use our API as a retrieval source for your LLM:
+
+```python
+def get_latex_examples(chart_type: str, limit: int = 5):
+    """Retrieve LaTeX examples for a given chart type"""
+    response = requests.get(
+        "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/example",
+        params={"chart_type": chart_type, "limit": limit}
+    )
+    return response.json()["data"]
+
+# Use in your LLM prompt
+examples = get_latex_examples("line_chart")
+prompt = f"Generate a line chart. Here are official examples:\n{examples}"
+```
+
+## Common Use Cases
+
+### 1. Find a Specific Command
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/command?command_name=addplot"
+```
+
+### 2. Search All Knowledge
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/search?q=axis+labels"
+```
+
+### 3. Get Best Practices
+
+```bash
+curl "https://your-domain.mintlify.app/mcp/api/mcp/latex/chart/feedback?feedback_type=warning"
+```
+
+## Example Response Format
+
+All API responses follow this structure:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "abc123",
+      "type": "executable_example",
+      "macro_package": "pgfplots",
+      "metadata": {
+        "chart_type": "line_chart",
+        "tags": ["pgfplots", "line_chart", "example"]
+      },
+      "content": {
+        "description": "Basic line chart example",
+        "code": "\\begin{tikzpicture}\n\\begin{axis}\n\\addplot {x^2};\n\\end{axis}\n\\end{tikzpicture}",
+        "dependencies": ["tikz", "pgfplots"],
+        "parameters": []
+      }
+    }
+  ],
+  "meta": {
+    "total": 1,
+    "count": 1,
+    "query_time_ms": 12.34
+  }
+}
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="API Reference" icon="book" href="/api/overview">
+    Explore all available endpoints
+  </Card>
+
+  <Card title="Examples Gallery" icon="images" href="/examples/basic">
+    Browse example charts
+  </Card>
+
+  <Card title="TikZ Knowledge" icon="diagram-project" href="/knowledge/tikz">
+    Learn about TikZ commands
+  </Card>
+
+  <Card title="PGFPlots Knowledge" icon="chart-line" href="/knowledge/pgfplots">
+    Explore PGFPlots features
+  </Card>
+</CardGroup>
+
+## Need Help?
+
+- Check our [API documentation](/api/overview)
+- View [examples](/examples/basic)
+- Search the [knowledge base](/knowledge/search)

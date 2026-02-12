@@ -1,0 +1,330 @@
+---
+title: Installation & Deployment
+description: 'How to deploy your own instance of the LaTeX Chart Knowledge Base'
+---
+
+# Installation & Deployment
+
+## Project Structure
+
+```
+latex-mcp-knowledge/
+├── mintlify-docs/              # Documentation (this site)
+│   ├── mint.json               # Mintlify configuration
+│   ├── openapi.json            # API specification
+│   └── *.mdx                   # Documentation pages
+├── knowledge-base/             # Structured knowledge data
+│   ├── latex-chart-knowledge-structured.json  # Main knowledge base (5,171 items)
+│   ├── tikz-knowledge-raw.json                # Raw TikZ data
+│   ├── pgfplots-knowledge-raw.json            # Raw PGFPlots data
+│   └── knowledge-stats.json                   # Statistics
+└── scripts/                    # Build scripts
+    ├── extract_tex_content.py  # Extract from LaTeX manuals
+    └── structure_knowledge.py  # Convert to MCP format
+```
+
+## Deployment Options
+
+### Option 1: Deploy to Mintlify (Recommended)
+
+Mintlify provides free hosting for documentation and automatic MCP server generation.
+
+<Steps>
+  <Step title="Prepare Your Repository">
+    ```bash
+    cd latex-mcp-knowledge
+    git init
+    git add .
+    git commit -m "Initial commit"
+    ```
+  </Step>
+
+  <Step title="Push to GitHub">
+    ```bash
+    # Create a new GitHub repository
+    git remote add origin https://github.com/yourusername/latex-mcp-knowledge.git
+    git branch -M main
+    git push -u origin main
+    ```
+  </Step>
+
+  <Step title="Connect to Mintlify">
+    1. Visit [mintlify.com](https://mintlify.com)
+    2. Sign in with GitHub
+    3. Click "New Project"
+    4. Select your repository
+    5. Set docs directory to `mintlify-docs`
+    6. Deploy!
+  </Step>
+
+  <Step title="Access Your Site">
+    Your site will be available at:
+    - Docs: `https://yourusername.mintlify.app/`
+    - MCP API: `https://yourusername.mintlify.app/mcp/`
+  </Step>
+</Steps>
+
+<Info>
+**Note**: Mintlify automatically deploys on every push to your `main` branch.
+</Info>
+
+### Option 2: Deploy API Server Separately
+
+For full control, deploy the API server to Vercel, Railway, or Fly.io.
+
+#### Deploy to Vercel
+
+<Steps>
+  <Step title="Install Vercel CLI">
+    ```bash
+    npm install -g vercel
+    ```
+  </Step>
+
+  <Step title="Create vercel.json">
+    ```json
+    {
+      "version": 2,
+      "builds": [
+        {
+          "src": "scripts/mcp_server.py",
+          "use": "@vercel/python"
+        }
+      ],
+      "routes": [
+        {
+          "src": "/mcp/(.*)",
+          "dest": "scripts/mcp_server.py"
+        }
+      ]
+    }
+    ```
+  </Step>
+
+  <Step title="Deploy">
+    ```bash
+    vercel --prod
+    ```
+  </Step>
+</Steps>
+
+#### Deploy to Railway
+
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Login
+railway login
+
+# Initialize project
+railway init
+
+# Deploy
+railway up
+```
+
+### Option 3: Self-Host with Docker
+
+Create a `Dockerfile`:
+
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY scripts/ ./scripts/
+COPY knowledge-base/ ./knowledge-base/
+
+# Expose port
+EXPOSE 3000
+
+# Run server
+CMD ["python", "scripts/mcp_server.py"]
+```
+
+Build and run:
+
+```bash
+docker build -t latex-mcp-api .
+docker run -p 3000:3000 latex-mcp-api
+```
+
+## Local Development
+
+### Prerequisites
+
+- Python 3.8+
+- pip
+
+### Setup
+
+<Steps>
+  <Step title="Clone Repository">
+    ```bash
+    git clone https://github.com/yourusername/latex-mcp-knowledge.git
+    cd latex-mcp-knowledge
+    ```
+  </Step>
+
+  <Step title="Install Dependencies">
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+    **requirements.txt:**
+    ```
+    flask==3.0.0
+    flask-cors==4.0.0
+    ```
+  </Step>
+
+  <Step title="Run API Server">
+    ```bash
+    python scripts/mcp_server.py
+    ```
+    Server will start on `http://localhost:3000`
+  </Step>
+
+  <Step title="Run Mintlify Docs Locally">
+    ```bash
+    cd mintlify-docs
+    npx mintlify dev
+    ```
+    Docs will be available at `http://localhost:3001`
+  </Step>
+</Steps>
+
+### Test the API
+
+```bash
+# Health check
+curl http://localhost:3000/mcp/health
+
+# Get examples
+curl "http://localhost:3000/mcp/api/mcp/latex/chart/example?chart_type=line_chart&limit=5"
+
+# Search knowledge
+curl "http://localhost:3000/mcp/api/mcp/latex/chart/search?q=axis"
+```
+
+## Updating the Knowledge Base
+
+If you have updated LaTeX manuals and want to regenerate the knowledge base:
+
+```bash
+# 1. Extract from manuals
+python scripts/extract_tex_content.py
+
+# 2. Structure the data
+python scripts/structure_knowledge.py
+
+# 3. Commit and push
+git add knowledge-base/
+git commit -m "Update knowledge base"
+git push
+```
+
+Mintlify will automatically redeploy.
+
+## Environment Variables
+
+For production deployments, configure:
+
+```bash
+# API Configuration
+API_BASE_URL=https://your-domain.com/mcp
+CORS_ORIGINS=*
+
+# Knowledge Base Path
+KNOWLEDGE_BASE_PATH=/app/knowledge-base/latex-chart-knowledge-structured.json
+
+# Rate Limiting (optional)
+RATE_LIMIT_PER_MINUTE=60
+```
+
+## Monitoring
+
+### Check Deployment Status
+
+<Tabs>
+  <Tab title="Mintlify">
+    Visit your Mintlify dashboard to view:
+    - Build logs
+    - Deploy history
+    - Analytics
+  </Tab>
+
+  <Tab title="Vercel">
+    ```bash
+    vercel logs
+    ```
+  </Tab>
+
+  <Tab title="Railway">
+    ```bash
+    railway logs
+    ```
+  </Tab>
+</Tabs>
+
+### API Health Endpoint
+
+Monitor your API with:
+
+```bash
+curl https://your-domain.com/mcp/health
+```
+
+Expected response:
+```json
+{
+  "status": "healthy",
+  "knowledge_items": 5171,
+  "indexed_types": [
+    "executable_example",
+    "command_specification",
+    "environment_specification",
+    "human_feedback"
+  ]
+}
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Mintlify build fails">
+    - Check that `mint.json` is valid JSON
+    - Ensure all referenced MDX files exist
+    - Verify `openapi.json` is valid OpenAPI 3.1.0
+  </Accordion>
+
+  <Accordion title="API returns 404">
+    - Verify knowledge base file exists at the configured path
+    - Check API server logs for errors
+    - Ensure CORS is configured correctly
+  </Accordion>
+
+  <Accordion title="Slow API responses">
+    - Knowledge base is loaded into memory on startup
+    - Consider adding caching layer (Redis)
+    - Optimize search indexing
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="API Documentation" icon="code" href="/api/overview">
+    Learn how to use the API
+  </Card>
+
+  <Card title="Examples" icon="images" href="/examples/basic">
+    See the knowledge base in action
+  </Card>
+</CardGroup>
