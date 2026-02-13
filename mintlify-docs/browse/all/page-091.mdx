@@ -1,0 +1,1999 @@
+---
+title: "All Items - Page 92"
+description: "Showing items 4551-4600 of 5171"
+---
+
+# All Items - Page 92
+
+Showing items **4551-4600** of **5171** | Page **92** of **104**
+
+[← Previous](page-090) | [Next →](page-092)
+
+---
+
+## 4551. Line Chart Example
+
+**ID**: `fe343e895a53`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1.5cm, ymax=2]
+\addplot+[boxplot]
+table[row sep=\\,y index=0] {
+    data\\
+    1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+    7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+}
+[above]
+node at
+  (boxplot whisker cs:\boxplotvalue{lower whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{lower whisker}}}
+node at
+  (boxplot box cs: \boxplotvalue{median},1)
+  {\pgfmathprintnumber{\boxplotvalue{median}}}
+node at
+  (boxplot whisker cs:\boxplotvalue{upper whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{upper whisker}}}
+;
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4552. Other Example
+
+**ID**: `b78f36f0a193`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/lower whisker/.style={
+        /pgfplots/boxplot/draw/whisker=
+            {\pgfplotsboxplotvalue{lower quartile}}
+            {\pgfplotsboxplotvalue{lower whisker}}
+    },
+    boxplot/draw/upper whisker/.style={
+        /pgfplots/boxplot/draw/whisker=
+            {\pgfplotsboxplotvalue{upper quartile}}
+            {\pgfplotsboxplotvalue{upper whisker}}
+    },
+    boxplot/draw/whisker/.code 2 args={
+        \draw [/pgfplots/boxplot/every whisker/.try]
+            (boxplot cs:#1) -- (boxplot cs:#2)
+            (boxplot whisker cs:#2,0)
+            --
+            (boxplot whisker cs:#2,1)
+        ;
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4553. Other Example
+
+**ID**: `bd29923d5caa`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/box/.code={
+        \draw [/pgfplots/boxplot/every box/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue{lower quartile},0)
+            rectangle
+            (boxplot box cs:\pgfplotsboxplotvalue{upper quartile},1)
+        ;
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4554. Other Example
+
+**ID**: `d02174c25e77`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/median/.code={
+        \draw [/pgfplots/boxplot/every median/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue{median},0)
+            --
+            (boxplot box cs:\pgfplotsboxplotvalue{median},1)
+        ;
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4555. Other Example
+
+**ID**: `e44b9aa114f2`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\makeatletter
+\pgfplotsset{
+    boxplot/draw/average/.code={
+        \draw [/pgfplots/boxplot/every average/.try]
+            \pgfextra
+            % do NOT use \draw[mark=*] plot coordinates because
+            % boxplots uses the same plot handler to draw its
+            % outliers.
+            \pgftransformshift{%
+                % basic level access to 'boxplot box cs':
+                \pgfplotsboxplotpointabbox
+                    {\pgfplotsboxplotvalue{average}}
+                    {0.5}%
+            }%
+            \pgfuseplotmark{\tikz@plot@mark}%
+            \endpgfextra
+        ;
+    },
+}
+\makeatother
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4556. Bar Chart Example
+
+**ID**: `5dfad5487e2f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xticklabel=
+\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick
+]
+    \addplot+ [hist={bins=3}]
+        table [row sep=\\,y index=0] {
+            data\\
+            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4557. Bar Chart Example
+
+**ID**: `d2505a004954`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+         \pgfmathprintnumber\nexttick)$
+    },
+    x tick label style={draw=red},
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4558. Bar Chart Example
+
+**ID**: `954ede03f266`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        tiny,
+        height=4cm,width=12cm,
+        ybar interval,
+        ymin=0,
+        xmin=0,xmax=1,
+        axis on top,
+        extra x ticks={0,1},
+        extra x tick style={
+            grid=none,
+            x tick label as interval=false,
+            xticklabel={$\pgfmathprintnumber\tick$}
+        },
+        xticklabel={$[\pgfmathprintnumber[fixed]\tick,\cdot)$},
+    ]
+        \addplot+ [samples=200,hist] {rnd};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4559. Bar Chart Example
+
+**ID**: `0040bf3521aa`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+        \pgfmathprintnumber\nexttick)$
+    },
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x,cumulative}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4560. Line Chart Example
+
+**ID**: `a6e5339a1572`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0,title=\texttt{hist}]
+        \addplot [
+            hist,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+%
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=density}]
+        \addplot [
+            hist=density,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4561. Line Chart Example
+
+**ID**: `d534fae4a245`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=cumulative}]
+        \addplot [
+            hist=cumulative,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+%
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=\{cumulative,density\}}]
+        \addplot [
+            hist={cumulative,density},
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4562. Line Chart Example
+
+**ID**: `fd4115be4c0b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={bins=3},
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4563. Line Chart Example
+
+**ID**: `7fe38147c16c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={const plot},
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4564. Line Chart Example
+
+**ID**: `c284b37a9b1d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={sharp plot},
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4565. Line Chart Example
+
+**ID**: `05c8a7178d3b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={sharp plot},
+            intervals=false,
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4566. Bar Chart Example
+
+**ID**: `54c374677a1b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    hist/symbolic coords={A,B,C,D,E,F,G,H,I,J},
+    xticklabel={[\tick--\nexttick[},
+]
+    \addplot+ [
+        hist={bins=3},
+    ] table [row sep=\\,y index=0] {
+        data\\
+        A\\ B\\ A\\ D\\ F\\ J\\
+        G\\ J\\ I\\ H\\ I\\ I\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4567. Environment Specification
+
+**ID**: `99757e5e2ed0`  
+**Type**: environment_specification  
+**Package**: pgfplots  
+
+### Description
+
+options} The axis environment for ternary axes. % A |ternaryaxis| works with relative coordinates: each data point consists of three components $x$, $y$, $z$. Their sum forms a compound entity which has $100\%$ (of whatever). In the standard configuration, we have $x,y,z [0,1]$. The unit interval is not necessary: you can as well choose absolute data ranges $x [x_{},x_{}]$, $y [y_{},y_{}]$ and $z [z_{},z_{}]$. The important thing is that the relative values % \[ x := x-x_{}{x_{} - x_{}},\; y := 
+
+**Quality Score**: 0.8  
+**Priority**: 7  
+**Executable**: No  
+
+---
+
+## 4568. Line Chart Example
+
+**ID**: `fbe207c1878d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}
+    \addplot3 coordinates {
+        (0.81,    0.19,    0.00)
+        (0.76,    0.17,    0.07)
+        (0.66,    0.16,    0.16)
+        (0.76,    0.07,    0.17)
+        (0.81,    0.00,    0.19)
+    };
+
+    \addplot3 coordinates {
+        (0.85,    0.15,    0.00)
+        (0.82,    0.13,    0.05)
+        (0.73,    0.14,    0.13)
+        (0.82,    0.06,    0.13)
+        (0.84,    0.00,    0.16)
+    };
+    \legend{$10$\textdegree, $20$\textdegree}
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4569. Line Chart Example
+
+**ID**: `14676637d8e2`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[xlabel=A,ylabel=B,zlabel=C]
+    \addplot3 coordinates {
+        (0.81,  0.19,  0.00)
+        (0.76,  0.17,  0.07)
+        (0.66,  0.16,  0.16)
+        (0.76,  0.07,  0.17)
+        (0.81,  0.00,  0.19)
+    };
+
+    \addplot3 coordinates {
+        (0.85,  0.15,  0.00)
+        (0.82,  0.13,  0.05)
+        (0.73,  0.14,  0.13)
+        (0.82,  0.06,  0.13)
+        (0.84,  0.00,  0.16)
+    };
+
+    \node [pin=130:Deduced $z$,draw=black] at (0.2,0.2) {};
+
+    \legend{$10$\textdegree, $20$\textdegree}
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4570. Line Chart Example
+
+**ID**: `d38a038cd4f6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    title=Sloped labels and minor ticks,
+    xlabel=Water,
+    ylabel=D-Threonine,
+    zlabel=L-Threonine,
+    label style={sloped},
+    minor tick num=2,
+]
+    \addplot3 coordinates {
+        (0.82,  0.18,  0.00)
+        (0.75,  0.17,  0.08)
+        (0.77,  0.12,  0.11)
+        (0.75,  0.08,  0.17)
+        (0.81,  0.00,  0.19)
+    };
+    \addplot3 coordinates {
+        (0.75,  0.25,  0.00)
+        (0.69,  0.25,  0.06)
+        (0.64,  0.24,  0.12)
+        (0.655, 0.23,  0.115)
+        (0.67,  0.17,  0.16)
+        (0.66,  0.12,  0.22)
+        (0.64,  0.11,  0.25)
+        (0.69,  0.05,  0.26)
+        (0.76,  0.01,  0.23)
+    };
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4571. Line Chart Example
+
+**ID**: `1709960f6077`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    title=Sloped labels and minor grids,
+    xlabel=Water,
+    ylabel=D-Threonine,
+    zlabel=L-Threonine,
+    label style={sloped},
+    minor tick num=2,
+    grid=both,
+]
+    \addplot3 coordinates {
+        (0.82,  0.18,  0.00)
+        (0.75,  0.17,  0.08)
+        (0.77,  0.12,  0.11)
+        (0.75,  0.08,  0.17)
+        (0.81,  0.00,  0.19)
+    };
+    \addplot3 coordinates {
+        (0.75,  0.25,  0.00)
+        (0.69,  0.25,  0.06)
+        (0.64,  0.24,  0.12)
+        (0.655, 0.23,  0.115)
+        (0.67,  0.17,  0.16)
+        (0.66,  0.12,  0.22)
+        (0.64,  0.11,  0.25)
+        (0.69,  0.05,  0.26)
+        (0.76,  0.01,  0.23)
+    };
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4572. Line Chart Example
+
+**ID**: `629817d868bf`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    title=Want--be--Stainless Steel,
+    xlabel=Weight Percent Chromium,
+    ylabel=Weight Percent Iron,
+    zlabel=Weight Percent Nickel,
+    label style=sloped,
+    area style,
+]
+    \addplot3 table {
+        A B C
+        1 0 0
+        0.5 0.4 0.1
+        0.45 0.52 0.03
+        0.36 0.6 0.04
+        0.1 0.9 0
+    };
+    \addlegendentry{Cr}
+
+    \addplot3 table {
+        A B C
+        1 0 0
+        0.5 0.4 0.1
+        0.28 0.35 0.37
+        0.4 0 0.6
+    };
+    \addlegendentry{Cr+$\gamma$FeNi}
+
+    \addplot3 table {
+        0.4 0 0.6
+        0.28 0.35 0.37
+        0.25 0.6 0.15
+        0.1 0.9 0
+        0 1 0
+        0 0 1
+    };
+    \addlegendentry{$\gamma$FeNi}
+
+    \addplot3 table {
+        0.1 0.9 0
+        0.36 0.6 0.04
+        0.25 0.6 0.15
+    };
+    \addlegendentry{Cr+$\gamma$FeNi}
+
+    \addplot3 table {
+        0.5 0.4 0.1
+        0.45 0.52 0.03
+        0.36 0.6 0.04
+        0.25 0.6 0.15
+        0.28 0.35 0.37
+    };
+    \addlegendentry{$\sigma$+$\gamma$FeNi}
+
+    \node [inner sep=0.5pt,circle,draw,fill=white,pin=-15:\footnotesize Stainless Steel]
+        at (0.18,0.74,0.08) {};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4573. Line Chart Example
+
+**ID**: `d64c29292a8d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    title=Want--be--Stainless Steel,
+    xlabel=Weight Percent Chromium,
+    ylabel=Weight Percent Iron,
+    zlabel=Weight Percent Nickel,
+    label style=sloped,
+]
+    % plotdata/pgfplotsternary.example1.dat:
+    %
+    % Chromium Iron Nickel Temperature
+    % 0.90    0.0     0.10    1700
+    % 0.85    0.14    0.00    1700
+    %
+    % 0.85    0.00    0.15    1600
+    % 0.78    0.22    0.00    1600
+    % 0.71    0.29    0.00    1600
+    % ...
+    \addplot3 [contour prepared={labels over line},
+        point meta=\thisrow{Temperature}]
+            table [x=Chromium,y=Iron,z=Nickel]
+              {plotdata/pgfplotsternary.example1.dat};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4574. Line Chart Example
+
+**ID**: `d074421d6e33`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    ternary limits relative,
+    title={Data range $[0,1]$, limits relative},
+    area style,
+]
+    \addplot3 coordinates {
+        (0.2,0.8,0)
+        (0.31,0.4,0.29)
+        (0.34,0.2,0.46)
+        (0.4,0,0.6)
+        (1,0,0)
+    };
+    \addplot3 coordinates {
+        (0.4,0,0.6)
+        (0.34,0.2,0.46)
+        (0.31,0.4,0.29)
+        (0.14,0.46,0.4)
+        (0,0.37,0.63)
+        (0,0,1)
+    };
+    \node [fill=white]
+        at (axis cs:0.56,0.28,0.16) {$F 42$};
+    \node [fill=white]
+        at (0.7,0.2) {$F 43$};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4575. Line Chart Example
+
+**ID**: `2f80127772d2`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    xmax=500,ymin=1,ymax=2,
+    ternary limits relative,
+    title={Data range $x\in[0,500]$,
+        $y\in[1,2]$, $z\in[0,1]$ limits relative},
+    area style,
+]
+    \addplot3 coordinates {
+        (100,1.8,0)
+        (155,1.4,0.29)
+        (170,1.2,0.46)
+        (200,1,0.6)
+        (500,1,0)
+    };
+    \addplot3 coordinates {
+        (200,1,0.6)
+        (170,1.2,0.46)
+        (155,1.4,0.29)
+        (70,1.46,0.4)
+        (0,1.37,0.63)
+        (0,1,1)
+    };
+    \node [fill=white]
+        at (axis cs:280,1.28,0.16) {$F 42$};
+    \node [fill=white]
+        at (0.7,0.2) {$F 43$};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4576. Line Chart Example
+
+**ID**: `3a7fd722355e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    ternary limits relative=false,
+    xmax=500,ymin=1,ymax=2,
+    title={Data range $x\in[0,500]$,
+        $y\in[1,2]$, $z\in[0,1]$ limits absolute},
+    footnotesize, % just for the sake of demonstration...
+    area style,
+]
+    \addplot3 coordinates {
+        (100,1.8,0)
+        (155,1.4,0.29)
+        (170,1.2,0.46)
+        (200,1,0.6)
+        (500,1,0)
+    };
+    \addplot3 coordinates {
+        (200,1,0.6)
+        (170,1.2,0.46)
+        (155,1.4,0.29)
+        (70,1.46,0.4)
+        (0,1.37,0.63)
+        (0,1,1)
+    };
+    \node [fill=white]
+        at (axis cs:280,1.28,0.16) {$F 42$};
+    \node [fill=white]
+        at (0.7,0.2) {$F 43$};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4577. Line Chart Example
+
+**ID**: `422e5f922e1d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    title=Cartesian Annotations,
+    clip=false,
+]
+    \addplot3 coordinates {
+        (0.1,0.5,0.4)
+        (0.2,0.5,0.3)
+        (0.3,0.6,0.1)
+    };
+    \node [fill=white,draw]
+        at (cartesian cs:0,0) {$y (0,0)$};
+    \node [fill=white,draw]
+        at (cartesian cs:1,0) {$z (1,0)$};
+    \node [fill=white,draw]
+        at (cartesian cs:0.5,{sqrt(3)/2})
+        {$x (\frac12,\frac{\sqrt3}{2})$};
+    \draw [red,-stealth]
+           (cartesian cs:0.5,0)
+        -- (cartesian cs:0.5,0.7);
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4578. Other Example
+
+**ID**: `5e38e6247d1d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    every ternary axis/.style={
+        tick align=outside,
+        grid=major,
+        xticklabel style={anchor=west},
+        every 3d description/.style={},
+        every axis x label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every axis y label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every axis z label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every x tick scale label/.style=
+          {at={(xticklabel cs:0.95,5pt)},anchor=near xticklabel,inner sep=0pt},
+        every y tick scale label/.style=
+          {at={(yticklabel cs:0.95,5pt)},anchor=near yticklabel,inner sep=0pt},
+        every z tick scale label/.style=
+          {at={(yticklabel cs:0.95,5pt)},anchor=near yticklabel,inner sep=0pt},
+        every axis title shift=15pt,
+        every axis legend/.style={
+            cells={anchor=center},
+            inner xsep=3pt,inner ysep=2pt,nodes={inner sep=2pt,text depth=0.15em},
+            shape=rectangle,
+            fill=white,
+            draw=black,
+            at={(1.03,1.03)},
+            anchor=north west,
+        },
+        annot/point format 3d/.initial={(\%.2f, \%.2f, \%.2f)},
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4579. Line Chart Example
+
+**ID**: `caa9bc01c390`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [tieline,fill=blue!10]
+        table [x=A_IPA,y=A_water,z=A_propene]
+            {plotdata/ternary_data.txt};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4580. Line Chart Example
+
+**ID**: `d04168847db0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [
+        tieline={each nth tie=5},
+        fill=blue!10,
+    ] table [x=A_IPA,y=A_water,z=A_propene]
+        {plotdata/ternary_data.txt};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4581. Line Chart Example
+
+**ID**: `c7ab24bf6e67`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.ternary.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{ternaryaxis}[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [
+        point meta=rand,
+        tieline={
+            each nth tie=8,
+            tieline style={contour prepared},
+        },
+        fill=blue!10,
+    ] table [x=A_IPA,y=A_water,z=A_propene]
+        {plotdata/ternary_data.txt};
+\end{ternaryaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4582. Command Specification
+
+**ID**: `8236eab218bc`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+name} Adds a single legend entry to the legend list. This will also enable legend drawing. % % It does not matter where || commands are placed, only the sequence matters. You will need one || for every || command (unless you prefer an empty legend). The optional options affect how the text is drawn; they apply only for this particular description text. For example, |[red]{Text}| would yield a red legend text. Behind the scenes, the text is placed with ||options name|;|, so options can be any opt
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4583. Command Specification
+
+**ID**: `3659d373f936`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+{ text}} A variant of || which provides a method to deal with macros inside of { text}. Suppose { text} contains some sort of parameter which varies for every plot. Moreover, you like to use a loop to generate the plots. Then, it is simpler to use ||: % % Note that this example wouldn't have worked with |$x^$| because the macro || is no longer defined when attempts to draw the legend. The invocation |$x^$| is equivalent to calling |$x^2$| if || expands to |2|. The argument { text} is expanded un
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4584. Command Specification
+
+**ID**: `572678b65475`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} You can use ||list to assign a complete legend. % % The argument of || is a list of entries, one for each plot. Two different delimiters are supported: % enumerate There are comma-separated lists like % % These lists are processed using the || command and are quite powerful. The || command supports a dots notation to denote ranges like |1,2,...,5| or even |$x^1$,$x^...$,$x^d$|. Attention with periods: to avoid confusion with the dots |...| notation, you may need to encapsulate a legend entry c
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4585. Command Specification
+
+**ID**: `c073d0af7262`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} Can be used to reference a labeled, single plot. See the example above. This will also work together with |hyperref| links and ||.Older versions of { required the use of protect ref when used inside of captions or section headings. This is no longer necessary.}
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4586. Command Specification
+
+**ID**: `878b9e960a5c`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} This command poses an equivalent alternative for ||name: it has essentially the same effect, but it does not create links when used with the |hyperref| package.Since this manual uses colored links, the text in { would usually be blue. Using avoids link text colors in the legend (this has been applied to the manual styles here).}
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4587. Command Specification
+
+**ID**: `27b6d359921a`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} Adds a further legend image for legend creation. Each || command appends its plot style options to a list, and || adds options to the very same list. Thus, the effect is as if you had provided ||options, but || bypasses all the logic usually associated with a plot. In other words: except for the legend, the state of the axis remains as if the command would not have been issued. Not even the current plot's index is advanced. % % The example above has six plots, each with its legend entry. Furth
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4588. Command Specification
+
+**ID**: `b37f14ccad12`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} This command poses an equivalent alternative for ||name: it has essentially the same effect, but it does not create links when used with the |hyperref| package.
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 4589. Line Chart Example
+
+**ID**: `9bbb7f20d72f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+% [See the TikZ manual if you'd like to learn about nodes and pins]
+\begin{tikzpicture}
+    \tikzset{
+        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+        small dot/.style={fill=black,circle,scale=0.3},
+    }
+    \begin{axis}[
+        clip=false,
+        title=How \texttt{axis description cs} works,
+    ]
+        \addplot {x};
+
+        \node [small dot,pin=120:{$(0,0)$}]      at (axis description cs:0,0)      {};
+        \node [small dot,pin=-30:{$(1,1)$}]      at (axis description cs:1,1)      {};
+        \node [small dot,pin=-90:{$(1.03,0.5)$}] at (axis description cs:1.03,0.5) {};
+        \node [small dot,pin=125:{$(0.5,0.5)$}]  at (axis description cs:0.5,0.5)  {};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4590. Line Chart Example
+
+**ID**: `b34fbe5167ff`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        legend entries={$x$,$x^2$},
+        legend style={
+            at={(1.03,0.5)},
+            anchor=west,
+        },
+    ]
+        \addplot {x};
+        \addplot {x^2};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4591. Line Chart Example
+
+**ID**: `1b2d9cc8517e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+% the same as above for 3D ...
+% [See the TikZ manual if you'd like to learn about nodes and pins]
+\begin{tikzpicture}
+    \tikzset{
+        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+        small dot/.style={fill=black,circle,scale=0.3},
+    }
+    \begin{axis}[
+        clip=false,
+        title=How \texttt{axis description cs} works in 3D,
+    ]
+        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
+
+        \draw [black!15] (axis description cs:0,0) rectangle (axis description cs:1,1);
+
+        \node [small dot,pin=120:{$(0,0)$}]      at (axis description cs:0,0)      {};
+        \node [small dot,pin=-30:{$(1,1)$}]      at (axis description cs:1,1)      {};
+        \node [small dot,pin=-90:{$(1.03,0.5)$}] at (axis description cs:1.03,0.5) {};
+        \node [small dot,pin=125:{$(0.5,0.5)$}]  at (axis description cs:0.5,0.5)  {};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4592. Line Chart Example
+
+**ID**: `93d4aa855c41`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\tikzset{
+    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=black,circle,scale=0.3},
+}
+\begin{tikzpicture}
+    \begin{axis}[
+        clip=false,
+        ticklabel style={draw=red},
+        title=Positioning with \texttt{xticklabel cs},
+    ]
+        \addplot {x};
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:0}}]    at (xticklabel cs:0)   {};
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:0.5}}]  at (xticklabel cs:0.5) {};
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:1}}]    at (xticklabel cs:1)   {};
+
+        \node [small dot,pin=180:{\texttt{yticklabel cs:0}}]    at (yticklabel cs:0)   {};
+        \node [small dot,pin=180:{\texttt{yticklabel cs:0.5}}]  at (yticklabel cs:0.5) {};
+        \node [small dot,pin=180:{\texttt{yticklabel cs:1}}]    at (yticklabel cs:1)   {};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4593. Line Chart Example
+
+**ID**: `02c4935f0d8d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\tikzset{
+    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=black,circle,scale=0.3},
+}
+\begin{tikzpicture}
+    \begin{axis}[
+        clip=false,
+        ticklabel style={draw=red},
+        title=Starred variant \texttt{xticklabel* cs},
+    ]
+        \addplot {x};
+        \node [small dot,pin=-90:{\texttt{xticklabel* cs:0}}]   at (xticklabel* cs:0)   {};
+        \node [small dot,pin=-90:{\texttt{xticklabel* cs:0.5}}] at (xticklabel* cs:0.5) {};
+        \node [small dot,pin=-90:{\texttt{xticklabel* cs:1}}]   at (xticklabel* cs:1)   {};
+
+        \node [small dot,pin=180:{\texttt{yticklabel* cs:0}}]   at (yticklabel* cs:0)   {};
+        \node [small dot,pin=180:{\texttt{yticklabel* cs:0.5}}] at (yticklabel* cs:0.5) {};
+        \node [small dot,pin=180:{\texttt{yticklabel* cs:1}}]   at (yticklabel* cs:1)   {};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4594. Line Chart Example
+
+**ID**: `414808622d15`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+% the same as above for 3D ...
+\begin{tikzpicture}
+    \tikzset{
+        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+        small dot/.style={fill=black,circle,scale=0.3},
+    }
+    \begin{axis}[
+        ticklabel style={draw=red},
+        clip=false,
+        title=Positioning with \texttt{ticklabel cs} in 3D,
+    ]
+        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
+
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:0}}]   at (xticklabel cs:0)   {};
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:0.5}}] at (xticklabel cs:0.5) {};
+        \node [small dot,pin=-90:{\texttt{xticklabel cs:1}}]   at (xticklabel cs:1)   {};
+
+        \node [small dot,pin=-45:{\texttt{yticklabel cs:0}}]   at (yticklabel cs:0)   {};
+        \node [small dot,pin=-45:{\texttt{yticklabel cs:0.5}}] at (yticklabel cs:0.5) {};
+        \node [small dot,pin=-45:{\texttt{yticklabel cs:1}}]   at (yticklabel cs:1)   {};
+
+        \node [small dot,pin=180:{\texttt{zticklabel cs:0}}]   at (zticklabel cs:0)   {};
+        \node [small dot,pin=180:{\texttt{zticklabel cs:0.5}}] at (zticklabel cs:0.5) {};
+        \node [small dot,pin=180:{\texttt{zticklabel cs:1}}]   at (zticklabel cs:1)   {};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4595. Line Chart Example
+
+**ID**: `720dd816b073`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\tikzset{
+    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=black,circle,scale=0.3},
+}
+\begin{tikzpicture}
+    \begin{axis}[
+        xticklabel style={draw=red},
+        clip=false,
+        title=\texttt{ticklabel cs} and its optional shift,
+    ]
+        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
+
+        \draw [blue,thick,->]      (xticklabel cs:0,0)     -- (xticklabel cs:1,0);
+        \draw [red,thick,->]       (xticklabel cs:0,5pt)   -- (xticklabel cs:1,5pt);
+        \draw [magenta,thick,->]   (xticklabel cs:0,10pt)  -- (xticklabel cs:1,10pt);
+        \draw [green,thick,->]     (xticklabel cs:0,15pt)  -- (xticklabel cs:1,15pt);
+        \node [small dot,pin=0:{\texttt{xticklabel cs:1,0}}]      at (xticklabel cs:1,0) {};
+        \node [small dot,pin=0:{\texttt{xticklabel cs:1,15pt}}]   at (xticklabel cs:1,15pt) {};
+
+        \draw [blue,thick,->]      (xticklabel cs:0,0)     -- (xticklabel cs:0,15pt);
+        \draw [blue,thick,->]      (xticklabel cs:1,0)     -- (xticklabel cs:1,15pt);
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4596. Line Chart Example
+
+**ID**: `001cda4f1ca8`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Without \texttt{near ticklabel},
+        ylabel={$f(x)=x$},
+        every axis y label/.style={
+            at={(ticklabel cs:0.5)},rotate=90,anchor=center,
+        },
+        clip=false,                 % to display the \path below
+        ylabel style={draw=red},
+        yticklabel style={draw=red},
+    ]
+        \addplot {x};
+
+        % visualize the position:
+        \fill (yticklabel cs:0.5) circle(2pt);
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis}[
+        title=With \texttt{near ticklabel},
+        ylabel={$f(x)=x$},
+        every axis y label/.style={
+            at={(ticklabel cs:0.5)},rotate=90,anchor=near ticklabel,
+        },
+        clip=false,
+        ylabel style={draw=red},
+        yticklabel style={draw=red},
+    ]
+        \addplot {x};
+        \fill (yticklabel cs:0.5) circle(2pt);
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4597. Flowchart Example
+
+**ID**: `e5d06695b230`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: flowchart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        clip=false,
+        small,
+        title=\texttt{near ticklabel} (\texttt{opposite}),
+        min=0, max=1,
+    ]
+        \node [draw=yellow,anchor=near xticklabel,font=\small]
+            (namex) at (xticklabel cs:0.2) {\texttt{near xticklabel}.};
+        \fill (xticklabel cs:0.2) circle(2pt);
+        \draw [green,-stealth] (xticklabel* cs:0.2) -- (xticklabel cs:0.2);
+        \draw [blue,-stealth]  (xticklabel cs:0.2)  -- (namex.center);
+        \draw [red,-stealth]   (namex.north east)   -- (xticklabel cs:0.2);
+
+        \node [draw=yellow,anchor=near xticklabel opposite,font=\small]
+            (namexx) at (xticklabel* cs:0.6) {\texttt{near xticklabel opposite}.};
+        \fill [red] (xticklabel* cs:0.6) circle(2pt);
+        \draw [blue,-stealth]       (xticklabel* cs:0.6) -- (namexx.center);
+        \draw [red,thick,-stealth]  (namexx.south west)  -- (xticklabel* cs:0.6);
+
+        \node [draw=yellow,anchor=near yticklabel,font=\small]
+            (name) at (yticklabel cs:1) {\texttt{near yticklabel}.};
+        \fill (yticklabel cs:1) circle(2pt);
+        \draw [green,-stealth] (yticklabel* cs:1) -- (yticklabel cs:1);
+        \draw [blue,-stealth]  (yticklabel cs:1)  -- (name.center);
+        \draw [red,-stealth]   (name.north west)  -- (yticklabel cs:1);
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4598. Flowchart Example
+
+**ID**: `00f000d313e9`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: flowchart  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        clip=false,
+        small,
+        title=\texttt{near ticklabel align},
+        min=0, max=1,
+        /tikz/node style/.style={
+            draw=yellow,
+            anchor=near yticklabel,
+            font=\tiny,
+        },
+    ]
+        \node [node style,/pgfplots/near ticklabel align=center]
+            (C) at (yticklabel cs:0) {\texttt{center}.};
+
+        \node [node style,/pgfplots/near ticklabel align=inside]
+            (I) at (yticklabel cs:1) {\texttt{inside}.};
+
+        \node [node style,/pgfplots/near ticklabel align=outside]
+            (O) at (yticklabel cs:1) {\texttt{outside}.};
+
+        \fill (yticklabel cs:0) circle(2pt);
+        \fill (yticklabel cs:1) circle(2pt);
+
+        \fill [blue] (C.center)     circle(1pt);
+        \fill [blue] (I.south west) circle(1pt);
+        \fill [blue] (O.north east) circle(1pt);
+
+        \draw [green,-stealth]  (yticklabel* cs:0) -- (yticklabel cs:0);
+        \draw [blue]            (yticklabel cs:0)  -- (C.center);
+        \draw [red,-stealth]    (C.north west)     -- (yticklabel cs:0);
+
+        \draw [green,-stealth]  (yticklabel* cs:1) -- (yticklabel cs:1);
+        \draw [blue]            (yticklabel cs:1)  -- (O.north east);
+        \draw [red,-stealth]    (O.north west)     -- (yticklabel cs:1);
+        \draw [red,-stealth]    (I.north west)     -- (yticklabel cs:1);
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4599. 3D Plot Example
+
+**ID**: `5472f50eaa0e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=Variable 1,
+    ylabel=Variable 2,
+    zlabel=value,
+    xlabel style={sloped like x axis},
+    ylabel style={sloped},
+]
+    \addplot3 [surf] {y*x*(1-x)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4600. Other Example
+
+**ID**: `751ef59e9acf`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.axisdescription.tex
+
+### Code
+
+```latex
+% for x:
+\node [
+    style=every axis label,
+    style=every axis x label,
+]
+% for y:
+\node [
+    style=every axis label,
+    style=every axis y label,
+]
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+
+---
+
+[← Previous](page-090) | [Next →](page-092)

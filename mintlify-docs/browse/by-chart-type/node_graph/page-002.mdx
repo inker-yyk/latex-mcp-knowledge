@@ -1,0 +1,854 @@
+---
+title: "Node Graph - Page 3"
+description: "Showing items 101-124 of 124"
+---
+
+# Node Graph - Page 3
+
+Showing items **101-124** of **124** | Page **3** of **3**
+
+[← Previous](page-001)
+
+---
+
+## 101. Node Graph Example
+
+**ID**: `65e75099d778`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-decorations.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[decoration={markings,
+    mark connection node=my node,
+    mark=at position .25 with
+      {\node [draw,red] (my node) {my node};}}]
+  \draw [help lines] grid (3,2);
+  \draw decorate { (0,0) -- (3,2) };
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 102. Node Graph Example
+
+**ID**: `f40761c70044`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-decorations.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[decoration={
+    markings,% switch on markings
+    mark=at position 1cm  with {\node[red]{1cm};},
+    mark=at position .75  with {\arrow[blue,line width=2mm]{>}},
+    mark=at position -1cm with {\arrowreversed[black]{stealth}}}
+    ]
+  \draw [help lines] grid (3,2);
+  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 103. Node Graph Example
+
+**ID**: `1f99bd83c842`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-tikz-scopes.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [fill=white] at (1,1) {Hello world};
+  \scoped [on background layer]
+    \draw (0,0) grid (3,2);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 104. Node Graph Example
+
+**ID**: `84bb3af01a2b`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit ee IEC,x=3cm,y=2cm,semithick,
+                    every info/.style={font=\footnotesize},
+                    small circuit symbols,
+                    set resistor graphic=var resistor IEC graphic,
+                    set diode graphic=var diode IEC graphic,
+                    set make contact graphic= var make contact IEC graphic]
+  % Let us start with some contacts:
+  \foreach \contact/\y in {1/1,2/2,3/3.5,4/4.5,5/5.5}
+  {
+    \node [contact] (left contact \contact) at (0,\y) {};
+    \node [contact] (right contact \contact) at (1,\y) {};
+  }
+  \draw (right contact 1) -- (right contact 2) -- (right contact 3)
+     -- (right contact 4) -- (right contact 5);
+
+  \draw (left contact 1) to [diode] ++(down:1)
+                         to [voltage source={near start,
+                                             direction info={volt=3}},
+                             resistor={near end,ohm=3}] ++(right:1)
+                         to (right contact 1);
+  \draw (left contact 1) to [resistor={ohm=4}] (right contact 1);
+  \draw (left contact 1) to [resistor={ohm=3}] (left contact 2);
+  \draw (left contact 2) to [voltage source={near start,
+                                             direction info={<-,volt=8}},
+                             resistor={ohm=2,near end}] (right contact 2);
+  \draw (left contact 2) to [resistor={near start,ohm=1},
+                             make contact={near end,info'={[red]$S_1$}}]
+                         (left contact 3);
+  \draw (left contact 3) to [current direction'={near start,info=$\iota$},
+                             resistor={near end,info={$R=4\Omega$}}]
+                         (right contact 3);
+  \draw (left contact 4) to [voltage source={near start,
+                                             direction info={<-,volt=8}},
+                             resistor={ohm=2,near end}] (right contact 4);
+  \draw (left contact 3) to [resistor={ohm=1}] (left contact 4);
+  \draw (left contact 4) to [resistor={ohm
+... (truncated)
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 105. Node Graph Example
+
+**ID**: `eb948eeea3f0`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit logic US]
+  \matrix[column sep=7mm]
+  {
+    \node (i0) {0}; &                            & \\
+                    & \node [and gate] (a1) {};  & \\
+    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
+                    & \node [nand gate] (a2) {}; & \\
+    \node (i2) {1}; &                            & \\
+  };
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 106. Node Graph Example
+
+**ID**: `8dbf73841b53`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit logic IEC]
+  \matrix[column sep=7mm]
+  {
+    \node (i0) {0}; &                            & \\
+                    & \node [and gate] (a1) {};  & \\
+    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
+                    & \node [nand gate] (a2) {}; & \\
+    \node (i2) {1}; &                            & \\
+  };
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 107. Node Graph Example
+
+**ID**: `646eeca3e08f`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit logic IEC,
+                    every circuit symbol/.style={
+                      logic gate IEC symbol color=black,
+                      fill=blue!20,draw=blue,very thick}]
+  \matrix[column sep=7mm]
+  {
+    \node (i0) {0}; &                            & \\
+                    & \node [and gate] (a1) {};  & \\
+    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
+                    & \node [nand gate] (a2) {}; & \\
+    \node (i2) {1}; &                            & \\
+  };
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 108. Node Graph Example
+
+**ID**: `552a8939dc13`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit logic CDH,
+                    tiny circuit symbols,
+                    every circuit symbol/.style={
+                      fill=white,draw}]
+  \matrix[column sep=7mm]
+  {
+    \node (i0) {0}; &                            & \\
+                    & \node [and gate] (a1) {};  & \\
+    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
+                    & \node [nand gate] (a2) {}; & \\
+    \node (i2) {1}; &                            & \\
+  };
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 109. Node Graph Example
+
+**ID**: `5507b76fcdbe`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[circuit logic IEC]
+  \node[and gate,inputs={inini}] (A) {};
+  \foreach \a in {1,...,5}
+    \draw (A.input \a -| -1,0) -- (A.input \a);
+  \draw (A.output) -- ++(right:5mm);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 110. Node Graph Example
+
+**ID**: `cfbfa8f31d04`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[minimum height=0.75cm]
+  \node[and gate IEC, draw, logic gate inputs={inverted, normal, inverted}]
+    (A) {};
+  \foreach \a in {1,...,3}
+    \draw (A.input \a -| -1,0) -- (A.input \a);
+  \draw (A.output) -- ([xshift=0.5cm]A.output);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 111. Node Graph Example
+
+**ID**: `3d33be83dea0`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[minimum height=0.75cm]
+  \node[or gate US, draw,logic gate inputs=inini] (A) {};
+  \foreach \a in {1,...,5}
+    \draw (A.input \a -| -1,0) -- (A.input \a);
+  \draw (A.output) -- ([xshift=0.5cm]A.output);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 112. Node Graph Example
+
+**ID**: `9905550d9c04`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[minimum size=0.75cm]
+  \draw [help lines] grid (3,2);
+  \tikzset{every node/.style={shape=and gate IEC, draw, logic gate inputs=ini}}
+  \node[logic gate input sep=0.33333cm] at (1,1)(A) {A};
+  \node[logic gate input sep=0.5cm]     at (3,1) (B) {B};
+  \foreach \a in {1,...,3}
+    \draw (A.input \a -| 0,0) -- (A.input \a)
+          (B.input \a -| 2,0) -- (B.input \a);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 113. Node Graph Example
+
+**ID**: `b32be18730e6`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=nand gate US,shape example, inner sep=0cm,
+  logic gate inputs={in},
+  logic gate inverted radius=.5cm] {Nand Gate\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/above, 30/above right,
+     mid/right, mid east/left, mid west/above,
+     base/below, base east/below, base west/left,
+     north/above, south/below, east/above, west/above,
+     north east/above, south east/below, south west/below, north west/above,
+     output/right, input 1/above, input 2/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 114. Node Graph Example
+
+**ID**: `0c6f0354a586`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[minimum size=1cm, use IEC style logic gates]
+    \tikzset{every node/.style={nor gate, draw}}
+  \node (A) at (0,1.5) {};
+  \node [logic gate symbol align={bottom, right}] (B) at (0,0) {};
+  \foreach \g in {A, B}{
+    \foreach \i in {1,2}
+      \draw ([xshift=-0.5cm]\g.input \i) -- (\g.input \i);
+    \draw (\g.output) -- ([xshift=0.5cm]\g.output);
+  }
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 115. Node Graph Example
+
+**ID**: `5fb509147ff2`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=nand gate IEC ,shape example, inner xsep=1cm, inner ysep=1cm,
+    minimum height=6cm, nand gate IEC symbol=\color{black!30}\char`\&,
+    logic gate inputs={in},
+    logic gate inverted radius=0.65cm]
+  {Nand Gate\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/above, 30/above right,
+     mid/right, mid east/left, mid west/above,
+     base/below, base east/below, base west/left,
+     north/above, south/below, east/above, west/above,
+     north east/above, south east/below, south west/below, north west/above,
+     output/right, input 1/above, input 2/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 116. Node Graph Example
+
+**ID**: `c32087952d54`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\tikz [circuit ee IEC] {
+  \node (R1) [resistor,point up,ohm=5] at (3,1) {};
+  \node (R2) [resistor,ohm=10k]        at (0,0) {};
+  \draw (R2) -| (R1);
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 117. Node Graph Example
+
+**ID**: `89a932760a53`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetarrowoptions{direction ee}{6cm}
+  \node[name=s,shape=direction ee,shape example,minimum height=0.7654*6cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 118. Node Graph Example
+
+**ID**: `3d8e9d63d732`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}[direction ee arrow=angle 45]
+  \node[name=s,shape=direction ee,shape example,minimum height=1.75cm] {};
+  \foreach \anchor/\placement in {north/above, south/below,
+                                  output/right, input/left}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 119. Node Graph Example
+
+**ID**: `466e0067b550`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=generic diode IEC,shape example,minimum size=6cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 120. Node Graph Example
+
+**ID**: `b29e6a4049dd`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=breakdown diode IEC,shape example,minimum width=6cm,minimum height=4cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 121. Node Graph Example
+
+**ID**: `21c51f13fad7`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=var resistor IEC,shape example,minimum width=7cm,minimum height=1cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 122. Node Graph Example
+
+**ID**: `15aaf7c0a664`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=inductor IEC,shape example,minimum width=7cm,minimum height=1cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 123. Node Graph Example
+
+**ID**: `6310308ecdc6`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=capacitor IEC,shape example,
+        minimum width=2cm,minimum height=3cm,inner sep=0pt] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 124. Node Graph Example
+
+**ID**: `f2c3d35f84b3`  
+**Type**: executable_example  
+**Package**: tikz  
+**Chart Type**: node_graph  
+
+### Description
+
+Executable example from pgfmanual-en-library-circuits.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[name=s,shape=make contact IEC,shape example,minimum width=3cm,minimum height=1cm] {};
+  \foreach \anchor/\placement in
+    {center/above, 30/above right,
+     north/above, south/below, east/left, west/right,
+     north east/above, south east/below, south west/below, north west/above,
+     input/left,output/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+
+---
+
+[← Previous](page-001)

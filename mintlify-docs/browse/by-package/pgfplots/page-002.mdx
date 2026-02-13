@@ -1,0 +1,1912 @@
+---
+title: "PGFPLOTS - Page 3"
+description: "Showing items 101-150 of 1474"
+---
+
+# PGFPLOTS - Page 3
+
+Showing items **101-150** of **1474** | Page **3** of **30**
+
+[← Previous](page-001) | [Next →](page-003)
+
+---
+
+## 101. Other Example
+
+**ID**: `b09c5630786b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{contour/handler/.style={/tikz/sharp plot}}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 102. Line Chart Example
+
+**ID**: `f1a113e7f3b0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={0}{90}]
+    \addplot3 [
+        contour lua={
+            levels={0.1,0.2,0.5,1,2,5},
+            labels=false,
+            handler/.style=smooth,
+        },
+    ] {2*sqrt(x^2+y^2+(-0.5*(x^2-y^2)))};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 103. Other Example
+
+**ID**: `241f9d80213b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour/label node code/.code={\node {\pgfmathprintnumber{#1}};},
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 104. Other Example
+
+**ID**: `8b7c4f9b400f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour gnuplot/.style={
+        contour external={
+            script={
+                unset surface;
+                \ifx\thecontourlevels\empty
+                set cntrparam levels \thecontournumber;
+                \else
+                set cntrparam levels discrete \thecontourlevels;
+                \fi
+                set contour;
+                set table \"\outfile\";
+                splot \"\infile\";
+            },
+            cmd={gnuplot \"\script\"},
+            #1,%
+        },
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 105. Line Chart Example
+
+**ID**: `219fafefc0ce`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colormap name=viridis,colorbar]
+        \addplot3 [contour filled] {x^2*y};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 106. Line Chart Example
+
+**ID**: `748f8e9e3e6e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={$x \exp(-x^2-y^2)$},
+    domain=-2:2,
+    view={0}{90},
+    colorbar horizontal,
+]
+    \addplot3 [
+        contour filled={
+            number=14,
+        },
+    ] {exp(-x^2-y^2)*x};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 107. Line Chart Example
+
+**ID**: `84a6730c7edd`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colormap/RdYlGn,colorbar, view={0}{90}]
+        \addplot3 [domain=0:2*pi,trig format plots=rad,
+            contour filled={
+                levels={-0.4,-0.25,0,0.3,0.9}
+            },
+        ] {sin(x)*sin(y)};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 108. Line Chart Example
+
+**ID**: `06f52823d1e6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={0}{90},
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green) color=(yellow)
+        color=(brown)},
+    colorbar horizontal,
+    colorbar style={minor x tick num=1},
+    y dir=reverse,
+]
+    \addplot3 [
+        contour filled={
+            levels from colormap={
+                of colormap={
+                    whiteblue,
+                    target pos max=,
+                    target pos={-12000,-10000,-6000,
+                        -5000,-3000,-1000,-750,-500,
+                        -250,-100,-50,0}
+                },
+                of colormap={
+                    gb,
+                    target pos min=,
+                    target pos={10,100,200,500,1000,
+                        1100,1200, 1500,2000,4000,
+                        6000,8000}
+                },
+            },
+        },
+    ] table {plotdata/heightmap.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 109. Other Example
+
+**ID**: `3b1d5aeceff4`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green)
+        color=(yellow) color=(brown)},
+    colorbar style={minor x tick num=1},
+    point meta min=-7052,               %<--
+    point meta max=2895,                %<--
+    of colormap/target pos min*=-7052,  %<--
+    of colormap/target pos max*=2895,   %<--
+    of colormap/sample for=const,       %<--
+    colormap access=const,              %<--
+    colormap={CM}{
+        of colormap={
+            whiteblue,
+            target pos max=,
+            target pos={-12000,-10000,-6000,-5000,
+              -3000,-1000,-750,-500,-250,-100,-50,0}
+        },
+        of colormap={
+            gb,
+            target pos min=,
+            target pos={10,100,200,500,1000,1100,
+                1200,1500,2000,4000,6000,8000}
+        },
+    },
+]
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 110. Other Example
+
+**ID**: `58bc7a052698`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green)
+        color=(yellow) color=(brown)},
+    colorbar as legend,
+    colorbar style={
+        ticklabel style={
+            font=\tiny,
+            /pgf/number format/precision=3,
+            /pgf/number format/relative*=4,
+        },
+    },
+    point meta min=-7052,
+    point meta max=2895,
+    of colormap/target pos min*=-7052,
+    of colormap/target pos max*=2895,
+    of colormap/sample for=const,
+    colormap access=const,
+    colormap={CM}{
+        of colormap={
+            whiteblue,
+            target pos max=,
+            target pos={-12000,-10000,-6000,-5000,
+              -3000,-1000,-750,-500,-250,-100,-50,0}
+        },
+        of colormap={
+            gb,
+            target pos min=,
+            target pos={10,100,200,500,1000,1100,
+                1200,1500,2000,4000,6000,8000}
+        },
+    },
+]
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 111. Line Chart Example
+
+**ID**: `32b497fd281b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={0}{90},colorbar]
+    \addplot3 [
+        domain=-10:10,
+        contour filled={
+            levels from colormap={
+                color(-20)=(white)
+                color(1)=(blue)
+                color(1.3)=(white)
+                color(20)=(white)
+            },
+        },
+        point meta min=-20,
+        point meta max=20,
+    ] {(x+1)^2/4-(y-2)^2/9};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 112. Line Chart Example
+
+**ID**: `88863bc73235`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    view={0}{90},
+    colorbar,
+    domain=-10:10,
+]
+    \addplot3 [
+        contour filled={
+            levels from colormap={
+                color(-20)=(white)
+                color(1)=(blue)
+                color(1.3)=(white)
+                color(20)=(white)
+            },
+        },
+        point meta min=-20,
+        point meta max=20,
+    ] {(x+1)^2/4-(y-2)^2/9};
+
+    \addplot3 [
+        thick,
+        contour lua={
+            draw color=red,
+            levels=1,
+            labels=false,
+        },
+    ] {(x+1)^2/4-(y-2)^2/9};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 113. Line Chart Example
+
+**ID**: `5f41f3229c16`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30},colormap/YlOrRd]
+    \addplot3 [
+        contour filled={
+            number=7,
+        },
+        point meta=x,
+        z buffer=sort,
+        samples=30,domain=-1:1,y domain=0:2*pi,
+    ] (
+        {sqrt(1-x^2) * cos(deg(y))},
+        {sqrt( 1-x^2 ) * sin(deg(y))},
+        x
+    );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 114. Line Chart Example
+
+**ID**: `7432766458a3`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        contour filled,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [0]   (2,0) [0]   (3,0) [0]
+
+        (0,1) [0] (1,1) [0.6] (2,1) [0.7] (3,1) [0.5]
+
+        (0,2) [0] (1,2) [0.7] (2,2) [0.8] (3,2) [0.5]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 115. Line Chart Example
+
+**ID**: `e432d872036a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [
+        contour filled,
+    ] coordinates {
+        (0,0,0) (1,0,0)   (2,0,0)   (3,0,0)
+
+        (0,1,0) (1,1,0.6) (2,1,0.7) (3,1,0.5)
+
+        (0,2,0) (1,2,0.7) (2,2,0.8) (3,2,0.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 116. Line Chart Example
+
+**ID**: `4894c758ff59`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{patchplots}
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        contour filled,
+        patch type=bilinear,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [0]   (2,0) [0]   (3,0) [0]
+
+        (0,1) [0] (1,1) [0.6] (2,1) [0.7] (3,1) [0.5]
+
+        (0,2) [0] (1,2) [0.7] (2,2) [0.8] (3,2) [0.5]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 117. Line Chart Example
+
+**ID**: `ee902ec5b393`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30}]
+    \addplot3+ [
+        domain=0:5*pi,
+        samples=60,
+        samples y=1,
+    ] (
+        {sin(deg(x))},
+        {cos(deg(x))},
+        {2*x/(5*pi)}
+    );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 118. 3D Plot Example
+
+**ID**: `ee8e5a0f58f0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30}]
+    \addplot3 [
+        mesh,
+        z buffer=sort,
+        samples=20,
+        domain=-1:0,
+        y domain=0:2*pi,
+    ] (
+        {sqrt(1-x^2) * cos(deg(y))},
+        {sqrt( 1-x^2 ) * sin(deg(y))},
+        x
+    );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 119. Scatter Plot Example
+
+**ID**: `3db1ec52b46a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30}]
+    \addplot3 [
+        only marks,
+        mesh,z buffer=sort,
+        scatter,scatter src=z,
+        samples=30,domain=-1:1,y domain=0:2*pi,
+    ] (
+        {sqrt(1-x^2) * cos(deg(y))},
+        {sqrt( 1-x^2 ) * sin(deg(y))},
+        x
+    );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 120. 3D Plot Example
+
+**ID**: `9c0aaff73c6f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30},colormap/viridis]
+    \addplot3 [
+        surf,shader=interp,z buffer=sort,
+        samples=30,domain=-1:0,y domain=0:2*pi,
+    ] (
+        {sqrt(1-x^2) * cos(deg(y))},
+        {sqrt( 1-x^2 ) * sin(deg(y))},
+        x
+    );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 121. 3D Plot Example
+
+**ID**: `8ee6fdb4a1cb`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel=$x$, ylabel=$y$,
+        view/h=-10,
+        title=\footnotesize
+ \url{http://en.wikipedia.org/wiki/Klein_bottle},
+    ]
+        \addplot3 [
+            surf,
+            z buffer=sort,
+            colormap={periodic}{
+                color=(blue)
+                   color=(yellow)
+                      color=(orange)
+                         color=(red)
+                      color=(orange)
+                   color=(yellow)
+                color=(blue)},
+            domain=0:180, domain y=0:360,
+            samples=41, samples y=25,
+            variable=\u, variable y=\v,
+            point meta=u,
+        ] (
+            {-2/15 * cos(u) * (
+               3*cos(v) - 30*sin(u)
+             + 90 *cos(u)^4 * sin(u)
+             - 60 *cos(u)^6 * sin(u)
+             + 5 * cos(u)*cos(v) * sin(u))
+            },
+            {-1/15 * sin(u) * (3*cos(v)
+             - 3*cos(u)^2 * cos(v)
+             - 48 * cos(u)^4*cos(v)
+             + 48*cos(u)^6 *cos(v)
+             - 60 *sin(u)
+             + 5*cos(u)*cos(v)*sin(u)
+             - 5*cos(u)^3 * cos(v) *sin(u)
+             - 80*cos(u)^5 * cos(v)*sin(u)
+             + 80*cos(u)^7 * cos(v) * sin(u))
+            },
+            {2/15 * (3 + 5*cos(u) *sin(u))*sin(v)}
+        );
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 122. 3D Plot Example
+
+**ID**: `e72303e7ea52`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false]
+    \addplot [
+        matrix plot,
+        mark=*,nodes near coords=\coordindex,
+        mesh/color input=explicit,
+    ] coordinates {
+        % row 0 1 2:
+        (0,0) [color=red] (1,0) [color=blue]
+        (2,0) [color=yellow]
+
+        % row 3 4 5
+        (0,1) [color=black] (1,1) [color=brown]
+        (2,1) [color=magenta]
+
+        % row 6 7 8
+        (0,2) [color=green] (1,2) [color=red]
+        (2,2) [color=white]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 123. Line Chart Example
+
+**ID**: `8863a1f8733a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false,colorbar]
+    \addplot [matrix plot,
+        nodes near coords=\coordindex,mark=*,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2]
+
+        (0,1) [3] (1,1) [4] (2,1) [5]
+
+        (0,2) [6] (1,2) [7] (2,2) [8]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 124. Other Example
+
+**ID**: `d94d79be5989`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    y dir=reverse,
+    axis on top,
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 125. 3D Plot Example
+
+**ID**: `7d714bf5879e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false]
+    \addplot [
+        matrix plot,
+        nodes near coords=\coordindex,mark=*,
+        mesh/cols=3,
+        point meta=explicit,
+    ] table [meta=C] {
+        x y  C
+        0 0  0
+        1 0  1
+        2 0  2
+        0 1  3
+        1 1  4
+        2 1  5
+        0 2  6
+        1 2  7
+        2 2  8
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 126. Other Example
+
+**ID**: `3355b214a33d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+Package pgfplots Warning: Automatic computation of axis limits for 'matrix plot' is INACCURATE.
+Please add the key 'mesh/cols=3'. You can also ignore this warning and deal with axis limits manually
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 127. Line Chart Example
+
+**ID**: `91c39cc49b13`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false,colorbar]
+    \addplot [
+        matrix plot,
+        nodes near coords=\coordindex,mark=*,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2]
+
+        (0,1) [3] (1,1) [nan] (2,1) [5]
+
+        (0,2) [6] (1,2) [7] (2,2) [8]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 128. 3D Plot Example
+
+**ID**: `73ee98e230f6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false]
+    \addplot [
+        matrix plot,
+        mark=*,nodes near coords=\coordindex,
+        mesh/color input=explicit,
+    ] coordinates {
+        (0,0) [color=red] (1,0) [color=blue]
+            (2,0) [color=yellow]
+
+        (0,1) [color=black] (1,1) []
+            (2,1) [color=magenta]
+
+        (0,2) [color=green] (1,2) [color=red]
+            (2,2) [color=white]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 129. Line Chart Example
+
+**ID**: `5e34c3bed512`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false,colorbar]
+    \addplot [matrix plot,
+        shader=interp,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2]
+
+        (0,1) [3] (1,1) [nan] (2,1) [5]
+
+        (0,2) [6] (1,2) [7] (2,2) [8]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 130. Line Chart Example
+
+**ID**: `620712f91584`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=0.2,colorbar]
+    \addplot [
+        matrix plot,
+        nodes near coords=\coordindex,mark=*,
+        point meta=\coordindex,
+    ] table {
+        x    y
+        0    0
+        1    -0.1
+        2    0.2
+
+        -0.2 1
+        1    1
+        2    1
+
+        0    2
+        1.3  2
+        2    2.5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 131. Other Example
+
+**ID**: `a348da038525`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+y dir=reverse,
+axis on top,
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 132. Line Chart Example
+
+**ID**: `8419adb902e4`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false, axis on top]
+    \addplot[matrix plot*,
+        nodes near coords=\coordindex,mark=*,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2]
+
+        (0,1) [3] (1,1) [4] (2,1) [5]
+
+        (0,2) [6] (1,2) [7] (2,2) [8]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 133. Other Example
+
+**ID**: `428d9cde7748`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    matrix plot*/.style={
+        surf,
+        mesh input=image,
+        shader=flat corner,
+        z buffer=none,
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 134. Line Chart Example
+
+**ID**: `bfdeae42e6e5`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [patch]
+        table {
+            x y
+            0 0
+            1 1
+            2 0
+% empty lines do not hurt, they are ignored here:
+
+            1 1
+            2 0
+            3 1
+
+            2 0
+            3 1
+            4 0
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 135. Line Chart Example
+
+**ID**: `f4d3738b3be5`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [patch]
+        table [point meta=\thisrow{c}] {
+            x y c
+            0 0 0.2
+            1 1 0
+            2 0 1
+
+            1 1 0
+            2 0 1
+            3 1 0
+
+            2 0 1
+            3 1 0
+            4 0 0.5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 136. Line Chart Example
+
+**ID**: `6eb4091838eb`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [patch,shader=interp]
+        table [point meta=\thisrow{c}] {
+            x y c
+            0 0 0.2
+            1 1 0
+            2 0 1
+
+            1 1 0
+            2 0 1
+            3 1 0
+
+            2 0 1
+            3 1 0
+            4 0 0.5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 137. Line Chart Example
+
+**ID**: `d2c7fb50208f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [patch,shader=interp]
+        table [point meta=\thisrow{c}] {
+            x y c
+            0 0 0.2
+            1 1 0
+            2 0 1
+
+            1 1 0
+            2 0 -1
+            3 1 0
+
+            2 0 0.5
+            3 1 1
+            4 0 0.5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 138. Line Chart Example
+
+**ID**: `0a2ba2d5da51`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [patch,table/row sep=\\,patch table={
+        0 1 2\\
+        1 2 3\\
+        4 3 5\\
+    }] table [row sep=\\,point meta=\thisrow{c}] {
+        x y c  \\
+        0 0 0.2\\% 0
+        1 1 0  \\% 1
+        2 0 1  \\% 2
+        3 1 0  \\% 3
+        2 0 0.5\\% 4
+        4 0 0.5\\% 5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 139. Line Chart Example
+
+**ID**: `42d375cf6900`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    % this uses per-patch color data:
+    \addplot [patch,table/row sep=\\,
+        patch table with point meta={
+            0 1 2 100\\
+            1 2 3 10\\
+            4 3 5 0\\
+        },
+    ] table [row sep=\\] {
+        x y \\
+        0 0 \\% 0
+        1 1 \\% 1
+        2 0 \\% 2
+        3 1 \\% 3
+        2 0 \\% 4
+        4 0 \\% 5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 140. Line Chart Example
+
+**ID**: `c40bd9ab620c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    % this uses n per-patch color values:
+    \addplot[patch,shader=interp,
+        table/row sep=\\,
+        patch table with individual point meta={
+          % V_0 V_1 V_2 C_0 C_1 C_2
+            0   1   2   100 100 100 \\
+            1   2   3   10  0   50  \\
+            4   3   5   0   0   100 \\
+    }] table[row sep=\\] {
+        x y \\
+        0 0 \\% 0
+        1 1 \\% 1
+        2 0 \\% 2
+        3 1 \\% 3
+        2 0 \\% 4
+        4 0 \\% 5
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 141. Line Chart Example
+
+**ID**: `6f209d175bf9`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[axis equal]
+    % FokkerDrI_layer_0.patches.dat contains:
+    % # each row is one vertex; three consecutive
+    % # vertices make one triangle (patch)
+    % 105.577    -19.7332    2.85249
+    % 88.9233    -21.1254    13.0359
+    % 89.2104    -22.1547    1.46467
+    % # end of facet 0
+    % 105.577    -19.7332    2.85249
+    % 105.577    -17.2161    12.146
+    % 88.9233    -21.1254    13.0359
+    % # end of facet 1
+    \addplot3 [patch] file
+        {plotdata/FokkerDrI_layer_0.patches.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 142. Line Chart Example
+
+**ID**: `12b81338e514`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    % FokkerDrI_layer_0.facetIdx.dat contains:
+    % # each row makes up one facet; it
+    % # consists of 0-based indices into
+    % # the vertex array
+    % 0    1    2 % triangle of vertices #0,#1 and #2
+    % 0    3    1 % triangle of vertices #0,#3 and #1
+    % 3    4    1
+    % 5    6    7
+    % 6    8    7
+    % 8    9    7
+    % 8    10   9
+    % ...
+    % while FokkerDrI_layer_0.vertices.dat contains
+    % 105.577    -19.7332    2.85249    % vertex #0
+    % 88.9233    -21.1254    13.0359    % vertex #1
+    % 89.2104    -22.1547    1.46467    % vertex #2
+    % 105.577    -17.2161    12.146
+    % 105.577    -10.6054    18.7567
+    % 105.577    7.98161     18.7567
+    % 105.577    14.5923     12.146
+    % ...
+    \addplot3 [patch,shader=interp,
+        patch table=
+            {plotdata/FokkerDrI_layer_0.facetIdx.dat}]
+        file
+            {plotdata/FokkerDrI_layer_0.vertices.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 143. 3D Plot Example
+
+**ID**: `07965fc9712e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view/h=70]
+    % FokkerDrI_layer_0.patches.dat contains:
+    % # each row is one vertex; three consecutive
+    % # vertices make one triangle (patch)
+    % 105.577    -19.7332    2.85249
+    % 88.9233    -21.1254    13.0359
+    % 89.2104    -22.1547    1.46467
+    % # end of facet 0
+    % 105.577    -19.7332    2.85249
+    % 105.577    -17.2161    12.146
+    % 88.9233    -21.1254    13.0359
+    % # end of facet 1
+    \addplot3 [patch,mesh] file
+        {plotdata/FokkerDrI_layer_0.patches.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 144. 3D Plot Example
+
+**ID**: `141b48647d45`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Rectangle from matrix input,
+]
+    % note that surf implies 'patch type=rectangle'
+    \addplot [
+        surf,
+        mesh/rows=2,
+        patch type=rectangle,
+    ] coordinates {
+        (0,0) (1,0)
+        (0,1) (1,1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 145. Line Chart Example
+
+**ID**: `ee476448655b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Rectangle from patch input,
+]
+    \addplot [
+        patch,
+        patch type=rectangle,
+    ] coordinates {
+        (0,0) (1,0) (1,1) (0,1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 146. Line Chart Example
+
+**ID**: `8d65f14860d0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+]
+    \addplot [
+        patch,
+        patch type=triangle,
+    ] coordinates {
+        (0,0) (1,0) (0,1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 147. Other Example
+
+**ID**: `01f78ce6f50c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.3dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    every patch/.style={miter limit=1},
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 148. Command Specification
+
+**ID**: `ab7c3426e028`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+Provide || as trailing path commands after || to draw a closed line from the last plot coordinate to the first one. Use || whenever you intend to fill the area under a plot. % In case of stacked plots, || connects the current plot with the previous plot instead of connecting with the $x$-axis.The implementation for stacked plots requires some additional logic to determine the filled area: {\ will produce a plot coordinates command with reversed coordinates of the previous plot. This is usually i
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 149. Line Chart Example
+
+**ID**: `9cb97c82ad5c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.closingplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot {x^2+2} \closedcycle;
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 150. Line Chart Example
+
+**ID**: `85e5eade2114`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.closingplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [fill] {x^2+2} \closedcycle;
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+
+---
+
+[← Previous](page-001) | [Next →](page-003)

@@ -1,0 +1,2059 @@
+---
+title: "All Items - Page 85"
+description: "Showing items 4201-4250 of 5171"
+---
+
+# All Items - Page 85
+
+Showing items **4201-4250** of **5171** | Page **85** of **104**
+
+[← Previous](page-083) | [Next →](page-085)
+
+---
+
+## 4201. Line Chart Example
+
+**ID**: `58deea6f9f34`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={$x \exp(-x^2-y^2)$ and its gradient},
+    domain=-2:2,
+    view={0}{90},
+    axis background/.style={fill=white},
+]
+    \addplot3 [
+        contour lua={number=9,labels=false},thick,
+            ] {exp(0-x^2-y^2)*x};
+    \addplot3 [
+        blue,-stealth,samples=15,
+        quiver={
+            u={exp(0-x^2-y^2)*(1-2*x^2)},
+            v={exp(0-x^2-y^2)*(-2*x*y)},
+            scale arrows=0.3,
+        },
+    ] {exp(0-x^2-y^2)*x};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4202. 3D Plot Example
+
+**ID**: `4e27523f8d9d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    domain=0:1,
+    xmax=1,
+    ymax=1,
+]
+    \addplot3 [surf] {x*y};
+    \addplot3 [
+        blue,-stealth,samples=10,
+        quiver,quiver/.cd,
+            u=y,v=x,w=0,
+            scale arrows=0.1,
+    ] {1};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4203. Line Chart Example
+
+**ID**: `aa33e809f4e3`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    axis equal,
+    axis lines=middle,
+    axis line style={->},
+    tick style={color=black},
+    xtick=\empty,ytick=\empty,
+]
+    \addplot [samples=20, domain=0:2*pi,->,blue,
+        % the default choice 'variable=\x' leads to
+        % unexpected results here!
+        variable=\t,
+        quiver={
+            u={-sin(deg(t))},
+            v={cos(deg(t))},
+            scale arrows=0.5,
+        },
+    ] ( {cos(deg(t))}, {sin(deg(t))} );
+    \addplot [
+        samples=100, domain=0:2*pi,
+    ] ( {cos(deg(x))}, {sin(deg(x))} );
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4204. Line Chart Example
+
+**ID**: `4311c590dd01`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[title=Quiver and plot table]
+    \addplot [
+        blue,
+        quiver={u=\thisrow{u},v=\thisrow{v}},
+        -stealth,
+    ] table {
+        x y u v
+        0 0 1 0
+        1 1 1 1
+        2 4 1 4
+        3 9 1 6
+        4 16 1 8
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4205. Line Chart Example
+
+**ID**: `91e422d7797c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+% define some constants:
+\def\U{1}
+\def\V{2*x}
+\def\LEN{(sqrt((\U)^2 + (\V)^2)}
+
+\begin{axis}[axis equal image,
+    title=Thickness indicates ``strength''.
+]
+\addplot [blue,
+  point meta={\LEN},
+  quiver={
+   u={(\U)/\LEN}, v={(\V)/\LEN},
+   scale arrows=2,
+   every arrow/.append style={
+    line width=2pt*\pgfplotspointmetatransformed/1000
+   },
+  },
+  -stealth,samples=15,
+] {x^2};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4206. Line Chart Example
+
+**ID**: `3e048136bb6a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[tiny]
+    \addplot [
+        blue,
+        quiver={u=1,v=3*x},
+        -stealth,
+        samples=15,
+    ] {x^3};
+        \addlegendentry{Legend}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4207. Line Chart Example
+
+**ID**: `af27d6b4da1c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[stack plots=y]
+    \addplot coordinates {
+        (0,1) (1,1) (2,2) (3,2)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,2) (3,2)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,2) (3,2)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4208. Bar Chart Example
+
+**ID**: `153c39fcd14f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[stack plots=y,/tikz/ybar]
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4209. Bar Chart Example
+
+**ID**: `214268f6faa3`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[ybar stacked]
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4210. Bar Chart Example
+
+**ID**: `e69571548457`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.20)},
+        anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={tool1, tool2, tool3, tool4,
+        tool5, tool6, tool7},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+]
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
+  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
+  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
+  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
+\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
+  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
+\legend{never, rarely, sometimes, often}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4211. Bar Chart Example
+
+**ID**: `56383ad8db74`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[stack plots=x,/tikz/xbar]
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4212. Bar Chart Example
+
+**ID**: `ee23893f1552`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[xbar stacked]
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4213. Bar Chart Example
+
+**ID**: `208b0a186337`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% needs \pgfplotsset{compat=1.9} or newer!
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,nodes near coords,
+    bar width=0.4,
+]
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4214. Bar Chart Example
+
+**ID**: `b12f927b1e50`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% needs \pgfplotsset{compat=1.9} or newer!
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    bar width=15pt,
+    nodes near coords,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.20)},
+        anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={tool1, tool2, tool3, tool4,
+        tool5, tool6, tool7},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+]
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
+  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
+  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
+  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
+\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
+  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
+\legend{never, rarely, sometimes, often}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4215. Bar Chart Example
+
+**ID**: `362ad9a43a2d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xbar stacked,nodes near coords,
+    bar width=0.5,
+]
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4216. Bar Chart Example
+
+**ID**: `3b0dbb3ee4f8`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \pgfplotstableread{
+        Year  Cat1  Cat2  Cat3  Cat4
+        2005  10    50    -10   30
+        2006  -40   60    -15   90
+        2007  -20   60    -15   60
+    }\mytable
+\begin{axis}[
+    xbar stacked,
+    stack negative=on previous,
+    %
+    xmajorgrids,
+    legend style={at={(0.5,-0.1)},
+        anchor=north,legend columns=-1},
+    bar width=10pt,
+    bar shift auto,
+    nodes near coords,
+    nodes near coords style={font=\tiny},
+    y=60pt,
+    ytick distance=1,
+    enlarge y limits=0.3,
+    /pgf/number format/1000 sep=,
+    extra x ticks={0},
+    extra x tick style={grid style={black},
+    xticklabel=\empty},
+]
+    \addplot table [x index=1,y=Year] {\mytable};
+    \addplot table [x index=2,y=Year] {\mytable};
+    \addplot table [x index=3,y=Year] {\mytable};
+    \addplot table [x index=4,y=Year] {\mytable};
+    \legend{Cat1,Cat2,Cat3,Cat4}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4217. Bar Chart Example
+
+**ID**: `7f7b755547ad`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: bar_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \pgfplotstableread{
+        Year  Cat1  Cat2  Cat3  Cat4
+        2005  10    50    -10   30
+        2006  -40   60    -15   90
+        2007  -20   60    -15   60
+    }\mytable
+\begin{axis}[
+    xbar stacked,
+    % is default anyway:
+    stack negative=separate,
+    %
+    /pgf/number format/1000 sep=,
+    xmajorgrids,
+    nodes near coords,
+    nodes near coords style={font=\tiny},
+    ytick distance=1,
+    legend style={at={(0.5,-0.1)},
+        anchor=north,legend columns=-1},
+    extra x ticks={0},
+    extra x tick style={grid style={black},
+    xticklabel=\empty},
+]
+    \addplot table [x index=1,y=Year] {\mytable};
+    \addplot table [x index=2,y=Year] {\mytable};
+    \addplot table [x index=3,y=Year] {\mytable};
+    \addplot table [x index=4,y=Year] {\mytable};
+    \legend{Cat1,Cat2,Cat3,Cat4}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4218. Line Chart Example
+
+**ID**: `0eb194d607c8`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,
+    area style,
+    enlarge x limits=false,
+]
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4219. Other Example
+
+**ID**: `95d66a0c7270`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/area style/.style={
+        area cycle list,
+        area legend,
+        axis on top,
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4220. Line Chart Example
+
+**ID**: `32af4f8e8db2`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        const plot,
+        stack plots=y,
+        area style,
+        enlarge x limits=false,
+    ]
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4221. Line Chart Example
+
+**ID**: `8ec786154bc0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        smooth,
+        stack plots=y,
+        area style,
+        enlarge x limits=false,
+    ]
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \addplot coordinates
+        {(0,1) (1,1) (2,2) (3,2)}
+            \closedcycle;
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4222. Other Example
+
+**ID**: `8c423c809fff`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
+\pgfplotstabletypeset\loadedtable
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4223. Line Chart Example
+
+**ID**: `302ac68676ac`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\pgfplotstableread{pgfplots.timeseries.dat}{\loadedtable}
+\begin{tikzpicture}
+    \begin{axis}[
+        ymin=0,
+        minor tick num=4,
+        enlarge x limits=false,
+        axis on top,
+        every axis plot post/.append style={mark=none},
+        const plot,
+        legend style={
+            area legend,
+            at={(0.5,-0.15)},
+            anchor=north,
+            legend columns=-1,
+        },
+    ]
+        \addplot [draw=blue,fill=blue!30!white]
+            table [x=time,y=1minload]       from \loadedtable
+                \closedcycle;
+        \addplot table [x=time,y=nodes]     from \loadedtable;
+        \addplot table [x=time,y=cpus]      from \loadedtable;
+        \addplot table [x=time,y=processes] from \loadedtable;
+        \legend{1min load,nodes,cpus,processes}
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4224. Line Chart Example
+
+**ID**: `7b669153c96d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
+\begin{tikzpicture}
+    \begin{axis}[
+        ymin=0,
+        minor tick num=4,
+        enlarge x limits=false,
+        const plot,
+        axis on top,
+        stack plots=y,
+        cycle list={
+            {blue!70!black,fill=blue},
+            {blue!60!white,fill=blue!30!white},
+            {draw=none,fill={rgb:red,138;green,82;blue,232}},
+            {red,thick}
+        },
+        ylabel={Mem [GB]},
+        legend style={
+            area legend,
+            at={(0.5,-0.15)},
+            anchor=north,
+            legend columns=2},
+    ]
+    \addplot  table [x=time,y=memused]      from \loadedtable \closedcycle;
+    \addplot  table [x=time,y=memcached]    from \loadedtable \closedcycle;
+    \addplot  table [x=time,y=membuf]       from \loadedtable \closedcycle;
+    \addplot+ [stack plots=false]
+              table [x=time,y=memtotal]     from \loadedtable;
+    \legend{Memory used,Memory cached,Memory buffered,Total memory}
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4225. Line Chart Example
+
+**ID**: `272f73f1769a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{fillbetween}
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [name path=A,domain=0:5] {x^2};
+
+    \path [name path=B]
+        (\pgfkeysvalueof{/pgfplots/xmin},0) --
+        (\pgfkeysvalueof{/pgfplots/xmax},0);
+
+    \addplot [gray] fill between [
+        of=A and B,soft clip={domain=3:4},
+    ];
+    \addplot [gray!30] fill between [
+        of=A and B,soft clip={domain=2:3},
+    ];
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4226. Line Chart Example
+
+**ID**: `b1f2b4ec11ec`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{fillbetween}
+\begin{tikzpicture}
+\begin{axis}
+    % define some common macro
+    \def\clippath{
+        (3,-1) rectangle (4,100)
+    }
+    \draw [help lines] \clippath;
+
+    \addplot+ [name path=A,domain=0:5,
+        mark=none,
+        postaction={decorate,red,line width=2pt,
+            decoration={
+                soft clip,
+                soft clip path={\clippath},
+            },
+        },
+    ] {x^2};
+
+    \path [name path=B]
+        (\pgfkeysvalueof{/pgfplots/xmin},0) --
+        (\pgfkeysvalueof{/pgfplots/xmax},0);
+
+    \addplot [orange] fill between [
+        of=A and B,soft clip={\clippath},
+    ];
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4227. Line Chart Example
+
+**ID**: `ec6a6f1f66b6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{fillbetween}
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [blue,name path=A,domain=0:5] {x^2};
+    \addplot [red,name path=B,smooth] table {
+        x y
+        0 10
+        1 8
+        2 6
+        3 1
+        4 5
+    };
+    \addplot [gray!50] fill between [
+        of=A and B,
+        soft clip={domain=3:4},
+    ];
+    \addplot [gray!10,draw=black] fill between [
+        of=A and B,
+        soft clip={domain=1:2.5},
+    ];
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4228. Line Chart Example
+
+**ID**: `70f96e8ba92e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{fillbetween}
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [blue,name path=A,domain=0:5] {x^2};
+    \addplot [red,name path=B,smooth] table {
+        x y
+        0 10
+        1 8
+        2 6
+        3 1
+        4 5
+    };
+    \addplot [gray] fill between [
+        of=A and B,
+        split,
+        every segment no 0/.style=
+            {pattern color=gray!50,
+             pattern=north east lines},
+        every segment no 1/.style=
+            {pattern=north west lines},
+    ];
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4229. Line Chart Example
+
+**ID**: `ee879f0380c3`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlargelimits=false]
+    \addplot+ [
+        only marks,
+        samples=400,
+    ] {rand};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4230. Scatter Plot Example
+
+**ID**: `6708471cd672`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        only marks,
+        samples=50,
+        scatter src=y,
+    ] {x - x^2};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4231. Scatter Plot Example
+
+**ID**: `cb00d5ff36c7`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        samples=50,
+        scatter src=y,
+    ] {x^3};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4232. Scatter Plot Example
+
+**ID**: `7176a52885df`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}
+        % provide color data explicitly using [<data>]
+        % behind coordinates:
+        \addplot+ [scatter,scatter src=explicit]
+            coordinates {
+                (0,0) [1.0e10]
+                (1,2) [1.1e10]
+                (2,3) [1.2e10]
+                (3,4) [1.3e10]
+                % ...
+            };
+
+        % Assumes a datafile.dat like
+        % xcolname  ycolname    colordata
+        % 0         0           0.001
+        % 1         2           0.3
+        % 2         2.1         0.4
+        % 3         3           0.5
+        % ...
+        % the file may have more columns.
+        \addplot+ [scatter,scatter src=explicit]
+            table [x=xcolname,y=ycolname,meta=colordata]
+                {datafile.dat};
+        % Same data as last example:
+        \addplot+ [scatter,scatter src=\thisrow{colordata}+\thisrow{ycolname}]
+            table [x=xcolname,y=ycolname]
+                {datafile.dat};
+
+        % Assumes a datafile.dat like
+        % 0         0           0.001
+        % 1         2           0.3
+        % 2         2.1         0.4
+        % 3         3           0.5
+        % ...
+        % the first three columns will be used here:
+        \addplot+ [scatter,scatter src=explicit]
+            file {datafile.dat};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4233. Scatter Plot Example
+
+**ID**: `9473207a4aa1`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[title=Default arguments]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4234. Scatter Plot Example
+
+**ID**: `892cb8532717`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Black fill color and varying draw color,
+    scatter/use mapped color={
+        draw=mapped color,
+        fill=black,
+    },
+]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4235. Scatter Plot Example
+
+**ID**: `52873677bfad`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Black draw color and varying fill color,
+    scatter/use mapped color={
+        draw=black,
+        fill=mapped color,
+    },
+]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4236. Scatter Plot Example
+
+**ID**: `fe022f50bd4a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colormap/bluered,colorbar]
+    \addplot3+ [
+        samples=4,
+        z buffer=sort,
+        % enable scatter:
+        scatter,
+        % redefine appearance:
+        scatter/use mapped color={ball color=mapped color},
+        % configure input:
+        scatter src=rand,
+        only marks,
+        mark=ball,
+        mark size=3pt,
+    ] {0};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4237. Scatter Plot Example
+
+**ID**: `d539fc76c322`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black}   % <-- don't add comma
+    },
+]
+    % \addplot[] is better than \addplot+[] here:
+    % it avoids scalings of the cycle list
+    \addplot [
+        scatter,only marks,
+        scatter src=explicit symbolic,
+    ] coordinates {
+        (0.1,0.15)  [a]
+        (0.45,0.27) [c]
+        (0.02,0.17) [a]
+        (0.06,0.1)  [a]
+        (0.9,0.5)   [b]
+        (0.5,0.3)   [c]
+        (0.85,0.52) [b]
+        (0.12,0.05) [a]
+        (0.73,0.45) [b]
+        (0.53,0.25) [c]
+        (0.76,0.5)  [b]
+        (0.55,0.32) [c]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4238. Scatter Plot Example
+
+**ID**: `36d0f553e291`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[legend pos=south east]
+    % The data file contains:
+    % x     y      label
+    % 0.1   0.15   a
+    % 0.45  0.27   c
+    % 0.02  0.17   a
+    % 0.06  0.1    a
+    % 0.9   0.5    b
+    % 0.5   0.3    c
+    % 0.85  0.52   b
+    % 0.12  0.05   a
+    % 0.73  0.45   b
+    % 0.53  0.25   c
+    % 0.76  0.5    b
+    % 0.55  0.32   c
+    \addplot [
+        % clickable coords={\thisrow{label}},
+        scatter/classes={
+            a={mark=square*,blue},
+            b={mark=triangle*,red},
+            c={mark=o,draw=black,fill=black}% no comma
+        },
+        scatter,only marks,
+        scatter src=explicit symbolic,
+    ] table [x=x,y=y,meta=label]
+        {plotdata/scattercl.dat};
+
+    \addplot coordinates
+        {(0.1,0.1) (0.5,0.3) (0.85,0.5)};
+    \legend{Class 1,Class 2,Class 3,Line}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4239. Scatter Plot Example
+
+**ID**: `93ce78355649`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\addplot [
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black,fill=black}    % <-- don't add comma here
+    },
+    scatter,only marks,
+    scatter src=explicit symbolic,
+]
+    % [and coordinate input here... ]
+;
+
+\label[a]{label:for:first:class}
+\label[b]{label:for:second:class}
+\label[c]{label:for:third:class}
+
+...
+First class is \ref{label:for:first:class}, second is \ref{label:for:second:class}.
+```
+
+**Dependencies**: pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4240. Line Chart Example
+
+**ID**: `8a9ffc03ea02`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[nodes near coords]
+    \addplot+ [
+        only marks
+    ] coordinates {
+        (0.5,0.2) (0.2,0.1) (0.7,0.6)
+        (0.35,0.4) (0.65,0.1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4241. Line Chart Example
+
+**ID**: `13bc84072a19`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[nodes near coords,enlargelimits=0.2]
+    \addplot+ [
+        only marks,
+        point meta=explicit symbolic,
+    ] coordinates {
+        (0.5,0.2) [(1)]
+        (0.2,0.1) [(2)]
+        (0.7,0.6) [(3)]
+        (0.35,0.4) [(4)]
+        (0.65,0.1) [(5)]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4242. Scatter Plot Example
+
+**ID**: `0c17d619b40b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[enlargelimits=0.2]
+        \addplot [
+            scatter,mark=*,only marks,
+            % we use 'point meta' as color data...
+            point meta=\thisrow{color},
+            % ... therefore, we can't use it as argument for nodes near coords ...
+            nodes near coords*={$(\pgfmathprintnumber[frac]\myvalue)$},
+            % ... which requires to define a visualization dependency:
+            visualization depends on={\thisrow{myvalue} \as \myvalue},
+        ] table {
+            x      y    color   myvalue
+            0.5    0.2  1       0.25
+            0.2    0.1  2       1.5
+            0.7    0.6  3       0.75
+            0.35   0.4  4       0.125
+            0.65   0.1  5       2
+        };
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4243. Line Chart Example
+
+**ID**: `693441558fcf`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        nodes near coords,
+        only marks,
+        coordinate style/.condition=
+            {\coordindex==0}{below},
+        coordinate style/.condition=
+            {\coordindex==1}{red},
+        coordinate style/.condition=
+            {x < 2.1 && y > 4}{green},
+        point meta=explicit symbolic,
+    ] table [meta=label] {
+        Depth Breadth label
+        2.57  3.59    Cambridge
+        2.58  4.27    Dresden
+        2.45  3.77    {Palo Alto}
+        2.61  2.10    Asan
+        2.03  4.17    Heidelberg
+        2.25  4.29    Yamagata
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4244. Line Chart Example
+
+**ID**: `3a03020bceb0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        nodes near coords,
+        only marks,
+        coordinate style/.from=
+            \thisrow{style},
+        coordinate style/.condition=
+            {x < 2.1 && y > 4}{black},
+        point meta=explicit symbolic,
+    ] table [meta=label] {
+        Depth Breadth label       style
+        2.57  3.59    Cambridge   below
+        2.58  4.27    Dresden     red
+        2.45  3.77    {Palo Alto} green
+        2.61  2.10    Asan        {}
+        2.03  4.17    Heidelberg  {left}
+        2.25  4.29    Yamagata    {}
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4245. Scatter Plot Example
+
+**ID**: `73869204bea1`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        coordinate style/.condition=
+            {abs(x-1) < 0.001}{scale=3,xshift=4pt},
+    ] coordinates {(0,0) (0.5,0.5) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4246. Scatter Plot Example
+
+**ID**: `2a4bd24f17d3`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: scatter_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+% Low-Level scatter plot interface Example:
+% use three different marker classes
+% 0% -- 30%   : first class
+% 30% -- 60%  : second class
+% 60% -- 100% : third class
+\begin{axis}[
+  scatter/@pre marker code/.code={
+    \ifdim\pgfplotspointmetatransformed pt<300pt
+      \def\markopts{mark=square*,fill=blue}
+    \else
+      \ifdim\pgfplotspointmetatransformed pt<600pt
+        \def\markopts{mark=triangle*,fill=orange}
+      \else
+         \def\markopts{mark=pentagon*,fill=red}
+      \fi
+    \fi
+    \expandafter\scope\expandafter[\markopts]
+  },
+  scatter/@post marker code/.code={
+    \endscope
+  },
+]
+    \addplot+ [scatter,scatter src=y,samples=40]
+       {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4247. 3D Plot Example
+
+**ID**: `ac13e6030daf`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [mesh] {x + sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4248. 3D Plot Example
+
+**ID**: `eac3aa7e6e96`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        mesh,
+        point meta=explicit,
+    ] coordinates {
+        (0,0)   [0]
+        (1,0.1) [1]
+        (2,0.1) [2]
+        (3,0.3) [3]
+        (4,0.3) [4]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4249. Line Chart Example
+
+**ID**: `c89d47de16c6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Interrupted data plot,
+]
+    \addplot coordinates {
+        (0,0) (10,50) (20,100) (30,200)
+
+        (50,600) (60,800) (80,1000)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 4250. Line Chart Example
+
+**ID**: `a11c55fae548`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.2dplots.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Discarding unbounded coords,
+        unbounded coords=discard,
+    ]
+        \addplot coordinates {
+            (0,0) (10,50) (20,100) (30,200)
+            (40,inf) (50,600) (60,800) (80,1000)
+        };
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Jumps at unbounded coords,
+        unbounded coords=jump,
+    ]
+        \addplot coordinates {
+            (0,0) (10,50) (20,100) (30,200)
+            (40,inf) (50,600) (60,800) (80,1000)
+        };
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+
+---
+
+[← Previous](page-083) | [Next →](page-085)

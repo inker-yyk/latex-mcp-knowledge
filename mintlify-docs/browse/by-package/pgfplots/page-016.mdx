@@ -1,0 +1,1850 @@
+---
+title: "PGFPLOTS - Page 17"
+description: "Showing items 801-850 of 1474"
+---
+
+# PGFPLOTS - Page 17
+
+Showing items **801-850** of **1474** | Page **17** of **30**
+
+[← Previous](page-015) | [Next →](page-017)
+
+---
+
+## 801. Line Chart Example
+
+**ID**: `da2240351051`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}[
+    axis background/.style={
+        shade,top color=gray,bottom color=white,
+    },
+    legend style={fill=white},
+]
+    \addplot {exp(-x)};
+    \addplot {exp(-4*x)};
+
+    \legend{$e^{-x}$,$e^{-4x}$}
+\end{semilogyaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 802. 3D Plot Example
+
+**ID**: `43d98e6ee694`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colorbar]
+        \addplot [mesh,point meta=y,thick] {x^2};
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 803. Line Chart Example
+
+**ID**: `3a522c670a46`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% for 'coordinates':
+% provide color data explicitly using [<data>]
+% behind coordinates:
+\addplot+ [point meta=explicit]
+    coordinates {
+        (0,0) [1.0e10]
+        (1,2) [1.1e10]
+        (2,3) [1.2e10]
+        (3,4) [1.3e10]
+        % ...
+    };
+```
+
+**Dependencies**: pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 804. Line Chart Example
+
+**ID**: `44aa5801372e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% for 'table':
+% Assumes a datafile.dat like
+% xcolname  ycolname    colordata
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the file may have more columns.
+\addplot+ [point meta=explicit]
+    table [x=xcolname,y=ycolname,meta=colordata]
+        {datafile.dat};
+% or, equivalently (perhaps a little bit slower):
+\addplot+ [point meta=\thisrow{colordata}]
+    table [x=xcolname,y=ycolname]
+        {datafile.dat};
+```
+
+**Dependencies**: pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 805. Line Chart Example
+
+**ID**: `8cb6b78b6760`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% for 'file':
+% Assumes a datafile.dat like
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the first three columns will be used here as x,y and meta,
+% resp.
+\addplot+ [point meta=explicit]
+    file {datafile.dat};
+```
+
+**Dependencies**: pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 806. Line Chart Example
+
+**ID**: `3c203a71020e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% 'table' using expressions which may depend on all
+% columns:
+% Assumes a datafile.dat like
+% xcolname  ycolname    anything    othercol
+% 0         0           4           15
+% 1         2           5           20
+% 2         2.1         8           30
+% 3         3           42          40
+% ...
+% the file may have more columns.
+\addplot+ [point meta={0.5*(\thisrow{anything} + sqrt(\thisrow{othercol}))}]
+    table [x=xcolname,y=ycolname]
+        {datafile.dat};
+```
+
+**Dependencies**: pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 807. 3D Plot Example
+
+**ID**: `36090f40aaa6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Axis wide color mapping,
+        colorbar,
+        samples=50,point meta rel=axis wide,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] {sin(deg(x))};
+        \addplot [mesh,thick] {3*tanh(x)};
+    \end{axis}
+\end{tikzpicture}
+~
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Per Plot color mapping,
+        colorbar,
+        samples=50,
+        point meta rel=per plot,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] {sin(deg(x))};
+        \addplot [mesh,thick] {3*tanh(x)};
+   \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 808. Line Chart Example
+
+**ID**: `3033aeaec55b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% requires \usetikzlibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap={brewer}{
+        color=(RdPu-B) color=(RdPu-E)
+        color=(RdPu-G) color=(RdPu-I)
+        color=(RdPu-K)
+    },
+    enlargelimits=false,
+    colorbar as palette,
+]
+    \addplot [
+        matrix plot,
+        nodes near coords,mark=*,
+        point meta=explicit,
+        colormap access=direct,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [NaN]
+
+        (0,1) [3] (1,1) [4] (2,1) [5] (3,1) [99]
+
+        (0,2) [3.5] (1,2) [-1] (2,2) [2.99] (3,2) [3]
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, colorbrewer, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 809. Other Example
+
+**ID**: `ddc5b87b0dd0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar as palette/.style={
+        colorbar sampled={
+            surf,
+            colormap access=direct,
+            shader=flat corner,
+            samples=\pgfplotscolormapsizeof
+            {\pgfkeysvalueof{/pgfplots/colormap name}}+1,
+        },
+        colorbar style={
+            point meta min=0,
+            point meta max=\pgfplotscolormapsizeof
+            {\pgfkeysvalueof{/pgfplots/colormap name}},
+        },
+    },
+}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 810. Other Example
+
+**ID**: `349538c36da9`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+1 1 194
+1 2 194
+1 3 170
+1 4 193
+1 5 188
+1 6 188
+...
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 811. Other Example
+
+**ID**: `88c7030612f6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+[Z,cm] = imread('legoplane.tiff');
+size(Z)
+[X,Y]=meshgrid(1:size(Z,2), 1:size(Z,1));
+data = [ X(:) Y(:) Z(:) ];
+fid = fopen('legoplane.dat', 'w');
+fprintf(fid, "%d %d %d\n", data');
+fclose(fid);
+fid = fopen('legoplane_cm.tex', 'w');
+fprintf(fid, "\\pgfplotsset{colormap={legoplane palette}{\n");
+fprintf(fid, "rgb=(%f,%f,%f)\n", cm');
+fprintf(fid, "}}\n");
+fclose(fid);
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 812. 3D Plot Example
+
+**ID**: `30264e5649df`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    % load and activate the CM:
+    \input{legoplane_cm.tex}
+\begin{axis}[view={0}{90},axis equal,enlargelimits=false]
+    \addplot3 [
+        matrix plot,
+        colormap access=direct,
+        mesh/rows=128,
+        mesh/ordering=colwise,
+    ] table {legoplane.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 813. 3D Plot Example
+
+**ID**: `a1c29e158e28`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 814. 3D Plot Example
+
+**ID**: `df19270d8a02`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 815. 3D Plot Example
+
+**ID**: `323f4aa72c56`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: 3d_plot  
+
+### Description
+
+Executable example from pgfplots.reference.markers-meta.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap={my sampled version of viridis}{
+        samples of colormap=(10 of viridis)
+    },
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 816. Line Chart Example
+
+**ID**: `dfe10dca5f77`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[use units,
+    x unit=m,x unit prefix=k,
+    y unit=N,y unit prefix=m,
+    xlabel=Distance,ylabel=Force,
+]
+    \addplot coordinates {
+        (1,2.3)
+        (2,2.7)
+        (3,2.1)
+        (4,1.8)
+        (5,1.5)
+        (6,1.1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 817. Other Example
+
+**ID**: `1b94ca860828`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+% x label becomes ``Temperature [T]'', y label becomes ``Nothing''
+\pgfplotsset{use units,x unit=T,xlabel=Temperature,ylabel=Nothing}
+% x label becomes ``Temperature'', y label becomes ``Nothing''
+\pgfplotsset{use units,x unit prefix=m,xlabel=Temperature,ylabel=Nothing}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 818. Other Example
+
+**ID**: `e1d4cd1b64bf`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\pgfplotsset{x unit=T,unit markings=parenthesis} % x unit becomes `` \left(T\right)''
+\pgfplotsset{x unit=T,unit markings=square brackets} % x unit becomes `` \left[T\right]''
+\pgfplotsset{x unit=T,unit markings=slash space} % x unit becomes `` / T''
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 819. Other Example
+
+**ID**: `d6444997e45f`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\pgfplotsset{unit code/.code 2 args={\si{#1#2}}}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 820. Other Example
+
+**ID**: `0402e57bc295`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\pgfplotsset{unit code/.code 2 args={\mathbf{#1}\mathrm{#2}}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 821. Line Chart Example
+
+**ID**: `987bf521e920`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    change x base,
+    x SI prefix=kilo,x unit=m,
+    y SI prefix=milli,y unit=N,
+    xlabel=Distance,ylabel=Force,
+]
+    \addplot coordinates {
+        (1000,1)
+        (2000,1.1)
+        (3000,1.2)
+        (4000,1.3)
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 822. Other Example
+
+**ID**: `30bb7c68362a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.units.tex
+
+### Code
+
+```latex
+\pgfplotsset{change x base,axis base prefix={axis x base -3 prefix k}}
+\pgfplotsset{change x base,x SI prefix=kilo}
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 823. Line Chart Example
+
+**ID**: `628807cd5f9c`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[legend pos=outer north east]
+        \addplot table {% plot X versus Y. This is original data.
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        };
+        \addplot table [
+            y={create col/linear regression={y=Y}}, % compute a linear regression from the input table
+        ] {
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        };
+        %\xdef\slope{\pgfplotstableregressiona} %<-- might be handy occasionally
+        \addlegendentry{$y(x)$}
+        \addlegendentry{%
+            $\pgfmathprintnumber{\pgfplotstableregressiona} \cdot x
+            \pgfmathprintnumber[print sign]{\pgfplotstableregressionb}$}
+    \end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 824. Line Chart Example
+
+**ID**: `24e91fadc9a7`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}
+ \addplot table [x=dof,y=error2]
+    {pgfplotstable.example1.dat};
+  \addlegendentry{$y(x)$}
+
+ \addplot table [
+      x=dof,
+      y={create col/linear regression={y=error2}},
+ ] {pgfplotstable.example1.dat};
+
+  % might be handy occasionally:
+  %\xdef\slope{\pgfplotstableregressiona}
+ \addlegendentry{slope
+   $\pgfmathprintnumber{\pgfplotstableregressiona}$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 825. Line Chart Example
+
+**ID**: `e66129fce2c6`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}
+ \addplot table [x=dof,y=error2]
+    {pgfplotstable.example1.dat};
+  \addlegendentry{$y(x)$}
+
+ \addplot table [
+      x=dof,
+        y={create col/linear regression={
+            y=error2,
+            variance list={1000,800,600,500,400},
+        }}
+ ] {pgfplotstable.example1.dat};
+
+ \addlegendentry{slope
+  $\pgfmathprintnumber{\pgfplotstableregressiona}$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 826. Other Example
+
+**ID**: `9ff42fbceda1`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+% file plotdata/approx_exp.dat
+n  eapprox
+1  97.71828182845904
+2  101.38905609893065
+3  87.08553692318768
+4  92.59815003314424
+5  194.4131591025766
+6  410.4287934927351
+7  1174.6331584284585
+8  3032.9579870417283
+9  8198.083927575384
+10 22124.465794806718
+11 59973.14171519782
+```
+
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 827. Line Chart Example
+
+**ID**: `d05aafe3d313`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+	\addplot table[x=n,y=eapprox]
+		{plotdata/approx_exp.dat};
+	\addplot[no markers,red,thick] 
+		table [x=n,y={create col/linear regression={
+			y=eapprox,ymode=log,
+			variance format=linear}}]
+		{plotdata/approx_exp.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 828. Line Chart Example
+
+**ID**: `2c1354c33d36`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.linefitting.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+  ymode=log,
+  table/create col/linear regression/variance format=linear
+]
+	\addplot table[x=n,y=eapprox]
+		{plotdata/approx_exp.dat};
+	\addplot[no markers,red,thick] 
+		table [x=n,y={create col/linear regression={
+			y=eapprox,ymode=log}}]
+		{plotdata/approx_exp.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 829. Command Specification
+
+**ID**: `6a5ba349eff0`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+This command of resets the bounding box of the current picture. The computation starts from scratch afterwards, allowing to compute a user-defined bounding box. % The example draws a normal picture, containing an axis. Afterwards, it throws the bounding box away and creates a new one based on the |current axis| node and its anchors.
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 830. Environment Specification
+
+**ID**: `a3331c7fbb83`  
+**Type**: environment_specification  
+**Package**: pgfplots  
+
+### Description
+
+} Bounding Box Control Bounding Box Control!pgfinterruptboundingbox { useasboundingbox{} Yet another approach with the same effect is shown below: the bounding box is interrupted manually, and resumed afterwards. % } % The |pgfinterruptboundingbox| environment does not include its content into the image's bounding box, and || sets the pictures bounding box to the following argument (see~tikz).
+
+**Quality Score**: 0.8  
+**Priority**: 7  
+**Executable**: No  
+
+---
+
+## 831. Line Chart Example
+
+**ID**: `62e94d37fbfd`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.bb-clip.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=A title,
+    ylabel style={overlay},
+    yticklabel style={overlay},
+    xlabel={$x$},
+    ylabel={$y$},
+    legend style={at={(0.5,0.97)},
+        anchor=north,legend columns=-1},
+    domain=-2:2,
+]
+    \addplot {x^2};
+    \addplot {x^3};
+    \addplot {x^4};
+    \legend{$x^2$,$x^3$,$x^4$}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 832. Line Chart Example
+
+**ID**: `8725dee0b314`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.bb-clip.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    domain=0:6.2832,samples=200,
+    legend style={
+        overlay,
+        at={(-0.5,0.5)},
+        anchor=center},
+    every axis plot post/.append style={mark=none},
+    enlargelimits=false,
+]
+    \addplot {sin(deg(x)+3) + rand*0.05};
+    \addplot {cos(deg(x)+2) + rand*0.05};
+    \legend{Signal 1,Signal 2}
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 833. Line Chart Example
+
+**ID**: `2bf4ba580ab7`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.bb-clip.tex
+
+### Code
+
+```latex
+\setlength{\fboxsep}{0pt}%
+\fbox{%
+\begin{tikzpicture}
+    \begin{axis}[
+        title=A title,
+        xlabel={$x$},
+        ylabel={$y$},
+        legend style={at={(0.5,0.97)},
+            anchor=north,legend columns=-1},
+        domain=-2:2,
+    ]
+        \addplot {x^2};
+        \addplot {x^3};
+        \addplot {x^4};
+        \legend{$x^2$,$x^3$,$x^4$}
+    \end{axis}
+
+    \pgfresetboundingbox
+    \path
+              (current axis.south west)
+    rectangle (current axis.north east);
+\end{tikzpicture}%
+}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 834. Line Chart Example
+
+**ID**: `25a635dc39f0`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.bb-clip.tex
+
+### Code
+
+```latex
+\setlength{\fboxsep}{0pt}%
+\fbox{%
+\begin{tikzpicture}
+  \begin{pgfinterruptboundingbox}
+    \begin{axis}[
+        title=A title,
+        xlabel={$x$},
+        ylabel={$y$},
+        legend style={at={(0.5,0.97)},
+            anchor=north,legend columns=-1},
+        domain=-2:2,
+    ]
+        \addplot {x^2};
+        \addplot {x^3};
+        \addplot {x^4};
+        \legend{$x^2$,$x^3$,$x^4$}
+    \end{axis}
+  \end{pgfinterruptboundingbox}
+
+    \useasboundingbox
+                  (current axis.below south west)
+        rectangle (current axis.above north east);
+\end{tikzpicture}%
+}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 835. Line Chart Example
+
+**ID**: `787857973053`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.reference.bb-clip.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    clip mode=individual,
+]
+    \addplot+ [samples=3] {x^2};
+
+    \begin{scope}
+        \clip \pgfextra{\pgfplotspathaxisoutline};
+        \draw (-20,15) -- (20,15);
+        \draw (-20,20) -- (20,20);
+    \end{scope}
+
+    \addplot+ [samples=2] {x};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 836. Other Example
+
+**ID**: `3b1fb14ab299`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: other  
+
+### Description
+
+Executable example from pgfplots.libs.decorations.softclip.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \draw [
+        postaction={decorate,draw,ultra thick},
+        decoration={
+            soft clip,soft clip path={
+                (1.5,-1) rectangle (4,2)
+            },
+        },
+    ]
+        (0,0) -- (1,1) -- (2,1) -- (3,0);
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 837. Command Specification
+
+**ID**: `0f50785ce6de`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} Same as |/pgfplots/boxplot/|{key name|}|.
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 838. Command Specification
+
+**ID**: `b9e82cbbe43f`  
+**Type**: command_specification  
+**Package**: pgfplots  
+
+### Description
+
+} Same as ||key name (just shorted).
+
+**Quality Score**: 0.8  
+**Priority**: 8  
+**Executable**: No  
+
+---
+
+## 839. Line Chart Example
+
+**ID**: `c82062be73d9`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=5,
+            lower quartile=7,
+            median=8.5,
+            upper quartile=9.5,
+            upper whisker=10,
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\ 1\\ 3\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 840. Line Chart Example
+
+**ID**: `1d516c5f78e4`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    y=1.5cm,
+]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=5,
+            lower quartile=7,
+            median=8.5,
+            upper quartile=9.5,
+            upper whisker=10,
+        },
+    ]
+        table [row sep=\\,y index=0] {
+        data\\ 1\\ 3\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 841. Line Chart Example
+
+**ID**: `5df31f367add`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+        },
+    ]
+        % no outliers:
+        coordinates {};
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 842. Line Chart Example
+
+**ID**: `caaff7331d3b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ytick={1,2,3},
+    yticklabels={Group A, Group B, Group C},
+]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+        },
+    ] coordinates {};
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 843. Line Chart Example
+
+**ID**: `64b19f3e855a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+]
+    \addplot+ [boxplot prepared={
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+    \addplot+ [boxplot prepared={
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+    \addplot+ [boxplot prepared={draw position=5,
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 844. Line Chart Example
+
+**ID**: `55d12f41ad9b`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\pgfplotsset{
+    only if/.style args={entry of #1 is #2}{
+        /pgfplots/boxplot/data filter/.code={
+            \edef\tempa{\thisrow{#1}}
+            \edef\tempb{#2}
+            \ifx\tempa\tempb
+            \else
+                \def\pgfmathresult{}
+            \fi
+        }
+    }
+}
+
+% 'data.dat' contains
+% v     set
+% 0.1   a
+% 0.2   a
+% 0.3   a
+% 0.8   b
+% 0.9   b
+% 1.0   b
+
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot,
+    table/y=v,
+    boxplot/draw direction=y,
+]
+ \addplot table[only if={entry of set is a}]{data.dat};
+ \addplot table[only if={entry of set is b}]{data.dat};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 845. Line Chart Example
+
+**ID**: `f1cb6f66a94d`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+    x axis line style={opacity=0},
+    axis x line*=bottom,
+    axis y line=left,
+    enlarge y limits,
+    ymajorgrids,
+    xtick={1,2,3},
+    xticklabels={Group A, Group B, Group C},
+]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+        },
+    ] coordinates {};
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 846. Line Chart Example
+
+**ID**: `8c0f20062b43`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ytick={1,2,3},
+    yticklabels={Group A, Group B, Group C},
+    boxplot/variable width,
+]
+    \addplot+ [% Group A:
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            sample size=1000,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [% Group B:
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+            sample size=100000,
+        },
+    ] coordinates {};
+
+    \addplot+ [% Group C:
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+            sample size=50000,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 847. Line Chart Example
+
+**ID**: `078306f2c3ff`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[minor y tick num=1]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            box extend=1,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            box extend=0.5, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 848. Line Chart Example
+
+**ID**: `20d9f5a20b9a`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=0, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 849. Line Chart Example
+
+**ID**: `68182fb6a59e`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=0.5, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+## 850. Line Chart Example
+
+**ID**: `6d91199f7242`  
+**Type**: executable_example  
+**Package**: pgfplots  
+**Chart Type**: line_chart  
+
+### Description
+
+Executable example from pgfplots.libs.statistics.tex
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+[
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=1, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
+
+**Dependencies**: tikz, pgfplots  
+**Quality Score**: 0.9  
+**Priority**: 10  
+**Executable**: Yes  
+
+---
+
+
+---
+
+[← Previous](page-015) | [Next →](page-017)
