@@ -5,13 +5,16 @@
 import json
 from pathlib import Path
 
-def add_prefix_to_paths(obj, prefix="mintlify-docs/"):
+def add_prefix_to_paths(obj, prefix="mintlify-docs/", key=None):
     """递归添加前缀到所有路径"""
     if isinstance(obj, dict):
-        return {k: add_prefix_to_paths(v, prefix) for k, v in obj.items()}
+        return {k: add_prefix_to_paths(v, prefix, k) for k, v in obj.items()}
     elif isinstance(obj, list):
-        return [add_prefix_to_paths(item, prefix) for item in obj]
+        return [add_prefix_to_paths(item, prefix, key) for item in obj]
     elif isinstance(obj, str):
+        # 不处理 group 字段（它是显示文本，不是路径）
+        if key == 'group':
+            return obj
         # 只处理相对路径（不包含 http:// 或 https://）
         # 即使没有 /，只要不是特殊开头，都添加前缀
         if not obj.startswith(('http://', 'https://', '/', '#', 'mintlify-docs/')):
