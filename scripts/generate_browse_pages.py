@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import List, Dict, Tuple
 
-ITEMS_PER_PAGE = 50
+ITEMS_PER_PAGE = 200  # 增加每页项数以减少总页面数，避免 Mintlify MCP 索引过载
 
 
 def main():
