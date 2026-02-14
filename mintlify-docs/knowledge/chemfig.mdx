@@ -1,0 +1,207 @@
+---
+title: "Chemfig Knowledge"
+description: "Chemical structure diagrams with Chemfig - molecules, bonds, and chemical formulas"
+---
+
+# Chemfig Package
+
+**Chemfig** is a LaTeX package for drawing chemical structure formulas and molecular diagrams with TikZ.
+
+## Package Information
+
+- **Package Name**: chemfig
+- **Items in Knowledge Base**: 290
+  - 248 executable examples
+  - 42 key-value configurations
+- **Primary Use**: Chemical structure diagrams, molecular formulas, reaction schemes
+
+## What is Chemfig?
+
+Chemfig provides a compact syntax for drawing:
+
+- **Molecular Structures**: Organic and inorganic molecules
+- **Chemical Bonds**: Single, double, triple, dashed, wedged bonds
+- **Ring Structures**: Benzene, cyclohexane, heterocycles
+- **Stereochemistry**: Wedge and dash bonds for 3D representation
+- **Reaction Schemes**: Arrow mechanisms and reaction pathways
+- **Lewis Structures**: Lone pairs and formal charges
+
+## Basic Syntax
+
+### Simple Molecule
+
+```latex
+\chemfig{H-C(-[2]H)(-[6]H)-H}  % Methane
+```
+
+### Bond Types
+
+```latex
+\chemfig{A-B}      % Single bond
+\chemfig{A=B}      % Double bond
+\chemfig{A~B}      % Triple bond
+\chemfig{A>:B}     % Dashed bond
+\chemfig{A<:B}     % Wedged bond
+```
+
+## Common Use Cases
+
+### 1. Linear Chain
+
+```latex
+\chemfig{CH_3-CH_2-CH_2-CH_3}  % Butane
+```
+
+### 2. Benzene Ring
+
+```latex
+\chemfig{*6(=-=-=-)}  % Benzene
+```
+
+### 3. Functional Groups
+
+```latex
+\chemfig{R-[:30]OH}           % Alcohol
+\chemfig{R-[:30](=[2]O)-OH}   % Carboxylic acid
+\chemfig{R-[:30]NH_2}         % Amine
+```
+
+### 4. Complex Molecule
+
+```latex
+\chemfig{
+  H_3C-[:30]C(=[2]O)-[:330]NH-[:30]
+  *6(-=-(-OH)=(-NH_2)-=-)
+}
+```
+
+## Bond Angles and Lengths
+
+### Angle Specification
+
+```latex
+\chemfig{A-[:30]B}     % 30-degree angle
+\chemfig{A-[:45]B}     % 45-degree angle
+\chemfig{A-[:90]B}     % 90-degree angle (vertical)
+```
+
+### Length Modification
+
+```latex
+\chemfig{A-[,,2]B}     % Double length
+\chemfig{A-[,,0.5]B}   % Half length
+```
+
+## Ring Structures
+
+### Regular Polygons
+
+```latex
+\chemfig{*3(--)}       % Triangle (cyclopropane)
+\chemfig{*4(---)}      % Square (cyclobutane)
+\chemfig{*5(----)}     % Pentagon (cyclopentane)
+\chemfig{*6(-----)}    % Hexagon (cyclohexane)
+```
+
+### Substituted Rings
+
+```latex
+\chemfig{*6(-=-(-OH)=-=)}           % Phenol
+\chemfig{*6(=-=(-NO_2)-=-)}         % Nitrobenzene
+\chemfig{*6(-=-(-CH_3)=-(-OH)=)}    % p-Cresol
+```
+
+## Stereochemistry
+
+### Wedge and Dash Bonds
+
+```latex
+\chemfig{C(-[:0]H)(<:[:120]OH)(>:[:240]CH_3)(-[:270]H)}
+```
+
+- `<:` - Dashed bond (behind plane)
+- `>:` - Wedged bond (in front of plane)
+
+## Reaction Schemes
+
+```latex
+\schemestart
+  \chemfig{A-B}
+  \arrow{->}
+  \chemfig{A=B}
+\schemestop
+```
+
+## Browse Chemfig Examples
+
+Explore our knowledge base:
+
+- [All Chemfig Items](/browse/by-package/chemfig/page-000) - 290 items
+- [Chemical Structure Examples](/browse/by-chart-type/chemical_structure/page-000) - 248 examples
+
+## Advanced Features
+
+### Lewis Structures
+
+```latex
+\lewis{0:2:,O}=\lewis{4:,C}=\lewis{6:,O}  % CO₂ with lone pairs
+```
+
+### Formal Charges
+
+```latex
+\chemfig{[:30]N^+(-[:90]O^-)(-[:330]O^-)(=[270]O)}  % Nitrate ion
+```
+
+### Substructures
+
+```latex
+\definesubmol{Ph}{*6(=-=-=-)}     % Define phenyl group
+\chemfig{!Ph-CH_2-!Ph}            % Diphenylmethane
+```
+
+## Best Practices
+
+1. **Use Abbreviations**: Define common groups (R, Ph, Me, Et)
+2. **Consistent Angles**: Stick to multiples of 30° for clean diagrams
+3. **Ring Orientation**: Position rings for optimal readability
+4. **Balance Complexity**: Break very complex molecules into parts
+5. **Atom Spacing**: Adjust bond lengths for clarity
+
+## Configuration Options
+
+Key chemfig settings:
+
+```latex
+\setchemfig{
+  atom sep=2em,          % Spacing between atoms
+  bond offset=2pt,       % Bond spacing for double/triple
+  angle increment=30,    % Angle steps
+  cram width=3pt         % Wedge bond width
+}
+```
+
+## MCP API Usage
+
+Query Chemfig knowledge:
+
+```latex
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "benzene ring substitution",
+    "package": "chemfig"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ/PGF](tikz-pgf) - Base graphics package
+- [Chemical Structure Examples](/charts/chemistry) - Browse chemical diagrams
+
+## External Resources
+
+- [Chemfig Manual (PDF)](http://mirrors.ctan.org/macros/generic/chemfig/chemfig-en.pdf)
+- [CTAN Package Page](https://ctan.org/pkg/chemfig)
+- [Chemfig Gallery](http://www.texample.net/tikz/examples/tag/chemistry/)

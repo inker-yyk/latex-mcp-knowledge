@@ -1,0 +1,246 @@
+---
+title: "TikZ-Network Knowledge"
+description: "Network graph visualization with TikZ-Network - nodes, edges, and graph layouts"
+---
+
+# TikZ-Network Package
+
+**TikZ-Network** is a specialized TikZ package for creating network graphs and visualizations with simplified syntax.
+
+## Package Information
+
+- **Package Name**: tikz-network
+- **Items in Knowledge Base**: 71
+  - 53 executable examples
+  - 18 command definitions
+- **Primary Use**: Network graphs, social networks, graph theory diagrams
+
+## What is TikZ-Network?
+
+TikZ-Network provides high-level commands for network visualization:
+
+- **Vertex Management**: Easy node creation with automatic positioning
+- **Edge Styling**: Directed, undirected, weighted edges
+- **Layout Support**: Automatic and manual layouts
+- **Style Presets**: Predefined styles for common graph types
+- **Label Handling**: Automatic vertex and edge labeling
+- **Color Schemes**: Built-in color palettes for vertices
+
+## Basic Syntax
+
+### Simple Network
+
+```latex
+\begin{tikzpicture}
+  \Vertex{A}
+  \Vertex[x=2,y=1]{B}
+  \Vertex[x=1,y=2]{C}
+  \Edge(A)(B)
+  \Edge(B)(C)
+  \Edge(C)(A)
+\end{tikzpicture}
+```
+
+## Core Commands
+
+### Vertex Creation
+
+```latex
+\Vertex[options]{Name}
+\Vertex[x=2,y=3]{A}              % Position
+\Vertex[color=red]{B}            % Color
+\Vertex[size=1.5]{C}             % Size
+\Vertex[label=$v_1$]{D}          % Custom label
+```
+
+### Edge Creation
+
+```latex
+\Edge[options](source)(target)
+\Edge(A)(B)                      % Simple edge
+\Edge[Direct](A)(B)              % Directed edge
+\Edge[bend=30](A)(B)             % Curved edge
+\Edge[label=5](A)(B)             % Weighted edge
+```
+
+## Common Use Cases
+
+### 1. Undirected Graph
+
+```latex
+\begin{tikzpicture}
+  \Vertex{A}
+  \Vertex[x=3]{B}
+  \Vertex[x=1.5,y=2]{C}
+  \Edge(A)(B)
+  \Edge(B)(C)
+  \Edge(C)(A)
+\end{tikzpicture}
+```
+
+### 2. Directed Graph
+
+```latex
+\begin{tikzpicture}
+  \Vertex{1}
+  \Vertex[x=2]{2}
+  \Vertex[x=4]{3}
+  \Edge[Direct](1)(2)
+  \Edge[Direct](2)(3)
+  \Edge[Direct](3)(1)
+\end{tikzpicture}
+```
+
+### 3. Weighted Network
+
+```latex
+\begin{tikzpicture}
+  \Vertex{A}
+  \Vertex[x=3]{B}
+  \Vertex[x=1.5,y=2]{C}
+  \Edge[label=5](A)(B)
+  \Edge[label=3](B)(C)
+  \Edge[label=7](C)(A)
+\end{tikzpicture}
+```
+
+### 4. Colored Vertices
+
+```latex
+\begin{tikzpicture}
+  \Vertex[color=red]{A}
+  \Vertex[x=2,color=blue]{B}
+  \Vertex[x=4,color=green]{C}
+  \Edge(A)(B)
+  \Edge(B)(C)
+\end{tikzpicture}
+```
+
+## Vertex Options
+
+### Positioning
+- `x=<value>` - X coordinate
+- `y=<value>` - Y coordinate
+- `position=<angle>:<distance>` - Polar coordinates
+
+### Appearance
+- `color=<color>` - Vertex color
+- `size=<value>` - Vertex size
+- `shape=<shape>` - Vertex shape (circle, rectangle, etc.)
+- `opacity=<value>` - Transparency
+
+### Labeling
+- `label=<text>` - Custom label
+- `Math` - Enable math mode for label
+- `NoLabel` - Hide label
+
+## Edge Options
+
+### Direction
+- `Direct` - Directed edge (arrow)
+- `NotDirected` - Undirected edge (default)
+- `Undirected` - Explicitly undirected
+
+### Styling
+- `color=<color>` - Edge color
+- `lw=<width>` - Line width
+- `style=<style>` - Line style (solid, dashed, dotted)
+- `opacity=<value>` - Transparency
+
+### Geometry
+- `bend=<angle>` - Curved edge
+- `loopsize=<value>` - Size of self-loop
+- `label=<text>` - Edge label
+
+## Layout Strategies
+
+### Manual Layout
+
+```latex
+\begin{tikzpicture}
+  \Vertex[x=0,y=0]{A}
+  \Vertex[x=2,y=0]{B}
+  \Vertex[x=1,y=2]{C}
+  % Edges...
+\end{tikzpicture}
+```
+
+### Grid Layout
+
+```latex
+\begin{tikzpicture}
+  \foreach \x in {0,1,2} {
+    \foreach \y in {0,1,2} {
+      \Vertex[x=\x*2,y=\y*2]{\x\y}
+    }
+  }
+\end{tikzpicture}
+```
+
+### Circular Layout
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,6} {
+    \pgfmathsetmacro{\angle}{(\i-1)*60}
+    \Vertex[position=\angle:2]{v\i}
+  }
+\end{tikzpicture}
+```
+
+## Browse TikZ-Network Examples
+
+Explore our knowledge base:
+
+- [All TikZ-Network Items](/browse/by-package/tikz-network/page-000) - 71 items
+- [Network Graph Examples](/browse/by-chart-type/network_graph/page-000) - 53 examples
+
+## Graph Types
+
+### Social Networks
+- Use colored vertices for communities
+- Weighted edges for relationship strength
+- Labels for user identifiers
+
+### Transportation Networks
+- Vertices as cities/stations
+- Edges as routes
+- Edge labels for distances/times
+
+### Computer Networks
+- Vertices as nodes/routers
+- Directed edges for data flow
+- Colors for network segments
+
+## Best Practices
+
+1. **Consistent Spacing**: Use regular intervals for coordinates
+2. **Color Semantics**: Use colors meaningfully (communities, types)
+3. **Edge Labels**: Keep labels concise and readable
+4. **Layout Planning**: Sketch graph structure before coding
+5. **Scaling**: Use relative positioning for scalability
+
+## MCP API Usage
+
+Query TikZ-Network knowledge:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "directed weighted network",
+    "package": "tikz-network"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ/PGF](tikz-pgf) - Base graphics package
+- [Node Graph Examples](/charts/node-graph) - General node diagrams
+- [Network Examples](/charts/network) - Network visualization gallery
+
+## External Resources
+
+- [TikZ-Network Manual (PDF)](http://mirrors.ctan.org/graphics/pgf/contrib/tikz-network/tikz-network.pdf)
+- [CTAN Package Page](https://ctan.org/pkg/tikz-network)

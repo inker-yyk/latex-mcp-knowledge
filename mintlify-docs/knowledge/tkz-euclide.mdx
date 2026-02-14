@@ -1,0 +1,160 @@
+---
+title: "Tkz-Euclide Knowledge"
+description: "Euclidean geometry with Tkz-Euclide - points, lines, circles, and geometric constructions"
+---
+
+# Tkz-Euclide Package
+
+**Tkz-Euclide** is a specialized TikZ package for Euclidean geometry, providing high-level commands for geometric constructions.
+
+## Package Information
+
+- **Package Name**: tkz-euclide
+- **Items in Knowledge Base**: 467
+  - 357 executable examples
+  - 110 command definitions
+- **Primary Use**: Euclidean geometry, geometric constructions, educational diagrams
+
+## What is Tkz-Euclide?
+
+Tkz-Euclide simplifies the creation of geometric figures by providing intuitive commands for:
+
+- **Point Definition**: Define points with Cartesian or geometric properties
+- **Line Construction**: Draw lines, segments, rays with geometric constraints
+- **Circle Operations**: Circles, arcs, and circular constructions
+- **Triangle Geometry**: Special points (centroid, orthocenter, circumcenter)
+- **Transformations**: Rotations, reflections, homothety
+- **Angle Marking**: Automatic angle markers and measurements
+
+## Basic Syntax
+
+### Defining Points
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
+  \tkzDefPoint(2,3){C}
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints[below](A,B)
+  \tkzLabelPoints[above](C)
+\end{tikzpicture}
+```
+
+## Core Commands
+
+### Points
+- `\tkzDefPoint(x,y){Name}` - Define a point
+- `\tkzDrawPoints[options](points)` - Draw points
+- `\tkzLabelPoints[options](points)` - Label points
+
+### Lines and Segments
+- `\tkzDrawSegment[options](A,B)` - Draw a segment
+- `\tkzDrawLine[options](A,B)` - Draw an infinite line
+- `\tkzDrawPolygon[options](A,B,C,...)` - Draw a polygon
+
+### Circles
+- `\tkzDrawCircle[options](center,point)` - Draw a circle
+- `\tkzDefCircle[options](A,B)` - Define a circle
+
+### Triangles
+- `\tkzDrawTriangle[options](A,B)` - Draw special triangles
+- `\tkzDefTriangleCenter[options](A,B,C)` - Find triangle centers
+
+## Common Use Cases
+
+### 1. Basic Triangle
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
+  \tkzDefPoint(2,3){C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints[below](A,B)
+  \tkzLabelPoints[above](C)
+\end{tikzpicture}
+```
+
+### 2. Circle Through Three Points
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(1.5,2){C}
+  \tkzDefCircle[circum](A,B,C) \tkzGetPoint{O}
+  \tkzDrawCircle(O,A)
+  \tkzDrawPoints(A,B,C,O)
+  \tkzDrawPolygon(A,B,C)
+\end{tikzpicture}
+```
+
+### 3. Angle Marking
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(3,2){C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzMarkAngle[size=0.8](B,A,C)
+  \tkzLabelAngle[pos=1.2](B,A,C){$\alpha$}
+\end{tikzpicture}
+```
+
+## Special Geometric Constructions
+
+### Triangle Centers
+- **Centroid**: `\tkzDefTriangleCenter[centroid](A,B,C)`
+- **Circumcenter**: `\tkzDefTriangleCenter[circum](A,B,C)`
+- **Incenter**: `\tkzDefTriangleCenter[in](A,B,C)`
+- **Orthocenter**: `\tkzDefTriangleCenter[ortho](A,B,C)`
+
+### Perpendiculars and Parallels
+- `\tkzDefPointBy[projection=onto A--B](C)` - Perpendicular projection
+- `\tkzDefParallelLine(A,B)(C)` - Parallel line through C
+
+### Midpoint and Division
+- `\tkzDefMidPoint(A,B)` - Midpoint
+- `\tkzDefBarycentricPoint(A=1,B=2,C=3)` - Weighted center
+
+## Browse Tkz-Euclide Examples
+
+Explore our knowledge base:
+
+- [All Tkz-Euclide Items](/browse/by-package/tkz-euclide/page-000) - 467 items
+- [Geometry Examples](/browse/by-chart-type/geometry/page-000) - 357 examples
+
+## Best Practices
+
+1. **Define Points First**: Always define all points before drawing
+2. **Use Geometric Relations**: Leverage geometric constraints instead of coordinates
+3. **Name Points Clearly**: Use meaningful single-letter names (A, B, C)
+4. **Layer Your Drawing**: Points, lines, then labels
+5. **Consistent Styling**: Use the same style options throughout
+
+## MCP API Usage
+
+Query Tkz-Euclide knowledge:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "triangle circumcenter",
+    "package": "tkz-euclide"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ/PGF](tikz-pgf) - Base graphics package
+- [Geometry Examples](/charts/geometry) - Browse geometric diagrams
+
+## External Resources
+
+- [Tkz-Euclide Manual (PDF)](http://mirrors.ctan.org/macros/latex/contrib/tkz/tkz-euclide/doc/TKZdoc-euclide.pdf)
+- [CTAN Package Page](https://ctan.org/pkg/tkz-euclide)

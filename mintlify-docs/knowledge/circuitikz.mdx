@@ -1,0 +1,148 @@
+---
+title: "CircuiTikZ Knowledge"
+description: "Circuit diagram drawing with CircuiTikZ - components, syntax, and examples"
+---
+
+# CircuiTikZ Package
+
+**CircuiTikZ** extends TikZ to provide specialized tools for drawing professional electronic circuit diagrams.
+
+## Package Information
+
+- **Package Name**: circuitikz
+- **Items in Knowledge Base**: 816
+  - 501 executable examples
+  - 315 component definitions
+- **Primary Use**: Electronic circuit diagrams, schematics
+
+## What is CircuiTikZ?
+
+CircuiTikZ is a LaTeX package for drawing electronic circuits with TikZ. It provides:
+
+- **Extensive Component Library**: Resistors, capacitors, transistors, op-amps, logic gates, and more
+- **Automatic Labeling**: Built-in support for component values and labels
+- **Professional Output**: Publication-quality circuit diagrams
+- **Flexible Styling**: Customizable component appearance
+
+## Basic Syntax
+
+### Simple Circuit
+
+```latex
+\begin{circuitikz}
+  \draw (0,0) to[R=$R_1$] (2,0)
+              to[C=$C_1$] (2,2)
+              to[battery1] (0,2)
+              -- (0,0);
+\end{circuitikz}
+```
+
+## Component Categories
+
+### Passive Components
+- Resistors (R, vR, pR)
+- Capacitors (C, pC, eC)
+- Inductors (L, cute inductor)
+
+### Active Components
+- Diodes (D, zD, LED, photodiode)
+- Transistors (Tnpn, Tpnp, Tfet)
+- Op-amps (op amp, fd op amp)
+
+### Sources
+- Voltage sources (V, battery)
+- Current sources (I, isource)
+- AC sources (sV, sI)
+
+### Logic Gates
+- AND, OR, NOT, NAND, NOR, XOR
+- Flip-flops and latches
+
+## Common Use Cases
+
+### 1. Basic RC Circuit
+
+```latex
+\begin{circuitikz}
+  \draw (0,0) to[V, v=$V_s$] (0,2)
+              to[R=$R$] (3,2)
+              to[C=$C$] (3,0)
+              -- (0,0);
+\end{circuitikz}
+```
+
+### 2. Op-Amp Circuit
+
+```latex
+\begin{circuitikz}
+  \draw (0,0) node[op amp] (opamp) {}
+        (opamp.+) to[short] ++(-1,0) node[left] {$V_{in}$}
+        (opamp.-) to[R=$R_f$] ++(0,2) -| (opamp.out)
+        (opamp.out) to[short, -o] ++(1,0) node[right] {$V_{out}$};
+\end{circuitikz}
+```
+
+### 3. Digital Logic
+
+```latex
+\begin{circuitikz}
+  \draw (0,0) node[and port] (and1) {}
+        (and1.in 1) node[left] {A}
+        (and1.in 2) node[left] {B}
+        (and1.out) node[right] {Y};
+\end{circuitikz}
+```
+
+## Browse CircuiTikZ Examples
+
+Explore our knowledge base:
+
+- [All CircuiTikZ Items](/browse/by-package/circuitikz/page-000) - 816 items
+- [Circuit Examples](/browse/by-chart-type/circuit/page-000) - 501 examples
+- [Component Definitions](/browse/by-type/component/page-000) - 315 components
+
+## Component Syntax
+
+### Basic Structure
+
+```latex
+\draw (start) to[component, options] (end);
+```
+
+### Common Options
+- Label: `R=$R_1$`
+- Value and unit: `R=10<\kilo\ohm>`
+- Voltage: `v=$V_R$`
+- Current: `i=$I$`
+
+## Best Practices
+
+1. **Use Consistent Spacing**: Keep component spacing uniform
+2. **Label Clearly**: Add component values and node names
+3. **Ground Symbols**: Use proper ground symbols (ground, sground, eground)
+4. **Wire Crossings**: Use jumpers or bridges for clarity
+5. **Modular Design**: Break complex circuits into subcircuits
+
+## MCP API Usage
+
+Query CircuiTikZ knowledge:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "op amp circuit",
+    "package": "circuitikz"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ/PGF](tikz-pgf) - Base graphics package
+- [Circuit Examples](/charts/circuit) - Browse circuit diagrams
+
+## External Resources
+
+- [CircuiTikZ Manual (PDF)](http://mirrors.ctan.org/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf)
+- [CTAN Package Page](https://ctan.org/pkg/circuitikz)
