@@ -218,8 +218,8 @@ class TexContentExtractor:
 def main():
     """主函数"""
     # 配置路径
-    manual_base = Path("/root/task_0813/0212_task/manual")
-    output_base = Path("/root/task_0813/latex-mcp-knowledge/knowledge-base")
+    manual_base = Path("/Users/yaoyongke/Documents/yyk/0212_task/manual")
+    output_base = Path("/Users/yaoyongke/Documents/yyk/0212_task/latex-mcp-knowledge")
 
     # 处理 TikZ/PGF 手册
     print("\n=== Processing TikZ/PGF Manual ===")
