@@ -18,14 +18,14 @@ def main():
     print("=" * 60)
     print()
 
-    # 1. 加载数据
+    # 1. 加载数据 - V2.0 使用合并的知识库
     print("Loading knowledge base...")
-    knowledge_file = Path(__file__).parent.parent / 'knowledge-base' / 'latex-chart-knowledge-structured.json'
+    knowledge_file = Path(__file__).parent.parent / 'knowledge-base' / 'latex-all-knowledge-raw.json'
 
     with open(knowledge_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    print(f"✓ Loaded {len(data)} items")
+    print(f"✓ Loaded {len(data)} items from V2.0 (6 packages)")
     print()
 
     # 2. 生成全部条目页面
@@ -119,7 +119,7 @@ def generate_by_chart_type_pages(data: List[Dict]):
     chart_types = {}
     for item in data:
         if item['type'] == 'executable_example':
-            chart_type = item['metadata'].get('chart_type', 'other')
+            chart_type = item.get('chart_type', 'other')  # V2: 直接使用chart_type字段
             chart_types.setdefault(chart_type, []).append(item)
 
     for chart_type, items in chart_types.items():
@@ -304,7 +304,7 @@ def generate_index_page(data: List[Dict]):
         packages[package] = packages.get(package, 0) + 1
 
         if item_type == 'executable_example':
-            chart_type = item['metadata'].get('chart_type', 'other')
+            chart_type = item.get('chart_type', 'other')  # V2: 直接使用chart_type字段
             chart_types[chart_type] = chart_types.get(chart_type, 0) + 1
 
     # 生成类型列表

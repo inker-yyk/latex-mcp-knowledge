@@ -13,1439 +13,501 @@ Showing items **1001-1050** of **3242** | Page **21** of **65**
 
 ## 1001. Other Example
 
-**ID**: `f0fe2d6d6293`  
+**ID**: `61042c939cb9`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\def\polartransformation{%
-  % \pgf@x will contain the radius
-  % \pgf@y will contain the distance
-  \pgfmathsincos@{\pgf@sys@tonumber\pgf@x}%
-  % pgfmathresultx is now the cosine of radius and
-  % pgfmathresulty is the sine of radius
-  \pgf@x=\pgfmathresultx\pgf@y%
-  \pgf@y=\pgfmathresulty\pgf@y%
-}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1002. Other Example
 
-**ID**: `a5f11888ad18`  
+**ID**: `52d3fa3398fc`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  % Start nonlinear transformation
-  \pgftransformnonlinear{\polartransformation}% see above
-
-  % Draw something with this transformation in force
-  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1003. Other Example
 
-**ID**: `de9693737518`  
+**ID**: `dd88248b936b`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  {
-    \pgftransformnonlinear{\polartransformation}
-    % The curve with the controls computed by pgf: a nice quarter arc
-    \draw [red] (0,20mm) -- (90pt,20mm);
-  }
-  % Here is the curve with controls just transformed:
-  \draw (0:20mm) .. controls (30pt:20mm) and (60pt:20mm) .. (90pt:20mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1004. Other Example
 
-**ID**: `f11e702b9066`  
+**ID**: `a8378c50d579`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \draw[red] (0:20mm) arc [start angle=0, end angle=90, radius=2cm];
-  {
-    \pgftransformnonlinear{\polartransformation}
-    \pgfsettransformnonlinearflatness{2pt} % very precise
-    \draw (0,20mm) -- (90pt,20mm);
-  }
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1005. Other Example
 
-**ID**: `84d735e652a9`  
+**ID**: `0acdf0a8c104`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \pgftransformnonlinear{\polartransformation}% see above
-
-  % Draw something with this transformation in force
-  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
-
-  \foreach \angle in {0,30,60,90}
-    \foreach \dist in {1,2}
-      {
-        \pgftransformshift{\pgfpoint{\angle pt}{\dist cm}}
-        \pgftext{\angle$^\circ$}
-      }
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1006. Other Example
 
-**ID**: `842b3ddeebb5`  
+**ID**: `55df60a8e640`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \pgftransformnonlinear{\polartransformation}% see above
-  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
-
-  \begin{scope}[shift={(45pt,20mm)}]
-    % Draw something near "origin":
-    \draw [red] (-10pt,-10pt) -- (10pt,10pt);
-    \draw [red] (10pt,-10pt) -- (-10pt,10pt);
-
-    % Now draw the same, but in the "approximate" coordinate system:
-    \pgfapproximatenonlineartransformation
-    \draw [] (-10pt,-10pt) -- (10pt,10pt);
-    \draw [] (10pt,-10pt) -- (-10pt,10pt);
-    \pgftext{foo}
-  \end{scope}
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1007. Other Example
 
-**ID**: `e4b141f0a114`  
+**ID**: `03bc957542b1`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \pgftransformnonlinear{\polartransformation}% see above
-  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
-
-  \begin{scope}[shift={(45pt,20mm)}]
-    % Draw something near "origin":
-    \draw [red] (-10pt,-10pt) -- (10pt,10pt);
-    \draw [red] (10pt,-10pt) -- (-10pt,10pt);
-
-    % Now draw the same, but in the "approximate" coordinate system:
-    \pgfapproximatenonlineartranslation
-    \draw [] (-10pt,-10pt) -- (10pt,10pt);
-    \draw [] (10pt,-10pt) -- (-10pt,10pt);
-    \pgftext{foo}
-  \end{scope}
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1008. Other Example
 
-**ID**: `e3b528ffb954`  
+**ID**: `010df2f34129`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\pgfsetcurvilinearbeziercurve
-  {\pgfpointorigin}
-  {\pgfpoint{1cm}{1cm}}
-  {\pgfpoint{2cm}{1cm}}
-  {\pgfpoint{3cm}{0cm}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1009. Other Example
 
-**ID**: `635ff5765b56`  
+**ID**: `281b258f4a71`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  {
-    \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{11mm}{20mm}}
-      {\pgfpoint{20mm}{11mm}}
-      {\pgfpoint{20mm}{0mm}}
-    \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
-    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
-  }
-  \draw[red, very thick]
-    (0mm,20mm) .. controls (11mm,20mm) and (20mm,11mm) .. (20mm,0mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1010. Other Example
 
-**ID**: `2d4d451b1df6`  
+**ID**: `78eaaec53ecc`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  {
-    \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{10mm}{20mm}}
-      {\pgfpoint{10mm}{10mm}}
-      {\pgfpoint{20mm}{10mm}}
-    \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
-    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
-  }
-  \draw[red, very thick]
-    (0mm,20mm) .. controls (10mm,20mm) and (10mm,10mm) .. (20mm,10mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1011. Other Example
 
-**ID**: `53415242799c`  
+**ID**: `6e7da9141cfd`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  {
-    \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{11mm}{20mm}}
-      {\pgfpoint{20mm}{11mm}}
-      {\pgfpoint{20mm}{0mm}}
-    \pgftransformnonlinear{\pgfpointcurvilinearbezierpolar\pgf@x\pgf@y}%
-    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
-    % Add a "barb":
-    \draw [blue, very thick] (20pt,10pt) -- (0,0) -- (20pt,-10pt);
-  }
-  \draw[red, very thick]
-    (0mm,20mm) .. controls (11mm,20mm) and (20mm,11mm) .. (20mm,0mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1012. Other Example
 
-**ID**: `7b7150be2a76`  
+**ID**: `4c96e025d052`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-base-transformations.tex
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  {
-    \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{10mm}{20mm}}
-      {\pgfpoint{10mm}{10mm}}
-      {\pgfpoint{20mm}{10mm}}
-    \pgftransformnonlinear{\pgfpointcurvilinearbezierpolar\pgf@x\pgf@y}%
-    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
-    % Add a "barb":
-    \draw [blue, very thick] (20pt,10pt) -- (0,0) -- (20pt,-10pt);
-  }
-  \draw[red, very thick]
-    (0mm,20mm) .. controls (10mm,20mm) and (10mm,10mm) .. (20mm,10mm);
-\end{tikzpicture}
-```
-
-**Dependencies**: tikz  
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1013. Other Example
 
-**ID**: `8a77bd7f7847`  
+**ID**: `840f994ac052`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my key=hallo,/your keys/main key=something\strange,
-         key name without path=something else}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1014. Other Example
 
-**ID**: `471b374c4efe`  
+**ID**: `be762cd2b1de`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my key/.code=The value is '#1'.}
-\pgfkeys{/my key=hi!}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1015. Other Example
 
-**ID**: `b96d0bbecd4a`  
+**ID**: `ac6e0f48e6f8`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my key/.code 2 args=The values are '#1' and '#2'.}
-\pgfkeys{/my key={a1}{a2}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1016. Other Example
 
-**ID**: `14c5fac79a94`  
+**ID**: `7934e427c909`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my key/.code=(#1)}
-\pgfkeys{/my key/.default=hello}
-\pgfkeys{/my key=hallo,/my key}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1017. Other Example
 
-**ID**: `65ddff90b7d9`  
+**ID**: `fb01f169ebff`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/tikz/.cd,line width=1cm,line cap=round}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1018. Other Example
 
-**ID**: `aeeed3f1e4a8`  
+**ID**: `9db1a9fc8f80`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\def\tikzset#1{\pgfkeys{/tikz/.cd,#1}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1019. Other Example
 
-**ID**: `72f7134419f7`  
+**ID**: `3bcc7c2262f7`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/a/.code=(a:#1)}
-\pgfkeys{/b/.code=(b:#1)}
-\pgfkeys{/my style/.style={/a=foo,/b=bar,/a=#1}}
-\pgfkeys{/my style=wow}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1020. Other Example
 
-**ID**: `ca4d9d928705`  
+**ID**: `3b7396d37040`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/tikz/.style=/tikz/.cd}
-\pgfkeys{tikz,line width=1cm,draw=red}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1021. Other Example
 
-**ID**: `99de1cbc3b97`  
+**ID**: `020ce4e38b7a`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeyssetvalue{/my family/my key}{Hello, world!}
-\pgfkeysvalueof{/my family/my key}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1022. Other Example
 
-**ID**: `5ef89082ec94`  
+**ID**: `a534f98f7b8d`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\def\helloworld{Hello, world!}
-\pgfkeyslet{/my family/my key}{\helloworld}
-\pgfkeysvalueof{/my family/my key}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1023. Other Example
 
-**ID**: `21076760a4a4`  
+**ID**: `990cec03e7a2`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeyssetvalue{/my family/my key}{Hello, world!}
-\pgfkeysgetvalue{/my family/my key}{\helloworld}
-\helloworld
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1024. Other Example
 
-**ID**: `487797bc2022`  
+**ID**: `8a7f00300353`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeyssetvalue{/my family/my key}{Hello, world!}
-\pgfkeysvalueof{/my family/my key}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1025. Other Example
 
-**ID**: `1be482741c3c`  
+**ID**: `a54a3cf48292`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeyssetvalue{/my family/my key}{Hello, world!}
-\pgfkeysifdefined{/my family/my key}{yes}{no}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1026. Other Example
 
-**ID**: `afd44b2eaa1f`  
+**ID**: `00144e9ce83d`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdef{/my family/my keyA}{\def\mykeyA{#1}}
-\pgfkeyssetvalue{/my family/my keyB}{Hello, world!}
-\pgfkeysifassignable{/my family/my keyA}{yes}{no}
-\pgfkeysifassignable{/my family/my keyB}{yes}{no}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1027. Other Example
 
-**ID**: `28dda6c2803c`  
+**ID**: `6e6db5f5b479`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\myset{red, "main valve", thick}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1028. Other Example
 
-**ID**: `4a2a20bcb474`  
+**ID**: `509dc3993aeb`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\myset{red, label text=main valve, thick}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1029. Other Example
 
-**ID**: `4618f67f359b`  
+**ID**: `a513175d023f`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\tikz \graph { a ->["1" red] b ->["0"] c };
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1030. Other Example
 
-**ID**: `5a86adb4ff85`  
+**ID**: `7d1624f8d8d5`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\tikz \graph { a ->[edge node={node[red,auto]{1}}] b ->[edge label=0] c };
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1031. Other Example
 
-**ID**: `2644cb3cb510`  
+**ID**: `c76286d5a7cf`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\let\mycharacter="
-\meaning\mycharacter
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1032. Other Example
 
-**ID**: `fd16790d6139`  
+**ID**: `bc84af7cf17d`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character "/.initial=\myquotemacro,
-  /handlers/first char syntax/the character </.initial=\mypointedmacro,
-}
-
-\def\myquotemacro#1{Quoted: #1. }
-\def\mypointedmacro#1{Pointed: #1. }
-
-\ttfamily \pgfkeys{"foo", <bar>}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1033. Other Example
 
-**ID**: `d2a4dbe778f2`  
+**ID**: `b01f692ffc5e`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character '/.initial=\mysinglequotemacro
-}
-
-\def\mysinglequotemacro#1{\pgfkeysalso{label={#1}}}
-
-\tikz \node [circle, 'foo', draw] {bar};
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1034. Other Example
 
-**ID**: `39b465b29c2e`  
+**ID**: `02678dbc6598`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character (/.initial=\myparamacro
-}
-
-\def\myparamacro#1{\myparaparser#1\someendtext}
-\def\myparaparser(#1)#2\someendtext{
-  \pgfmathparse{#1}
-  \ifx\pgfmathresult\onetext
-    \pgfkeysalso{#2}
-  \fi
-}
-\def\onetext{1}
-
-\foreach \i in {1,...,4}
-  \tikz \node [draw, thick, rectangle, (pi>\i) circle, (pi>\i*2) draw=red] {x};
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1035. Other Example
 
-**ID**: `f22b30c27d25`  
+**ID**: `1bb65f95498c`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\def\mystore#1+#2\pgfeov{\def\a{#1}\def\b{#2}}
-\pgfkeyslet{/my key/.@cmd}{\mystore}
-\pgfkeys{/my key=hello+world}
-
-|\a| is `\a', |\b| is `\b'.
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1036. Other Example
 
-**ID**: `2012b24153ed`  
+**ID**: `7502dbd82005`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdef{/my key}{#1, #1.}
-\pgfkeys{/my key=hello}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1037. Other Example
 
-**ID**: `80dab6fca917`  
+**ID**: `98c1a44a0290`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdefnargs{/my key}{2}{\def\a{#1}\def\b{#2}}
-\pgfkeys{/my key=
-    {hello}
-    {world}}
-
-|\a| is `\a', |\b| is `\b'.
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1038. Other Example
 
-**ID**: `afe0f61e5085`  
+**ID**: `357689e4b9fc`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdefargs{/my key}{#1+#2}{\def\a{#1}\def\b{#2}}
-\pgfkeys{/my key=hello+world}
-
-|\a| is `\a', |\b| is `\b'.
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1039. Other Example
 
-**ID**: `41577289a901`  
+**ID**: `f2936586f6d4`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdef{/handlers/.print to log}
-{%
-  \pgfkeysgetvalue{\pgfkeyscurrentpath}{\temp}
-  \writetolog{\temp}
-}
-\pgfkeyssetvalue{/my key}{Hi!}
-...
-\pgfkeys{/my key/.print to log}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1040. Other Example
 
-**ID**: `e25136969bef`  
+**ID**: `5d6d80bdbb4d`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeysdef{/handlers/.my code}{\pgfkeysdef{\pgfkeyscurrentpath}{#1}}
-\pgfkeys{/my key/.my code=(#1)}
-\pgfkeys{/my key=hallo}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1041. Other Example
 
-**ID**: `99b903438993`  
+**ID**: `cb1097ae07ce`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-% Define a test key and error handlers:
-\pgfkeys{/the/key/.code={Initial definition. }}
-\pgfkeys{/handlers/.unknown/.code={Unknown key `\pgfkeyscurrentkey'. }}
-
-% calling the test key yields 'Initial definition. ':
-\pgfkeys{/the/key}
-
-% Change configuration:
-\pgfkeys{/handler config=only existing}
-
-% allowed: key *re*-definition:
-\pgfkeys{/the/key/.code={Re-Definition. }}
-% calling the key yields 'Re-Definition. ':
-\pgfkeys{/the/key}
-
-% not allowed: definition of new keys:
-% this checks for '/the/other key/.unknown'
-% and '/handlers/.unknown'
-% and yields finally
-% 'Unknown key `/the/other key/.code`'
-\pgfkeys{/the/other key/.code={New definition. }}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1042. Other Example
 
-**ID**: `53656c033256`  
+**ID**: `3f8576ba0d0b`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my search path/.unknown/.code=
-  {%
-    \let\searchname=\pgfkeyscurrentname%
-    \pgfkeysalso{%
-      /a/\searchname/.try=#1,
-      /b/\searchname/.retry=#1,
-      /b/c/\searchname/.retry=#1%
-    }%
-  }%
-}
-\pgfkeys{/my search path/.cd,foo,bar}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1043. Other Example
 
-**ID**: `a1602e5646cb`  
+**ID**: `9dd78fde3642`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my search path/.cd,custom/.style={variables}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1044. Other Example
 
-**ID**: `31259ae22d7b`  
+**ID**: `e96d8169b799`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my search path/.unknown/.code=
-  {%
-    \let\searchname=\pgfkeyscurrentname%
-    \pgfkeysalso{%
-      /a/\searchname/.try=#1,
-      /b/\searchname/.retry=#1,
-      /b/c/\searchname/.retry=#1%
-    }%
-  }%
-}
-
-% Let's define /b/custom here:
-\pgfkeys{/b/custom/.code={This is `\pgfkeyscurrentkey'. }}
-
-% Reconfigure treatment of key handlers:
-\pgfkeys{/handler config=only existing}
-
-% The search path procedure will find /b/custom
-% -> leads to This is `/b/custom'
-\pgfkeys{/my search path/.cd,custom}
-
-% Due to the reconfiguration, this will find /b/custom instead of
-% defining /my search path/custom:
-\pgfkeys{/my search path/.cd,custom/.append code={Modified. }}
-
-% So using the search path, we again find /b/custom which
-% leads to This is `/b/custom' Modified
-\pgfkeys{/my search path/.cd,custom}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1045. Other Example
 
-**ID**: `510eade132ef`  
+**ID**: `d31b0862e551`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/tikz/.is family}
-\pgfkeys{tikz,line width=1cm}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1046. Other Example
 
-**ID**: `625d4b4b7a0e`  
+**ID**: `3675dda93dc9`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/my key/.code=I do not want an argument!}
-\pgfkeys{/my key/.value forbidden}
-
-\pgfkeys{/my key}     % Ok
-\pgfkeys{/my key=foo} % Error
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1047. Other Example
 
-**ID**: `00b728493d43`  
+**ID**: `3ac96fc5a30e`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/par indent/.code={\parindent=#1},/par indent/.default=2em}
-\pgfkeys{/par indent=1cm}
-...
-\pgfkeys{/par indent}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1048. Other Example
 
-**ID**: `04b23ba99a54`  
+**ID**: `18d032419fde`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/page size/.code 2 args={\paperheight=#2\paperwidth=#1}}
-\pgfkeys{/page size={30cm}{20cm}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1049. Other Example
 
-**ID**: `1302a8aa45d2`  
+**ID**: `4906907890bf`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/a key/.code n args={2}{First=`#1', Second=`#2'}}
-\pgfkeys{/a key={A}{B}}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 
 ## 1050. Other Example
 
-**ID**: `c2f10b4e10c8`  
+**ID**: `6bc8cc38d954`  
 **Type**: executable_example  
-**Package**: tikz  
-**Chart Type**: other  
+**Package**: tikz-pgf  
+**Chart Type**: N/A  
 
-### Description
-
-Executable example from pgfmanual-en-pgfkeys.tex
-
-### Code
-
-```latex
-\pgfkeys{/page size/.code args={#1 and #2}{\paperheight=#2\paperwidth=#1}}
-\pgfkeys{/page size=30cm and 20cm}
-```
-
-**Quality Score**: 0.9  
-**Priority**: 10  
-**Executable**: Yes  
 
 ---
 

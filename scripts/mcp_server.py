@@ -15,13 +15,16 @@ import time
 app = Flask(__name__)
 CORS(app)  # 允许跨域请求
 
-# 加载知识库
-KNOWLEDGE_BASE_PATH = Path(__file__).parent.parent / 'knowledge-base' / 'latex-chart-knowledge-structured.json'
+# 加载知识库 - V2.0 使用合并的知识库
+KNOWLEDGE_BASE_PATH = Path(__file__).parent.parent / 'knowledge-base' / 'latex-all-knowledge-raw.json'
 
-with open(KNOWLEDGE_BASE_PATH, 'r', encoding='utf-8') as f:
-    KNOWLEDGE_BASE = json.load(f)
-
-print(f"✓ Loaded {len(KNOWLEDGE_BASE)} knowledge items")
+try:
+    with open(KNOWLEDGE_BASE_PATH, 'r', encoding='utf-8') as f:
+        KNOWLEDGE_BASE = json.load(f)
+    print(f"✓ Loaded {len(KNOWLEDGE_BASE)} knowledge items from V2.0 (6 packages)")
+except FileNotFoundError:
+    print(f"Error: Knowledge base not found at {KNOWLEDGE_BASE_PATH}")
+    KNOWLEDGE_BASE = []
 
 
 # ========================================
