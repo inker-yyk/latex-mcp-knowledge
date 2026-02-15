@@ -87,14 +87,9 @@ Showing examples **{start_idx + 1}-{end_idx}** of **{len(examples)}** from the {
             if escaped_desc:
                 content += f"**Description**: {escaped_desc}\n\n"
 
-            content += f"""<details>
-<summary>View LaTeX Code</summary>
-
-<pre><code class="language-latex">
+            content += f"""<pre><code class="language-latex">
 {escaped_code}
 </code></pre>
-
-</details>
 
 ---
 

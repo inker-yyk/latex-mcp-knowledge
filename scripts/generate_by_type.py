@@ -87,14 +87,9 @@ Showing items **{start_idx + 1}-{end_idx}** of **{len(items)}**
                     if len(escaped_code) > 2000:
                         escaped_code = escaped_code[:2000] + "\n... (truncated)"
 
-                    content += f"""<details>
-<summary>View LaTeX Code</summary>
-
-<pre><code class="language-latex">
+                    content += f"""<pre><code class="language-latex">
 {escaped_code}
 </code></pre>
-
-</details>
 
 """
 
