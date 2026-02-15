@@ -434,10 +434,10 @@ class GenericTeXExtractor(BaseExtractor):
         """提取通用示例环境"""
         items = []
 
-        # 尝试多种常见的示例环境
+        # 尝试多种常见的示例环境（包括大小写变体）
         environments = [
-            'codeexample', 'lstlisting', 'verbatim', 'example',
-            'LTXexample', 'tkzexample', 'examplecode'
+            'codeexample', 'lstlisting', 'verbatim', 'Verbatim', 'example',
+            'LTXexample', 'tkzexample', 'examplecode', 'SideBySideExample'
         ]
 
         for env in environments:
@@ -461,6 +461,144 @@ class GenericTeXExtractor(BaseExtractor):
         return items
 
 
+class DTXExtractor(BaseExtractor):
+    """.dtx 格式提取器 - 用于 fullpage, xspace 等"""
+
+    def process(self) -> List[Dict[str, Any]]:
+        """从 .dtx 文件提取内容"""
+        dtx_files = list(self.manual_dir.glob("*.dtx"))
+
+        items = []
+        for dtx_file in dtx_files:
+            try:
+                with open(dtx_file, 'r', encoding='latin-1', errors='ignore') as f:
+                    content = f.read()
+
+                # 从 .dtx 提取 macro 定义和示例
+                items.extend(self._extract_macros(content, dtx_file))
+                items.extend(self._extract_dtx_examples(content, dtx_file))
+            except Exception as e:
+                print(f"  Error processing {dtx_file.name}: {e}")
+                continue
+
+        return items
+
+    def _extract_macros(self, content: str, filepath: Path) -> List[Dict[str, Any]]:
+        """提取宏定义"""
+        items = []
+
+        # 提取 \newcommand, \def, \DeclareRobustCommand 等
+        patterns = [
+            r'\\newcommand\{\\([^}]+)\}',
+            r'\\def\\([^\{]+)\{',
+            r'\\DeclareRobustCommand\{\\([^}]+)\}'
+        ]
+
+        for pattern in patterns:
+            matches = re.finditer(pattern, content)
+            for match in matches:
+                cmd_name = match.group(1).strip()
+                if cmd_name:  # 确保不为空
+                    items.append({
+                        "type": "command",
+                        "macro_package": self.package_name,
+                        "command_name": f"\\{cmd_name}",
+                        "description": f"Command defined in {filepath.name}",
+                        "source_file": filepath.name,
+                        "id": self._generate_id(f"cmd_{cmd_name}")
+                    })
+
+        return items
+
+    def _extract_dtx_examples(self, content: str, filepath: Path) -> List[Dict[str, Any]]:
+        """提取 .dtx 中的示例"""
+        items = []
+
+        # .dtx 中常见的示例标记
+        patterns = [
+            r'%\s*\\begin{verbatim}(.*?)%\s*\\end{verbatim}',
+            r'%\s*Example:(.*?)(?=%\s*\n%\s*\n|$)'
+        ]
+
+        for pattern in patterns:
+            matches = re.finditer(pattern, content, re.DOTALL)
+            for idx, match in enumerate(matches):
+                code = match.group(1).strip()
+                # 移除行首的 %
+                code = '\n'.join(line.lstrip('%').strip() for line in code.split('\n'))
+
+                if len(code) > 10 and '\\' in code:
+                    items.append({
+                        "type": "executable_example",
+                        "macro_package": self.package_name,
+                        "chart_type": "other",
+                        "code": code,
+                        "source_file": filepath.name,
+                        "id": self._generate_id(f"example_{filepath.stem}_{idx}")
+                    })
+
+        return items
+
+
+class SoulExtractor(BaseExtractor):
+    """soul 宏包提取器 - 基于 README.md"""
+
+    def process(self) -> List[Dict[str, Any]]:
+        """从 README.md 提取基础命令"""
+        readme_file = self.manual_dir / "README.md"
+        if not readme_file.exists():
+            return []
+
+        # 手动定义 soul 的核心命令
+        commands = [
+            {
+                "command_name": "\\hl",
+                "description": "Highlight text - 高亮文本",
+                "example": "\\hl{highlighted text}"
+            },
+            {
+                "command_name": "\\ul",
+                "description": "Underline text - 下划线",
+                "example": "\\ul{underlined text}"
+            },
+            {
+                "command_name": "\\st",
+                "description": "Strike through text - 删除线",
+                "example": "\\st{strikethrough text}"
+            },
+            {
+                "command_name": "\\so",
+                "description": "Letter spacing - 字母间距",
+                "example": "\\so{spaced out text}"
+            }
+        ]
+
+        items = []
+        for cmd in commands:
+            # 添加命令定义
+            items.append({
+                "type": "command",
+                "macro_package": self.package_name,
+                "command_name": cmd["command_name"],
+                "description": cmd["description"],
+                "source_file": "README.md",
+                "id": self._generate_id(f"cmd_{cmd['command_name']}")
+            })
+
+            # 添加可执行示例
+            items.append({
+                "type": "executable_example",
+                "macro_package": self.package_name,
+                "chart_type": "other",
+                "code": cmd["example"],
+                "description": cmd["description"],
+                "source_file": "README.md",
+                "id": self._generate_id(f"example_{cmd['command_name']}")
+            })
+
+        return items
+
+
 class ExtractorFactory:
     """提取器工厂"""
 
@@ -473,7 +611,10 @@ class ExtractorFactory:
             "circuitikz": CircuitikzExtractor,
             "tkz-euclide": TkzEuclideExtractor,
             "pgfplots": StandardExtractor,
-            "tikz-pgf": StandardExtractor
+            "tikz-pgf": StandardExtractor,
+            "soul": SoulExtractor,
+            "fullpage": DTXExtractor,
+            "xspace": DTXExtractor,
         }
 
         extractor_class = specialized_extractors.get(package_name, GenericTeXExtractor)
