@@ -1,0 +1,182 @@
+---
+title: "Network Graphs"
+description: "Create network and graph visualizations using TikZ-Network"
+---
+
+## Overview
+
+TikZ-Network is a specialized package for drawing network graphs, including social networks, computer networks, and graph theory diagrams. It provides simple commands for vertices and edges.
+
+## Basic Network
+
+Create a simple network:
+
+```latex
+\begin{tikzpicture}
+\Vertex[x=0,y=0]{A}
+\Vertex[x=2,y=0]{B}
+\Vertex[x=1,y=2]{C}
+\Edge(A)(B)
+\Edge(B)(C)
+\Edge(C)(A)
+\end{tikzpicture}
+```
+
+## Vertex Styles
+
+Customize vertex appearance:
+
+```latex
+\begin{tikzpicture}
+\Vertex[color=red,size=1.5,label=Node 1]{A}
+\Vertex[color=blue,shape=rectangle,label=Node 2]{B}
+\Vertex[color=green,opacity=0.5,label=Node 3]{C}
+\end{tikzpicture}
+```
+
+## Edge Types
+
+Different edge styles:
+
+```latex
+\begin{tikzpicture}
+\Vertex[x=0,y=0]{A}
+\Vertex[x=2,y=0]{B}
+\Vertex[x=4,y=0]{C}
+
+% Solid edge
+\Edge(A)(B)
+
+% Dashed edge
+\Edge[style=dashed](B)(C)
+
+% Directed edge
+\Edge[Direct](A)(C)
+\end{tikzpicture}
+```
+
+## Directed Graphs
+
+Create directed networks:
+
+```latex
+\begin{tikzpicture}
+\Vertex[x=0,y=0]{A}
+\Vertex[x=2,y=1]{B}
+\Vertex[x=2,y=-1]{C}
+\Vertex[x=4,y=0]{D}
+
+\Edge[Direct](A)(B)
+\Edge[Direct](A)(C)
+\Edge[Direct](B)(D)
+\Edge[Direct](C)(D)
+\end{tikzpicture}
+```
+
+## Weighted Graphs
+
+Add edge weights:
+
+```latex
+\begin{tikzpicture}
+\Vertex[x=0,y=0]{A}
+\Vertex[x=2,y=0]{B}
+\Vertex[x=4,y=0]{C}
+
+\Edge[label=5](A)(B)
+\Edge[label=3](B)(C)
+\Edge[label=7,bend=30](A)(C)
+\end{tikzpicture}
+```
+
+## Layouts
+
+Common network layouts:
+
+```latex
+% Circular layout
+\begin{tikzpicture}
+\foreach \i in {1,...,6} {
+    \Vertex[x={2*cos(60*\i)},y={2*sin(60*\i)}]{\i}
+}
+\Edge(1)(2)
+\Edge(2)(3)
+\Edge(3)(4)
+\Edge(4)(5)
+\Edge(5)(6)
+\Edge(6)(1)
+\end{tikzpicture}
+```
+
+## Hierarchical Networks
+
+Create tree-like structures:
+
+```latex
+\begin{tikzpicture}
+% Root
+\Vertex[x=2,y=3]{Root}
+
+% Level 1
+\Vertex[x=0,y=1.5]{L1}
+\Vertex[x=2,y=1.5]{L2}
+\Vertex[x=4,y=1.5]{L3}
+
+% Level 2
+\Vertex[x=0,y=0]{L11}
+\Vertex[x=1,y=0]{L12}
+\Vertex[x=3,y=0]{L21}
+\Vertex[x=4,y=0]{L31}
+
+\Edge[Direct](Root)(L1)
+\Edge[Direct](Root)(L2)
+\Edge[Direct](Root)(L3)
+\Edge[Direct](L1)(L11)
+\Edge[Direct](L1)(L12)
+\Edge[Direct](L2)(L21)
+\Edge[Direct](L3)(L31)
+\end{tikzpicture}
+```
+
+## Node Properties
+
+Vertex customization options:
+
+- `x=<value>`: X coordinate
+- `y=<value>`: Y coordinate
+- `size=<value>`: Node size
+- `color=<color>`: Node color
+- `shape=<shape>`: Node shape (circle, rectangle, etc.)
+- `label=<text>`: Node label
+- `opacity=<value>`: Transparency
+
+## Edge Properties
+
+Edge customization options:
+
+- `Direct`: Directed edge (arrow)
+- `label=<text>`: Edge label
+- `style=<style>`: Line style (dashed, dotted, etc.)
+- `color=<color>`: Edge color
+- `bend=<angle>`: Curved edge
+- `lw=<width>`: Line width
+
+## MCP API Usage
+
+Query network graph examples using the MCP API:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "tikz-network vertex edge graph",
+    "package": "tikz-network"
+  }
+}
+```
+
+## Related Topics
+
+- [TikZ-Network Knowledge](../knowledge/tikz-network)
+- [Node Graph](node-graph)
+- [Flowchart](flowchart)

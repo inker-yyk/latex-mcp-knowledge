@@ -1,0 +1,152 @@
+---
+title: "Chemistry Structures"
+description: "Draw chemical structures using Chemfig"
+---
+
+## Overview
+
+Chemfig is a package for drawing 2D chemical structural formulas. It uses an intuitive text-based syntax to represent molecular structures, bonds, and functional groups.
+
+## Simple Molecules
+
+Draw basic organic molecules:
+
+```latex
+\chemfig{H-C(-[2]H)(-[6]H)-H}
+```
+
+This creates methane (CH₄).
+
+## Linear Chains
+
+Create carbon chains:
+
+```latex
+\chemfig{H-C-C-C-C-H}
+```
+
+## Branched Structures
+
+Add branches using angle notation:
+
+```latex
+\chemfig{
+  H-C(-[2]H)(-[6]H)
+  -C(-[2]H)(-[6]CH_3)
+  -C(-[2]H)(-[6]H)
+  -H
+}
+```
+
+## Rings
+
+Create cyclic structures:
+
+```latex
+% Benzene ring
+\chemfig{*6(=-=-=-)}
+
+% Cyclohexane
+\chemfig{*6(------)}
+```
+
+## Functional Groups
+
+Add common functional groups:
+
+```latex
+% Alcohol
+\chemfig{H-C(-[2]H)(-[6]H)-OH}
+
+% Carboxylic acid
+\chemfig{R-C(=[2]O)-OH}
+
+% Amine
+\chemfig{R-NH_2}
+```
+
+## Double and Triple Bonds
+
+Represent multiple bonds:
+
+```latex
+% Ethene (double bond)
+\chemfig{H_2C=CH_2}
+
+% Ethyne (triple bond)
+\chemfig{HC~CH}
+```
+
+## Complex Molecules
+
+Create larger structures:
+
+```latex
+% Glucose
+\chemfig{
+  HO-[7]
+  -[:30](=[:90]O)
+  -[:330]
+  -[:30](-[:90]OH)
+  -[:330](-[:270]OH)
+  -[:30](-[:90]OH)
+  -[:330](-[:270]OH)
+  -[:30]OH
+}
+```
+
+## Reaction Schemes
+
+Show chemical reactions:
+
+```latex
+\schemestart
+\chemfig{A}
+\arrow{->}
+\chemfig{B}
+\+
+\chemfig{C}
+\schemestop
+```
+
+## Stereochemistry
+
+Indicate 3D structure:
+
+```latex
+% Wedge bonds
+\chemfig{C(-[:0]H)(-[:120]OH)(<[:240]H)(<:[:300]CH_3)}
+```
+
+## Bond Angles
+
+Control bond angles:
+
+- `[:angle]`: Set bond angle (0° = right, 90° = up)
+- `[:angle,length]`: Set angle and length
+- `[::angle]`: Relative angle
+
+Common angles:
+- `[:0]`: Right (0°)
+- `[:90]`: Up (90°)
+- `[:180]`: Left (180°)
+- `[:270]`: Down (270°)
+
+## MCP API Usage
+
+Query chemistry examples using the MCP API:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "chemfig molecule structure",
+    "package": "chemfig"
+  }
+}
+```
+
+## Related Topics
+
+- [Chemfig Knowledge](../knowledge/chemfig)
+- [Node Graph](node-graph)

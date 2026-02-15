@@ -1,0 +1,130 @@
+---
+title: "Geometry Diagrams"
+description: "Create geometric figures using TKZ-Euclide"
+---
+
+## Overview
+
+TKZ-Euclide is a powerful package for creating Euclidean geometry diagrams. It provides high-level commands for points, lines, circles, angles, and geometric constructions.
+
+## Basic Triangle
+
+Create a simple triangle:
+
+```latex
+\begin{tikzpicture}
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(4,0){B}
+\tkzDefPoint(2,3){C}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[above](C)
+\end{tikzpicture}
+```
+
+## Circles and Arcs
+
+Draw circles with various properties:
+
+```latex
+\begin{tikzpicture}
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(2,0){A}
+\tkzDrawCircle[R](O,2cm)
+\tkzDrawPoint[color=red](O)
+\tkzLabelPoint[below](O){Center}
+\end{tikzpicture}
+```
+
+## Angles
+
+Mark and label angles:
+
+```latex
+\begin{tikzpicture}
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(3,0){B}
+\tkzDefPoint(2,2){C}
+\tkzDrawSegments(A,B B,C C,A)
+\tkzMarkAngle[size=0.8](B,A,C)
+\tkzLabelAngle[pos=1](B,A,C){$\alpha$}
+\end{tikzpicture}
+```
+
+## Perpendicular and Parallel Lines
+
+Construct geometric relationships:
+
+```latex
+\begin{tikzpicture}
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(4,0){B}
+\tkzDefPoint(2,0){M}
+\tkzDrawLine(A,B)
+\tkzDefPointBy[projection=onto A--B](M)
+\tkzDrawLine[perpendicular=through M](A,B)
+\tkzMarkRightAngle(A,M,C)
+\end{tikzpicture}
+```
+
+## Polygons
+
+Create regular polygons:
+
+```latex
+\begin{tikzpicture}
+\tkzDefPoint(0,0){O}
+\tkzDefRegPolygon[center,sides=6,name=P](O,A)
+\tkzDrawPolygon(P1,P2,P3,P4,P5,P6)
+\tkzDrawPoints(P1,P2,P3,P4,P5,P6)
+\end{tikzpicture}
+```
+
+## Geometric Constructions
+
+Classic compass and ruler constructions:
+
+```latex
+\begin{tikzpicture}
+% Midpoint construction
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(4,0){B}
+\tkzDefMidPoint(A,B)
+\tkzGetPoint{M}
+\tkzDrawSegment(A,B)
+\tkzDrawPoint[color=red](M)
+\tkzLabelPoint[below](M){Midpoint}
+\end{tikzpicture}
+```
+
+## Common Commands
+
+Key TKZ-Euclide commands:
+
+- `\tkzDefPoint`: Define a point
+- `\tkzDrawSegment`: Draw a line segment
+- `\tkzDrawPolygon`: Draw a polygon
+- `\tkzDrawCircle`: Draw a circle
+- `\tkzMarkAngle`: Mark an angle
+- `\tkzLabelAngle`: Label an angle
+- `\tkzDefMidPoint`: Define midpoint
+
+## MCP API Usage
+
+Query geometry examples using the MCP API:
+
+```json
+{
+  "tool": "search_latex_knowledge",
+  "arguments": {
+    "query": "tkz-euclide triangle circle",
+    "package": "tkz-euclide"
+  }
+}
+```
+
+## Related Topics
+
+- [TKZ-Euclide Knowledge](../knowledge/tkz-euclide)
+- [Node Graph](node-graph)
+- [Flowchart](flowchart)
