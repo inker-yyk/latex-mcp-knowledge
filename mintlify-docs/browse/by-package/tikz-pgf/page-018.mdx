@@ -17,6 +17,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} This command can be used to inherit the code used for the drawings behind the background path from another shape name.
+
 
 ---
 
@@ -25,6 +29,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `f119f3d2fabc`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} Inherits the background path code from another shape name.
 
 
 ---
@@ -35,6 +43,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the before background path code from another shape name.
+
 
 ---
 
@@ -43,6 +55,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `1e77556bf777`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} Inherits the behind foreground path code from another shape name.
 
 
 ---
@@ -53,6 +69,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the foreground path code from another shape name.
+
 
 ---
 
@@ -61,6 +81,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `1807652ae77c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} Inherits the before foreground path code from another shape name.
 
 
 ---
@@ -71,6 +95,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|name} Inherits the code of one specific anchor named name from another shape name. Thus, unlike saved anchors, which must be inherited collectively, normal anchors can and must be inherited individually.
+
 
 ---
 
@@ -80,6 +108,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the border anchor code from another shape name.
+
 
 ---
 
@@ -88,7 +120,26 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `605317bafd20`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (4,3);
+  {
+    \pgftransformshift{\pgfpoint{1.5cm}{1cm}}
+    \pgfnode{rectangle}{north}{Hello World}{hellonode}{\pgfusepath{stroke}}
+  }
+  {
+    \color{red!20}
+    \pgftransformrotate{10}
+    \pgftransformshift{\pgfpoint{3cm}{1cm}}
+    \pgfnode{rectangle}{center}
+      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -98,7 +149,23 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b2ab697b143c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (4,3);
+  {
+    \color{red!20}
+    \pgftransformrotate{10}
+    \pgftransformshift{\pgfpoint{3cm}{1cm}}
+    \pgftransformresetnontranslations
+    \pgfnode{rectangle}{center}
+      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -108,7 +175,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `adbf8cd34e6c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\setbox\pgfnodeparttextbox=\hbox{$q_1$}
+\setbox\pgfnodepartlowerbox=\hbox{01}
+\begin{pgfpicture}
+  \pgfmultipartnode{circle split}{center}{my state}{\pgfusepath{stroke}}
+\end{pgfpicture}
+```
 
 
 ---
@@ -118,7 +195,14 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `ab6a0a6f662b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newbox\pgfnodepartlowerbox
+\let\pgfnodepartmethodsbox=\pgfnodepartlowerbox
+```
 
 
 ---
@@ -128,7 +212,14 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `43cad4f621cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newbox\mybox
+\expandafter\let\csname pgfnodepartclass namebox\endcsname=\mybox
+```
 
 
 ---
@@ -138,7 +229,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b9ba8ecef2d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{minimum width=3cm}
+  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -148,7 +250,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `fd939577d5e4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{inner xsep=1cm}
+  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -158,17 +271,68 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `81329b1e9e1e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{outer xsep=.5cm}
+  \pgfnode{rectangle}{center}{Hello World}{x}{\pgfusepath{stroke}}
+
+  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 3617. Other Example
+## 3617. Node Graph Example
 
 **ID**: `c273497924d5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\newbox\mybox
+
+\def\mysaver{
+  \global\setbox\mybox=\box\pgfpositionnodelaterbox
+  \global\let\myname=\pgfpositionnodelatername
+  \global\let\myminx=\pgfpositionnodelaterminx
+  \global\let\myminy=\pgfpositionnodelaterminy
+  \global\let\mymaxx=\pgfpositionnodelatermaxx
+  \global\let\mymaxy=\pgfpositionnodelatermaxy
+}
+
+\begin{tikzpicture}
+  {
+    \pgfpositionnodelater{\mysaver}
+    \node [fill=blue!20,below,rotate=30] (hi) {Hello world};
+  }
+  \draw [help lines] (0,0) grid (3,2);
+
+  \let\pgfpositionnodelatername=\myname
+  \let\pgfpositionnodelaterminx=\myminx
+  \let\pgfpositionnodelaterminy=\myminy
+  \let\pgfpositionnodelatermaxx=\mymaxx
+  \let\pgfpositionnodelatermaxy=\mymaxy
+  \setbox\pgfpositionnodelaterbox=\box\mybox
+  \pgfpositionnodenow{\pgfqpoint{2cm}{2cm}}
+
+  \draw (hi) -- (0,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -178,7 +342,23 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `a3ce92cab3eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgftransformrotate{30}
+  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+
+  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -188,7 +368,25 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `a17b914ac887`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgftransformrotate{30}
+  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+
+  {
+    \pgftransformreset
+    \pgfpointanchor{x}{east}
+    \xdef\mycoordinate{\noexpand\pgfpoint{\the\pgf@x}{\the\pgf@y}}
+  }
+
+  \pgfpathcircle{\mycoordinate}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -198,7 +396,23 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `d3f80f31e9be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \begin{pgfscope}
+    \pgftransformrotate{30}
+    \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+  \end{pgfscope}
+  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{2cm}{1cm}}}{2pt}
+  \pgfpathcircle{\pgfpoint{2cm}{1cm}}{2pt}
+  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{-1cm}{1cm}}}{2pt}
+  \pgfpathcircle{\pgfpoint{-1cm}{1cm}}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -208,7 +422,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `bda0c0e222a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpointanchor{current bounding box}{south east}
+```
 
 
 ---
@@ -218,7 +438,23 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `e42f2b6bc22a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfrememberpicturepositiononpagetrue
+\begin{pgfpicture}
+  \pgfusepath{use as bounding box}
+  \pgftransformshift{\pgfpointanchor{current page}{south west}}
+  \pgftransformshift{\pgfpoint{1cm}{1cm}}
+  \pgftext[left,base]{
+    \textcolor{red}{
+      Text absolutely positioned in
+      the lower left corner.}
+  }
+\end{pgfpicture}
+```
 
 
 ---
@@ -228,7 +464,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `2106537d804b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  { [local bounding box=outer box]
+    \draw (1,1) circle (.5) [local bounding box=inner box] (2,2) circle (.5);
+  }
+  \draw      (outer box.south west) rectangle (outer box.north east);
+  \draw[red] (inner box.south west) rectangle (inner box.north east);
+\end{tikzpicture}
+```
 
 
 ---
@@ -238,7 +487,22 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `4b9847868ecf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareshape{coordinate}
+{
+  \savedanchor\centerpoint{%
+    \pgf@x=.5\wd\pgfnodeparttextbox%
+    \pgf@y=.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\dp\pgfnodeparttextbox%
+  }
+  \anchor{center}{\centerpoint}
+  \anchorborder{\centerpoint}
+}
+```
 
 
 ---
@@ -248,7 +512,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `5aac022ddad8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareshape{simple rectangle}{
+  ...
+}
+```
 
 
 ---
@@ -258,7 +530,16 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `7a13b242cdd8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedanchor{\upperrightcorner}{
+  \pgf@y=.5\ht\pgfnodeparttextbox % height of the box, ignoring the depth
+  \pgf@x=.5\wd\pgfnodeparttextbox % width of the box
+}
+```
 
 
 ---
@@ -268,7 +549,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `3d82600fee71`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedanchor{\upperrightcorner}{
+  \pgf@y=.\ht\pgfnodeparttextbox % height of the box
+  \pgf@x=.\wd\pgfnodeparttextbox % width of the box
+  \setlength{\pgf@xa}{\pgfshapeminwidth}
+  \ifdim\pgf@x<.5\pgf@xa
+    \pgf@x=.5\pgf@xa
+  \fi
+}
+```
 
 
 ---
@@ -278,7 +572,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `e77c39c052f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\saveddimen{\depth}{
+  \pgf@x=\dp\pgfnodeparttextbox
+}
+```
 
 
 ---
@@ -288,7 +590,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `38d9f3f0b031`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedmacro{\sides}{\let\sides\pgfpolygonsides}
+```
 
 
 ---
@@ -298,7 +606,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `effce486a6f9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{north east}{\upperrightcorner}
+```
 
 
 ---
@@ -308,7 +622,16 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `1f6f4513d933`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{north west}{
+  \upperrightcorner
+  \pgf@x=-\pgf@x
+}
+```
 
 
 ---
@@ -318,7 +641,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `aa38626eae33`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{center}{\pgfpointorigin}
+```
 
 
 ---
@@ -328,7 +657,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `8bf1251f0582`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{text}{%
+  \upperrightcorner%
+  \pgf@x=-\pgf@x%
+  \pgf@y=-\pgf@y%
+}
+```
 
 
 ---
@@ -338,7 +677,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `828c406d9f65`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{text}{\pgfpoint{-.5\wd\pgfnodeparttextbox}{-.5\ht\pgfnodeparttextbox}}
+```
 
 
 ---
@@ -348,7 +693,31 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `91aced0d3856`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\def\foo{foo}
+\pgfdeclareshape{simple shape}{%
+  \savedanchor{\center}{%
+    \pgfpointorigin}
+  \anchor{center}{\center}
+  \savedanchor{\anchorfoo}{%
+    \pgf@x=1cm
+    \pgf@y=0cm}
+  \deferredanchor{anchor \foo}{\anchorfoo}}
+
+\begin{tikzpicture}
+  \node[simple shape] (Test1) at (0,0) {};
+  \fill (Test1.anchor foo) circle (2pt) node[below] {anchor foo anchor};
+  %
+  \def\foo{bar}
+  \node[simple shape] (Test2) at (2,2) {};
+  \fill (Test2.anchor bar) circle (2pt) node[below] {anchor bar anchor};
+\end{tikzpicture}
+```
 
 
 ---
@@ -358,7 +727,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `15de8af5d7ec`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchorborder{%
+  % Call a function that computes a border point. Since this
+  % function will modify dimensions like \pgf@x, we must move them to
+  % other dimensions.
+  \@tempdima=\pgf@x
+  \@tempdimb=\pgf@y
+  \pgfpointborderrectangle{\pgfpoint{\@tempdima}{\@tempdimb}}{\upperrightcorner}
+}
+```
 
 
 ---
@@ -368,17 +750,69 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `90142cef0025`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\backgroundpath{
+  \pgfpathrectanglecorners
+    {\upperrightcorner}
+    {\pgfpointscale{-1}{\upperrightcorner}}
+}
+```
 
 
 ---
 
-## 3638. Other Example
+## 3638. Node Graph Example
 
 **ID**: `ab51d1211a0f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\pgfdeclareshape{document}{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  % ... and possibly more
+  \backgroundpath{% this is new
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    % compute corner of ``flipped page''
+    \pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
+    \pgf@yc=\pgf@yb \advance\pgf@yc by-5pt
+    % construct main path
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathclose
+    % add little corner
+    \pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+ }
+}\hskip-1.2cm
+\begin{tikzpicture}
+  \node[shade,draw,shape=document,inner sep=2ex] (x) {Remark};
+  \node[fill=yellow!80!black,draw,ellipse,double]
+    at ([shift=(-80:3cm)]x) (y) {Use Case};
+
+  \draw[dashed] (x) -- (y);
+\end{tikzpicture}
+```
 
 
 ---
@@ -389,6 +823,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Applies the given actions to the current path. Afterwards, the current path is (globally) empty. The following actions are possible: itemize |fill| fills the path. See Section~section-fill for further details. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} fill pgfpicture codeexample |stroke| strokes the path. See Section~section-stroke for further details. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} stroke pgfpicture codeexample |draw| has the same effect as |stroke|. |clip| clips all subs
+
 
 ---
 
@@ -397,6 +835,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `cd20414b3d83`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets the line width for subsequent strokes (in the current |pgfscope|). The line width is given as a normal \ dimension like |0.4pt| or |1mm|. codeexample[] pgfpicture 1mm {0mm{0mm}} {2cm{0mm}} stroke 2 {0mm{5mm}} {2cm{5mm}} stroke pgfpicture codeexample
 
 
 ---
@@ -407,6 +849,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line cap to a butt cap. See Section~section-cap-joins for an explanation of what this is.
+
 
 ---
 
@@ -415,6 +861,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b94810e6d0ec`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line cap to a round cap. See again Section~section-cap-joins.
 
 
 ---
@@ -425,6 +875,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line cap to a square cap. See again Section~section-cap-joins.
+
 
 ---
 
@@ -433,6 +887,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `96bea1a72620`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line join to a round join. See again Section~section-cap-joins.
 
 
 ---
@@ -443,6 +901,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line join to a bevel join. See again Section~section-cap-joins.
+
 
 ---
 
@@ -451,6 +913,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `72b18c1dcc21`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line join to a miter join. See again Section~section-cap-joins.
 
 
 ---
@@ -461,6 +927,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the miter limit to miter limit factor. See again Section~section-cap-joins.
+
 
 ---
 
@@ -469,6 +939,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `c6246063bbb3`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+phase} Sets the dashing of a line. The first entry in the list specifies the length of the first solid part of the list. The second entry specifies the length of the following gap. Then comes the length of the second solid part, following by the length of the second gap, and so on. The phase specifies where the first solid part starts relative to the beginning of the line. codeexample[] pgfpicture {0.5cm{0.5cm}{0.1cm}{0.2cm}}{0cm} {0mm{0mm}} {2cm{0mm}} stroke {0.5cm{0.5cm}{0.1cm}{0.2cm}}{0.1cm} 
 
 
 ---
@@ -479,6 +953,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the color used for stroking lines to color, where color is a \ color like |red| or |black!20!red|. Unlike the || command, the effect of this command lasts till the end of the current |{pgfscope}| and not till the end of the current \ group. The color used for stroking may be different from the color used for filling. However, a || command will always ``immediately override'' any special settings for the stroke and fill colors. In plain , this command will also work, but the problem of def
+
 
 ---
 
@@ -487,6 +965,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `11f32e87a7ad`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets both the stroke and fill color. The difference to the normal || command is that the effect lasts till the end of the current |{pgfscope}|, not only till the end of the current \ group.
 
 
 ---
@@ -497,6 +979,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command sets the width of the inner line. Whenever a path is stroked (and only then), it will be stroked normally and, afterward, it is stroked once more with the color set to the inner line color and the line width set to dimension. In case arrow tips are added to a path, the path is first stroked normally, then the inner line is stroked, and then the arrow tip is added. In case the main path is shortened because of the added arrow tip, this shortened path is double stroked, not the orig
+
 
 ---
 
@@ -505,6 +991,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `9a7076562d17`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets the color that is to be used when the inner line is stroked. The effect of this command is also local to the current \ group. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} 2pt 1pt red!50 stroke pgfpicture codeexample
 
 
 ---
@@ -515,6 +1005,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the arrow tip kind used at the start of a (possibly curved) path. The syntax of the start arrow specification is detailed in Section~section-arrow-spec. To ``clear'' the start arrow, say ||. codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt] {1cm{0cm}} stroke Computer Modern Rightarrow {0cm{2mm}} {1cm{2mm}} stroke pgfpicture codeexample The effect of this command persists only till the end of the current \ scope.
+
 
 ---
 
@@ -523,6 +1017,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `0a9d0211b842`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the arrow tip kind used at the end of a path. codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt] Computer Modern Rightarrow {1cm{0cm}} stroke pgfpicture codeexample
 
 
 ---
@@ -533,6 +1031,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} The argument can be of the form start arrow tip specification|-|end arrow tip specification. In this case, both the start and the end arrow specification are set: codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt]->> {1cm{0cm}} stroke pgfpicture codeexample Alternatively, argument can be of the form |[|arrow keys|]|. In this case, the arrow keys will be set for all arrow tips in the current scope, see Section~section-arrow-scopes.
+
 
 ---
 
@@ -541,6 +1043,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `eae315166d80`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command will shortened the start of every stroked path by the given dimension. This shortening is done in addition to automatic shortening done by a start arrow, but it can be used even if no start arrow is given. It is usually better to use the |sep| key with arrow tips. This command is useful if you wish arrows or lines to ``stop shortly before'' a given point. codeexample[preamble={arrows.meta}] pgfpicture {5mm} stroke Latex- 4pt {5mm{0cm}} {2cm{0cm}} stroke pgfpicture codeexample
 
 
 ---
@@ -551,6 +1057,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Works like ||.
+
 
 ---
 
@@ -559,6 +1069,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `2bbcc1687040`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Dictates that the even-odd rule is used in subsequent fillings in the current \ scope. Thus, for once, the effect of this command does not persist past the current \ scope. codeexample[] pgfpicture {0mm{0cm}}{7mm} {5mm{0cm}}{7mm} fill pgfpicture codeexample
 
 
 ---
@@ -569,6 +1083,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Dictates that the nonzero winding number rule is used in subsequent fillings in the current \ scope. This is the default. codeexample[] pgfpicture {0mm{0cm}}{7mm} {5mm{0cm}}{7mm} fill pgfpicture codeexample
+
 
 ---
 
@@ -578,6 +1096,10 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the color used for filling paths to color. Like the stroke color, the effect lasts only till the next use of ||.
+
 
 ---
 
@@ -586,7 +1108,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `4be03fbe9052`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -596,7 +1129,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `9db74490526d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -606,7 +1150,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `baf1e6faae71`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke,clip}
+  \pgfpathcircle{\pgfpoint{1cm}{1cm}}{0.5cm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -616,7 +1173,22 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `cb24325a4a2f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{1mm}
+  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
+  \pgfusepath{stroke}
+  \pgfsetlinewidth{2\pgflinewidth} % double in size
+  \pgfpathmoveto{\pgfpoint{0mm}{5mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{5mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -626,7 +1198,26 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `0b22e26a46b2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
+  \pgfusepath{stroke}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.1cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{1mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{1mm}}
+  \pgfusepath{stroke}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.2cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{2mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{2mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -636,7 +1227,21 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `927377b57ff2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{1pt}
+  \color{red}
+  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+  \pgfsetstrokecolor{black}
+  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+  \color{red}
+  \pgfpathcircle{\pgfpoint{2cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -646,7 +1251,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `be11967c5a9c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfsetlinewidth{2pt}
+  \pgfsetinnerlinewidth{1pt}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -656,7 +1274,21 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `e8ab5bff8296`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfsetlinewidth{2pt}
+  \pgfsetinnerlinewidth{1pt}
+  \pgfsetinnerstrokecolor{red!50}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -666,7 +1298,22 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b0cdd31fa5e4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrowsstart{Latex[length=10pt]}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+  \pgfsetarrowsstart{Computer Modern Rightarrow}
+  \pgfpathmoveto{\pgfpoint{0cm}{2mm}}
+  \pgfpathlineto{\pgfpoint{1cm}{2mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -676,7 +1323,19 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `6fdeaa8ae56c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrowsstart{Latex[length=10pt]}
+  \pgfsetarrowsend{Computer Modern Rightarrow}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -686,7 +1345,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `a14744794062`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrows{Latex[length=10pt]->>}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -696,7 +1366,21 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `d77c2c750cfc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathcircle{\pgfpointorigin}{5mm}
+  \pgfusepath{stroke}
+  \pgfsetarrows{Latex-}
+  \pgfsetshortenstart{4pt}
+  \pgfpathmoveto{\pgfpoint{5mm}{0cm}} % would be on the circle
+  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -706,7 +1390,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `ff530f948216`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfseteorule
+  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
+  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -716,7 +1411,18 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `d68b0a442b1a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetnonzerorule
+  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
+  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -726,7 +1432,21 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `e2722dc38801`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Left
+\begin{pgfpicture}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
+  \pgfusepath{use as bounding box} % draws nothing
+
+  \pgfpathcircle{\pgfpointorigin}{2ex}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+right.
+```
 
 
 ---
@@ -736,7 +1456,37 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `3e00605b72ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [
+    school book axes,
+    visualize as smooth line,
+    clean ticks,
+    all axes={grid={step=1,minor steps between steps=1}},
+    x axis={
+      ticks={
+        major={
+          also at={(0.5*pi) as $\pi/2$},
+          also at={(pi) as $\pi$},
+          options at=3 as [no tick text]
+        }
+      },
+      label=$x$
+    },
+    y axis={
+      label=$y$,
+    }
+  ]
+  data [format=function] {
+    var x : interval [-0.5*pi:4] samples 50;
+    func y = sin(\value x r);
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -746,7 +1496,32 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b0d47025554e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [
+    scientific axes=clean,
+    visualize as line,
+    all axes={padding=4pt},
+    x axis={logarithmic,
+      ticks={many, tick unit={ms},
+        node style={rotate=45,anchor=north east}},
+      label={time},
+      grid},
+    y axis={label={distance}},
+  ]
+  data {
+    x, y, z
+    0.001, 0, 0
+    2000, 2.23, 2
+    20670, 1, 3
+    501, -2, 0
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -756,7 +1531,36 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `b1ff6d3ed077`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline,mark=*]
+  \datavisualization [
+    scientific axes=inner ticks,
+    all axes={padding=4pt},
+    euro about strategy,
+    visualize as scatter,
+    x axis={attribute=x2},
+    y axis={attribute=y2}
+  ]
+  data [separator=\space] {
+x       y       x1      y1      x2      y2      x3      y3
+10.0    8.04    10.0    9.14    10.0    7.46    8.0     6.58
+8.0     6.95    8.0     8.14    8.0     6.77    8.0     5.76
+13.0    7.58    13.0    8.74    13.0    12.74   8.0     7.71
+9.0     8.81    9.0     8.77    9.0     7.11    8.0     8.84
+11.0    8.33    11.0    9.26    11.0    7.81    8.0     8.47
+14.0    9.96    14.0    8.10    14.0    8.84    8.0     7.04
+6.0     7.24    6.0     6.13    6.0     6.08    8.0     5.25
+4.0     4.26    4.0     3.10    4.0     5.39    19.0    12.50
+12.0    10.84   12.0    9.13    12.0    8.15    8.0     5.56
+7.0     4.82    7.0     7.26    7.0     6.42    8.0     7.91
+5.0     5.68    5.0     4.74    5.0     5.73    8.0     6.89
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -766,7 +1570,14 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `4e0d6bf476f8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red}] (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -776,7 +1587,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `91cf0a6212c0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red,shadow scale=1.25}]
+    (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -786,7 +1605,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `493edd5abeae`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red,shadow xshift=-5pt}]
+    (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -796,7 +1623,14 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `06faae441dcd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
+  opacity=.5, fill=black!50, every shadow
+```
 
 
 ---
@@ -806,7 +1640,14 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `319778b04324`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \filldraw [drop shadow,fill=white] (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -816,7 +1657,16 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `95d7fc1daf68`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,4}
+    \node[starburst,drop shadow,fill=white,draw] at (0,\i) {Burst \i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -826,7 +1676,20 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `6ddeafa812fe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \filldraw [drop shadow={opacity=1},fill=white]
+    (1,2)  circle (.5) (1.5,2)  circle (.5);
+
+  \filldraw [drop shadow={opacity=0.25},fill=white]
+    (1,.5) circle (.5) (1.5,.5) circle (.5);
+\end{tikzpicture}
+```
 
 
 ---
@@ -836,7 +1699,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `f26177da52e7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every shadow/.style={opacity=.8,fill=blue!50!black}]
+  \filldraw [drop shadow,fill=white] (0,0) circle (.5) (0.5,0) circle (.5);
+\end{tikzpicture}
+```
 
 
 ---
@@ -846,7 +1717,13 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `33d5bbd80ab2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex, every shadow
+```
 
 
 ---
@@ -856,7 +1733,29 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `85da75fd0de6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [copy shadow,fill=blue!20,draw=blue,thick] {Hello World!};
+
+  \node at (0,-1) [copy shadow={shadow xshift=1ex,shadow yshift=1ex},
+                   fill=blue!20,draw=blue,thick]
+    {Hello World!};
+
+  \node at (0,-2) [copy shadow={opacity=.5},tape,
+                   fill=blue!20,draw=blue,thick]
+    {Hello World!};
+
+  % We have to repeat the left color since shadings are not
+  % automatically applied to shadows
+  \node at (0,-3) [copy shadow={left color=blue!50},
+                   left color=blue!50,draw=blue,thick]
+    {Hello World!};
+\end{tikzpicture}
+```
 
 
 ---
@@ -866,7 +1765,27 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `7dad05cba3be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [double copy shadow,fill=blue!20,draw=blue,thick] {Hello World!};
+
+  \node at (0,-1) [double copy shadow={shadow xshift=1ex,shadow yshift=1ex},
+                   fill=blue!20,draw=blue,thick]
+    {Hello World!};
+
+  \node at (0,-2) [double copy shadow={opacity=.5},tape,
+                   fill=blue!20,draw=blue,thick]
+    {Hello World!};
+
+  \node at (0,-3) [double copy shadow={left color=blue!50},
+                   left color=blue!50,draw=blue,thick]
+    {Hello World!};
+\end{tikzpicture}
+```
 
 
 ---
@@ -876,7 +1795,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `49e38a03daf4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+shadow scale=1.1, shadow xshift=.3ex, shadow yshift=-.3ex,
+  fill=black, path fading={circle with fuzzy edge 15 percent},
+  every shadow,
+```
 
 
 ---
@@ -886,7 +1813,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `9e5d7042859a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,8}
+    \node[circle,circular drop shadow,draw=blue,fill=blue!20,thick]
+      at (\i*45:1) {Circle \i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -896,7 +1833,15 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `f9f6f1155493`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
+  fill=black, path fading={circle with fuzzy edge 15 percent},
+  every shadow,
+```
 
 
 ---
@@ -906,7 +1851,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `420a5e754f2d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,8}
+  \node[circle,circular glow,fill=red!20,draw=red,thick]
+    at (\i*45:1) {Circle \i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -916,7 +1871,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `fa9808703616`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,8}
+  \node[circle,circular glow={fill=white},fill=red!20,draw=red,thick]
+    at (\i*45:1) {Circle \i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -926,7 +1891,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `da2b686b3de3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,8}
+  \node[circle,circular glow={fill=green},fill=black,text=green!50!black]
+    at (\i*45:1) {Circle \i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -936,7 +1911,17 @@ Showing items **3601-3696** of **3696** | Page **19** of **19**
 **ID**: `8950d016f30b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,8}
+  \node[circle,circular glow={fill=red!\i0}]
+    at (\i*45:1) {Circle \i};
+\end{tikzpicture}
+```
 
 
 ---

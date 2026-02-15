@@ -229,7 +229,7 @@ def format_item(index: int, item: Dict) -> str:
     output = f"## {index}. "
 
     if item_type == 'executable_example':
-        chart_type = item.get('metadata', {}).get('chart_type', 'other')
+        chart_type = item.get('chart_type', 'other')
         output += f"{chart_type.replace('_', ' ').title()} Example\n\n"
     elif item_type == 'command_specification':
         output += f"Command Specification\n\n"
@@ -242,13 +242,13 @@ def format_item(index: int, item: Dict) -> str:
     output += f"**Package**: {package}  \n"
 
     if item_type == 'executable_example':
-        chart_type = item.get('metadata', {}).get('chart_type', 'N/A')
+        chart_type = item.get('chart_type', 'N/A')
         output += f"**Chart Type**: {chart_type}  \n"
 
     output += "\n"
 
     # 描述
-    description = item.get('content', {}).get('description', '')
+    description = item.get('description', '') or item.get('title', '')
     if description and description.strip():
         output += "### Description\n\n"
         # 限制描述长度
@@ -256,8 +256,8 @@ def format_item(index: int, item: Dict) -> str:
             description = description[:500] + "..."
         output += f"{description}\n\n"
 
-    # 代码
-    code = item.get('content', {}).get('code', '')
+    # 代码 - 直接从顶层获取
+    code = item.get('code', '')
     if code and code.strip():
         output += "### Code\n\n"
         # 限制代码长度
@@ -265,22 +265,6 @@ def format_item(index: int, item: Dict) -> str:
             output += f"```latex\n{code[:2000]}\n... (truncated)\n```\n\n"
         else:
             output += f"```latex\n{code}\n```\n\n"
-
-    # 依赖
-    dependencies = item.get('content', {}).get('dependencies', [])
-    if dependencies:
-        output += f"**Dependencies**: {', '.join(dependencies)}  \n"
-
-    # MCP 元数据
-    mcp_meta = item.get('mcp_metadata', {})
-    if mcp_meta:
-        quality_score = mcp_meta.get('quality_score', 'N/A')
-        priority = mcp_meta.get('priority', 'N/A')
-        executable = mcp_meta.get('executable', False)
-
-        output += f"**Quality Score**: {quality_score}  \n"
-        output += f"**Priority**: {priority}  \n"
-        output += f"**Executable**: {'Yes' if executable else 'No'}  \n"
 
     output += "\n---\n\n"
 

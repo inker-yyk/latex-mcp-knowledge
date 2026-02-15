@@ -17,6 +17,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+key list} This command has the same effect as ||{default path|/.cd,|key list|}|, it is only quicker. Changing the default path inside a || is dangerous, so use with care. A rather safe place to call this command is at the beginning of a \ group.
+
 
 ---
 
@@ -25,6 +29,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `f53a4f3162b2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+code} This command temporarily defines a -macro with the argument list |#1| and then lets key|/.@cmd| be equal to this macro. The net effect of all this is that you have then set up code for the key key so that when you write ||{key|=|value|}|, then the code is executed with all occurrences of |#1| in code being replaced by value. (This behavior is quite similar to the |@key| command of |keyval| and |xkeyval|). codeexample[] /my key{#1, #1.} /my key=hello codeexample
 
 
 ---
@@ -35,6 +43,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} This command works like ||, but it uses || rather than || when defining the key macro. If you do not know the difference between the two, then you will not need this command; and if you know the difference, then you will know when you need this command.
+
 
 ---
 
@@ -43,6 +55,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b4a031c35386`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+argument countcode} This command works like ||, but it allows you to provide an arbitrary argument count between $0$ and $9$ (inclusive). codeexample[preamble={shortvrb \|}] /my key{2}{#1#2} /my key= {hello {world}} || is `', || is `'. codeexample The resulting key will expect exactly argument count arguments.
 
 
 ---
@@ -53,6 +69,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+argument countcode} The || version of ||.
+
 
 ---
 
@@ -61,6 +81,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `599a5881a801`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+argument patterncode} This command works like ||, but it allows you to provide an arbitrary argument pattern rather than just a number of arguments. codeexample[preamble={shortvrb \|}] /my key{#1+#2}{#1#2} /my key=hello+world || is `', || is `'. codeexample Note that || is better when it comes to simple argument countsWhen the resulting keys are used, the {defnargs variant allows spaces between arguments whereas the defargs variant does not; it considers the spaces as part of the argument.}.
 
 
 ---
@@ -71,6 +95,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+argument patterncode} The || version of ||.
+
 
 ---
 
@@ -79,7 +107,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8a77bd7f7847`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key=hallo,/your keys/main key=something\strange,
+         key name without path=something else}
+```
 
 
 ---
@@ -89,7 +124,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `471b374c4efe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.code=The value is '#1'.}
+\pgfkeys{/my key=hi!}
+```
 
 
 ---
@@ -99,7 +141,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b96d0bbecd4a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.code 2 args=The values are '#1' and '#2'.}
+\pgfkeys{/my key={a1}{a2}}
+```
 
 
 ---
@@ -109,7 +158,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `14c5fac79a94`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.code=(#1)}
+\pgfkeys{/my key/.default=hello}
+\pgfkeys{/my key=hallo,/my key}
+```
 
 
 ---
@@ -119,7 +176,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `65ddff90b7d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/tikz/.cd,line width=1cm,line cap=round}
+```
 
 
 ---
@@ -129,7 +192,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `aeeed3f1e4a8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\tikzset#1{\pgfkeys{/tikz/.cd,#1}}
+```
 
 
 ---
@@ -139,7 +208,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `72f7134419f7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/a/.code=(a:#1)}
+\pgfkeys{/b/.code=(b:#1)}
+\pgfkeys{/my style/.style={/a=foo,/b=bar,/a=#1}}
+\pgfkeys{/my style=wow}
+```
 
 
 ---
@@ -149,7 +227,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `ca4d9d928705`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/tikz/.style=/tikz/.cd}
+\pgfkeys{tikz,line width=1cm,draw=red}
+```
 
 
 ---
@@ -159,7 +244,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `99de1cbc3b97`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeyssetvalue{/my family/my key}{Hello, world!}
+\pgfkeysvalueof{/my family/my key}
+```
 
 
 ---
@@ -169,7 +261,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `5ef89082ec94`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\helloworld{Hello, world!}
+\pgfkeyslet{/my family/my key}{\helloworld}
+\pgfkeysvalueof{/my family/my key}
+```
 
 
 ---
@@ -179,7 +279,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `21076760a4a4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeyssetvalue{/my family/my key}{Hello, world!}
+\pgfkeysgetvalue{/my family/my key}{\helloworld}
+\helloworld
+```
 
 
 ---
@@ -189,7 +297,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `487797bc2022`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeyssetvalue{/my family/my key}{Hello, world!}
+\pgfkeysvalueof{/my family/my key}
+```
 
 
 ---
@@ -199,7 +314,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1be482741c3c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeyssetvalue{/my family/my key}{Hello, world!}
+\pgfkeysifdefined{/my family/my key}{yes}{no}
+```
 
 
 ---
@@ -209,7 +331,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `afd44b2eaa1f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdef{/my family/my keyA}{\def\mykeyA{#1}}
+\pgfkeyssetvalue{/my family/my keyB}{Hello, world!}
+\pgfkeysifassignable{/my family/my keyA}{yes}{no}
+\pgfkeysifassignable{/my family/my keyB}{yes}{no}
+```
 
 
 ---
@@ -219,7 +350,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `28dda6c2803c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\myset{red, "main valve", thick}
+```
 
 
 ---
@@ -229,7 +366,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4a2a20bcb474`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\myset{red, label text=main valve, thick}
+```
 
 
 ---
@@ -239,7 +382,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4618f67f359b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph { a ->["1" red] b ->["0"] c };
+```
 
 
 ---
@@ -249,7 +398,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `5a86adb4ff85`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph { a ->[edge node={node[red,auto]{1}}] b ->[edge label=0] c };
+```
 
 
 ---
@@ -259,7 +414,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `2644cb3cb510`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\let\mycharacter="
+\meaning\mycharacter
+```
 
 
 ---
@@ -269,7 +431,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `fd16790d6139`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+  /handlers/first char syntax=true,
+  /handlers/first char syntax/the character "/.initial=\myquotemacro,
+  /handlers/first char syntax/the character </.initial=\mypointedmacro,
+}
+
+\def\myquotemacro#1{Quoted: #1. }
+\def\mypointedmacro#1{Pointed: #1. }
+
+\ttfamily \pgfkeys{"foo", <bar>}
+```
 
 
 ---
@@ -279,7 +456,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d2a4dbe778f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+  /handlers/first char syntax=true,
+  /handlers/first char syntax/the character '/.initial=\mysinglequotemacro
+}
+
+\def\mysinglequotemacro#1{\pgfkeysalso{label={#1}}}
+
+\tikz \node [circle, 'foo', draw] {bar};
+```
 
 
 ---
@@ -289,7 +479,28 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `39b465b29c2e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+  /handlers/first char syntax=true,
+  /handlers/first char syntax/the character (/.initial=\myparamacro
+}
+
+\def\myparamacro#1{\myparaparser#1\someendtext}
+\def\myparaparser(#1)#2\someendtext{
+  \pgfmathparse{#1}
+  \ifx\pgfmathresult\onetext
+    \pgfkeysalso{#2}
+  \fi
+}
+\def\onetext{1}
+
+\foreach \i in {1,...,4}
+  \tikz \node [draw, thick, rectangle, (pi>\i) circle, (pi>\i*2) draw=red] {x};
+```
 
 
 ---
@@ -299,7 +510,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `f22b30c27d25`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\mystore#1+#2\pgfeov{\def\a{#1}\def\b{#2}}
+\pgfkeyslet{/my key/.@cmd}{\mystore}
+\pgfkeys{/my key=hello+world}
+
+|\a| is `\a', |\b| is `\b'.
+```
 
 
 ---
@@ -309,7 +530,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `2012b24153ed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdef{/my key}{#1, #1.}
+\pgfkeys{/my key=hello}
+```
 
 
 ---
@@ -319,7 +547,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `80dab6fca917`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdefnargs{/my key}{2}{\def\a{#1}\def\b{#2}}
+\pgfkeys{/my key=
+    {hello}
+    {world}}
+
+|\a| is `\a', |\b| is `\b'.
+```
 
 
 ---
@@ -329,7 +568,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `afe0f61e5085`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdefargs{/my key}{#1+#2}{\def\a{#1}\def\b{#2}}
+\pgfkeys{/my key=hello+world}
+
+|\a| is `\a', |\b| is `\b'.
+```
 
 
 ---
@@ -339,7 +587,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `41577289a901`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdef{/handlers/.print to log}
+{%
+  \pgfkeysgetvalue{\pgfkeyscurrentpath}{\temp}
+  \writetolog{\temp}
+}
+\pgfkeyssetvalue{/my key}{Hi!}
+...
+\pgfkeys{/my key/.print to log}
+```
 
 
 ---
@@ -349,7 +610,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e25136969bef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeysdef{/handlers/.my code}{\pgfkeysdef{\pgfkeyscurrentpath}{#1}}
+\pgfkeys{/my key/.my code=(#1)}
+\pgfkeys{/my key=hallo}
+```
 
 
 ---
@@ -359,7 +628,33 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `99b903438993`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Define a test key and error handlers:
+\pgfkeys{/the/key/.code={Initial definition. }}
+\pgfkeys{/handlers/.unknown/.code={Unknown key `\pgfkeyscurrentkey'. }}
+
+% calling the test key yields 'Initial definition. ':
+\pgfkeys{/the/key}
+
+% Change configuration:
+\pgfkeys{/handler config=only existing}
+
+% allowed: key *re*-definition:
+\pgfkeys{/the/key/.code={Re-Definition. }}
+% calling the key yields 'Re-Definition. ':
+\pgfkeys{/the/key}
+
+% not allowed: definition of new keys:
+% this checks for '/the/other key/.unknown'
+% and '/handlers/.unknown'
+% and yields finally
+% 'Unknown key `/the/other key/.code`'
+\pgfkeys{/the/other key/.code={New definition. }}
+```
 
 
 ---
@@ -369,7 +664,23 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `53656c033256`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my search path/.unknown/.code=
+  {%
+    \let\searchname=\pgfkeyscurrentname%
+    \pgfkeysalso{%
+      /a/\searchname/.try=#1,
+      /b/\searchname/.retry=#1,
+      /b/c/\searchname/.retry=#1%
+    }%
+  }%
+}
+\pgfkeys{/my search path/.cd,foo,bar}
+```
 
 
 ---
@@ -379,7 +690,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a1602e5646cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my search path/.cd,custom/.style={variables}}
+```
 
 
 ---
@@ -389,7 +706,40 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `31259ae22d7b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my search path/.unknown/.code=
+  {%
+    \let\searchname=\pgfkeyscurrentname%
+    \pgfkeysalso{%
+      /a/\searchname/.try=#1,
+      /b/\searchname/.retry=#1,
+      /b/c/\searchname/.retry=#1%
+    }%
+  }%
+}
+
+% Let's define /b/custom here:
+\pgfkeys{/b/custom/.code={This is `\pgfkeyscurrentkey'. }}
+
+% Reconfigure treatment of key handlers:
+\pgfkeys{/handler config=only existing}
+
+% The search path procedure will find /b/custom
+% -> leads to This is `/b/custom'
+\pgfkeys{/my search path/.cd,custom}
+
+% Due to the reconfiguration, this will find /b/custom instead of
+% defining /my search path/custom:
+\pgfkeys{/my search path/.cd,custom/.append code={Modified. }}
+
+% So using the search path, we again find /b/custom which
+% leads to This is `/b/custom' Modified
+\pgfkeys{/my search path/.cd,custom}
+```
 
 
 ---
@@ -399,7 +749,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `510eade132ef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/tikz/.is family}
+\pgfkeys{tikz,line width=1cm}
+```
 
 
 ---
@@ -409,7 +766,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `625d4b4b7a0e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.code=I do not want an argument!}
+\pgfkeys{/my key/.value forbidden}
+
+\pgfkeys{/my key}     % Ok
+\pgfkeys{/my key=foo} % Error
+```
 
 
 ---
@@ -419,7 +786,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `00b728493d43`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/par indent/.code={\parindent=#1},/par indent/.default=2em}
+\pgfkeys{/par indent=1cm}
+...
+\pgfkeys{/par indent}
+```
 
 
 ---
@@ -429,7 +805,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `04b23ba99a54`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/page size/.code 2 args={\paperheight=#2\paperwidth=#1}}
+\pgfkeys{/page size={30cm}{20cm}}
+```
 
 
 ---
@@ -439,7 +822,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1302a8aa45d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/a key/.code n args={2}{First=`#1', Second=`#2'}}
+\pgfkeys{/a key={A}{B}}
+```
 
 
 ---
@@ -449,7 +839,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `c2f10b4e10c8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/page size/.code args={#1 and #2}{\paperheight=#2\paperwidth=#1}}
+\pgfkeys{/page size=30cm and 20cm}
+```
 
 
 ---
@@ -459,7 +856,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `ad9227a81fd9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/par indent/.code={\parindent=#1}}
+\newdimen\myparindent
+\pgfkeys{/par indent/.add code={}{\myparindent=#1}}
+...
+\pgfkeys{/par indent=1cm} % This will set both \parindent and
+                          % \myparindent to 1cm
+```
 
 
 ---
@@ -469,7 +877,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `be686900250c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/par indent/.code={\parindent=#1}}
+\pgfkeys{/no indent/.style={/par indent=0pt}}
+\pgfkeys{/normal indent/.style={/par indent=2em}}
+\pgfkeys{/no indent}
+...
+\pgfkeys{/normal indent}
+```
 
 
 ---
@@ -479,7 +898,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a7827f1b44e3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[outline/.style={draw=#1,fill=#1!20}]
+  \node [outline=red]            {red box};
+  \node [outline=blue] at (0,-1) {blue box};
+\end{tikzpicture}
+```
 
 
 ---
@@ -489,7 +917,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `0d941a463fc3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/paper height/.code={\paperheight=#1},/paper width/.code={\paperwidth=#1}}
+\pgfkeys{/page size/.style 2 args={/paper height=#1,/paper width=#2}}
+\pgfkeys{/page size={30cm}{20cm}}
+```
 
 
 ---
@@ -499,7 +935,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `c8680196194b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/par indent/.code={\parindent=#1}}
+\pgfkeys{/par indent/.add style={}{/my key=#1}}
+...
+\pgfkeys{/par indent=1cm} % This will set \parindent and
+                          % then execute /my key=#1
+```
 
 
 ---
@@ -509,7 +955,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1ce495d94b71`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.initial=red}
+% "/my key" now stores the value "red"
+\pgfkeys{/my key=blue}
+% "/my key" now stores the value "blue"
+```
 
 
 ---
@@ -519,7 +974,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `597ddf358e02`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.initial=red}
+\pgfkeys{/my key/.code=#1}
+% "/my key" now both stores the value "red" and executes commands
+\pgfkeys{/my key=blue}
+% "/my key" now still stores the value "red"
+```
 
 
 ---
@@ -529,7 +994,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `ae00526a35cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/my key/.initial=red}
+\pgfkeys{/my key=blue}
+\pgfkeys{/my key/.get=\mymacro}
+\mymacro
+```
 
 
 ---
@@ -539,7 +1013,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `168c850d1666`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/text/.store in=\mytext}
+\def\a{world}
+\pgfkeys{/text=Hello \a!}
+\def\a{Gruffalo}
+\mytext
+```
 
 
 ---
@@ -549,7 +1033,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a8727eaae92c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/text/.estore in=\mytext}
+\def\a{world}
+\pgfkeys{/text=Hello \a!}
+\def\a{Gruffalo}
+\mytext
+```
 
 
 ---
@@ -559,7 +1053,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `f1927a0096b8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newif\iftheworldisflat
+\pgfkeys{/flat world/.is if=theworldisflat}
+\pgfkeys{/flat world=false}
+\iftheworldisflat
+  Flat
+\else
+  Round?
+\fi
+```
 
 
 ---
@@ -569,7 +1076,19 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `f9955ec4c399`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/line cap/.is choice}
+\pgfkeys{/line cap/round/.code={\pgfsetroundcap}}
+\pgfkeys{/line cap/butt/.code={\pgfsetbuttcap}}
+\pgfkeys{/line cap/rect/.code={\pgfsetrectcap}}
+\pgfkeys{/line cap/rectangle/.style={/line cap=rect}}
+...
+\draw [/line cap=butt] ...
+```
 
 
 ---
@@ -579,7 +1098,31 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `6d42da9d5446`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\a{bottom}
+\def\b{\a}
+\def\c{\b}
+
+\pgfkeys{/key1/.initial=\c}
+\pgfkeys{/key2/.initial/.expand once=\c}
+\pgfkeys{/key3/.initial/.expand twice=\c}
+\pgfkeys{/key4/.initial/.expanded=\c}
+
+\def\a{{\ttfamily\string\a}}
+\def\b{{\ttfamily\string\b}}
+\def\c{{\ttfamily\string\c}}
+
+\begin{tabular}{ll}
+Key 1:& \pgfkeys{/key1} \\
+Key 2:& \pgfkeys{/key2} \\
+Key 3:& \pgfkeys{/key3} \\
+Key 4:& \pgfkeys{/key4}
+\end{tabular}
+```
 
 
 ---
@@ -589,7 +1132,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8c8f5c6d5bc0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+  /golden ratio/.initial/.evaluated={(1 + sqrt(5))/2},
+}
+\pgfkeys{/golden ratio}
+```
 
 
 ---
@@ -599,7 +1151,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `42e522b6cd3f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/foo/.code=(#1)}
+\pgfkeys{/foo/.list={a,b,0,1,...,5}}
+```
 
 
 ---
@@ -609,7 +1168,19 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `af207e0ea139`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+  /a/.code=(a:#1),
+  /b/.code=(b:#1),
+  /b/.forward to=/a,
+  /c/.forward to=/a
+}
+\pgfkeys{/b=1} \pgfkeys{/c=2}
+```
 
 
 ---
@@ -619,7 +1190,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4d61dafd37d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% define a key:
+\pgfkeys{/secondary path/option/.code={Invoking /secondary path/option with `#1'}}
+
+% set up a search path:
+\pgfkeys{/main path/.search also={/secondary path}}
+
+% try searching for `option=value' in '/main path':
+% -> this finds `/secondary path/option'!
+\pgfkeys{/main path/.cd,option=value}
+```
 
 
 ---
@@ -629,7 +1214,27 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e65e36598aaa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% define a key:
+\pgfkeys{/secondary path/option/.code={Invoking /secondary path/option with `#1'}}
+
+% set up a search path:
+\pgfkeys{/main path/.search also={/secondary path}}
+
+% try searching for `option=value' in '/main path':
+% -> this finds `/secondary path/option'!
+\pgfkeys{/main path/.cd,option=value}
+
+% negative example:
+% try searching for fully qualified key /main path/option.
+% This won't be handled by .search also.
+\pgfkeys{/handlers/.unknown/.code={Found unknown option \pgfkeyscurrentkeyRAW={#1}!}}%
+\pgfkeys{/main path/.cd,/main path/option=value}
+```
 
 
 ---
@@ -639,7 +1244,35 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `7ec75af1936f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/path/.unknown/.code={%
+        \def\pgfkeys@searchalso@temp@value{#1}%
+        \ifpgfkeysaddeddefaultpath
+            \expandafter\pgfkeys@firstoftwo
+        \else
+            \expandafter\pgfkeys@secondoftwo
+        \fi{%
+            % only process keys for which no full path has been
+            % provided:
+            \pgfkeyssuccessfalse
+            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
+            \ifpgfkeyssuccess
+            \else
+                % search with /tikz as default path:
+                \pgfqkeys{/tikz}{\pgfkeys@searchalso@name/.expand once=%
+                  \pgfkeys@searchalso@temp@value}%
+            \fi
+        }{%
+            \pgfkeysgetvalue{/handlers/.unknown/.@cmd}{\pgfkeys@code}%
+            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
+        }%
+    }
+}
+```
 
 
 ---
@@ -649,7 +1282,38 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8b6e92d5fd8c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/path/.unknown/.code={%
+        \def\pgfkeys@searchalso@temp@value{#1}%
+        \ifpgfkeysaddeddefaultpath
+            \expandafter\pgfkeys@firstoftwo
+        \else
+            \expandafter\pgfkeys@secondoftwo
+        \fi{%
+            \pgfkeyssuccessfalse
+            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
+            \ifpgfkeyssuccess
+            \else
+                % step 1: search in /tikz with .try:
+                \pgfqkeys{/tikz}{\pgfkeys@searchalso@name/.try/.expand once=%
+                  \pgfkeys@searchalso@temp@value}%
+            \fi
+            \ifpgfkeyssuccess
+            \else
+                % step 2: search in /pgf (without .try!):
+                \pgfqkeys{/pgf}{\pgfkeys@searchalso@name/.expand once=\pgfkeys@searchalso@}%
+            \fi
+        }{%
+            \pgfkeysgetvalue{/handlers/.unknown/.@cmd}{\pgfkeys@code}%
+            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
+        }%
+    }
+}
+```
 
 
 ---
@@ -659,7 +1323,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1a1ab63f89f0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+   /main path/.search also={/secondary path},
+   /handler config=full or existing}
+```
 
 
 ---
@@ -669,7 +1341,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a96ffad450c9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/a/.code=(a:#1)}
+\pgfkeys{/b/.code=(b:#1)}
+\pgfkeys{/x/.try=hmm,/a/.try=hallo,/b/.try=welt}
+```
 
 
 ---
@@ -679,7 +1359,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `61900070439f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/a/.code=(a:#1)}
+\pgfkeys{/b/.code=(b:#1)}
+\pgfkeys{/x/.try=hmm,/a/.retry=hallo,/b/.retry=welt}
+```
 
 
 ---
@@ -690,6 +1378,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This expands to the current value of the key |/data point/|variable.
+
 
 ---
 
@@ -698,6 +1390,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `530b1a8c0c92`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+inline data}} This command is used to feed data to the visualization pipeline. This command can only be used when a data visualization object has been properly setup, see Section~section-dv-main-setup. Basic options. The || command may be followed by options, which are executed with the path |/pgf/data/|. Depending on these options, the options may either be followed by inline data or, alternatively, no inline data is present and the data is read from an external source. The first important opti
 
 
 ---
@@ -708,6 +1404,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+catcode codestartup codeline arguments\ codeempty line codeend code } This command defines a new data format called format name, which can subsequently be used in the || command. (The 's |data| maps directly to ||, so the following applies to \ as well.) As explained in the description of the || command, when data is being parsed that is formatted according to format name, the following happens: enumerate The catcode code is executed. This code should just contain catcode changes. The catcode co
+
 
 ---
 
@@ -716,7 +1416,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `0f5f3998f46b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+x, y, z
+0, 0, 0
+1, 1, 0
+1, 1, 0.5
+0, 1, 0.5
+```
 
 
 ---
@@ -726,7 +1436,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `fb8f1d4b0c3f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+angle, radius
+0, 1
+45, 2
+90, 3
+135, 4
+```
 
 
 ---
@@ -736,7 +1456,27 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8bd2acefa904`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as line]
+    data [separator=\space] {
+      x y
+      0 0
+      1 1
+      2 1
+      3 0
+    }
+    data [separator=;] {
+      x; y; z
+      3; 1; 0
+      2; 2; 0
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -746,7 +1486,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `c18b272b7ebb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as line]
+    data [headline={x, y}] {
+      0, 0
+      1, 1
+      2, 1
+      3, 0
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -756,7 +1510,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d25767a31efb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as line]
+    data [format=named] {
+      x=0, y=0
+      x=1, y=1
+      x=2, y=1
+      x=3, y=0
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -766,7 +1534,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d696a6f9d9d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+  [scientific axes=clean,
+   visualize as scatter/.list={a,b,c},
+   style sheet=cross marks]
+data [format=named] {
+  x=0,       y={1,2,3},        set=a
+  x={2,3,4}, y={3,4,5,7},      set=b
+  x=6,       y={5,7,...,15},   set=c
+};
+```
 
 
 ---
@@ -776,7 +1558,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9b4d0970e902`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as line]
+    data [format=TeX code] {
+      \pgfkeys{/data point/.cd,x=0, y=0} \pgfdatapoint
+      \pgfkeys{/data point/.cd,x=1, y=1} \pgfdatapoint
+      \pgfkeys{/data point/x=2}          \pgfdatapoint
+      \pgfkeyssetvalue{/data point/x}{3}
+      \pgfkeyssetvalue{/data point/y}{0} \pgfdatapoint
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -786,7 +1583,19 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `663700931b2b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \datavisualization [school book axes, visualize as smooth line]
+    data [format=function] {
+      var x : interval [-1.5:1.5];
+
+      func y = \value x * \value x;
+    };
+```
 
 
 ---
@@ -796,7 +1605,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `92db0c373eb4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  school book axes,
+  all axes={unit length=5mm, ticks={step=2}},
+  visualize as smooth line]
+data [format=function] {
+  var t : interval [0:2*pi];
+
+  func x = \value t * cos(\value t r);
+  func y = \value t * sin(\value t r);
+};
+```
 
 
 ---
@@ -806,7 +1630,26 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `40fe13216cd8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific axes=clean,
+  y axis={ticks={style={
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2}}},
+  x axis={ticks={tick suffix=${}^\circ$}},
+  visualize as smooth line/.list={1,2,3,4,5,6},
+  style sheet=vary hue]
+data [format=function] {
+  var set : {1,...,6};
+  var x : interval [0:50];
+  func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
+};
+```
 
 
 ---
@@ -816,7 +1659,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `47333f69a3f5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Data is read from two external files:
+\pgfdata[format=table, read from file=file1.csv]
+\pgfdata[format=table, read from file=file2.csv]
+```
 
 
 ---
@@ -826,7 +1677,19 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8d82300a6669`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Data is given inline:
+\pgfdata[format=table]
+{
+  x, y
+  1, 2
+  2, 3
+}
+```
 
 
 ---
@@ -836,7 +1699,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e4638a922d5b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+# This is some data formatted according to the "coordinates" format
+(0,0)
+(0.5,0.25)
+(1,1)
+(1.5,2.25)
+(2,4)
+```
 
 
 ---
@@ -846,7 +1720,33 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `32ac725f823c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclaredataformat{coordinates}
+% First comes the catcode argument. We turn the hash mark into a comment character.
+{\catcode`\#=14\relax}
+% Second comes the startup code. Since we do not need to setup things, we can leave
+% it empty. Note that we could also set it to something like \begingroup, provided we
+% put an \endgroup in the end code
+{}
+% Now comes the arguments for non-empty lines. Well, these should be of the form
+% (#1,#2), so we specify that:
+{(#1,#2)}
+% Now we must do something with a line of this form. We store the #1 argument in
+% /data point/x and #2 in /data point/y. Then we call \pgfdatapoint to create a data point.
+{
+  \pgfkeyssetvalue{/data point/x}{#1}
+  \pgfkeyssetvalue{/data point/y}{#2}
+  \pgfdatapoint
+}
+% We ignore empty lines:
+{}
+% And we also have no end-of-line code.
+{}
+```
 
 
 ---
@@ -856,7 +1756,24 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `7e0375032f31`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization[school book axes, visualize as smooth line]
+  data [format=coordinates] {
+    # This is some data formatted according
+    # to the "coordinates" format
+    (0,0)
+    (0.5,0.25)
+    (1,1)
+    (1.5,2.25)
+    (2,4)
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -867,6 +1784,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+anchorlabel textnamepath usage command} This command creates a new node. The shape of the node must have been declared previously using ||. The shape is shifted such that the anchor is at the origin. In order to place the shape somewhere else, use the coordinate transformation prior to calling this command. The name is a name for later reference. If no name is given, nothing will be ``saved'' for the node, it will just be drawn. The path usage command is executed for the background and the foreg
+
 
 ---
 
@@ -875,6 +1796,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `31e9df2cea08`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+anchornamepath usage command} This command is the more general (and less user-friendly) version of the || command. While the || command can only be used for shapes that have a single part (which is the case for most shapes), this command can also be used with multi-part nodes. When this command is called, for each node part of the node you must have set up one -box. Suppose the shape has two parts: The |text| part and the |lower| part. Then, prior to calling ||, you must have set up the boxes ||
 
 
 ---
@@ -885,6 +1810,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+coordinate} This command creates a node of shape |coordinate| at the given coordinate. Exactly the same effect can be achieved using first a shift of the coordinate system to coordinate, followed by creating a node of shape |coordinate| named name. However, this command is easier and more natural to use and, more importantly, it is much faster.
+
 
 ---
 
@@ -893,6 +1822,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9d7ad2a52876`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+existing node} This command does not actually create a new node. Rather, it allows you to subsequently access the node existing node using the name new name.
 
 
 ---
@@ -903,6 +1836,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+existing node} This command renames an existing node.
+
 
 ---
 
@@ -911,6 +1848,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `56a6037bf697`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command is not a replacement for ||. Rather, when this command is used in a scope, all subsequent node creations in this scope will be affected in the following way: When a node is created, it is not inserted into the current picture. Instead, it is stored in the box ||. Furthermore, the node is not relevant for the picture's bounding box, but a bounding box for the node is computed and stored in the macros || to ||. Then, the macro name is called with the following macros set up: command
 
 
 ---
@@ -921,6 +1862,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+The name of the just-created-node. This name will be the originally ``desired'' name of the box plus the fixed prefix |not yet positionedPGFINTERNAL|. The idea is to ensure that the original name is not inadvertently used before the node is actually positioned. When || is called, it will change the name to the original name.
+
 
 ---
 
@@ -929,6 +1874,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `7b5a1c67f6de`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+The minimal $x$-position of a bounding box of the node. This bounding box refers to the node when it is positioned with the anchor at the origin. It is guaranteed, that this macro will contain a dimension in the format number|pt|.
 
 
 ---
@@ -966,6 +1915,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro stores the path of the background of the node. See Section~section-soft-paths for an overview of how these paths are encode.
+
 
 ---
 
@@ -974,6 +1927,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `2097828dfb69`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command is used to position a node that has previously been created using the command ||. When || is called, the macros and boxes mentioned in the description of || must be set to the value they had when the macro name was called. Provided this is the case, this command will insert the box into the current picture, shifted by coordinate. Then, the late code (see below) is called. Subsequently, you can refer to the node with its original name as if it had just been created. codeexample[] =
 
 
 ---
@@ -984,6 +1941,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} When you call this macro inside a scope for which the || has been called, the code will be stored internally. Later, when the node named node name is actually positioned using ||, the code will be executed. When this macro is called multiple times with the same node name, the code accumulates. However, When || is called, the code stored for the node is cleared. The main purpose of this mechanism is to allow \ to store so-called ``late options'' with a node that will be positioned only late
+
 
 ---
 
@@ -992,6 +1953,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `78ec38e00332`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+anchor} This command is another ``point command'' like the commands described in Section~section-points. It returns the coordinate of the given anchor in the given node. The command can be used in commands like ||. codeexample[] pgfpicture 30 rectangle{center}{Hello World!}{x}{stroke} {x{north}}{2pt} {x{south}}{2pt} {x{east}}{2pt} {x{west}}{2pt} {x{north east}}{2pt} fill pgfpicture codeexample In the above example, you may have noticed something curious: The rotation transformation is still in f
 
 
 ---
@@ -1002,6 +1967,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+point} This command returns the point on the border of the shape that lies on a straight line from the center of the node to point. For complex shapes it is not guaranteed that this point will actually lie on the border, it may be on the border of a ``simplified'' version of the shape. codeexample[] pgfpicture pgfscope 30 rectangle{center}{Hello World!}{x}{stroke} pgfscope {x{2cm{1cm}}}{2pt} {2cm{1cm}}{2pt} {x{-1cm{1cm}}}{2pt} {-1cm{1cm}}{2pt} fill pgfpicture codeexample Remark: If the given poi
+
 
 ---
 
@@ -1010,6 +1979,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `da4ab0c6d3bc`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+shape specification} This command declares a new shape named shape name. The shape name can later be used in commands like ||. The shape specification is some \ code containing calls to special commands that are only defined inside the shape specification (similarly to commands like || that are only available inside the |{tikzpicture}| environment). Here is the code of the |coordinate| shape: codeexample[code only] coordinate { @x=.5 @y=.5 @y by -.5 center{} } codeexample The special commands ar
 
 
 ---
@@ -1020,6 +1993,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} This command declares a saved anchor. The argument command should be a \ macro name like ||. The code will be executed each time || (or ||) is called to create a node of the shape shape name. When the code is executed, the -boxes of the node parts will contain the text labels of the node. Possibly, these box are void. For example, if there is just a |text| part, the node || will be set up when the code is executed. The code can use the width, height, and depth of the box(es) to compute the
+
 
 ---
 
@@ -1028,6 +2005,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a974b53eeb58`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+code} This command is similar to ||, only instead of setting command to ||$x$|{|$y$|}|, the command is set just to (the value of) $x$. In the |simple rectangle| shape we might use a saved dimension to store the depth of the shape box. codeexample[code only] { @x= } codeexample
 
 
 ---
@@ -1038,6 +2019,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} This command is similar to ||, only at some point in code, command should be defined appropriately, (this could be a value, or some text). In the |regular polygon| shape, a saved macro is used to store the number of sides of the polygon. codeexample[code only] {} codeexample
+
 
 ---
 
@@ -1046,6 +2031,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1cb579ab0801`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+code} This command declares an anchor named name. Unlike for saved anchors, the code will not be executed each time a node is declared. Rather, the code is only executed when the anchor is specifically requested; either for anchoring the node during its creation or as a position in the shape referenced later on. The name is a quite arbitrary string that is not ``passed down'' to the system level. Thus, names like |south| or |1| or |::| would all be fine. A saved anchor is not automatically also 
 
 
 ---
@@ -1056,6 +2045,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} This command declares an anchor named name. It works like ||. However, unlike for anchors declared by ||, name will not be expanded during the shape declaration (i.e.\ not during ||). Rather, the name is expanded when the node is actually used (with || or more likely with ||). This may be useful if the anchor name is context dependent (depending, for example, on the value of a key). codeexample[code only] simple shape{ { } center{} { @x=1cm @y=0cm} anchor {}} tikzpicture [simple shape] (Te
+
 
 ---
 
@@ -1064,6 +2057,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `77d9eed40ac3`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} A border anchor is an anchor point on the border of the shape. What exactly is considered as the ``border'' of the shape depends on the shape. When the user requests a point on the border of the shape using the || command, the code will be executed to discern this point. When the execution of the code starts, the dimensions |@x| and |@y| will have been set to a location $p$ in the shape's coordinate system, and relative to the anchor |center|. Note that || will produce an error if the shape do
 
 
 ---
@@ -1074,6 +2071,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command specifies the path that ``makes up'' the background of the shape. Note that the shape cannot prescribe what is going to happen with the path: It might be drawn, shaded, filled, or even thrown away. If you want to specify that something should ``always'' happen when this shape is drawn (for example, if the shape is a stop-sign, we always want it to be filled with a red color), you can use commands like ||, explained below. When the code is executed, all saved anchors will be in eff
+
 
 ---
 
@@ -1082,6 +2083,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `48d8c761d9dc`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command works like ||, only it is invoked after the text labels have been drawn. This means that this path can possibly obscure (part of) the text labels.
 
 
 ---
@@ -1092,6 +2097,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Unlike the previous two commands, code should not only construct a path, it should also use this path in whatever way is appropriate. For example, the code might fill some area with a uniform color. Whatever the code does, it does it first. This means that any drawing done by code will be even behind the background path. Note that the code is protected with a |{pgfscope}|.
+
 
 ---
 
@@ -1100,6 +2109,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `877af75bdd93`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command works like ||, only the code is executed after the background path has been used, but before the texts label are drawn.
 
 
 ---
@@ -1110,6 +2123,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} The code is executed after the text labels have been drawn, but before the foreground path is used.
+
 
 ---
 
@@ -1118,6 +2135,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1154f305b37b`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This code is executed at the very end.
 
 
 ---
@@ -1128,6 +2149,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} This command allows you to inherit the code for saved anchors from another shape name. The idea is that if you wish to create a new shape that is just a small modification of a another shape, you can recycle the code used for another shape name. The effect of this command is the same as if you had called || and || for each saved anchor or saved dimension declared in another shape name. Thus, it is not possible to ``selectively'' inherit only some saved anchors, you always have to inherit al
+
 
 ---
 
@@ -1136,6 +2161,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9bf207cb18eb`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} This command can be used to inherit the code used for the drawings behind the background path from another shape name.
 
 
 ---
@@ -1146,6 +2175,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the background path code from another shape name.
+
 
 ---
 
@@ -1154,6 +2187,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `58bae0944136`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} Inherits the before background path code from another shape name.
 
 
 ---
@@ -1164,6 +2201,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the behind foreground path code from another shape name.
+
 
 ---
 
@@ -1172,6 +2213,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `5d2dedbac40e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|} Inherits the foreground path code from another shape name.
 
 
 ---
@@ -1182,6 +2227,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the before foreground path code from another shape name.
+
 
 ---
 
@@ -1190,6 +2239,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9ca54adfbc88`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+|]|name} Inherits the code of one specific anchor named name from another shape name. Thus, unlike saved anchors, which must be inherited collectively, normal anchors can and must be inherited individually.
 
 
 ---
@@ -1200,6 +2253,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+|]|} Inherits the border anchor code from another shape name.
+
 
 ---
 
@@ -1208,7 +2265,26 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `605317bafd20`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (4,3);
+  {
+    \pgftransformshift{\pgfpoint{1.5cm}{1cm}}
+    \pgfnode{rectangle}{north}{Hello World}{hellonode}{\pgfusepath{stroke}}
+  }
+  {
+    \color{red!20}
+    \pgftransformrotate{10}
+    \pgftransformshift{\pgfpoint{3cm}{1cm}}
+    \pgfnode{rectangle}{center}
+      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1218,7 +2294,23 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b2ab697b143c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (4,3);
+  {
+    \color{red!20}
+    \pgftransformrotate{10}
+    \pgftransformshift{\pgfpoint{3cm}{1cm}}
+    \pgftransformresetnontranslations
+    \pgfnode{rectangle}{center}
+      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1228,7 +2320,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `adbf8cd34e6c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\setbox\pgfnodeparttextbox=\hbox{$q_1$}
+\setbox\pgfnodepartlowerbox=\hbox{01}
+\begin{pgfpicture}
+  \pgfmultipartnode{circle split}{center}{my state}{\pgfusepath{stroke}}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1238,7 +2340,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `ab6a0a6f662b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newbox\pgfnodepartlowerbox
+\let\pgfnodepartmethodsbox=\pgfnodepartlowerbox
+```
 
 
 ---
@@ -1248,7 +2357,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `43cad4f621cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newbox\mybox
+\expandafter\let\csname pgfnodepartclass namebox\endcsname=\mybox
+```
 
 
 ---
@@ -1258,7 +2374,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b9ba8ecef2d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{minimum width=3cm}
+  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1268,7 +2395,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `fd939577d5e4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{inner xsep=1cm}
+  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1278,17 +2416,68 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `81329b1e9e1e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset{outer xsep=.5cm}
+  \pgfnode{rectangle}{center}{Hello World}{x}{\pgfusepath{stroke}}
+
+  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 6733. Other Example
+## 6733. Node Graph Example
 
 **ID**: `c273497924d5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\newbox\mybox
+
+\def\mysaver{
+  \global\setbox\mybox=\box\pgfpositionnodelaterbox
+  \global\let\myname=\pgfpositionnodelatername
+  \global\let\myminx=\pgfpositionnodelaterminx
+  \global\let\myminy=\pgfpositionnodelaterminy
+  \global\let\mymaxx=\pgfpositionnodelatermaxx
+  \global\let\mymaxy=\pgfpositionnodelatermaxy
+}
+
+\begin{tikzpicture}
+  {
+    \pgfpositionnodelater{\mysaver}
+    \node [fill=blue!20,below,rotate=30] (hi) {Hello world};
+  }
+  \draw [help lines] (0,0) grid (3,2);
+
+  \let\pgfpositionnodelatername=\myname
+  \let\pgfpositionnodelaterminx=\myminx
+  \let\pgfpositionnodelaterminy=\myminy
+  \let\pgfpositionnodelatermaxx=\mymaxx
+  \let\pgfpositionnodelatermaxy=\mymaxy
+  \setbox\pgfpositionnodelaterbox=\box\mybox
+  \pgfpositionnodenow{\pgfqpoint{2cm}{2cm}}
+
+  \draw (hi) -- (0,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1298,7 +2487,23 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a3ce92cab3eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgftransformrotate{30}
+  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+
+  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
+  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1308,7 +2513,25 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a17b914ac887`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgftransformrotate{30}
+  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+
+  {
+    \pgftransformreset
+    \pgfpointanchor{x}{east}
+    \xdef\mycoordinate{\noexpand\pgfpoint{\the\pgf@x}{\the\pgf@y}}
+  }
+
+  \pgfpathcircle{\mycoordinate}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1318,7 +2541,23 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d3f80f31e9be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \begin{pgfscope}
+    \pgftransformrotate{30}
+    \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
+  \end{pgfscope}
+  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{2cm}{1cm}}}{2pt}
+  \pgfpathcircle{\pgfpoint{2cm}{1cm}}{2pt}
+  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{-1cm}{1cm}}}{2pt}
+  \pgfpathcircle{\pgfpoint{-1cm}{1cm}}{2pt}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1328,7 +2567,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `bda0c0e222a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpointanchor{current bounding box}{south east}
+```
 
 
 ---
@@ -1338,7 +2583,23 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e42f2b6bc22a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfrememberpicturepositiononpagetrue
+\begin{pgfpicture}
+  \pgfusepath{use as bounding box}
+  \pgftransformshift{\pgfpointanchor{current page}{south west}}
+  \pgftransformshift{\pgfpoint{1cm}{1cm}}
+  \pgftext[left,base]{
+    \textcolor{red}{
+      Text absolutely positioned in
+      the lower left corner.}
+  }
+\end{pgfpicture}
+```
 
 
 ---
@@ -1348,7 +2609,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `2106537d804b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  { [local bounding box=outer box]
+    \draw (1,1) circle (.5) [local bounding box=inner box] (2,2) circle (.5);
+  }
+  \draw      (outer box.south west) rectangle (outer box.north east);
+  \draw[red] (inner box.south west) rectangle (inner box.north east);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1358,7 +2632,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4b9847868ecf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareshape{coordinate}
+{
+  \savedanchor\centerpoint{%
+    \pgf@x=.5\wd\pgfnodeparttextbox%
+    \pgf@y=.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\dp\pgfnodeparttextbox%
+  }
+  \anchor{center}{\centerpoint}
+  \anchorborder{\centerpoint}
+}
+```
 
 
 ---
@@ -1368,7 +2657,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `5aac022ddad8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareshape{simple rectangle}{
+  ...
+}
+```
 
 
 ---
@@ -1378,7 +2675,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `7a13b242cdd8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedanchor{\upperrightcorner}{
+  \pgf@y=.5\ht\pgfnodeparttextbox % height of the box, ignoring the depth
+  \pgf@x=.5\wd\pgfnodeparttextbox % width of the box
+}
+```
 
 
 ---
@@ -1388,7 +2694,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `3d82600fee71`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedanchor{\upperrightcorner}{
+  \pgf@y=.\ht\pgfnodeparttextbox % height of the box
+  \pgf@x=.\wd\pgfnodeparttextbox % width of the box
+  \setlength{\pgf@xa}{\pgfshapeminwidth}
+  \ifdim\pgf@x<.5\pgf@xa
+    \pgf@x=.5\pgf@xa
+  \fi
+}
+```
 
 
 ---
@@ -1398,7 +2717,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e77c39c052f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\saveddimen{\depth}{
+  \pgf@x=\dp\pgfnodeparttextbox
+}
+```
 
 
 ---
@@ -1408,7 +2735,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `38d9f3f0b031`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\savedmacro{\sides}{\let\sides\pgfpolygonsides}
+```
 
 
 ---
@@ -1418,7 +2751,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `effce486a6f9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{north east}{\upperrightcorner}
+```
 
 
 ---
@@ -1428,7 +2767,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `1f6f4513d933`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{north west}{
+  \upperrightcorner
+  \pgf@x=-\pgf@x
+}
+```
 
 
 ---
@@ -1438,7 +2786,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `aa38626eae33`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{center}{\pgfpointorigin}
+```
 
 
 ---
@@ -1448,7 +2802,17 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `8bf1251f0582`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{text}{%
+  \upperrightcorner%
+  \pgf@x=-\pgf@x%
+  \pgf@y=-\pgf@y%
+}
+```
 
 
 ---
@@ -1458,7 +2822,13 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `828c406d9f65`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchor{text}{\pgfpoint{-.5\wd\pgfnodeparttextbox}{-.5\ht\pgfnodeparttextbox}}
+```
 
 
 ---
@@ -1468,7 +2838,31 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `91aced0d3856`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\def\foo{foo}
+\pgfdeclareshape{simple shape}{%
+  \savedanchor{\center}{%
+    \pgfpointorigin}
+  \anchor{center}{\center}
+  \savedanchor{\anchorfoo}{%
+    \pgf@x=1cm
+    \pgf@y=0cm}
+  \deferredanchor{anchor \foo}{\anchorfoo}}
+
+\begin{tikzpicture}
+  \node[simple shape] (Test1) at (0,0) {};
+  \fill (Test1.anchor foo) circle (2pt) node[below] {anchor foo anchor};
+  %
+  \def\foo{bar}
+  \node[simple shape] (Test2) at (2,2) {};
+  \fill (Test2.anchor bar) circle (2pt) node[below] {anchor bar anchor};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1478,7 +2872,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `15de8af5d7ec`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anchorborder{%
+  % Call a function that computes a border point. Since this
+  % function will modify dimensions like \pgf@x, we must move them to
+  % other dimensions.
+  \@tempdima=\pgf@x
+  \@tempdimb=\pgf@y
+  \pgfpointborderrectangle{\pgfpoint{\@tempdima}{\@tempdimb}}{\upperrightcorner}
+}
+```
 
 
 ---
@@ -1488,17 +2895,69 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `90142cef0025`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\backgroundpath{
+  \pgfpathrectanglecorners
+    {\upperrightcorner}
+    {\pgfpointscale{-1}{\upperrightcorner}}
+}
+```
 
 
 ---
 
-## 6754. Other Example
+## 6754. Node Graph Example
 
 **ID**: `ab51d1211a0f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\pgfdeclareshape{document}{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  % ... and possibly more
+  \backgroundpath{% this is new
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    % compute corner of ``flipped page''
+    \pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
+    \pgf@yc=\pgf@yb \advance\pgf@yc by-5pt
+    % construct main path
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathclose
+    % add little corner
+    \pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+ }
+}\hskip-1.2cm
+\begin{tikzpicture}
+  \node[shade,draw,shape=document,inner sep=2ex] (x) {Remark};
+  \node[fill=yellow!80!black,draw,ellipse,double]
+    at ([shift=(-80:3cm)]x) (y) {Use Case};
+
+  \draw[dashed] (x) -- (y);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1509,6 +2968,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Applies the given actions to the current path. Afterwards, the current path is (globally) empty. The following actions are possible: itemize |fill| fills the path. See Section~section-fill for further details. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} fill pgfpicture codeexample |stroke| strokes the path. See Section~section-stroke for further details. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} stroke pgfpicture codeexample |draw| has the same effect as |stroke|. |clip| clips all subs
+
 
 ---
 
@@ -1517,6 +2980,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `cd20414b3d83`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets the line width for subsequent strokes (in the current |pgfscope|). The line width is given as a normal \ dimension like |0.4pt| or |1mm|. codeexample[] pgfpicture 1mm {0mm{0mm}} {2cm{0mm}} stroke 2 {0mm{5mm}} {2cm{5mm}} stroke pgfpicture codeexample
 
 
 ---
@@ -1527,6 +2994,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line cap to a butt cap. See Section~section-cap-joins for an explanation of what this is.
+
 
 ---
 
@@ -1535,6 +3006,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b94810e6d0ec`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line cap to a round cap. See again Section~section-cap-joins.
 
 
 ---
@@ -1545,6 +3020,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line cap to a square cap. See again Section~section-cap-joins.
+
 
 ---
 
@@ -1553,6 +3032,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `96bea1a72620`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line join to a round join. See again Section~section-cap-joins.
 
 
 ---
@@ -1563,6 +3046,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the line join to a bevel join. See again Section~section-cap-joins.
+
 
 ---
 
@@ -1571,6 +3058,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `72b18c1dcc21`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the line join to a miter join. See again Section~section-cap-joins.
 
 
 ---
@@ -1581,6 +3072,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the miter limit to miter limit factor. See again Section~section-cap-joins.
+
 
 ---
 
@@ -1589,6 +3084,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `c6246063bbb3`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+phase} Sets the dashing of a line. The first entry in the list specifies the length of the first solid part of the list. The second entry specifies the length of the following gap. Then comes the length of the second solid part, following by the length of the second gap, and so on. The phase specifies where the first solid part starts relative to the beginning of the line. codeexample[] pgfpicture {0.5cm{0.5cm}{0.1cm}{0.2cm}}{0cm} {0mm{0mm}} {2cm{0mm}} stroke {0.5cm{0.5cm}{0.1cm}{0.2cm}}{0.1cm} 
 
 
 ---
@@ -1599,6 +3098,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the color used for stroking lines to color, where color is a \ color like |red| or |black!20!red|. Unlike the || command, the effect of this command lasts till the end of the current |{pgfscope}| and not till the end of the current \ group. The color used for stroking may be different from the color used for filling. However, a || command will always ``immediately override'' any special settings for the stroke and fill colors. In plain , this command will also work, but the problem of def
+
 
 ---
 
@@ -1607,6 +3110,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `11f32e87a7ad`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets both the stroke and fill color. The difference to the normal || command is that the effect lasts till the end of the current |{pgfscope}|, not only till the end of the current \ group.
 
 
 ---
@@ -1617,6 +3124,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command sets the width of the inner line. Whenever a path is stroked (and only then), it will be stroked normally and, afterward, it is stroked once more with the color set to the inner line color and the line width set to dimension. In case arrow tips are added to a path, the path is first stroked normally, then the inner line is stroked, and then the arrow tip is added. In case the main path is shortened because of the added arrow tip, this shortened path is double stroked, not the orig
+
 
 ---
 
@@ -1625,6 +3136,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9a7076562d17`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets the color that is to be used when the inner line is stroked. The effect of this command is also local to the current \ group. codeexample[] pgfpicture {1cm{1cm}} {1cm{0cm}} 2pt 1pt red!50 stroke pgfpicture codeexample
 
 
 ---
@@ -1635,6 +3150,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the arrow tip kind used at the start of a (possibly curved) path. The syntax of the start arrow specification is detailed in Section~section-arrow-spec. To ``clear'' the start arrow, say ||. codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt] {1cm{0cm}} stroke Computer Modern Rightarrow {0cm{2mm}} {1cm{2mm}} stroke pgfpicture codeexample The effect of this command persists only till the end of the current \ scope.
+
 
 ---
 
@@ -1643,6 +3162,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `0a9d0211b842`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the arrow tip kind used at the end of a path. codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt] Computer Modern Rightarrow {1cm{0cm}} stroke pgfpicture codeexample
 
 
 ---
@@ -1653,6 +3176,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} The argument can be of the form start arrow tip specification|-|end arrow tip specification. In this case, both the start and the end arrow specification are set: codeexample[preamble={arrows.meta}] pgfpicture Latex[length=10pt]->> {1cm{0cm}} stroke pgfpicture codeexample Alternatively, argument can be of the form |[|arrow keys|]|. In this case, the arrow keys will be set for all arrow tips in the current scope, see Section~section-arrow-scopes.
+
 
 ---
 
@@ -1661,6 +3188,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `eae315166d80`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command will shortened the start of every stroked path by the given dimension. This shortening is done in addition to automatic shortening done by a start arrow, but it can be used even if no start arrow is given. It is usually better to use the |sep| key with arrow tips. This command is useful if you wish arrows or lines to ``stop shortly before'' a given point. codeexample[preamble={arrows.meta}] pgfpicture {5mm} stroke Latex- 4pt {5mm{0cm}} {2cm{0cm}} stroke pgfpicture codeexample
 
 
 ---
@@ -1671,6 +3202,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Works like ||.
+
 
 ---
 
@@ -1679,6 +3214,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `2bbcc1687040`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Dictates that the even-odd rule is used in subsequent fillings in the current \ scope. Thus, for once, the effect of this command does not persist past the current \ scope. codeexample[] pgfpicture {0mm{0cm}}{7mm} {5mm{0cm}}{7mm} fill pgfpicture codeexample
 
 
 ---
@@ -1689,6 +3228,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Dictates that the nonzero winding number rule is used in subsequent fillings in the current \ scope. This is the default. codeexample[] pgfpicture {0mm{0cm}}{7mm} {5mm{0cm}}{7mm} fill pgfpicture codeexample
+
 
 ---
 
@@ -1698,6 +3241,10 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the color used for filling paths to color. Like the stroke color, the effect lasts only till the next use of ||.
+
 
 ---
 
@@ -1706,7 +3253,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4be03fbe9052`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1716,7 +3274,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `9db74490526d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1726,7 +3295,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `baf1e6faae71`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke,clip}
+  \pgfpathcircle{\pgfpoint{1cm}{1cm}}{0.5cm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1736,7 +3318,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `cb24325a4a2f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{1mm}
+  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
+  \pgfusepath{stroke}
+  \pgfsetlinewidth{2\pgflinewidth} % double in size
+  \pgfpathmoveto{\pgfpoint{0mm}{5mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{5mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1746,7 +3343,26 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `0b22e26a46b2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
+  \pgfusepath{stroke}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.1cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{1mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{1mm}}
+  \pgfusepath{stroke}
+  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.2cm}
+  \pgfpathmoveto{\pgfpoint{0mm}{2mm}}
+  \pgfpathlineto{\pgfpoint{2cm}{2mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1756,7 +3372,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `927377b57ff2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{1pt}
+  \color{red}
+  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+  \pgfsetstrokecolor{black}
+  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+  \color{red}
+  \pgfpathcircle{\pgfpoint{2cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1766,7 +3396,20 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `be11967c5a9c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfsetlinewidth{2pt}
+  \pgfsetinnerlinewidth{1pt}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1776,7 +3419,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e8ab5bff8296`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfsetlinewidth{2pt}
+  \pgfsetinnerlinewidth{1pt}
+  \pgfsetinnerstrokecolor{red!50}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1786,7 +3443,22 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b0cdd31fa5e4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrowsstart{Latex[length=10pt]}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+  \pgfsetarrowsstart{Computer Modern Rightarrow}
+  \pgfpathmoveto{\pgfpoint{0cm}{2mm}}
+  \pgfpathlineto{\pgfpoint{1cm}{2mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1796,7 +3468,19 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `6fdeaa8ae56c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrowsstart{Latex[length=10pt]}
+  \pgfsetarrowsend{Computer Modern Rightarrow}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1806,7 +3490,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `a14744794062`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrows{Latex[length=10pt]->>}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1816,7 +3511,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d77c2c750cfc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathcircle{\pgfpointorigin}{5mm}
+  \pgfusepath{stroke}
+  \pgfsetarrows{Latex-}
+  \pgfsetshortenstart{4pt}
+  \pgfpathmoveto{\pgfpoint{5mm}{0cm}} % would be on the circle
+  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1826,7 +3535,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `ff530f948216`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfseteorule
+  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
+  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1836,7 +3556,18 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `d68b0a442b1a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetnonzerorule
+  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
+  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
+  \pgfusepath{fill}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1846,7 +3577,21 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `e2722dc38801`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Left
+\begin{pgfpicture}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
+  \pgfusepath{use as bounding box} % draws nothing
+
+  \pgfpathcircle{\pgfpointorigin}{2ex}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+right.
+```
 
 
 ---
@@ -1856,7 +3601,37 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `3e00605b72ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [
+    school book axes,
+    visualize as smooth line,
+    clean ticks,
+    all axes={grid={step=1,minor steps between steps=1}},
+    x axis={
+      ticks={
+        major={
+          also at={(0.5*pi) as $\pi/2$},
+          also at={(pi) as $\pi$},
+          options at=3 as [no tick text]
+        }
+      },
+      label=$x$
+    },
+    y axis={
+      label=$y$,
+    }
+  ]
+  data [format=function] {
+    var x : interval [-0.5*pi:4] samples 50;
+    func y = sin(\value x r);
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -1866,7 +3641,32 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b0d47025554e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [
+    scientific axes=clean,
+    visualize as line,
+    all axes={padding=4pt},
+    x axis={logarithmic,
+      ticks={many, tick unit={ms},
+        node style={rotate=45,anchor=north east}},
+      label={time},
+      grid},
+    y axis={label={distance}},
+  ]
+  data {
+    x, y, z
+    0.001, 0, 0
+    2000, 2.23, 2
+    20670, 1, 3
+    501, -2, 0
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -1876,7 +3676,36 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `b1ff6d3ed077`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline,mark=*]
+  \datavisualization [
+    scientific axes=inner ticks,
+    all axes={padding=4pt},
+    euro about strategy,
+    visualize as scatter,
+    x axis={attribute=x2},
+    y axis={attribute=y2}
+  ]
+  data [separator=\space] {
+x       y       x1      y1      x2      y2      x3      y3
+10.0    8.04    10.0    9.14    10.0    7.46    8.0     6.58
+8.0     6.95    8.0     8.14    8.0     6.77    8.0     5.76
+13.0    7.58    13.0    8.74    13.0    12.74   8.0     7.71
+9.0     8.81    9.0     8.77    9.0     7.11    8.0     8.84
+11.0    8.33    11.0    9.26    11.0    7.81    8.0     8.47
+14.0    9.96    14.0    8.10    14.0    8.84    8.0     7.04
+6.0     7.24    6.0     6.13    6.0     6.08    8.0     5.25
+4.0     4.26    4.0     3.10    4.0     5.39    19.0    12.50
+12.0    10.84   12.0    9.13    12.0    8.15    8.0     5.56
+7.0     4.82    7.0     7.26    7.0     6.42    8.0     7.91
+5.0     5.68    5.0     4.74    5.0     5.73    8.0     6.89
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -1886,7 +3715,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `4e0d6bf476f8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red}] (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -1896,7 +3732,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `91cf0a6212c0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red,shadow scale=1.25}]
+    (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -1906,7 +3750,15 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `493edd5abeae`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \draw [general shadow={fill=red,shadow xshift=-5pt}]
+    (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -1916,7 +3768,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `06faae441dcd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
+  opacity=.5, fill=black!50, every shadow
+```
 
 
 ---
@@ -1926,7 +3785,14 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `319778b04324`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [even odd rule]
+  \filldraw [drop shadow,fill=white] (0,0) circle (.5) (0.5,0) circle (.5);
+```
 
 
 ---
@@ -1936,7 +3802,16 @@ Showing items **6601-6800** of **6812** | Page **34** of **35**
 **ID**: `95d7fc1daf68`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \i in {1,...,4}
+    \node[starburst,drop shadow,fill=white,draw] at (0,\i) {Burst \i};
+\end{tikzpicture}
+```
 
 
 ---

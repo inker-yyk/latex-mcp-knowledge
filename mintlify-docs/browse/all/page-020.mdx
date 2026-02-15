@@ -16,7 +16,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `3e9fefe344be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={magnetic tape, draw}]
+  \node [magnetic tape tail extend=0cm]    at (0,0) {A};
+  \node [magnetic tape tail extend=0.25cm] at (0,1) {B};
+\end{tikzpicture}
+```
 
 
 ---
@@ -26,17 +35,47 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e5ec28abcdba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={magnetic tape, draw}]
+  \node [magnetic tape tail=0.5, magnetic tape tail extend=0.5cm] {A};
+  \node [magnetic tape tail=0.25] at (0,1) {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4003. Other Example
+## 4003. Node Graph Example
 
 **ID**: `a123defcee51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+\node[name=s,shape=magnetic tape,shape example,inner sep=0.75cm,
+magnetic tape tail extend=0.5cm]
+  {Magnetic Tape\vrule width 1pt height 2cm};
+\foreach \anchor/\placement in
+  {north west/above left, north/above, north east/above right,
+  west/left, center/above, east/right,
+  mid west/right, mid/right, mid east/left,
+  base west/below, base/below, base east/right,
+  south west/below left, south/below, south east/left,
+  text/left, 10/right, 130/above,
+  tail east/right, tail south east/below, tail north east/above}
+    \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+      node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -46,27 +85,63 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d53e047841ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={single arrow, draw},
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node {right};
+  \node at (2,0) [shape border rotate=90]{up};
+  \node at (1,1) [rotate border=37, inner sep=0pt]{$37^\circ$};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4005. Other Example
+## 4005. Node Graph Example
 
 **ID**: `815cedb7436d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth,
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node[rotate border=-30, fill=gray!25, minimum height=3cm, single arrow,
+    single arrow head extend=.5cm, single arrow head indent=.25cm] (arrow) {};
+  \draw[red, <->] (arrow.before tip) -- (arrow.after tip)
+    node [near end, left, black] {width};
+  \draw[red, <->] (arrow.tip) -- (arrow.tail)
+    node [near end, below left, black] {height};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4006. Other Example
+## 4006. Node Graph Example
 
 **ID**: `6b28184b00d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[single arrow, draw, single arrow head extend=.5cm, gray!50, rotate=60]
+     (a) {Arrow};
+  \draw[red, |<->|] (a.before tip) -- (a.before head)
+    node [midway, below, sloped, black] {head extend};
+\end{tikzpicture}
+```
 
 
 ---
@@ -76,17 +151,46 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d7c82a2557fe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={single arrow, draw=none, rotate=60}]
+  \node [fill=red!50]                                           {arrow 1};
+  \node [fill=blue!50, single arrow head indent=1ex] at (1.5,0) {arrow 2};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4008. Other Example
+## 4008. Node Graph Example
 
 **ID**: `d253149e0836`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=single arrow, shape example, single arrow head extend=1.5cm]
+    {Single Arrow\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/above,      center/above, 20/above,
+     mid west/left,   mid/above,    mid east/above left,
+     base west/below, base/below,   base east/below,
+     tip/above, before tip/above, after tip/below, before head/above,
+     after head/below, after tail/above, before tail/below, tail/right,
+     north/above, south/below, east/below, west/above,
+     north west/above, north east/below, south west/below, south east/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -96,17 +200,39 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `92e1b912fbda`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={double arrow, draw}]
+  \node [double arrow, draw] {Left or Right};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4010. Other Example
+## 4010. Node Graph Example
 
 **ID**: `940ad28ab901`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth,
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node[rotate border=210, fill=gray!25, minimum height=3cm, double arrow,
+    double arrow head extend=.5cm, double arrow head indent=.25cm] (arrow) {};
+  \draw[red, <->] (arrow.before tip 1) -- (arrow.after tip 1)
+    node [near start, right, black] {width};
+  \draw[red, <->] (arrow.tip 1) -- (arrow.tip 2)
+    node [near end, above left, black] {height};
+\end{tikzpicture}
+```
 
 
 ---
@@ -116,17 +242,46 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `2bc454896c36`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={double arrow, draw=none, rotate=-60}]
+  \node [fill=red!50]                                           {arrow 1};
+  \node [fill=blue!50, double arrow head indent=1ex] at (1.5,0) {arrow 2};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4012. Other Example
+## 4012. Node Graph Example
 
 **ID**: `de66d3326bc5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=double arrow, double arrow head extend=1.5cm, shape example, inner xsep=2cm]
+    {Double Arrow\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/above, center/above, 20/above,
+     mid west/above right, mid/above, mid east/above left,
+     base west/below, base/below, base east/below,
+     before head 1/above, before tip 1/above, tip 1/above, after tip 1/below, after head 1/below,
+     before head 2/above, before tip 2/below, tip 2/above, after tip 2/above, after head 2/below,
+     north/above, south/below, east/below, west/below,
+     north west/below, north east/below, south west/above, south east/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -136,27 +291,75 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `46d934ba8dff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[arrow box, draw] {A};
+  \node[arrow box, draw, arrow box arrows={north:.5cm, west:0.75cm}]
+    at (2,0) {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4014. Other Example
+## 4014. Node Graph Example
 
 **ID**: `ec73239e4f1d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \tikzset{box/.style={arrow box, fill=#1}}
+    \draw [help lines] grid(3,2);
+  \node[box=blue!50, arrow box arrows={east:2cm}]             at (1,1.5){One};
+  \node[box=red!50,  arrow box arrows={east:2cm from center}] at (1,0.5){Two};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4015. Other Example
+## 4015. Node Graph Example
 
 **ID**: `734e8444146d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[shape=arrow box, shape example, inner xsep=1cm, inner ysep=1.5cm, arrow box shaft width=2cm,
+    arrow box arrows={north:3.5cm from border, south, east:5cm from border, west},
+    arrow box head extend=0.75cm, rotate=-90](s) {Arrow Box\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+   {center/above, text/above, mid/right, base/below, 75/above,
+    mid east/right, mid west/left, base east/right, base west/left,
+    north/below, south/below, east/below, west/below,
+    north east/above, south east/above, south west/below, north west/below,
+    north arrow tip/above,south arrow tip/above, east arrow tip/above, west arrow tip/above,
+    before north arrow/above, before north arrow head/below left, before north arrow tip/above left,
+    after north arrow tip/above right, after north arrow head/below right, after north arrow/below,
+    before south arrow/below, before south arrow head/above right, before south arrow tip/below right,
+    after south arrow tip/below left, after south arrow head/above left, after south arrow/above,
+    before east arrow/above, before east arrow head/above right, before east arrow tip/above,
+    after east arrow tip/below, after east arrow head/below right, after east arrow/below,
+    before west arrow/below, before west arrow head/below left, before west arrow tip/below,
+    after west arrow tip/above, after west arrow head/above left, after west arrow/below}
+      \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+        node[\placement, rotate=-90] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -166,17 +369,48 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `5122a4a1f6c8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [circle split,draw,double,fill=red!20]
+  {
+    $q_1$
+    \nodepart{lower}
+    $00$
+  };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4017. Other Example
+## 4017. Node Graph Example
 
 **ID**: `e71439921a54`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circle split,shape example] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -186,37 +420,101 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c2ec955c8e79`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [circle solidus,draw,double,fill=red!20]
+  {
+    $q_1$
+    \nodepart{lower}
+    $00$
+  };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4019. Other Example
+## 4019. Node Graph Example
 
 **ID**: `25a8f6b34ddf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circle solidus,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4020. Other Example
+## 4020. Node Graph Example
 
 **ID**: `5db383b91bed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=ellipse split,shape example] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {center/below, text/left, lower/left, 60/above right,
+     mid/above, mid east/above, mid west/above,
+     base/right, base east/left, base west/right,
+     north/above, south/below, east/below, west/below,
+     north east/above, south east/below, south west/below, north west/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4021. Other Example
+## 4021. Node Graph Example
 
 **ID**: `762c51f2edbd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=diamond split,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right, mid/above, base/below,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -226,7 +524,23 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `dc61fe9e82a2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[my shape/.style={
+  rectangle split, rectangle split parts=#1, draw, anchor=center}]
+  \node [my shape=5] at (0,1)
+    {a\nodepart{two}b\nodepart{three}c\nodepart{four}d\nodepart{five}e};
+  \node [my shape=5, rectangle split horizontal] at (2,2)
+    {1\nodepart{two}2\nodepart{three}3\nodepart{four}4\nodepart{five}5};
+  \node [my shape=3] at (3,0.5)
+    {A\nodepart{two}B\nodepart{three}C};
+  \node [my shape=4, rectangle split horizontal] at (1.5,0.5)
+    {1\nodepart{two}2\nodepart{three}3\nodepart{four}4};
+\end{tikzpicture}
+```
 
 
 ---
@@ -236,7 +550,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `7ad1308036c1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every text node part/.style={align=center}]
+  \node[rectangle split, rectangle split parts=3, draw, text width=2.75cm]
+    {Student
+     \nodepart{two}
+       age:int \\
+       name:String
+     \nodepart{three}
+       getAge():int \\
+       getName():String};
+\end{tikzpicture}
+```
 
 
 ---
@@ -246,7 +575,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0d5d15b4f880`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={draw, anchor=text, rectangle split,
+    rectangle split parts=3}]
+  \node {text \nodepart{second} \nodepart{third}third};
+  \node [rectangle split ignore empty parts] at (2,0)
+        {text \nodepart{second} \nodepart{third}third};
+\end{tikzpicture}
+```
 
 
 ---
@@ -256,7 +596,21 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `2765fd29131c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\x{one \nodepart{two} 2 \nodepart{three} three \nodepart{four} 4}
+\begin{tikzpicture}[
+  every node/.style={rectangle split, rectangle split parts=4,
+    draw}
+  ]
+  \node[rectangle split part align={center, left, right}] at (0,0)    {\x};
+  \node[rectangle split part align={center, left}]        at (1.25,0) {\x};
+  \node[rectangle split part align={center}]              at (2.5,0)  {\x};
+\end{tikzpicture}
+```
 
 
 ---
@@ -266,7 +620,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `2014a43fa521`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\x{\Large w\nodepart{two}x\nodepart{three}\Huge y\nodepart{four}\tiny z}
+\begin{tikzpicture}[
+  every node/.style={rectangle split, rectangle split parts=4,
+    draw, rectangle split horizontal}
+  ]
+  \node[rectangle split part align={center, top, bottom}] at (0,0)     {\x};
+  \node[rectangle split part align={center, top}]         at (0,-1.25) {\x};
+  \node[rectangle split part align={center}]              at (0,-2.5)  {\x};
+  \node[rectangle split part align=base]                  at (0,-3.75) {\x};
+\end{tikzpicture}
+```
 
 
 ---
@@ -276,17 +645,54 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `853347b308f0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={rectangle split, draw, minimum width=.5cm}}
+  \node[rectangle split part fill={red!50, green!50, blue!50, yellow!50}]  {};
+  \node[rectangle split part fill={red!50, green!50, blue!50}] at (0.75,0) {};
+  \node[rectangle split part fill={red!50, green!50}]          at (1.5,0)  {};
+  \node[rectangle split part fill={red!50}]                    at (2.25,0) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4028. Other Example
+## 4028. Node Graph Example
 
 **ID**: `112ac5548178`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rectangle split, rectangle split parts=4, shape example,
+    inner ysep=0.75cm]
+    {\nodepart{text}text\nodepart{two}two
+        \nodepart{three}three\nodepart{four}four};
+  \foreach \anchor/\placement in
+    {text/left, text east/above, text west/above,
+     two/left, two east/above, two west/above,
+     three/left, three east/below, three west/below,
+     four/left, four east/below, four west/below,
+     text split/left, text split east/above, text split west/above,
+     two split/left, two split east/above, two split west/above,
+     three split/left, three split east/below, three split west/below,
+     north/above, south/below, east/below, west/below,
+     north west/above, north east/above, south west/below, south east/below,
+     center/above, 70/above, mid/above, base/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -296,47 +702,122 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `7b2cf55486f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[remember picture]
+  \node[ellipse callout, draw] (hallo) {Hallo!};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4030. Other Example
+## 4030. Node Graph Example
 
 **ID**: `e37075630525`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[remember picture, note/.style={rectangle callout, fill=#1}]
+  \draw [help lines] grid(3,2);
+  \node [note=red!50,  callout relative pointer={(0,1)}] at (3,1) {Relative};
+  \node [note=blue!50, callout absolute pointer={(0,1)}] at (1,0) {Absolute};
+  \node [note=green!50, opacity=.5, overlay,
+         callout absolute pointer={(hallo.south)}]       at (1,2) {Outside};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4031. Other Example
+## 4031. Node Graph Example
 
 **ID**: `88a7920749de`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \tikzset{callout/.style={ellipse callout, callout pointer arc=30,
+      callout absolute pointer={#1}}}
+  \draw (0,0) grid (3,2);
+  \node[callout={(3,1.5)}, fill=red!50] at (0,1.5) {A};
+  \node[callout={(3,.5)},  fill=green!50, callout pointer shorten=1cm]
+    at (0,.5)  {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4032. Other Example
+## 4032. Node Graph Example
 
 **ID**: `8507bd04760e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rectangle callout, callout relative pointer={(1.25cm,-1cm)},
+     callout pointer width=2cm, shape example, inner xsep=2cm, inner ysep=1cm]
+      {Rectangle Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      60/above,
+     mid/right,    mid west/left,  mid east/right,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above, north east/above,
+     south west/below, south east/below,
+     pointer/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4033. Other Example
+## 4033. Node Graph Example
 
 **ID**: `aeed8d5c36eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=ellipse callout, callout relative pointer={(1.25cm,-1cm)},
+    callout pointer width=2cm, shape example, inner xsep=1cm, inner ysep=.5cm]
+      {Ellipse Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      60/above,
+     mid/above,    mid west/right,  mid east/left,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above left,    north east/above right,
+     south west/below left,    south east/below right,
+     pointer/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -346,27 +827,67 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `bdfdcd232deb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[cloud callout, cloud puffs=15, aspect=2.5, cloud puff arc=120,
+    shading=ball,text=white] {\bf Imagine...};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4035. Other Example
+## 4035. Node Graph Example
 
 **ID**: `52c7d979a6f9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=cloud callout, style=shape example, cloud puffs=11, aspect=1.5,
+    cloud puff arc=120,inner xsep=.5cm, callout pointer start size=.25 of callout,
+    callout pointer end size=.15 of callout, callout relative pointer={(315:4cm)},
+    callout pointer segments=2] {Cloud Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {puff 1/above, puff 2/above, puff 3/above, puff 4/below,
+     puff 5/left, puff 6/below, puff 7/below, puff 8/right,
+     puff 9/below, puff 10/above, puff 11/above, 70/right,
+     center/above, base/below, mid/right, text/left,
+     north/below, south/below, east/above, west/above,
+     north west/left, north east/right,
+     south west/below, south east/below,pointer/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4036. Other Example
+## 4036. Node Graph Example
 
 **ID**: `684fed3d46ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \node [cross out,draw=red] at (1.5,1) {cross out};
+\end{tikzpicture}
+```
 
 
 ---
@@ -376,17 +897,41 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ae6914ea035d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Cross \tikz[baseline] \node [cross out,draw,anchor=text] {me}; out!
+```
 
 
 ---
 
-## 4038. Other Example
+## 4038. Node Graph Example
 
 **ID**: `1e873ffa2a35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=cross out,shape example] {cross out\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -396,7 +941,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6eb8601940e3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Strike \tikz[baseline] \node [strike out,draw,anchor=text] {me}; out!
+```
 
 
 ---
@@ -406,7 +957,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8cade7d224e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[rounded rectangle, draw, fill=red!20]{Hallo};
+\end{tikzpicture}
+```
 
 
 ---
@@ -416,7 +975,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6b13170d36c6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \matrix[row sep=5pt, every node/.style={draw, rounded rectangle}]{
+    \node[rounded rectangle arc length=180] {180}; \\
+    \node[rounded rectangle arc length=120] {120}; \\
+    \node[rounded rectangle arc length=90]  {90};  \\};
+\end{tikzpicture}
+```
 
 
 ---
@@ -426,17 +996,47 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ae4bf9374802`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \matrix[row sep=5pt, every node/.style={draw, rounded rectangle}]{
+    \node[rounded rectangle west arc=concave] {Concave}; \\
+    \node[rounded rectangle west arc=convex]  {Convex};  \\
+    \node[rounded rectangle left arc=none]    {None};    \\};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4043. Other Example
+## 4043. Node Graph Example
 
 **ID**: `ffb90181bf35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rounded rectangle, shape example, inner xsep=1.5cm, inner ysep=1cm]
+      {Rounded Rectangle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      10/above,
+     mid/above,    mid west/right,  mid east/left,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above left,    north east/above right,
+     south west/below left,    south east/below right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -446,7 +1046,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `b9149569974a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[chamfered rectangle, white, fill=red, double=red, draw, very thick]
+    {\bf STOP!};
+\end{tikzpicture}
+```
 
 
 ---
@@ -456,7 +1065,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `2f079e93b8f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle angle=30] {abc};
+  \node[chamfered rectangle angle=60] at (1.5,0) {123};
+\end{tikzpicture}
+```
 
 
 ---
@@ -466,7 +1085,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `894b44a1b215`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle xsep=2pt] {def};
+  \node[chamfered rectangle xsep=2cm] at (1.5,0) {456};
+\end{tikzpicture}
+```
 
 
 ---
@@ -476,17 +1105,49 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `7ab35a3719b0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle corners=north west] {ghi};
+  \node[chamfered rectangle corners={north east, south east}] at (1.5,0) {789};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4048. Other Example
+## 4048. Node Graph Example
 
 **ID**: `702319c49090`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=chamfered rectangle, chamfered rectangle sep=1cm,
+        shape example, inner ysep=1cm, inner xsep=.75cm]
+    {Chamfered Rectangle\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/right, center/above,    70/above,
+     base/below, base east/left, base west/right,
+     mid/right,  mid east/above,   mid west/above,
+     north/above, south/below, east/above, west/above,
+     before north east/above, north east/above, after north east/above,
+     before north west/above, north west/above, after north west/above,
+     before south west/below, south west/below, after south west/below,
+     before south east/below, south east/below, after south east/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -497,6 +1158,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro starts a \ scope inside which the following things happen: enumerate The display layer method |beginGraphDrawingScope| is called, which created a new graph drawing scope inside the graph drawing system and places it on top of an internal stack. From now on, all subsequent interface calls will refer to this scope until || is called, which will pop the scope once more. Inside the \ scope, nodes are not placed immediately. Rather, ||, see Section~section-shapes-deferred-node-positioning,
+
 
 ---
 
@@ -505,6 +1170,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d1c40eb9be7e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This macro is used to end a graph drawing scope. It must be given on the same \ grouping level as the corresponding ||. When the macro is called, it triggers a lot of new calls: enumerate The special treatment of newly created boxes is ended. Nodes are once more created normally. The effects of the code that was inserted via the specification hook command also ends (provided it had no global effects). We call |InterfaceToDisplay.runGraphDrawingAlgorithm|. This will cause the algorithm(s) for the
 
 
 ---
@@ -515,6 +1184,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+second nodeedge directionedge optionsedge nodes} This command is used to tell the graph drawing engine that there is an edge between first node and second node in your graph. The ``kind'' of connection is indicated by direction, which may be one of the following: itemize |->| indicates a directed edge (also known as an arc) from first node to second node. |--| indicates an undirected edge between first node and second node, |<-| indicates a directed edge from second node to first node, but with 
+
 
 ---
 
@@ -523,6 +1196,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c0319807db36`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command allows you to change the macro that gets called form inside the graph drawing system at the end of the creation of a graph, when the nodes have been positioned. The macro will be called once for each edge with the following parameters: quote macrofirst nodesecond nodedirectionedge optionsedge nodes\\ algorithm-generated optionsbend informationanimations quote The first five parameters are the original values that were passed down to the || command. The algorithm-generated options 
 
 
 ---
@@ -533,6 +1210,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command first starts a new \ scope and then informs the display layer that a new (sub)layout should be started. For each graph there may be a hierarchy of layouts, each of which contains a certain number of vertices and edges. This hierarchy is created through calls to this macros and the corresponding calls of ||. For each graph drawing scope there has to be exactly one main layout that encompasses all nodes and edges and also all sublayouts. Thus, after a graph drawing scope has been open
+
 
 ---
 
@@ -541,6 +1222,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `25196ec95670`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command ends the \ scope of the current layout. Once closed, no nodes or edges can be added to a layout.
 
 
 ---
@@ -551,6 +1236,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command can only be called when the node named node name has already been created inside the current graph drawing scope. The effect of calling this macro will be that all options currently on the graph drawing system's option stack will be added to the node's option, possibly overwriting the original option settings. Furthermore, the node will become part of all layouts currently on the option stack. This means that you can use this command to add a node to several layouts that are not i
+
 
 ---
 
@@ -559,6 +1248,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `55684a3a30ca`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets up macro as the macro that is called whenever a layout key ``requests'' that a layout and, possibly, a graph drawing scope is opened. When macro is called, it gets two parameters, the begin code and the end code. In addition to whatever setup the macro would like to do, it should execute the begin code at the beginning of a \ scope (the code will open graph drawing and layout scopes) and the end code at the end of the same \ scope. The need for this slightly strange macro ari
 
 
 ---
@@ -569,6 +1262,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+parameter} Calls |createEvent| of the graph drawing system's interface class. This creates a new |Event| object on the Lua layer whose |kind| field is set to kind and the |parameters| field to parameter. You must be inside a graph drawing scope to use this command.
+
 
 ---
 
@@ -577,6 +1274,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `4a2fb527e220`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Starts an event group. This just means that an |Event| of kind |begin| is created with the given parameter.
 
 
 ---
@@ -587,6 +1288,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Ends an event group. This is done by adding an event of kind |end| without any parameters to the event string.
+
 
 ---
 
@@ -595,6 +1300,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6d86401476a9`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Starts an event group just like ||, but adds a corresponding closing |end| event at the end of the current \ group (using ||).
 
 
 ---
@@ -605,6 +1314,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+node optionsnode text} A subgraph node is a node that ``surrounds'' the nodes of a subgraph. The special property of a subgraph node opposed to a normal node is that it is created only after the subgraph has been laid out. However, the difference to a collection like |hyper| is that the node is available immediately as a normal node in the sense that you can connect edges to it. What happens internally is that subgraph nodes get ``registered'' immediately both on the \ level and on the Lua level
+
 
 ---
 
@@ -613,17 +1326,34 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `72cdcc7665a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[tree layout]
+  \graph {root [as=Hello] -> World[fill=blue!20]};
+```
 
 
 ---
 
-## 4063. Other Example
+## 4063. Node Graph Example
 
 **ID**: `cf2b7e25b791`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [spring layout] {
+  \node (a) {a};
+  \node (b) {b};
+  \draw (a) -- (b);
+}
+```
 
 
 ---
@@ -633,7 +1363,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8ca84b619b34`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+/tikz/.cd, color=red, very thick, orient=down
+```
 
 
 ---
@@ -643,7 +1379,27 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `bdb38e1aab57`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [tree layout] \graph        {1 -> {b,c}};
+\tikz \graph [tree layout]        {2 -> {b,c}};
+\tikz \path graph [tree layout]   {3 -> {b,c}};
+
+\begin{tikzpicture}[tree layout]
+  \graph                          {4 -> {b,c}};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \scoped [tree layout] \graph    {5 -> {b,c}};
+
+  \begin{scope}[tree layout, xshift=1.5cm]
+    \graph                        {6 -> {b,c}};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -653,7 +1409,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e2fd1aaf8b8e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \scoped [tree layout]
+    \node {root}
+    child { node {left child} }
+    child { node {right child} };
+\end{tikzpicture}
+```
 
 
 ---
@@ -663,7 +1430,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `abe17da711e0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [tree layout]
+  \node {root}
+  child { node {left child} }
+  child { node {right child} };
+```
 
 
 ---
@@ -673,7 +1449,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `2214a67a15b4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [tree layout] { root -- {left child, right child} };
+```
 
 
 ---
@@ -683,7 +1465,33 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `3f06f4291414`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+    animate/orbit/.style 2 args = {
+        myself:shift = {
+          along = {
+            (0,0) circle [radius=#1]
+          } sloped in #2s/10,
+          repeats }} ]
+
+ \node :color = {0s = "orange",
+                 2s = "red",
+                 4s = "orange",
+                 repeats}
+       {Sun};
+
+  \begin{scope}[animate={orbit={2.5cm}{365}}]
+    \node {Earth};
+    \node [animate={orbit={1cm}{28}}] {Moon};
+  \end{scope}
+
+  \useasboundingbox (-3.8,-3.8) (3.8,3.8);
+\end{tikzpicture}
+```
 
 
 ---
@@ -693,7 +1501,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `3d8c7bad7d10`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw :xshift = {0s = "0cm", 30s = "-3cm", repeats} (0,0) circle (5mm);
+```
 
 
 ---
@@ -703,7 +1517,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `eb56d3052fe5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill, text = white, animate = {
+  myself:fill = {0s = "red", 2s = "blue", begin on = click }}] {Click me};
+```
 
 
 ---
@@ -713,7 +1534,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `61dc0bd49072`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {a node:fill = {0s = "red", 2s = "blue",
+                                 begin on = click}}]
+  \node (a node) [fill, text = white] {Click me};
+```
 
 
 ---
@@ -723,7 +1552,19 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ac72db57e79f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{
+  animate/shake/.style = {myself:xshift = { begin on=click,
+      0s = "0mm", 50ms = "#1", 150ms = "-#1", 250ms = "#1", 300ms = "0mm" }}}
+\tikz \node [fill = blue!20, draw=blue, very thick, circle,
+  animate = {shake = 1mm}] {Shake};
+\tikz \node [fill = blue!20, draw=blue, very thick, circle,
+  animate = {shake = 2mm}] {SHAKE};
+```
 
 
 ---
@@ -733,7 +1574,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ffbc4a0a08b7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node, attribute = fill, time = 0s, value = red, entry,
+  object = node, attribute = fill, time = 2s, value = blue, entry,
+  object = node, attribute = fill, begin on = click, entry}]
+  \node (node) [fill, text=white] { Click me };
+```
 
 
 ---
@@ -743,7 +1594,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d45fad9f5a2b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node, attribute = fill, time = 0s, value = red, entry,
+                                   time = 2s, value = blue, entry,
+                                   begin on = click, entry}]
+  \node (node) [fill, text=white] { Click me };
+```
 
 
 ---
@@ -753,7 +1614,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a9e5bbedd658`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node,  attribute = fill, time = 0s, value = red, entry,
+  object = node2, attribute = draw, entry,
+  object = node,  attribute = fill, time = 2s, value = blue, entry,
+  object = node2, attribute = draw, entry,
+  object = node,  attribute = fill, begin on = click, entry,
+  object = node2, attribute = draw, begin on = click, entry}] {
+  \node (node)  [fill, text=white]            { Node 1 };
+  \node (node2) [draw, ultra thick] at (0,-1) { Node 2 };
+}
+```
 
 
 ---
@@ -763,7 +1639,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `16d852e0627b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = { object = b, :fill = {0s = "red", 2s = "blue",
+                                        begin on = click }}] {
+  \node (a) [fill, text = white, minimum width=1.5cm] at (0,1cm) {a};
+  \node (b) [fill, text = white, minimum width=1.5cm] at (0,5mm) {b};
+  \node (c) [fill, text = white, minimum width=1.5cm] at (0,0mm) {c}; }
+```
 
 
 ---
@@ -773,7 +1659,19 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ef53d8aa59ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = { object = b, :fill = {0s = "red", 2s = "blue",
+                                        begin on = click },
+                   object = c, :fill = {0s = "green", 2s = "blue",
+                                        begin on = click } }] {
+  \scoped [name = a, yshift=1cm] \fill (0,0) rectangle (1.5cm,2mm);
+  \scoped [name = b, yshift=5mm] \fill (0,0) rectangle (1.5cm,2mm);
+  \scoped [name = c, yshift=0mm] \fill (0,0) rectangle (1.5cm,2mm); }
+```
 
 
 ---
@@ -783,7 +1681,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `382e41a0f757`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {attribute = fill, n: = { 0s = "red", 2s = "blue",
+                                           begin on = click } }]
+  \node (n) [fill, text = white] {The node};
+```
 
 
 ---
@@ -793,7 +1699,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `74eddb7816ba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  id = 1, n:shift = { 0s = "{(0,0)}", 2s = "{(0,5mm)}", begin on = click },
+  id = 2, n:shift = { 0s = "{(0,0)}", 2s = "{(5mm,0)}", begin on = click }
+}]
+  \node (n) [fill = blue!20, draw=blue, very thick] {The node};
+```
 
 
 ---
@@ -803,7 +1719,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `47a5201f34f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :fill = { begin on = click,
+    0s = "white",
+    500ms later = "red",
+    500ms later = "green",  % same as 1s   = "-5mm"
+    500ms later = "blue"} % same as 1.5s = "-2.5mm"
+  [fill=blue!20, draw=blue, very thick, circle] {Click me};
+```
 
 
 ---
@@ -813,7 +1740,23 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `daea2e1a4112`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+time = 2s,
+time = 1s later,    % same as time = 3s
+time = 500ms later, % same as time = 3.5s
+time = 4s,
+time = 1s later,    % same as time = 5s
+scope = {           % opens a local scope
+  time = 1s later,  % same as time = 6s
+  time = 10s
+  time = 1s later   % same as time = 11s
+},                  % closes the scope, most recent time is 5s once more
+time = 2s later     % same as time = 7s
+```
 
 
 ---
@@ -823,7 +1766,20 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `57c5058f034b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate/highlight/.style = {
+    scope = { fork = #1,
+              :fill = { 0s = "black", 0.1s = "white", 0.2s = "black"} }
+  }]
+  \node [animate = { myself: = {
+            :fill = { 0s = "black", begin on = click },
+                      highlight = 1s, highlight = 2s } },
+         fill = blue, text=white, very thick, circle] { Click me };
+```
 
 
 ---
@@ -833,7 +1789,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `9809c2e76726`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+time = 2s,
+fork = 2s later,    % fork time is now 4s
+time = 1s,          % local time is 1s, absolute time is 5s (1s + fork time)
+time = 1s later,    % local time is 2s, absolute time is 6s (2s + fork time)
+remember = \mytime  % \mytime is now 6s
+```
 
 
 ---
@@ -843,7 +1809,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ebcc809df3d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+fork = 4s,
+time = 1s,
+remember = \mytime  % \mytime is now 5s
+fork = 2s,          % fork time is now 2s, local time is 0s
+resume   = \mytime  % fork time is still 2s, local time is 3s
+```
 
 
 ---
@@ -853,7 +1829,31 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `68723642240f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+scope = {
+  fork,
+  time = 1s later,
+  ...
+  remember = \forka
+},
+scope = {
+  fork,
+  time = 5s later,
+  ...
+  remember = \forkb
+},
+scope = {
+  fork,
+  time = 2s later,
+  ...
+  remember = \forkc
+},
+resume = {max(\forka,\forkb,\forkc)} % "join" the three forks
+```
 
 
 ---
@@ -863,7 +1863,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `b05c6817bf46`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = { obj:color = { 0s = "current value", 2s = "white" } }
+```
 
 
 ---
@@ -873,7 +1879,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d28e023bbc55`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [animate = { myself: = { begin on = click,
+    scope = { attribute = fill, repeats = 3, 0s = "red", 2s = "red!50" },
+    scope = { attribute = draw,              0s = "red", 2s = "red!50" }
+  }},
+  fill=blue!20, draw=blue, very thick, circle] {Click me};
+```
 
 
 ---
@@ -883,7 +1899,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c11d56e2c5bc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  mynode:opacity    = { 0s = "1",   5s = "0" },
+  mynode:color      = { 0s = "red", 5s = "blue" },
+  othernode:opacity = { 0s = "1",   5s = "0" },
+}
+```
 
 
 ---
@@ -893,7 +1919,19 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `12baeacbf2cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  mynode: = {
+    :opacity        = { 0s = "1",   5s = "0" },
+    :color          = { 0s = "red", 5s = "blue" }
+  },
+  othernode:opacity = { 0s = "1",   5s = "0" },
+}
+```
 
 
 ---
@@ -903,7 +1941,19 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0f1abe096360`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  :opacity = {
+    mynode:         = { 0s = "1",   5s = "0" },
+    othernode:      = { 0s = "1",   5s = "0" }
+  },
+  mynode:color      = { 0s = "red", 5s = "blue" }
+}
+```
 
 
 ---
@@ -913,7 +1963,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a39b8666f2ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  {mynode,othernode}:opacity = { 0s = "1",   5s = "0" },
+  mynode:color               = { 0s = "red", 5s = "blue" }
+}
+```
 
 
 ---
@@ -923,7 +1982,20 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0c4e7c57f76f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{scope} [animate = {
+                 myself: = { % Animate the attribute of the scope
+                   :opacity = { ... },
+                   :xshift  = { ... }
+                 }
+               }]
+  ...
+\end{scope}
+```
 
 
 ---
@@ -933,7 +2005,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8737609d9ecb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[animate = { myself: = { :some attribute = {...} } } ]
+```
 
 
 ---
@@ -943,7 +2021,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0042d285c28d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Here!};
+```
 
 
 ---
@@ -953,7 +2039,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e36564c1e446`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  :rotate = { 0s="0", 2s="90", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Here!};
+```
 
 
 ---
@@ -963,7 +2058,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e8eebb622968`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle]
+  :rotate = { 0s="0", 2s="90", begin on=click } {Here!};
+```
 
 
 ---
@@ -973,7 +2077,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `5e36c60944eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz  :fill opacity = { 0s="1", 2s="0", begin on=click }
+       :rotate = { 0s="0", 2s="90", begin on=click }
+       [ultra thick]
+  \node [fill = blue!20, draw = blue, circle] {Here!};
+```
 
 
 ---
@@ -983,7 +2096,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `5e7e49c950d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+sync = { time = 1s, sync = { value = red, entry }, entry }
+```
 
 
 ---
@@ -993,7 +2112,21 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `05feededaad6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj:color = {
+    0s = "red",
+    2s = "blue",
+    1s later = "green",
+    1s later = "green!50!black",
+    10s = "black"
+  }
+}
+```
 
 
 ---
@@ -1003,7 +2136,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a302c12dd306`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj: = {
+    :color = { 0s = "red", 2s = "green" },
+    :opacity = { 0s = "1", 2s = "0" }
+  }
+}
+```
 
 
 ---
@@ -1013,7 +2157,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d0cf1beef2ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  0s = {
+    obj:color = "red",
+    obj:opacity = "1"
+  },
+  2s = {
+    obj:color = "green",
+    obj:opacity = "0"
+  }
+}
+```
 
 
 ---
@@ -1023,7 +2182,24 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `bd23a9488996`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj: = {
+    0s = {
+      :color = "red",
+      :opacity = "1"
+    },
+    2s = {
+      :color = "green",
+      :opacity = "0"
+    }
+  }
+}
+```
 
 
 ---
@@ -1033,7 +2209,32 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `f07d9624f348`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  0s = {
+    obj: = {
+      :color = "red",
+      :opacity = "1"
+    },
+    main node: = {
+      :color = "black"
+    }
+  },
+  2s = {
+    obj: = {
+      :color = "green",
+      :opacity = "0"
+    },
+    main node: = {
+      :color = "white"
+    }
+  }
+}
+```
 
 
 ---
@@ -1043,7 +2244,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a2e1dd7c78e6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz :fill = {0s = "red", 2s = "blue", begin on = click}
+      [text = white, fill = orange ] {
+  \node [fill]                   at (0mm,0) {A};
+  \node [fill]                   at (5mm,0) {B};
+  \node [fill = green!50!black ] at (1cm,0) {C};
+}
+```
 
 
 ---
@@ -1053,7 +2265,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `18ca65620190`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [my anim/.style={ animate = {
+           myself:text = {0s = "red", 2s = "blue", begin on = click}}},
+       text = white, fill = orange ] {
+  \node [fill, my anim] at (0,0) {A};
+  \node [fill, my anim] at (1,0) {B};
+}
+```
 
 
 ---
@@ -1063,7 +2286,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d8cc9ba5a58b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {myself:text = {0s = "red", 2s = "blue",
+                                 begin on = click}},
+       text = white, fill = orange ] {
+  \node [fill] at (0,0) {A};
+  \node [fill] at (1,0) {B};
+}
+```
 
 
 ---
@@ -1073,7 +2307,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `fef58ac2f5d7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1083,7 +2324,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `80401fa9896f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1093,7 +2341,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8995cb98562d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz :visible = {begin on=click, 0s="false", 2s="false"}
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+```
 
 
 ---
@@ -1103,7 +2358,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `b4d051ea2716`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {example:stage = {
+                   begin on = {click, of next=node},
+                   0s="true", 2s="true" }}] {
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+  \node at (2,0) (example) [fill = blue!20, circle] {Effect};
+}
+```
 
 
 ---
@@ -1113,7 +2379,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ca398901a8d8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :line width = { 0s="1pt", 2s="5mm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1123,7 +2396,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `aa1e2b093bef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash = { 0s="on 10pt off 1pt  phase 0pt",
+                      2s="on 1pt  off 10pt phase 0pt", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1133,7 +2414,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `99f7a2f95dfe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash = { 0s="on 1cm off 1pt phase 0pt",
+                      2s="on 1cm off 1pt phase 1cm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1143,7 +2432,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a479ded22d15`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash phase = { 0s="0pt", 2s="1cm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle, dashed] {Click me!};
+```
 
 
 ---
@@ -1153,7 +2449,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `34a39414f80b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :path = {
+        0s = "{(0,-1) .. controls (0,0) and (0,0)   .. (0,1) -- (1,1)}",
+        2s = "{(0,-1) .. controls (-1,0) and (-1,0) .. (-1,1) -- (.5,-1)}",
+        begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1163,7 +2469,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `56a36227b8c7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :path = {
+        0s = "{(0,0) circle [radius=1cm]}",
+        2s = "{(0,0)
+               (1,0) .. controls +(0,0) and +(0,0) .. (0,1)
+                     .. controls +(0,0) and +(0,0) .. (-1,0)
+                     .. controls +(0,0) and +(0,0) .. (0,-1)
+                     .. controls +(0,0) and +(0,0) .. (1,0)
+                     -- cycle (0,0)}",
+        begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1173,7 +2494,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `9eb3384cb15a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw :path = { 1s = "{(0,0) -- (1,0)}", 2s = "{(0,1) -- (1,0)}" }
+  [->] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1183,7 +2511,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c99c07e72fbb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw :path = { 1s = "{(0,0) -- (1,0)}", 2s = "{(0,1) -- (1,0)}", arrows = -> }
+  (0,0) -- (1,0);
+```
 
 
 ---
@@ -1193,17 +2528,35 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `367843f862ec`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw :path = { 1s = "{(0,0) -- (1,0)}" base, 2s = "{(0,1) -- (1,0)}", arrows = -> };
+```
 
 
 ---
 
-## 4121. Other Example
+## 4121. Node Graph Example
 
 **ID**: `9e660ffcb810`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [very thick] {
+  \node (node) at (-2,0)
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+  \draw :path = {
+    0s = "{(0,0) to[out=90, in=180] (.5,1) to[out=0, in=90] (.5,.5)}" base,
+    2s = "{(1,0) to[out=180, in=180] (.25,.5) to[out=0, in=180] (1,.5)}",
+    arrows = <.<->, begin on = {click, of=node} }; }
+```
 
 
 ---
@@ -1213,7 +2566,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `eb2ba6fb81f5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :scale = { 0s="1", 2s="0.2", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1223,7 +2583,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `b0f6dbd35057`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="45", 2s="90", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1233,7 +2600,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `9ff3504c34a4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :xskew = { 0s="0", 2s="45", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1243,7 +2617,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6ccfe017d9c2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :xslant = { 0s="-1", 2s="1", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1253,7 +2634,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d988311b1f5b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :shift = { 0s="{(0,0)}", 2s="{(5mm,-5mm)}",
+                       begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1263,7 +2652,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `66a73c128476`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :xshift = { 0s="0pt", 2s="5mm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1273,77 +2669,164 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `5072efdc6b57`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :shift = { 0s = "{(0,0)}", 2s = "{(5mm,-5mm)}",
+                       begin on = click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
 
-## 4129. Other Example
+## 4129. Node Graph Example
 
 **ID**: `81b369ff8475`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
+  \draw (1,.5) circle [radius=1mm];
+  \node :shift = {
+            along = {(0,0) circle[radius=5mm]} upright,
+            0s="0", 2s=".25", begin on=click }
+    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
+}
+```
 
 
 ---
 
-## 4130. Other Example
+## 4130. Node Graph Example
 
 **ID**: `7c62533dc718`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
+  \draw (1,.5) circle [radius=1mm];
+  \node :shift = {
+            along = {(0,0) circle[radius=5mm]} sloped,
+            0s="0", 2s=".25", begin on=click }
+    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
+}
+```
 
 
 ---
 
-## 4131. Other Example
+## 4131. Node Graph Example
 
 **ID**: `84d47d7dcdc8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
+  \node :rotate = { 0s="0", 2s="45", begin on=click}
+    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
+}
+```
 
 
 ---
 
-## 4132. Other Example
+## 4132. Node Graph Example
 
 **ID**: `1a42f4996d98`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
+  \scoped :rotate = { 0s="0", 2s="45", begin on={click, of next=n} }
+    \node (n) at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
+}
+```
 
 
 ---
 
-## 4133. Other Example
+## 4133. Node Graph Example
 
 **ID**: `c40545293a0b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
+  \node :rotate = { 0s="0", 2s="45", begin on=click,
+                    origin = {(1,0)}}
+    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
+}
+```
 
 
 ---
 
-## 4134. Other Example
+## 4134. Node Graph Example
 
 **ID**: `8ef07ac601cd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
+  \node :xshift = { 0s="0cm", 2s="5mm", begin on=click,
+                    transform = {rotate=-90} }
+    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
+}
+```
 
 
 ---
 
-## 4135. Other Example
+## 4135. Node Graph Example
 
 **ID**: `efa7f363cb78`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
+  \node :xshift = { 0s="0cm", 2s="5mm", begin on=click,
+                    transform = {rotate=-45, scale=2} }
+    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
+}
+```
 
 
 ---
@@ -1353,47 +2836,108 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `93b17238d753`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\coordinate(A) at (1,1);
+\coordinate(B) at (2,1);
+\coordinate(C) at (2,0);
+```
 
 
 ---
 
-## 4137. Other Example
+## 4137. Node Graph Example
 
 **ID**: `18fe223e5b1a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
+  \draw (1,.5) circle [radius=1mm] (1.5,0) circle [radius=1mm];
+  \node :position = { 0s="{(1,.5)}", 2s="{(1.5,0)}", begin on=click }
+    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
+}
+```
 
 
 ---
 
-## 4138. Other Example
+## 4138. Node Graph Example
 
 **ID**: `d6a8b83cd81d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
+  \draw (1,.5) circle [radius=1mm] (1.5,0) circle [radius=1mm];
+  \node :shift = { 0s="{(1,.5)}", 2s="{(1.5,0)}", begin on=click }
+    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
+}
+```
 
 
 ---
 
-## 4139. Other Example
+## 4139. Node Graph Example
 
 **ID**: `663abc151905`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
+  \draw (1,1) circle [radius=1mm] (1.5,0) circle [radius=1mm];
+  \node :position = {
+             along = {(1,1) to[bend left] (1.5,0)} sloped in 2s,
+             begin on = click }
+         at (1,1) [fill = blue, opacity=.5, circle] {Click};
+}
+```
 
 
 ---
 
-## 4140. Other Example
+## 4140. Node Graph Example
 
 **ID**: `d01e0fae10c7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [very thick] {
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+
+  \draw [green!50!black] (1.2,-0.8) rectangle (2.7,0.8);
+  \begin{scope}[view = {(0,0) (2,2) at (1.2,-0.8) (2.7,0.8)},
+                animate = {myself:view = {
+                    begin on = {click, of=node},
+                    0s = "{(0,0) (2,2)}",
+                    2s = "{(1,1) (1.5,1.5)}" }}]
+    \draw [red] (10mm,10mm) rectangle (15mm,15mm);
+    \node at (10mm,10mm) [circle, fill=red, text=white, font=\tiny] {red};
+  \end{scope}
+}
+```
 
 
 ---
@@ -1403,7 +2947,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `541926e949c7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill = green, text = white] :fill =
+    { 1s = "red", 2s = "blue", base = "orange", begin on = click }
+  {Click me};
+```
 
 
 ---
@@ -1413,7 +2965,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0d1c5e4e7f12`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill = green, text = white] :fill =
+    { 1s = {"red" = base}, 2s = "blue", begin on = click }
+  {Click me};
+```
 
 
 ---
@@ -1423,7 +2983,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ed83a88c2736`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill = green, text = white] :fill =
+    { 1s = "red" base, 2s = "blue", begin on = click }
+  {Click me};
+```
 
 
 ---
@@ -1433,7 +3001,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `41f2df5e08d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :fill = { 1s="red", 2s="blue", forever, begin on=click}
+  [fill = green!50!black, text = white] {Click me};
+```
 
 
 ---
@@ -1443,7 +3018,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `474f70382da4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill = green!50!black, text = white]
+    :fill = { 1s = "red", 2s = "blue", begin on = click }
+  {Click me};
+```
 
 
 ---
@@ -1453,7 +3036,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a88392bfea96`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill = green!50!black, text = white]
+    :rotate = { 1s = "0", 5s = "90", begin = 2s, end = 4s }
+  {Click me};
+```
 
 
 ---
@@ -1463,7 +3054,19 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a6e663e95edc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [very thick] {
+  \node (X) at (1,1.2)  [fill = blue!20, draw = blue, circle] {1};
+  \node (X) at (1,0.4)  [fill = orange!20, draw = orange, circle] {2};
+  \node (node) :rotate = {0s="0", 2s="90", begin on = {click, of = X}}
+               [fill = red!20, draw = red, rectangle] {Anim};
+  \node (X) at (1,-0.4) [fill = blue!20, draw = blue, circle] {3};
+  \node (X) at (1,-1.2) [fill = blue!20, draw = blue, circle] {4}; }
+```
 
 
 ---
@@ -1473,7 +3076,20 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e24d96d0b9bc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [very thick] {
+  \node (X) at (1,1.2)  [fill = blue!20, draw = blue, circle] {1};
+  \node (X) at (1,0.4)  [fill = blue!20, draw = blue, circle] {2};
+  \node (node) :rotate = {
+                 0s="0", 2s="90", begin on = {click, of next = X}}
+               [fill = red!20, draw = red, rectangle] {Anim};
+  \node (X) at (1,-0.4) [fill = orange!20, draw = orange, circle] {3};
+  \node (X) at (1,-1.2) [fill = blue!20, draw = blue, circle] {4}; }
+```
 
 
 ---
@@ -1483,7 +3099,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `91e18e73c56a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {click}}
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1493,7 +3116,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ad8dcd2dedba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse down}}
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1503,7 +3133,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `16119b4e1661`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse up} }
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1513,7 +3150,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `cb4daed7816a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse over} }
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1523,7 +3167,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `ffe1152b0bf0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse move} }
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1533,7 +3184,14 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `eb055575ba8b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse out} }
+  [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1543,7 +3201,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8849db044a73`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [animate = {
+      myself:rotate = { 0s="0", 2s="90", begin on = {begin, of next=anim}},
+      myself:xshift = { 0s="0mm", 2s="5mm", begin on = {click}, name=anim}
+    },
+    fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1553,7 +3221,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `41c067abe266`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [animate = {
+    myself:rotate = { 0s="0", 2s="90", begin on = {end, of next=anim}},
+    myself:xshift = { 0s="0mm", 2s="5mm", begin on = {click}, name=anim }
+  },
+  fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1563,7 +3241,18 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `a88f1fb375e5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \node [animate = { myself: = {
+    :rotate = { 0s="0", 2s="90", begin on = {repeat = 2, of next = anim },
+                begin snapshot = 2 },
+    :xshift = { 0s="0mm", 2s="5mm", begin on=click, name=anim, repeats=4 }}},
+    fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1573,7 +3262,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `bc2f1ba68d05`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90",
+                        restart = false, begin on = {click}}
+    [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1583,7 +3280,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `8a26fa68d39d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s="0", 2s="90",
+                        restart = when not active, begin on = {click}}
+    [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
+```
 
 
 ---
@@ -1593,7 +3298,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d289cdda6cc7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s = "0", 2s = "90",
+                        repeats, begin on = click }
+    [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1603,7 +3316,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6c5601d1148b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s = "0", 2s = "90",
+                        repeats = 1.75, begin on = click }
+    [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1613,7 +3334,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `09276b45120e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s = "0", 2s = "90",
+                        repeats = for 3.5s, begin on = click }
+    [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1623,7 +3352,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `b53a97f8712c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s = "0", 2s = "90", begin on = click,
+                        repeats = accumulating }
+    [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1633,7 +3370,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `787262866da0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :rotate = { 0s = "0", 2s = "90", begin on = click,
+                        repeats = for 4s accumulating }
+    [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1643,7 +3388,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `f5923a3203d4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(0s,50) .. controls (5s,50) and (9s,100) .. (10s,100)
+```
 
 
 ---
@@ -1653,67 +3404,151 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `cabc62f28cd7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+exit control={0.5}{0},
+entry control={0.9}{1},
+0s = "50",
+10s = "100"
+```
 
 
 ---
 
-## 4167. Other Example
+## 4167. Node Graph Example
 
 **ID**: `5079a765f425`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click,
+                    0s = { exit control = {1}{0}, "0cm" },
+                    1s = "-5mm",
+                    2s = "-10mm" }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
 
-## 4168. Other Example
+## 4168. Node Graph Example
 
 **ID**: `08cd503676ab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click,
+                    0s = "0cm",
+                    1s = "-5mm",
+                    2s = { entry control = {0}{1}, "-10mm" } }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
 
-## 4169. Other Example
+## 4169. Node Graph Example
 
 **ID**: `7d8a545d5096`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click,
+                    0s = { exit control = {1}{0}, "0cm" },
+                    1s = "-5mm",
+                    2s = { entry control = {0}{1}, "-10mm" } }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
 
-## 4170. Other Example
+## 4170. Node Graph Example
 
 **ID**: `0e8d63914be9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click, ease, 0s = "0cm", 2s = "-10mm" }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
 
-## 4171. Other Example
+## 4171. Node Graph Example
 
 **ID**: `fb63fe818c4d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click,
+                    0s = "0cm",
+                    1s = {stay, "-5mm"},
+                    2s = "-10mm" }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
 
-## 4172. Other Example
+## 4172. Node Graph Example
 
 **ID**: `ee464f7df449`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \node :yshift = { begin on = click,
+                    0s = "0cm",
+                    1s = {jump, "-5mm"},
+                    2s = "-10mm" }
+    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+}
+```
 
 
 ---
@@ -1723,7 +3558,15 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `6b3bd68e9be0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \t in {0.5, 1, 1.5, 2}
+  \tikz [make snapshot of = \t]
+    \fill :fill = {0s="black", 2s="red"} (0,0) circle [radius = 5mm];
+```
 
 
 ---
@@ -1733,7 +3576,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `575465043f68`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [make snapshot of = 1s] {
+  \fill :fill = { 0s = "black", 2s = "white" } (0,0) rectangle ++(1,1);
+  \fill :fill = { 1s = "black", 3s = "white" } (2,0) rectangle ++(1,1);
+}
+```
 
 
 ---
@@ -1743,7 +3595,17 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0b6a10cb8e2e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [make snapshot of = 1s] {
+  \fill :fill = { 0s = "black", 2s = "white",
+                  begin snapshot = 1s }        (0,0) rectangle ++(1,1);
+  \fill :fill = { 1s = "black", 3s = "white" } (2,0) rectangle ++(1,1);
+}
+```
 
 
 ---
@@ -1753,7 +3615,16 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c89bff26ac49`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [make snapshot of = 2s]
+  \fill :fill = { 0s = "green", 2s = "red" } (0,0) rectangle ++(1,1);
+\tikz [make snapshot after = 2s]
+  \fill :fill = { 0s = "green", 2s = "red" } (0,0) rectangle ++(1,1);
+```
 
 
 ---
@@ -1763,7 +3634,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `d0df42fd6ef5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{make snapshot if necessary}
+```
 
 
 ---
@@ -1774,6 +3651,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Defines || as $1$. This provides greatest accuracy when x is small.
+
 
 ---
 
@@ -1782,6 +3663,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `531ff955045e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y} Defines || 1.0 if $ x - y < 0.0001$, but 0.0 otherwise. As a side-effect, the global boolean || will be set accordingly.
 
 
 ---
@@ -1792,6 +3677,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Defines || as a pseudo-random integer between 1 and $2^{31}-1$. This uses a linear congruency generator, based on ideas of Erich Janka.
+
 
 ---
 
@@ -1800,6 +3689,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `671522197f00`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+minimummaximum} This defines macro as a pseudo-randomly generated integer from the range minimum to maximum (inclusive). codeexample[] pgfpicture in {1,...,50}{ {1}{50} {1}{50} {+ pt{+ pt}}{+2pt} blue!40!white blue!80!black stroke, fill } pgfpicture codeexample
 
 
 ---
@@ -1810,6 +3703,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+{\{}item-1item-2...{\}}} This creates a list of items with the name list name.
+
 
 ---
 
@@ -1818,6 +3715,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `849c9294b4af`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+list name} Select an item from a random list list name. The selected item is placed in macro.
 
 
 ---
@@ -1828,6 +3729,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Explicitly sets the seed for the pseudo-random number generator. By default it is set to the value of ||$$||.
+
 
 ---
 
@@ -1836,6 +3741,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `0824ffb5bc4d`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+numberbase} Defines macro as the result of converting number from base base to base 10. Alphabetic digits can be upper or lower case. { codeexample[] 107f{16} codeexample Note that, as usual in , the braces around an argument can be omitted if the argument is just a single token (a macro name is a single token). codeexample[] 33FC{20} codeexample }
 
 
 ---
@@ -1846,6 +3755,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+numberbase} Defines macro as the result of converting number from base 10 to base base. Any resulting alphabetic digits are in lower case. codeexample[] 65535{16} codeexample
+
 
 ---
 
@@ -1854,6 +3767,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `9ac3638c50e9`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+numberbase} Defines macro as the result of converting number from base 10 to base base. Any resulting alphabetic digits are in upper case. codeexample[] 65535{16} codeexample
 
 
 ---
@@ -1864,6 +3781,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+numberbase-1base-2} Defines macro as the result of converting number from base base-1 to base base-2. Alphabetic digits in number can be upper or lower case, but any resulting alphabetic digits are in lower case. codeexample[] 11011011{2}{16} codeexample
+
 
 ---
 
@@ -1872,6 +3793,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `fa485d9a2531`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+numberbase-1base-2} Defines macro as the result of converting number from base base-1 to base base-2. Alphabetic digits in number can be upper or lower case, but any resulting alphabetic digits are in upper case. codeexample[] 121212{3}{12} codeexample
 
 
 ---
@@ -1882,6 +3807,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the number of digits in the result of a base conversion to integer. If the result of a conversion has less digits than this number, it is prefixed with zeros. codeexample[] 8 15{2} codeexample
+
 
 ---
 
@@ -1890,6 +3819,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e41ee24b5579`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+number} This command converts number into a comma-separated list of digits and stores the result in macro. The number is not parsed before processing. codeexample[] 8 tikzpicture[x=0.25cm, y=0.25cm] [count=] in {0, 60, 102, 102, 126, 102, 102, 102, 0}{ {}{2} {} [count=, evaluate={=*50+15;}] in [fill=black!] (, -) rectangle ++(1,1); } tikzpicture codeexample
 
 
 ---
@@ -1900,6 +3833,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+q} Returns the angle of a line from p to q relative to a line going straight right from p. codeexample[] {1cm{3cm}}{2cm{4cm}} codeexample
+
 
 ---
 
@@ -1909,6 +3846,10 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$q_1$$p_2$$q_2$} Returns the clockwise angle between a line going through $p_1$ and $q_1$ and a line going through $p_2$ and $q_2$. codeexample[] {1cm{3cm}}{2cm{4cm}} {0cm{1cm}}{1cm{0cm}} codeexample
+
 
 ---
 
@@ -1917,7 +3858,22 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `7036fac254fb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+   \foreach \x in {1,...,50}{
+      \pgfmathrandominteger{\a}{1}{50}
+      \pgfmathrandominteger{\b}{1}{50}
+      \pgfpathcircle{\pgfpoint{+\a pt}{+\b pt}}{+2pt}
+      \color{blue!40!white}
+      \pgfsetstrokecolor{blue!80!black}
+      \pgfusepath{stroke, fill}
+   }
+\end{pgfpicture}
+```
 
 
 ---
@@ -1927,7 +3883,25 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `081e9f9bf214`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+   \pgfmathdeclarerandomlist{color}{{red}{blue}{green}{yellow}{white}}
+   \foreach \a in {1,...,50}{
+      \pgfmathrandominteger{\x}{1}{85}
+      \pgfmathrandominteger{\y}{1}{85}
+      \pgfmathrandominteger{\r}{5}{10}
+      \pgfmathrandomitem{\c}{color}
+      \pgfpathcircle{\pgfpoint{+\x pt}{+\y pt}}{+\r pt}
+      \color{\c!40!white}
+      \pgfsetstrokecolor{\c!80!black}
+      \pgfusepath{stroke, fill}
+   }
+\end{pgfpicture}
+```
 
 
 ---
@@ -1937,7 +3911,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `e73770a92dab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathbasetodec\mynumber{107f}{16} \mynumber
+```
 
 
 ---
@@ -1947,7 +3927,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c0d857e7a5cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathbasetodec\mynumber{33FC}{20} \mynumber
+```
 
 
 ---
@@ -1957,7 +3943,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `dfbc083e1cbd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathdectobase\mynumber{65535}{16} \mynumber
+```
 
 
 ---
@@ -1967,7 +3959,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `3a7f34d88d9f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathdectoBase\mynumber{65535}{16} \mynumber
+```
 
 
 ---
@@ -1977,7 +3975,13 @@ Showing items **4001-4200** of **6812** | Page **21** of **35**
 **ID**: `c1d967750823`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathbasetobase\mynumber{11011011}{2}{16} \mynumber
+```
 
 
 ---

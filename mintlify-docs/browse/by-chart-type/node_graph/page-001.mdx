@@ -11,182 +11,508 @@ Showing items **201-218** of **218** | Page **2** of **2**
 
 ---
 
-## 201. Other Example
+## 201. Node Graph Example
 
 **ID**: `75fca50fd93e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style=draw]
+  \pgfsetmatrixcolumnsep{1cm,between origins}
+  \pgfmatrix{rectangle}{center}{mymatrix}
+    {\pgfusepath{}}{\pgfpointorigin}{\let\&=\pgfmatrixnextcell}
+  {
+    \node (a) {8}; \& \node (b) {1}; \&[between borders] \node (c) {6}; \\
+    \node     {3}; \& \node     {5}; \&                  \node     {7}; \\
+    \node     {4}; \& \node     {9}; \&                  \node     {2}; \\
+  }
+  \begin{scope}[every node/.style=]
+    \draw [<->,red,thick] (a.center) -- (b.center) node [above,midway] {10mm};
+    \draw [<->,red,thick] (b.east) -- (c.west) node [above,midway]
+    {10mm};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 202. Other Example
+## 202. Node Graph Example
 
 **ID**: `12e62d078d2f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[start chain=circle placed {at=(\tikzchaincount*30:1.5)}]
+  \foreach \i in {1,...,10}
+    \node [on chain] {\i};
+
+  \draw (circle-1) -- (circle-10);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 203. Other Example
+## 203. Node Graph Example
 
 **ID**: `ee81fce3c21d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[start chain=going {at=(\tikzchainprevious),shift=(30:1)}]
+  \draw [help lines] (0,0) grid (3,2);
+  \node [draw,on chain] {1};
+  \node [draw,on chain] {Hello};
+  \node [draw,on chain] {World};
+  \node [draw,on chain] {.};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 204. Other Example
+## 204. Node Graph Example
 
 **ID**: `285f93ec79f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[node distance=5mm,
+                    every node/.style=draw,every join/.style=->]
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node[red] (existing) at (0,2) {existing};
+
+  \begin{scope}[start chain]
+    \node [draw,on chain,join] {Hello};
+    \node [draw,on chain,join] {World};
+    \chainin (existing) [join];
+    \node [draw,on chain,join] {this};
+    \node [draw,on chain,join] {is};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 205. Other Example
+## 205. Node Graph Example
 
 **ID**: `a55daf2ef860`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate (content)   at (90:3cm);
+  \coordinate (structure) at (210:3cm);
+  \coordinate (form)      at (-30:3cm);
+
+  \node [above]       at (content)   {content oriented};
+  \node [below left]  at (structure) {structure oriented};
+  \node [below right] at (form)      {form oriented};
+
+  \draw [thick,gray] (content.south) -- (structure.north east) -- (form.north west) -- cycle;
+
+  \small
+  \node at (barycentric cs:content=0.5,structure=0.1 ,form=1)    {PostScript};
+  \node at (barycentric cs:content=1  ,structure=0   ,form=0.4)  {DVI};
+  \node at (barycentric cs:content=0.5,structure=0.5 ,form=1)    {PDF};
+  \node at (barycentric cs:content=0  ,structure=0.25,form=1)    {CSS};
+  \node at (barycentric cs:content=0.5,structure=1   ,form=0)    {XML};
+  \node at (barycentric cs:content=0.5,structure=1   ,form=0.4)  {HTML};
+  \node at (barycentric cs:content=1  ,structure=0.2 ,form=0.8)  {\TeX};
+  \node at (barycentric cs:content=1  ,structure=0.6 ,form=0.8)  {\LaTeX};
+  \node at (barycentric cs:content=0.8,structure=0.8 ,form=1)    {Word};
+  \node at (barycentric cs:content=1  ,structure=0.05,form=0.05) {ASCII};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 206. Other Example
+## 206. Node Graph Example
 
 **ID**: `42a75fb82821`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[node font=\ttfamily]
+  \node (shape)   at (0,2)  [draw] {class Shape};
+  \node (rect)    at (-2,0) [draw] {class Rectangle};
+  \node (circle)  at (2,0)  [draw] {class Circle};
+  \node (ellipse) at (6,0)  [draw] {class Ellipse};
+
+  \draw (node cs:name=circle,anchor=north) |- (0,1);
+  \draw (node cs:name=ellipse,anchor=north) |- (0,1);
+  \draw [arrows = -{Triangle[open, angle=60:3mm]}]
+           (node cs:name=rect,anchor=north)
+        |- (0,1) -| (node cs:name=shape,anchor=south);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 207. Other Example
+## 207. Node Graph Example
 
 **ID**: `9a64a8e51b93`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node (start) [draw,shape=ellipse] {start};
+  \foreach \angle in {-90, -80, ..., 90}
+    \draw (node cs:name=start,angle=\angle)
+      .. controls +(\angle:1cm) and +(-1,0) .. (2.5,0);
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 208. Other Example
+## 208. Node Graph Example
 
 **ID**: `cf7dd46332c8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+% \begin{tikzpicture}[scale=.25]
+%   \coordinate [label=-135:$a$] (a) at ($ (0,0)   + (rand,rand) $);
+%   \coordinate [label=45:$b$]   (b) at ($ (3,2) + (rand,rand) $);
+%
+%   \coordinate [label=-135:$u$] (u) at (-1,1);
+%   \coordinate [label=45:$v$]   (v) at (6,0);
+%
+%   \draw (a) -- (b)
+%         (u) -- (v);
+%
+%   \node (c1) at (a) [draw,circle through=(b)] {};
+%   \node (c2) at (b) [draw,circle through=(a)] {};
+%
+%   \coordinate [label=135:$c$] (c) at (intersection 2 of c1 and c2);
+%   \coordinate [label=-45:$d$] (d) at (intersection of u--v and c2);
+%   \coordinate [label=135:$e$] (e) at (intersection of u--v and a--b);
+%
+%   \foreach \p in {a,b,c,d,e,u,v}
+%     \fill [opacity=.5] (\p) circle (8pt);
+% \end{tikzpicture}
+%
+```
 
 
 ---
 
-## 209. Other Example
+## 209. Node Graph Example
 
 **ID**: `fc866ba070d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \coordinate (a) at (3,2);
+
+  \node [circle,draw] (c) at (1,1) [minimum size=40pt] {$c$};
+
+  \draw[red] (a)  -- (tangent cs:node=c,point={(a)},solution=1) --
+       (c.center) -- (tangent cs:node=c,point={(a)},solution=2) -- cycle;
+\end{tikzpicture}
+```
 
 
 ---
 
-## 210. Other Example
+## 210. Node Graph Example
 
 **ID**: `af5e56801669`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node (A) at (0,1)    {A};
+  \node (B) at (1,1.5)  {B};
+  \node (C) at (2,0)    {C};
+  \node (D) at (2.5,-2) {D};
+
+  \draw (A) -- (B) node [midway] {x};
+  \draw (C) -- (D) node [midway] {x};
+
+  \node at ({$(A)!.5!(B)$} -| {$(C)!.5!(D)$}) {X};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 211. Other Example
+## 211. Node Graph Example
 
 **ID**: `e0e354106b39`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node (a) at (1,1) {A};
+  \fill [red] ($(a) + 1/3*(1cm,0)$) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 212. Other Example
+## 212. Node Graph Example
 
 **ID**: `2f3bffc04f6c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in {0,0.2,0.5,0.9,1}
+    \node at ($(1,0)!\i!(3,2)$) {\i};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 213. Other Example
+## 213. Node Graph Example
 
 **ID**: `25c6fa93c059`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in {0cm,1cm,15mm}
+    \node at ($(1,0)!\i!(3,2)$) {\i};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 214. Other Example
+## 214. Node Graph Example
 
 **ID**: `b7bc175d76c6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \node [circle,draw] (A)              {A};
+  \node [circle,draw] (B) [right=of A] {B};
+
+  \draw [draw = blue, thick,
+         arrows={
+           Computer Modern Rightarrow [sep]
+         - Latex[blue!50,length=8pt,bend,line width=0pt]
+           Stealth[length=8pt,open,bend,sep]}]
+    (A) edge [bend left=45] (B)
+    (B) edge [in=-110, out=-70,looseness=8] (B);
+}
+```
 
 
 ---
 
-## 215. Other Example
+## 215. Node Graph Example
 
 **ID**: `705a4515be4a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \node [draw] (A) {A};
+  \node [draw] (B) [right=of A] {B};
+
+  \draw [-{>>[sep=2pt]}] (A) to [bend left=45] (B);
+  \draw [- >>          ] (A) to [bend right=45] (B);
+}
+```
 
 
 ---
 
-## 216. Other Example
+## 216. Node Graph Example
 
 **ID**: `8d3352cada20`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \node (a) at (2,1.5) {$a$};
+  \node [draw] at (1,1) [circle through={(a)}] {$c$};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 217. Other Example
+## 217. Node Graph Example
 
 **ID**: `c273497924d5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\newbox\mybox
+
+\def\mysaver{
+  \global\setbox\mybox=\box\pgfpositionnodelaterbox
+  \global\let\myname=\pgfpositionnodelatername
+  \global\let\myminx=\pgfpositionnodelaterminx
+  \global\let\myminy=\pgfpositionnodelaterminy
+  \global\let\mymaxx=\pgfpositionnodelatermaxx
+  \global\let\mymaxy=\pgfpositionnodelatermaxy
+}
+
+\begin{tikzpicture}
+  {
+    \pgfpositionnodelater{\mysaver}
+    \node [fill=blue!20,below,rotate=30] (hi) {Hello world};
+  }
+  \draw [help lines] (0,0) grid (3,2);
+
+  \let\pgfpositionnodelatername=\myname
+  \let\pgfpositionnodelaterminx=\myminx
+  \let\pgfpositionnodelaterminy=\myminy
+  \let\pgfpositionnodelatermaxx=\mymaxx
+  \let\pgfpositionnodelatermaxy=\mymaxy
+  \setbox\pgfpositionnodelaterbox=\box\mybox
+  \pgfpositionnodenow{\pgfqpoint{2cm}{2cm}}
+
+  \draw (hi) -- (0,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 218. Other Example
+## 218. Node Graph Example
 
 **ID**: `ab51d1211a0f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\pgfdeclareshape{document}{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  % ... and possibly more
+  \backgroundpath{% this is new
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    % compute corner of ``flipped page''
+    \pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
+    \pgf@yc=\pgf@yb \advance\pgf@yc by-5pt
+    % construct main path
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathclose
+    % add little corner
+    \pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+ }
+}\hskip-1.2cm
+\begin{tikzpicture}
+  \node[shade,draw,shape=document,inner sep=2ex] (x) {Remark};
+  \node[fill=yellow!80!black,draw,ellipse,double]
+    at ([shift=(-80:3cm)]x) (y) {Use Case};
+
+  \draw[dashed] (x) -- (y);
+\end{tikzpicture}
+```
 
 
 ---

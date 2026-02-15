@@ -11,12 +11,28 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 
 ---
 
-## 4801. Other Example
+## 4801. Node Graph Example
 
 **ID**: `af5e56801669`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node (A) at (0,1)    {A};
+  \node (B) at (1,1.5)  {B};
+  \node (C) at (2,0)    {C};
+  \node (D) at (2.5,-2) {D};
+
+  \draw (A) -- (B) node [midway] {x};
+  \draw (C) -- (D) node [midway] {x};
+
+  \node at ({$(A)!.5!(B)$} -| {$(C)!.5!(D)$}) {X};
+\end{tikzpicture}
+```
 
 
 ---
@@ -26,7 +42,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `04a901d064d0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={opacity=1, black, above left}]
+  \draw [help lines] grid (3,2);
+  \draw [name path=ellipse] (2,0.5) ellipse (0.75cm and 1cm);
+  \draw [name path=rectangle, rotate=10] (0.5,0.5) rectangle +(2,1);
+  \fill [red, opacity=0.5, name intersections={of=ellipse and rectangle}]
+    (intersection-1) circle (2pt) node {1}
+    (intersection-2) circle (2pt) node {2};
+\end{tikzpicture}
+```
 
 
 ---
@@ -36,7 +65,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `435e83ed23c3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections={of=curve 1 and curve 2, name=i, total=\t}]
+        [red, opacity=0.5, every node/.style={above left, black, opacity=1}]
+        \foreach \s in {1,...,\t}{(i-\s) circle (2pt) node {\footnotesize\s}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -46,7 +89,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7690b0887df2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections={of=curve 1 and curve 2, by={a,b}}]
+        (a) circle (2pt)
+        (b) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
@@ -56,7 +113,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d43106f3012f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections={
+          of=curve 1 and curve 2,
+          by={[label=center:a],[label=center:...],[label=center:i]}}];
+\end{tikzpicture}
+```
 
 
 ---
@@ -66,7 +137,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `8ecf1ed5af8d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\clip (-0.5,-0.75) rectangle (3.25,2.25);
+\foreach \pathname/\shift in {line/0cm, curve/2cm}{
+  \tikzset{xshift=\shift}
+  \draw [->, name path=curve] (1,1.5) .. controls (-1,1) and (2,0.5) .. (0,0);
+  \draw [->, name path=line]  (0,-.5) -- (1,2) ;
+  \fill [name intersections={of=line and curve,sort by=\pathname, name=i}]
+    [red, opacity=0.5, every node/.style={left=.25cm, black, opacity=1}]
+    \foreach \s in {1,2,3}{(i-\s) circle (2pt) node {\footnotesize\s}};
+}
+\end{tikzpicture}
+```
 
 
 ---
@@ -76,7 +163,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ae9fd5b4fde8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw (0,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (2,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (1.5,1.5) -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+\end{tikzpicture}
+```
 
 
 ---
@@ -86,7 +183,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f0639d9b79ab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw (0,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (2,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (1.5,1.5) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+\end{tikzpicture}
+```
 
 
 ---
@@ -96,7 +203,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c4f232684c32`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw (1,0) .. controls +(30:1cm) and +(60:1cm) .. (3,-1);
+  \draw[gray,->] (1,0) -- +(30:1cm);
+  \draw[gray,<-] (3,-1) -- +(60:1cm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -106,7 +223,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `367250f5b53d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw (0,0) -- (1,1) -- ([turn]-45:1cm) -- ([turn]-30:1cm);
+```
 
 
 ---
@@ -116,7 +239,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ed1044ebb189`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [delta angle=30, radius=1cm]
+  \draw (0,0) arc [start angle=0]  -- ([turn]0:1cm)
+              arc [start angle=30] -- ([turn]0:1cm)
+              arc [start angle=60] -- ([turn]30:1cm);
+```
 
 
 ---
@@ -126,7 +258,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `71e311673a24`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw (0,0) to [bend left] (2,1) -- ([turn]0:1cm);
+```
 
 
 ---
@@ -136,7 +274,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `b6f76fa86454`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw plot coordinates {(0,0) (1,1) (2,0) (3,0) } -- ([turn]30:1cm);
+```
 
 
 ---
@@ -146,7 +290,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `095ca21772bc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw (0.5,0.5) -| (2,1) -- ([turn]1,1)
+         .. controls ([turn]0:1cm) .. ([turn]-90:1cm);
+```
 
 
 ---
@@ -156,7 +307,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `69841bc3f026`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0) { -- ++(0,1) } -- ++(-1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -166,17 +326,38 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e668f0406ebd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0)
+     { [current point is local] -- ++(0,1) } -- ++(-1,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4817. Other Example
+## 4817. Node Graph Example
 
 **ID**: `e0e354106b39`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node (a) at (1,1) {A};
+  \fill [red] ($(a) + 1/3*(1cm,0)$) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
@@ -186,7 +367,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4a2b8b0f94d5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \fill [red] ($2*(1,1)$) circle (2pt);
+  \fill [green] (${1+1}*(1,.5)$) circle (2pt);
+  \fill [blue] ($cos(0)*sin(90)*(1,1)$) circle (2pt);
+  \fill [black] (${3*(4-3)}*(1,0.5)$) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
@@ -196,17 +390,36 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4c2dd5c2fa22`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(1,2)!.75!(3,4)
+```
 
 
 ---
 
-## 4820. Other Example
+## 4820. Node Graph Example
 
 **ID**: `2f3bffc04f6c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in {0,0.2,0.5,0.9,1}
+    \node at ($(1,0)!\i!(3,2)$) {\i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -216,7 +429,26 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5afd0598343d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,3);
+
+  \coordinate (a) at (1,0);
+  \coordinate (b) at (3,2);
+
+  \draw[->] (a) -- (b);
+
+  \coordinate (c) at ($ (a)!1! 10:(b) $);
+
+  \draw[->,red] (a) -- (c);
+
+  \fill ($ (a)!.5! 10:(b) $) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
@@ -226,7 +458,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `cfdebd5131b9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (4,4);
+
+  \foreach \i in {0,0.125,...,2}
+    \fill ($(2,2) !\i! \i*180:(3,2)$) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
@@ -236,17 +479,42 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2e6706af443a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (0,0) -- (3,2);
+  \draw[red] ($(0,0)!.3!(3,2)$) -- (3,0);
+  \fill[red] ($(0,0)!.3!(3,2)!.7!(3,0)$) circle (2pt);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4824. Other Example
+## 4824. Node Graph Example
 
 **ID**: `25c6fa93c059`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in {0cm,1cm,15mm}
+    \node at ($(1,0)!\i!(3,2)$) {\i};
+\end{tikzpicture}
+```
 
 
 ---
@@ -256,7 +524,25 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `87fcb7e01c21`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \coordinate (a) at (1,0);
+  \coordinate (b) at (3,1);
+
+  \draw (a) -- (b);
+
+  \coordinate (c) at ($ (a)!.25!(b) $);
+  \coordinate (d) at ($ (c)!1cm!90:(b) $);
+
+  \draw [<->] (c) -- (d) node [sloped,midway,above] {1cm};
+\end{tikzpicture}
+```
 
 
 ---
@@ -266,7 +552,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4122e891b187`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(1,2)!(0,5)!(3,4)
+```
 
 
 ---
@@ -276,7 +568,25 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `83a38cac038b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+
+  \coordinate (a) at (0,1);
+  \coordinate (b) at (3,2);
+  \coordinate (c) at (2.5,0);
+
+  \draw (a) -- (b) -- (c) -- cycle;
+
+  \draw[red]    (a) -- ($(b)!(a)!(c)$);
+  \draw[orange] (b) -- ($(a)!(b)!(c)$);
+  \draw[blue]   (c) -- ($(a)!(c)!(b)$);
+\end{tikzpicture}
+```
 
 
 ---
@@ -286,7 +596,25 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `0de5d925e588`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as smooth line]
+    data {
+      x, y
+      -1.5, 2.25
+      -1, 1
+      -.5, .25
+      0, 0
+      .5, .25
+      1, 1
+      1.5, 2.25
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -296,7 +624,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `a88f5560469e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [school book axes, visualize as smooth line]
+    data [format=function] {
+      var x : interval [-1.5:1.5] samples 7;
+      func y = \value x*\value x;
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -306,7 +646,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `b66f94ee28b6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [
+    scientific axes,
+    x axis={length=3cm, ticks=few},
+    visualize as smooth line
+  ]
+    data [format=function] {
+      var x : interval [-1.5:1.5] samples 7;
+      func y = \value x*\value x;
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -316,7 +672,24 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `11b9871349c4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [
+    scientific axes=clean,
+    x axis={length=3cm, ticks=few},
+    all axes={grid},
+    visualize as smooth line
+  ]
+    data [format=function] {
+      var x : interval [-1.5:1.5] samples 7;
+      func y = \value x*\value x;
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -326,7 +699,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c85dc57f5631`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [
+    scientific axes=clean,
+    x axis={length=3cm, ticks=few},
+    visualize as smooth line
+  ]
+    data [format=function] {
+      var x : interval [-1.5:1.5] samples 7;
+      func y = \value x*\value x;
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -336,7 +725,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `bca4067230c1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \datavisualization [
+    scientific axes=clean,
+    x axis={length=3cm, ticks=few},
+    visualize as scatter
+  ]
+    data [format=function] {
+      var x : interval [-1.5:1.5] samples 7;
+      func y = \value x*\value x;
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -346,7 +751,35 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2f2d2e86b068`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [ scientific axes=clean,
+                       y axis=grid,
+                       visualize as smooth line/.list={sin,cos,tan},
+                       style sheet=strong colors,
+                       style sheet=vary dashing,
+                       sin={label in legend={text=$\sin x$}},
+                       cos={label in legend={text=$\cos x$}},
+                       tan={label in legend={text=$\tan x$}},
+                       data/format=function ]
+  data [set=sin] {
+    var x : interval [-0.5*pi:4];
+    func y = sin(\value x r);
+  }
+  data [set=cos] {
+    var x : interval [-0.5*pi:4];
+    func y = cos(\value x r);
+  }
+  data [set=tan] {
+    var x : interval [-0.3*pi:.3*pi];
+    func y = tan(\value x r);
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -356,7 +789,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `8e039e659deb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\datavisualization ...
+  data [read from file=file1.csv]
+  data [read from file=file2.csv];
+```
 
 
 ---
@@ -366,7 +807,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `16716dd8cc64`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\datavisualization ...
+  data {
+    x, y
+    1, 2
+    2, 3
+  };
+```
 
 
 ---
@@ -376,7 +828,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9659c85d6753`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\datavisualization...
+  data [/data point/experiment=7,  read from file=experiment007.csv]
+  data [/data point/experiment=23, read from file=experiment023.csv];
+```
 
 
 ---
@@ -386,7 +846,24 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `8428e0ee427a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \datavisualization [school book axes, visualize as line]
+    data [/data point/x=1] {
+      y
+      1
+      2
+    }
+    data [/data point/x=2] {
+      y
+      2
+      0.5
+    };
+```
 
 
 ---
@@ -396,7 +873,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d69623abd9d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [school book axes, visualize as line]
+  data point [x=1, y=1]    data point [x=1, y=2]
+  data point [x=2, y=2]    data point [x=2, y=0.5];
+```
 
 
 ---
@@ -406,7 +891,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9533e624e6a3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdatavisualizationset{
+  horizontal/.style={
+    data point={x=#1, y=1}, data point={x=#1, y=2}},
+}
+\tikz \datavisualization
+[ school book axes, visualize as line,
+  horizontal=1,
+  horizontal=2 ];
+```
 
 
 ---
@@ -416,7 +914,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `23f538a24b08`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization data group {points} = {
+  data {
+    x, y
+    0, 1
+    1, 2
+    2, 2
+    5, 1
+    2, 0
+    1, 1
+  }
+};
+```
 
 
 ---
@@ -426,7 +940,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `13801eb599e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [school book axes,      visualize as line] data group {points};
+\qquad
+\tikz \datavisualization [scientific axes=clean, visualize as line] data group {points};
+```
 
 
 ---
@@ -436,7 +958,24 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `156546c0389c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\datavisualization...
+  scope [/data point/experiment=7]
+  {
+    data [read from file=experiment007-part1.csv]
+    data [read from file=experiment007-part2.csv]
+    data [read from file=experiment007-part3.csv]
+  }
+  scope [/data point/experiment=23, format=foo]
+  {
+    data [read from file=experiment023-part1.foo]
+    data [read from file=experiment023-part2.foo]
+  };
+```
 
 
 ---
@@ -446,7 +985,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `033926713644`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [ school book axes, visualize as line ]
+  data [format=function] {
+    var x : interval [-0.1*pi:2];
+    func y = sin(\value x r);
+  }
+  info {
+    \draw [red] (visualization cs: x={(.5*pi)}, y=1) circle [radius=1pt]
+      node [above,font=\footnotesize] {extremal point};
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -456,7 +1011,22 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `686c177f8112`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[baseline]
+  \datavisualization [ school book axes, visualize as line ]
+  data [format=function] {
+    var x : interval [-0.1*pi:2];
+    func y = sin(\value x r);
+  }
+  info' {
+    \fill [red] (visualization cs: x={(.5*pi)}, y=1) circle [radius=2mm];
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -466,7 +1036,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `cc057f4a8f51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdatavisualizationset{
+  new object={
+    class = example class,
+    arg1  = foo,
+    arg2  = \bar
+  }
+}
+```
 
 
 ---
@@ -476,7 +1058,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `eab0135d51b4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfoonew \tikzdvobj=new example class(foo,\bar)
+```
 
 
 ---
@@ -486,7 +1074,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2705a9a2184b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdatavisualizationset{
+  new object={
+    class              = example class,
+    arg1               = foo,
+    arg2/.expand once  = \bar
+  }
+}
+```
 
 
 ---
@@ -496,7 +1096,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e6e06e4cced8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfoonew \tikzdvobj=new example class(foo,This \emph{is} it)
+```
 
 
 ---
@@ -506,7 +1112,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9a70455cc725`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdatavisualizationset{
+  new object={
+    class              = example class,
+    arg1 from key      = /tikz/some key
+  }
+}
+\tikzset{some key/.initial=foobar}
+```
 
 
 ---
@@ -516,7 +1134,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `aa4458b6ba59`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfoonew \tikzdvobj=new example class(foobar)
+```
 
 
 ---
@@ -526,7 +1150,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ecd90feab90f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathcircle{\pgfpoint{1cm}{1cm}} {2pt}
+  \pgfpathcircle{\pgfpoint{2cm}{5pt}} {2pt}
+  \pgfpathcircle{\pgfpoint{0pt}{.5in}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -536,7 +1172,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f0913ee0b493`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \foreach \angle in {0,10,...,90}
+    {\pgfpathcircle{\pgfpointpolar{\angle}{1cm}}{2pt}}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -546,7 +1194,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `0dc8c71ea84c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \foreach \angle in {0,10,...,90}
+    {\pgfpathcircle{\pgfpointpolar{\angle}{1cm and 2cm}}{2pt}}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -556,7 +1216,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d48dd9cf0c25`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointxy{1}{0}}
+  \pgfpathlineto{\pgfpointxy{2}{2}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -566,7 +1237,25 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `eec8f62ae01b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \pgfpathmoveto{\pgfpointxy{1}{0}}
+  \pgfpathlineto{\pgfpointxy{2}{2}}
+  \pgfusepath{stroke}
+
+  \color{red}
+  \pgfsetxvec{\pgfpoint{0.75cm}{0cm}}
+  \pgfpathmoveto{\pgfpointxy{1}{0}}
+  \pgfpathlineto{\pgfpointxy{2}{2}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -576,7 +1265,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `48c4b57c86aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \begin{scope}[x={(1cm,-5mm)},y=1.5cm]
+    \foreach \angle in {0,10,...,90}
+      {\pgfpathcircle{\pgfpointpolarxy{\angle}{1}}{2pt}}
+    \pgfusepath{fill}
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -586,7 +1289,25 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `a9cbacf230ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetarrowsend{to}
+
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpointxyz{0}{0}{1}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpointxyz{0}{1}{0}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpointxyz{1}{0}{0}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -596,7 +1317,22 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `cf295393c2ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [->] (0,0) -- (1,0,0) node [right] {$x$};
+  \draw [->] (0,0) -- (0,1,0) node [above] {$y$};
+  \draw [->] (0,0) -- (0,0,1) node [below left] {$z$};
+
+  \pgfpathcircle{\pgfpointcylindrical{80}{1}{.5}}{2pt}
+  \pgfusepath{fill}
+
+  \draw[red] (0,0) -- (0,0,.5) -- +(80:1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -606,7 +1342,28 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5fbcf3b6d1bb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetfillcolor{lightgray}
+
+  \foreach \latitude in {-90,-75,...,30}
+  {
+    \foreach \longitude in {0,20,...,360}
+    {
+      \pgfpathmoveto{\pgfpointspherical{\longitude}{\latitude}{1}}
+      \pgfpathlineto{\pgfpointspherical{\longitude+20}{\latitude}{1}}
+      \pgfpathlineto{\pgfpointspherical{\longitude+20}{\latitude+15}{1}}
+      \pgfpathlineto{\pgfpointspherical{\longitude}{\latitude+15}{1}}
+      \pgfpathclose
+    }
+    \pgfusepath{fill,stroke}
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -616,7 +1373,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9e949e161a67`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathcircle{\pgfpointadd{\pgfpoint{1cm}{0cm}}{\pgfpoint{1cm}{1cm}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -626,7 +1393,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d691c50f9bc5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathcircle{\pgfpointscale{1.5}{\pgfpoint{1cm}{0cm}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -636,7 +1413,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `363ab08a957e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathcircle{\pgfpointdiff{\pgfpoint{1cm}{0cm}}{\pgfpoint{1cm}{1cm}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -646,7 +1433,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `082b791758f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathcircle{\pgfpoint{2cm}{1cm}}{2pt}
+  \pgfpathcircle{\pgfpointscale{20}
+    {\pgfpointnormalised{\pgfpoint{2cm}{1cm}}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -656,7 +1455,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6376f4aff605`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{2cm}{2cm}}
+  \pgfusepath{stroke}
+  \foreach \t in {0,0.25,...,1.25}
+    {\pgftext[at=
+      \pgfpointlineattime{\t}{\pgfpointorigin}{\pgfpoint{2cm}{2cm}}]{\t}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -666,7 +1479,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `31034256972d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{3cm}{2cm}}
+  \pgfusepath{stroke}
+  \foreach \d in {0pt,20pt,40pt,70pt}
+    {\pgftext[at=
+      \pgfpointlineatdistance{\d}{\pgfpointorigin}{\pgfpoint{3cm}{2cm}}]{\d}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -676,7 +1503,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ec6d5608c147`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpoint{2cm}{1cm}}
+  \pgfpatharcaxes{0}{60}{\pgfpoint{2cm}{0cm}}{\pgfpoint{0cm}{1cm}}
+  \pgfusepath{stroke}
+  \foreach \t in {0,0.25,0.5,0.75,1}
+    {\pgftext[at=\pgfpointarcaxesattime{\t}{\pgfpoint{0cm}{1cm}}
+       {\pgfpoint{2cm}{0cm}}{\pgfpoint{0cm}{1cm}}{0}{60}]{\t}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -686,7 +1527,24 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `addbbbe20a9a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathcurveto
+    {\pgfpoint{0cm}{2cm}}{\pgfpoint{0cm}{2cm}}{\pgfpoint{3cm}{2cm}}
+  \pgfusepath{stroke}
+  \foreach \t in {0,0.25,0.5,0.75,1}
+    {\pgftext[at=\pgfpointcurveattime{\t}{\pgfpointorigin}
+                                         {\pgfpoint{0cm}{2cm}}
+                                         {\pgfpoint{0cm}{2cm}}
+                                         {\pgfpoint{3cm}{2cm}}]{\t}}
+\end{tikzpicture}
+```
 
 
 ---
@@ -696,7 +1554,27 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `0896508fd2be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (2,1.5);
+  \pgfpathrectanglecorners{\pgfpoint{-1cm}{-1.25cm}}{\pgfpoint{1cm}{1.25cm}}
+  \pgfusepath{stroke}
+
+  \pgfpathcircle{\pgfpoint{5pt}{5pt}}{2pt}
+  \pgfpathcircle{\pgfpoint{-10pt}{5pt}}{2pt}
+  \pgfusepath{fill}
+  \color{red}
+  \pgfpathcircle{\pgfpointborderrectangle
+    {\pgfpoint{5pt}{5pt}}{\pgfpoint{1cm}{1.25cm}}}{2pt}
+  \pgfpathcircle{\pgfpointborderrectangle
+    {\pgfpoint{-10pt}{5pt}}{\pgfpoint{1cm}{1.25cm}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -706,7 +1584,27 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `711d17851591`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (2,1.5);
+  \pgfpathellipse{\pgfpointorigin}{\pgfpoint{1cm}{0cm}}{\pgfpoint{0cm}{1.25cm}}
+  \pgfusepath{stroke}
+
+  \pgfpathcircle{\pgfpoint{5pt}{5pt}}{2pt}
+  \pgfpathcircle{\pgfpoint{-10pt}{5pt}}{2pt}
+  \pgfusepath{fill}
+  \color{red}
+  \pgfpathcircle{\pgfpointborderellipse
+    {\pgfpoint{5pt}{5pt}}{\pgfpoint{1cm}{1.25cm}}}{2pt}
+  \pgfpathcircle{\pgfpointborderellipse
+    {\pgfpoint{-10pt}{5pt}}{\pgfpoint{1cm}{1.25cm}}}{2pt}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -716,7 +1614,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9f78984221af`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (2,2);
+  \draw (.5,0) -- (2,2);
+  \draw (1,2) -- (2,0);
+  \pgfpathcircle{%
+    \pgfpointintersectionoflines
+      {\pgfpointxy{.5}{0}}{\pgfpointxy{2}{2}}
+      {\pgfpointxy{1}{2}}{\pgfpointxy{2}{0}}}
+    {2pt}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -726,7 +1640,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `12e4c2f555e7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (2,2);
+  \draw (0.5,0) circle (1);
+  \draw (1.5,1) circle (.8);
+  \pgfpathcircle{%
+    \pgfpointintersectionofcircles
+      {\pgfpointxy{.5}{0}}{\pgfpointxy{1.5}{1}}
+      {1cm}{0.8cm}{1}}
+    {2pt}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -736,7 +1666,31 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `b1d3dc3b0e97`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+\pgfintersectionofpaths
+{
+  \pgfpathellipse{\pgfpointxy{0}{0}}{\pgfpointxy{1}{0}}{\pgfpointxy{0}{2}}
+  \pgfgetpath\temppath
+  \pgfusepath{stroke}
+  \pgfsetpath\temppath
+}
+{
+  \pgftransformrotate{-30}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpointxy{2}{2}}
+  \pgfgetpath\temppath
+  \pgfusepath{stroke}
+  \pgfsetpath\temppath
+}
+\foreach \s in {1,...,\pgfintersectionsolutions}
+  {\pgfpathcircle{\pgfpointintersectionsolution{\s}}{2pt}}
+\pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -746,7 +1700,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5d2791111b24`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newdimen\mydim
+\pgfextractx{\mydim}{\pgfpoint{2cm}{4pt}}
+%% \mydim is now 2cm
+```
 
 
 ---
@@ -756,7 +1718,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4dfefd8f7a1b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpoint{2cm}{4cm}
+\pgfgetlastxy{\macrox}{\macroy}
+Macro $x$ is `\macrox' and macro $y$ is `\macroy'.
+```
 
 
 ---
@@ -766,7 +1736,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9db003fa37d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+...
+{ % open scope
+  \pgfpointnormalised{\pgfpoint{1cm}{1cm}}
+  \global\pgf@x=\pgf@x % make the change of \pgf@x persist past the scope
+  \global\pgf@y=\pgf@y % make the change of \pgf@y persist past the scope
+}
+% \pgf@x and \pgf@y are now set correctly, all other variables are
+% unchanged
+```
 
 
 ---
@@ -776,7 +1759,19 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `13a14342a257`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\pgfpointadd#1#2{%
+  \pgf@process{#1}%
+  \pgf@xa=\pgf@x%
+  \pgf@ya=\pgf@y%
+  \pgf@process{#2}%
+  \advance\pgf@x by\pgf@xa%
+  \advance\pgf@y by\pgf@ya}
+```
 
 
 ---
@@ -786,7 +1781,55 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ec79b5a04382`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarepattern{
+  name=hatch,
+  parameters={\hatchsize,\hatchangle,\hatchlinewidth},
+  bottom left={\pgfpoint{-.1pt}{-.1pt}},
+  top right={\pgfpoint{\hatchsize+.1pt}{\hatchsize+.1pt}},
+  tile size={\pgfpoint{\hatchsize}{\hatchsize}},
+  tile transformation={\pgftransformrotate{\hatchangle}},
+  code={
+    \pgfsetlinewidth{\hatchlinewidth}
+    \pgfpathmoveto{\pgfpoint{-.1pt}{-.1pt}}
+    \pgfpathlineto{\pgfpoint{\hatchsize+.1pt}{\hatchsize+.1pt}}
+    \pgfpathmoveto{\pgfpoint{-.1pt}{\hatchsize+.1pt}}
+    \pgfpathlineto{\pgfpoint{\hatchsize+.1pt}{-.1pt}}
+    \pgfusepath{stroke}
+  }
+}
+
+\tikzset{
+  hatch size/.store in=\hatchsize,
+  hatch angle/.store in=\hatchangle,
+  hatch line width/.store in=\hatchlinewidth,
+  hatch size=5pt,
+  hatch angle=0pt,
+  hatch line width=.5pt,
+}
+
+\begin{tikzpicture}
+\foreach \r in {1,...,4}
+  \draw [pattern=hatch, pattern color=red]
+    (\r*3,0) rectangle ++(2,2);
+
+\foreach \r in {1,...,4}
+  \draw [pattern=hatch, pattern color=green, hatch size=2pt]
+    (\r*3,3) rectangle ++(2,2);
+
+\foreach \r in {1,...,4}
+  \draw [pattern=hatch, pattern color=blue, hatch size=10pt, hatch angle=21]
+    (\r*3,6) rectangle ++(2,2);
+
+\foreach \r in {1,...,4}
+  \draw [pattern=hatch, pattern color=orange, hatch line width=2pt]
+    (\r*3,9) rectangle ++(2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -796,7 +1839,33 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9ec788623ba3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[pattern={horizontal lines},pattern color=orange]
+    (0,0) rectangle +(1,1);
+  \draw[pattern={Lines[yshift=.5pt]},pattern color=blue]
+    (0,0) rectangle +(1,1);
+
+  \draw[pattern={vertical lines},pattern color=orange]
+    (1,0) rectangle +(1,1);
+  \draw[pattern={Lines[angle=90,yshift=-.5pt]},pattern color=blue]
+    (1,0) rectangle +(1,1);
+
+  \draw[pattern={north east lines},pattern color=orange]
+    (0,1) rectangle +(1,1);
+  \draw[pattern={Lines[angle=45,distance={3pt/sqrt(2)}]},pattern color=blue]
+    (0,1) rectangle +(1,1);
+
+  \draw[pattern={north west lines},pattern color=orange]
+    (1,1) rectangle +(1,1);
+  \draw[pattern={Lines[angle=-45,distance={3pt/sqrt(2)}]},pattern color=blue]
+    (1,1) rectangle +(1,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -806,7 +1875,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4c31ed30b057`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[pattern={grid},pattern color=orange]
+    (0,0) rectangle +(1,1);
+  \draw[pattern={Hatch},pattern color=blue]
+    (0,0) rectangle +(1,1);
+
+  \draw[pattern={crosshatch},pattern color=orange]
+    (1,0) rectangle +(1,1);
+  \draw[pattern={Hatch[angle=45,distance={3pt/sqrt(2)},xshift=.1pt]},
+    pattern color=blue] (1,0) rectangle +(1,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -816,7 +1901,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `419a3ede5249`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[pattern={dots},pattern color=orange]
+    (0,0) rectangle +(1,1);
+  \draw[pattern={Dots},pattern color=blue]
+    (0,0) rectangle +(1,1);
+
+  \draw[pattern={crosshatch dots},pattern color=orange]
+    (1,0) rectangle +(1,1);
+  \draw[pattern={Dots[angle=45,distance={3pt/sqrt(2)}]},
+    pattern color=blue] (1,0) rectangle +(1,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -826,7 +1927,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5f11c638c249`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[pattern={fivepointed stars},pattern color=orange]
+    (0,0) rectangle +(1,1);
+  \draw[pattern={Stars},pattern color=blue]
+    (0,0) rectangle +(1,1);
+
+  \draw[pattern={sixpointed stars},pattern color=orange]
+    (1,0) rectangle +(1,1);
+  \draw[pattern={Stars[points=6]},pattern color=blue]
+    (1,0) rectangle +(1,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -836,7 +1953,32 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `63c9a3dcb7fc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdeclarepattern{
+  name=flower,
+  type=colored,
+  bottom left={(-.1pt,-.1pt)},
+  top right={(10.1pt,10.1pt)},
+  tile size={(10pt,10pt)},
+  code={
+    \tikzset{x=1pt,y=1pt}
+    \path [draw=green] (5,2.5) -- (5, 7.5);
+    \foreach \i in {0,60,...,300}
+      \path [fill=pink, shift={(5,7.5)}, rotate=-\i]
+        (0,0) .. controls ++(120:4) and ++(60:4) .. (0,0);
+    \path [fill=red] (5,7.5) circle [radius=1];
+    \foreach \i in {-45,45}
+      \path [fill=green, shift={(5,2.5)}, rotate=-\i]
+        (0,0) .. controls ++(120:4) and ++(60:4) .. (0,0);
+  }
+}
+
+\tikz\draw [pattern=flower] circle [radius=1];
+```
 
 
 ---
@@ -846,7 +1988,39 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `3e10a7756e8d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdeclarepattern{
+  name=mystars,
+  type=uncolored,
+  bounding box={(-5pt,-5pt) and (5pt,5pt)},
+  tile size={(\tikztilesize,\tikztilesize)},
+  parameters={\tikzstarpoints,\tikzstarradius,\tikzstarrotate,\tikztilesize},
+  tile transformation={rotate=\tikzstarrotate},
+  defaults={
+    points/.store in=\tikzstarpoints,points=5,
+    radius/.store in=\tikzstarradius,radius=3pt,
+    rotate/.store in=\tikzstarrotate,rotate=0,
+    tile size/.store in=\tikztilesize,tile size=10pt,
+  },
+  code={
+    \pgfmathparse{180/\tikzstarpoints}\let\a=\pgfmathresult
+    \fill (90:\tikzstarradius) \foreach \i in {1,...,\tikzstarpoints}{
+      -- (90+2*\i*\a-\a:\tikzstarradius/2) -- (90+2*\i*\a:\tikzstarradius)
+    } -- cycle;
+  }
+}
+
+\begin{tikzpicture}
+ \draw[pattern=mystars,pattern color=blue]               (0,0) rectangle +(2,2);
+ \draw[pattern={mystars[points=7,tile size=15pt]}]       (2,0) rectangle +(2,2);
+ \draw[pattern={mystars[rotate=45]},pattern color=red]   (0,2) rectangle +(2,2);
+ \draw[pattern={mystars[rotate=30,points=4,radius=5pt]}] (2,2) rectangle +(2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -856,7 +2030,47 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f4792aa3d352`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdeclarepattern{
+  name=mylines,
+  parameters={
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      \pgfkeysvalueof{/pgf/pattern keys/angle},
+      \pgfkeysvalueof{/pgf/pattern keys/line width},
+  },
+  bounding box={
+    (0,-0.5*\pgfkeysvalueof{/pgf/pattern keys/line width}) and
+    (\pgfkeysvalueof{/pgf/pattern keys/size},
+     0.5*\pgfkeysvalueof{/pgf/pattern keys/line width})},
+  tile size={(\pgfkeysvalueof{/pgf/pattern keys/size},
+              \pgfkeysvalueof{/pgf/pattern keys/size})},
+  tile transformation={rotate=\pgfkeysvalueof{/pgf/pattern keys/angle}},
+  defaults={
+    size/.initial=5pt,
+    angle/.initial=45,
+    line width/.initial=.4pt,
+  },
+  code={
+      \draw [line width=\pgfkeysvalueof{/pgf/pattern keys/line width}]
+        (0,0) -- (\pgfkeysvalueof{/pgf/pattern keys/size},0);
+  },
+}
+
+\begin{tikzpicture}
+  \draw[pattern={mylines[size=10pt,line width=.8pt,angle=10]},
+        pattern color=red]    (0,0) rectangle ++(2,2);
+  \draw[pattern={mylines[size= 5pt,line width=.8pt,angle=40]},
+        pattern color=blue]   (2,0) rectangle ++(2,2);
+  \draw[pattern={mylines[size=10pt,line width=.4pt,angle=90]},
+        pattern color=green]  (0,2) rectangle ++(2,2);
+  \draw[pattern={mylines[size= 2pt,line width= 1pt,angle=70]},
+        pattern color=orange] (2,2) rectangle ++(2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -866,7 +2080,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `32c6569278ae`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x in {1,2,3,0} {[\x]}
+```
 
 
 ---
@@ -876,7 +2096,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `511dfe6f6708`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\mylist{1,2,3,0}
+\foreach \x in \mylist {[\x]}
+```
 
 
 ---
@@ -886,7 +2113,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2e2dc2526bad`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \foreach \x in {0,1,2,3}
+    \draw (\x,0) circle (0.2cm);
+```
 
 
 ---
@@ -896,7 +2131,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `3699f8a5c5d8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \x in {0,1,2,3}
+    \foreach \y in {0,1,2,3}
+      {
+        \draw (\x,\y) circle (0.2cm);
+        \fill (\x,\y) circle (0.1cm);
+      }
+\end{tikzpicture}
+```
 
 
 ---
@@ -906,7 +2154,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `66fbf75e5864`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \foreach \position in {(0,0), (1,1), (2,0), (3,1)}
+    \draw \position rectangle +(.25,.5);
+```
 
 
 ---
@@ -916,7 +2172,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2b4b212e8bab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \draw (0,0)
+    foreach \x in {1,...,3}
+      { -- (\x,1) -- (\x,0) }
+    ;
+```
 
 
 ---
@@ -926,7 +2192,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `800b2b41be33`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw foreach \p in {1,...,3} {(\p,1)--(\p,3) (1,\p)--(3,\p)};
+```
 
 
 ---
@@ -936,7 +2208,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `51a173a86553`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \x/\xtext in {0,...,3,2.72 / e}
+    \draw (\x,0) node{$\xtext$};
+\end{tikzpicture}
+```
 
 
 ---
@@ -946,7 +2227,24 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `62a9e225ddfd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  % Define some coordinates:
+  \path[nodes={circle,fill=yellow!80!black,draw}]
+    (0,0)    node(a) {a}
+    (2,0.55) node(b) {b}
+    (1,1.5)  node(c) {c}
+    (2,1.75) node(d) {d};
+
+  % Draw some connections:
+  \foreach \source/\target in {a/b, b/c, c/a, c/d}
+    \draw (\source) .. controls +(.75cm,0pt) and +(-.75cm,0pt)..(\target);
+\end{tikzpicture}
+```
 
 
 ---
@@ -956,7 +2254,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7bfa542b9238`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  % Let's draw circles at interesting points:
+  \foreach \x / \y / \r in {0 / 0 / 2mm, 1 / 1 / 3mm, 2 / 0 / 1mm}
+    \draw (\x,\y) circle (\r);
+
+  % Same effect
+  \foreach \center/\r in {{(0,0)/2mm}, {(1,1)/3mm}, {(2,0)/1mm}}
+    \draw[yshift=2.5cm] \center circle (\r);
+\end{tikzpicture}
+```
 
 
 ---
@@ -966,7 +2278,29 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `0911a6e43fb4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[line cap=round,line width=3pt]
+  \filldraw [fill=yellow!80!black] (0,0) circle (2cm);
+
+  \foreach \angle / \label in
+    {0/3, 30/2, 60/1, 90/12, 120/11, 150/10, 180/9,
+     210/8, 240/7, 270/6, 300/5, 330/4}
+  {
+    \draw[line width=1pt] (\angle:1.8cm) -- (\angle:2cm);
+    \draw (\angle:1.4cm) node{\textsf{\label}};
+  }
+
+  \foreach \angle in {0,90,180,270}
+    \draw[line width=2pt] (\angle:1.6cm) -- (\angle:2cm);
+
+  \draw (0,0) -- (120:0.8cm); % hour
+  \draw (0,0) -- (90:1cm);    % minute
+\end{tikzpicture}%
+```
 
 
 ---
@@ -976,7 +2310,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e31c3e6cc19e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[shading=ball]
+  \foreach \x / \cola in {0/red,1/green,2/blue,3/yellow}
+    \foreach \y / \colb in {0/red,1/green,2/blue,3/yellow}
+      \shade[ball color=\cola!50!\colb] (\x,\y) circle (0.4cm);
+```
 
 
 ---
@@ -986,7 +2329,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `797b4adbfe88`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x [evaluate=\x] in {2^0,2^...,2^8}{$\x$, }
+```
 
 
 ---
@@ -996,7 +2345,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f8a0561a9e5d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x [evaluate=\x as \xeval] in {2^0,2^...,2^8}{$\x=\xeval$, }
+```
 
 
 ---
@@ -1006,7 +2361,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e99bb6dd890f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz\foreach \x [evaluate=\x as \shade using \x*10] in {0,1,...,10}
+  \node [fill=red!\shade!yellow, minimum size=0.65cm] at (\x,0) {\x};
+```
 
 
 ---
@@ -1016,7 +2378,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `671a84b87d3c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x [remember=\x as \lastx (initially A)] in {B,...,H}{$\overrightarrow{\lastx\x}$, }
+```
 
 
 ---
@@ -1026,7 +2394,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `dce0ad3df6dd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[x=0.75cm,y=0.75cm]
+  \foreach \x [count=\xi] in {a,...,e}
+    \foreach \y [count=\yi] in {\x,...,e}
+      \node [draw, top color=white, bottom color=blue!50, minimum size=0.666cm]
+        at (\xi,-\yi) {$\mathstrut\x\y$};
+```
 
 
 ---
@@ -1036,7 +2414,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `b19816202856`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x [parse=true] in {1,...,1.0e+1 - 1}{ \x }
+```
 
 
 ---
@@ -1046,7 +2430,22 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `acb6e70c77c2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\Iota#1#2{%
+  \ifnum\numexpr#1\relax<\numexpr#2\relax
+    \the\numexpr#1\relax,%
+    \expandafter\Iota\expandafter{\the\numexpr(#1)+1\relax}{#2}%
+  \else
+    \the\numexpr#2\relax
+  \fi}
+\foreach [expand list=true] \x in {\Iota{1}{5}} {
+  \x
+}
+```
 
 
 ---
@@ -1056,7 +2455,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2611542be6ea`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \x in {1,...,4}
+    \foreach \y in {1,...,4}
+    {
+      \fill[red!50] (\x,\y) ellipse (3pt and 6pt);
+
+      \ifnum \x<\y
+        \breakforeach
+      \fi
+    }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1066,7 +2481,28 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `1cb797aa9e5a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{stamp}{
+  % This is the class stamp
+
+  \attribute text;
+  \attribute rotation angle=20;
+
+  \method stamp(#1) { % The constructor
+    ...
+  }
+
+  \method apply(#1,#2) { % Causes the stamp to be shown at coordinate (#1,#2)
+    ...
+  }
+}
+
+% We can now create objects of type "stamp"
+```
 
 
 ---
@@ -1076,7 +2512,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d91388bddb95`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfoonew \firststamp=new stamp()
+\pgfoonew \secondstamp=new stamp()
+{
+  \pgfoonew \thirdstamp=new stamp()
+  ...
+}
+% \thirdstamp no longer exists, but \firststamp and \secondstamp do
+% even if you try to store \thirdstamp in a global variable, trying
+% to access it will result in an error.
+```
 
 
 ---
@@ -1086,7 +2536,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7cf281d959f7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{foo}
+{
+  \attribute stamp obj;
+  \attribute another object;
+
+  \method foo() {
+    \pgfoonew{stamp obj}=new stamp()
+    \pgfoonew{another object}=new bar()
+  }
+  ...
+}
+```
 
 
 ---
@@ -1096,7 +2562,30 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d8fc8d435864`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{stamp}{
+  % This is the class stamp
+
+  \method stamp() { % The constructor
+  }
+
+  \method apply(#1,#2) { % Causes the stamp to be shown at coordinate (#1,#2)
+    % Draw the stamp:
+    \node [rotate=20,font=\huge] at (#1,#2) {Passed};
+  }
+}
+
+\pgfoonew \mystamp=new stamp()
+
+\begin{tikzpicture}
+  \mystamp.apply(1,2)
+  \mystamp.apply(3,4)
+\end{tikzpicture}
+```
 
 
 ---
@@ -1106,7 +2595,29 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `3871f162df21`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{stamp}{
+  % This is the class stamp
+
+  \method stamp() {}
+
+  \method apply(#1,#2) {
+    \pgfoothis.shift origin(#1,#2)
+
+    % Draw the stamp:
+    \node [rotate=20,font=\huge] {Passed};
+  }
+
+  % Private method:
+  \method shift origin(#1,#2) {
+    \tikzset{xshift=#1,yshift=#2}
+  }
+}
+```
 
 
 ---
@@ -1116,7 +2627,36 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `991f3cdfbb59`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{stamp}{
+  % This is the class stamp
+
+  \attribute text;
+  \attribute rotation angle = 20;
+
+  \method stamp(#1) {
+    \pgfooset{text}{#1} % Set the text
+  }
+
+  \method apply(#1,#2) {
+    \pgfoothis.shift origin(#1,#2)
+
+    % Draw the stamp:
+    \node [rotate=\pgfoovalueof{rotation angle},font=\huge]
+      {\pgfoovalueof{text}};
+  }
+
+  \method shift origin(#1,#2) { ... }
+
+  \method set rotation (#1) {
+    \pgfooset{rotation angle}{#1}
+  }
+}
+```
 
 
 ---
@@ -1126,7 +2666,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `068fb4ef9220`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\method set rotation (#1) {
+  \pgfooset{rotation angle}{#1}
+}
+```
 
 
 ---
@@ -1136,7 +2684,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `741a9403497e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\method foo () {
+  \pgfoolet{my func}\myfunc
+  % Changing \myfunc now has no effect on the value of attribute my func
+}
+```
 
 
 ---
@@ -1146,7 +2703,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9657a830be07`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\method apply(#1,#2) {
+  \pgfoothis.shift origin(#1,#2)
+
+  \node [rotate=\pgfoovalueof{rotation angle},font=\huge]
+    {\pgfoovalueof{text}};
+}
+```
 
 
 ---
@@ -1156,7 +2724,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5c45ce62e25c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+...
+  \method get rotation (#1) {
+    \pgfooget{rotation angle}{#1}
+  }
+...
+
+\mystamp.get rotation(\therotation)
+``\therotation'' is now ``20'' (or whatever).
+```
 
 
 ---
@@ -1166,7 +2747,21 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `a92900f1f71b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Create a new object:
+\pgfoonew \mystamp=new stamp()
+
+% Get the object's id and store it in \myid:
+\mystamp.get id(\myid)
+
+% The following two calls have the same effect:
+\mystamp.apply(1,1)
+\pgfooobj{\myid}.apply(1,1)
+```
 
 
 ---
@@ -1176,7 +2771,23 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `483474cdd0d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{some class}{
+  \method some class() {
+    \pgfoothis.get handle(\me)
+    \somesignal.connect(\me,foo)
+    \anothersignal.connect(\me,bar)
+  }
+  \method foo () {}
+  \method bar (#1,#2) {}
+}
+\pgfoonew \objA=new some class()
+\pgfoonew \objB=new some class()
+```
 
 
 ---
@@ -1186,17 +2797,41 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `745818a9121f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\anothersignal.emit(1,2)
+% will call \objA.bar(1,2) and \objB.bar(1,2)
+```
 
 
 ---
 
-## 4919. Other Example
+## 4919. Node Graph Example
 
 **ID**: `b7bc175d76c6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz {
+  \node [circle,draw] (A)              {A};
+  \node [circle,draw] (B) [right=of A] {B};
+
+  \draw [draw = blue, thick,
+         arrows={
+           Computer Modern Rightarrow [sep]
+         - Latex[blue!50,length=8pt,bend,line width=0pt]
+           Stealth[length=8pt,open,bend,sep]}]
+    (A) edge [bend left=45] (B)
+    (B) edge [in=-110, out=-70,looseness=8] (B);
+}
+```
 
 
 ---
@@ -1206,7 +2841,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c9bdc34b7d0c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[->]        (0,0)   -- (1,0);
+  \draw[>-Stealth] (0,0.3) -- (1,0.3);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1216,7 +2860,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e7533de346df`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[-{Stealth[red]}] (0,0)   -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1226,7 +2878,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ee7ff18ab9fe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% No path, no arrow tips:
+\tikz [<->] \draw;
+```
 
 
 ---
@@ -1236,7 +2895,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f3aafde52ae9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Degenerate path, draw arrow tips (but no path, it is degenerate...)
+\tikz [<->] \draw (0,0);
+```
 
 
 ---
@@ -1246,7 +2912,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `8f063627803c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Degenerate path, tips=proper suppresses arrows
+\tikz [<->] \draw [tips=proper] (0,0);
+```
 
 
 ---
@@ -1256,7 +2929,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `39f4ac62c151`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Normal case:
+\tikz [<->] \draw (0,0) -- (1,0);
+```
 
 
 ---
@@ -1266,7 +2946,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `4cf1f20d0015`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Two subpaths, only second gets tips
+\tikz [<->] \draw (0,0) -- (1,0) (2,0) -- (3,0);
+```
 
 
 ---
@@ -1276,7 +2963,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `a3eda4be229c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Two subpaths, second degenerate, but still gets tips
+\tikz [<->] \draw (0,0) -- (1,0) (2,0);
+```
 
 
 ---
@@ -1286,7 +2980,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5ad54a0e5ff2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Two subpaths, second degenerate, proper suppresses them
+\tikz [<->] \draw [tips=on proper draw] (0,0) -- (1,0) (2,0);
+```
 
 
 ---
@@ -1296,7 +2997,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `3b01733685d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Two subpaths, but one is closed: No tips, even though last subpath is open
+\tikz [<->] \draw (0,0) circle[radius=2pt] (2,0) -- (3,0);
+```
 
 
 ---
@@ -1306,7 +3014,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `76a9277417ac`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz{
+  \draw [-{Stealth[length=5mm]}] (0,0) -- (2,0);
+  \draw [|<->|] (1.5,.4) -- node[above=1mm] {5mm} (2,.4);
+}
+```
 
 
 ---
@@ -1316,7 +3033,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7112c6d73f77`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz{
+  \draw [-{Latex[length=5mm]}] (0,0) -- (2,0);
+  \draw [|<->|] (1.5,.4) -- node[above=1mm] {5mm} (2,.4);
+}
+```
 
 
 ---
@@ -1326,7 +3052,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `25831fab2c33`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz{
+  \draw [-{Classical TikZ Rightarrow[length=5mm]}] (0,0) -- (2,0);
+  \draw [|<->|] (1.5,.6) -- node[above=1mm] {5mm} (2,.6);
+}
+```
 
 
 ---
@@ -1336,7 +3071,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6d3d8d9d5d19`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [line width=1pt, double distance=3pt,
+             arrows = {-Latex[length=0pt 3 0]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1346,7 +3088,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `87b89f62aad2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [line width=1pt, double distance=3pt,
+             arrows = {-Latex[length=0pt 3 .5]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1356,7 +3105,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `41e497828b33`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [line width=1pt, double distance=3pt,
+             arrows = {-Latex[length=0pt 3 1]} ] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1366,7 +3122,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f1332f7acd87`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz{
+  \draw [line width=1mm, -{Stealth[length=10mm, open]}]
+          (0,0) -- (2,0);
+  \draw [|<->|] (2,.6) -- node[above=1mm] {10mm} ++(-10mm,0);
+}
+```
 
 
 ---
@@ -1376,7 +3142,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7b4e728c9915`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz{
+  \draw [line width=1mm, -{Stealth[length=10mm, open, round]}]
+          (0,0) -- (2,0);
+  \draw [|<->|] (2,.6) -- node[above=1mm] {10mm} ++(-10mm,0);
+}
+```
 
 
 ---
@@ -1386,7 +3162,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7acec749b152`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[width=10pt, length=10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1396,7 +3178,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d0edad1c74d6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[width=0pt 10, length=10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1406,7 +3194,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `451564b7807c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+length = 10pt, width'=5pt 2, length=7pt
+```
 
 
 ---
@@ -1416,7 +3210,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `68f488a1dce6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[width'=0pt .5, length=10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1426,7 +3226,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `d8d7a2e4c341`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[width'=0pt .5, length=15pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1436,7 +3242,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `0b7590d66952`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[length=10pt, inset=5pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1446,7 +3258,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7a6c153023cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[length=10pt, inset=2pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1456,7 +3274,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2975628a7052`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[inset=0pt, angle=90:10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1466,7 +3290,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9f8e4660217f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[inset=0pt, angle=30:10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1476,7 +3306,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `a4dee2bb71a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[inset=0pt, length=10pt, angle'=90]}]
+            (0,0) -- (1,0);
+```
 
 
 ---
@@ -1486,7 +3323,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `df9f2df3d144`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Stealth[inset=0pt, length=10pt, angle'=30]}]
+            (0,0) -- (1,0);
+```
 
 
 ---
@@ -1496,7 +3340,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ebcdf9179242`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [arrows = {-Stealth[]}]          (0,1)   -- (1,1);
+  \draw [arrows = {-Stealth[scale=1.5]}] (0,0.5) -- (1,0.5);
+  \draw [arrows = {-Stealth[scale=2]}]   (0,0)   -- (1,0);
+}
+```
 
 
 ---
@@ -1506,7 +3360,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `43fdce1d0a46`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [arrows = {-Stealth[]}]                 (0,1)   -- (1,1);
+  \draw [arrows = {-Stealth[scale length=1.5]}] (0,0.5) -- (1,0.5);
+  \draw [arrows = {-Stealth[scale length=2]}]   (0,0)   -- (1,0);
+}
+```
 
 
 ---
@@ -1516,7 +3380,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `b52dceb90861`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [arrows = {-Stealth[]}]                 (0,1)   -- (1,1);
+  \draw [arrows = {-Stealth[scale width=1.5]}] (0,0.5) -- (1,0.5);
+  \draw [arrows = {-Stealth[scale width=2]}]   (0,0)   -- (1,0);
+}
+```
 
 
 ---
@@ -1526,7 +3400,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `31b276ff7c32`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] {
+  \draw [arrows = {-Hooks[]}]         (0,1)   -- (1,1);
+  \draw [arrows = {-Hooks[arc=90]}]   (0,0.5) -- (1,0.5);
+  \draw [arrows = {-Hooks[arc=270]}]  (0,0)   -- (1,0);
+}
+```
 
 
 ---
@@ -1536,7 +3420,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `860f20dd3c15`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [arrows = {->[]}]         (0,1)   -- (1,1);
+  \draw [arrows = {->[slant=.5]}] (0,0.5) -- (1,0.5);
+  \draw [arrows = {->[slant=1]}]  (0,0)   -- (1,0);
+}
+```
 
 
 ---
@@ -1546,7 +3440,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `23ee74ffa94c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [>={[slant=.3] To[] To[]}]
+  \graph [math nodes] { A -> B <-> C };
+```
 
 
 ---
@@ -1556,7 +3457,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `fcd6baff88ed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[reversed]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1566,7 +3473,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6cc8a08c6878`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[reversed, reversed]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1576,7 +3489,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6ada7e53490a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1586,7 +3505,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `72cb8f948090`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {->[harpoon]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1596,7 +3521,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `111fe3393224`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1606,7 +3537,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `edc53d2d5f9b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon,swap]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1616,7 +3553,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c4df37045595`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[left]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1626,7 +3569,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `5eaceeea57d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [arrows = {-Stealth[right]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1636,7 +3585,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `98f4daae6166`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [red, arrows = {-Stealth}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1646,7 +3601,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `465e46e921aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [blue, arrows = {-Stealth}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1656,7 +3617,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `058248cb0974`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [red, arrows = {-Stealth[color=blue]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1666,7 +3633,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2fc72ff3107f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [red, arrows = {-Stealth[color=black]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1676,7 +3649,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `98a0cf88735a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [red, arrows = {-Stealth[blue]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1686,7 +3665,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6e83da1c09e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [draw=red, fill=red!50, arrows = {-Stealth[length=10pt]}]
+                          (0,0) -- (1,1) -- (2,0);
+```
 
 
 ---
@@ -1696,7 +3682,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `6c96ea7a27ed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
+  \draw [thick, red, arrows = {-Stealth[fill=white,length=15pt]}] (0,0) -- (1,0);
+}
+```
 
 
 ---
@@ -1706,7 +3701,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c88bb91e934e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
+  \draw [thick, red, arrows = {-Stealth[fill=none,length=15pt]}] (0,0) -- (1,0);
+}
+```
 
 
 ---
@@ -1716,7 +3720,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9e4d569ef8f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
+  \draw [thick, red, arrows = {-Stealth[color=blue, fill=white, length=15pt]}]
+        (0,0) -- (1,0);
+}
+```
 
 
 ---
@@ -1726,7 +3740,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ad12cb032c5d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [ultra thick] \draw [draw=red, fill=red!50,
+                           arrows = {-Stealth[length=15pt, fill=pgffillcolor]}]
+                          (0,0) -- (1,1) -- (2,0);
+```
 
 
 ---
@@ -1736,7 +3758,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `680175411435`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[line cap=butt]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1746,7 +3776,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e94fcc6a680b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[line cap=round]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1756,7 +3794,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `bb7819c9f084`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,line cap=butt]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1766,7 +3812,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `dacaf02e30ed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,line cap=round]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1776,7 +3830,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `bd167a8ccb9d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[line join=miter]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1786,7 +3848,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `098a73f57270`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[line join=round]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1796,7 +3866,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `1e3b28f6faba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,line join=miter]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1806,7 +3884,15 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `e3b4454ece1f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,line join=round]}]
+        (0,0) -- (1,0);
+```
 
 
 ---
@@ -1816,7 +3902,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `82f4042c96e8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[round]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1826,7 +3919,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ce180ccddceb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,round]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1836,7 +3936,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f3bd685b8acd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Computer Modern Rightarrow[sharp]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1846,7 +3953,14 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `00f02fb7702e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [line width=2mm]
+  \draw [arrows = {-Bracket[reversed,sharp]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1856,7 +3970,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `88b74c905ec3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[line width=0.1pt, fill=white, length=10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1866,7 +3986,13 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `3963e86b5bfa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [arrows = {-Latex[line width=1pt, fill=white, length=10pt]}] (0,0) -- (1,0);
+```
 
 
 ---
@@ -1876,7 +4002,20 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `9ae105dd1c58`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\wall{ \fill     [fill=black!50]  (1,-.5) rectangle (2,.5);
+           \pattern  [pattern=bricks] (1,-.5) rectangle (2,.5);
+           \draw     [line width=1pt]  (1cm+.5pt,-.5) -- ++(0,1); }
+\begin{tikzpicture}
+  \wall
+  % The "line"
+  \draw [red,line width=1mm] (-1,0) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1886,7 +4025,16 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `2f47539661ba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usetikzlibrary{patterns}
+\def\wall{ \fill     [fill=black!50]  (1,-.5) rectangle (2,.5);
+           \pattern  [pattern=bricks] (1,-.5) rectangle (2,.5);
+           \draw     [line width=1pt]  (1cm+.5pt,-.5) -- ++(0,1); }
+```
 
 
 ---
@@ -1896,7 +4044,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `58f409cd6031`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue]}]
+        (-1,0) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1906,7 +4064,17 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `ed1aa93a1a44`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm] (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1916,7 +4084,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `111a26884f63`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,quick]}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1926,7 +4105,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f570e4935f9a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{[quick,sep]>>>}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1936,7 +4126,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `c52fe03d512e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex]}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1946,7 +4147,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `54c0980648b7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex=0]}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1956,7 +4168,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `86b5123e2b38`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex=.5]}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1966,7 +4189,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `1bfceef98c6a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,flex=0]}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1976,7 +4210,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `7f8014778617`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{[flex,sep]>>>}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1986,7 +4231,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `f0c07be1840d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex']}]
+        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1996,7 +4252,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `de448e626c13`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Computer Modern Rightarrow[flex]}]
+        (0,-.5) .. controls (1,-.5) and (0.5,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -2006,7 +4273,18 @@ Showing items **4801-5000** of **5325** | Page **25** of **27**
 **ID**: `186123506428`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \wall
+  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
+  \draw [red,line width=1mm,-{Computer Modern Rightarrow[flex'=.75]}]
+        (0,-.5) .. controls (1,-.5) and (0.5,0) .. (1,0);
+\end{tikzpicture}
+```
 
 
 ---

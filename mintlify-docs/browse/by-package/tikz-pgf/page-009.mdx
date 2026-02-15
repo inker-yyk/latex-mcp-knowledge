@@ -17,6 +17,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Appends a ``close-path'' segment to the current soft path.
+
 
 ---
 
@@ -25,7 +29,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `64809247e934`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpathmoveto{\pgfpoint{0bp}{0bp}}
+\pgfpathlineto{\pgfpoint{10bp}{0bp}}
+\pgfusepath{stroke}
+```
 
 
 ---
@@ -35,7 +47,16 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `0469d1c09e14`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsys@moveto{0}{0}
+\pgfsys@setlinewidth{1}
+\pgfsys@lineto{10}{0}
+\pgfsys@stroke
+```
 
 
 ---
@@ -45,7 +66,16 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8f95a86efa89`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsyssoftpath@moveto{0pt}{0pt}
+\pgfsyssoftpath@lineto{10pt}{10pt}
+\pgfsyssoftpath@flushcurrentpath
+\pgfsys@stroke
+```
 
 
 ---
@@ -55,7 +85,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6f18a5ef58a5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsyssoftpath@movetotoken{0bp}{0bp}\pgfsyssoftpath@linetotoken{10bp}{0bp}
+```
 
 
 ---
@@ -65,7 +101,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `207348146f75`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsyssoftpath@curveto{1bp}{2bp}{3bp}{4bp}{5bp}{6bp}
+```
 
 
 ---
@@ -75,7 +117,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e09c0e9e50c0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsyssoftpath@curvetosupportatoken{1bp}{2bp}
+\pgfsyssoftpath@curvetosupportbtoken{3bp}{4bp}
+\pgfsyssoftpath@curvetotoken{5bp}{6bp}
+```
 
 
 ---
@@ -85,7 +135,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6b873853c2b9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+#include <pgf/gd/interface/c/InterfaceFromC.h>
+#include <math.h>
+
+static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
+  ...
+}
+```
 
 
 ---
@@ -95,7 +156,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `16813d5b8704`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
+  double angle  = 6.28318530718 / graph->vertices.length;
+  double radius = pgfgd_tonumber(graph->options, "fast simple demo radius");
+
+  int i;
+  for (i = 0; i < graph->vertices.length; i++) {
+    pgfgd_Vertex* v = graph->vertices.array[i];
+    v->pos.x = cos(angle*i) * radius;
+    v->pos.y = sin(angle*i) * radius;
+  }
+}
+```
 
 
 ---
@@ -105,7 +182,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `16b7124045f6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+int luaopen_pgf_gd_examples_c_SimpleDemoC (struct lua_State *state) {
+
+  pgfgd_Declaration* d = pgfgd_new_key ("fast simple demo layout");
+  pgfgd_key_summary          (d, "The C version of the hello world of graph drawing");
+  pgfgd_key_algorithm        (d, fast_hello_world);
+  pgfgd_key_add_precondition (d, "connected");
+  pgfgd_key_add_precondition (d, "tree");
+  pgfgd_declare              (state, d)
+  pgfgd_free_key             (d);
+```
 
 
 ---
@@ -115,7 +206,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `69d76b3aa92a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+declare {
+  key = "fast simple demo layout",
+  summary = "The C version of the hello world of graph drawing",
+  preconditions = {
+    connected = true,
+    tree = true,
+  },
+  algorithm = {
+    run =  -- something magic we cannot express in Lua
+  }
+}
+```
 
 
 ---
@@ -125,7 +232,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `3e3a75de058e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+d = pgfgd_new_key ("fast simple demo radius");
+  pgfgd_key_summary (d, "A radius value for the hello world of graph drawing");
+  pgfgd_key_type    (d, "length");
+  pgfgd_key_initial (d, "1cm");
+  pgfgd_declare     (state, d);
+  pgfgd_free_key    (d);
+
+  return 0;
+}
+```
 
 
 ---
@@ -135,7 +256,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `72af50310e5c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+require 'pgf.gd.examples.c.SimpleDemoC'
+```
 
 
 ---
@@ -145,7 +272,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `71bd7e1dbe2a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usegdlibrary {examples.c.SimpleDemoC}
+```
 
 
 ---
@@ -155,7 +288,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6573631dd0cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pgf_gd_examples_c_SimpleDemoC.so
+```
 
 
 ---
@@ -165,7 +304,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `85cd2ab6d9d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+require 'pgf_gd_examples_c_SimpleDemoC'
+```
 
 
 ---
@@ -175,7 +320,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `656c0a14b8af`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usegdlibrary {pgf_gd_examples_c_SimpleDemoC}
+```
 
 
 ---
@@ -185,7 +336,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `a67b76301f9b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [fast simple demo layout, fast simple demo radius=1.25cm]
+{ a -> b -> c -> d -> e -> a };
+```
 
 
 ---
@@ -195,7 +353,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c4b2e681c952`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pgfgd_key_documentation_in (d, "pgf.gd.doc.examples.SimpleDemoC");
+```
 
 
 ---
@@ -205,7 +369,39 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6019aec0ba4a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- File pgf/gd/doc/examples/SimpleDemoC.lua
+local key           = require 'pgf.gd.doc'.key
+local documentation = require 'pgf.gd.doc'.documentation
+local summary       = require 'pgf.gd.doc'.summary
+local example       = require 'pgf.gd.doc'.example
+
+key           "fast simple demo layout"
+documentation
+[[
+This layout is used...
+]]
+example
+[[
+\tikz \graph [fast simple example layout]
+{ a -- b -- c -- d -- e; };
+]]
+
+key           "fast simple demo radius"
+documentation
+[[
+The radius parameter is used to ...
+]]
+example
+[[
+\tikz \graph [fast simple demo layout, fast simple demo radius=1.25cm]
+{ a -> b -> c -> d -> e -> a };
+]]
+```
 
 
 ---
@@ -215,7 +411,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `5c409b31c7f8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+#include <pgf/gd/interface/c/InterfaceFromC++.h>
+#include <pgf/gd/interface/c/InterfaceFromC.h>
+
+#include <math.h>
+
+struct FastLayout : scripting::declarations, scripting::runner {
+  ...
+}
+```
 
 
 ---
@@ -225,7 +434,24 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `024c5120130c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+void run () {
+  pgfgd_SyntacticDigraph* graph = parameters->syntactic_digraph;
+
+  double angle  = 6.28318530718 / graph->vertices.length;
+  double radius = parameters->option<double>("fast simple demo radius c++");
+
+  for (int i = 0; i < graph->vertices.length; i++) {
+    pgfgd_Vertex* v = graph->vertices.array[i];
+    v->pos.x = cos(angle*i) * radius;
+    v->pos.y = sin(angle*i) * radius;
+  }
+}
+```
 
 
 ---
@@ -235,7 +461,26 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8003086dbee2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+void declare(scripting::script s) {
+  using namespace scripting;
+
+  s.declare(key ("fast simple demo layout c++")
+            .summary ("The C++ version of the hello world of graph drawing")
+            .precondition ("connected")
+            .precondition ("tree")
+            .algorithm (this));
+
+  s.declare(key ("fast simple demo radius c++")
+            .summary ("A radius value for the hello world of graph drawing")
+            .type ("length")
+            .initial ("1cm"));
+}
+```
 
 
 ---
@@ -245,7 +490,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c7ba46b36f47`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoCPlusPlus (struct lua_State *state) {
+  scripting::script s (state);
+  s.declare (new FastLayout);
+  return 0;
+}
+```
 
 
 ---
@@ -255,7 +510,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c38a6a0d6307`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pgf_gd_examples_c_SimpleDemoCPlusPlus.so
+```
 
 
 ---
@@ -265,7 +526,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `4ccf281b5fed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+require 'pgf_gd_examples_c_SimpleDemoCPlusPlus'
+```
 
 
 ---
@@ -275,7 +542,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `af6f9ff1b11d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usegdlibrary {pgf_gd_examples_c_SimpleDemoCPlusPlus}
+```
 
 
 ---
@@ -285,7 +558,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ed0de0ffc448`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [fast simple demo layout c++, fast simple demo radius c++=1.25cm]
+{ a -> b -> c -> d -> e -> a };
+```
 
 
 ---
@@ -295,7 +575,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `55fa520fbdc2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+s.declare (key (...)
+           .algorithm(this)
+           ...);
+```
 
 
 ---
@@ -305,7 +593,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `4e35aaeef2e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+double dist;
+if (parameters->option ("node distance", dist))
+  ...
+```
 
 
 ---
@@ -315,7 +611,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ab9cbe2e7913`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+class MyClass {
+public:
+  void setMyDistance (double distance);
+...
+};
+...
+
+MyClass m;
+parameters->configure_option("node distance", &MyClass::setMyDistance, m);
+```
 
 
 ---
@@ -325,7 +635,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `077388734307`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+#include <pgf/gd/ogdf/c/InterfaceFromOGDF.h>
+#include <math.h>
+
+using namespace ogdf;
+using namespace scripting;
+```
 
 
 ---
@@ -335,7 +655,24 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `15e06bafa3e9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+struct FastLayoutOGDF : declarations, ogdf_runner {
+
+  void run () {
+    double angle  = 6.28318530718 / graph.numberOfNodes();
+    double radius = parameters->option<double>("my radius ogdf");
+
+    int i = 0;
+    for (node v = graph.firstNode(); v; v=v->succ(), i++) {
+      graph_attributes.x(v) = cos(angle*i) * radius;
+      graph_attributes.y(v) = sin(angle*i) * radius;
+    }
+  }
+```
 
 
 ---
@@ -345,7 +682,26 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `b9ef8c332754`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+void declare(script s) {
+    using namespace scripting;
+
+    s.declare(key ("fast simple demo layout ogdf")
+          .summary ("The OGDF version of the hello world of graph drawing")
+          .precondition ("connected")
+          .algorithm (this));
+
+    s.declare(key ("my radius ogdf")
+          .summary ("A radius value for the hello world of graph drawing")
+          .type ("length")
+          .initial ("1cm"));
+  }
+};
+```
 
 
 ---
@@ -355,7 +711,16 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `f938f62ad48f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoOGDF (struct lua_State *state) {
+  script (state).declare (new FastLayoutOGDF);
+  return 0;
+}
+```
 
 
 ---
@@ -365,7 +730,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `0a13434ac561`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [fast simple demo layout ogdf, my radius ogdf=1cm]
+{ a -> b -> c -> d -> e -> a };
+```
 
 
 ---
@@ -375,7 +747,37 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `dc26e69ea04b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+// File HelloWorldLayout.h
+#include <ogdf/module/LayoutModule.h>
+
+class HelloWorldLayout : public ogdf::LayoutModule {
+public:
+
+  virtual void call(ogdf::GraphAttributes &GA)
+  {
+    using namespace ogdf;
+
+    const Graph &graph = GA.constGraph();
+    double angle  = 6.28318530718 / graph.numberOfNodes();
+    int i = 0;
+    for (node v = graph.firstNode(); v; v=v->succ(), i++) {
+      GA.x(v) = cos(angle*i) * radius;
+      GA.y(v) = sin(angle*i) * radius;
+    }
+  }
+
+  void setRadius (double r) { radius = r; }
+
+private:
+
+  double radius;
+};
+```
 
 
 ---
@@ -385,7 +787,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `911e3c59a34c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+void run ()
+{
+  HelloWorldLayout layout;
+  parameters->configure_option("HelloWorldLayout.radius", &HelloWorldLayout::setRadius, layout);
+  layout.call(graph_attributes);
+}
+```
 
 
 ---
@@ -395,7 +808,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `f6ceb46b035f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+void declare(script s) {
+  using namespace scripting;
+
+  s.declare(key ("HelloWorldLayout")
+            .summary ("The OGDF version of the hello world of graph drawing")
+            .precondition ("connected")
+            .algorithm (this));
+
+  s.declare(key ("HelloWorldLayout.radius")
+            .summary ("A radius value for the hello world of graph drawing")
+            .type ("length")
+            .alias ("radius"));
+}
+```
 
 
 ---
@@ -405,7 +836,29 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2e00c6b09770`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+// File HelloWorldLayout_script.c++
+
+#include <pgf/gd/ogdf/c/InterfaceFromOGDF.h>
+#include <HelloWorldLayout.h>
+
+using namespace ogdf;
+using namespace scripting;
+
+struct HelloWorldLayout_script : declarations, ogdf_runner {
+  void run ()             { ... see above ... }
+  void declare (script s) { ... see above ... }
+};
+
+extern "C" int luaopen_my_path_HelloWorldLayout_script (struct lua_State *state) {
+  script (state).declare (new HelloWorldLayout_script);
+  return 0;
+}
+```
 
 
 ---
@@ -416,6 +869,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y} This command does the same as ||, but x and y must be simple dimensions like |1pt| or |1cm|. Things like |2ex| or |2cm+1pt| are not allowed.
+
 
 ---
 
@@ -424,6 +881,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `45a7dad1513a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+$s_y$} This command does the same as ||, but $s_x$ and $s_y$ must be simple numbers without unit, like |1.234| or |5.0|. Mathematical expressions or units are not allowed.
 
 
 ---
@@ -434,6 +895,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$s_y$$s_z$} As ||, but for three-dimensional coordinates. Any argument needs to be a number without unit.
+
 
 ---
 
@@ -442,6 +907,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `546c410d6ed0`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+coordinate} As ||, but factor must be a simple number without unit, as for the other ``quick'' commands.
 
 
 ---
@@ -452,6 +921,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y dimension} Either starts a path or starts a new part of a path at the coordinate $(x dimension,y dimension)$. The coordinate is not transformed by the current coordinate transformation matrix. However, any low-level transformations apply. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1cm 0pt{0pt} 1cm{1cm} {2cm{0cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -460,6 +933,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1a35e5a4a180`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y dimension} The quick version of the line-to operation.
 
 
 ---
@@ -470,6 +947,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$s^1_y$$s^2_x$$s^2_y$$t_x$$t_y$} The quick version of the curve-to operation. The first support point is $(s^1_x,s^1_y)$, the second support point is $(s^2_x,s^2_y)$, and the target is $(t_x,t_y)$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 0pt{0pt} 1cm{1cm}{2cm}{1cm}{3cm}{0cm} stroke tikzpicture codeexample
+
 
 ---
 
@@ -478,6 +959,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `12f8f6b1c359`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Adds a radius around the origin of the given radius. This command is orders of magnitude faster than |{|radius|}|. codeexample[] examplefill{yellow!80!black} tikzpicture [help lines] (0,0) grid (1,1); 10pt examplefill stroke,fill tikzpicture codeexample
 
 
 ---
@@ -488,6 +973,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Strokes the path without further ado. No arrows are drawn, no corners are arced. codeexample[] pgfpicture 5pt pgfpicture codeexample
+
 
 ---
 
@@ -496,6 +985,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ef0db196e2b0`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Fills the path without further ado.
 
 
 ---
@@ -506,6 +999,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Fills and then strokes the path without further ado.
+
 
 ---
 
@@ -514,6 +1011,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `963e50479d61`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Clips all subsequent drawings against the current path. The path is not processed.
 
 
 ---
@@ -524,6 +1025,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command inserts a \ box into a |{pgfpicture}| by ``escaping'' to , inserting the box number box number at the origin, and then returning to the typesetting the picture.
+
 
 ---
 
@@ -533,6 +1038,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command works similarly to the || command. However, before inserting the text in box number, the current coordinate transformation matrix is applied to the current canvas transformation matrix (is it ``synced'' with this matrix, hence the name). Thus, this command basically has the same effect as if you first called || followed by ||. However, this command will use || and || commands for the ``translational part'' of the coordinate transformation matrix, instead of adding the translationa
+
 
 ---
 
@@ -541,7 +1050,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `dd3b2fc21a9c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformxshift{1cm}
+  \pgfpathqmoveto{0pt}{0pt} % not transformed
+  \pgfpathqlineto{1cm}{1cm} % not transformed
+  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -551,7 +1073,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `74146d118056`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathqmoveto{0pt}{0pt}
+  \pgfpathqcurveto{1cm}{1cm}{2cm}{1cm}{3cm}{0cm}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -561,7 +1094,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `b2f554124b30`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\colorlet{examplefill}{yellow!80!black}
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (1,1);
+  \pgfpathqcircle{10pt}
+  \pgfsetfillcolor{examplefill}
+  \pgfusepath{stroke,fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -571,7 +1116,16 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `0ae789d6997a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathqcircle{5pt}
+  \pgfusepathqstroke
+\end{pgfpicture}
+```
 
 
 ---
@@ -581,7 +1135,30 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `910f5af4fe6b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes={0 to pi, clean},
+  all axes=grid,
+  style sheet=vary hue,
+  legend=below
+  ]
+  [visualize as smooth line=sin,
+   sin={label in legend={text=$1+\sin \alpha$}}]
+  data [format=function] {
+    var  angle : interval [0:pi];
+    func radius = sin(\value{angle}r) + 1;
+  }
+  [visualize as smooth line=cos,
+   cos={label in legend={text=$1+\cos\alpha$}}]
+  data [format=function] {
+    var  angle : interval [0:pi];
+    func radius = cos(\value{angle}r) + 1;
+  };
+```
 
 
 ---
@@ -591,7 +1168,38 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `187f7bc946e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[baseline] \datavisualization [
+  scientific axes={clean},
+  x axis={attribute=angle, ticks={minor steps between steps=4}},
+  y axis={attribute=radius, ticks={some, style=red!80!black}},
+  all axes=grid,
+  visualize as smooth line=sin]
+  data [format=function] {
+    var t : interval [-3:3];
+    func angle = exp(\value t);
+    func radius = \value{t}*\value{t};
+  };
+\qquad
+\tikz[baseline] \datavisualization [
+  scientific polar axes={right half clockwise, clean},
+  angle axis={logarithmic,
+    ticks={
+      minor steps between steps=8,
+      major also at/.list={2,3,4,5,15,20}}},
+  radius axis={ticks={some, style=red!80!black}},
+  all axes=grid,
+  visualize as smooth line=sin]
+  data [format=function] {
+    var t : interval [-3:3];
+    func angle = exp(\value t);
+    func radius = \value{t}*\value{t};
+  };
+```
 
 
 ---
@@ -601,7 +1209,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ee60d94259c6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+/tikz/data visualization/scientific polar axes
+```
 
 
 ---
@@ -611,7 +1225,26 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `922bafc4ee35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes,
+  radius axis={
+    attribute=distance,
+    ticks={step=5000},
+    padding=1.5em,
+    length=3cm,
+    grid
+  },
+  visualize as smooth line]
+data [format=function] {
+  var  angle : interval [0:100];
+  func distance = \value{angle}*\value{angle};
+};
+```
 
 
 ---
@@ -621,7 +1254,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `7ede2bdbe610`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes={outer ticks, 0 to 180},
+  visualize as smooth line]
+data [format=function] {
+  var  angle : interval [0:100];
+  func radius = \value{angle};
+};
+```
 
 
 ---
@@ -631,7 +1276,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `7c5678d5ff92`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes={inner ticks, 0 to 180},
+  visualize as smooth line]
+data [format=function] {
+  var  angle : interval [0:100];
+  func radius = \value{angle};
+};
+```
 
 
 ---
@@ -641,7 +1298,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `5740166abd56`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes={clean, 0 to 180},
+  visualize as smooth line]
+data [format=function] {
+  var  angle : interval [0:100];
+  func radius = \value{angle};
+};
+```
 
 
 ---
@@ -651,7 +1320,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2f4e7995b4fb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific polar axes={
+    clean,
+    0 to 90  % the option
+  },
+  angle axis={ticks={step=30}},
+  radius axis={length=1cm, ticks={step=1}},
+  visualize as scatter]
+data point [angle=20, radius=0.5]
+data point [angle=30, radius=1]
+data point [angle=40, radius=1.5];
+```
 
 
 ---
@@ -661,7 +1346,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `47eeab889072`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+    [new polar axes={angle axis}{radius axis},
+     radius axis={length=2cm},
+     visualize as scatter]
+  data [format=named] {
+    angle={0,20,...,160}, radius={0,...,5}
+  };
+```
 
 
 ---
@@ -671,7 +1368,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `7ac828590fe4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+    [new polar axes={angle axis}{radius axis},
+     radius axis={unit length=1cm},
+     angle axis={unit vectors={(10:1pt)}{(60:1pt)}},
+     visualize as scatter]
+  data [format=named] {
+    angle={0,90}, radius={0.25,0.5,...,2}
+  };
+```
 
 
 ---
@@ -681,7 +1391,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e8defe5f4a99`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+    [new polar axes={angle axis}{radius axis},
+     radius axis={unit length=1cm},
+     angle axis={degrees},
+     visualize as scatter]
+  data [format=named] {
+    angle={10,90}, radius={0.25,0.5,...,2}
+  };
+```
 
 
 ---
@@ -691,7 +1414,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6095f916104c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+    [new polar axes={angle axis}{radius axis},
+     radius axis={unit length=1cm},
+     angle axis={radians},
+     visualize as scatter]
+  data [format=named] {
+    angle={0,1.5}, radius={0.25,0.5,...,2}
+  };
+```
 
 
 ---
@@ -702,6 +1438,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+options} Installs the specified layout with the given options. The predefined layouts and their permissible options are explained below. If this function is called multiple times, only the last call ``wins''. You can thereby overwrite any previous settings. In particular, layouts do not accumulate. |resize to[a4paper]|
+
 
 ---
 
@@ -710,6 +1450,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1fea1002213b`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+before actionsafter actions} This command predefines a layout that can later be installed using the || command. When ||layoutoptions is called, the following happens: First, the before actions are executed. They can be used, for example, to set up default values for keys. Next, |pgfpagesuselayoutoption|options is executed. Finally, the after actions are executed. Here is an example: codeexample[code only] resize to { 0pt } { { logical pages=1, physical height=, physical width= } 1 { resized widt
 
 
 ---
@@ -720,6 +1464,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command sets the characteristics of the ``physical'' page. For example, it is used to specify how many logical pages there are and how many logical pages must be accumulated before a physical page is shipped out. How each individual logical page is typeset is specified using the command ||, described later. A layout for putting two portrait pages on a single landscape page: codeexample[code only] { logical pages=2, physical height=, physical width=, } 1 { resized width=.5, resized height=
+
 
 ---
 
@@ -728,6 +1476,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `a057bb8b44e2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+options} This command is used to specify where the logical page number logical page number will be placed on the physical page. In addition, this command can be used to install additional ``code'' to be executed when this page is put on the physical page. The number logical page number should be between 1 and logical pages, which has previously been installed using the || command. The following options may be given: itemize |center=|{pgf point} specifies the center of the logical page inside the
 
 
 ---
@@ -738,6 +1490,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+box} This command sets to logical page number to box. The box should be the code of a \ box command. This command does not influence the counter current logical page and does not cause a physical shipout. codeexample[code only] 0Hi! codeexample This command can be used to set the contents of logical pages that are normally not filled.
+
 
 ---
 
@@ -747,6 +1503,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} When the current \ page has been typeset, it will be become the given logical page number. This command ``interrupts'' the normal order of logical pages, that is, it behaves like the previous command and does not update the current logical page counter. codeexample[code only] two screens with optional second ... Text for main page. 2 Text that goes to second page Text for main page. codeexample
+
 
 ---
 
@@ -755,7 +1515,22 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e97bfba963c9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{article}
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
+
+\begin{document}
+This text is shown on the left.
+\clearpage
+This text is shown on the right.
+\end{document}
+```
 
 
 ---
@@ -765,7 +1540,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c67237be39ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{beamer}
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+\begin{document}
+\begin{frame}
+  This text is shown at the top.
+\end{frame}
+\begin{frame}
+  This text is shown at the bottom.
+\end{frame}
+\end{document}
+```
 
 
 ---
@@ -775,7 +1568,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `fccb33f0c488`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{article}
+
+\usepackage{pgfpages}
+%%\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
+%%\nofiles
+
+\begin{document}
+This text is shown on the left.
+\clearpage
+This text is shown on the right.
+\end{document}
+```
 
 
 ---
@@ -785,7 +1594,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e8d0eccc08a3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{article}
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
+\nofiles
+
+\begin{document}
+This text is shown on the left.
+\clearpage
+This text is shown on the right.
+\end{document}
+```
 
 
 ---
@@ -795,7 +1620,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `a7b0860fa171`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[a4paper]
+```
 
 
 ---
@@ -805,7 +1637,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2cae23f32249`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass[a4paper]{article}
+%% a4 is currently the logical size and also the physical size
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[letterpaper]
+%% a4 is still the logical size, but letter is the physical one
+
+\begin{document}
+  \title{My Great Article}
+...
+\end{document}
+```
 
 
 ---
@@ -815,7 +1663,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `b35e76df0fad`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{beamer}
+\usepackage{pgfpages}
+\pgfpagesuselayout{rounded corners}[corner width=5pt]
+\begin{document}
+...
+\end{document}
+```
 
 
 ---
@@ -825,7 +1684,31 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `72c7ce4f1806`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpagesdeclarelayout{resize to}
+{
+  \def\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=1,%
+    physical height=\pgfpageoptionheight,%
+    physical width=\pgfpageoptionwidth%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {%
+    resized width=\pgfphysicalwidth,%
+    resized height=\pgfphysicalheight,%
+    border shrink=\pgfpageoptionborder,%
+    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  }%
+}
+```
 
 
 ---
@@ -835,7 +1718,31 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `fcc3ba9cee02`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpagesphysicalpageoptions
+{%
+  logical pages=2,%
+  physical height=\paperwidth,%
+  physical width=\paperheight,%
+}
+
+\pgfpageslogicalpageoptions{1}
+{%
+  resized width=.5\pgfphysicalwidth,%
+  resized height=\pgfphysicalheight,%
+  center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}%
+}%
+\pgfpageslogicalpageoptions{2}
+{%
+  resized width=.5\pgfphysicalwidth,%
+  resized height=\pgfphysicalheight,%
+  center=\pgfpoint{.75\pgfphysicalwidth}{.5\pgfphysicalheight}%
+}%
+```
 
 
 ---
@@ -845,7 +1752,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `a7d685475c8d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpageslogicalpageoptions{1}
+{% center logical page on middle of left side
+  center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  resized width=.5\pgfphysicalwidth,%
+  resized height=\pgfphysicalheight,%
+}
+```
 
 
 ---
@@ -855,7 +1773,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d5d4bb1fdf1a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpageslogicalpageoptions{2}{copy from=2}
+```
 
 
 ---
@@ -865,7 +1789,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6f984081bf45`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpageslogicalpageoptions{2}{copy from=1}
+```
 
 
 ---
@@ -875,7 +1805,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `4bcadc393cc6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+```
 
 
 ---
@@ -885,7 +1821,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `4a4cde4a8529`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpagesshipoutlogicalpage{0}\vbox{Hi!}
+```
 
 
 ---
@@ -895,7 +1837,22 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `fe9677095290`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpagesuselayout{two screens with optional second}
+...
+Text for main page.
+\clearpage
+
+\pgfpagescurrentpagewillbelogicalpage{2}
+Text that goes to second page
+\clearpage
+
+Text for main page.
+```
 
 
 ---
@@ -905,7 +1862,27 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `02293583fdcd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Copyright 2019 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/generic/pgf/licenses/LICENSE for more details.
+
+
+\RequirePackage{pgf,pgffor}
+
+\input{tikz.code.tex}
+
+\endinput
+```
 
 
 ---
@@ -915,7 +1892,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6057e33af7ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+ps2pdf -dALLOWPSTRANSPARENCY example.ps
+```
 
 
 ---
@@ -925,7 +1908,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `23018d48256e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% example.tex
+\documentclass[dvisvgm]{minimal}
+
+\usepackage{tikz}
+
+\begin{document}
+Hello \tikz [baseline] \fill [fill=blue!80!black] (0,.75ex) circle[radius=.75ex];
+\end{document}
+```
 
 
 ---
@@ -935,7 +1931,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `9d6113dc231f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+latex example
+dvisvgm example
+```
 
 
 ---
@@ -945,7 +1948,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d2bce1f9963a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+lualatex --output-format=dvi example
+dvisvgm example
+```
 
 
 ---
@@ -955,7 +1965,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `f05a90e96399`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node[draw,/pgf/tex4ht node/escape=false] {Example : $(a+b)^2=a^2+2ab+b^2$};
+```
 
 
 ---
@@ -965,7 +1981,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1bde3365da3f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node[draw,/pgf/tex4ht node/escape=true]
+  {Example : $\int_0^\infty\frac{1}{1+t^2}dt=\frac{\pi}{2}$};
+```
 
 
 ---
@@ -976,6 +1999,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command is used to load the special graph drawing libraries (the |gd| in the name of the command stands for ``graph drawing''). The list of libraries is a comma-separated list of library written in the Lua programming language (which is why a special command is needed). In detail, this command does the following. For each name in the list of libraries we do: enumerate Check whether Lua\ can call |require| on the library file |pgf.gd.|name|.library|. Lua's usual file search mechanism will 
+
 
 ---
 
@@ -984,7 +2011,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8efcd8b2d7d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usetikzlibrary{graphdrawing}
+\usegdlibrary{trees,force}
+```
 
 
 ---
@@ -994,7 +2028,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ccef5fbdb461`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees, layered}
+```
 
 
 ---
@@ -1004,7 +2045,22 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ca9aabbe06c2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [rounded corners]
+  \graph [layered layout, sibling distance=8mm, level distance=8mm]
+  {
+    a -> {
+      b,
+      c -> { d, e }
+    } ->
+    f ->
+    a
+  };
+```
 
 
 ---
@@ -1014,17 +2070,44 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e2dfa89163cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [spring layout, vertical=1 to 2] { 1--2--3--1 };
+```
 
 
 ---
 
-## 1904. Other Example
+## 1904. Node Graph Example
 
 **ID**: `2e746fe075b1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [spring layout] {
+  \begin{scope}[tree layout]
+    \node (a) {a};
+    \node (b) {b};
+    \node (c) {c};
+    \draw (a) edge (b) edge (c);
+  \end{scope}
+
+  \begin{scope}[tree layout]
+    \node (1) {1};
+    \node (2) {2};
+    \draw (1) edge (2);
+  \end{scope}
+
+  \draw (a) edge (1);
+}
+```
 
 
 ---
@@ -1034,7 +2117,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `b46d228423f4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [spring layout] {
+  // [tree layout] { a -- {b, c} };
+  // [tree layout] { 1 -- 2 };
+  a -- 1;
+};
+```
 
 
 ---
@@ -1044,7 +2137,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2e7ecb070161`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [simple necklace layout] {
+ // [simple necklace layout] { a -> b -> c -> d -> e -> f -> a };
+
+ // [tree layout] { % first tentacle
+   a -> {1, 2};
+ };
+
+ // [tree layout] {% second tentacle
+   d -> {3, 4 -> {5, 6}}
+ };
+};
+```
 
 
 ---
@@ -1054,7 +2163,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ad3b24ad7b05`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [simple necklace layout] {
+  // [tree layout] { % first ``giant node''
+    a -> {1, 2};
+  };
+
+  a -> b -> c -> d;
+
+  // [tree layout] {% second ``giant node''
+    d -> {3, 4 -> {5, 6}}
+  },
+
+  d -> e -> f -> a;
+};
+```
 
 
 ---
@@ -1064,7 +2191,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6f7837854ca2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [simple necklace layout] {
+     tree 1[draw, circle] // [tree layout] { a -> {1, 2}; }
+  -> b
+  -> c
+  -> tree 2[draw] // [tree layout] { d -> {3, 4 -> {5, 6} } }
+  -> e
+  -> f
+  -> tree 1;
+};
+```
 
 
 ---
@@ -1074,7 +2215,22 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8949bce16628`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [subgraph text bottom=text centered,
+       subgraph nodes={font=\itshape}]
+  \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    left [draw]  // { b, c, d };
+    right [draw] // { e, f, g, h};
+
+    left <-> right;
+  };
+```
 
 
 ---
@@ -1084,7 +2240,22 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `ee852a34899f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [subgraph text bottom=text centered,
+       subgraph nodes=red]
+  \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    left [draw]  // { b, c, d };
+    right [draw] // { e, f, g, h};
+
+    left <-> right;
+  };
+```
 
 
 ---
@@ -1094,7 +2265,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `dd888071e4f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [subgraph text none]
+  \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    left [draw]  // { b, c, d };
+    right [draw] // { e, f, g, h};
+
+    left <-> right;
+  };
+```
 
 
 ---
@@ -1104,7 +2289,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1f44902b2e96`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [subgraph text top=text ragged left]
+  \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    left [draw]  // { b, c, d };
+    right [draw] // { e, f, g, h};
+
+    left <-> right;
+  };
+```
 
 
 ---
@@ -1114,7 +2313,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e2194f6435e3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [subgraph text top=text centered]
+  \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    left [draw, circle] // { b, c, d };
+  };
+```
 
 
 ---
@@ -1124,7 +2334,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `39406688a31c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [tree layout] {
+    a -> { b -> {c, d}, e -> {f, g -> h} };
+
+    / ["left", draw]  // { b, c, d } <->
+    / ["right", draw] // { e, f, g, h};
+  };
+```
 
 
 ---
@@ -1134,7 +2355,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `f70923861810`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pgf.gd.interface.InterfaceToAlgorithms.declare {
+  key = "very simple demo layout",
+  algorithm = {
+    run =
+      function (self)
+        local alpha = (2 * math.pi) / #self.ugraph.vertices
+        for i,vertex in ipairs(self.ugraph.vertices) do
+          vertex.pos.x = math.cos(i * alpha) * 25
+          vertex.pos.y = math.sin(i * alpha) * 25
+        end
+      end
+  }
+}
+```
 
 
 ---
@@ -1144,7 +2383,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `3b077380db96`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [very simple demo layout]
+  \graph { f -> c -> e -> a -> {b -> {c, d, f}, e -> b}};
+```
 
 
 ---
@@ -1154,7 +2400,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `28112c5e9660`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [very simple demo layout, componentwise]
+  \graph {
+    1 -> 2 ->[orient=right] 3 -> 1;
+    a -- b --[orient=45]  c -- d -- a;
+  };
+```
 
 
 ---
@@ -1164,7 +2420,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `9c266bb46156`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- This is the file ExampleLayout.lua
+local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
+```
 
 
 ---
@@ -1174,7 +2437,23 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d7d1bd6ce6f7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+local ExampleClass = {}  -- A local variable holding the class table
+
+declare {
+  key = "very simple demo layout",
+  algorithm = ExampleClass
+}
+
+function ExampleClass:run ()
+  local alpha = (2 * math.pi) / #self.ugraph.vertices
+  ...
+end
+```
 
 
 ---
@@ -1184,7 +2463,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `7f4eeab42176`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- File ExampleLayout.lua
+local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
+declare {
+  key = "very simple demo layout",
+  algorithm = "ExampleLayoutImplementation"
+}
+```
 
 
 ---
@@ -1194,7 +2484,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `5ee475d154b5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- File ExampleLayoutImplementation.lua
+local ExampleClass = {}
+function ExampleClass:run ()
+  local alpha = (2 * math.pi) / #self.ugraph.vertices
+  ...
+end
+return ExampleClass
+```
 
 
 ---
@@ -1204,7 +2506,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `960e87a13260`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+declare {
+  key = "radius",
+  type = "length",
+  initial = "25pt"
+}
+```
 
 
 ---
@@ -1214,7 +2526,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `9adf35ea2faf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+vertex.pos.x = math.cos(i * alpha) * vertex.options.radius
+          vertex.pos.y = math.sin(i * alpha) * vertex.options.radius
+```
 
 
 ---
@@ -1224,7 +2543,28 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `9d916ff504dc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+---
+declare {
+  key = "radius",
+  type = "length",
+  initial = "25pt",
+  summary = [[
+    Specifies the radius of a circle on which the nodes are placed when
+    the |very simple example layout| is used. Each vertex can have a
+    different radius.
+  ]],
+  examples = [[
+    \tikz \graph [very simple example layout, radius=2cm] {
+      a -- b -- c -- d -- e;
+    };
+  ]]
+}
+```
 
 
 ---
@@ -1234,7 +2574,26 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d710ae16ff25`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+---
+declare {
+  key               = "very simple demo layout",
+  algorithm         = ExampleClass,
+  documentation_in  = "documentation_file"
+}
+
+---
+declare {
+  key               = "radius",
+  type              = "length",
+  initial           = "25",
+  documentation_in  = "documentation_file"
+}
+```
 
 
 ---
@@ -1244,7 +2603,33 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `5dc85effdd19`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- File documentation_file.lua
+local key           = require 'pgf.gd.doc'.key
+local documentation = require 'pgf.gd.doc'.documentation
+local summary       = require 'pgf.gd.doc'.summary
+local example       = require 'pgf.gd.doc'.example
+
+key           "very simple demo layout"
+documentation "This layout is a very simple layout that, ..."
+
+key           "radius"
+summary       "Specifies the radius of a circle on which the nodes are placed."
+documentation
+[[
+This key can be used together with |very simple example layout|. An
+important feature is that...
+]]
+example
+[[
+\tikz \graph [very simple example layout, radius=2cm]
+{ a -- b -- c -- d -- e; };
+]]
+```
 
 
 ---
@@ -1254,7 +2639,14 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `cb4a2c2854b3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+-- File pgf.gd.example.SomeClass.lua:
+local SomeClass = {}
+```
 
 
 ---
@@ -1264,7 +2656,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `891f1c1cb2b6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+require("pgf.gd.example").SomeClass = SomeClass
+```
 
 
 ---
@@ -1274,7 +2672,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `a6e9d4a65ef6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+return SomeClass
+```
 
 
 ---
@@ -1284,7 +2688,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `87623e8d5d88`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+...
+local SomeClass = require "pgf.gd.examples.SomeClass"
+...
+```
 
 
 ---
@@ -1294,7 +2706,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `0cd3b26c0a9e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+graph { a -- {b, c} }
+```
 
 
 ---
@@ -1304,7 +2722,15 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `06d135fb08d0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+node (a) { a }
+child { node (b) {b} }
+child { node (c) {c} }
+```
 
 
 ---
@@ -1314,7 +2740,13 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `fc60a134cb23`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+graph { a -- b --[red] c, b --[green, bend right] c }
+```
 
 
 ---
@@ -1325,6 +2757,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the opacity of stroking operations. The value should be a number between |0| and |1|, where |1| means ``fully opaque'' and |0| means ``fully transparent''. A value like |0.5| will cause paths to be stroked in a semitransparent way. codeexample[] pgfpicture 5mm red {0cm{0cm}}{10mm} stroke black 0.5 {1cm{0cm}}{10mm} stroke pgfpicture codeexample
+
 
 ---
 
@@ -1333,6 +2769,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `26619cd7b6ef`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the opacity of filling operations. As for stroking, the value should be a number between |0| and~|1|. The ``filling transparency'' will also be used for text and images. codeexample[] tikzpicture 0.5 [red] (90:1cm) circle (11mm); [green] (210:1cm) circle (11mm); [blue] (-30:1cm) circle (11mm); tikzpicture codeexample
 
 
 ---
@@ -1343,6 +2783,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the blend mode to one of the values described in Section~section-blend-modes. As described there, blend modes are an advanced feature of pdf and not always rendered correctly. codeexample[] [transparency group] { screen [red!90!black] ( 90:.6) circle (1); [green!80!black] (210:.6) circle (1); [blue!90!black] (330:.6) circle (1); } codeexample
+
 
 ---
 
@@ -1351,6 +2795,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `bcbd4343a2ad`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+contents} This command declares a fading named name for later use. The ``picture'' on which the fading is based is given by the contents. The contents are normally typeset in a \ box. The resulting box is then used as the ``picture''. In particular, inside the contents you must explicitly open a |{pgfpicture}| environment if you wish to use \ commands. Let's start with an easy example. Our first fading picture is just some text: codeexample[] fading1{white{TikZ}} tikzpicture [black!20] (0,0) rec
 
 
 ---
@@ -1361,6 +2809,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+transformations} This command sets the graphic state parameter ``fading'' to a previously defined fading name. This graphic state works like other graphic states, that is, is persists till the end of the current scope or until a different transparency setting is chosen. When the fading is installed, it will be centered on the origin with its natural size. Anything outside the fading picture's original bounding box will be transparent and, thus, the fading effectively clips against this bounding 
+
 
 ---
 
@@ -1369,6 +2821,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8c232d7a89d3`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+transformations} This command works like ||, but the fading is scaled and transformed according to the following rules: enumerate If the current path is empty, the command has the same effect as ||. Otherwise it is assumed that the fading has a size of 100bp times 100bp. The fading is resized and shifted (using appropriate transformations) such that the position $(25bp,25bp)$ lies at the lower-left corner of the current path and the position $(75bp,75bp)$ lies at the upper-right corner of the cu
 
 
 ---
@@ -1379,6 +2835,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+transformations} This command works like ||, only the current path is enlarged by the line width in both $x$- and $y$-direction. This is exactly the enlargement necessary to compensate for the fact that if the current path will be stroked, this much needs to be added around the path's bounding box to actually contain the path. codeexample[preamble={shading{100bp} { color(0pt)=(transparent!0); color(25bp)=(transparent!0); color(75bp)=(transparent!100); color(100bp)=(transparent!100)} fading{shadi
+
 
 ---
 
@@ -1388,6 +2848,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: environment  
 **Package**: tikz-pgf  
 
+### Description
+
+{options}} This environment should only be used inside a |{pgfpicture}|. It has the following effect: enumerate The environment contents are stroked/filled ``ignoring any outside transparency''. This means, all previous transparency settings are ignored (you can still set transparency inside the group, but never mind). This means that if in the environment contents you stroke a pixel three times in black, it is just black. Stroking it white afterwards yields a white pixel, and so on. When the gr
+
 
 ---
 
@@ -1396,7 +2860,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `45d5b9013f6a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{5mm}
+  \color{red}
+  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{10mm} \pgfusepath{stroke}
+  \color{black}
+  \pgfsetstrokeopacity{0.5}
+  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{10mm} \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1406,7 +2883,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `02059be9417a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetfillopacity{0.5}
+  \fill[red]   (90:1cm)  circle (11mm);
+  \fill[green] (210:1cm) circle (11mm);
+  \fill[blue]  (-30:1cm) circle (11mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1416,7 +2904,17 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c659002b8988`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetfillopacity{0.5}
+  \fill[red] (0,0) circle (1);
+  \fill[red] (1,0) circle (1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1426,7 +2924,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `0e06a173e1e6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [transparency group] {
+  \pgfsetblendmode{screen}
+
+  \fill[red!90!black]   ( 90:.6) circle (1);
+  \fill[green!80!black] (210:.6) circle (1);
+  \fill[blue!90!black]  (330:.6) circle (1);
+}
+```
 
 
 ---
@@ -1436,7 +2946,19 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `83d71d23c896`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefading{fading1}{\textcolor{white}{Ti\emph{k}Z}}
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+  \pgfsetfading{fading1}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
+  \fill [red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1446,7 +2968,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `e451564e794e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefading{fading2}
+{\tikz \shade[left color=pgftransparent!0,
+              right color=pgftransparent!100] (0,0) rectangle (2,2);}
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
+  \fill [red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1456,7 +2992,26 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1451b823555b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareradialshading{myshading}{\pgfpointorigin}
+{
+  color(0mm)=(pgftransparent!0);
+  color(5mm)=(pgftransparent!0);
+  color(8mm)=(pgftransparent!100);
+  color(15mm)=(pgftransparent!100)
+}
+\pgfdeclarefading{fading3}{\pgfuseshading{myshading}}
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+  \pgfsetfading{fading3}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
+  \fill [red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1466,7 +3021,21 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `23c3c9ccfa64`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefading{fading2}
+{\tikz \shade[left color=pgftransparent!0,
+              right color=pgftransparent!100] (0,0) rectangle (2,2);}
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+  \pgfsetfading{fading2}{}
+  \fill [red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1476,7 +3045,20 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `cab4e69c2324`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(0,0) rectangle (2,2);}}]
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}
+                         \pgftransformrotate{20}}
+  \fill [red] (0,0) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1486,7 +3068,34 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2b7d4d4dc524`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarehorizontalshading{shading}{100bp}
+{ color(0pt)=(transparent!0);    color(25bp)=(transparent!0);
+  color(75bp)=(transparent!100); color(100bp)=(transparent!100)}
+
+\pgfdeclarefading{fading}{\pgfuseshading{shading}}
+
+\begin{tikzpicture}
+  \fill [black!20] (0,0) rectangle (2,2);
+  \fill [black!30] (0,0) arc (180:0:1);
+
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgfsetfadingforcurrentpath{fading}{}
+  \pgfusepath{discard}
+
+  \fill [red] (0,0) rectangle (2,1);
+
+  \pgfpathrectangle{\pgfpoint{0cm}{1cm}}{\pgfpoint{2cm}{1cm}}
+  \pgfsetfadingforcurrentpath{fading}{\pgftransformrotate{90}}
+  \pgfusepath{discard}
+
+  \fill [red] (0,1) rectangle (2,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1496,17 +3105,48 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d227523476b7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetlinewidth{2mm}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
+  \pgfsetfadingforcurrentpathstroked{fading}{}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 1953. Other Example
+## 1953. Node Graph Example
 
 **ID**: `4cae7adbc40c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (2,2);
+
+  % Stuff outside the picture, but still in a transparency group.
+  \node [left,overlay] at (0,1) {
+    \begin{tikzpicture}
+      \pgfsetfillopacity{0.5}
+      \pgftransparencygroup
+      \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
+        {Smoking};
+      \endpgftransparencygroup
+    \end{tikzpicture}
+  };
+\end{tikzpicture}
+```
 
 
 ---
@@ -1516,7 +3156,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `30c384c339fb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
+  \begin{scope}[meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
+  \end{scope} }
+```
 
 
 ---
@@ -1526,7 +3177,18 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `49c01664f179`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
+  \begin{scope}[slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
+  \end{scope} }
+```
 
 
 ---
@@ -1536,7 +3198,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6224d10afb4a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  my scope:view = {
+    begin on = { click, of next = here },
+    0s = "{(0.5,0.5) (2.5,1.5)}",
+    2s = "{(0.5,0) (1.5,2)}", forever
+  }}] {
+  \draw [red, fill=red!20, very thick, name=here]
+    (0,0) rectangle (20mm,20mm);
+  \begin{scope}[name = my scope,
+                meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
+  \end{scope} }
+```
 
 
 ---
@@ -1546,7 +3226,25 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1db100a35bd4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  my scope:view = {
+  }}] {
+  \draw [red, fill=red!20, very thick, name=here]
+    (0,0) rectangle (20mm,20mm);
+  \begin{scope}[animate = { myself: = { :view = {
+                  begin on = { click, of = here },
+                  0s = "{(0.5,0.5) (2.5,1.5)}",
+                  2s = "{(0.5,0) (1.5,2)}", forever }}},
+                slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
+  \end{scope} }
+```
 
 
 ---
@@ -1557,6 +3255,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Called at the beginning of a |{pgfpicture}|. This command should ``set up things''. Most drivers will need to implement this command.
+
 
 ---
 
@@ -1565,6 +3267,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `1e86242abeea`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Called at the end of a |{pgfpicture}|. Most drivers will need to implement this command.
 
 
 ---
@@ -1575,6 +3281,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Called after a |{pgfpicture}| has been typeset. The picture will have been put in box box. This command should insert the box into the normal text. The box box will still be a ``raw'' box that contains only the ||'s that make up the description of the picture. The job of this command is to resize and shift box according to the baseline shift and the size of the box. This command has a default implementation and need not be implemented by a driver file.
+
 
 ---
 
@@ -1583,6 +3293,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `7131cc43e666`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This version of the |@beginpicture| picture command can be used for pictures that are guaranteed not to contain any escaped boxes (see below). In this case, a driver might provide a more compact version of the command. This command has a default implementation and need not be implemented by a driver file.
 
 
 ---
@@ -1593,6 +3307,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Called at the end of a ``pure'' |{pgfpicture}|. This command has a default implementation and need not be implemented by a driver file.
+
 
 ---
 
@@ -1601,6 +3319,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d5851b60358f`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Called to insert a (horizontal) TeX box inside a |{pgfpicture}|. Most drivers will need to (re-)implement this command.
 
 
 ---
@@ -1611,6 +3333,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Called to insert a (horizontal) TeX box inside a |{pgfpicture}|, but with the current coordinate transformation matrix synced with the canvas transformation matrix. This command should do the same as if you used || followed by |@hbox|. However, the default implementation of this command will use a ``TeX-translation'' for the translation part of the transformation matrix. This will ensure that hyperlinks ``survive'' at least translations. On the other hand, a driver may choose to revert to a si
+
 
 ---
 
@@ -1619,6 +3345,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `19378eb71d93`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Basically, this should do the same as doing a (scoped) low level sync followed by inserting the box box number directly into the output stream. However, the default implementation uses |@hboxsynced| in conjunction with |@beginpicture| to ensure that, if possible, hyperlinks survive in pdfs. Drivers that are sensitive to picture-in-picture scopes should replace this implementation by codeexample[code only] @beginscope#1@endscope codeexample
 
 
 ---
@@ -1629,6 +3359,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Saves the current graphic state on a graphic state stack. All changes to the graphic state parameters mentioned for |@stroke| and |@fill| will be local to the current graphic state and the old values will be restored after |@endscope| is used. Warning: \ and PostScript differ with respect to the question of whether the current path is part of the graphic state or not. For this reason, you should never use this command unless the path is currently empty. For example, it might be a good idea to us
+
 
 ---
 
@@ -1637,6 +3371,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `11dbe5dad64f`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Restores the last saved graphic state. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1647,6 +3385,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y} This command is used to start a path at a specific point $(x,y)$ or to move the current point of the current path to $(x,y)$ without drawing anything upon stroking (the current path is ``interrupted''). Both x and y are given as \ dimensions. It is the driver's job to transform these to the coordinate system of the backend. Typically, this means converting the \ dimension into a dimensionless multiple of $1{72}in$. The function |@sys@bp| helps with this conversion. Draw a line from $(10pt,10p
+
 
 ---
 
@@ -1655,6 +3397,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `f438efddef4c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y} Continue the current path to $(x,y)$ with a straight line. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1665,6 +3411,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$y_1$$x_2$$y_2$$x_3$$y_3$} Continue the current path to $(x_3,y_3)$ with a Bézier curve that has the two control points $(x_1,y_1)$ and $(x_2,y_2)$. Draw a good approximation of a quarter circle: codeexample[code only] @moveto{10pt}{0pt} @curveto{10pt}{5.55pt}{5.55pt}{10pt}{0pt}{10pt} @stroke codeexample This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1673,6 +3423,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c7ba5ac6fd3e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+ywidthheight} Append a rectangle to the current path whose lower left corner is at $(x,y)$ and whose width and height in big points are given by width and height. This command can be ``mapped back'' to |@moveto| and |@lineto| commands, but it is included since \ has a special, quick version of this command. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1683,6 +3437,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Close the current path. This results in joining the current point of the path with the point specified by the last |@moveto| operation. Typically, this is preferable over using |@lineto| to the last point specified by a |@moveto|, since the line starting at this point and the line ending at this point will be smoothly joined by |@closepath|. Consider codeexample[code only] @moveto{0pt}{0pt} @lineto{10bp}{10bp} @lineto{0bp}{10bp} @closepath @stroke codeexample and codeexample[code only] @moveto{0
+
 
 ---
 
@@ -1691,6 +3449,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `4e154a2f9606`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+bcdef} Perform a concatenation of the canvas transformation matrix with the matrix given by the values a to f, see the \ or PostScript manual for details. The values a to d are dimensionless factors, e and f are \ dimensions |@transformcm{1}{0}{0}{1}{1cm}{1cm}|. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1701,6 +3463,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y displacement} This command will change the origin of the canvas to $(x,y)$. This command has a default implementation and need not be implemented by a driver file. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1709,6 +3475,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `3700eef7494d`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y scale} This command will scale the canvas (and everything that is drawn) by a factor of x scale in the $x$-direction and y scale in the $y$-direction. Note that this applies to everything, including lines. So a scaled line will have a different width and may even have a different width when going along the $x$-axis and when going along the $y$-axis, if the scaling is different in these directions. Usually, you do not want this. This command has a default implementation and need not be implemen
 
 
 ---
@@ -1719,6 +3489,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$y_1$$x_2$$y_2$ $x'_1$$y'_1$$x'_2$$y'_2$ } Starts a ``view box'' scope, which must be ended using |@endviewbox| later on (with matching scopes). The effect of this command is as follows: Consider the rectangles $R$ with lower left corner $(x_1,y_1)$ and upper right corner $(x_2,y_2)$ and $R'$ with corners $(x'_1,y'_1)$ and $(x'_2,y'_2)$. The command will install a canvas translation and uniform scaling such that $R'$ then has the same center as~$R$ and additionally, has maximum size such that it
+
 
 ---
 
@@ -1727,6 +3501,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `c4df205f4068`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+$y_1$$x_2$$y_2$ $x'_1$$y'_1$$x'_2$$y'_2$ } Works like the previous command, but now $R'$ has minimal size such that it encompasses all of $R$.
 
 
 ---
@@ -1737,6 +3515,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Ends a viewbox previously started using |@viewboxmeet| or the |...slice| variant.
+
 
 ---
 
@@ -1745,6 +3527,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6cb84be8affe`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Stroke the current path (as if it were drawn with a pen). A number of graphic state parameters influence this, which can be set using appropriate system commands described later. description [Line width] The ``thickness'' of the line. A width of 0 is the thinnest width renderable on the device. On a high-resolution printer this may become invisible and should be avoided. A good choice is 0.4pt, which is the default. [Stroke color] This special color is used for stroking. If it is not set, the cu
 
 
 ---
@@ -1755,6 +3541,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command should have the same effect as first closing the path and then stroking it. This command has a default implementation and need not be implemented by a driver file. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1763,6 +3553,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `b8e398850853`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command fills the area surrounded by the current path. If the path has not yet been closed, it is closed prior to filling. The path itself is not stroked. For self-intersecting paths or paths consisting of multiple parts, the nonzero winding number rule is used to determine whether a point is inside or outside the path, except if |@eorule| holds -- in which case the even-odd rule should be used. (See the \ or PostScript manual for details.) The following graphic state parameters influence t
 
 
 ---
@@ -1773,6 +3567,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+First, the path is filled, then the path is stroked. If the fill and stroke colors are the same (or if they are not specified and the current color is used), this yields almost the same as a |@fill|. However, due to the line thickness of the stroked path, the fill-stroked area will be slightly larger. In addition to stroking and filling the path, the path will also be used for clipping if |@clipnext| is used prior to this command. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1781,6 +3579,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `d6ab1a2467d2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Normally, this command should ``throw away'' the current path. However, after |@clipnext| has been called, the current path should subsequently be used for clipping. See |@clipnext| for details. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1791,6 +3593,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command should be issued after a path has been constructed, but before it has been stroked and/or filled or discarded. When the command is used, the next stroking/filling/discarding command will first be executed normally. Then, afterwards, the just-used path will be used for subsequent clipping. If there has already been a clipping region, this region is intersected with the new clipping path (the clipping cannot get bigger). The nonzero winding number rule is used to determine whether a p
+
 
 ---
 
@@ -1799,6 +3605,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `840dd667c648`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the width of lines, when stroked, to width, which must be a \ dimension. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1809,6 +3619,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the cap to a butt cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1817,6 +3631,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `6f262fa64b6c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the cap to a round cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1827,6 +3645,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the cap to a rectangular cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1835,6 +3657,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `73990613301a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the join to a miter join. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1845,6 +3671,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the miter limit of lines to factor. See the \ or PostScript for details on what the miter limit is. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1853,6 +3683,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `8475a103e29b`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Sets the join to a round join. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1863,6 +3697,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Sets the join to a bevel join. See |@stroke|. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1871,6 +3709,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `9bcb244a6fef`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+phase} Sets the dashing pattern. pattern should be a list of \ dimensions separated by commas. phase should be a single dimension. |@setdash{3pt,3pt}{0pt}| The list of values in pattern is used to determine the lengths of the ``on'' and ``off'' phases of the dashing. For example, if pattern is |3bp,4bp|, then the dashing pattern is ``3bp on followed by 4bp off, followed by 3bp on, followed by 4bp off, and so on''. A pattern of |.5pt,4pt,3pt,1.5pt| means ``.5pt on, 4pt off, 3pt on, 1.5pt off, .5p
 
 
 ---
@@ -1881,6 +3723,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Determines whether the even odd rule is used for filling and clipping or not.
+
 
 ---
 
@@ -1889,6 +3735,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `2057212c9176`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+greenblue} Sets the color used for stroking and filling operations to the given red/green/blue tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1899,6 +3749,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+greenblue} Sets the color used for stroking operations to the given red/green/blue tuple (numbers between 0 and 1). Make stroked text dark red: |@color@rgb@stroke{0.5}{0}{0}| The special stroking color is only used if the stroking color has been set since the last || or |@color@...| command. Thus, each || command will reset both the stroking and filling colors by calling |@color@reset|. This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1907,6 +3761,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `cde6eee41b61`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+greenblue} Sets the color used for filling operations to the given red/green/blue tuple (numbers between 0 and 1). This color may be different from the stroking color. This command is protocolled, see Section~section-protocols.
 
 
 ---
@@ -1917,6 +3775,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+magentayellowblack} Sets the color used for stroking and filling operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1926,6 +3788,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+magentayellowblack} Sets the color used for stroking operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
+
 
 ---
 
@@ -1934,6 +3800,10 @@ Showing items **1801-2000** of **3696** | Page **10** of **19**
 **ID**: `92a4f7c96c45`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+magentayellowblack} Sets the color used for filling operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 
 ---

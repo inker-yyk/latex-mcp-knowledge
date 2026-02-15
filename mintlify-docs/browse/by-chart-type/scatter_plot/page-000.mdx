@@ -11,412 +11,1342 @@ Showing items **1-41** of **41** | Page **1** of **1**
 
 ---
 
-## 1. Other Example
+## 1. Scatter Plot Example
 
 **ID**: `8f9cbf59b4e8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+    \addplot+ [
+        mark=ball,
+        mark size=4pt,
+        scatter,% enable scatter
+        scatter src=rand,% the "color data"
+        % configure individual appearances:
+        scatter/use mapped color=
+            {ball color=mapped color}]
+    coordinates
+        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 2. Other Example
+## 2. Scatter Plot Example
 
 **ID**: `63aba7a0f927`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[tiny]
+        \addplot+ [scatter] {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis}[tiny]
+        \addplot+ [scatter,
+            mark repeat=3,mark phase=2]
+                {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 3. Other Example
+## 3. Scatter Plot Example
 
 **ID**: `1bdd2dbf43f9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap={bw}{
+        gray(0cm)=(0);
+        gray(1cm)=(1);
+    },
+]
+    \addplot+ [
+        scatter,
+        only marks,
+        domain=0:8,
+        samples=100,
+    ] {exp(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4. Other Example
+## 4. Scatter Plot Example
 
 **ID**: `df0804c4c88f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[colormap/bluered]
+    \addplot+ [scatter,
+         scatter src=x,samples=50]
+        {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 5. Other Example
+## 5. Scatter Plot Example
 
 **ID**: `dee3b14cc613`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        ylabel=$y$ \emph{decreasing} $\to$,
+        xlabel=$x$ normal,
+        title=reversed axis,
+        y dir=reverse,
+        colorbar,
+        colorbar style={y dir=reverse},
+    ]
+        \addplot+ [mesh,scatter] {x^15};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 6. Other Example
+## 6. Scatter Plot Example
 
 **ID**: `0bc4be19d971`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        scatter src=explicit,
+    ] coordinates {
+         (900,1e-6) [1]
+        (2600,5e-7) [2]
+        (4000,7e-8) [3]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 7. Other Example
+## 7. Scatter Plot Example
 
 **ID**: `06a23d19bd33`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        scatter src=y,
+        samples=40,
+        visualization depends on=
+            {5*cos(deg(x)) \as \perpointmarksize},
+        scatter/@pre marker code/.append style=
+            {/tikz/mark size=\perpointmarksize},
+    ]
+        {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 8. Other Example
+## 8. Scatter Plot Example
 
 **ID**: `db63d0f63f34`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    clickable coords={(xy): \thisrow{label}},
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black}   % <-- don't add comma
+    }
+]
+    \addplot [
+        only marks,
+        scatter,
+        scatter src=explicit symbolic
+    ] table [meta=label] {
+        x     y      label
+        0.1   0.15   a
+        0.45  0.27   c
+        0.02  0.17   a
+        0.06  0.1    a
+        0.9   0.5    b
+        0.5   0.3    c
+        0.85  0.52   b
+        0.12  0.05   a
+        0.73  0.45   b
+        0.53  0.25   c
+        0.76  0.5    b
+        0.55  0.32   c
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 9. Other Example
+## 9. Scatter Plot Example
 
 **ID**: `11abcbc5da00`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        samples=5,domain=-3:3,
+        mesh,patch type=cubic spline,
+        patch type sampling,
+        % avoid individual colors per segment:
+        blue,point meta=none,
+    ]
+      {exp(-x^2)};
+
+    % a second plot which shows the
+    % generated x positions:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=cubic spline,
+        patch type sampling,
+        point meta={exp(-x^2)},
+    ]
+      {-0.1};
+
+    % a third plot which shows the marks
+    % without patch type sampling:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        point meta={exp(-x^2)},
+    ]
+      {-0.15};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 10. Other Example
+## 10. Scatter Plot Example
 
 **ID**: `dc7495bad4b8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [surf,shader=interp,
+        patch type=bicubic,
+        patch type sampling,
+        samples=5,domain=-3:3,
+    ] {exp(-x^2-y^2)};
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=bicubic,
+        patch type sampling,
+        point meta={exp(-x^2-y^2)},
+    ] {1.1};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 11. Other Example
+## 11. Scatter Plot Example
 
 **ID**: `87e086337461`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [surf,shader=interp,
+        patch type=bilinear,
+        samples=13,domain=-3:3,
+    ] {exp(-x^2-y^2)};
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=13,domain=-3:3,
+        point meta={exp(-x^2-y^2)},
+    ] {1.1};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 12. Other Example
+## 12. Scatter Plot Example
 
 **ID**: `e284953f9080`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    enlargelimits=0.01,
+    title style={yshift=5pt},
+    title=Scatter plot with $2250$ points,
+]
+    \addplot [
+        blue,
+        mark=*,
+        only marks,
+        mark options={scale=0.3},
+    ] file [skip first]
+        {plotdata/pgfplots_scatterdata3.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 13. Other Example
+## 13. Scatter Plot Example
 
 **ID**: `2fde3c69e088`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[colorbar horizontal]
+    \addplot [
+        only marks,
+        scatter,
+        scatter src={
+            mod(\coordindex,15)
+        },
+        samples=150,
+    ] {rand};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 14. Other Example
+## 14. Scatter Plot Example
 
 **ID**: `4838d406cd2f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colorbar sampled line]
+        \addplot+ [scatter] {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 15. Other Example
+## 15. Scatter Plot Example
 
 **ID**: `88c1e161dfcb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\pgfplotsset{footnotesize,samples=10, domain=0:1,point meta min=0, point meta max=1}
+\begin{center}% note that \centering uses less vspace...
+    \begin{tikzpicture}
+        \begin{axis}[colorbar,colorbar horizontal,colorbar to name={storedcolorbar}]
+            \addplot [scatter,only marks,mark=*] {rnd};
+        \end{axis}
+    \end{tikzpicture}
+    %
+    \begin{tikzpicture}
+        \begin{axis}
+            \addplot+ [domain=0:1,mark=none,mesh] {x^2};
+        \end{axis}
+    \end{tikzpicture}
+    %
+    \begin{tikzpicture}
+        \begin{axis}[view={0}{90}]
+            \addplot3 [surf] {x*y};
+        \end{axis}
+    \end{tikzpicture}
+    \\
+
+    \ref{storedcolorbar}
+\end{center}
+```
 
 
 ---
 
-## 16. Other Example
+## 16. Scatter Plot Example
 
 **ID**: `37a292464ebd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\pgfplotsset{
+  every axis/.append style={
+    cycle list={
+        {red,only marks,mark=*,
+         mark options={fill=red,scale=0.8}},
+        {black,only marks,mark=square*,
+         mark options={fill=black,scale=0.8}}
+    },
+  },
+}
+\begin{axis}[
+    width=4cm,scale only axis,
+    name=main plot,
+]
+  \addplot file {plotdata/pgfplots_scatterdata1.dat};
+  \addplot file {plotdata/pgfplots_scatterdata2.dat};
+  \addplot [blue] coordinates {
+      (0.093947,    -0.011481)
+      (0.101957,    0.494273)
+      (0.109967,    1.000027)
+  };
+\end{axis}
+\begin{axis}[
+    at={(main plot.below south west)},yshift=-0.1cm,
+    anchor=north west,
+    width=4cm,scale only axis,height=0.8cm,
+    ytick=\empty,
+]
+    \addplot file
+        {plotdata/pgfplots_scatterdata1_latent.dat};
+    \addplot file
+        {plotdata/pgfplots_scatterdata2_latent.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 17. Other Example
+## 17. Scatter Plot Example
 
 **ID**: `cda7cbdbcd2d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=$x$,
+    ylabel=$y$,
+    zlabel={$f(x,y) = x\cdot y$},
+    title=A Scatter Plot Example,
+]
+    \addplot3+ [
+        only marks,
+        scatter,
+    ] table {plotdata/pgfplotsexample4_grid.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 18. Other Example
+## 18. Scatter Plot Example
 
 **ID**: `93a49c890cf4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        3d box,
+        zmax=1.4,
+        colormap/viridis,
+        colorbar,
+        xlabel=$x$,
+        ylabel=$y$,
+        zlabel={$f(x,y) = x\cdot y$},
+        title={Using Coordinate Filters to fix $z=1.4$},
+    ]
+        % `pgfplotsexample4.dat' contains similar data as in
+        % `pgfplotsexample4_grid.dat', but it uses a uniform
+        % matrix structure (same number of points in every scanline).
+        % See examples above for extracts.
+        \addplot3 [surf,mesh/ordering=y varies]
+            table {plotdata/pgfplotsexample4.dat};
+        \addplot3 [scatter,scatter src=\thisrow{f(x)},only marks, z filter/.code={\def\pgfmathresult{1.4}}]
+            table {plotdata/pgfplotsexample4_grid.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 19. Other Example
+## 19. Scatter Plot Example
 
 **ID**: `9ecd803838cf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\addplot3 [scatter,scatter src=\thisrow{f(x)},only marks]
+        table [z expr=1.4] {plotdata/pgfplotsexample4_grid.dat};
+```
 
 
 ---
 
-## 20. Other Example
+## 20. Scatter Plot Example
 
 **ID**: `d4eed225e1a4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        view={120}{40},
+        width=220pt,
+        height=220pt,
+        grid=major,
+        z buffer=sort,
+        xmin=-1,xmax=9,
+        ymin=-1,ymax=9,
+        zmin=-1,zmax=9,
+        enlargelimits=upper,
+        xtick={-1,1,...,19},
+        ytick={-1,1,...,19},
+        ztick={-1,1,...,19},
+        xlabel={$l_1$},
+        ylabel={$l_2$},
+        zlabel={$l_3$},
+        point meta={x+y+z+3},
+        colormap={summap}{
+            color=(black)  color=(blue)
+            color=(black)  color=(white)
+            color=(orange) color=(violet)
+            color=(red)
+        },
+        scatter/use mapped color={
+            draw=mapped color,fill=mapped color!70},
+        ]
+        % `pgfplots_scatter4.dat' contains a large sequence of
+        % the form
+        % l_0   l_1     l_2
+        % 1     6       -1
+        % -1    -1      -1
+        % 0     -1      -1
+        % -1    0       -1
+        % -1    -1      0
+        % 1     -1      -1
+        % 0     0       -1
+        % 0     -1      0
+        \addplot3 [only marks,scatter,mark=cube*,mark size=7]
+            table {plotdata/pgfplots_scatterdata4.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 21. Other Example
+## 21. Scatter Plot Example
 
 **ID**: `47405c0d298b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap/PuOr,
+]
+    \addplot3+ [
+        mesh,
+        scatter,
+        samples=10,
+        domain=0:1,
+    ] {x*(1-x)*y*(1-y)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 22. Other Example
+## 22. Scatter Plot Example
 
 **ID**: `15f1dbb28fc2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    grid=major,
+    view={210}{30},
+]
+    \addplot3+ [
+        mesh,
+        scatter,
+        samples=10,
+        domain=0:1,
+    ] {5*x*sin(2*deg(x)) * y*(1-y)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 23. Other Example
+## 23. Scatter Plot Example
 
 **ID**: `9f8cd978f031`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[colormap/viridis]
+    \addplot3 [
+        surf,
+        shader=faceted,
+        scatter,mark=*,
+        samples=10,
+        domain=0:1,
+    ] {x^2*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 24. Other Example
+## 24. Scatter Plot Example
 
 **ID**: `3db1ec52b46a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view={60}{30}]
+    \addplot3 [
+        only marks,
+        mesh,z buffer=sort,
+        scatter,scatter src=z,
+        samples=30,domain=-1:1,y domain=0:2*pi,
+    ] (
+        {sqrt(1-x^2) * cos(deg(y))},
+        {sqrt( 1-x^2 ) * sin(deg(y))},
+        x
+    );
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 25. Other Example
+## 25. Scatter Plot Example
 
 **ID**: `ed2e615806e7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[axis equal]
+  \addplot[
+    scatter,
+    only marks,
+    samples=50,
+    point meta=100-sqrt(x^2+y^2),
+    coordinate style/.condition=
+        {sqrt(x^2+y^2) < 0.5}{scale=2},
+    coordinate style/.condition={\coordindex == 25}{
+      /pgfplots/scatter/@post marker code/.add code={
+        \node [pin=45:Point no 25] {};
+      }{},
+    },
+  ] (rand,rand);
+
+  \draw (0,0) circle (0.5);
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 26. Other Example
+## 26. Scatter Plot Example
 
 **ID**: `8992da9756d9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[title=Snap to nearest for scatter plots]
+    \addplot+ [only marks]
+        coordinates { (0,0) (1,1) (2,2) (3,3) }
+            node [pos=0,   pin=0  :0   ] {}
+            node [pos=0.1, pin=90 :0.1 ] {}
+            node [pos=0.2, pin=200:0.2 ] {}
+            node [pos=0.3, pin=135:0.3 ] {}
+            node [pos=0.4, pin=0  :0.4 ] {}
+            node [pos=0.5, pin=60 :0.5 ] {}
+            node [pos=0.75,pin=180:0.75] {}
+            node [pos=1,   pin=90 :1   ] {}
+    ;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 27. Other Example
+## 27. Scatter Plot Example
 
 **ID**: `cd43ca6e3e6b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        enlargelimits=false,
+        colorbar,
+    ]
+        \addplot+ [
+            only marks,
+            scatter,
+            point meta={
+                ln(1e-6+abs(\thisrow{f(x)}))/ln(10)
+            },
+            mark size=0.6pt,
+        ] table {concat_VV_together_grid.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 28. Other Example
+## 28. Scatter Plot Example
 
 **ID**: `76e94cd5ac8f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        scatter,
+        only marks,
+        point meta=explicit symbolic,
+        scatter/classes={
+            a={mark=square*,blue},
+            b={mark=triangle*,red},
+            c={mark=o,draw=black}% <-- don't add comma
+        },
+    ] table [meta=label] {
+        x      y        label
+        0.1    0.15     a
+        0.45   0.27     c
+        0.02   0.17     a
+        0.06   0.1      a
+        0.9    0.5      b
+        0.5    0.3      c
+        0.85   0.52     b
+        0.12   0.05     a
+        0.73   0.45     b
+        0.53   0.25     c
+        0.76   0.5      b
+        0.55   0.32     c
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 29. Other Example
+## 29. Scatter Plot Example
 
 **ID**: `6708471cd672`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        only marks,
+        samples=50,
+        scatter src=y,
+    ] {x - x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 30. Other Example
+## 30. Scatter Plot Example
 
 **ID**: `cb00d5ff36c7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        samples=50,
+        scatter src=y,
+    ] {x^3};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 31. Other Example
+## 31. Scatter Plot Example
 
 **ID**: `7176a52885df`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}
+        % provide color data explicitly using [<data>]
+        % behind coordinates:
+        \addplot+ [scatter,scatter src=explicit]
+            coordinates {
+                (0,0) [1.0e10]
+                (1,2) [1.1e10]
+                (2,3) [1.2e10]
+                (3,4) [1.3e10]
+                % ...
+            };
+
+        % Assumes a datafile.dat like
+        % xcolname  ycolname    colordata
+        % 0         0           0.001
+        % 1         2           0.3
+        % 2         2.1         0.4
+        % 3         3           0.5
+        % ...
+        % the file may have more columns.
+        \addplot+ [scatter,scatter src=explicit]
+            table [x=xcolname,y=ycolname,meta=colordata]
+                {datafile.dat};
+        % Same data as last example:
+        \addplot+ [scatter,scatter src=\thisrow{colordata}+\thisrow{ycolname}]
+            table [x=xcolname,y=ycolname]
+                {datafile.dat};
+
+        % Assumes a datafile.dat like
+        % 0         0           0.001
+        % 1         2           0.3
+        % 2         2.1         0.4
+        % 3         3           0.5
+        % ...
+        % the first three columns will be used here:
+        \addplot+ [scatter,scatter src=explicit]
+            file {datafile.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 32. Other Example
+## 32. Scatter Plot Example
 
 **ID**: `9473207a4aa1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[title=Default arguments]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 33. Other Example
+## 33. Scatter Plot Example
 
 **ID**: `892cb8532717`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Black fill color and varying draw color,
+    scatter/use mapped color={
+        draw=mapped color,
+        fill=black,
+    },
+]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 34. Other Example
+## 34. Scatter Plot Example
 
 **ID**: `52873677bfad`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Black draw color and varying fill color,
+    scatter/use mapped color={
+        draw=black,
+        fill=mapped color,
+    },
+]
+    \addplot+ [
+        scatter,
+        scatter src=y,
+    ] {2*x+3};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 35. Other Example
+## 35. Scatter Plot Example
 
 **ID**: `fe022f50bd4a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colormap/bluered,colorbar]
+    \addplot3+ [
+        samples=4,
+        z buffer=sort,
+        % enable scatter:
+        scatter,
+        % redefine appearance:
+        scatter/use mapped color={ball color=mapped color},
+        % configure input:
+        scatter src=rand,
+        only marks,
+        mark=ball,
+        mark size=3pt,
+    ] {0};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 36. Other Example
+## 36. Scatter Plot Example
 
 **ID**: `d539fc76c322`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black}   % <-- don't add comma
+    },
+]
+    % \addplot[] is better than \addplot+[] here:
+    % it avoids scalings of the cycle list
+    \addplot [
+        scatter,only marks,
+        scatter src=explicit symbolic,
+    ] coordinates {
+        (0.1,0.15)  [a]
+        (0.45,0.27) [c]
+        (0.02,0.17) [a]
+        (0.06,0.1)  [a]
+        (0.9,0.5)   [b]
+        (0.5,0.3)   [c]
+        (0.85,0.52) [b]
+        (0.12,0.05) [a]
+        (0.73,0.45) [b]
+        (0.53,0.25) [c]
+        (0.76,0.5)  [b]
+        (0.55,0.32) [c]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 37. Other Example
+## 37. Scatter Plot Example
 
 **ID**: `36d0f553e291`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[legend pos=south east]
+    % The data file contains:
+    % x     y      label
+    % 0.1   0.15   a
+    % 0.45  0.27   c
+    % 0.02  0.17   a
+    % 0.06  0.1    a
+    % 0.9   0.5    b
+    % 0.5   0.3    c
+    % 0.85  0.52   b
+    % 0.12  0.05   a
+    % 0.73  0.45   b
+    % 0.53  0.25   c
+    % 0.76  0.5    b
+    % 0.55  0.32   c
+    \addplot [
+        % clickable coords={\thisrow{label}},
+        scatter/classes={
+            a={mark=square*,blue},
+            b={mark=triangle*,red},
+            c={mark=o,draw=black,fill=black}% no comma
+        },
+        scatter,only marks,
+        scatter src=explicit symbolic,
+    ] table [x=x,y=y,meta=label]
+        {plotdata/scattercl.dat};
+
+    \addplot coordinates
+        {(0.1,0.1) (0.5,0.3) (0.85,0.5)};
+    \legend{Class 1,Class 2,Class 3,Line}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 38. Other Example
+## 38. Scatter Plot Example
 
 **ID**: `93ce78355649`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\addplot [
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black,fill=black}    % <-- don't add comma here
+    },
+    scatter,only marks,
+    scatter src=explicit symbolic,
+]
+    % [and coordinate input here... ]
+;
+
+\label[a]{label:for:first:class}
+\label[b]{label:for:second:class}
+\label[c]{label:for:third:class}
+
+...
+First class is \ref{label:for:first:class}, second is \ref{label:for:second:class}.
+```
 
 
 ---
 
-## 39. Other Example
+## 39. Scatter Plot Example
 
 **ID**: `0c17d619b40b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[enlargelimits=0.2]
+        \addplot [
+            scatter,mark=*,only marks,
+            % we use 'point meta' as color data...
+            point meta=\thisrow{color},
+            % ... therefore, we can't use it as argument for nodes near coords ...
+            nodes near coords*={$(\pgfmathprintnumber[frac]\myvalue)$},
+            % ... which requires to define a visualization dependency:
+            visualization depends on={\thisrow{myvalue} \as \myvalue},
+        ] table {
+            x      y    color   myvalue
+            0.5    0.2  1       0.25
+            0.2    0.1  2       1.5
+            0.7    0.6  3       0.75
+            0.35   0.4  4       0.125
+            0.65   0.1  5       2
+        };
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 40. Other Example
+## 40. Scatter Plot Example
 
 **ID**: `73869204bea1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        coordinate style/.condition=
+            {abs(x-1) < 0.001}{scale=3,xshift=4pt},
+    ] coordinates {(0,0) (0.5,0.5) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 41. Other Example
+## 41. Scatter Plot Example
 
 **ID**: `2a4bd24f17d3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+% Low-Level scatter plot interface Example:
+% use three different marker classes
+% 0% -- 30%   : first class
+% 30% -- 60%  : second class
+% 60% -- 100% : third class
+\begin{axis}[
+  scatter/@pre marker code/.code={
+    \ifdim\pgfplotspointmetatransformed pt<300pt
+      \def\markopts{mark=square*,fill=blue}
+    \else
+      \ifdim\pgfplotspointmetatransformed pt<600pt
+        \def\markopts{mark=triangle*,fill=orange}
+      \else
+         \def\markopts{mark=pentagon*,fill=red}
+      \fi
+    \fi
+    \expandafter\scope\expandafter[\markopts]
+  },
+  scatter/@post marker code/.code={
+    \endscope
+  },
+]
+    \addplot+ [scatter,scatter src=y,samples=40]
+       {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---

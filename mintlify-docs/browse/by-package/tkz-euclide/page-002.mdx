@@ -11,92 +11,316 @@ Showing items **401-467** of **467** | Page **3** of **3**
 
 ---
 
-## 401. Other Example
+## 401. Geometry Example
 
 **ID**: `525ea6d9c35b`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(1,2){A}    \tkzDefPoint(3,4){B}
+  \tkzDefPoint(3,2){C}    \tkzDefPoint(3,1){D}
+  \tkzDrawSegments(A,B A,C A,D)
+  \tkzDrawPoints[color=red](A,B,C,D)  
+  \tkzLabelPoints(A,B,C,D)
+  \tkzFindSlopeAngle(A,B)\tkzGetAngle{SAB} 
+  \tkzFindSlopeAngle(A,C)\tkzGetAngle{SAC}
+  \tkzFindSlopeAngle(A,D)\tkzGetAngle{SAD}
+  \pgfkeys{/pgf/number format/.cd,fixed,precision=2}
+  \tkzText(1,5){The slope of (AB) is : 
+     $\pgfmathprintnumber{\SAB}^\circ$}     
+  \tkzText(1,4.5){The slope of (AC) is : 
+     $\pgfmathprintnumber{\SAC}^\circ$}    
+  \tkzText(1,4){The slope of (AD) is : 
+     $\pgfmathprintnumber{\SAD}^\circ$}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 402. Other Example
+## 402. Geometry Example
 
 **ID**: `05f6082eccf2`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.25]
+  \tkzDefPoints{0/0/A,12/0/B,6/12*sind(60)/C}
+  \foreach \density in {20,30,...,240}{%
+    \tkzDrawPolygon[fill=teal!\density](A,B,C)
+    \pgfnodealias{X}{A}
+    \tkzDefPointWith[linear,K=.15](A,B) \tkzGetPoint{A}
+    \tkzDefPointWith[linear,K=.15](B,C) \tkzGetPoint{B}
+    \tkzDefPointWith[linear,K=.15](C,X) \tkzGetPoint{C}}
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 403. Other Example
+## 403. Geometry Example
 
 **ID**: `4c1048f09754`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\colorlet{input}{red!80!black} 
+  \colorlet{output}{red!70!black}
+  \colorlet{triangle}{green!50!black!40}
+  \begin{tikzpicture}[scale=1.25,thick,help lines/.style={thin,draw=black!50}]
+  \tkzDefPoint(0,0){A}     
+  \tkzDefPoint(1.25+rand(),0.25+rand()){B}      
+  \tkzInterCC(A,B)(B,A) \tkzGetPoints{C}{X}
+
+  \tkzFillPolygon[triangle,opacity=.5](A,B,C)
+  \tkzDrawSegment[input](A,B) 
+  \tkzDrawSegments[red](A,C B,C)  
+  \tkzDrawCircles[help lines](A,B B,A)
+  \tkzDrawPoints[fill=gray,opacity=.5](A,B,C)
+  
+  \tkzLabelPoints(A,B)
+  \tkzLabelCircle[below=12pt](A,B)(180){$\mathcal{D}$}
+  \tkzLabelCircle[above=12pt](B,A)(180){$\mathcal{E}$}
+  \tkzLabelPoint[above,red](C){$C$}
+      
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 404. Other Example
+## 404. Geometry Example
 
 **ID**: `136005a17c8b`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.5]
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(0.75,0.25){B}  
+\tkzDefPoint(1,1.5){C} 
+\tkzDefTriangle[equilateral](A,B)\tkzGetPoint{D}
+\tkzInterLC[near](D,B)(B,C)      \tkzGetSecondPoint{G}
+\tkzInterLC[near](A,D)(D,G)      \tkzGetFirstPoint{L}
+\tkzDrawCircles(B,C D,G)
+\tkzDrawLines[add=0 and 2](D,A D,B)
+\tkzDrawSegment(A,B) 
+\tkzDrawSegments[red](A,L B,C) 
+\tkzDrawPoints[red](D,L,G)
+\tkzDrawPoints[fill=gray](A,B,C)
+\tkzLabelPoints[left,red](A)
+\tkzLabelPoints[below right,red](L)
+\tkzLabelCircle[above](B,C)(20){$\mathcal{(H)}$}
+\tkzLabelPoints[above left](D)
+\tkzLabelPoints[above](G)
+\tkzLabelPoints[above,red](C)
+\tkzLabelPoints[right,red](B)
+\tkzLabelCircle[below](D,G)(-90){$\mathcal{(K)}$}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 405. Other Example
+## 405. Geometry Example
 
 **ID**: `68edb26e311d`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+   % fixed points
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,2){B}
+  % calculus
+  \tkzInterCC(A,B)(B,A)
+  \tkzGetPoints{C}{D}
+  % drawings
+  \tkzDrawCircles(A,B B,A)
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPoints(A,...,D)
+  % marking
+  \tkzMarkSegments[mark=s||](A,B B,C C,A)
+  % labelling
+  \tkzLabelSegments[swap](A,B){$c$}
+  \tkzLabelPoints(A,B,D)
+  \tkzLabelPoints[above](C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 406. Other Example
+## 406. Geometry Example
 
 **ID**: `896bada8ccd2`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){C}
+  \tkzDefPoint(4,0){D}
+  \tkzDefSquare(C,D)                     
+  \tkzGetPoints{e}{f}
+  \tkzDefMidPoint(C,f)                   
+  \tkzGetPoint{m}
+  \tkzInterLC(C,f)(m,e)                  
+  \tkzGetSecondPoint{n}
+  \tkzInterCC[with nodes](C,C,n)(D,C,n) 
+  \tkzGetFirstPoint{B}
+  \tkzDrawSegment[brown,dashed](f,n)
+  \pgfinterruptboundingbox% from tikz
+  \tkzDrawPolygon[brown,dashed](C,D,e,f)
+  \tkzDrawArc[brown,dashed](m,e)(n)
+  \tkzCompass[brown,dashed,delta=20](C,B)
+  \tkzCompass[brown,dashed,delta=20](D,B)
+  \endpgfinterruptboundingbox 
+  \tkzDrawPolygon(B,...,D)
+  \tkzDrawPoints(B,C,D,e,f,m,n)
+  \tkzLabelPoints[above](B)
+  \tkzLabelPoints[left](f,m,n)
+  \tkzLabelPoints(C,D)
+  \tkzLabelPoints[right](e)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 407. Other Example
+## 407. Geometry Example
 
 **ID**: `269bafebaf04`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+        \tkzDefPoint(0,0){C}
+        \tkzDefPoint(4,0){D}
+        \tkzDefTriangle[golden](C,D)
+        \tkzGetPoint{B}
+        \tkzDefTriangle[golden](B,C)
+        \tkzGetPoint{A}
+        \tkzInterLC[near](A,B)(B,D) \tkzGetFirstPoint{E}
+        \tkzInterLL(B,D)(C,E) \tkzGetPoint{F}
+        \tkzDrawPoints(C,D,B)
+        \tkzDrawPolygon(B,...,D)  
+        \tkzDrawPolygon(B,C,D)
+        \tkzDrawSegments(D,A A,B C,E)
+        \tkzDrawArc[delta=10](B,C)(E)
+        \tkzDrawPoints(A,...,F) 
+        \tkzMarkRightAngle(B,F,C)  
+        \tkzMarkAngles(C,B,D E,A,D)
+        \tkzLabelAngles[pos=1.5](C,B,D E,A,D){$\alpha$} 
+        \tkzLabelPoints[below](A,C,D,E)
+        \tkzLabelPoints[above right](B,F)
+      \end{tikzpicture}
+```
 
 
 ---
 
-## 408. Other Example
+## 408. Geometry Example
 
 **ID**: `1a069d2e55ab`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture} 
+  \tkzDefPoint(0,0){C} % possible 
+  % \tkzDefPoint[label=below:$C$](0,0){C} 
+  % but don't do this
+  \tkzDefPoint(2,6){B}
+  % We get D and E with a rotation
+  \tkzDefPointBy[rotation= center B angle 36](C) \tkzGetPoint{D} 
+  \tkzDefPointBy[rotation= center B angle 72](C) \tkzGetPoint{E} 
+  % To get A we use an intersection of lines
+  \tkzInterLL(B,E)(C,D) \tkzGetPoint{A}
+  \tkzInterLL(C,E)(B,D) \tkzGetPoint{H}
+  % drawing
+  \tkzDrawArc[delta=10](B,C)(E)
+  \tkzDrawPolygon(C,B,D)
+  \tkzDrawSegments(D,A B,A C,E)
+  % angles 
+  \tkzMarkAngles(C,B,D E,A,D) %this is to draw the arcs
+  \tkzLabelAngles[pos=1.5](C,B,D E,A,D){$\alpha$}
+  \tkzMarkRightAngle(B,H,C)
+  \tkzDrawPoints(A,...,E)
+  % Label only now
+  \tkzLabelPoints[below left](C,A)
+  \tkzLabelPoints[below right](D)
+  \tkzLabelPoints[above](B,E)
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 409. Other Example
+## 409. Geometry Example
 
 **ID**: `d1922baf8665`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1,ra/.style={fill=gray!20}]
+   % fixed points
+   \tkzDefPoint(0,0){A}
+   \tkzDefPoint(1,0){I}
+   % calculation
+   \tkzDefPointBy[homothety=center A ratio  10 ](I) \tkzGetPoint{B}  
+   \tkzDefMidPoint(A,B)              \tkzGetPoint{M}
+   \tkzDefPointWith[orthogonal](I,M) \tkzGetPoint{H}
+   \tkzInterLC(I,H)(M,B)             \tkzGetFirstPoint{C}
+   \tkzDrawSegment[style=purple](I,C)
+   \tkzDrawArc(M,B)(A)
+   \tkzDrawSegment[dim={$1$,-16pt,}](A,I)
+   \tkzDrawSegment[dim={$(a-1)/2$,-10pt,}](I,M)
+   \tkzDrawSegment[dim={$(a+1)/2$,-16pt,}](M,B)   
+   \tkzMarkRightAngle[ra](A,I,C)
+   \tkzDrawPoints(I,A,B,C,M)  
+   \tkzLabelPoint[left](A){$A(0,0)$} 
+   \tkzLabelPoints[above right](I,M)
+   \tkzLabelPoints[above left](C)
+   \tkzLabelPoint[right](B){$B(10,0)$}
+   \tkzLabelSegment[right=4pt](I,C){$\sqrt{a^2}=a \ (a>0)$}
+\end{tikzpicture}
+```
 
 
 ---
@@ -107,25 +331,55 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzProtractor
+
 
 ---
 
-## 411. Other Example
+## 411. Geometry Example
 
 **ID**: `bb67d49fa1fd`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+\tkzDefPoint(2,0){A}\tkzDefPoint(0,0){O}
+\tkzDefShiftPoint[A](31:5){B}
+\tkzDefShiftPoint[A](158:5){C}
+\tkzDrawPoints(A,B,C)
+\tkzDrawSegments[color = red,
+    line width = 1pt](A,B A,C)
+  \tkzProtractor[scale = 1](A,B) 
+\end{tikzpicture}
+```
 
 
 ---
 
-## 412. Other Example
+## 412. Geometry Example
 
 **ID**: `0512c7fc650f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(2,3){A}
+  \tkzDefShiftPoint[A](31:5){B}  
+   \tkzDefShiftPoint[A](158:5){C}   
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzProtractor[return](A,C) 
+\end{tikzpicture}
+```
 
 
 ---
@@ -136,6 +390,10 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzDefPoint
+
 
 ---
 
@@ -144,6 +402,10 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **ID**: `00bc3d9795a6`  
 **Type**: command  
 **Package**: tkz-euclide  
+
+### Description
+
+Geometry command: tkzDefShiftPoint
 
 
 ---
@@ -154,115 +416,283 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzDefPoints
+
 
 ---
 
-## 416. Other Example
+## 416. Geometry Example
 
 **ID**: `ef4f17171121`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1] 
+  \tkzInit[xmax=5,ymax=5]
+  % necessary to limit
+  % the size of the axes
+  \tkzDrawX[>=latex]
+  \tkzDrawY[>=latex]
+  \tkzDefPoints{0/0/O,1/0/I,0/1/J}
+  \tkzDefPoint(3,4){A} 
+  \tkzDrawPoints(O,A) 
+  \tkzLabelPoint[above](A){$A_1(x_1,y_1)$} 
+  \tkzShowPointCoord[xlabel=$x_1$,
+                     ylabel=$y_1$](A) 
+  \tkzLabelPoints(O,I)
+  \tkzLabelPoints[left](J)
+  \tkzDrawPoints[shape=cross](I,J) 
+\end{tikzpicture}
+```
 
 
 ---
 
-## 417. Other Example
+## 417. Geometry Example
 
 **ID**: `a7e6a24cd21d`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=5,ymax=5]
+  \tkzDrawX[>=latex]
+  \tkzDrawY[>=latex]  
+  \tkzDefPoints{0/0/O,1/0/I,0/1/J}
+  \tkzDefPoint(40:4){P} 
+  \tkzDrawSegment[dim={$d$,
+                 16pt,above=6pt}](O,P)
+  \tkzDrawPoints(O,P) 
+  \tkzMarkAngle[mark=none,->](I,O,P) 
+  \tkzFillAngle[opacity=.5](I,O,P) 
+  \tkzLabelAngle[pos=1.25](I,O,P){%
+                              $\alpha$}  
+  \tkzLabelPoint[right](P){$P(\alpha:d)$} 
+  \tkzDrawPoints[shape=cross](I,J) 
+  \tkzLabelPoints(O,I)
+  \tkzLabelPoints[left](J) 
+\end{tikzpicture}
+```
 
 
 ---
 
-## 418. Other Example
+## 418. Geometry Example
 
 **ID**: `0a33aec0d159`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5] % limits the size of the axes
+  \tkzDrawX[>=latex]
+  \tkzDrawY[>=latex]  
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
+  \tkzDefPoint(0,3){C} 
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPoints(A,B,C)
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 419. Other Example
+## 419. Geometry Example
 
 **ID**: `e69c9968c2cc`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=4,ymax=4]
+  \tkzDrawX\tkzDrawY
+  \tkzDefPoint(-1+2,sqrt(4)){O}
+  \tkzDefPoint({3*ln(exp(1))},{exp(1)}){A}
+  \tkzDefPoint({4*sin(pi/6)},{4*cos(pi/6)}){B}
+  \tkzDrawPoints(O,B,A)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 420. Other Example
+## 420. Geometry Example
 
 **ID**: `a1618114d07d`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \an [count=\i] in {0,60,...,300}
+   { \tkzDefPoint(\an:3){A_\i}}
+  \tkzDrawPolygon(A_1,A_...,A_6)
+  \tkzDrawPoints(A_1,A_...,A_6)
+  \end{tikzpicture}
+```
 
 
 ---
 
-## 421. Other Example
+## 421. Geometry Example
 
 **ID**: `64610a849733`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+ \begin{scope}[rotate=30]
+  \tkzDefPoint(2,3){A}
+  \begin{scope}[shift=(A)]
+     \tkzDefPoint(90:5){B}
+     \tkzDefPoint(30:5){C}
+  \end{scope}
+ \end{scope}
+ \tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[above](B,C)
+\tkzLabelPoints[below](A)
+\tkzDrawPoints(A,B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 422. Other Example
+## 422. Geometry Example
 
 **ID**: `bf29101f7907`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[rotate=-30]
+ \tkzDefPoint(2,3){A}
+ \tkzDefShiftPoint[A](0:4){B}
+ \tkzDefShiftPoint[A](30:4){C}
+ \tkzDrawSegments(A,B B,C C,A)
+ \tkzMarkSegments[mark=|](A,B A,C)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints[right](B,C)
+ \tkzLabelPoints[above left](A)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 423. Other Example
+## 423. Geometry Example
 
 **ID**: `c432dfa53dec`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoint(2,3){A}
+ \tkzDefShiftPoint[A](30:3){B}
+ \tkzDefShiftPoint[A](-30:3){C}
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints[right](B,C)
+ \tkzLabelPoints[above left](A)
+ \tkzMarkSegments[mark=|](A,B A,C B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 424. Other Example
+## 424. Geometry Example
 
 **ID**: `e033ceddf271`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(30:3){B}
+ \tkzDefShiftPointCoord[B](10:2){C}
+ \tkzDefShiftPointCoord[A](10:2){D}
+ \tkzDrawPolygon(A,...,D)
+ \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 425. Other Example
+## 425. Geometry Example
 
 **ID**: `0abdc9bb94fa`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoints{0/0/A,4/0/B,4/3/C}
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints(A,B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 426. Other Example
+## 426. Geometry Example
 
 **ID**: `08c5399cc69e`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{0/0/A,2/0/B,2/2/C,0/2/D}
+ \tkzDrawPolygon(A,...,D)
+ \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+```
 
 
 ---
@@ -273,6 +703,10 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzCompass
+
 
 ---
 
@@ -282,35 +716,91 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzCompasss
+
 
 ---
 
-## 429. Other Example
+## 429. Geometry Example
 
 **ID**: `0f3ada69a179`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint(1,1){A}
+  \tkzDefPoint(6,1){B}
+  \tkzInterCC[R](A,4)(B,3)
+  \tkzGetPoints{C}{D}
+  \tkzDrawPoint(C)
+  \tkzCompass[length=1.5](A,C)
+  \tkzCompass(B,C)
+  \tkzDrawSegments(A,B A,C B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 430. Other Example
+## 430. Geometry Example
 
 **ID**: `8e30e3e99faf`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture} 
+  \tkzDefPoint(0,0){A} 
+  \tkzDefPoint(5,0){B}
+  \tkzInterCC[R](A,4)(B,3)
+  \tkzGetPoints{C}{D}
+  \tkzDrawPoints(A,B,C) 
+  \tkzCompass[delta=20](A,C)
+  \tkzCompass[delta=20](B,C) 
+  \tkzDrawPolygon(A,B,C)  
+  \tkzMarkAngle(A,C,B)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 431. Other Example
+## 431. Geometry Example
 
 **ID**: `ded8efd7749f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.6]
+ \tkzDefPoint(2,2){A}  \tkzDefPoint(5,-2){B}
+ \tkzDefPoint(3,4){C}  \tkzDrawPoints(A,B) 
+ \tkzDrawPoint[shape=cross out](C)    
+ \tkzCompasss[new](A,B A,C B,C C,B) 
+ \tkzShowLine[mediator,new,dashed,length = 2](A,B)
+ \tkzShowLine[parallel = through C,
+                     color=purple,length=2](A,B)
+ \tkzDefLine[mediator](A,B)  
+  \tkzGetPoints{i}{j}
+ \tkzDefLine[parallel=through C](A,B) 
+   \tkzGetPoint{D}
+ \tkzDrawLines[add=.6 and .6](C,D A,C B,D)
+ \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)  
+ \tkzLabelPoints(A,B,C,i,j,D)
+\end{tikzpicture}
+```
 
 
 ---
@@ -321,6 +811,10 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzDefPointWith
+
 
 ---
 
@@ -330,135 +824,354 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzGetVectxy
+
 
 ---
 
-## 434. Other Example
+## 434. Geometry Example
 
 **ID**: `116deec0564a`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2,
+   vect/.style={->,shorten >=1pt,>=latex'}]
+  \tkzDefPoint(2,3){A}   \tkzDefPoint(4,2){B}
+  \tkzDefPoint(0,1){C}
+  \tkzDefPointWith[colinear=at C](A,B)
+  \tkzGetPoint{D}
+  \tkzDrawPoints[new](A,B,C,D)
+  \tkzLabelPoints[above right=3pt](A,B,C,D)
+  \tkzDrawSegments[vect](A,B C,D)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 435. Other Example
+## 435. Geometry Example
 
 **ID**: `d6d0d8eca51a`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.75]
+\tkzDefPoints{0/0/B,3.6/0/C,1.5/4/A}
+\tkzDefSpcTriangle[ortho](A,B,C){Ha,Hb,Hc}
+\tkzDefTriangleCenter[ortho](A,B,C) \tkzGetPoint{H}
+\tkzDefSquare(A,C) \tkzGetPoints{R}{S}
+\tkzDefSquare(B,A) \tkzGetPoints{M}{N}
+\tkzDefSquare(C,B) \tkzGetPoints{P}{Q}
+\tkzDefPointWith[colinear= at M](A,S) \tkzGetPoint{A'}
+\tkzDefPointWith[colinear= at P](B,N) \tkzGetPoint{B'}
+\tkzDefPointWith[colinear= at Q](C,R) \tkzGetPoint{C'}
+\tkzDefPointBy[projection=onto P--Q](Ha) \tkzGetPoint{Pa}
+\tkzDrawPolygon[teal,thick](A,C,R,S)\tkzDrawPolygon[teal,thick](A,B,N,M)
+\tkzDrawPolygon[teal,thick](C,B,P,Q)
+\tkzDrawPoints[teal,size=2](A,B,C,Ha,Hb,Hc,A',B',C')
+\tkzDrawSegments[ultra thin,red](M,A' A',S P,B' B',N Q,C' C',R B,S C,M C,N B,R A,P A,Q)
+\tkzDrawSegments[ultra thin,teal, dashed](A,Ha B,Hb C,Hc)
+\tkzDefPointBy[rotation=center A angle 90](S) \tkzGetPoint{S'}
+\tkzDrawSegments[ultra thin,teal,dashed](B,S' A,S' A,A' M,S' B',Q P,C' M,S Ha,Pa)
+\tkzDrawArc(A,S)(S')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 436. Other Example
+## 436. Geometry Example
 
 **ID**: `13f7e84ad349`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[vect/.style={->,
+               shorten >=1pt,>=latex'}]
+  \tkzDefPoints{0/0/A,5/0/B,1/2/C}
+  \tkzDefPointWith[colinear=at C](A,B)
+  \tkzGetPoint{G}
+  \tkzDefPointWith[colinear=at C, K=0.5](A,B)
+  \tkzGetPoint{H}
+  \tkzLabelPoints(A,B,C,G,H)
+  \tkzDrawPoints(A,B,C,G,H)
+  \tkzDrawSegments[vect](A,B C,H)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 437. Other Example
+## 437. Geometry Example
 
 **ID**: `15d1d4c80a2d`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[vect/.style={->,
+            shorten >=1pt,>=latex'}]
+ \tkzDefPoints{1/1/A,4/2/B,2/2/C}
+ \tkzDefPointWith[colinear=at C,K=sqrt(2)/2](A,B)
+ \tkzGetPoint{D}
+ \tkzDrawPoints[color=red](A,B,C,D)
+ \tkzDrawSegments[vect](A,B C,D)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 438. Other Example
+## 438. Geometry Example
 
 **ID**: `607af6deb96f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2,
+  vect/.style={->,shorten >=1pt,>=latex'}]
+  \tkzDefPoints{2/3/A,4/2/B}
+   \tkzDefPointWith[orthogonal,K=1](A,B)
+     \tkzGetPoint{C}
+   \tkzDrawPoints[color=red](A,B,C)
+   \tkzLabelPoints[right=3pt](B,C)
+   \tkzLabelPoints[below=3pt](A)
+   \tkzDrawSegments[vect](A,B A,C)
+   \tkzMarkRightAngle(B,A,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 439. Other Example
+## 439. Geometry Example
 
 **ID**: `864fdbcaf4fc`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoints{1/2/O,2/5/I}
+  \tkzDefPointWith[orthogonal](O,I)
+  \tkzGetPoint{J}
+  \tkzDefPointWith[orthogonal,K=-1](O,I)
+  \tkzGetPoint{K}
+  \tkzDrawSegment(O,I)
+  \tkzDrawSegments[->](O,J O,K)
+  \tkzMarkRightAngles(I,O,J I,O,K)
+  \tkzDrawPoints(O,I,J,K)
+  \tkzLabelPoints(O,I,J,K)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 440. Other Example
+## 440. Geometry Example
 
 **ID**: `0dc431e70e6f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoints{0/0/A,6/0/B}
+  \tkzDefMidPoint(A,B)
+    \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal,K=-.75](B,A)
+  \tkzGetPoint{C}
+  \tkzInterLC(B,C)(B,I)
+     \tkzGetPoints{D}{F}
+  \tkzDuplicateSegment(B,F)(A,F)
+  \tkzGetPoint{E}
+  \tkzDrawArc[delta=10](F,E)(B)
+  \tkzInterLC(A,B)(A,E)
+    \tkzGetPoints{N}{M}
+  \tkzDrawArc[delta=10](A,M)(E)
+  \tkzDrawLines(A,B B,C A,F)
+  \tkzCompass(B,F)
+  \tkzDrawPoints(A,B,C,F,M,E)
+  \tkzLabelPoints(A,B,C,F,M)
+  \tkzLabelPoints[above](E)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 441. Other Example
+## 441. Geometry Example
 
 **ID**: `4af75da8f486`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2,
+  vect/.style={->,shorten >=1pt,>=latex'}]
+  \tkzDefPoints{2/1/A,6/2/B}
+  \tkzDefPointWith[orthogonal,K=.5](A,B)
+  \tkzGetPoint{C}
+  \tkzDefPointWith[colinear=at C,K=.5](A,B)
+  \tkzGetPoint{D}
+  \tkzMarkRightAngle[fill=gray!20](B,A,C)
+  \tkzDrawSegments[vect](A,B A,C C,D)
+  \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 442. Other Example
+## 442. Geometry Example
 
 **ID**: `dc3b6bc56e56`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2,
+  vect/.style={->,shorten >=1pt,>=latex'}]
+  \tkzDefPoints{2/3/A,4/2/B}
+  \tkzDefPointWith[orthogonal normed](A,B)
+  \tkzGetPoint{C}
+  \tkzDrawPoints[color=red](A,B,C)
+  \tkzDrawSegments[vect](A,B A,C)
+  \tkzMarkRightAngle[fill=gray!20](B,A,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 443. Other Example
+## 443. Geometry Example
 
 **ID**: `790d5dddfcbf`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2,
+   vect/.style={->,shorten >=1pt,>=latex'}]
+  \tkzDefPoints{2/3/A,5/1/B}
+  \tkzDefPointWith[orthogonal normed,K=2](A,B)
+  \tkzGetPoint{C}
+  \tkzDrawPoints[color=red](A,B,C)
+  \tkzDefCircle[R](A,2) \tkzGetPoint{a}
+  \tkzDrawCircle(A,a)
+  \tkzDrawSegments[vect](A,B A,C)
+  \tkzMarkRightAngle[fill=gray!20](B,A,C)
+  \tkzLabelPoints[above=3pt](A,B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 444. Other Example
+## 444. Geometry Example
 
 **ID**: `5f5479f29193`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2]
+  \tkzDefPoints{1/3/A,4/2/B}
+  \tkzDefPointWith[linear,K=0.5](A,B)
+  \tkzGetPoint{C}
+  \tkzDrawPoints[color=red](A,B,C)
+  \tkzDrawSegment(A,B)
+  \tkzLabelPoints[above right=3pt](A,B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 445. Other Example
+## 445. Geometry Example
 
 **ID**: `9a3c6f1728da`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.2]
+ \tkzDefPoints{1/3/A,4/2/B}
+ \tkzDefPointWith[linear normed](A,B)
+ \tkzGetPoint{C}
+ \tkzDrawPoints[color=red](A,B,C)
+ \tkzDrawSegment(A,B)
+ \tkzLabelSegment(A,C){$1$}
+ \tkzLabelPoints[above right=3pt](A,B,C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 446. Other Example
+## 446. Geometry Example
 
 **ID**: `ae51a4bd27fe`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+ \tkzDefPoints{0/0/O,1/1/A,4/2/B}
+ \tkzGetVectxy(A,B){v}
+ \tkzDefPoint(\vx,\vy){V}
+ \tkzDrawSegment[->,color=red](O,V)
+ \tkzDrawSegment[->,color=blue](A,B)
+ \tkzDrawPoints(A,B,O)
+ \tkzLabelPoints(A,B,O,V)
+\end{tikzpicture}
+```
 
 
 ---
@@ -469,6 +1182,10 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzDefPointBy
+
 
 ---
 
@@ -478,195 +1195,582 @@ Showing items **401-467** of **467** | Page **3** of **3**
 **Type**: command  
 **Package**: tkz-euclide  
 
+### Description
+
+Geometry command: tkzDefPointsBy
+
 
 ---
 
-## 449. Other Example
+## 449. Geometry Example
 
 **ID**: `a6e123117a05`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=latex] 
+ \tkzDefPoints{0/0/A,3/1/B,3/0/C}
+ \tkzDefPointBy[translation= from B to A](C) 
+ \tkzGetPoint{D} 
+ \tkzDrawPoints[teal](A,B,C,D)
+ \tkzLabelPoints[color=teal](A,B,C,D) 
+ \tkzDrawSegments[orange,->](A,B D,C) 
+\end{tikzpicture}
+```
 
 
 ---
 
-## 450. Other Example
+## 450. Geometry Example
 
 **ID**: `11b3c18769cc`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoints{-2/-2/A,-1/-1/C,-4/2/D,-4/0/O}    
+ \tkzDrawCircle(O,A)
+ \tkzDefPointBy[reflection = over C--D](A)
+ \tkzGetPoint{A'}
+ \tkzDefPointBy[reflection = over C--D](O)
+ \tkzGetPoint{O'}
+ \tkzDrawCircle(O',A')
+ \tkzDrawLine[add= .5 and .5](C,D)
+ \tkzDrawPoints(C,D,O,O')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 451. Other Example
+## 451. Geometry Example
 
 **ID**: `3be8d95756bb`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoints{0/1/A,5/3/B,3/4/C}
+  \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a} 
+  \tkzDrawLine[add=0 and 0,color=magenta!50 ](A,a) 
+  \tkzDefPointBy[homothety=center A ratio .5](a)   
+  \tkzGetPoint{a'} 
+  \tkzDefPointBy[projection = onto A--B](a') 
+  \tkzGetPoint{k'}  
+  \tkzDefPointBy[projection = onto A--B](a) 
+  \tkzGetPoint{k} 
+  \tkzDrawLines[add= 0 and .3](A,k A,C)   
+  \tkzDrawSegments[blue](a',k' a,k) 
+  \tkzDrawPoints(a,a',k,k',A)
+  \tkzDrawCircles(a',k' a,k)   
+  \tkzLabelPoints(a,a',k,A)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 452. Other Example
+## 452. Geometry Example
 
 **ID**: `697e9abc4431`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.25]  
+ \tkzDefPoints{0/0/A,0/4/B}
+ \tkzDefTriangle[pythagore](B,A) \tkzGetPoint{C}
+ \tkzDefLine[bisector](B,C,A) \tkzGetPoint{c}
+ \tkzInterLL(C,c)(A,B)  \tkzGetPoint{D}
+ \tkzDefPointBy[projection=onto B--C](D) 
+ \tkzGetPoint{G}
+ \tkzInterLC(C,D)(D,A) \tkzGetPoints{E}{F}
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawSegment(C,D)
+ \tkzDrawCircle(D,A)
+ \tkzDrawSegment[new](D,G)
+ \tkzMarkRightAngle[fill=orange!10](D,G,B)
+ \tkzDrawPoints(A,C,F) \tkzLabelPoints(A,C,F)
+ \tkzDrawPoints(B,D,E,G)   
+ \tkzLabelPoints[above right](B,D,E)
+  \tkzLabelPoints[above](G)
+ \end{tikzpicture}
+```
 
 
 ---
 
-## 453. Other Example
+## 453. Geometry Example
 
 **ID**: `5908c4abf078`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoints{2/-1/A,2/2/B,0/0/O}
+  \tkzDefPointsBy[symmetry=center O](B,A){}
+  \tkzDrawLine(A,A')
+  \tkzDrawLine(B,B')
+  \tkzMarkAngle[mark=s,arc=lll,
+      size=1.5,mkcolor=red](A,O,B) 
+  \tkzLabelAngle[pos=2,circle,draw,
+    fill=blue!10,font=\scriptsize](A,O,B){$60^{\circ}$}
+  \tkzDrawPoints(A,B,O,A',B') 
+  \tkzLabelPoints(B,B')
+  \tkzLabelPoints[below](A,O,A')  
+\end{tikzpicture}
+```
 
 
 ---
 
-## 454. Other Example
+## 454. Geometry Example
 
 **ID**: `bdf4d9f53f0b`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=0.75] 
+ \tkzDefPoints{0/0/A,5/0/B}
+ \tkzDrawSegment(A,B)
+ \tkzDefPointBy[rotation=center A angle 60](B) 
+ \tkzGetPoint{C} 
+ \tkzDefPointBy[symmetry=center C](A) 
+ \tkzGetPoint{D} 
+ \tkzDrawSegment(A,tkzPointResult) 
+ \tkzDrawLine(B,D)
+ \tkzDrawArc(A,B)(C) \tkzDrawArc(B,C)(A)
+ \tkzDrawArc(C,D)(D)  
+ \tkzMarkRightAngle(D,B,A) 
+ \tkzDrawPoints(A,B) 
+ \tkzLabelPoints(A,B)
+ \tkzLabelPoints[above](C)
+ \tkzLabelPoints[right](D)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 455. Other Example
+## 455. Geometry Example
 
 **ID**: `db43d70b6c92`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tkzDefPoint["$A$" left](1,5){A}
+  \tkzDefPoint["$B$" right](4,3){B}
+  \tkzDefPointBy[rotation in rad= center A angle pi/3](B)
+  \tkzGetPoint{C}  
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoints(A,B,C) 
+  \tkzCompass(A,C)
+  \tkzCompass(B,C) 
+  \tkzLabelPoints(C)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 456. Other Example
+## 456. Geometry Example
 
 **ID**: `0e75211cee5f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){O}    
+ \tkzDefPoint(0:2){A} 
+ \tkzDefPoint(40:2){B}  
+ \tkzDefPoint(20:4){C}
+ \tkzDrawLine(O,A)
+ \tkzDefPointBy[rotation with nodes%
+             =center O from A to B](C)  
+ \tkzGetPoint{D}
+\tkzDrawPoints(A,B,C,D)
+\tkzDrawCircle(O,A)
+\tkzLabelPoints(A,C,D)
+\tkzLabelPoints[above](B)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 457. Other Example
+## 457. Geometry Example
 
 **ID**: `da2c5059d1e7`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoints{4/0/A,6/0/P,0/0/O}
+  \tkzDefPointBy[inversion = center O through A](P)
+  \tkzGetPoint{P'}
+  \tkzDrawSegments(O,P)
+  \tkzDrawCircle(O,A)
+  \tkzLabelPoints[above right,font=\scriptsize](O,A,P,P')
+  \tkzDrawPoints(O,A,P,P')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 458. Other Example
+## 458. Geometry Example
 
 **ID**: `ece7eaa80c3e`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoints{4/0/A,6/0/P,0/0/O}
+  \tkzDefLine[orthogonal=through P](O,P)
+  \tkzGetPoint{L}
+  \tkzDefLine[tangent from = P](O,A) \tkzGetPoints{R}{Q}
+  \tkzDefPointBy[projection=onto O--A](Q) \tkzGetPoint{P'}
+  \tkzDrawSegments(O,P O,A)
+  \tkzDrawSegments[new](O,P O,Q P,Q Q,P')
+  \tkzDrawCircle(O,A)
+  \tkzDrawLines[add=1 and 0](P,L)
+  \tkzLabelPoints[below,font=\scriptsize](O,P')
+  \tkzLabelPoints[above right,font=\scriptsize](P,Q)
+  \tkzDrawPoints(O,P) \tkzDrawPoints[new](Q,P')
+  \tkzLabelSegment[above](O,Q){$k$}
+  \tkzMarkRightAngles(A,P',Q P,Q,O)
+  \tkzLabelCircle[above=.5cm,
+      font=\scriptsize](O,A)(100){inversion circle}
+  \tkzLabelPoint[left,font=\scriptsize](O){inversion center}
+  \tkzLabelPoint[left,font=\scriptsize](L){polar}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 459. Other Example
+## 459. Geometry Example
 
 **ID**: `03e8f6c7b3c5`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.5]
+\tkzDefPoints{0/0/O,3/0/I,4/3/P,6/-3/Q}
+\tkzDrawCircle(O,I)
+\tkzDefPointBy[projection= onto P--Q](O) \tkzGetPoint{A}
+\tkzDefPointBy[inversion = center O through I](A)
+\tkzGetPoint{A'}
+\tkzDefPointBy[inversion = center O through I](P)
+\tkzGetPoint{P'}
+\tkzDefCircle[diameter](O,A')\tkzGetPoint{o}
+\tkzDrawCircle[new](o,A')
+\tkzDrawLines[add=.25 and .25,red](P,Q)
+\tkzDrawLines[add=.25 and .25](O,A)
+\tkzDrawSegments(O,P)
+\tkzDrawPoints(A,P,O) \tkzDrawPoints[new](A',P')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 460. Other Example
+## 460. Geometry Example
 
 **ID**: `129020861655`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.8]
+\tkzDefPoints{0/0/O,3/0/I,3/2/P,3/-2/Q}
+\tkzDrawCircle(O,I)
+\tkzDefPointBy[projection= onto P--Q](O) \tkzGetPoint{A}
+\tkzDefPointBy[inversion = center O through I](A)
+\tkzGetPoint{A'}
+\tkzDefPointBy[inversion = center O through I](P)
+\tkzGetPoint{P'}
+\tkzDefCircle[diameter](O,A')\tkzGetPoint{o}
+\tkzDrawCircle[new](o,A')
+\tkzDrawLines[add=.25 and .25,red](P,Q)
+\tkzDrawLines[add=.25 and .25](O,A)
+\tkzDrawSegments(O,P)
+\tkzDrawPoints(A,P,O) \tkzDrawPoints[new](A',P')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 461. Other Example
+## 461. Geometry Example
 
 **ID**: `a641c3186d94`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.8]
+\tkzDefPoints{0/0/O,3/0/I,2/1/P,2/-2/Q}
+\tkzDrawCircle(O,I)
+\tkzDefPointBy[projection= onto P--Q](O) \tkzGetPoint{A}
+\tkzDefPointBy[inversion = center O through I](A)
+\tkzGetPoint{A'}
+\tkzDefPointBy[inversion = center O through I](P)
+\tkzGetPoint{P'}
+\tkzDefCircle[diameter](O,A')
+\tkzDrawCircle[new](I,A')
+\tkzDrawLines[add=.25 and .75,red](P,Q)
+\tkzDrawLines[add=.25 and .25](O,A')
+\tkzDrawSegments(O,P')
+\tkzDrawPoints(A,P,O) \tkzDrawPoints[new](A',P')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 462. Other Example
+## 462. Geometry Example
 
 **ID**: `1d52e2b6c62f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=.7]
+\tkzDefPoints{0/0/O,3/2/A,2/1/P}
+\tkzDefLine[tangent from = O](A,P) \tkzGetPoints{T}{X}
+\tkzDefPointsBy[homothety = center O%
+                ratio 1.25](A,P,T){}
+\tkzInterCC(A,P)(A',P') \tkzGetPoints{C}{D}
+\tkzCalcLength(A,P)
+\tkzGetLength{rAP}
+\tkzDefPointOnCircle[R=center A angle 190 radius \rAP]
+\tkzGetPoint{M}
+\tkzDefPointBy[inversion = center O through C](M)
+\tkzGetPoint{M'}
+\tkzDrawCircles[new](A,P A',P')
+\tkzDrawCircle(O,C)
+\tkzDrawLines[add=0 and .5](O,T' O,A' O,M' O,P')
+\tkzDrawPoints(A,A',P,P',O,T,T',M,M')
+\tkzLabelPoints(O,T,T',M,M')
+\tkzLabelPoints[below](P,P')
+\end{tikzpicture}
+```
 
 
 ---
 
-## 463. Other Example
+## 463. Geometry Example
 
 **ID**: `6d6fcda81794`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+\tkzDefPoints{0/0/A,5/1/B,3/6/C}
+\tkzDefTriangleCenter[in](A,B,C) \tkzGetPoint{O} 
+\tkzDefPointBy[projection= onto A--C](O) \tkzGetPoint{b}
+\tkzDefPointBy[projection= onto A--C](O) \tkzGetPoint{b}
+\tkzDefPointBy[projection= onto B--C](O) \tkzGetPoint{a}
+\tkzDefPointBy[projection= onto A--B](O) \tkzGetPoint{c}
+\tkzDefPointsBy[inversion = center O through b](a,b,c)%
+                                             {Ia,Ib,Ic}
+\tkzDefMidPoint(O,Ia) \tkzGetPoint{Ja}
+\tkzDefMidPoint(O,Ib) \tkzGetPoint{Jb}
+\tkzDefMidPoint(O,Ic) \tkzGetPoint{Jc}
+\tkzInterCC(Ja,O)(Jb,O) \tkzGetPoints{O}{x}
+\tkzInterCC(Ja,O)(Jc,O) \tkzGetPoints{y}{O}
+\tkzInterCC(Jb,O)(Jc,O) \tkzGetPoints{O}{z}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawCircle(O,b)\tkzDrawPoints(A,B,C,O)
+\tkzDrawCircles[dashed,gray](Ja,y Jb,x Jc,z)
+\tkzDrawArc[line width=1pt,orange,delta=0](Jb,x)(z)
+\tkzDrawArc[line width=1pt,orange,delta=0](Jc,z)(y)
+\tkzDrawArc[line width=1pt,orange,delta=0](Ja,y)(x)
+\tkzLabelPoint[below](A){$A$}\tkzLabelPoint[above](C){$C$}
+\tkzLabelPoint[right](B){$B$}\tkzLabelPoint[below](O){$O$}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 464. Other Example
+## 464. Geometry Example
 
 **ID**: `1aec410b3f5f`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1]
+\tkzDefPoint(0,0){O}\tkzDefPoint(1,0){A}
+\tkzDefPoint(-1.5,-1.5){z1} 
+\tkzDefPoint(1.5,-1.25){z2} 
+\tkzDefCircle[orthogonal through=z1 and z2](O,A)
+\tkzGetPoint{c} 
+\tkzDrawCircle[new](c,z1) 
+\tkzDefPointBy[inversion =  center O through A](z1)
+\tkzGetPoint{Z1} 
+\tkzInterCC(O,A)(c,z1) \tkzGetPoints{I}{J}
+\tkzDefPointBy[inversion =  center O through A](I)
+\tkzGetPoint{I'}
+\tkzDrawCircle(O,A)
+\tkzDrawPoints(O,A,z1,z2) 
+\tkzDrawPoints[new](c,Z1,I,J) 
+\tkzLabelPoints(O,A,z1,z2,c,Z1,I,J)
+\end{tikzpicture}
+```
 
 
 ---
 
-## 465. Other Example
+## 465. Geometry Example
 
 **ID**: `11556d53acbf`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoints{1/0/A,0/0/O}
+  \tkzDefPoint(-1.5,-1.5){z1}
+  \tkzDefPoint(0.35,-2){z2} 
+  \tkzDefPointBy[inversion negative = center O through A](z1)
+  \tkzGetPoint{Z1} 
+  \tkzDefPointBy[inversion negative = center O through A](z2)
+  \tkzGetPoint{Z2}
+  \tkzDrawCircle(O,A)  
+  \tkzDrawPoints[color=black, fill=red,size=4](Z1,Z2)    
+  \tkzDrawSegments(z1,Z1 z2,Z2)
+  \tkzDrawPoints[color=black, fill=red,size=4](O,z1,z2)
+  \tkzLabelPoints[font=\scriptsize](O,A,z1,z2,Z1,Z2)  
+\end{tikzpicture}
+```
 
 
 ---
 
-## 466. Other Example
+## 466. Geometry Example
 
 **ID**: `3a12ac11add1`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=latex] 
+ \tkzDefPoints{0/0/A,3/0/B,3/1/A',1/2/C}
+ \tkzDefPointsBy[translation= from A to A'](B,C){} 
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPolygon[new](A',B',C')
+ \tkzDrawPoints(A,B,C)
+ \tkzDrawPoints[new](A',B',C') 
+ \tkzLabelPoints(A,B,A',B')  
+ \tkzLabelPoints[above](C,C')
+ \tkzDrawSegments[color = gray,->,
+              style=dashed](A,A' B,B' C,C') 
+\end{tikzpicture}
+```
 
 
 ---
 
-## 467. Other Example
+## 467. Geometry Example
 
 **ID**: `ec469c2f139c`  
 **Type**: executable_example  
 **Package**: tkz-euclide  
-**Chart Type**: N/A  
+**Chart Type**: geometry  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=0.4]
+  \tkzDefPoint(-4,0){I}
+  \tkzDefPoint(4,0){J}
+  \tkzDefPoint(0,0){O} 
+  \tkzInterCC(J,O)(O,J) \tkzGetPoints{L}{H}
+  \tkzInterCC(I,O)(O,I) \tkzGetPoints{K}{G} 
+  \tkzInterLL(I,K)(J,H) \tkzGetPoint{M}
+  \tkzInterLL(I,G)(J,L) \tkzGetPoint{N}
+  \tkzDefPointsBy[symmetry=center J](L,H){D,E} 
+  \tkzDefPointsBy[symmetry=center I](G,K){C,F}
+  \begin{scope}[line style/.style = {very thin,teal}]
+    \tkzDrawLines[add=1.5 and 1.5](I,K I,G J,H J,L) 
+    \tkzDrawLines[add=.5 and .5](I,J) 
+    \tkzDrawCircles(O,I I,O J,O) 
+    \tkzDrawArc[delta=0,orange](N,D)(C) 
+    \tkzDrawArc[delta=0,orange](M,F)(E) 
+    \tkzDrawArc[delta=0,orange](J,E)(D) 
+    \tkzDrawArc[delta=0,orange](I,C)(F) 
+  \end{scope}   
+\end{tikzpicture}
+```
 
 
 ---

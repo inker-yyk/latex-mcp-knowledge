@@ -11,322 +11,1059 @@ Showing items **1-32** of **32** | Page **1** of **1**
 
 ---
 
-## 1. Other Example
+## 1. Bar Chart Example
 
 **ID**: `5dfad5487e2f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xticklabel=
+\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick
+]
+    \addplot+ [hist={bins=3}]
+        table [row sep=\\,y index=0] {
+            data\\
+            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 2. Other Example
+## 2. Bar Chart Example
 
 **ID**: `d2505a004954`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+         \pgfmathprintnumber\nexttick)$
+    },
+    x tick label style={draw=red},
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 3. Other Example
+## 3. Bar Chart Example
 
 **ID**: `954ede03f266`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        tiny,
+        height=4cm,width=12cm,
+        ybar interval,
+        ymin=0,
+        xmin=0,xmax=1,
+        axis on top,
+        extra x ticks={0,1},
+        extra x tick style={
+            grid=none,
+            x tick label as interval=false,
+            xticklabel={$\pgfmathprintnumber\tick$}
+        },
+        xticklabel={$[\pgfmathprintnumber[fixed]\tick,\cdot)$},
+    ]
+        \addplot+ [samples=200,hist] {rnd};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4. Other Example
+## 4. Bar Chart Example
 
 **ID**: `0040bf3521aa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+        \pgfmathprintnumber\nexttick)$
+    },
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x,cumulative}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 5. Other Example
+## 5. Bar Chart Example
 
 **ID**: `54c374677a1b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    hist/symbolic coords={A,B,C,D,E,F,G,H,I,J},
+    xticklabel={[\tick--\nexttick[},
+]
+    \addplot+ [
+        hist={bins=3},
+    ] table [row sep=\\,y index=0] {
+        data\\
+        A\\ B\\ A\\ D\\ F\\ J\\
+        G\\ J\\ I\\ H\\ I\\ I\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 6. Other Example
+## 6. Bar Chart Example
 
 **ID**: `bbbdda78c037`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval=0.9,
+    x tick label as interval,
+    xmin=2003,xmax=2030,
+    ymin=0,ymax=140,
+    xticklabel={
+           $\pgfmathprintnumber{\tick}$
+        -- $\pgfmathprintnumber{\nexttick}$},
+    xtick=data,
+    x tick label style={
+        rotate=90,anchor=east,
+        /pgf/number format/1000 sep=%
+    },
+]
+    \addplot [draw=blue,fill=blue!40!white]
+        coordinates
+        {(2003,40) (2005,100) (2006,15)
+         (2010,90) (2020,120) (2030,3)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 7. Other Example
+## 7. Bar Chart Example
 
 **ID**: `1b7eeb975cbb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    nodes near coords,
+    %
+    % we want to provide absolute 'at' values
+    % for the nodes:
+    scatter/position=absolute,
+    every node near coord/.style={
+        at={(\pgfkeysvalueof{/data point/x},-1)},
+        % pretty printing:
+        anchor=north,
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1,
+        % assign a name which can be referenced below:
+        name=NNC\pgfkeysvalueof{/data point/index},
+    },
+    % ... draw a dotted line between
+    % the marker and the bar:
+    /pgfplots/scatter/@post marker code/.add code={}{
+        \draw [dotted,help lines]
+            (NNC\pgfkeysvalueof{/data point/index})
+            -- (\pgfkeysvalueof{/data point/x},
+            {min(0,\pgfkeysvalueof{/data point/y})});
+    },
+    % assign suitable tick labels:
+    xtick=data,
+]
+    % some dummy data:
+    \addplot+ [
+        domain=0:360,
+        bar width=360/9,
+        samples=9,
+    ] {sin(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 8. Other Example
+## 8. Bar Chart Example
 
 **ID**: `8f21d0645549`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[legend pos=north west]
+    \addplot {x^3};
+    \addplot [
+        ybar,
+        ybar legend,
+        fill=red,
+        draw=red!60,
+        mark=none,
+        samples=5,
+    ] {-30*(x +4)};
+
+    \legend{first,second}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 9. Other Example
+## 9. Bar Chart Example
 
 **ID**: `0cc0747ea16e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        xbar,
+    ] coordinates {
+        (4,0) (1,1) (2,2)
+        (5,3) (6,4) (1,5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 10. Other Example
+## 10. Bar Chart Example
 
 **ID**: `d748452ec88c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[xbar,enlargelimits=0.15]
+    \addplot [draw=blue,
+        pattern=horizontal lines light blue,
+    ] coordinates {
+        (10,5) (15,10) (5,15) (24,20) (30,25)
+    };
+    \addplot [draw=black,
+        pattern=horizontal lines dark blue,
+    ] coordinates {
+        (3,5) (5,10) (15,15) (20,20) (35,25)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 11. Other Example
+## 11. Bar Chart Example
 
 **ID**: `37723b7a2b07`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        xbar, xmin=0,
+        width=12cm, height=3.5cm, enlarge y limits=0.5,
+        xlabel={\#participants},
+        symbolic y coords={no,yes},
+        ytick=data,
+        nodes near coords, nodes near coords align={horizontal},
+    ]
+        \addplot coordinates {(3,no) (7,yes)};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 12. Other Example
+## 12. Bar Chart Example
 
 **ID**: `ac9f61bef916`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Uses lowest $x$ coords for xmin,
+        xbar,
+        width=12cm, height=3.5cm, enlarge y limits=0.5,
+        xlabel={\#participants},
+        symbolic y coords={no,yes},
+        ytick=data,
+        nodes near coords, nodes near coords align={horizontal},
+      ]
+        \addplot coordinates {(1,no) (9,yes)};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 13. Other Example
+## 13. Bar Chart Example
 
 **ID**: `8991cdd42123`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        ybar,
+    ] coordinates {
+        (0,3) (1,2) (2,4) (3,1) (4,2)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 14. Other Example
+## 14. Bar Chart Example
 
 **ID**: `f8f9befc6cd0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label style={
+        /pgf/number format/1000 sep=},
+    ylabel=Population,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.15)},
+        anchor=north,legend columns=-1},
+    ybar,
+    bar width=7pt,
+]
+    \addplot coordinates {
+        (1930,50e6) (1940,33e6)
+        (1950,40e6) (1960,50e6) (1970,70e6)
+    };
+    \addplot coordinates {
+        (1930,38e6) (1940,42e6)
+        (1950,43e6) (1960,45e6) (1970,65e6)
+    };
+    \addplot coordinates {
+        (1930,15e6) (1940,12e6)
+        (1950,13e6) (1960,25e6) (1970,35e6)
+    };
+    \addplot [red,line legend,
+        sharp plot,update limits=false,
+    ] coordinates { (1910,4.3e7) (1990,4.3e7) }
+        node [above] at (1950,4.3e7) {Houses};
+
+    \legend{Far,Near,Here,Annot}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 15. Other Example
+## 15. Bar Chart Example
 
 **ID**: `c27b5d889efb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.15)},
+    anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={tool8,tool9,tool10},
+    xtick=data,
+    nodes near coords,
+    nodes near coords align={vertical},
+]
+\addplot coordinates {(tool8,7) (tool9,9) (tool10,4)};
+\addplot coordinates {(tool8,4) (tool9,4) (tool10,4)};
+\addplot coordinates {(tool8,1) (tool9,1) (tool10,1)};
+    \legend{used,understood,not understood}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 16. Other Example
+## 16. Bar Chart Example
 
 **ID**: `ad46fe463520`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label style={
+        /pgf/number format/1000 sep=},
+    ylabel=Population,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.15)},
+        anchor=north,legend columns=-1},
+    ybar=5pt,% configures `bar shift'
+    bar width=9pt,
+    nodes near coords,
+    point meta=y *10^-7, % the displayed number
+]
+    \addplot coordinates {
+        (1930,50e6) (1940,33e6)
+        (1950,40e6) (1960,50e6) (1970,70e6)
+    };
+    \addplot coordinates {
+        (1930,38e6) (1940,42e6)
+        (1950,43e6) (1960,45e6) (1970,65e6)
+    };
+    \legend{Far,Near}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 17. Other Example
+## 17. Bar Chart Example
 
 **ID**: `26aa44b2675f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.2)},
+    anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={excellent,good,neutral,%
+        not good,poor},
+    xtick=data,
+    nodes near coords,
+    nodes near coords align={vertical},
+    x tick label style={rotate=45,anchor=east},
+]
+    \addplot coordinates {
+        (excellent,0) (good,8) (neutral,2)
+        (not good,0) (poor,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 18. Other Example
+## 18. Bar Chart Example
 
 **ID**: `5d268aaea2c3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xbar=0pt,% space of 0pt between adjacent bars
+    bar width=2,
+    width=7cm,
+    height=12cm,
+    minor y tick num=4,
+    ytick=data,
+    enlargelimits=0.15,
+]
+    \addplot coordinates {
+        (10,5) (15,10) (5,15) (24,20) (30,25)
+    };
+    \addplot coordinates {
+        (3,5) (5,10) (15,15) (20,20) (35,25)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 19. Other Example
+## 19. Bar Chart Example
 
 **ID**: `c1b1a9698553`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        ybar interval,
+    ] coordinates {
+        (0,2) (0.1,1) (0.3,0.5) (0.35,4) (0.5,3)
+        (0.6,2) (0.7,1.5) (1,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 20. Other Example
+## 20. Bar Chart Example
 
 **ID**: `21a649ce1512`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[ybar interval,
+    xtick=data,
+    xticklabel interval boundaries,
+    x tick label style={
+        rotate=90,
+        anchor=east,
+    },
+]
+    \addplot coordinates {
+        (0,2) (0.1,1) (0.3,0.5) (0.35,4) (0.5,3)
+        (0.6,2) (0.7,1.5) (1,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 21. Other Example
+## 21. Bar Chart Example
 
 **ID**: `3f7d9670f808`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label style={
+        /pgf/number format/1000 sep=},
+    ylabel=Population,
+    enlargelimits=0.05,
+    legend style={at={(0.5,-0.15)},
+    anchor=north,legend columns=-1},
+    ybar interval=0.7,
+]
+    \addplot coordinates {
+        (1930,50e6) (1940,33e6)
+        (1950,40e6) (1960,50e6) (1970,70e6)
+    };
+    \addplot coordinates {
+        (1930,38e6) (1940,42e6)
+        (1950,43e6) (1960,45e6) (1970,65e6)
+    };
+    \addplot coordinates {
+        (1930,15e6) (1940,12e6)
+        (1950,13e6) (1960,25e6) (1970,35e6)
+    };
+    \legend{Far,Near,Here}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 22. Other Example
+## 22. Bar Chart Example
 
 **ID**: `42bb73da5fe1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0,xmax=53,
+    ylabel=Age,
+    xlabel=Quantity,
+    enlargelimits=false,
+    ytick=data,
+    yticklabel interval boundaries,
+    xbar interval,
+]
+    \addplot coordinates {
+        (10,5) (10.5,10) (15,13) (24,18) (50,21)
+        (23,25) (10,30) (3,50) (3,70)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 23. Other Example
+## 23. Bar Chart Example
 
 **ID**: `153c39fcd14f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[stack plots=y,/tikz/ybar]
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 24. Other Example
+## 24. Bar Chart Example
 
 **ID**: `214268f6faa3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[ybar stacked]
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+    \addplot coordinates {
+        (0,1) (1,1) (2,3) (3,2) (4,1.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 25. Other Example
+## 25. Bar Chart Example
 
 **ID**: `e69571548457`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.20)},
+        anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={tool1, tool2, tool3, tool4,
+        tool5, tool6, tool7},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+]
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
+  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
+  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
+  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
+\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
+  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
+\legend{never, rarely, sometimes, often}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 26. Other Example
+## 26. Bar Chart Example
 
 **ID**: `56383ad8db74`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[stack plots=x,/tikz/xbar]
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 27. Other Example
+## 27. Bar Chart Example
 
 **ID**: `ee23893f1552`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[xbar stacked]
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+    \addplot coordinates {
+        (1,0) (2,1) (2,2) (3,3)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 28. Other Example
+## 28. Bar Chart Example
 
 **ID**: `208b0a186337`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+% needs \pgfplotsset{compat=1.9} or newer!
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,nodes near coords,
+    bar width=0.4,
+]
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+    \addplot coordinates
+        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 29. Other Example
+## 29. Bar Chart Example
 
 **ID**: `b12f927b1e50`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+% needs \pgfplotsset{compat=1.9} or newer!
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    bar width=15pt,
+    nodes near coords,
+    enlargelimits=0.15,
+    legend style={at={(0.5,-0.20)},
+        anchor=north,legend columns=-1},
+    ylabel={\#participants},
+    symbolic x coords={tool1, tool2, tool3, tool4,
+        tool5, tool6, tool7},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+]
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
+  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
+  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
+\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
+  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
+\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
+  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
+\legend{never, rarely, sometimes, often}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 30. Other Example
+## 30. Bar Chart Example
 
 **ID**: `362ad9a43a2d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xbar stacked,nodes near coords,
+    bar width=0.5,
+]
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+    \addplot coordinates
+        {(1,0) (2,1) (2,2) (3,3)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 31. Other Example
+## 31. Bar Chart Example
 
 **ID**: `3b0dbb3ee4f8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \pgfplotstableread{
+        Year  Cat1  Cat2  Cat3  Cat4
+        2005  10    50    -10   30
+        2006  -40   60    -15   90
+        2007  -20   60    -15   60
+    }\mytable
+\begin{axis}[
+    xbar stacked,
+    stack negative=on previous,
+    %
+    xmajorgrids,
+    legend style={at={(0.5,-0.1)},
+        anchor=north,legend columns=-1},
+    bar width=10pt,
+    bar shift auto,
+    nodes near coords,
+    nodes near coords style={font=\tiny},
+    y=60pt,
+    ytick distance=1,
+    enlarge y limits=0.3,
+    /pgf/number format/1000 sep=,
+    extra x ticks={0},
+    extra x tick style={grid style={black},
+    xticklabel=\empty},
+]
+    \addplot table [x index=1,y=Year] {\mytable};
+    \addplot table [x index=2,y=Year] {\mytable};
+    \addplot table [x index=3,y=Year] {\mytable};
+    \addplot table [x index=4,y=Year] {\mytable};
+    \legend{Cat1,Cat2,Cat3,Cat4}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 32. Other Example
+## 32. Bar Chart Example
 
 **ID**: `7f7b755547ad`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \pgfplotstableread{
+        Year  Cat1  Cat2  Cat3  Cat4
+        2005  10    50    -10   30
+        2006  -40   60    -15   90
+        2007  -20   60    -15   60
+    }\mytable
+\begin{axis}[
+    xbar stacked,
+    % is default anyway:
+    stack negative=separate,
+    %
+    /pgf/number format/1000 sep=,
+    xmajorgrids,
+    nodes near coords,
+    nodes near coords style={font=\tiny},
+    ytick distance=1,
+    legend style={at={(0.5,-0.1)},
+        anchor=north,legend columns=-1},
+    extra x ticks={0},
+    extra x tick style={grid style={black},
+    xticklabel=\empty},
+]
+    \addplot table [x index=1,y=Year] {\mytable};
+    \addplot table [x index=2,y=Year] {\mytable};
+    \addplot table [x index=3,y=Year] {\mytable};
+    \addplot table [x index=4,y=Year] {\mytable};
+    \legend{Cat1,Cat2,Cat3,Cat4}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---

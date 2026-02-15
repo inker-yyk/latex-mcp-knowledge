@@ -11,2002 +11,4438 @@ Showing items **201-400** of **501** | Page **2** of **3**
 
 ---
 
-## 201. Other Example
+## 201. Circuit Example
 
 **ID**: `749e4795dc91`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american] \ctikzset{tubes/thickness=4}
+    \tikzset{anode/.style={dynode,
+            circuitikz/monopoles/dynode/arc angle=90},
+        photocatode/.style={dynode,
+            circuitikz/monopoles/dynode/arc pos=1,
+            circuitikz/monopoles/dynode/top width=0},
+    }
+    \draw (0,0) node[dynode]{} (1,0) node[anode]{}
+           (2,0) node[photocatode]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 202. Other Example
+## 202. Circuit Example
 
 **ID**: `4a540da28680`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+% Author: Prof. Dr. Matthias Jung, DL9MJ % Year: 2023
+\begin{circuitikz}[european]
+    \draw(0,0) node [dinantenna](ant1){};
+    \draw[thick](ant1.south) -- ++(0,-1)
+        node[anchor=south west](){$f=\qty{145,9}{\mega\hertz}$};
+    \draw(3.5,0) node [dinantenna](ant2){};
+    \draw(3.75,-0.5) node[tvsetshape, anchor=west, fill=gray](tv){};
+    \draw[thick] (ant2) |- (tv);
+    \draw(tv.north) node[above](){TV};
+    %
+    \draw[gray](ant1.right) node[harmonics, xscale=2, anchor=left](){};
+    \draw[thick](ant1.right) node[waves, xscale=2, anchor=left](){};
+    %
+    \draw(tv.south) ++(0,-0.25)
+        node[below](foo){$f=$\,\qtyrange{582}{590}{\mega\hertz}};
+    \draw(foo.south) node[below](){DVB-T2 Kanal 35};
+\end{circuitikz}
+```
 
 
 ---
 
-## 203. Other Example
+## 203. Circuit Example
 
 **ID**: `1218f25ba331`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[msport, right, xscale=-1]{}
+    to[mstline, -o]  ++(3,0) coordinate(there)
+    to[mstline, mstlinelen=2, l=longer, o-*]  ++(4,0)
+        coordinate(here) -- ++(0.5,0) node[mslstub, fill=yellow]{stub}
+        (here) -- ++(0,0.5) node[mslstub, rotate=90, mstlinelen=0.5]{short};
+        \draw (there) to[short, o-]  ++(0, 0.5) node[msrstub]{};
+        \draw (here) -- ++(0, -0.5) node[msrstub, yscale=-1]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 204. Other Example
+## 204. Circuit Example
 
 **ID**: `0d27b828136a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    \tikzset{bare tl/.style={tlineshape,
+    circuitikz/bipoles/tline/bare=true}}
+    \draw (0,0) node[bare tl](A){} (A.right)
+        to[TL, bipoles/tline/width=1] ++(3,0)
+        node[bare tl, anchor=left]{};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 205. Other Example
+## 205. Circuit Example
 
 **ID**: `8b48843caada`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (2,0) node[elmech](motor){M};
+\draw (motor.north) |-(0,2) to [R] ++(0,-2) to[dcvsource]++(0,-2) -| (motor.bottom);
+\draw[thick,->>](motor.right)--++(1,0)node[midway,above]{$\omega$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 206. Other Example
+## 206. Circuit Example
 
 **ID**: `1edec51bf2f7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (2,0) node[elmech](motor){};
+\draw (motor.north) |-(0,2) to [R] ++(0,-2) to[dcvsource]++(0,-2) -| (motor.bottom);
+\draw[thick,->>](motor.center)--++(1.5,0)node[midway,above]{$\omega$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 207. Other Example
+## 207. Circuit Example
 
 **ID**: `254469b4f316`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) to [Telmech=M,n=motor] ++(0,-3) to [Telmech=M] ++(3,0) to [Telmech=G,n=generator] ++(0,3) to [R] (0,0);
+\draw[thick,->>](motor.left)--(generator.left)node[midway,above]{$\omega$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 208. Other Example
+## 208. Circuit Example
 
 **ID**: `54f3e88217e1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[transformer] (T) {}
+  (T.A1) node[anchor=east] {A1}
+  (T.A2) node[anchor=east] {A2}
+  (T.B1) node[anchor=west] {B1}
+  (T.B2) node[anchor=west] {B2}
+  (T.base) node{K}
+  (T.inner dot A1) node[circ]{}
+  (T.inner dot B2) node[circ]{}
+;\end{circuitikz}
+```
 
 
 ---
 
-## 209. Other Example
+## 209. Circuit Example
 
 **ID**: `7eb4db58116a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[gyrator] (G) {}
+  (G.A1) node[anchor=east] {A1}
+  (G.A2) node[anchor=east] {A2}
+  (G.B1) node[anchor=west] {B1}
+  (G.B2) node[anchor=west] {B2}
+  (G.base) node{K}
+;\end{circuitikz}
+```
 
 
 ---
 
-## 210. Other Example
+## 210. Circuit Example
 
 **ID**: `368b140bb2cd`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) node[ground](GND){} to [sV] ++(0,2) -- ++(1,0)
+    node[transformer, circuitikz/inductors/coils=6,
+         anchor=A1](T){};
+\draw (T.A2) to[short, -*] (T.A2-|GND);
+\draw (T-L2.midtap) to[short, *-o] (T.B1 |- T-L2.midtap);
+\node [ocirc] at (T.B1){}; \node [ocirc] at (T.B2){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 211. Other Example
+## 211. Circuit Example
 
 **ID**: `5500dffde06b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{quadpoles/transformer/width=1,
+    quadpoles/transformer/height=2}
+  \draw (0,0) node[transformer] (T) {}
+    (T.base) node{K}
+    (T.inner dot A1) node[circ]{}
+    (T.inner dot B2) node[circ]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 212. Other Example
+## 212. Circuit Example
 
 **ID**: `c30e1139373e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    \draw (0,0) node[transformer core](A){};
+    \ctikzset{transformer core/.cd, relative thickness=2, color=red, dash={{4pt}{2pt}}}
+    \draw (2,0) node[transformer core](B){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 213. Other Example
+## 213. Circuit Example
 
 **ID**: `b8e56b362a73`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) node[transformer] (T) {}
+  (T.A1) node[anchor=east] {A1}
+  (T.A2) node[anchor=east] {A2}
+  (T.B1) node[anchor=west] {B1}
+  (T.B2) node[anchor=west] {B2}
+  (T.base) node{K} ;
+\ctikzset{quadpoles/transformer/inner=1, quadpoles/transformer/width=0.6}
+\draw (0,-3) node[transformer] (P) {}
+  (P.base) node{T}
+  (P.inner dot A2) node[ocirc]{}
+  (P.inner dot B2) node[ocirc]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 214. Other Example
+## 214. Circuit Example
 
 **ID**: `00dac64d08ed`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{inductor=cute, quadpoles style=inline}
+\draw
+  (0,0) to[R] ++(0,-2)
+  node[transformer, anchor=A1](T){}
+  (T.A2) node[ground](GND){}
+  (T.inner dot A1) node[font=\small\boldmath]{$\oplus$}
+  (T.inner dot B2) node[]{$+$}
+  (T.B1) node[above, ocirc]{}
+  (T.B2) -- (GND);
+\end{circuitikz}
+```
 
 
 ---
 
-## 215. Other Example
+## 215. Circuit Example
 
 **ID**: `e052f932f497`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+    \begin{scope}
+        \ctikzset{transformer L1/.style={inductors/coils=1, inductors/width=0.2}}
+        \draw (0,0) node[transformer core](T1){};
+    \end{scope}
+    \draw (3,0) node[transformer](T2){};
+    \ctikzset{cute inductors, quadpoles style=inline}
+    \ctikzset{transformer L1/.style={inductors/coils=2, inductors/width=0.2}}
+    \draw (6,0) node[transformer core](T3){};
+    \ctikzset{transformer L1/.style={american inductors, inductors/coils=1, inductors/width=0.2}}
+    \ctikzset{transformer L2/.style={inductors/coils=7, inductors/width=1.0}}
+    \draw (9,0) node[transformer ](T4){};
+    \foreach \t in {T1, T2, T3, T4} {
+        \foreach \l in {L1, L2} {
+            \foreach \a/\c in {a/blue, b/red}
+            \node [circle, fill=\c, inner sep=1pt] at (\t-\l.\a) {};
+        }
+    }
+\end{circuitikz}
+```
 
 
 ---
 
-## 216. Other Example
+## 216. Circuit Example
 
 **ID**: `ede93a9581b0`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{transformer L1/.style={inductors/width=1.8, inductors/coils=13}}
+    % too small!
+    \draw (0,0) node[transformer core](T1){};
+    % adjust it
+    \ctikzset{quadpoles/transformer core/height=2.4}
+    \draw (2.5,0) node[transformer core](T1){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 217. Other Example
+## 217. Circuit Example
 
 **ID**: `d5998e0ac817`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[
+    TA core/.style={transformer core,
+        % at tikz level, you have to use circuitikz/ explicitly
+        circuitikz/quadpoles style=inline,
+        circuitikz/transformer L1/.style={
+            american inductors, inductors/coils=1,
+            inductors/width=0.3},
+    } ]
+    \draw (0,0) node[TA core](T1){};
+    % changes are local
+    \draw (0,-3) node[transformer]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 218. Other Example
+## 218. Circuit Example
 
 **ID**: `437af64e0906`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[
+    led to D/.style={double bipole,
+        % at tikz level, you have to use circuitikz/ explicitly
+        circuitikz/double bipole L=fulllediodeshape,
+        circuitikz/double bipole R=emptydiodeshape,
+        circuitikz/every double bipole L/.style={diodes/scale=0.6},
+        circuitikz/every double bipole R/.style={diodes/scale=0.6},
+        circuitikz/double bipole R invert,
+        },
+    ]
+    \draw (0,0) node[led to D]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 219. Other Example
+## 219. Circuit Example
 
 **ID**: `022147f10c48`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[
+    nullor/.style={double bipole,
+        % at tikz level, you have to use circuitikz/ explicitly
+        circuitikz/double bipole L=nullatorshape,
+        circuitikz/double bipole R=noratorshape,
+        circuitikz/every double bipole L/.style={sources/scale=0.5},
+        },
+    ]
+    \draw (0,0) node[nullor](T1){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 220. Other Example
+## 220. Circuit Example
 
 **ID**: `7b78368f6844`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[op amp] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out) node[right] {$v_o$}
+  (opamp.up) --++(0,0.5) node[vcc]{5\,\textnormal{V}}
+  (opamp.down) --++(0,-0.5) node[vee]{-5\,\textnormal{V}}
+;\end{circuitikz}
+```
 
 
 ---
 
-## 221. Other Example
+## 221. Circuit Example
 
 **ID**: `c6c8da6c4be6`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[op amp] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out) node[right] {$v_o$}
+  (opamp.down) node[ground] {}
+  (opamp.up) ++ (0,.5) node[above] {\SI{12}{\volt}}
+     -- (opamp.up)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 222. Other Example
+## 222. Circuit Example
 
 **ID**: `923cae91adff`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[fd op amp] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out +) node[right] {out +}
+  (opamp.out -) node[right] {out -}
+  (opamp.down) node[ground] {}
+;\end{circuitikz}
+```
 
 
 ---
 
-## 223. Other Example
+## 223. Circuit Example
 
 **ID**: `ecc4191e2a7d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[inst amp] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out) node[right] {out}
+  (opamp.up) node[vcc]{}
+  (opamp.down) node[vee] {}
+  (opamp.refv down) node[ground]{}
+  (opamp.refv up) to[short, -o] ++(0,0.3)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 224. Other Example
+## 224. Circuit Example
 
 **ID**: `70894e1ca274`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[fd inst amp] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out +) node[right] {out +}
+  (opamp.out -) node[right] {out -}
+  (opamp.up) node[vcc]{}
+  (opamp.down) node[vee] {}
+  (opamp.refv down) node[ground]{}
+  (opamp.refv up) to[short, -o] ++(0,0.3)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 225. Other Example
+## 225. Circuit Example
 
 **ID**: `9ed948156cbf`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[inst amp ra] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out) node[right] {out}
+  (opamp.up) node[vcc]{}
+  (opamp.down) node[vee] {}
+  (opamp.refv down) node[ground]{}
+  (opamp.refv up) to[short, -o] ++(0,0.3)
+  (opamp.ra-) to[R] (opamp.ra+)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 226. Other Example
+## 226. Circuit Example
 
 **ID**: `fe0b7d403bb0`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    \draw (0,2.2) node[op amp](OA){IA1};
+    \node[oosourceshape, rotate=90, scale=0.5]
+        at (OA.leftedge) {};
+    \draw (0,0) node[plain amp](A){$A$};
+    \draw [color=red] (A.bin up) -- ++(0.2,0)
+        coordinate (tmp)
+        to[R, resistors/scale=0.5]
+        (tmp|-A.bin down) -- (A.bin down);
+\end{circuitikz}
+```
 
 
 ---
 
-## 227. Other Example
+## 227. Circuit Example
 
 **ID**: `7f6b9efd137b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[fd inst amp,
+     noinv input up,
+     noinv output down] (opamp) {}
+  (opamp.+) node[left] {$v_+$}
+  (opamp.-) node[left] {$v_-$}
+  (opamp.out +) node[right] {out +}
+  (opamp.out -) node[right] {out -}
+  (opamp.up) node[vcc]{}
+  (opamp.down) node[vee] {}
+  (opamp.refv down) node[ground]{}
+  (opamp.refv up) to[short, -o] ++(0,0.3)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 228. Other Example
+## 228. Circuit Example
 
 **ID**: `c77114dffb2d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    % change in this circuit only
+    \tikzset{amp symbol font={\color{blue}\small\boldmath}}
+    % local change
+    \draw (0,2.2) node[op amp, amp plus=$\oplus$]{};
+    \draw (0,0) node[op amp]{};
+    % from now on...
+    \ctikzset{amplifiers/plus={$\oplus$}}
+    \ctikzset{amplifiers/minus={$\ominus$}}
+    \draw (0,-2.2) node[fd op amp]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 229. Other Example
+## 229. Circuit Example
 
 **ID**: `1e663e1fb028`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    % unset ampflier symbols
+    \ctikzset{amplifiers/plus={}}
+    \ctikzset{amplifiers/minus={}}
+
+    % place a transconductor without symbols
+    \draw (0,2.2) node[gm amp](A){$G_\mathrm{m}$};
+
+    % fully differential op amp with 1, 2, 3 and 4 as symbols
+    \draw (0,0) node[fd op amp](A){};
+    \node [font=\small\bfseries, right] at(A.bin up) {1};
+    \node [font=\small\bfseries, right] at(A.bin down) {2};
+    \node [font=\small\bfseries, below] at(A.bout up) {3};
+    \node [font=\small\bfseries, above] at(A.bout down) {4};
+\end{circuitikz}
+```
 
 
 ---
 
-## 230. Other Example
+## 230. Circuit Example
 
 **ID**: `cc81241335ec`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+  \draw (0,0) node[op amp](A){};
+  \ctikzset{tripoles/op amp/port width=1,
+    tripoles/op amp/width=1.19, % 1.7*0.7
+  }
+  \draw (2.5,0) node[op amp](B){};
+  \draw
+    (A.out) node[red, circ]{} (A.+) node[blue, circ]{}
+    (B.out) node[red, circ]{} (B.+) node[blue, circ]{};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 231. Other Example
+## 231. Circuit Example
 
 **ID**: `9b81760950b5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    \draw (0,2.5) node[plain amp]{\texttt{741}};
+    \draw (3,2.5)
+        node[plain amp, component text=left]
+        {\texttt{741}};
+    \ctikzset{component text=left}
+    \draw (0,0) node[op amp]{\texttt{741}};
+    \ctikzset{left text distance=0.6em}
+    \draw (3,0) node[op amp]{\texttt{741}};
+\end{circuitikz}
+```
 
 
 ---
 
-## 232. Other Example
+## 232. Circuit Example
 
 **ID**: `d9b1c540b13d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{tripoles/en amp/input height=0.45}
+    \draw (0,0)node[en amp](E){}
+        (E.out) node[right] {$v_{\mathrm{out}}$}
+        (E.-) node[left] {$v_{\mathrm{in}-}$}
+        (E.+) node[left] {$v_{\mathrm{in}+}$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 233. Other Example
+## 233. Circuit Example
 
 **ID**: `738265ba59d8`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{tripoles/en amp/input height=0.45}
+    \draw (0,0)node[en amp, noinv input up](E){}
+        (E.out) node[right] {$v_{\mathrm{out}}$}
+        (E.-) node[left] {$v_{\mathrm{in}-}$}
+        (E.+) node[left] {$v_{\mathrm{in}+}$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 234. Other Example
+## 234. Circuit Example
 
 **ID**: `b7b306417694`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{tripoles/en amp/input height=0.45}
+    \draw (0,0)node[en amp, xscale=-1, noinv input up](E){}
+        (E.out) node[left] {$v_{\mathrm{out}}$}
+        (E.-) node[right] {$v_{\mathrm{in}-}$}
+        (E.+) node[right] {$v_{\mathrm{in}+}$};
+\end{circuitikz}
+```
 
 
 ---
 
-## 235. Other Example
+## 235. Circuit Example
 
 **ID**: `b832d3675b6a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0)node[en amp, en amp text A](E){}
+        (E.out) node[right] {$v_{\mathrm{out}}$}
+        (E.-) node[left] {$v_{\mathrm{in}-}$}
+        (E.+) node[left] {$v_{\mathrm{in}+}$} ;
+\end{circuitikz}
+```
 
 
 ---
 
-## 236. Other Example
+## 236. Circuit Example
 
 **ID**: `6f04f867a305`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0)node[en amp, en amp text={%
+            ${\triangleright}$ \small 200}](E){}
+        (E.out) node[right] {$v_{\mathrm{out}}$}
+        (E.-) node[left] {$v_{\mathrm{in}-}$}
+        (E.+) node[left] {$v_{\mathrm{in}+}$} ;
+\end{circuitikz}
+```
 
 
 ---
 
-## 237. Other Example
+## 237. Circuit Example
 
 **ID**: `250a08ad762f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0)node[en amp, xscale=-1, en amp text A](E){}
+        (E.out) node[left] {$v_{\mathrm{out}}$}
+        (E.-) node[right] {$v_{\mathrm{in}-}$}
+        (E.+) node[right] {$v_{\mathrm{in}+}$} ;
+\end{circuitikz}
+```
 
 
 ---
 
-## 238. Other Example
+## 238. Circuit Example
 
 **ID**: `630ed5b5afa1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0)node[en amp, xscale=-1, en amp text={%
+    ${\triangleright}$ \scalebox{-1}[1]{\small 200}}](E){}
+        (E.out) node[left] {$v_{\mathrm{out}}$}
+        (E.-) node[right] {$v_{\mathrm{in}-}$}
+        (E.+) node[right] {$v_{\mathrm{in}+}$} ;
+\end{circuitikz}
+```
 
 
 ---
 
-## 239. Other Example
+## 239. Circuit Example
 
 **ID**: `5521c1215ee4`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikzset{tdax/.style={muxdemux,
+        muxdemux def={NL=2, Lh=3, NR=1, Rh=0,
+        NB=4, NT=5}, font=\scriptsize\ttfamily}}
+\begin{circuitikz}
+    \draw (0,0) node[tdax](A){TDA1};
+    \draw (2.5,0) node[tdax, muxdemux def={Rh=0.5},
+    draw only top pins={1,4-5}]{TDA2};
+\end{circuitikz}
+```
 
 
 ---
 
-## 240. Other Example
+## 240. Circuit Example
 
 **ID**: `3ef30f35b7a2`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,0) node[spdt] (Sw) {}
+  (Sw.in) node[left] {in}
+  (Sw.out 1) node[right] {out 1}
+  (Sw.out 2) node[right] {out 2}
+;\end{circuitikz}
+```
 
 
 ---
 
-## 241. Other Example
+## 241. Circuit Example
 
 **ID**: `55af5e3e2fd7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+ (0,0) to[C] (1,0) to[toggle switch , n=Sw] (2.5,0)
+   -- (2.5,-1) to[battery1] (1.5,-1) to[R] (0,-1) -| (0,0)
+  (Sw.out 2) -| (2.5, 1) to[R] (0,1) -- (0,0)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 242. Other Example
+## 242. Circuit Example
 
 **ID**: `eccc41d05494`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) node[cute spdt up] (S1) {}
+  (S1.in) node[left] {in}
+  (S1.out 1) node[right] {out 1};
+  \draw (0,-2) node[cute spdt up,
+      /tikz/circuitikz/bipoles/cuteswitch/height=0.8] (S2) {}
+  (S2.in) node[left] {in}
+  (S2.out 2) node[right] {out 2};
+  \draw [red] (S1-in.s) -- (S2-in.n);
+  \draw [blue] (S1-out 2.s) -- (S2-out 1.n);
+\end{circuitikz}
+```
 
 
 ---
 
-## 243. Other Example
+## 243. Circuit Example
 
 **ID**: `2c969f057913`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,1.4) node[cute spdt up](S1){};
+    \draw (0,0)   node[cute spdt up](S2){};
+    \draw (0,-1)  node[cuteclosedswitchshape, yscale=-1](S3){};
+    \draw [densely dashed] (S1.mid)--(S2.mid)--(S3.mid);
+\end{circuitikz}
+```
 
 
 ---
 
-## 244. Other Example
+## 244. Circuit Example
 
 **ID**: `a30e14eaecd6`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{bipoles/cuteswitch/thickness=0.5}
+    \draw (0,1.4) node[cute spdt up](S1){};
+    \draw (0,0)   node[cute spdt up](S2){};
+    \draw (0,-1)  node[cuteclosedswitchshape, yscale=-1](S3){};
+    \draw [densely dashed] (S1.mid)--(S2.mid)--(S3.mid);
+\end{circuitikz}
+```
 
 
 ---
 
-## 245. Other Example
+## 245. Circuit Example
 
 **ID**: `698026c46f4c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \begin{scope}
+        \ctikzset{bipoles/cuteswitch/thickness=0.5,
+        bipoles/cuteswitch/shape=circ}
+        \draw (0,2) node[cute spdt up](S1){};
+        \ctikzset{bipoles/cuteswitch/thickness=0.25,
+        bipoles/cuteswitch/shape=emptyshape}
+        \draw (0,0) node[cute spdt up](S2){};
+        \draw (S2.cin) node[draw, inner sep=2pt]{};
+        \draw (S2.cout 1) node[draw, inner sep=2pt]{};
+        \draw (S2.cout 2) node[draw=red, inner sep=2pt]{};
+    \end{scope}
+    \draw (0,-2)  node[cuteclosedswitchshape, yscale=-1](S3){};
+    \draw [densely dashed] (S1.mid)--(S2.mid)--(S3.mid);
+\end{circuitikz}
+```
 
 
 ---
 
-## 246. Other Example
+## 246. Circuit Example
 
 **ID**: `f313e1e1a4c7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \tikzset{small up proxi/.style={proximeter, solid,
+            circuitikz/switches/scale=0.707,
+            circuitikz/proximeter/hlines thickness=1,
+            circuitikz/proximeter/hlines position=0.1}}
+    \draw (0,0) to[inline proximeter, l=P1] ++(2,0)
+        to[ccgsw, name=P2] ++(2,0);
+    \draw[dashed] (P2.mid) -- ++(0,0.5)
+        node[small up proxi, above](P2p){Fe}
+        (P2p.north) ++ (0,0.5); % extend bounding box
+\end{tikzpicture}
+```
 
 
 ---
 
-## 247. Other Example
+## 247. Circuit Example
 
 **ID**: `05221f9e2eb9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{multipoles/rotary/arrow=both}
+\draw (0,0) -- ++(1,0) node[rotary switch <-=8 in 120 wiper 40, anchor=in](A){};
+\draw (3,0) -- ++(1,0) node[rotary switch, anchor=in](B){}; % default values
+\draw[red] (A.out 4) -| (3,0);
+\draw[blue] (A-out 2.n) -- ++(0,0.5) -| (B-out 1.n);
+\draw (B.out 3) -- ++(1,0) node[rotary switch -=5 in 90 wiper 15, anchor=in](C){};
+\draw (C.out 3) -- ++(1,0) node[rotary switch ->, xscale=-1, anchor=out 3](D){};
+\draw[green, dashed] (B.mid) -- ++(-.5,-1) -| (C.mid);
+\end{circuitikz}
+```
 
 
 ---
 
-## 248. Other Example
+## 248. Circuit Example
 
 **ID**: `8275380eece9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) node[rotary switch=13 in 120 wiper 0](S){};
+\foreach \i in {1,...,13} % requires "calc"
+    \path ($(S.aout \i)!1ex!(S.sqout \i)$)
+        node[font=\tiny\color{red}]{\i};
+\end{circuitikz}
+```
 
 
 ---
 
-## 249. Other Example
+## 249. Circuit Example
 
 **ID**: `f59f79bb0ed2`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[color=blue, rotary switch=2 in 35 wiper 30,
+        anchor=in](R){};
+    \draw (0,-1) node[cute spdt up, anchor=in](C){};
+    \draw (0,-2) node[color=blue, rotary switch=3 in 35 wiper 30,
+        anchor=in](R){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 250. Other Example
+## 250. Circuit Example
 
 **ID**: `3204909f52d5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{multipoles/rotary/thickness=0.5}
+    \draw (0,1.6) node[rotary switch ->, color=blue](S1){};
+    \ctikzset{multipoles/rotary/shape=circ}
+    \draw (0,0) node[rotary switch ->](S2){};
+    \ctikzset{bipoles/thickness=0.5}
+    \draw (0,-1.6) node[rotary switch ->, color=red](S3){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 251. Other Example
+## 251. Circuit Example
 
 **ID**: `6476167562b7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,2) node[rotary switch ->, color=blue](S1){};
+    \ctikzset{tripoles/spdt/width=1.6, fill=cyan,
+        multipoles/rotary/shape=osquarepole}
+    \draw (0,0) node[rotary switch ->](S2){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 252. Other Example
+## 252. Circuit Example
 
 **ID**: `95cb20b5a2d5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,2) to[cspst] ++(2,0)
+        node[cute spdt up arrow, anchor=in]{};
+    \draw (0,0) to[cspst] ++(2,0)
+        node[cute spdt up arrow, anchor=in,
+        switch start arrow={Bar[red]},
+        switch end arrow={Triangle[blue]}]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 253. Other Example
+## 253. Circuit Example
 
 **ID**: `028bcd470b0a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,2) to[spst] ++(1,0) to[cogsw]
+    ++(1,0) to[oncs] ++(1,0);
+\ctikzset{switch arrows/color=red}
+\ctikzset{switch arrows/relative thickness=0.5}
+\ctikzset{switch arrows/dash={{1pt}{1pt}}}
+\draw (0,0) to[spst] ++(1,0) to[cogsw, switch arrows/dash=none]
+    ++(1,0) to[oncs, switch arrows/color=blue] ++(1,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 254. Other Example
+## 254. Circuit Example
 
 **ID**: `f60ba66eedbb`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{multipoles/rotary/arrow=both}
+\draw (0,0) -- ++(1,0) node[rotary switch <-=8 in 120 wiper 40, anchor=in](A){};
+\draw (3,0) -- ++(1,0) node[rotary switch, anchor=in](B){}; % default values
+\draw (B.out 3) -- ++(1,0) node[rotary switch -=5 in 90 wiper 15, anchor=in](C){};
+\draw (C.out 3) -- ++(1,0) node[rotary switch ->, xscale=-1, anchor=out 3](D){};
+\ctikzset{switch end arrow={Triangle[blue]}}
+\ctikzset{switch start arrow={Bar[red]}}
+\begin{scope}[yshift=-2cm]
+    \draw (0,0) -- ++(1,0) node[rotary switch <-=8 in 120 wiper 40, anchor=in](A){};
+    \draw (3,0) -- ++(1,0) node[rotary switch, anchor=in](B){}; % default values
+    \draw (B.out 3) -- ++(1,0) node[rotary switch -=5 in 90 wiper 15, anchor=in](C){};
+    \draw (C.out 3) -- ++(1,0) node[rotary switch ->, xscale=-1, anchor=out 3](D){};
+\end{scope}
+\end{circuitikz}
+```
 
 
 ---
 
-## 255. Other Example
+## 255. Circuit Example
 
 **ID**: `b14e5f834fe1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=0.8]
+    \draw (0,0) to[open jumper, l=J1] ++(2,0)
+        to[closed jumper, l_=J2, name=J2] ++(2,0)
+        to[bare jumper=J3] ++(2,0);
+    \draw [dashed] (J2.top arc) -- ++(0,0.5)
+        node[above] {\tiny open to enable};
+\end{circuitikz}
+```
 
 
 ---
 
-## 256. Other Example
+## 256. Circuit Example
 
 **ID**: `012f8056322f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=0.8]
+    \draw (0,0) to[open jumper, l=J1, name=J1] ++(2,0)
+        to[closed jumper, l_=J2, name=J2,
+            bipoles/jumper/shape=odiamondpole] ++(2,0);
+        \draw [red] (J2-in.-135) -- ++(-135:1)
+            node[font=\tiny, below]{marked \emph{hot}};
+\end{circuitikz}
+```
 
 
 ---
 
-## 257. Other Example
+## 257. Circuit Example
 
 **ID**: `9617f6c0541b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,1.5) to[three-pins jumper, l=J1, name=T] ++(3,0)
+    to[three-pins jumper, tjumper connections=21, l=J2] ++(3,0)
+    to[three-pins jumper, tjumper connections=20, l=J3] ++(3,0);
+    \draw (T.tap) -- ++(0,-0.5);
+    \ctikzset{bipoles/jumper/shape=osquarepole}
+    \draw (0,0) to[three-pins jumper, l=JA, name=T] ++(3,0)
+    to[three-pins jumper, tjumper connections=S1, l=JB] ++(3,0)
+    to[three-pins jumper, tjumper connections=S2, l=JB] ++(3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 258. Other Example
+## 258. Circuit Example
 
 **ID**: `6a30fcfc0fe3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=0.8]
+    \draw (0,0) to[open solder jumper, l=J1] ++(2,0)
+        to[closed solder jumper, l_=J2, name=J2] ++(2,0)
+        to[right double solder jumper, l=J3,
+            name=J3] ++(2,0);
+    \draw (J3.tap down) -- ++(0,-1) node[ocirc]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 259. Other Example
+## 259. Circuit Example
 
 **ID**: `e43ec2e27ada`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+    \ctikzset{logic ports=ieee}
+    \draw (0,0) to[inline not=I1, l=label, v=$\Delta V$] ++(2,0);
+    \draw (0,-2) to[inline not, a=ann, european ports] ++(2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 260. Other Example
+## 260. Circuit Example
 
 **ID**: `2ba931b79816`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[ ]
+    \ctikzset{logic ports=ieee,
+    logic ports/fill=yellow}
+    \draw (0,0) to[inline not] ++(2,0)
+    to[inline double tgate, name=P] ++(3,0)
+    (P.bnotgate) |- ++(-3,1);
+\end{circuitikz}
+```
 
 
 ---
 
-## 261. Other Example
+## 261. Circuit Example
 
 **ID**: `24865948ff4c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[
+    american]
+    % legacy shapes
+    \ctikzset{american or shape=roundy}
+    \ctikzset{logic ports/fill=yellow}
+    \node [or port](O1) at (0,0) {};
+    \node [nor port](O2) at (0,-1.5) {};
+    \node [xor port](O3) at (0,-3) {};
+    \node [xnor port](O4) at (0,-4.5) {};
+    \begin{scope}[xshift=3cm]
+    % new shapes
+        \ctikzset{american or shape=pointy}
+        \node [or port](O1) at (0,0) {};
+        \node [nor port](O2) at (0,-1.5) {};
+        \node [xor port](O3) at (0,-3) {};
+        \node [xnor port](O4) at (0,-4.5) {};
+    \end{scope}
+\end{circuitikz}
+```
 
 
 ---
 
-## 262. Other Example
+## 262. Circuit Example
 
 **ID**: `fb09b1f2f76a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikz \draw (0,0) node[nand port] {}; \par
+\ctikzset{tripoles/american nand port/input height=.2}
+\ctikzset{tripoles/american nand port/port width=.4}
+\ctikzset{tripoles/thickness=4}
+\tikz \draw (0,0) node[nand port] {};
+```
 
 
 ---
 
-## 263. Other Example
+## 263. Circuit Example
 
 **ID**: `4cd0f5434677`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,3) node[american and port] (A)  {P1};
+\begin{scope}
+    \ctikzset{tripoles/american or port/height=1.6}
+    \draw (A.out) -- ++(0.5,0)
+    node[american or port,
+    number inputs=5,
+    anchor=in 1] (B)  {P2};
+\end{scope}
+\draw (0,1.5) node[american or port] (C)  {P3};
+\draw (C.out) |- (B.in 2);
+\end{circuitikz}
+```
 
 
 ---
 
-## 264. Other Example
+## 264. Circuit Example
 
 **ID**: `00e535331faf`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \node [or port](O1) at (0,2) {};
+    \node [or port, no input leads](O1) at (2,2) {};
+    \ctikzset{logic ports draw input leads=false}
+    \node [and port](O1) at (0,0) {};
+    \node [nand port, input leads](O1) at (2,0) {};
+\end{circuitikz}
+```
 
 
 ---
 
-## 265. Other Example
+## 265. Circuit Example
 
 **ID**: `3bcc22d049d4`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{tripoles/american nand port/height=1.6}
+    \draw (0,0)
+    node[american nand port,
+    circuitikz/tripoles/american nand port/height=1.1,
+    number inputs=5, no input leads,
+    ] (B) {Pn};
+    \draw (B.in 1) -- (B.bin 1) (B.in 5) -- (B.bin 5);
+    \node[rotate=90] at (B.in 3) {\dots};
+\end{circuitikz}
+```
 
 
 ---
 
-## 266. Other Example
+## 266. Circuit Example
 
 **ID**: `42b7fa9438ba`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikz \draw (0,0) node[xnor port] {};
+\ctikzset{tripoles/american xnor port/inner=.7}
+\ctikzset{tripoles/american xnor port/angle=40}
+\tikz \draw (0,0) node[xnor port] {};
+```
 
 
 ---
 
-## 267. Other Example
+## 267. Circuit Example
 
 **ID**: `db26c4230bb3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,3) node[american and port] (A)  {P1};
+\node at (A.bin 1) [ocirc, left]{} ;
+\begin{scope}
+    \ctikzset{tripoles/american or port/height=1.6}
+    \draw (A.out) -- ++(0.5,0) node[american or port,
+    number inputs=5, anchor=in 1] (B)  {P2};
+    \node at (B.bin 3) [ocirc, left]{} ;
+\end{scope}
+\draw (0,1.5) node[american or port] (C)  {P3};
+\node at (C.bin 2) [ocirc, left]{} ;
+\draw (C.out) |- (B.in 2);
+\end{circuitikz}
+```
 
 
 ---
 
-## 268. Other Example
+## 268. Circuit Example
 
 **ID**: `87ce7dc68158`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{logic ports origin=center}
+\draw (0,0) node[and port] (myand)  {}
+  (myand.in 1) node[anchor=east] {1}
+  (myand.in 2) node[anchor=east] {2}
+  (myand.out) node[anchor=west] {3};
+\draw[<-] (myand.center) -- ++(1,-1)
+   node{center};
+\end{circuitikz}
+```
 
 
 ---
 
-## 269. Other Example
+## 269. Circuit Example
 
 **ID**: `5dfc4a3cedf8`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (0,2) node[and port] (myand1)  {}
+  (0,0) node[and port] (myand2)  {}
+  (2,1) node[xnor port] (myxnor)  {}
+  (myand1.out) -| (myxnor.in 1)
+  (myand2.out) -| (myxnor.in 2)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 270. Other Example
+## 270. Circuit Example
 
 **ID**: `7e2c43a6ed06`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \draw
+  (1,0) node[not port] (not1)  {}
+  (3,0) node[not port] (not2)  {}
+  (0,0) -- (not1.in)
+  (not2.in) -- (not1.out)
+  ++(0,-1) node[ground] {} to[C] (not1.out)
+  (not2.out) -| (4,1) -| (0,0)
+;\end{circuitikz}
+```
 
 
 ---
 
-## 271. Other Example
+## 271. Circuit Example
 
 **ID**: `a1c867ceef85`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+    \draw (0,0) node[ground]{} to[C] ++(0,1.5)
+    coordinate(c)
+    to[inline not] ++(2.5,0) -- ++(0,1)
+    -| ++(-5,-1)
+    to[inline not] (c);
+\end{circuitikz}
+```
 
 
 ---
 
-## 272. Other Example
+## 272. Circuit Example
 
 **ID**: `e39163671aa5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 273. Other Example
+## 273. Circuit Example
 
 **ID**: `cac89d47659e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1, number inputs=4,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 274. Other Example
+## 274. Circuit Example
 
 **ID**: `249072518333`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1,
+        number inputs=4,
+        circuitikz/ieeestd ports/height=4,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 275. Other Example
+## 275. Circuit Example
 
 **ID**: `a614157f5013`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1,
+        number inputs=4,
+        inner inputs=2,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 276. Other Example
+## 276. Circuit Example
 
 **ID**: `2a4ad4a711e5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1,
+        number inputs=5,
+        inner inputs=2,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 277. Other Example
+## 277. Circuit Example
 
 **ID**: `33869d0dfd08`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip](C){IC} (C.pin 8)
+        node[or port, anchor=in 1,
+        number inputs=5,
+        inner inputs=3,
+        circuitikz/ieeestd ports/height=3,
+        color=red](A){IC2A};
+\end{circuitikz}
+```
 
 
 ---
 
-## 278. Other Example
+## 278. Circuit Example
 
 **ID**: `08e075c5a755`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=0.75, transform shape]
+    \draw node[nor port, number inputs=32, inner inputs=2,
+               rotate=90](A){\rotatebox{-90}{IC1A}};
+\end{circuitikz}
+```
 
 
 ---
 
-## 279. Other Example
+## 279. Circuit Example
 
 **ID**: `5fc848ebb669`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[and port](A){A} (A.out)
+    node[buffer port, anchor=in,
+        component text=left](B){B} (B.bin)
+    node[schmitt symbol, above left]{}
+    (A.bin 1) node[schmitt symbol, right]{};
+    \node [notcirc, left] at (A.bin 1) {};
+    \node [notcirc, above](C) at (B.up) {};
+    \draw (C.north) |- ++(-1,1) (B.down) --++(0,-1);
+\end{circuitikz}
+```
 
 
 ---
 
-## 280. Other Example
+## 280. Circuit Example
 
 **ID**: `6cd279ee692f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw
+    (0,0) node[and port, anchor=in 1]{A1}
+    (0,-1.2) node[nand port, anchor=in 1]{A2}
+    (0,-2.4) node[or port, anchor=in 1]{A3}
+    (0,-3.6) node[xnor port, anchor=in 1]{A4};
+    \draw
+    (3,0) node[and port, anchor=in 1](A1){A1}
+    (3,-1.2) node[nand port, anchor=in 1]{A2}
+    (3,-2.4) node[or port, anchor=in 1]{A3}
+    (3,-3.6) node[xnor port, anchor=in 1](A4){A4};
+    \draw[red, dashed]([yshift=0.8cm]A1.body left)
+        -- ([yshift=-0.8cm]A4.body left);
+\end{circuitikz}
+```
 
 
 ---
 
-## 281. Other Example
+## 281. Circuit Example
 
 **ID**: `d2ba5ef17f13`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{component text=left}
+    \draw (0,0) node[nand port, anchor=in 1]{A1}
+    (0,-1.8) node[buffer port, anchor=in 1]{A2}
+    (0,-3.2) node[not port, anchor=in 1]{A3};
+    \draw (3,0) node[nand port, anchor=in 1](A1){A1}
+    (3,-1.8) node[buffer port, anchor=in 1]{A2}
+    (3,-3.2) node[not port, anchor=in 1](A3){A3};
+    \draw[red, dashed]([yshift=0.8cm]A1.body left)
+        -- ([yshift=-0.8cm]A3.body left);
+\end{circuitikz}
+```
 
 
 ---
 
-## 282. Other Example
+## 282. Circuit Example
 
 **ID**: `700ac17f8059`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,2) node[xnor port](P){}
+        (P.out) to[short, -o] ++(1,0);
+    \ctikzset{ieeestd ports/.cd, not radius=0.1,
+        xor bar distance=0.3, xor leads in=0}
+    \draw (0,0) node[xnor port](P){}
+        (P.out) to[short, -o] ++(1,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 283. Other Example
+## 283. Circuit Example
 
 **ID**: `916fa89f2ef9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\draw (0,0) node[nand port,
+      number inputs=5, no input leads,](B){Pn};
+\draw (B.in 1) -- (B.bin 1) (B.in 5) -- (B.bin 5);
+\node[rotate=90] at (B.in 3) {\dots};
+\end{circuitikz}
+```
 
 
 ---
 
-## 284. Other Example
+## 284. Circuit Example
 
 **ID**: `8029ec24c5cb`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{ieeestd ports/pin length=0.2}
+    \draw (0,0) node[xnor port,
+      number inputs=4, inner inputs=2](B){};
+\end{circuitikz}
+```
 
 
 ---
 
-## 285. Other Example
+## 285. Circuit Example
 
 **ID**: `913e75b31b46`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{logic ports=ieee}
+    \draw (0,0) to[inline not, *-*] ++(2,0)
+    node[tgate, anchor=in]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 286. Other Example
+## 286. Circuit Example
 
 **ID**: `4a1744f2d1d9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \ctikzset{
+        logic ports=european,
+        logic ports origin=center,
+        logic ports/scale=1.5,
+        tripoles/european not symbol=ieee circle,
+    }
+    % Draw the Nand with big AND symbol
+    \ctikzset{european ports font=\Huge\color{red}}
+    \draw(0,0) node [nand port, rotate=90,
+        number inputs=4]{};
+    \draw(3,0) node [nand port, xscale=-1]{};
+    % the un-rotation is not automatic for node text!
+    \draw(0,-3) node [blank port, rotate=90,
+        ]{\rotatebox{-90}{\Huge ?}};
+    \draw(3,-3) node [blank not port, xscale=-1]{?};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 287. Other Example
+## 287. Circuit Example
 
 **ID**: `a74a5064f1c1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european]
+    \draw (0,3) node[nand port](A){}
+        (A.out) to[short, *-o] ++(0.5,0);
+    \ctikzset{tripoles/european not symbol=circle}
+    \draw (0,1.5) node[nand port](A){}
+        (A.out) to[short, *-o] ++(0.5,0);
+    \ctikzset{tripoles/european not symbol=ieee circle}
+    \draw (0,0) node[european nand port](A){}
+        (A.out) to[short, *-o] ++(0.5,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 288. Other Example
+## 288. Circuit Example
 
 **ID**: `3f98ee5ca672`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european]
+    \draw (0,0) node[xnor port]{};
+    \ctikzset{european xnor style=direct}
+    \draw (3,0) node[xnor port]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 289. Other Example
+## 289. Circuit Example
 
 **ID**: `fc9263f1777f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=3, transform shape]
+    \clip (0.2,0.5) rectangle (1.2,-1.3);
+    \node [flipflop JK,
+           flipflop def={n5=1,n4=1,t5={/c},c5=1},
+           external pins width=0,
+           ](A){};
+    \draw (A-N5.east) -- ++(1,0); % correct
+    \draw (A.pin 4) -- ++(1,0);   % wrong
+\end{circuitikz}
+```
 
 
 ---
 
-## 290. Other Example
+## 290. Circuit Example
 
 **ID**: `7aba1aefddc5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \draw (0,0) node[flipflop JK, add async SR]{};
+    \draw (3,0) node[flipflop JK, add async SR, rotate=90]{};
+    \draw (7,0) node[flipflop JK, add async SR, rotate=90, rotated numbers]{};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 291. Other Example
+## 291. Circuit Example
 
 **ID**: `b65d6afdfff5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+    \draw (0,0) node[flipflop JK]{JK};
+    \ctikzset{multipoles/flipflop/clock wedge size=0.1}
+    \draw (2.3,0) node[flipflop JK]{JK};
+    \ctikzset{multipoles/flipflop/clock wedge size=0.4}
+    \draw (4.6,0) node[flipflop JK]{JK};
+\end{circuitikz}
+```
 
 
 ---
 
-## 292. Other Example
+## 292. Circuit Example
 
 **ID**: `8981ddc0421c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+\ctikzset{logic ports=european,
+    tripoles/european not symbol=ieee circle}
+\draw (0,0) node[nand port](A){}
+    (A.out) to[short] ++(0.5,0)
+    node[flipflop JK, dot on notQ, anchor=pin 2]{JK};
+\ctikzset{logic ports=european,
+tripoles/european not symbol=circle}
+\draw (0,-3) node[nand port](A){}
+    (A.out) to[short] ++(0.5,0)
+    node[flipflop JK, dot on notQ, anchor=pin 2]{JK};
+\end{circuitikz}
+```
 
 
 ---
 
-## 293. Other Example
+## 293. Circuit Example
 
 **ID**: `6fcde19e5f63`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \tikzset{mux 4by2/.style={muxdemux,
+        muxdemux def={Lh=4, NL=4, Rh=3,
+        NB=2, w=2, square pins=1}}}
+    \node [dipchip, num pins=8](A) at (0,0) {IC1};
+    \node [one bit adder, scale=-1, anchor=lpin 2]
+        at (A.pin 1){};
+    \node [mux 4by2, anchor=lpin 1](B)
+        at (A.pin 8){MUX};
+    \node [qfpchip, num pins=8, anchor=pin 8] at
+        (B.bpin 1) {IC2};
+\end{circuitikz}
+```
 
 
 ---
 
-## 294. Other Example
+## 294. Circuit Example
 
 **ID**: `6b2c90765e11`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \node [muxdemux, muxdemux def={NL=4, NR=3, NT=5, NB=3, w=2,
+            inset w=0.5, Lh=4, inset Lh=2.0, inset Rh=1.0,
+            square pins=1},
+        draw only right pins={1,3},
+        draw only top pins={1-3},
+        draw only bottom pins={3}](C) at (0,0) {X};
+    \end{circuitikz}
+```
 
 
 ---
 
-## 295. Other Example
+## 295. Circuit Example
 
 **ID**: `ae2d811ad0f0`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=4,
+        NR=1, NL=2, NB=2, NT=2,},
+    muxdemux label={L1=left1, L2=left2,
+        R1=r1, B2=b2, T1=t1, T2=t2},
+    }
+}
+\draw (0, 0) node[myICwl]{chip} ++(3,0)
+    node[myICwl, rotate=-90]{chip};
+\draw (0, -3) node[myICwl]{chip} ++(3,0)
+    node[myICwl, rotate=-90,
+        rotated numbers]{chip};
+\end{circuitikz}
+```
 
 
 ---
 
-## 296. Other Example
+## 296. Circuit Example
 
 **ID**: `92072e203798`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\tikzset{mux 4by2 wl/.style={muxdemux,
+    muxdemux def={Lh=6, NL=6, Rh=3, NB=2, w=3, NT=1},
+    draw only left pins={2-5},
+    muxdemux label={B1=$A_1$, B2=$A_0$, R1=OUT,
+        L2=$D_{00}$, L3=$D_{01}$, L4=$D_{10}$, L5=$D_{11}$,
+        T1=\rotatebox{90}{\texttt{Enable}}},
+    circuitikz/muxdemux/inner label ysep=4pt}}
+\node [mux 4by2 wl]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 297. Other Example
+## 297. Circuit Example
 
 **ID**: `2dcf0e456f25`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{muxdemux/outer label
+    font={\tiny\ttfamily\color{blue}}}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=4,
+        NR=1, NL=2, NB=2, NT=2,},
+    muxdemux label={L1=left1, L2=left2,
+        R1=r1, B2=b2, T1=t1, T2=t2,
+        LU1=lu1, LU2=lu2, LD1=ld1, LD2=ld2,
+        BR1=br1, BL1=bl1, BR2=br2, BL2=bl2,
+        RU1=ru1, RD1=rd1,TR2=tr2, TL2=tl2,
+        TR1=tr1, TL1=tl1},}
+}
+\draw (0, 0) node[myICwl]{chip} ++(3,0)
+    node[myICwl, rotate=-90]{chip};
+\draw (0, -3) node[myICwl]{chip} ++(3,0)
+    node[myICwl, rotate=-90,
+        rotated numbers]{chip};
+\end{circuitikz}
+```
 
 
 ---
 
-## 298. Other Example
+## 298. Circuit Example
 
 **ID**: `c7b8f6bdfcc3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{muxdemux/outer label
+    font={\tiny\ttfamily\color{blue}}}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=4,
+        NR=1, NL=2, NB=0, NT=0,},
+    muxdemux label={L1=inA, L2=inB,
+        R1=OUT, RU1=3, LU1=1, LU2=2,
+        N=mychip},}
+}
+\draw (0, 0) node[myICwl]{} ++(3,0)
+    node[myICwl, rotate=180]{};
+\draw (0, -3) node[myICwl,
+    muxdemux label={N=another}]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 299. Other Example
+## 299. Circuit Example
 
 **ID**: `eb3b115d2d07`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz} \ctikzset{muxdemux/outer label
+    font={\tiny\ttfamily\color{blue}}}
+\ctikzset{logic ports=ieee, multipoles/external pins width=0.3}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=4, NR=2, NL=2, NB=1, NT=0,},
+    muxdemux label={L1=inA, L2=inB, R1=OUT, RU1=3, LU1=1, LU2=2,
+        N=example, nL1=1, woR1=1, woR2=-1, wiB1=1, cL2=1},}
+}
+\draw (0, 0) node[myICwl]{};
+\draw (0, -3) node[myICwl,
+    muxdemux label={N=another, LU1={1\strut},
+        RU1={3\strut}, cL2=0}](A){};
+\draw[red, <-] (A-nL1.-135) -- ++(-135:0.3);
+\end{circuitikz}
+```
 
 
 ---
 
-## 300. Other Example
+## 300. Circuit Example
 
 **ID**: `a49b553936c0`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    \path (0,4) node[muxdemux, muxdemux def={NL=2,Lh=2,Rh=2,NB=1},
+        external pins width = 0.5](mdemux){};
+    \draw (mdemux.blpin 1) node[wedgeinv,anchor=apex]{};
+    \draw (mdemux.brpin 1) node[wedgeinv]{};
+    \draw (mdemux.bbpin 1) node[wedgeinv, anchor=apex,
+        rotate=90]{};
+    \ctikzset{wedge inversion mark/.cd, width=0.1}
+    \ctikzset{muxdemuxes/.cd, fill=yellow, thickness=3, scale=0.8}
+    \path (0,2) node[muxdemux, muxdemux def={NL=2,Lh=2,Rh=2,NB=0},
+        external pins width = 0.5](mdemux){};
+    \draw (mdemux.blpin 1) node[wedgeinv,anchor=apex]{};
+    \draw (mdemux.brpin 1) node[wedgeinv]{};
+    \path (0,0) node[muxdemux, muxdemux def={NL=2,Lh=2,Rh=2,NB=0},
+        external pins width = 0.5](mdemux){};
+    \draw (mdemux.blpin 1) node[circleinv,anchor=apex]{};
+    \draw (mdemux.brpin 1) node[circleinv]{};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 301. Other Example
+## 301. Circuit Example
 
 **ID**: `8184cdc7ebb5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{muxdemux/outer label font={\tiny\ttfamily\color{blue}}}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=3, NR=1, NL=2, NB=0, NT=0,
+    bgpicture/.code={%
+        \pgfsetcolor{gray!50}\pgfsetlinewidth{1mm}
+        \pgfpathmoveto{\pgfpoint{-1cm}{1cm*4/3}} \pgfpathlineto{\pgfpointorigin}
+        \pgfpathmoveto{\pgfpoint{-1cm}{-1cm*4/3}}\pgfpathlineto{\pgfpointorigin}
+        \pgfpathmoveto{\pgfpoint{1cm}{0cm}}      \pgfpathlineto{\pgfpointorigin}
+        \pgfpathcircle{\pgfpointorigin}{0.5cm}
+        \pgfusepath{draw}
+        },
+    },
+    muxdemux label={RU1=3, LU1=1, LU2=2, N=flux, Ni=converter},}
+}
+\draw (0, 0) node[myICwl]{}{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 302. Other Example
+## 302. Circuit Example
 
 **ID**: `34efa901a072`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{muxdemux/outer label font={\tiny\ttfamily\color{blue}}}
+\tikzset{myICwl/.style={muxdemux,
+    muxdemux def={Lh=4, Rh=4, w=3, NR=1, NL=2, NB=0, NT=0,
+    bgpicture/.code={%
+            \pgfdeclareimage[width=1.5cm]{myimg}{example-image-a}
+            \pgftext{\pgfuseimage{myimg}}
+        },
+    },
+    muxdemux label={RU1=3, LU1=1, LU2=2, N=embedding, Ni=images},}
+}
+\draw (0, 0) node[myICwl]{}{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 303. Other Example
+## 303. Circuit Example
 
 **ID**: `fbd1d4c91abc`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\def\tgate#1{
+    node[simple triangle, anchor=left, no input leads](#1-LR){}
+    (#1-LR.right) node[simple triangle, xscale=-1,
+    anchor=left](#1-RL){}
+    ([yshift=.5ex]#1-RL.btpin 1) node[ocirc]{}}
+\begin{circuitikz}[
+    simple triangle/.style={muxdemux, muxdemux def={
+            NL=1, NR=1, NB=1, NT=1, w=2, Lh=2, Rh=0,
+    }}]
+    \draw (0,0) \tgate{A} (0,-2) \tgate{B};
+    \draw (A-RL.bpin 1) -- (B-RL.tpin 1);
+\end{circuitikz}
+```
 
 
 ---
 
-## 304. Other Example
+## 304. Circuit Example
 
 **ID**: `1219f834dd88`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=0.7, transform shape]
+    \tikzset{ic555/.style={muxdemux,
+            muxdemux def={Lh=10, NL=5, Rh=10, NR=5, NB=2, w=6, NT=2,
+            square pins=1},
+        no input leads, external pins width=0.4,
+        circuitikz/muxdemuxes/fill=blue!10}
+    }
+    \node [ic555, font=\small\ttfamily,align=center](A) at (0,0) {555\\Astable};
+    % left pins
+    \foreach \rawpin/\npin/\label in {2/7/Discharge, 4/2/Trigger, 5/6/Threshold}{
+        \draw (A.lpin \rawpin) -- (A.blpin \rawpin)
+            node[midway, blue, font=\small, above]{\npin}
+            node[right, font=\small]{\label};
+    }
+    % top pins
+    \foreach \rawpin/\npin in {1/8, 2/4} {
+        \draw (A.tpin \rawpin) -- (A.btpin \rawpin)
+            node[midway, blue, font=\small, left]{\npin};
+    }
+    % bottom pins
+    \foreach \rawpin/\npin in {1/5, 2/1} {
+        \draw (A.bpin \rawpin) -- (A.bbpin \rawpin)
+            node[midway, blue, font=\small, left]{\npin};
+    }
+    % finally, right
+    \draw (A.rpin 3) -- (A.brpin 3)
+        node[midway, blue, font=\small, above]{3};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 305. Other Example
+## 305. Circuit Example
 
 **ID**: `7c5754c805bc`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=0.7, transform shape]
+\ctikzset{muxdemux/inner label font=\small}
+\ctikzset{muxdemux/outer label font={\small\color{blue}}}
+    \tikzset{ic555/.style={muxdemux,
+        muxdemux def={Lh=10, NL=5, Rh=10, NR=1, NB=2, w=6, NT=2},
+        muxdemux label={L2=Discharge, L4=Trigger, L5=Threshold,
+        T1=VCC, B2=GND,
+        LU2=7, LU4=2, LU5=6, TL1=8, TL2=4, RU1=3, BL1=5, BL2=1},
+        external pins width=0.4,
+        draw only left pins={2,4,5},
+        circuitikz/muxdemuxes/fill=blue!10}
+    }
+    \node [ic555, font=\small\ttfamily,align=center](A)
+        at (0,0) {555\\Astable};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 306. Other Example
+## 306. Circuit Example
 
 **ID**: `9146bc145d8c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        \ctikzset{multipoles/thickness=4}
+        \ctikzset{multipoles/external pins thickness=2}
+        \draw (0,0) node[dipchip,
+          num pins=12,
+          hide numbers,
+          external pins width=0.3,
+          external pad fraction=4 ](C){IC1};
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-3) node[ground]{};
+          \node [right, font=\tiny]
+          at (C.bpin 1) {RST};
+    \end{circuitikz}
+```
 
 
 ---
 
-## 307. Other Example
+## 307. Circuit Example
 
 **ID**: `462ae635fd1e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        \draw (0,0) node[dipchip,
+          num pins=8, no topmark,
+          external pins width=0.0](C){IC1};
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-1.5) node[ground]{};
+    \end{circuitikz}
+```
 
 
 ---
 
-## 308. Other Example
+## 308. Circuit Example
 
 **ID**: `2d45a516a0e4`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        \ctikzset{multipoles/font={\color{red}\tiny}}
+        \draw (0,0) node[qfpchip,
+          num pins=16,
+          external pad fraction=6](C){IC1};
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-2) node[ground]{};
+    \end{circuitikz}
+```
 
 
 ---
 
-## 309. Other Example
+## 309. Circuit Example
 
 **ID**: `1d856013fab4`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        \draw (0,3) node[dipchip,
+        num pins=8,
+        draw only pins={1, 3, 5-8}](C){IC1};
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+        ++(0,-1.5) node[ground]{};
+        \foreach \x in {1,...,8} {
+            \draw[red] (C.pin \x) circle[radius=2pt];
+            \draw[blue] (C.bpin \x) circle[radius=1pt];
+        }
+        \draw (0, 0) node[qfpchip, draw only pins={1-2, 6, 8, 4},
+             external pad fraction=4, num pins=12](Q){};
+        \foreach \x in {1,...,12} {
+            \draw[red] (Q.pin \x) circle[radius=2pt];
+            \draw[blue] (Q.bpin \x) circle[radius=1pt];
+        }
+    \end{circuitikz}
+```
 
 
 ---
 
-## 310. Other Example
+## 310. Circuit Example
 
 **ID**: `deb39b3fea7a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[dipchip,
+        rotate=90]{%
+        \rotatebox{-90}{IC2}};
+    \draw (3,0) node[qfpchip,
+        rotated numbers,
+        rotate=45]{IC3};
+\end{circuitikz}
+```
 
 
 ---
 
-## 311. Other Example
+## 311. Circuit Example
 
 **ID**: `ed48ef225bde`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{multipoles/thickness=3}
+    \ctikzset{multipoles/dipchip/width=2}
+    \draw (0,0) node[dipchip,
+        num pins=10, hide numbers, no topmark,
+        external pins width=0](C){Block};
+    \node [right, font=\tiny] at (C.bpin 1) {RST};
+    \node [right, font=\tiny] at (C.bpin 2) {IN1};
+    \node [right, font=\tiny] at (C.bpin 4) {/IN2};
+    \node [left, font=\tiny]  at (C.bpin 8) {OUT};
+    \draw (C.bpin 2) -- ++(-0.5,0) coordinate(extpin);
+    \node [ocirc, anchor=0](notin2) at (C.bpin 4) {};
+    \draw (notin2.180) -- (C.bpin 4 -| extpin);
+    \draw (C.bpin 8) to[short,-o] ++(0.5,0);
+    \draw (C.bpin 5) ++(0,0.1) -- ++(0.1,-0.1)
+        node[right, font=\tiny]{CLK} -- ++(-0.1,-0.1);
+    \draw (C.n) -- ++(0,1) node[vcc]{};
+    \draw (C.s) -- ++(0,-1) node[ground]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 312. Other Example
+## 312. Circuit Example
 
 **ID**: `8a4244ad497f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) node[seven segment val=A dot off box on]{};
+    \draw (1,0) node[seven segment val=- dot none box on]{};
+    \draw (0,-2) node[seven segment bits=1001001 dot empty box on]{};
+    \draw (1,-2) node[seven segment bits=0011101 dot none box off]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 313. Other Example
+## 313. Circuit Example
 
 **ID**: `c51f1bb501f9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[scale=0.5]
+\ctikzset{seven seg/width=0.2, seven seg/thickness=2pt}
+\foreach \i in {0,...,15} \path (\i,0)
+    node[seven segment val=\i dot on box off]{};
+\ctikzset{seven seg/color on=black}
+\foreach \i in {0,...,15} \path (\i,-1.5)
+    node[seven segment val=\i dot off box off, fill=gray!30!white]{};
+\ctikzset{seven seg/color on=green, seven seg/color off=yellow!30}
+\foreach \i in {0,...,15} \path[color=red] (\i,-3)
+    node[seven segment val=\i dot none box on, xslant=0.2]{};
+\end{circuitikz}
+```
 
 
 ---
 
-## 314. Other Example
+## 314. Circuit Example
 
 **ID**: `70c2daf9093b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, l=$R_1$, f=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 315. Other Example
+## 315. Circuit Example
 
 **ID**: `825cc22a034a`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) to[R=$R_1$, a=\SI{1}{\kohm}] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 316. Other Example
+## 316. Circuit Example
 
 **ID**: `4f2c9812e73d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 317. Other Example
+## 317. Circuit Example
 
 **ID**: `06fbcece2c17`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, v=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 318. Other Example
+## 318. Circuit Example
 
 **ID**: `fa77456922f7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R=$R_1$, i=$i_1$, v=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 319. Other Example
+## 319. Circuit Example
 
 **ID**: `3db1449577a7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R=$R_1$, i=$i_1$, v=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 320. Other Example
+## 320. Circuit Example
 
 **ID**: `9ad2126aeb27`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}\draw
+  (0,0) to[resistor=1<\kilo\ohm>] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 321. Other Example
+## 321. Circuit Example
 
 **ID**: `b6494a7a2308`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, l=$R_1$,a=1<\kilo\ohm>] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 322. Other Example
+## 322. Circuit Example
 
 **ID**: `d8609f087c5c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, l_=$R_1$,a^=1<\kilo\ohm>] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 323. Other Example
+## 323. Circuit Example
 
 **ID**: `0422a4a1e2f3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R=$R_1$,a=1<\kilo\ohm>] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 324. Other Example
+## 324. Circuit Example
 
 **ID**: `c692ffa317f9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (0,0) to[sR, l=$R$, label distance=-4pt] (2,0)
+    to [sR, l=$R$] (4,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 325. Other Example
+## 325. Circuit Example
 
 **ID**: `2f5840ad6b9b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+    \ctikzset{bipoles/inductors/core distance=4pt}
+    \draw (0,1) to[L=$L$, name=myL] ++(2,0);
+    \draw[thick, double] (myL.core west) -- (myL.core east);
+    \draw (0,0) to[L=$L$, name=myL, label distance=2pt] ++(2,0);
+    \draw[thick, double] (myL.core west) -- (myL.core east);
+\end{circuitikz}
+```
 
 
 ---
 
-## 326. Other Example
+## 326. Circuit Example
 
 **ID**: `6301eb5ac5d9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        % the following will fail:
+        % \draw (0,0) to[R, l=$R=3$]
+        \draw (0,0) to[R, l={$R=3$}] (3,0);
+        \draw (0,0) to[R={$R=3$}] (0,3);
+        \draw (3,3) to[R={$R,3$}] (3,0);
+        % this works, but it has wrong spacing
+        \draw (0,3) to[R, l=$R{=}3$] (3,3);
+    \end{circuitikz}
+```
 
 
 ---
 
-## 327. Other Example
+## 327. Circuit Example
 
 **ID**: `0a2eb90dd27c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+        \def\eq{=}
+        % the following will fail up to 1.2.7:
+        % \draw (0,0) to[R, l={$R=3$}] (3,0);
+        \draw (0,0) to[R, l=\mbox{$R=3$}] (3,0);
+        \draw (0,0) to[R, l=$R\eq3$] (0,3);
+        \draw (3,3) to[R, l=\mbox{$R,3$}] (3,0);
+        % this works, but it has wrong spacing
+        \draw (0,3) to[R, l=$R{=}3$] (3,3);
+    \end{circuitikz}
+```
 
 
 ---
 
-## 328. Other Example
+## 328. Circuit Example
 
 **ID**: `5150748c8ebf`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{label/align = straight}
+\def\DIR{0,45,90,135,180,-90,-45,-135}
+\foreach \i in \DIR {
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+}
+\end{circuitikz}
+```
 
 
 ---
 
-## 329. Other Example
+## 329. Circuit Example
 
 **ID**: `315ef7cb4d8e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{label/align = rotate}
+\def\DIR{0,45,90,135,180,-90,-45,-135}
+\foreach \i in \DIR {
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+}
+\end{circuitikz}
+```
 
 
 ---
 
-## 330. Other Example
+## 330. Circuit Example
 
 **ID**: `7a3cebdaa347`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+\ctikzset{label/align = smart}
+\def\DIR{0,45,90,135,180,-90,-45,-135}
+\foreach \i in \DIR {
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+}
+\end{circuitikz}
+```
 
 
 ---
 
-## 331. Other Example
+## 331. Circuit Example
 
 **ID**: `610e274de379`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+    %
+    % default for l2 is: l2 halign=l, l2 valign=c. DO NOT USE the <...> notation
+    %
+    \draw (0,0) to[R, l2_=$R_{CC}$ and \SI{4.7}{k\ohm},            , l2 valign=t] ++(2,0);
+    \draw (0,0) to[R, l2_=$R_{CC}$ and \SI{4.7}{k\ohm},            ,            ] ++(0,2);
+    \draw (0,0) to[R, l2_=$R_{CC}$ and \SI{4.7}{k\ohm}, l2 halign=c, l2 valign=b] ++(-2,0);
+    \draw (0,0) to[R, l2_=$R_{CC}$ and \SI{4.7}{k\ohm}, l2 halign=r, l2 valign=c] ++(0,-2);
+    \draw (5,0) to[R, l2^=$R_{CC}$ and \SI{4.7}{k\ohm}, l2 halign=c, l2 valign=b] ++(2,0);
+    \draw (5,0) to[R, l2^=$R_{CC}$ and \SI{4.7}{k\ohm}, l2 halign=c,            ] ++(0,2);
+    \draw (5,0) to[R, l2^=$R_{CC}$ and \SI{4.7}{k\ohm},            , l2 valign=t] ++(-2,0);
+    \draw (5,0) to[R, l2^=$R_{CC}$ and \SI{4.7}{k\ohm}, l2 halign=c, l2 valign=t] ++(0,-2);
+    \draw (10,2) to[R, l2={A=B} and X, a2={C=D} and Y] ++(0,-4);
+\end{circuitikz}
+```
 
 
 ---
 
-## 332. Other Example
+## 332. Circuit Example
 
 **ID**: `c8f7909c0959`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \draw (-1,1) to[R, v=$v$, i=$i$, f>^=$f$] (1,1);
+    \draw (-2,0) to[R, v=$v$, i=$i$, f>^=$f$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 333. Other Example
+## 333. Circuit Example
 
 **ID**: `02258f2362ef`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikz \draw (0,0) to[R, v=1<\volt>] (2,0); \par
+\ctikzset{voltage/distance from node=.1}
+\ctikzset{voltage/bump b=2.5}
+\tikz \draw (0,0) to[R, v=1<\volt>] (2,0);
+```
 
 
 ---
 
-## 334. Other Example
+## 334. Circuit Example
 
 **ID**: `bda35963ad77`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{voltage/distance from node=0.25}
+    \draw (0, 2) to[D, v=$v_1$] ++(4,0);
+    \draw (0, 1) to[D, v=$v_1$] ++(3,0);
+    \draw (0, 0) to[D, v=$v_1$] ++(2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 335. Other Example
+## 335. Circuit Example
 
 **ID**: `8e4cb4eb3997`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+    \ctikzset{voltage/distance from node=0.25cm}
+    \draw (0, 2) to[D, v=$v_1$] ++(4,0);
+    \draw (0, 1) to[D, v=$v_1$] ++(3,0);
+    \draw (0, 0) to[D, v=$v_1$] ++(2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 336. Other Example
+## 336. Circuit Example
 
 **ID**: `50a845c4bdb9`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikz \draw (0,0) to[C, i=$\imath$] (2,0); \par
+\ctikzset{current/distance = .2}
+\tikz \draw (0,0) to[C, i=$\imath$] (2,0);
+```
 
 
 ---
 
-## 337. Other Example
+## 337. Circuit Example
 
 **ID**: `b0ab4e9fa48f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikz \draw (0,0) to[R, v=1<\volt>] (1.5,0)
+       to[C, v=2<\volt>] (3,0); \par
+\ctikzset{bipoles/capacitor/voltage/distance from node/.initial=.7}
+\tikz \draw (0,0) to[R, v=1<\volt>] (1.5,0)
+       to[C, v=2<\volt>] (3,0); \par
+```
 
 
 ---
 
-## 338. Other Example
+## 338. Circuit Example
 
 **ID**: `1f1715eb987b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    \draw (0,0) to[sV, v=$V_s$] ++(2,0)
+        to[battery, v=$V_B$] ++(2,0)
+        to[R, v=$V_R$] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 339. Other Example
+## 339. Circuit Example
 
 **ID**: `0f11cdc2b869`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    \draw (0,0) to[sV, bipole/is voltage=false,
+            v=$V_s$] ++(2,0)
+        to[battery, bipole/is voltage=false,
+            v=$V_B$] ++(2,0)
+        to[R, v=$V_R$] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 340. Other Example
+## 340. Circuit Example
 
 **ID**: `188471df1a09`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    % correct way
+    \draw (0,0) to[sV, bipole/is voltage=false, v=$V_s$] ++(2,0)
+    % wrong way, setting voltage before changing type
+        to[sV=$V_B$ , bipole/is voltage=false, ] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 341. Other Example
+## 341. Circuit Example
 
 **ID**: `27cdc946e5bd`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+    \draw (0,0) to [battery=vb] ++(2,0)
+        to[sV=sV] ++(2,0) to[R, v=vR] ++(2,0);
+    \ctikzset{bipole/override source vif=true}
+    \draw (0,-2) to [battery=vb] ++(2,0)
+        to[sV=sV] ++(2,0) to[R, v=vR] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 342. Other Example
+## 342. Circuit Example
 
 **ID**: `2aa2a0dd883b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{tikzpicture}[american]
+    % dangerous option ahead: USE WITH CARE
+    \ctikzset{bipole/override source vif=true}
+    % ugly output, you should really use V>=va
+    \draw (0,6) to [V=va] ++(2,0);
+    % not working!
+    \draw (0,4) to [V=va, bipole/override source vif=false] ++(2,0);
+    % ok, this one is working --- you need both settings!
+    \draw (0,2) to [V,
+        bipole/override source vif=false,
+        bipole/is voltage=true,
+        v=va] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 343. Other Example
+## 343. Circuit Example
 
 **ID**: `b1ffe99e95a7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\tikzset{myV/.style={V, bipole/override source vif=false,
+    bipole/is voltage=true, v={#1}}}%
+\begin{tikzpicture}[american]
+    % dangerous option ahead: USE WITH CARE
+    \ctikzset{bipole/override source vif=true}
+    \draw (0,0) to [V>=va] ++(2,0);
+    \draw (0,-2) to[myV=vb] ++(2,0);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 344. Other Example
+## 344. Circuit Example
 
 **ID**: `a97825b60511`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i^>=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 345. Other Example
+## 345. Circuit Example
 
 **ID**: `4194f8fc89b2`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i_>=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 346. Other Example
+## 346. Circuit Example
 
 **ID**: `ea951ccb7b10`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i^<=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 347. Other Example
+## 347. Circuit Example
 
 **ID**: `98a2902f1580`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i_<=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 348. Other Example
+## 348. Circuit Example
 
 **ID**: `66826221e235`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i>^=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 349. Other Example
+## 349. Circuit Example
 
 **ID**: `b0fc0a1b1ca1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i>_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 350. Other Example
+## 350. Circuit Example
 
 **ID**: `6c29e17f1ef6`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i<^=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 351. Other Example
+## 351. Circuit Example
 
 **ID**: `e0e7cc39ae3c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, i<_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 352. Other Example
+## 352. Circuit Example
 
 **ID**: `65d0b177749d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (2,1) to[R, i<=$i_1$] (0,1);
+   \draw (0,0) to[R, i<=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 353. Other Example
+## 353. Circuit Example
 
 **ID**: `f2eddc04a715`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[V=10V, i_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 354. Other Example
+## 354. Circuit Example
 
 **ID**: `7eed3d0b4ad3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[voltage dir=EF]
+   \draw (0,0) to[V=10V, i_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 355. Other Example
+## 355. Circuit Example
 
 **ID**: `dd810cf51b7d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+   \draw (0,0) to[V=10V, i_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 356. Other Example
+## 356. Circuit Example
 
 **ID**: `d75e89db1874`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+   \draw (0,0) to[V=10V,invert, i_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 357. Other Example
+## 357. Circuit Example
 
 **ID**: `1c5ebf37626d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[I=$a_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 358. Other Example
+## 358. Circuit Example
 
 **ID**: `b5685e5215a1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american currents]
+   \draw (0,0) to[I=$a_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 359. Other Example
+## 359. Circuit Example
 
 **ID**: `c6422b8d3e1c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 360. Other Example
+## 360. Circuit Example
 
 **ID**: `7074ae9612c7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f<=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 361. Other Example
+## 361. Circuit Example
 
 **ID**: `c08a276e7028`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 362. Other Example
+## 362. Circuit Example
 
 **ID**: `a4a8e9d9f2a8`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f_>=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 363. Other Example
+## 363. Circuit Example
 
 **ID**: `c8436da2f0d1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f<^=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 364. Other Example
+## 364. Circuit Example
 
 **ID**: `6d33ff0362dc`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f<_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 365. Other Example
+## 365. Circuit Example
 
 **ID**: `7169c233d520`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[R, f>_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 366. Other Example
+## 366. Circuit Example
 
 **ID**: `d21ff9da61f3`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european voltages]
+   \draw (0,0) to[R, v^>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 367. Other Example
+## 367. Circuit Example
 
 **ID**: `d23112f51d41`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european voltages]
+   \draw (0,0) to[R, v^<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 368. Other Example
+## 368. Circuit Example
 
 **ID**: `5ff637da1782`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european voltages]
+   \draw (0,0) to[R, v_>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 369. Other Example
+## 369. Circuit Example
 
 **ID**: `c552e41522c4`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[european voltages]
+   \draw (0,0) to[R, v_<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 370. Other Example
+## 370. Circuit Example
 
 **ID**: `8570168c69c5`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[I=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 371. Other Example
+## 371. Circuit Example
 
 **ID**: `811bc7f5f638`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[I<=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 372. Other Example
+## 372. Circuit Example
 
 **ID**: `5513f98dfecd`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[I=$~$,l=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 373. Other Example
+## 373. Circuit Example
 
 **ID**: `4d31bfae145f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[I,l=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 374. Other Example
+## 374. Circuit Example
 
 **ID**: `6a59d6667bb2`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[battery,l_=1V, v=$u_1$, i=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 375. Other Example
+## 375. Circuit Example
 
 **ID**: `4e3560420bca`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[V=10V, i_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 376. Other Example
+## 376. Circuit Example
 
 **ID**: `10eeb77d77bf`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[battery, bipole/is voltage=false,
+                 v>=$u_1$,] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 377. Other Example
+## 377. Circuit Example
 
 **ID**: `26be93cb2f44`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}
+   \draw (0,0) to[cV=$k\cdot a_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 378. Other Example
+## 378. Circuit Example
 
 **ID**: `267d08934fb7`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages]
+   \draw (0,0) to[V=$a_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 379. Other Example
+## 379. Circuit Example
 
 **ID**: `4430a3cea41c`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[R, v^>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 380. Other Example
+## 380. Circuit Example
 
 **ID**: `32b49ddf9e96`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[R, v^<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 381. Other Example
+## 381. Circuit Example
 
 **ID**: `597ecdfbd59e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[R, v_>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 382. Other Example
+## 382. Circuit Example
 
 **ID**: `74c14361ab94`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[R, v_<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 383. Other Example
+## 383. Circuit Example
 
 **ID**: `f04bc49e98ff`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[V=10V, i_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 384. Other Example
+## 384. Circuit Example
 
 **ID**: `0b3d575e4b7d`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[I, v=10V, i_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 385. Other Example
+## 385. Circuit Example
 
 **ID**: `b91e93cdbe6b`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[straight voltages]
+   \draw (0,0) to[V, bipole/is voltage=false,
+        v=10V, i_=$i_1$] (3,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 386. Other Example
+## 386. Circuit Example
 
 **ID**: `0eb7931f99bd`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages]
+   \draw (0,0) to[R, v^>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 387. Other Example
+## 387. Circuit Example
 
 **ID**: `3ff6a07b0a22`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages]
+   \draw (0,0) to[R, v^<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 388. Other Example
+## 388. Circuit Example
 
 **ID**: `568a7bde170e`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages]
+   \draw (0,0) to[R, v_>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 389. Other Example
+## 389. Circuit Example
 
 **ID**: `5ef2ee5b3415`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages]
+   \draw (0,0) to[R, v_<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 390. Other Example
+## 390. Circuit Example
 
 **ID**: `aba99a6d8873`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+   \draw (0,0) to[I=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 391. Other Example
+## 391. Circuit Example
 
 **ID**: `caab520de308`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+   \draw (0,0) to[I<=1A, v_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 392. Other Example
+## 392. Circuit Example
 
 **ID**: `026c7a19a52f`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,0) to[R, v^>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 393. Other Example
+## 393. Circuit Example
 
 **ID**: `077612e83aef`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,0) to[R, v^<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 394. Other Example
+## 394. Circuit Example
 
 **ID**: `10a4f31b1ea1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,0) to[R, v_>=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 395. Other Example
+## 395. Circuit Example
 
 **ID**: `a1476e550685`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,0) to[R, v_<=$v_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 396. Other Example
+## 396. Circuit Example
 
 **ID**: `4e7b8db292cd`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american]
+   \ctikzset{voltage=raised}
+   \draw (0,0) to[I=1A, v_=$u_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 397. Other Example
+## 397. Circuit Example
 
 **ID**: `01328714b807`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,0) to[I<=1A, v_=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 398. Other Example
+## 398. Circuit Example
 
 **ID**: `7d1005d3d744`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[]
+   \draw (0,0) to[R, v=$v_1$, i=$i_1$] (2,0);
+   \draw (0,-1) to[R, v=$v_1$, i=$i_1$,
+      voltage shift=0.5] (2,-1);
+   \draw (0,-2) to[R, v=$v_1$, i=$i_1$,
+      voltage shift=1.0] (2,-2);
+\end{circuitikz}
+```
 
 
 ---
 
-## 399. Other Example
+## 399. Circuit Example
 
 **ID**: `8553ed13c247`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[american voltages, voltage shift=0.5]
+   \draw (0,0) to[R, v=$v_1$, i=$i_1$] (2,0);
+\end{circuitikz}
+```
 
 
 ---
 
-## 400. Other Example
+## 400. Circuit Example
 
 **ID**: `38f30e3c3ed1`  
 **Type**: executable_example  
 **Package**: circuitikz  
-**Chart Type**: N/A  
+**Chart Type**: circuit  
+
+### Code
+
+```latex
+\begin{circuitikz}[raised voltages]
+   \draw (0,1.5) to[R, v^=$v_1$, i=$i_1$] ++(2,0);
+   \draw (0,0) to[R, v^=$v_1$, i_=$i_1$,
+        voltage shift=-1.0] ++(2,0);
+\end{circuitikz}
+```
 
 
 ---

@@ -16,7 +16,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `533d51485aae`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    group/xticklabels at=edge bottom,
+    group/yticklabels at=edge right,
+}
+```
 
 
 ---
@@ -26,7 +35,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `57ae5509ab7d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x in {1,2,...,4} {Iterating \x. }%
+```
 
 
 ---
@@ -36,7 +51,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0c1285ac4b7d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\allcollected{}
+\pgfplotsforeachungrouped \x in {1,2,...,4} {Iterating \x. \edef\allcollected{\allcollected, \x}}%
+All collected = \allcollected.
+```
 
 
 ---
@@ -46,7 +69,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `bd284fbd506a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsforeachungrouped \i in {1,2,...,10} {%
+    \pgfplotstablevertcat{\output}{datafile\i} % appends `datafile\i' -> `\output'
+}%
+% since it was ungrouped, \output is still defined (would not work
+% with \foreach)
+```
 
 
 ---
@@ -56,7 +89,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `dd989130d4fa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsforeachungrouped \i/\j in {
+    1 / a,
+    2 / b,
+    3 / c
+}{
+    \edef\temp{\noexpand\node at (axis cs: \i,0.5) {\j};}
+    % \show\temp % lets TeX show you what \temp contains
+    \temp
+}
+```
 
 
 ---
@@ -66,7 +113,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5360217d81e8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    otherstyle a/.code={[a]},
+    otherstyle b/.code={[b]},
+    otherstyle c/.code={[c]},
+    otherstyle d/.code={[d]}}
+\pgfplotsinvokeforeach{a,b,c,d}
+    {\pgfkeys{key #1/.style={otherstyle #1}}}
+Invoke them:
+\pgfkeys{key a} \pgfkeys{key b}
+\pgfkeys{key c} \pgfkeys{key d}
+```
 
 
 ---
@@ -76,7 +138,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `22f36545b8ee`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    otherstyle a/.code={[a]},
+    otherstyle b/.code={[b]},
+    otherstyle c/.code={[c]},
+    otherstyle d/.code={[d]}}
+\pgfplotsforeachungrouped \x in {a,b,c,d}
+    {\pgfkeys{key \x/.style={otherstyle \x}}}
+Invoke them:
+\pgfkeys{key a} \pgfkeys{key b}
+\pgfkeys{key c} \pgfkeys{key d}
+```
 
 
 ---
@@ -86,7 +163,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5320a92f98de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathparse{1+41}
+
+The result is `\pgfmathresult'.
+```
 
 
 ---
@@ -96,7 +181,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `1e61023bce05`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu}%
+\pgfmathparse{1000*1000}
+
+The result is `\pgfmathprintnumber{\pgfmathresult}'.
+```
 
 
 ---
@@ -106,7 +200,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `75fea01fa460`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[xmin=0,xmax=3,ymin=0,ymax=5]
+    \pgfplotsextra{
+        \pgfpathmoveto{\pgfplotspointaxisxy{1}{2}}
+        \pgfpathlineto{\pgfplotspointaxisxy{2}{4}}
+        \pgfusepath{stroke}
+    }
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -116,7 +224,27 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `2d50e354919c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\pgfplotsset{compat/pgfpoint substitution=1.3}
+\begin{axis}[xmin=0,xmax=2,ymin=0,ymax=5]
+    \pgfplotsextra{
+        \pgfplotstransformcoordinatex{1}
+        \let\xcoord=\pgfmathresult
+        \pgfplotstransformcoordinatey{1}
+        \let\ycoord=\pgfmathresult
+        \pgfpathcircle
+            {\pgfqpointxy{\xcoord}{\ycoord}}
+            {5pt}
+        \pgfusepath{fill}
+    }
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -126,7 +254,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f204749c8937`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% \pgfplotsconvertunittocoordinate{x}{5pt}
+% % now, the command uses exactly 5pt in x direction:
+% \pgfqpointxyz{\pgfmathresult}{4}{3}
+%
+```
 
 
 ---
@@ -136,7 +273,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `6eb1c084303e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\axisdefaultwidth{10cm}
+```
 
 
 ---
@@ -146,7 +289,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `16a8826394f5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[x=1.5cm]
+\begin{axis}
+    ...
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -156,7 +309,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `7b3b269e8960`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+    legend style={font=\small},
+}
+```
 
 
 ---
@@ -166,7 +329,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `7003f6509484`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    normalsize/.style={
+        /pgfplots/width=240pt,
+        /pgfplots/height=207pt,
+        /pgfplots/max space between ticks=35,
+    },
+}
+```
 
 
 ---
@@ -176,7 +351,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `62f5c6fa3813`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    small/.style={
+        width=6.5cm,
+        height=,
+        tick label style={font=\footnotesize},
+        label style={font=\small},
+        max space between ticks=25,
+    },
+}
+```
 
 
 ---
@@ -186,7 +375,27 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `331d8d838569`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    footnotesize/.style={
+        width=5cm,
+        height=,
+        legend style={font=\footnotesize},
+        tick label style={font=\footnotesize},
+        label style={font=\small},
+        title style={font=\small},
+        every axis title shift=0pt,
+        max space between ticks=15,
+        every mark/.append style={mark size=8},
+        major tick length=0.1cm,
+        minor tick length=0.066cm,
+    },
+}
+```
 
 
 ---
@@ -196,7 +405,28 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `fae5061b3faa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    tiny/.style={
+        width=4cm,
+        height=,
+        legend style={font=\tiny},
+        tick label style={font=\tiny},
+        label style={font=\tiny},
+        title style={font=\footnotesize},
+        every axis title shift=0pt,
+        max space between ticks=12,
+        every mark/.append style={mark size=6},
+        major tick length=0.1cm,
+        minor tick length=0.066cm,
+        every legend image post/.append style={scale=0.8},
+    },
+}
+```
 
 
 ---
@@ -206,7 +436,23 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3b1fb14ab299`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \draw [
+        postaction={decorate,draw,ultra thick},
+        decoration={
+            soft clip,soft clip path={
+                (1.5,-1) rectangle (4,2)
+            },
+        },
+    ]
+        (0,0) -- (1,1) -- (2,1) -- (3,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -216,7 +462,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `1014278d6fe3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    /pgfplots/every fill between plot/.style={
+        /pgfplots/area legend,/tikz/fill},
+}
+```
 
 
 ---
@@ -226,7 +481,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e6e2c2346c7b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsextra{
+    \pgfonlayer{pre main}
+    \pgfplotspathaxisoutline
+    \pgfusepath{clip}
+    \endpgfonlayer
+}
+```
 
 
 ---
@@ -236,7 +502,30 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f31c0b7c03fa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarelayer{pre main}
+\begin{tikzpicture}
+        \pgfsetlayers{pre main,main}
+    \draw [-stealth,thick,name path=A,red]
+        (0,0) -- (1,1);
+    \draw [-stealth,thick,name path=B,blue]
+        (0,-1) -- (1,0);
+
+    \pgfonlayer{pre main}
+        \fill [
+            orange,
+            intersection segments={
+                of=A and B,
+                sequence={L* -- R*[reverse]},
+            },
+        ];
+    \endpgfonlayer
+\end{tikzpicture}
+```
 
 
 ---
@@ -246,7 +535,31 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0dfa399d4703`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarelayer{pre main}
+\begin{tikzpicture}
+        \pgfsetlayers{pre main,main}
+    \draw [-stealth,thick,name path=A,red]
+        (0,0) -- (1,1);
+    \draw [-stealth,thick,name path=B,blue]
+        (0,1) -- (1,0);
+
+    \pgfonlayer{pre main}
+    \draw [
+        green,
+        line width=2pt,
+        intersection segments={
+            of=A and B,
+            sequence={L-1},
+        },
+    ];
+    \endpgfonlayer
+\end{tikzpicture}
+```
 
 
 ---
@@ -256,7 +569,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a9d9db78caba`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \draw [name path=first] (0,0) -- (1,1) -- (2,0);
+
+    \draw [name path=second] (0,0.5) -- (2,0.5);
+
+    \tikzfillbetween [of=first and second,
+        split,
+        every even segment/.style={orange}
+    ] {red}
+\end{tikzpicture}
+```
 
 
 ---
@@ -266,7 +594,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5711ea942db6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \draw [red] (0,0) -- (1,1) -- (2,0);
+    \draw [blue] (0,0.5) -- (2,0.5);
+\end{tikzpicture}
+```
 
 
 ---
@@ -276,7 +613,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f646e7ac45fe`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    % this is our goal -- but computed automatically.
+    \draw [black] (0,0) -- (0.5,0.5) --
+      (1.5,0.5) -- (2,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -286,7 +633,44 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e0844825e31f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[line join=round,x=3cm,y=3cm]
+    \draw [name path=first,red]   (0,0) -- (1,1) -- (2,0);
+    \draw [name path=second,blue] (0,0.5) -- (2,0.5);
+
+    % from 'name path' to softpaths...
+    \tikzgetnamedpath{first}
+    \let\A=\pgfretval
+    \tikzgetnamedpath{second}
+    \let\B=\pgfretval
+
+    % compute intersections using the PGF intersection lib...
+    \pgfintersectionofpaths{\pgfsetpath\A}{\pgfsetpath\B}%
+
+    % ... and compute the intersection *segments* for both input
+    % paths...
+    \pgfcomputeintersectionsegments1
+    \pgfcomputeintersectionsegments2
+
+    % ... recombine the intersection segment paths!
+    \pgfgetintersectionsegmentpath{1}{0}% path 1, segment 0
+    \pgfsetpathandBB\pgfretval% this starts a new path
+    \pgfgetintersectionsegmentpath{2}{1}% path 2, segment 1
+    % connect, not move. Try to eliminate this line to see the effect
+    \pgfpathreplacefirstmoveto\pgfretval%
+    \pgfaddpathandBB\pgfretval% append
+    \pgfgetintersectionsegmentpath{1}{2}%
+    \pgfpathreplacefirstmoveto\pgfretval
+    \pgfaddpathandBB\pgfretval
+    \pgfsetlinewidth{3}
+    \pgfsetcolor{black}
+    \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -296,7 +680,52 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3c5883de7b3e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[line join=round,x=3cm,y=3cm]
+    \draw [name path=first,red]   (0,0) -- (1,1) -- (2,0);
+    \draw [name path=second,blue] (0,0.5) -- (2,0.5);
+
+    \draw [
+        orange,
+        decorate,decoration={
+            footprints,
+            foot of=bird,
+            stride length=15pt,
+            foot sep=2pt,
+            foot length=6pt},
+    ]
+    \pgfextra
+        % from 'name path' to softpaths...
+        \tikzgetnamedpath{first}
+        \let\A=\pgfretval
+        \tikzgetnamedpath{second}
+        \let\B=\pgfretval
+        %
+        % compute intersections using the PGF intersection lib...
+        \pgfintersectionofpaths{\pgfsetpath\A}{\pgfsetpath\B}%
+        %
+        % ... and compute the intersection *segments* for both input
+        % paths...
+        \pgfcomputeintersectionsegments1
+        \pgfcomputeintersectionsegments2
+        %
+        % ... recombine the intersection segment paths!
+        \pgfgetintersectionsegmentpath{1}{0}% path 1, segment 0
+        \pgfsetpathandBB\pgfretval% this starts a new path
+        \pgfgetintersectionsegmentpath{2}{1}% path 2, segment 1
+        \pgfpathreplacefirstmoveto\pgfretval% connect, not move
+        \pgfaddpathandBB\pgfretval% append
+        \pgfgetintersectionsegmentpath{1}{2}%
+        \pgfpathreplacefirstmoveto\pgfretval
+        \pgfaddpathandBB\pgfretval
+    \endpgfextra
+    ;
+\end{tikzpicture}
+```
 
 
 ---
@@ -306,7 +735,20 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ead471c47ecf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \coordinate (Point) at (1,2);
+
+    \draw [gray] (-1,-1) grid (3,3);
+    \draw [blue,fill] (Point) circle (2pt)
+        node [right] {(1,2)}
+    ;
+\end{tikzpicture}
+```
 
 
 ---
@@ -316,7 +758,46 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f820fd37b53c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \coordinate (Point) at (1,2);
+\begin{axis}[
+    % tell pgfplots to "grab" the axis at its
+    % internal (0,0) coord:
+    anchor=origin,
+    % tell pgfplots to place its anchor at (0,0):
+    % (This is actually the default and can
+    % be omitted)
+    at={(0pt,0pt)},
+    % tell pgfplots to use the "natural" dimensions:
+    disabledatascaling,
+    % tell pgfplots to use the same unit vectors
+    % as tikz:
+    x=1cm,y=1cm,
+    %
+    % this is just as usual in pgfplots. I guess
+    % it is only useful if (0,0) is part of the
+    % range... try it out.
+    xmin=-1,xmax=3, ymin=-1,ymax=3,grid=both,
+]
+    % this uses the point defined OUTSIDE of the axis
+    \draw [blue,fill] (Point) circle (2pt)
+        node [right] {(1,2)};
+
+    % this uses a TIKZ coordinate (2,0) in the axis:
+    \draw [blue,fill] (2,0) circle (2pt)
+        node [right] {(2,0)};
+
+    % this here will always work inside of an axis:
+    \draw [blue,fill] (-1,0) circle (2pt)
+        node [right] {(-1,0)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -326,7 +807,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3a87bae8ce46`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    % initialize Set1-5:
+    cycle list/Set1-5,
+    % combine it with 'mark list*':
+    cycle multiindex* list={
+        mark list*\nextlist
+        Set1-5\nextlist
+    },
+}
+```
 
 
 ---
@@ -336,7 +831,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `125b5037d6a7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+sudo tlmgr install pgfplots
+```
 
 
 ---
@@ -346,7 +847,25 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c7f7342c9c7f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/error bars/draw error bar/.code 2 args={
+        \pgfkeysgetvalue{/pgfplots/error bars/error mark}
+            {\pgfplotserrorbarsmark}
+        \pgfkeysgetvalue{/pgfplots/error bars/error mark options}
+            {\pgfplotserrorbarsmarkopts}
+        \draw #1 -- #2 node [pos=1,sloped,allow upside down] {
+            \expandafter\tikz\expandafter[\pgfplotserrorbarsmarkopts]{
+                \expandafter\pgfuseplotmark\expandafter{\pgfplotserrorbarsmark}
+                \pgfusepath{stroke}}
+        };
+    },
+}
+```
 
 
 ---
@@ -356,7 +875,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `773612d6f2f3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% ...
+%
+```
 
 
 ---
@@ -366,7 +892,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5d5e77db0407`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex
+    --stack-size=n --save-size=n
+    --main-memory=n --extra-mem-top=n --extra-mem-bot=n
+    --pool-size=n --max-strings=n
+```
 
 
 ---
@@ -376,7 +911,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `40879a9260ce`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+initexmf --edit-config-file=pdflatex
+```
 
 
 ---
@@ -386,7 +927,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ada374cd2e4b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+main_memory=90000000
+save_size=80000
+```
 
 
 ---
@@ -396,7 +944,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a3bf5ca96397`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+export TEXMFCNF=~/texmf/mytexcnf:
+```
 
 
 ---
@@ -406,7 +960,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `69431467a28a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+main_memory = n
+extra_mem_top = n
+extra_mem_bot = n
+max_strings = n
+param_size = n
+save_size = n
+stack_size = n
+```
 
 
 ---
@@ -416,7 +982,32 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `02d57b9ef8e0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% newly created file ~/texmf/mytexcnf/texmf.cnf:
+% If you want to change some of these sizes only for a certain TeX
+% variant, the usual dot notation works, e.g.,
+% main_memory.hugetex = 20000000
+main_memory = 230000000 % words of inimemory available; also applies to inimf&mp
+extra_mem_top = 10000000     % extra high memory for chars, tokens, etc.
+extra_mem_bot = 10000000     % extra low memory for boxes, glue, breakpoints, etc.
+save_size = 150000    % for saving values outside current group
+stack_size = 150000    % simultaneous input sources
+
+% Max number of characters in all strings, including all error messages,
+% help texts, font names, control sequences.  These values apply to TeX and MP.
+%pool_size = 1250000
+% Minimum pool space after TeX/MP's own strings; must be at least
+% 25000 less than pool_size, but doesn't need to be nearly that large.
+%string_vacancies = 90000
+% Maximum number of strings.
+%max_strings = 100000
+% min pool space left after loading .fmt
+%pool_free = 47500
+```
 
 
 ---
@@ -426,7 +1017,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `01628fbfe447`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+export TEXMFCNF=~/texmf/mytexcnf:
+```
 
 
 ---
@@ -436,7 +1033,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `751ef59e9acf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% for x:
+\node [
+    style=every axis label,
+    style=every axis x label,
+]
+% for y:
+\node [
+    style=every axis label,
+    style=every axis y label,
+]
+```
 
 
 ---
@@ -446,7 +1058,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `204d98ac3fd3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{axis}[xlabel style={align=right,text width=3cm},xlabel=A quite long label with a line break]
+...
+\end{axis}
+```
 
 
 ---
@@ -456,7 +1076,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `98131fd6142e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/xlabel near ticks/.style={
+        /pgfplots/every axis x label/.style={
+            at={(ticklabel cs:0.5)},anchor=near ticklabel,
+        },
+    },
+    /pgfplots/ylabel near ticks/.style={
+        /pgfplots/every axis y label/.style={
+            at={(ticklabel cs:0.5)},rotate=90,anchor=near ticklabel,
+        },
+    },
+}
+```
 
 
 ---
@@ -466,7 +1103,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `03a31b7bdbf5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{compat=1.3} % or newer
+```
 
 
 ---
@@ -476,7 +1119,26 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `328542cba60d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/xlabel absolute/.style={
+        /pgfplots/every axis x label/.style={at={(0.5,0)},below,yshift=-15pt},
+        /pgfplots/every x tick scale label/.style={
+            at={(1,0)},yshift=-2em,left,inner sep=0pt,
+        },
+    },
+    /pgfplots/ylabel absolute/.style={
+        /pgfplots/every axis y label/.style={at={(0,0.5)},xshift=-35pt,rotate=90},
+        /pgfplots/every y tick scale label/.style={
+            at={(0,1)},above right,inner sep=0pt,yshift=0.3em,
+        },
+    },
+}
+```
 
 
 ---
@@ -486,7 +1148,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d344653d3c4b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis label/.append style={...}}
+\pgfplotsset{every axis x label/.append style={...}}
+\pgfplotsset{every axis y label/.append style={...}}
+```
 
 
 ---
@@ -496,7 +1166,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `70fa093c1831`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node [every axis title] {text};
+```
 
 
 ---
@@ -506,7 +1182,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b148f7b8d94b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{title style={at={(0.75,1)}}}
+% or, equivalently,
+\pgfplotsset{every axis title/.append style={at={(0.75,1)}}}
+```
 
 
 ---
@@ -516,7 +1200,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `306beeb3d254`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
+```
 
 
 ---
@@ -526,7 +1216,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `20d8c7e71e52`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
+```
 
 
 ---
@@ -536,7 +1232,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b515a8bc940a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\legend{$a=1, b=2$\\,$a=2, b=3$\\$a=3, b=5$\\}
+```
 
 
 ---
@@ -546,7 +1248,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `44f5f99d9e22`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every axis legend/.append style={
+        at={(0,0)},
+        anchor=south west,
+    },
+}
+```
 
 
 ---
@@ -556,7 +1269,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `9ab44373d568`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every axis legend/.append style={
+        at={(1,1)},
+        anchor=north east,
+    },
+}
+```
 
 
 ---
@@ -566,7 +1290,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `22f985e8de1a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\matrix [style=every axis legend] {
+    draw plot specification 1 & \node{legend 1}\\
+    draw plot specification 2 & \node{legend 2}\\
+    ...
+};
+```
 
 
 ---
@@ -576,7 +1310,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c30ba5d241c4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis legend/.style={
+        cells={anchor=center},% Centered entries
+        inner xsep=3pt,inner ysep=2pt,nodes={inner sep=2pt,text depth=0.15em},
+        anchor=north east,
+        shape=rectangle,
+        fill=white,
+        draw=black,
+        at={(0.98,0.98)},
+    }
+}
+```
 
 
 ---
@@ -586,7 +1335,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `808ed60c5534`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis legend/.append style={...}}
+```
 
 
 ---
@@ -596,7 +1351,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `75d52ecfe081`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/line legend/.style={
+        legend image code/.code={
+            \draw [mark repeat=2,mark phase=2,##1]
+                plot coordinates {
+                    (0cm,0cm)
+                    (0.3cm,0cm)
+                    (0.6cm,0cm)
+                };
+        },
+    },
+}
+```
 
 
 ---
@@ -606,7 +1378,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b022742a614d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    legend image code/.code={
+        \draw [#1] (0cm,-0.1cm) rectangle (0.6cm,0.1cm);
+    },
+}
+```
 
 
 ---
@@ -616,7 +1398,50 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `2d2e47208791`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/xbar legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw [##1,/tikz/.cd,bar width=3pt,yshift=-0.2em,bar shift=0pt]
+            plot coordinates {(0cm,0.8em) (2*\pgfplotbarwidth,0.6em)};
+        },
+    },
+    /pgfplots/ybar legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw [##1,/tikz/.cd,bar width=3pt,yshift=-0.2em,bar shift=0pt]
+            plot coordinates {(0cm,0.8em) (2*\pgfplotbarwidth,0.6em)};
+        },
+    },
+    /pgfplots/xbar interval legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw [##1,/tikz/.cd,yshift=-0.2em,bar interval width=0.7,bar interval shift=0.5]
+            plot coordinates {(0cm,0.8em) (5pt,0.6em) (10pt,0.6em)};
+        },
+    },
+    /pgfplots/ybar interval legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw [##1,/tikz/.cd,yshift=-0.2em,bar interval width=0.7,bar interval shift=0.5]
+            plot coordinates {(0cm,0.8em) (5pt,0.6em) (10pt,0.6em)};
+        },
+    },
+    /pgfplots/single xbar legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw[##1,/tikz/.cd,bar width=6pt,yshift=0.2ex,bar shift=0pt]
+            plot coordinates {(0.8em,0pt)};
+        },
+    },
+    /pgfplots/single ybar legend/.style={
+        /pgfplots/legend image code/.code={
+            \draw[##1,/tikz/.cd,bar width=6pt,yshift=-0.2em,bar shift=0pt]
+            plot coordinates {(0pt,0.8em)};
+        },
+    },
+}
+```
 
 
 ---
@@ -626,7 +1451,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f7b2478c241b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+The picture shows the estimations \ref{pgfplots:label1} which are subjected to noise.
+It appears the model \ref{pgfplots:label2} fits the data appropriately.
+Finally, \ref{pgfplots:label3} is only here to get three examples.
+```
 
 
 ---
@@ -636,7 +1469,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4ade74d6080b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Label3 = \ref{pgfplots:label3};
+Label2 = \ref{pgfplots:label2}
+```
 
 
 ---
@@ -646,7 +1486,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b7d8739d7013`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [/pgfplots/every crossref picture] {...}
+```
 
 
 ---
@@ -656,7 +1502,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3441976d7ca3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every crossref picture/.style={baseline,yshift=0.3em}}
+```
 
 
 ---
@@ -666,7 +1518,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `df4a68c2a618`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    legend style={matrix anchor=west,at={(0pt,0pt)}},
+    every legend to name picture/.style={baseline},
+}
+...
+```
 
 
 ---
@@ -676,7 +1538,20 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c11a167c6e0d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every non boxed x axis/.style={
+        xtick align=center,
+        enlarge x limits=false,
+        x axis line style={-stealth},
+    },
+    every boxed x axis/.style={},
+}
+```
 
 
 ---
@@ -686,7 +1561,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5701397c2157`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis x label/.style={at={(current axis.left of origin)},anchor=south west}}
+```
 
 
 ---
@@ -696,7 +1577,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `754d0b3b200e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis x label/.style={at={(current axis.right of origin)},anchor=south east}}
+```
 
 
 ---
@@ -706,7 +1593,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8578717af648`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every non boxed x axis/.style={
+        xtick align=center,
+        enlarge x limits=false,
+        x axis line style={-stealth},
+    },
+}
+```
 
 
 ---
@@ -716,7 +1615,48 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4c5838bb59f6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar right/.style={
+        /pgfplots/colorbar=true,
+        /pgfplots/colorbar shift/.style={xshift=0.3cm},
+        /pgfplots/every colorbar/.style={
+            title=,
+            xlabel=,
+            ylabel=,
+            zlabel=,
+            legend entries=,
+            axis on top,
+            at={(parent axis.right of north east)},
+            anchor=north west,
+            xmin=0,
+            xmax=1,
+            ymin=\pgfkeysvalueof{/pgfplots/point meta min},
+            ymax=\pgfkeysvalueof{/pgfplots/point meta max},
+            plot graphics/xmin=0,
+            plot graphics/xmax=1,
+            plot graphics/ymin=\pgfkeysvalueof{/pgfplots/point meta min},
+            plot graphics/ymax=\pgfkeysvalueof{/pgfplots/point meta max},
+            enlargelimits=false,
+            scale only axis,
+            height=\pgfkeysvalueof{/pgfplots/parent axis height},
+            x=\pgfkeysvalueof{/pgfplots/colorbar/width},
+            yticklabel pos=upper,
+            xtick=\empty,
+            colorbar vertical/lowlevel,
+        },
+    },
+    /pgfplots/colorbar vertical/lowlevel/.style={
+        plot graphics/lowlevel draw/.code 2 args={
+            \pgfuseshading{...} % some advanced basic level shading operations
+        },
+    },
+}
+```
 
 
 ---
@@ -726,7 +1666,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c18135d14779`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% correct:
+\begin{axis}[colorbar right, colorbar style={<some customization>}]
+% wrong, colorbar right resets the customization:
+\begin{axis}[colorbar style={<some customization>}, colorbar right]
+```
 
 
 ---
@@ -736,7 +1685,23 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `140ae564a86e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar left/.style={
+        /pgfplots/colorbar right,
+        /pgfplots/colorbar shift/.style={xshift=-0.3cm},
+        /pgfplots/every colorbar/.append style={
+            at={(parent axis.left of north west)},
+            anchor=north east,
+            yticklabel pos=lower,
+        },
+    },
+}
+```
 
 
 ---
@@ -746,7 +1711,48 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `57ffa75df6de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar horizontal/.style={
+        /pgfplots/colorbar=true,
+        /pgfplots/colorbar shift/.style={yshift=-0.3cm},
+        /pgfplots/every colorbar/.style={
+            title=,
+            xlabel=,
+            ylabel=,
+            zlabel=,
+            legend entries=,
+            axis on top,
+            at={(parent axis.below south west)},
+            anchor=north west,
+            ymin=0,
+            ymax=1,
+            xmin=\pgfkeysvalueof{/pgfplots/point meta min},
+            xmax=\pgfkeysvalueof{/pgfplots/point meta max},
+            plot graphics/ymin=0,
+            plot graphics/ymax=1,
+            plot graphics/xmin=\pgfkeysvalueof{/pgfplots/point meta min},
+            plot graphics/xmax=\pgfkeysvalueof{/pgfplots/point meta max},
+            enlargelimits=false,
+            scale only axis,
+            width=\pgfkeysvalueof{/pgfplots/parent axis width},
+            y=\pgfkeysvalueof{/pgfplots/colorbar/width},
+            xticklabel pos=lower,
+            ytick=\empty,
+            colorbar horizontal/lowlevel,
+        },
+    },
+    /pgfplots/colorbar horizontal/lowlevel/.style={
+        plot graphics/lowlevel draw/.code 2 args={
+            \pgfuseshading{...} % some advanced basic level shading operations
+        },
+    },
+}
+```
 
 
 ---
@@ -756,7 +1762,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `78a04345cf30`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% correct:
+\begin{axis}[colorbar horizontal, colorbar style={<some customization>}]
+% wrong, colorbar horizontal resets the customization:
+\begin{axis}[colorbar style={<some customization>}, colorbar horizontal]
+```
 
 
 ---
@@ -766,7 +1781,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `69825dc1af33`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar style={
+        at={(parent axis.right of north east)},
+        anchor=north west,
+    },
+    colorbar shift/.style={xshift=0.3cm},
+}
+```
 
 
 ---
@@ -776,7 +1803,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `036eac38edf6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar shift/.style={xshift=1cm},
+}
+```
 
 
 ---
@@ -786,7 +1821,28 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `10503a5442ff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colorbar style={
+        ticklabel style={font=\tiny},
+    },
+    colormap access=const,
+    colormap={CM}{
+        of colormap={
+            viridis,
+            target pos={
+                0,200,300,350,375,
+                400,700,800,850,1000
+            },
+            sample for=const,
+        },
+    },
+]
+```
 
 
 ---
@@ -796,7 +1852,29 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `918ef0d832b1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colorbar as legend,
+    colorbar style={
+        ticklabel style={font=\tiny},
+    },
+    colormap access=const,
+    colormap={CM}{
+        of colormap={
+            viridis,
+            target pos={
+                0,200,300,350,375,
+                400,700,800,850,1000
+            },
+            sample for=const,
+        },
+    },
+]
+```
 
 
 ---
@@ -806,7 +1884,20 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e941fd4e7af1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/colorbar style={
+        ticklabel style={
+            /pgf/number format/precision=3,
+            /pgf/number format/relative*=3,
+        },
+    },
+}
+```
 
 
 ---
@@ -816,7 +1907,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e82b116e410f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex -shell-escape test
+```
 
 
 ---
@@ -826,7 +1923,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5f5721b7ea8c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzsetexternalprefix{figures/}
+```
 
 
 ---
@@ -836,7 +1939,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e187a2f8be78`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex -shell-escape main
+```
 
 
 ---
@@ -846,7 +1955,33 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f5405c0f2c8c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{external/figure name=main}
+
+% uses main_0.pdf, main_1.pdf, ...
+
+\chapter{The first section}
+{\tikzset{external/figure name/.add={}{_firstsection}}
+    ...
+    % uses main_firstsection_0.pdf, main_firstsection_1.pdf, ...
+}
+
+\chapter{The second section}
+{\tikzset{external/figure name/.add={}{secondsection_}}
+    ...
+    % uses main_secondsection_0.pdf, main_secondsection_1.pdf, ...
+    \section{Second subsection}
+    {\tikzset{external/figure name/.add={}{sub_}}
+        ...
+        % uses main_secondsection_sub_0.pdf, main_secondsection_sub_1.pdf, ...
+    }
+    % uses main_secondsection_2.pdf, main_secondsection_3.pdf, ...
+}
+```
 
 
 ---
@@ -856,7 +1991,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `6dbea34c6c4f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -halt-on-error
+    -interaction=batchmode -jobname "\image" "\texsource"}
+```
 
 
 ---
@@ -866,7 +2008,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `57eeb60c56b0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{external/system call={latex \tikzexternalcheckshellescape -halt-on-error
+    -interaction=batchmode -jobname "\image" "\texsource" &&
+    dvips -o "\image".ps "\image".dvi}}
+```
 
 
 ---
@@ -876,7 +2026,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `7cb159384e3a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% \usepackage{tikz}
+% \usepackage{pgfplots}
+\usepackage{tikzexternal}
+    \tikzexternalize% activate externalization
+\begin{document}
+    \begin{tikzpicture}
+        ...
+    \end{tikzpicture}
+...
+\end{document}
+```
 
 
 ---
@@ -886,7 +2051,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `33f9fedce15c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+latex/pgf/utilities/tikzexternal.sty
+```
 
 
 ---
@@ -896,7 +2067,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `1935dc18a078`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_tikzexternal.sty
+```
 
 
 ---
@@ -906,7 +2083,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `477eea3e2dea`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex test
+```
 
 
 ---
@@ -916,7 +2099,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8da3e1ea8902`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex --jobname testfigure test
+pdflatex --jobname testfigure2 test
+```
 
 
 ---
@@ -926,7 +2116,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `33862873b9b5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\long\def\beginpgfgraphicnamed#1#2\endpgfgraphicnamed{%
+    \begingroup
+    \setbox1=\hbox{\includegraphics{#1}}%
+    \openin1=#1.dpth
+    \ifeof1 \box1
+    \else
+        \read1 to\pgfincludeexternalgraphicsdp \closein1
+        \dimen0=\pgfincludeexternalgraphicsdp\relax
+        \hbox{\lower\dimen0 \box1 }%
+    \fi
+    \endgroup
+}
+```
 
 
 ---
@@ -936,7 +2143,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5ebcb71f4ff9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[X,Y] = meshgrid( linspace(-1,1,5), linspace(4,5,10) );
+Z = X + Y;
+surf(X,Y,Z)
+```
 
 
 ---
@@ -946,7 +2161,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `37949cbe7b70`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+data = [ X(:) Y(:) Z(:) ]
+% or -ascii
+save P.dat data -ASCII
+size(X)
+ans =
+   10.00    5.00
+```
 
 
 ---
@@ -956,7 +2182,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `04cb83a0db42`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+XX=X'; YY=Y'; ZZ=Z';
+data = [ XX(:) YY(:) ZZ(:) ]
+save P.dat data -ASCII
+```
 
 
 ---
@@ -966,7 +2200,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f9c7471c8e4a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+C = colormap;  % gets data of the current colormap.
+% C = colormap(jet) % gets data of "jet"
+eachnth = 1;
+I = 1:eachnth:size(C,1); % this is nonsense for eachnth=1 -- but perhaps you don't want each color.
+CC = C(I,:);
+TeXstring = [ ...
+ sprintf('\\pgfplotsset{\n\tcolormap={matlab}{\n') ...
+ sprintf('\t\trgb=(%f,%f,%f)\n',CC') ...
+ sprintf('\t}\n}\n') ]
+```
 
 
 ---
@@ -976,7 +2224,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4ebb810b330b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+every axis x label/.style={
+        at={(xticklabel cs:0.125)},
+        sloped={at position=45},
+        anchor=near ticklabel,
+        near ticklabel at=45,
+    },
+    every axis y label/.style={
+        at={(yticklabel cs:0.5)},
+        anchor=near ticklabel,
+    },
+```
 
 
 ---
@@ -986,7 +2249,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8a64e5f83c90`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+This is \tikz[baseline]\fill [red] (0,0) circle(3pt); a picture,
+here \tikz[baseline]\fill [red] (0,10pt) circle(3pt); another one.
+```
 
 
 ---
@@ -996,7 +2266,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ff28542749bc`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{anchor=...}
+\matrix {
+    ...
+};
+```
 
 
 ---
@@ -1006,7 +2285,36 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `04fa478b302a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    /pgfplots/every 3d description/.style={
+        % Only these description styles can be changed here:
+        every axis x label/.style={
+            at={(ticklabel cs:0.5)},
+            anchor=near ticklabel,
+        },
+        every axis y label/.style={
+            at={(ticklabel cs:0.5)},
+            anchor=near ticklabel,
+        },
+        every x tick scale label/.style={
+            at={(xticklabel cs:0.95,5pt)},
+            anchor=near xticklabel,
+            inner sep=0pt,
+        },
+        every y tick scale label/.style={
+            at={(yticklabel cs:0.95,5pt)},
+            anchor=near yticklabel,
+            inner sep=0pt,
+        },
+        try min ticks=3,
+    },
+}
+```
 
 
 ---
@@ -1016,7 +2324,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3db721f9f418`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/every 3d view {0}{90}/.style={
+        xlabel near ticks,
+        ylabel near ticks,
+        axis on top=true,
+    },
+}
+```
 
 
 ---
@@ -1026,7 +2346,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `1b94ca860828`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% x label becomes ``Temperature [T]'', y label becomes ``Nothing''
+\pgfplotsset{use units,x unit=T,xlabel=Temperature,ylabel=Nothing}
+% x label becomes ``Temperature'', y label becomes ``Nothing''
+\pgfplotsset{use units,x unit prefix=m,xlabel=Temperature,ylabel=Nothing}
+```
 
 
 ---
@@ -1036,7 +2365,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e1d4cd1b64bf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{x unit=T,unit markings=parenthesis} % x unit becomes `` \left(T\right)''
+\pgfplotsset{x unit=T,unit markings=square brackets} % x unit becomes `` \left[T\right]''
+\pgfplotsset{x unit=T,unit markings=slash space} % x unit becomes `` / T''
+```
 
 
 ---
@@ -1046,7 +2383,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d6444997e45f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{unit code/.code 2 args={\si{#1#2}}}
+```
 
 
 ---
@@ -1056,7 +2399,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0402e57bc295`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{unit code/.code 2 args={\mathbf{#1}\mathrm{#2}}
+```
 
 
 ---
@@ -1066,7 +2415,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `30bb7c68362a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{change x base,axis base prefix={axis x base -3 prefix k}}
+\pgfplotsset{change x base,x SI prefix=kilo}
+```
 
 
 ---
@@ -1076,7 +2432,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `bf06eaae482e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber{123.456789}
+```
 
 
 ---
@@ -1086,7 +2448,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `34dd832fb6a0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber{12345.6789}
+```
 
 
 ---
@@ -1096,7 +2464,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4c5ba1b124c5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [fixed,precision=5]{12345.6789}
+```
 
 
 ---
@@ -1106,7 +2481,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `2f413c9d8b8b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [fixed,fixed zerofill,precision=5]{12345.6789}
+```
 
 
 ---
@@ -1116,7 +2498,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `56577a684cee`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [fixed,fixed zerofill,precision=5,use comma]
+        {12345.6789}
+```
 
 
 ---
@@ -1126,7 +2516,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a58b385e6bbc`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [sci]{12345.6789}
+```
 
 
 ---
@@ -1136,7 +2533,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a813a7260c54`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [sci,sci zerofill,precision=5]{12345.6789}
+```
 
 
 ---
@@ -1146,7 +2550,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `dc458d1f6afb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [sci,sci generic=
+      {mantissa sep=\times,exponent={10^{#1}}}]
+    {12.345}
+```
 
 
 ---
@@ -1156,7 +2569,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d8d3b677fa26`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber[frac]{0.333333333333333};
+    \pgfmathprintnumber[frac]{0.5}
+```
 
 
 ---
@@ -1166,7 +2586,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `90488970e20c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber[print sign]{2}
+```
 
 
 ---
@@ -1176,7 +2602,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a6a8c59b616e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber
+    [1000 sep={\,},fixed,precision=6]{1000000.123456}
+```
 
 
 ---
@@ -1186,7 +2619,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c546d4289a94`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathprintnumber[
+    1000 sep={\,},fixed,precision=6,
+    1000 sep in fractionals]
+        {1000000.123456}
+```
 
 
 ---
@@ -1196,7 +2638,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b9c3258c6bc5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/log number format basis/.code 2 args={$#1^{\pgfmathprintnumber{#2}}$},
+}
+```
 
 
 ---
@@ -1206,7 +2656,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `80fddb8255d5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepackage[cmyk]{xcolor}
+```
 
 
 ---
@@ -1216,7 +2672,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5889cfcd8afb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\selectcolormodel{cmyk}
+```
 
 
 ---
@@ -1226,7 +2688,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c5493e858d9d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour/every contour plot/.style={
+        /pgfplots/legend image post style={sharp plot},
+    },
+}
+```
 
 
 ---
@@ -1236,7 +2708,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `69bcb2890410`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour/every contour label/.style={
+        sloped,
+        transform shape,
+        inner sep=2pt,
+        every node/.style={mapped color!50!black,fill=white},
+        /pgf/number format/relative={\pgfplotspointmetarangeexponent},
+    },
+}
+```
 
 
 ---
@@ -1246,7 +2732,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b09c5630786b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{contour/handler/.style={/tikz/sharp plot}}
+```
 
 
 ---
@@ -1256,7 +2748,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `241f9d80213b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour/label node code/.code={\node {\pgfmathprintnumber{#1}};},
+}
+```
 
 
 ---
@@ -1266,7 +2766,31 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8b7c4f9b400f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    contour gnuplot/.style={
+        contour external={
+            script={
+                unset surface;
+                \ifx\thecontourlevels\empty
+                set cntrparam levels \thecontournumber;
+                \else
+                set cntrparam levels discrete \thecontourlevels;
+                \fi
+                set contour;
+                set table \"\outfile\";
+                splot \"\infile\";
+            },
+            cmd={gnuplot \"\script\"},
+            #1,%
+        },
+    },
+}
+```
 
 
 ---
@@ -1276,7 +2800,38 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3b1d5aeceff4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green)
+        color=(yellow) color=(brown)},
+    colorbar style={minor x tick num=1},
+    point meta min=-7052,               %<--
+    point meta max=2895,                %<--
+    of colormap/target pos min*=-7052,  %<--
+    of colormap/target pos max*=2895,   %<--
+    of colormap/sample for=const,       %<--
+    colormap access=const,              %<--
+    colormap={CM}{
+        of colormap={
+            whiteblue,
+            target pos max=,
+            target pos={-12000,-10000,-6000,-5000,
+              -3000,-1000,-750,-500,-250,-100,-50,0}
+        },
+        of colormap={
+            gb,
+            target pos min=,
+            target pos={10,100,200,500,1000,1100,
+                1200,1500,2000,4000,6000,8000}
+        },
+    },
+]
+```
 
 
 ---
@@ -1286,7 +2841,45 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `58bc7a052698`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green)
+        color=(yellow) color=(brown)},
+    colorbar as legend,
+    colorbar style={
+        ticklabel style={
+            font=\tiny,
+            /pgf/number format/precision=3,
+            /pgf/number format/relative*=4,
+        },
+    },
+    point meta min=-7052,
+    point meta max=2895,
+    of colormap/target pos min*=-7052,
+    of colormap/target pos max*=2895,
+    of colormap/sample for=const,
+    colormap access=const,
+    colormap={CM}{
+        of colormap={
+            whiteblue,
+            target pos max=,
+            target pos={-12000,-10000,-6000,-5000,
+              -3000,-1000,-750,-500,-250,-100,-50,0}
+        },
+        of colormap={
+            gb,
+            target pos min=,
+            target pos={10,100,200,500,1000,1100,
+                1200,1500,2000,4000,6000,8000}
+        },
+    },
+]
+```
 
 
 ---
@@ -1296,7 +2889,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d94d79be5989`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    y dir=reverse,
+    axis on top,
+}
+```
 
 
 ---
@@ -1306,7 +2908,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3355b214a33d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Package pgfplots Warning: Automatic computation of axis limits for 'matrix plot' is INACCURATE.
+Please add the key 'mesh/cols=3'. You can also ignore this warning and deal with axis limits manually
+```
 
 
 ---
@@ -1316,7 +2925,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a348da038525`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+y dir=reverse,
+axis on top,
+```
 
 
 ---
@@ -1326,7 +2942,20 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `428d9cde7748`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    matrix plot*/.style={
+        surf,
+        mesh input=image,
+        shader=flat corner,
+        z buffer=none,
+    },
+}
+```
 
 
 ---
@@ -1336,7 +2965,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `01f78ce6f50c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every patch/.style={miter limit=1},
+}
+```
 
 
 ---
@@ -1346,7 +2983,29 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4f8f6af9b06f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    few smithchart ticks/.style={
+        default smithchart xtick/.style={
+            xtick={0.2,0.5,1,2,5},
+        },
+        default smithchart ytick/.style={
+            ytick={%
+                0,%
+                 0.2, 0.5, 1, 2, 5,%
+                -0.2,-0.5,-1,-2,-5},
+        },
+        default smithchart xytick/.style={
+            xgrid each nth passes y={2},
+            ygrid each nth passes x={2},
+        },
+    },
+}
+```
 
 
 ---
@@ -1356,7 +3015,45 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `67ca1e47e7ff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    many smithchart ticks*/.style={
+        default smithchart xtick/.style={
+            xtick={
+                0.1,0.2,0.3,0.4,0.5,1,1.5,2,3,4,5,10,20%
+            },
+            minor xtick={0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,
+              2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50},
+        },
+        default smithchart ytick/.style={
+            ytick={%
+                0,%
+                0.1,0.2,...,1,1.5,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.5,-2,-3,-4,-5,-10,-20%
+            },
+            minor ytick={%
+                1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,
+                  4.5,6,7,8,9,50,%
+                -1.1,-1.2,-1.3,-1.4,-1.6,-1.7,-1.8,-1.9,-2.2,-2.4,-2.6,-2.8,
+                  -3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,-9,-50%
+            },
+        },
+        default smithchart xytick/.style={
+            xgrid each nth passes y={1,2,4,5,10,20},
+            ygrid each nth passes x={1,2,3,5,10:3,20:3},
+        },
+    },
+    /pgfplots/many smithchart ticks/.style={
+        many smithchart ticks*,
+        yticklabel in circle,
+        show origin=true,
+    },
+}
+```
 
 
 ---
@@ -1366,7 +3063,53 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `e75fd7488499`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    dense smithchart ticks*/.style={
+        default smithchart xtick/.style={
+            xtick={
+                0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20%
+            },
+            minor xtick={%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.52,% This is sub-optimal and will (hopefully) be improved in the future.
+                0.55,0.65,0.75,0.85,0.95,%
+                %0.6,0.7,0.8,0.9,%
+                1.1,1.3,1.5,1.7,1.9,%
+                2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50},
+        },
+        default smithchart ytick/.style={
+            ytick={%
+                0,%
+                0.1,0.2,...,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.2,-1.4,-1.6,-1.8,-2,-3,-4,-5,-10,-20%
+            },
+            minor ytick={%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.55,0.65,0.75,0.85,0.95,%
+                1.1,1.3,1.5,1.7,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50,%
+                -0.01,-0.02,-0.03,-0.04,-0.05,-0.06,-0.07,-0.08,-0.09,-0.11,-0.12,-0.13,-0.14,
+                -0.15,-0.16,-0.17,-0.18,-0.19,-0.22,-0.24,-0.26,-0.28,-0.32,-0.34,-0.36,-0.38,
+                -0.42,-0.44,-0.46,-0.48,-0.55,-0.65,-0.75,-0.85,-0.95,%
+                -1.1,-1.3,-1.5,-1.7,-1.9,-2.2,-2.4,-2.6,-2.8,-3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,
+                -9,-50%
+            },
+        },
+        default smithchart xytick/.style={
+            xgrid each nth passes y={0.2 if < 0.2001,0.5 if < 0.50001,1 if < 1.001,2,4,5,10,20},
+            ygrid each nth passes x={0.2 if < 0.2001,0.52 if < 0.52001,1 if < 1.001,2,3,5,10:3,20:3},
+        },
+    },
+    dense smithchart ticks/.style={
+        ytickl
+... (truncated)
+```
 
 
 ---
@@ -1376,7 +3119,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d5c485989809`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{smithchart}[
+        show origin,
+    ]
+    \end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1386,7 +3140,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `07d972657911`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    show origin code/.code={%
+        \path[draw=black,fill=white] (0pt,0pt) circle (2.5pt);
+        \path[fill=black] (0pt,0pt) circle (0.5pt);
+    },
+}
+```
 
 
 ---
@@ -1396,7 +3161,26 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `71bc0d0bec02`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    yticklabel in circle/.style={
+        ytick align=inside,
+        yticklabel style={
+            rotate=90,
+            sloped like y axis={
+                execute for upside down={\tikzset{anchor=north east}},
+                %allow upside down,
+                reset nontranslations=false},
+            anchor=south west,
+            %font=\tiny,
+        },
+    },
+}
+```
 
 
 ---
@@ -1406,7 +3190,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `830f7754433c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{smithchart}[
+        yticklabel around circle,
+    ]
+    \end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1416,7 +3211,25 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `deb167857b2c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    yticklabel around circle/.style={
+        ytick align=center,
+        yticklabel style={
+            rotate=90,
+            sloped like y axis={
+                execute for upside down={\tikzset{anchor=south west}},
+                %allow upside down,
+                reset nontranslations=false},
+            anchor=south east,
+        },
+    },
+}
+```
 
 
 ---
@@ -1426,7 +3239,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0ee4c13c701d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{smithchart}[
+        yticklabel around circle*,
+    ]
+    \end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1436,7 +3260,25 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `bdfeecbc1379`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    yticklabel around circle*/.style={
+        ytick align=center,
+        yticklabel style={
+            rotate=90,
+            sloped like y axis={
+                execute for upside down={\tikzset{anchor=north west}},
+                %allow upside down,
+                reset nontranslations=false},
+            anchor=north east,
+        },
+    },
+}
+```
 
 
 ---
@@ -1446,7 +3288,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `725006ddeecf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every smithchart axis/.style={
+        grid=both,
+        xmin=0,
+        scaled ticks=false, % never draw the \cdot 10^4 labels
+        major tick style={draw=black},
+        xtick align=center,
+        ytick align=center,
+    },
+}
+```
 
 
 ---
@@ -1456,7 +3313,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ec54cc759587`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{smithchart}[
+    xtick={0.2,0.5,1,2,5},
+    ytick={
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
+    },
+    xgrid each nth passes y={1,2},
+]
+\end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1466,7 +3340,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `89ccb2c34013`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{smithchart}[
+    xtick={0.2,0.5,1,2,5},
+    ytick={
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
+    },
+    ygrid each nth passes x={0.2,1:2},
+]
+    \end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1476,7 +3367,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `328f4b46cfe2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{smithchart}[
+    ygrid stop at x={0.5:0.5,-0.2:0.2}
+]
+    \end{smithchart}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1486,7 +3388,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d193cb3fc03f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    xlabel={\textsc{Dof}},
+    ylabel={$L_2$ Error},
+    grid=major,
+]
+    % see above for this macro:
+    \plotcoords
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1496,7 +3413,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0830c825878e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{grid style={help lines}} % modifies the style `every axis grid'
+\pgfplotsset{minor grid style={color=blue}} % modifies the style `every minor grid'
+\pgfplotsset{major grid style={thick}} %modifies the style `every major grid'
+```
 
 
 ---
@@ -1506,7 +3431,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f4cb839b615f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw
+       (axis cs:18943,2.873391e-05)
+    |- (axis cs:47103,8.437499e-06);
+```
 
 
 ---
@@ -1516,7 +3449,35 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `2af0c7bc4745`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% requires \pgfplotsset{compat=1.5.1} !
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-2.5,   xmax=2.5,
+    ymin=-2.5,   ymax=2.5,
+    xtick={-2,-1,0,1,2},
+    ytick={-2,-1,0,1,2},
+    grid=major,
+]
+    % standard tikz syntax:
+    \draw [black] (0,0) ellipse [
+        x radius=1,
+        y radius=2,
+    ];
+    \draw [red]   (0,0) ellipse [
+        rotate=90,
+        x radius=1,
+        y radius=2,
+    ];
+    % see \pgfplotspointaxisdirectionxy
+    % for arbitrary ellipses
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1526,7 +3487,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b4e13e339048`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% requires \pgfplotsset{compat=1.5.1} !
+\begin{tikzpicture}
+\begin{axis}[tiny,enlargelimits,
+    xmin=-1,xmax=1,
+    ymin=-1,ymax=1,
+    xtick={-1,0,1},
+    ytick={-1,0,1},
+    grid=major,
+]
+    \draw [blue] (0,0) circle [radius=1];
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1536,7 +3514,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a377b5bfe511`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[tiny,enlargelimits,
+    axis equal,
+    xmin=-1,xmax=1,
+    ymin=-1,ymax=1,
+    xtick={-1,0,1},
+    ytick={-1,0,1},
+    grid=major,
+]
+    \draw [blue] (0,0) circle [radius=1];
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1546,7 +3541,40 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `5e38e6247d1d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every ternary axis/.style={
+        tick align=outside,
+        grid=major,
+        xticklabel style={anchor=west},
+        every 3d description/.style={},
+        every axis x label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every axis y label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every axis z label/.style={at={(ticklabel cs:0.5)},anchor=near ticklabel},
+        every x tick scale label/.style=
+          {at={(xticklabel cs:0.95,5pt)},anchor=near xticklabel,inner sep=0pt},
+        every y tick scale label/.style=
+          {at={(yticklabel cs:0.95,5pt)},anchor=near yticklabel,inner sep=0pt},
+        every z tick scale label/.style=
+          {at={(yticklabel cs:0.95,5pt)},anchor=near yticklabel,inner sep=0pt},
+        every axis title shift=15pt,
+        every axis legend/.style={
+            cells={anchor=center},
+            inner xsep=3pt,inner ysep=2pt,nodes={inner sep=2pt,text depth=0.15em},
+            shape=rectangle,
+            fill=white,
+            draw=black,
+            at={(1.03,1.03)},
+            anchor=north west,
+        },
+        annot/point format 3d/.initial={(\%.2f, \%.2f, \%.2f)},
+    },
+}
+```
 
 
 ---
@@ -1556,7 +3584,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8bb5e1008864`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+dof        l2_err     level
+5          8.312e-02  2
+17         2.547e-02  3
+49         7.407e-03  4
+129        2.102e-03  5
+321        5.874e-04  6
+769        1.623e-04  7
+1793       4.442e-05  8
+4097       1.207e-05  9
+9217       3.261e-06  10
+```
 
 
 ---
@@ -1566,7 +3609,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `cc9809001f23`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+dof        l2_err     level
+7          8.472e-02  2
+31         3.044e-02  3
+111        1.022e-02  4
+351        3.303e-03  5
+1023       1.039e-03  6
+2815       3.196e-04  7
+7423       9.658e-05  8
+18943      2.873e-05  9
+47103      8.437e-06  10
+```
 
 
 ---
@@ -1576,7 +3634,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `246d0b7c5f3b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+dof        l2_err     level
+9          7.881e-02  2
+49         3.243e-02  3
+209        1.232e-02  4
+769        4.454e-03  5
+2561       1.551e-03  6
+7937       5.236e-04  7
+23297      1.723e-04  8
+65537      5.545e-05  9
+178177     1.751e-05  10
+```
 
 
 ---
@@ -1586,7 +3659,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f98c270e8a35`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    x coord trafo/.code={},
+    x coord inv trafo/.code={},
+}
+```
 
 
 ---
@@ -1596,7 +3678,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ff80d91359b5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    xticklabel={\tick},
+    scaled x ticks=false,
+    plot coordinates/math parser=false,
+}
+```
 
 
 ---
@@ -1606,7 +3698,23 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `b75f4ec775f9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+        \pgfplotsset{set layers}
+    \begin{axis}
+        ...
+    \end{axis}
+
+    % perhaps a second axis which should use the same layers?
+    \begin{axis}
+        ...
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1616,7 +3724,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `63a635eb6860`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+        \pgfplotsset{set layers=default}
+    \begin{axis}
+        ...
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1626,7 +3745,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `691bf0ee8a50`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[set layers]
+        ...
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1636,7 +3765,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c5488d970f1f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    {% FORBIDDEN! Consider using case (1) above!
+        \begin{axis}[set layers]
+            ...
+        \end{axis}
+    }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1646,7 +3787,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `27bfd0e27fc0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{scope} % FORBIDDEN! Consider using case (1) above!
+        \begin{axis}[set layers]
+            ...
+        \end{axis}
+    \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1656,7 +3809,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `7f1125fbdc5f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{set layers=default}
+\begin{tikzpicture}
+    \begin{axis}
+        ...
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1666,7 +3830,29 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `aee6b2f5822f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    layers/standard/.define layer set={
+        axis background,axis grid,axis ticks,axis lines,axis tick labels,
+        pre main,main,axis descriptions,axis foreground
+    }{
+        grid style=         {/pgfplots/on layer=axis grid},
+        tick style=         {/pgfplots/on layer=axis ticks},
+        axis line style=    {/pgfplots/on layer=axis lines},
+        label style=        {/pgfplots/on layer=axis descriptions},
+        legend style=       {/pgfplots/on layer=axis descriptions},
+        title style=        {/pgfplots/on layer=axis descriptions},
+        colorbar style=     {/pgfplots/on layer=axis descriptions},
+        ticklabel style=    {/pgfplots/on layer=axis tick labels},
+        axis background@ style={/pgfplots/on layer=axis background},
+        3d box foreground style={/pgfplots/on layer=axis foreground},
+    },
+}
+```
 
 
 ---
@@ -1676,7 +3862,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `558081d2f3a0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/layers/axis on top/.define layer set={
+        axis background,pre main,main,axis grid,axis ticks,axis lines,
+        axis tick labels,axis descriptions,axis foreground
+    }{/pgfplots/layers/standard},
+}
+```
 
 
 ---
@@ -1686,7 +3883,15 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `723a76b1ae3e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+...
+\begin{axis}[set layers,grid style={/pgfplots/on layer=axis foreground}]
+...
+```
 
 
 ---
@@ -1696,7 +3901,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `1a263b2392c6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+...
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1706,7 +3921,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c523d9cc5cb2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogxaxis}
+...
+\end{semilogxaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1716,7 +3941,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `cecc81992c22`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\starttikzpicture
+\startaxis
+...
+\stopaxis
+\stoptikzpicture
+```
 
 
 ---
@@ -1726,7 +3961,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `901af3cab7c1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\starttikzpicture
+\startsemilogxaxis
+...
+\stopsemilogxaxis
+\stoptikzpicture
+```
 
 
 ---
@@ -1736,7 +3981,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `ed02fb38407f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+doc/context/pgfplots/pgfplotsexample.tex.
+```
 
 
 ---
@@ -1746,7 +3997,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `86b064774f36`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzpicture
+\axis
+...
+\endaxis
+\endtikzpicture
+```
 
 
 ---
@@ -1756,7 +4017,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `7faab46f16cd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzpicture
+\semilogxaxis
+...
+\endsemilogxaxis
+\endtikzpicture
+```
 
 
 ---
@@ -1766,7 +4037,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `26b8d846769f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+doc/plain/pgfplots/pgfplotsexample.tex.
+```
 
 
 ---
@@ -1776,7 +4053,34 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `69bbcfb44aba`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+x_0	f(x)
+# some comment line
+3.16693000e-05	-4.00001451e+00
+1.00816962e-03	-3.08781504e+00
+1.98466995e-03	-2.88058811e+00
+2.96117027e-03	-2.75205040e+00
+3.93767059e-03	-2.65736805e+00
+4.91417091e-03	-2.58181091e+00
+5.89067124e-03	-2.51862689e+00
+...
+9.89226496e-01	2.29825980e+00
+9.90202997e-01	2.33403276e+00
+9.91179497e-01	2.37306821e+00
+9.92155997e-01	2.41609413e+00
+9.93132498e-01	2.46412019e+00
+9.94108998e-01	2.51860712e+00
+9.95085498e-01	2.58178769e+00
+9.96061999e-01	2.65733975e+00
+9.97038499e-01	2.75201383e+00
+9.98014999e-01	2.88053559e+00
+9.98991500e-01	3.08771757e+00
+9.99968000e-01	3.99755546e+00
+```
 
 
 ---
@@ -1786,7 +4090,17 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `eab109d344e0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\includegraphics{image1}%
+%
+\hskip 10pt % insert a non-breaking space of specified width.
+%
+\includegraphics{image2}
+```
 
 
 ---
@@ -1796,7 +4110,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `0304a5c9e683`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+...
+\begin{document}
+...
+\end{document}
+```
 
 
 ---
@@ -1806,7 +4132,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `009a13faa845`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pdflatex -shell-escape myfile.tex
+```
 
 
 ---
@@ -1816,7 +4148,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d8a59abf2b25`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/xbar/.style={
+        /tikz/xbar,
+        bar cycle list,
+        tick align=outside,
+        xbar legend,
+        /pgfplots/bar shift auto={#1},
+    },
+}
+```
 
 
 ---
@@ -1826,7 +4172,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `2f1d4ee6bdd9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/bar shift auto/.style={
+        /pgf/bar shift={%
+            % total width = n*w + (n-1)*skip
+            % -> subtract half for centering
+            -0.5*(\numplotsofactualtype*\pgfplotbarwidth + (\numplotsofactualtype-1)*(#1)) +
+            % the '0.5*w' is for centering
+            (.5+\plotnumofactualtype)*\pgfplotbarwidth + \plotnumofactualtype*(#1)},
+    },
+}
+```
 
 
 ---
@@ -1836,7 +4197,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `c502ab69003a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/bar cycle list/.style={/pgfplots/cycle list={
+            {blue,fill=blue!30!white,mark=none},
+            {red,fill=red!30!white,mark=none},
+            {brown!60!black,fill=brown!30!white,mark=none},
+            {black,fill=gray,mark=none},
+        },
+    },
+}
+```
 
 
 ---
@@ -1846,7 +4221,19 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `95d66a0c7270`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/area style/.style={
+        area cycle list,
+        area legend,
+        axis on top,
+    },
+}
+```
 
 
 ---
@@ -1856,7 +4243,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8c423c809fff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
+\pgfplotstabletypeset\loadedtable
+```
 
 
 ---
@@ -1866,7 +4260,22 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `71efd75984ad`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+%\pgfplotsset{
+%    % initialize Set1-5:
+%    cycle list/Set1-5,
+%    % combine it with 'mark list*':
+%    cycle multiindex* list={
+%        mark list*\nextlist
+%        Set1-5\nextlist
+%    },
+%}
+%
+```
 
 
 ---
@@ -1876,7 +4285,14 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `8e978c5eecc9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[new axis base=my axis,
+ my axis={attribute=some attribute}]
+```
 
 
 ---
@@ -1886,7 +4302,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `bb7191e7e374`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[new axis base=x axis,
+   new axis base=y axis,
+   x axis={attribute=x},
+   y axis={attribute=y}]
+```
 
 
 ---
@@ -1896,7 +4321,16 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `da70a21ffeb9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[new axis base=x axis,
+   new axis base=y axis,
+   x axis={attribute=time},
+   y axis={attribute=height}]
+```
 
 
 ---
@@ -1906,7 +4340,24 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `f1009d8f1051`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [scientific axes,
+                          x axis={attribute=people, length=2.5cm, ticks=few},
+                          y axis={attribute=year},
+                          visualize as scatter]
+  data {
+    year, people
+    1900, 100
+    1910, 200
+    1950, 200
+    1960, 250
+    2000, 150
+  };
+```
 
 
 ---
@@ -1916,7 +4367,18 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `a9008758eeb6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [scientific axes, all axes={length=3cm},
+                          visualize as line]
+  data [format=function] {
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  };
+```
 
 
 ---
@@ -1926,7 +4388,20 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `880e92105efd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [scientific axes, all axes={length=3cm},
+                          visualize as line,
+                          x axis={include value=20},
+                          y axis={include value=0}]
+  data [format=function] {
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  };
+```
 
 
 ---
@@ -1936,7 +4411,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `21ad679a57ea`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[y axis = {scaling = 1900 at 0cm and 2000 at 5cm}]
+```
 
 
 ---
@@ -1946,7 +4427,25 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `d8424ef1cc73`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+   [scientific axes,
+    x axis={attribute=people, length=2.5cm, ticks=few},
+    y axis={attribute=year, scaling=1900 at 0cm and 2000 at 5cm},
+    visualize as scatter]
+  data {
+    year, people
+    1900, 100
+    1910, 200
+    1950, 200
+    1960, 250
+    2000, 150
+  };
+```
 
 
 ---
@@ -1956,7 +4455,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4c31b0faa738`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+scaling = min at 0cm and max at 5cm
+```
 
 
 ---
@@ -1966,7 +4471,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `4e039618e8ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[x axis = {attribute = x, scaling=1000 at 20 and 2000 at 30}]
+```
 
 
 ---
@@ -1976,7 +4487,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3e475c22abf4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[x axis = {attribute = x, scaling=1 at 0cm and 1000 at 3cm}]
+```
 
 
 ---
@@ -1986,7 +4503,13 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `58bb5304fafa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
+```
 
 
 ---
@@ -1996,7 +4519,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `43ed75e95c5e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+   [scientific axes,
+    x axis={ticks={major={at={1,10,100,1000}}},
+             scaling=1 at 0cm and 1000 at 3cm,
+             function=\pgfdvmathln{\pgfvalue}{\pgfvalue}},
+    visualize as scatter]
+  data [format=named] {
+    x={1,100,...,1000}, y={1,2,3}
+  };
+```
 
 
 ---
@@ -2006,7 +4543,21 @@ Showing items **401-600** of **3242** | Page **3** of **17**
 **ID**: `3994b4aa52a1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+   [scientific axes,
+    x axis={ticks=few,
+            scaling=1 at 0cm and 1000 at 3cm,
+            function=\pgfdvmathunaryop{\pgfvalue}{sqrt}{\pgfvalue}},
+    visualize as scatter]
+  data [format=named] {
+    x={0,100,...,1000}, y={1,2,3}
+  };
+```
 
 
 ---

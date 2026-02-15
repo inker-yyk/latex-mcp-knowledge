@@ -17,6 +17,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+code} Defines a new marker named plot mark name. Whenever it is used, code will be invoked. It is supposed to contain (preferable basic level) drawing commands. During code, the coordinate system's origin denotes the coordinate where the marker shall be placed. Please refer to~tikz section ``Mark Plot Handler'' for more detailed information.
+
 
 ---
 
@@ -25,6 +29,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `9b5df196200f`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+right end size macro} A command which converts a colormap into a shading's color specification. It can be used in commands like |...shading| (see the manual~tikz for details). The first argument is the name of a (defined) colormap, the second the rightmost dimension of the specification. The result will be stored in macro. codeexample[] hot{8cm} {tempshading{1cm}} tempshading codeexample The usage of the result macro is a little bit low-level. Attention: shadings are always represented with resp
 
 
 ---
@@ -35,6 +43,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} A command which draws a |tikzpicture| and a |colorbar| using the current colorbar settings inside of it. Its purpose is to simplify the documentation. Since this |colorbar| is a ``standalone'' picture, it defines the following options codeexample[code only] point meta min=0, point meta max=1000, parent axis width/.initial=6cm, parent axis height/.initial=6cm, codeexample before it evaluates options and draws the colorbar.
+
 
 ---
 
@@ -43,6 +55,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `55afbeccc22d`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+colormap nameoutput file} Allows to export |colormap| data to a file. codeexample[] tikzpicture axis[y=1cm,table/col sep=comma] hot{hot.dat} [red,mark=|] table[y index=1] {hot.dat}; [green,mark=|] table[y index=2] {hot.dat}; [blue,mark=|] table[y index=3] {hot.dat}; axis tikzpicture codeexample codeexample[] tikzpicture axis[y=1cm,table/col sep=comma] viridis{viridis.dat} [red] table[y index=1] {viridis.dat}; [green] table[y index=2] {viridis.dat}; [blue] table[y index=3] {viridis.dat}; axis tik
 
 
 ---
@@ -53,6 +69,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} Expands to the number of colors which make up colormap name. If the argument colormap name is an unknown colormap, it expands to $0$.
+
 
 ---
 
@@ -61,6 +81,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `29577bda383d`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} Expands to the last index of colormap name, i.e.\@ it is a convenience method to access $N-1$. If the argument colormap name is an unknown colormap, it expands to $-1$.
 
 
 ---
@@ -71,6 +95,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+Expands to |||/pgfplots/mark list fill|||.
+
 
 ---
 
@@ -80,6 +108,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+list}
+
 
 ---
 
@@ -88,77 +120,210 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `55dd8d997f8f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw [
+    gray,
+    thin,
+    mark options={
+        scale=2,fill=yellow!80!black,draw=black,
+    },
+]
+```
 
 
 ---
 
-## 10. Other Example
+## 10. Line Chart Example
 
 **ID**: `ba97bb524c11`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+    \addplot coordinates
+        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 11. Other Example
+## 11. Line Chart Example
 
 **ID**: `a97117d372e7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\tikzset{every mark/.append style={scale=2}}
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+    \addplot coordinates
+        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 12. Other Example
+## 12. Line Chart Example
 
 **ID**: `04bd57a1b245`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+  \addplot+ [
+    mark=halfcircle*,
+    every mark/.append style={rotate=90}]
+  coordinates
+    {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
+
+  \addplot+ [
+    mark=halfcircle*,
+    every mark/.append style={rotate=180}]
+  coordinates
+    {(-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 13. Other Example
+## 13. Scatter Plot Example
 
 **ID**: `8f9cbf59b4e8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+    \addplot+ [
+        mark=ball,
+        mark size=4pt,
+        scatter,% enable scatter
+        scatter src=rand,% the "color data"
+        % configure individual appearances:
+        scatter/use mapped color=
+            {ball color=mapped color}]
+    coordinates
+        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 14. Other Example
+## 14. Scatter Plot Example
 
 **ID**: `63aba7a0f927`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[tiny]
+        \addplot+ [scatter] {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis}[tiny]
+        \addplot+ [scatter,
+            mark repeat=3,mark phase=2]
+                {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 15. Other Example
+## 15. Line Chart Example
 
 **ID**: `c36ef6713ca0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=2cm]
+    \addplot [
+        blue,
+        mark color=blue!50!white,
+        mark=halfcircle*
+    ] coordinates {
+        (-2,0) (-1,1) (0,0) (1,1) (2,0)
+    };
+    \addplot [
+        red,
+        mark color=red!50!white,
+        mark=halfsquare*,
+    ] coordinates {
+        (-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 16. Other Example
+## 16. Line Chart Example
 
 **ID**: `4dec8ec2bb35`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% Overwrite any cycle list:
+\pgfplotsset{
+    every axis plot post/.append style={
+        mark=triangle,
+        every mark/.append style={rotate=90},
+    },
+}
+\begin{tikzpicture}
+    \begin{axis}[y=2cm]
+        \addplot coordinates {
+            (-2,0) (-1,1) (0,0) (1,1) (2,0)
+        };
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -168,17 +333,51 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `579a7cfd4c60`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every mark/.append style={solid},
+}
+```
 
 
 ---
 
-## 18. Other Example
+## 18. Line Chart Example
 
 **ID**: `fd52bc4d1dd6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% requires \usetikzlibrary{spy}
+\begin{tikzpicture}[spy using outlines=
+    {circle, magnification=6, connect spies}]
+\begin{axis}[no markers,grid=major,
+    every axis plot post/.append style={thick}]
+\addplot  coordinates
+ {(0, 0) (0, 0.9) (1, 0.9) (2, 1) (3, 0.9) (80, 0)};
+\addplot+ [line join=round] coordinates
+ {(0, 0) (0, 0.9) (2, 0.9) (3, 1) (4, 0.9) (80, 0)};
+\addplot+ [line join=bevel] coordinates
+ {(0, 0) (0, 0.9) (3, 0.9) (4, 1) (5, 0.9) (80, 0)};
+\addplot+ [miter limit=5] coordinates
+ {(0, 0) (0, 0.9) (4, 0.9) (5, 1) (6, 0.9) (80, 0)};
+
+    \coordinate (spypoint)     at (3,1);
+    \coordinate (magnifyglass) at (60,0.7);
+\end{axis}
+
+\spy [blue, size=2.5cm] on (spypoint)
+    in node[fill=white] at (magnifyglass);
+\end{tikzpicture}
+```
 
 
 ---
@@ -188,7 +387,17 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `b28bde0f474f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    tick label style={font=\small},
+    label style={font=\small},
+    legend style={font=\footnotesize},
+}
+```
 
 
 ---
@@ -198,7 +407,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `54dedbffc329`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={line width=1pt}}
+```
 
 
 ---
@@ -208,7 +423,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `69de82148153`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={thick}}
+```
 
 
 ---
@@ -218,7 +439,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `9aa97654ad10`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={
+    line width=1pt,
+    tick style={line width=0.6pt}}}
+```
 
 
 ---
@@ -228,17 +457,72 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `85805abed3c8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={
+    thick,
+    tick style={semithick}}}
+```
 
 
 ---
 
-## 24. Other Example
+## 24. Line Chart Example
 
 **ID**: `da60360cf798`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={
+    font=\large,
+    line width=1pt,
+    tick style={line width=0.8pt}}}
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    legend pos=south west,
+    xlabel=\textsc{Dof},
+    ylabel=$L_2$ Error
+]
+\addplot coordinates {
+    (5,8.312e-02)    (17,2.547e-02)   (49,7.407e-03)
+    (129,2.102e-03)  (321,5.874e-04)  (769,1.623e-04)
+    (1793,4.442e-05) (4097,1.207e-05) (9217,3.261e-06)
+};
+
+\addplot coordinates{
+    (7,8.472e-02)    (31,3.044e-02)   (111,1.022e-02)
+    (351,3.303e-03)  (1023,1.039e-03) (2815,3.196e-04)
+    (7423,9.658e-05) (18943,2.873e-05)
+    (47103,8.437e-06)};
+
+\addplot coordinates{
+    (9,7.881e-02)     (49,3.243e-02)   (209,1.232e-02)
+    (769,4.454e-03)   (2561,1.551e-03)
+    (7937,5.236e-04)  (23297,1.723e-04)
+    (65537,5.545e-05) (178177,1.751e-05)};
+
+\addplot coordinates{
+    (11,6.887e-02)    (71,3.177e-02)   (351,1.341e-02)
+    (1471,5.334e-03)  (5503,2.027e-03)
+    (18943,7.415e-04) (61183,2.628e-04)
+    (187903,9.063e-05) (553983,3.053e-05)};
+
+\addplot coordinates{
+    (13,5.755e-02)    (97,2.925e-02)   (545,1.351e-02)
+    (2561,5.842e-03)  (10625,2.397e-03)
+    (40193,9.414e-04) (141569,3.564e-04)
+    (471041,1.308e-04) (1496065,4.670e-05)};
+\legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -248,17 +532,50 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `51557aa80f4f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={
+    font=\footnotesize,
+    thin,
+    tick style={ultra thin}},
+}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        xlabel=\textsc{Dof},
+        ylabel=$L_2$ Error
+    ]
+        % see above for this macro:
+        \plotcoords
+        \legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
+    \end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 26. Other Example
+## 26. Line Chart Example
 
 **ID**: `55830b7f899c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[enlarge x limits=false]
+    \addplot [red,samples=500] {sin(deg(x))};
+    \addplot [orange,samples=7] {sin(deg(x))};
+    \addplot [teal,const plot,samples=14]
+        {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -268,7 +585,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0d580473648a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\definecolor{color1}{rgb}{1,1,0}
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+```
 
 
 ---
@@ -278,7 +603,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d15048ce380f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\definecolor{color1}{cmyk}{0.6,0.9,0.5,0.1}
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+```
 
 
 ---
@@ -288,7 +621,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `9067cae6f317`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\definecolor{color1}{HTML}{D0B22B}
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+```
 
 
 ---
@@ -298,7 +639,14 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0ec05f702d69`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepackage[cmyk]{xcolor}
+\usepackage{pgfplots}
+```
 
 
 ---
@@ -308,7 +656,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `09e5b31fea70`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\selectcolormodel{cmyk}
+```
 
 
 ---
@@ -318,7 +672,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `a34fac896546`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{colormap={CM}{rgb=(0,0,1) color=(black) rgb255=(238,140,238)}}
+```
 
 
 ---
@@ -328,17 +688,43 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `f5a6ebd8669c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{colormap={CM}{rgb(-500)=(0,0,1) color(0)=(black) rgb255(1500)=(238,140,238)}}
+```
 
 
 ---
 
-## 34. Other Example
+## 34. Scatter Plot Example
 
 **ID**: `1bdd2dbf43f9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap={bw}{
+        gray(0cm)=(0);
+        gray(1cm)=(1);
+    },
+]
+    \addplot+ [
+        scatter,
+        only marks,
+        domain=0:8,
+        samples=100,
+    ] {exp(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -348,7 +734,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `456c4ce5ae3a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% non-uniform spacing example: the mesh width is provided as first
+% part of the specification.
+\pgfplotsset{colormap={violetnew}
+    {[1cm] rgb255(0cm)=(25,25,122) color(1cm)=(white) rgb255(5cm)=(238,140,238)}}
+```
 
 
 ---
@@ -358,7 +753,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `18a86246488a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepackage[cmyk]{xcolor}
+```
 
 
 ---
@@ -368,7 +769,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `07051d792b23`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\selectcolormodel{cmyk}
+```
 
 
 ---
@@ -378,7 +785,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `99431eca46b1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap name=viridis,
+}
+```
 
 
 ---
@@ -388,7 +803,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `47941904168b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={hot}{color(0cm)=(blue); color(1cm)=(yellow); color(2cm)=(orange); color(3cm)=(red)}
+}
+```
 
 
 ---
@@ -398,7 +821,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `3b532ae28179`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/colormap={hot2}{[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
+        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)}
+}
+```
 
 
 ---
@@ -408,7 +840,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `39f1c760a566`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    /pgfplots/colormap={jet}{rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
+        rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0) rgb255(8cm)=(128,0,0)}
+}
+```
 
 
 ---
@@ -418,7 +859,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `df307cb4b3d5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={blackwhite}{gray(0cm)=(0); gray(1cm)=(1)}
+}
+```
 
 
 ---
@@ -428,17 +877,39 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `7ca0509c4251`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={bluered}{
+        rgb255(0cm)=(0,0,180); rgb255(1cm)=(0,255,255); rgb255(2cm)=(100,255,0);
+        rgb255(3cm)=(255,255,0); rgb255(4cm)=(255,0,0); rgb255(5cm)=(128,0,0)}
+}
+```
 
 
 ---
 
-## 44. Other Example
+## 44. Scatter Plot Example
 
 **ID**: `df0804c4c88f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[colormap/bluered]
+    \addplot+ [scatter,
+         scatter src=x,samples=50]
+        {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -448,7 +919,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `bcf7d43f53d3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={cool}{rgb255(0cm)=(255,255,255); rgb255(1cm)=(0,128,255); rgb255(2cm)=(255,0,255)}
+}
+```
 
 
 ---
@@ -458,7 +937,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `4fec80f79a3e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={greenyellow}{rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)}
+}
+```
 
 
 ---
@@ -468,7 +955,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e9fc993a6143`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={redyellow}{rgb255(0cm)=(255,0,0); rgb255(1cm)=(255,255,0)}
+}
+```
 
 
 ---
@@ -478,7 +973,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `188101495bcb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colormap={violet}{rgb255=(25,25,122) color=(white) rgb255=(238,140,238)}
+}
+```
 
 
 ---
@@ -488,7 +991,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `b22b98a352d0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% convert `hot' -> \result
+    \pgfplotscolormaptoshadingspec{hot}{8cm}\result
+    % define and use a shading in pgf:
+    \def\tempb{\pgfdeclarehorizontalshading{tempshading}{1cm}}%
+    % where `\result' is inserted as last argument:
+    \expandafter\tempb\expandafter{\result}%
+    \pgfuseshading{tempshading}%
+```
 
 
 ---
@@ -498,27 +1013,62 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `624b085768d3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+point meta min=0,
+    point meta max=1000,
+    parent axis width/.initial=6cm,
+    parent axis height/.initial=6cm,
+```
 
 
 ---
 
-## 51. Other Example
+## 51. Line Chart Example
 
 **ID**: `6deaa7412dc1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm,table/col sep=comma]
+        \pgfplotscolormaptodatafile{hot}{hot.dat}
+    \addplot[red,mark=|]   table[y index=1] {hot.dat};
+    \addplot[green,mark=|] table[y index=2] {hot.dat};
+    \addplot[blue,mark=|]  table[y index=3] {hot.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 52. Other Example
+## 52. Line Chart Example
 
 **ID**: `8f95bfb98719`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm,table/col sep=comma]
+    \pgfplotscolormaptodatafile{viridis}{viridis.dat}
+    \addplot[red]   table[y index=1] {viridis.dat};
+    \addplot[green] table[y index=2] {viridis.dat};
+    \addplot[blue]  table[y index=3] {viridis.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -528,7 +1078,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `82324f105d0b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap=(4 of viridis)
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -538,7 +1100,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `bf7df3ce31ac`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap=(4 of viridis)
+    },
+    colorbar horizontal,
+    colormap access=map,
+]
+```
 
 
 ---
@@ -548,7 +1122,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `b6d7e976fe34`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap=(4)
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -558,7 +1144,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `c8bf354e090a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap=(4)
+    },
+    colorbar horizontal,
+    colormap access=map,
+]
+```
 
 
 ---
@@ -568,7 +1166,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `9313005727a6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap={
+            5 of viridis,
+            target pos={0,800,850,950,1000},
+        }
+    },
+    colorbar horizontal,
+    colormap access=map,
+]
+```
 
 
 ---
@@ -578,7 +1191,25 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `90630d416574`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        % simpler alternative:
+        % of colormap={viridis,target pos={...}}
+        samples of colormap={
+            5 of viridis,
+            target pos={0,400,500,700,800,1000},
+            sample for=const,
+        }
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -588,7 +1219,23 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `8ac34bb8d550`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,400,500,700,800,1000},
+            sample for=const,
+        }
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -598,7 +1245,20 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `616843bf348f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        color=(green),
+        index of colormap=(2 of viridis)
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -608,7 +1268,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `9912d524162e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+ colormap={example}{color=(red) color=(blue)}}
+\tikz \draw[index of colormap=0 of example] (0,0) -- (1,0);
+```
 
 
 ---
@@ -618,7 +1286,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e490d4e8a8a8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+ colormap={example}{color=(red) color=(blue)}}
+\tikz \fill[index of colormap=1 of example] (0,0) rectangle (1,1);
+```
 
 
 ---
@@ -628,7 +1304,17 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e45c931b87d3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+ colormap={example}{color=(red) color=(blue)}}
+\tikz \shade[
+    index of colormap=0 of example,left color=.,
+    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
+```
 
 
 ---
@@ -638,7 +1324,21 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `a559d6e9bb91`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        indices of colormap=(0,5,10,12,
+          \pgfplotscolormaplastindexof{viridis}
+          of viridis)
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -648,7 +1348,17 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `79bce6878837`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+ colormap={example}{color=(red) color=(blue)}}
+\tikz \shade[
+    color of colormap=250 of example,left color=.,
+    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
+```
 
 
 ---
@@ -658,7 +1368,20 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `3acd91915a21`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+      colors of colormap=(0,400,800,900,
+          1000 of viridis)
+    },
+    colorbar horizontal,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -668,7 +1391,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `bf56e79b2b33`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,400,500,700,800,1000},
+        },
+    },
+    colorbar horizontal,
+    colormap access=map,
+]
+```
 
 
 ---
@@ -678,7 +1416,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `690d5e803767`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,400,500,700,800,1000},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -688,7 +1441,21 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `267df6fd15bd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={viridis,
+            target pos={-10,-3,0,1,2},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -698,7 +1465,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `c1532d651e21`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={viridis,
+            target pos={-10,-3,0,1,2},
+            sample for=const,
+        },
+    },
+    point meta min=-10,point meta max=2,
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -708,7 +1490,23 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `1bc9c3c1b009`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={viridis,
+            target pos={-10,-3,0,1,2},
+            sample for=const,
+        },
+    },
+    point meta min=-10,point meta max=2,
+    colorbar horizontal,
+    colorbar style={xtick=data},
+    colormap access=const]
+```
 
 
 ---
@@ -718,7 +1516,18 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d831f562b3ff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={viridis},
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -728,7 +1537,20 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `532ae57f048d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap={
+            5 of viridis,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -738,7 +1560,21 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `528d62017903`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,500,850,950,1000},
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -748,7 +1584,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `2fa5c8a07078`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap={
+            5 of viridis,
+            target pos={0,500,850,950,1000},
+        },
+    },
+    colormap access/extra interval width=h,
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -758,7 +1609,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `cad25f9f949e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,500,850,950,1000},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -768,7 +1634,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0e61089cfa57`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        of colormap={
+            viridis,
+            target pos={0,500,850,950,1000},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=map]
+```
 
 
 ---
@@ -778,7 +1659,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e860d31b1be8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        samples of colormap={
+            5 of viridis,
+            target pos={0,100,500,850,950,1000},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -788,7 +1684,21 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `92031b7849ee`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        colors of colormap={
+            -30000,-10000,0,100000,110000 of viridis,
+            source range=-30000:120000,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -798,7 +1708,34 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `32689f07cd67`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    point meta min=-7046,
+    point meta max=2895,
+    colormap={whiteblue}{color=(blue) color=(white)},
+    colormap={gb}{color=(green) color=(yellow)
+        color=(brown)},
+    colormap={CM}{
+        of colormap={
+            whiteblue,
+            target pos={-7046,-6000,-5000,-3000,
+                -1000,-750,-500,-250,-100,-50,0},
+            sample for=const,
+        },
+        of colormap={
+            gb,
+            target pos={10,100,200,500,1000,1100,
+                1200,1500,2000,2895},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const]
+```
 
 
 ---
@@ -808,7 +1745,46 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `93cc2f5ccd44`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    of colormap/ocean height/.style={
+        target pos={-12000,-10000,-6000,-5000,-3000,
+            -1000,-750,-500,-250,-100,-50,0,10,100,
+            200,500,1000,1100,1200,1500,2000,4000,
+            6000,8000},
+    },
+}
+\pgfplotscolorbardrawstandalone[
+  point meta min=-7046,
+  point meta max=2895,
+  colormap={whiteblue}{color=(blue) color=(white)},
+  colormap={gb}{color=(green) color=(yellow)
+      color=(brown)},
+  colormap={CM}{
+      of colormap={
+        whiteblue,
+        ocean height,
+        target pos min*=
+          \pgfkeysvalueof{/pgfplots/point meta min},
+        target pos max=0,
+        sample for=const,
+      },
+      of colormap={
+        gb,
+        ocean height,
+        target pos min=0.1,
+        target pos max*=
+          \pgfkeysvalueof{/pgfplots/point meta max},
+        sample for=const,
+      },
+  },
+  colorbar horizontal,
+  colormap access=const]
+```
 
 
 ---
@@ -818,17 +1794,69 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `66da4739a551`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+...
+target pos={-7046,-6000,-5000,-3000,-1000,-750,-500,-250,-100,-50,0}
+...
+target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
+```
 
 
 ---
 
-## 83. Other Example
+## 83. 3D Plot Example
 
 **ID**: `fe32c9fdd709`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\pgfplotsset{
+  colormap={whiteblue}{color=(blue) color=(white)},
+  colormap={gb}{color=(green) color=(yellow)
+      color=(brown)},
+  of colormap/ocean height/.style={
+      target pos={-12000,-10000,-6000,-5000,-3000,
+          -1000,-750,-500,-250,-100,-50,0,10,100,
+          200,500,1000,1100,1200,1500,2000,4000,
+          6000,8000},
+  },
+  colormap={CM}{
+      of colormap={
+          whiteblue,
+          ocean height,
+          target pos max=0,
+          sample for=const,
+      },
+      of colormap={
+          gb,
+          ocean height,
+          target pos min=0.1,
+          sample for=const,
+      },
+  },
+}
+\begin{tikzpicture}
+\begin{axis}[small,colorbar]
+    \addplot3[surf] {x*y};
+\end{axis}
+\end{tikzpicture}
+~
+\begin{tikzpicture}
+\begin{axis}[small,colorbar,
+    colorbar style={colormap access=const}
+]
+    \addplot3[surf,shader=interp,colormap access=const] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -838,7 +1866,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `378add6820a9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+  colormap={example}{color=(red) color=(blue) color=(yellow)}}
+\tikz \fill[const color of colormap=50 of example] (0,0) rectangle (1,1);
+\tikz \fill[const color of colormap=750 of example] (0,0) rectangle (1,1);
+```
 
 
 ---
@@ -848,7 +1885,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e4c12621d897`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        color=(blue)
+        color=(red)
+        color=(black)
+    },
+    colorbar horizontal,
+    colorbar style={xtick=data},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -858,7 +1910,22 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `c5a14ad60ac4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        color(0)=(blue)
+        color(500)=(red)
+        color(1000)=(black)
+    },
+    colorbar horizontal,
+    colorbar style={xtick=data},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -868,7 +1935,23 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `ba654f58fce4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={example}{
+        color(0)=(blue)
+        color(500)=(red)
+        color(1000)=(black)
+    },
+    colorbar horizontal,
+    colorbar style={xtick=data},
+    colormap access/extra interval width=h,
+    colormap access=const,
+]
+```
 
 
 ---
@@ -878,7 +1961,25 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `a723e20acc27`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={nonuniform}{
+        of colormap={
+            viridis,
+            target pos={0,200,300,500,700,1000}
+        },
+    },
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style={xtick=data,font=\tiny,
+        /pgf/number format/precision=0},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -888,7 +1989,26 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d1875431923f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={nonuniform}{
+        of colormap={
+            viridis,
+            target pos={0,200,300,500,700,1000}
+        },
+    },
+    colorbar horizontal,
+    colormap access=const,
+    colormap access/extra interval width=h,
+    colorbar style={xtick=data,font=\tiny,
+        /pgf/number format/precision=0},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -898,7 +2018,26 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `c06ec9558158`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={nonuniform}{
+        of colormap={
+            viridis,
+            target pos={0,200,300,500,700,1000},
+            sample for=const,
+        },
+    },
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style={xtick=data,font=\tiny,
+        /pgf/number format/precision=0},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -908,7 +2047,26 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `eb82d7a5011c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscolorbardrawstandalone[
+    colormap={nonuniform}{
+        of colormap={
+            viridis,
+            target pos={0,200,300,500,700,1000}
+        },
+        color(1100)=(red)
+    },
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style={xtick=data,font=\tiny,
+        /pgf/number format/precision=0},
+    colormap access=const,
+]
+```
 
 
 ---
@@ -918,7 +2076,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `6a58c4d884de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz\fill [color of colormap={800}, thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+```
 
 
 ---
@@ -928,7 +2094,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0d8084385790`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{colormap name=viridis}
+\tikz\fill [color of colormap={1000},thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+```
 
 
 ---
@@ -938,7 +2113,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `cd8ee0732fde`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz\fill [color of colormap={300 of viridis},thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+```
 
 
 ---
@@ -948,7 +2131,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `c110146dc0e6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz\fill [color of colormap={300 of colormap/cool},
+    thick,draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+```
 
 
 ---
@@ -958,87 +2149,302 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0a39d9739238`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{colormap/jet}
+\foreach \i in {
+    0,...,\pgfplotscolormaplastindexof{jet}
+}{
+    \tikz\fill [
+        index of colormap={\i of jet},
+        thick,
+        draw=.!60!black,
+    ] (0,0) rectangle (10pt,6pt);
+}
+```
 
 
 ---
 
-## 97. Other Example
+## 97. Line Chart Example
 
 **ID**: `c834f94b293e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=color,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 98. Other Example
+## 98. Line Chart Example
 
 **ID**: `1643284142c0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=exotic,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 99. Other Example
+## 99. Line Chart Example
 
 **ID**: `913e23e965b4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=black white,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 100. Other Example
+## 100. Line Chart Example
 
 **ID**: `a803c0dab424`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=mark list,
+]
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 101. Other Example
+## 101. Line Chart Example
 
 **ID**: `80feb73b67db`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=mark list*,
+]
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 102. Other Example
+## 102. Line Chart Example
 
 **ID**: `4b64193cb69e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=color list,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 103. Other Example
+## 103. Line Chart Example
 
 **ID**: `f0b01c01b90a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=linestyles,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 104. Other Example
+## 104. Line Chart Example
 
 **ID**: `9a9b78863b08`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,stack dir=minus,
+    cycle list name=linestyles*,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1048,7 +2454,25 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `93f462fb9c92`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{color}{
+    blue,every mark/.append style={fill=blue!80!black},mark=*\\
+    red,every mark/.append style={fill=red!80!black},mark=square*\\
+    brown!60!black,every mark/.append style={fill=brown!80!black},mark=otimes*\\
+    black,mark=star\\
+    blue,every mark/.append style={fill=blue!80!black},mark=diamond*\\
+    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=*\\
+    brown!60!black,densely dashed,every mark/.append style={
+        solid,fill=brown!80!black},mark=square*\\
+    black,densely dashed,every mark/.append style={solid,fill=gray},mark=otimes*\\
+    blue,densely dashed,mark=star,every mark/.append style=solid\\
+    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamond*\\
+}
+```
 
 
 ---
@@ -1058,7 +2482,24 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d60970dd636e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{black white}{
+    every mark/.append style={fill=gray},mark=*\\
+    every mark/.append style={fill=gray},mark=square*\\
+    every mark/.append style={fill=gray},mark=otimes*\\
+    mark=star\\
+    every mark/.append style={fill=gray},mark=diamond*\\
+    densely dashed,every mark/.append style={solid,fill=gray},mark=*\\
+    densely dashed,every mark/.append style={solid,fill=gray},mark=square*\\
+    densely dashed,every mark/.append style={solid,fill=gray},mark=otimes*\\
+    densely dashed,every mark/.append style={solid},mark=star\\
+    densely dashed,every mark/.append style={solid,fill=gray},mark=diamond*\\
+}
+```
 
 
 ---
@@ -1068,7 +2509,25 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `feaaa54b391d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{exotic}{
+    teal,every mark/.append style={fill=teal!80!black},mark=*\\
+    orange,every mark/.append style={fill=orange!80!black},mark=square*\\
+    cyan!60!black,every mark/.append style={fill=cyan!80!black},mark=otimes*\\
+    red!70!white,mark=star\\
+    lime!80!black,every mark/.append style={fill=lime},mark=diamond*\\
+    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=*\\
+    yellow!60!black,densely dashed,
+        every mark/.append style={solid,fill=yellow!80!black},mark=square*\\
+    black,every mark/.append style={solid,fill=gray},mark=otimes*\\
+    blue,densely dashed,mark=star,every mark/.append style=solid\\
+    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamond*\\
+}
+```
 
 
 ---
@@ -1078,7 +2537,25 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `4fff05391a13`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% note that "." is the currently defined Tikz color.
+\pgfplotscreateplotcyclelist{mark list}{
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=square*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=triangle*\\
+    every mark/.append style={solid},mark=star\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=diamond*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill!40},mark=otimes*\\
+    every mark/.append style={solid},mark=|\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=pentagon*\\
+    every mark/.append style={solid},mark=text,text mark=p\\
+    every mark/.append style={solid},mark=text,text mark=a\\
+}
+```
 
 
 ---
@@ -1088,7 +2565,26 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `bdeb97bab8d1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% note that "." is the currently defined Tikz color.
+\pgfplotscreateplotcyclelist{mark list*}{
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=square*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=triangle*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=pentagon*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfcircle*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill,rotate=180},mark=halfdiamond*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill!40},mark=otimes*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=diamond*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare right*\\
+    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare left*\\
+}
+```
 
 
 ---
@@ -1098,7 +2594,15 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `745aded7d56b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{color list}{
+    red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray
+}
+```
 
 
 ---
@@ -1108,7 +2612,14 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `81956e7e1f3b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{linestyles}{solid,dashed,dotted}
+\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed,dotted,dashdotted,dashdotdotted}
+```
 
 
 ---
@@ -1118,7 +2629,28 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `1e522e73e9f3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    cycle list={
+        {blue,mark=*},
+        {red,mark=square},
+        {dashed,mark=o},
+        {loosely dotted,mark=+},
+        {brown!60!black,mark=otimes*,
+            mark options={fill=brown!40},
+        }% <-- don't add a comma here
+    },
+]
+    \plotcoords
+    \legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1128,7 +2660,23 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `af0a01e774df`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{mylist}{
+    {blue,mark=*},
+    {red,mark=square},
+    {dashed,mark=o},
+    {loosely dotted,mark=+},
+    {brown!60!black,mark options={fill=brown!40},mark=otimes*}% <-- don't add a comma here
+}
+...
+\begin{axis}[cycle list name=mylist]
+    ...
+\end{axis}
+```
 
 
 ---
@@ -1138,7 +2686,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `134dbc9f7a7e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotscreateplotcyclelist{mylist}{
+    {blue,mark=*},
+    {red,mark=square},
+    {dashed,mark=o},
+    {loosely dotted,mark=+},
+    {brown!60!black,mark options={fill=brown!40},mark=otimes*}% <-- don't add a comma here
+}
+```
 
 
 ---
@@ -1148,57 +2708,187 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `07df04a8257c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{axis}[
+    cycle list={
+        blue,mark=*\\
+        red,mark=square\\
+        dashed,mark=o\\
+        loosely dotted,mark=+\\
+        brown!60!black,mark options={fill=brown!40},mark=otimes*\\
+    },
+]
+...
+\end{axis}
+```
 
 
 ---
 
-## 116. Other Example
+## 116. Line Chart Example
 
 **ID**: `85542c2b5794`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{cycle list shift=3}
+\addplot ...
+
+    \pgfplotsset{cycle list shift=-1}
+\addplot ...
+```
 
 
 ---
 
-## 117. Other Example
+## 117. Line Chart Example
 
 **ID**: `ccd90cf15863`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap name=hot,colorbar,
+    cycle list={[of colormap]},
+    %
+    cycle from colormap manual style,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 118. Other Example
+## 118. Line Chart Example
 
 **ID**: `0ecf335f83e0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap name=hot,colorbar,
+    cycle list={
+        [colors of colormap={0,100,...,1000}]},
+    %
+    cycle from colormap manual style,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 119. Other Example
+## 119. Line Chart Example
 
 **ID**: `4653e383b13e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap name=viridis,colorbar,
+    cycle list={
+      [indices of colormap={0,4,8,12,17} of viridis]},
+    %
+    cycle from colormap manual style,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 120. Other Example
+## 120. Line Chart Example
 
 **ID**: `5ca6baa022a1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap name=hot,colorbar,
+    cycle multiindex* list={
+        [samples of colormap=11]\nextlist
+        mark list\nextlist
+    },
+    cycle from colormap manual style,
+]
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+    \addplot coordinates {(0,1) (0.5,1) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1208,7 +2898,24 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `4a7b70673363`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    cycle from colormap manual style/.style={
+        x=3cm,y=10pt,ytick=\empty,
+        colorbar style={x=,y=,ytick=\empty},
+        point meta min=0,point meta max=1,
+        stack plots=y,
+        y dir=reverse,colorbar style={y dir=reverse},
+        every axis plot/.style={line width=2pt},
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    },
+}
+```
 
 
 ---
@@ -1218,17 +2925,58 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d1f2e09aad27`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    cycle list/.style={%
+        cycle list/.define={@internal@}{#1},%
+        cycle list name={@internal@}%
+    },
+}
+```
 
 
 ---
 
-## 123. Other Example
+## 123. Line Chart Example
 
 **ID**: `114eb2ea3eb7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        cycle multi list={
+            red,blue\nextlist
+            solid,{dotted,mark options={solid}}\nextlist
+            mark=*,mark=x,mark=o
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1238,157 +2986,528 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `3ea02393b1c6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{axis}[
+    cycle multi list={
+        red\\blue\\\nextlist
+        solid\\dotted,mark options={solid}\\\nextlist
+        mark=*\\mark=x\\mark=o\\
+    },
+]
+```
 
 
 ---
 
-## 125. Other Example
+## 125. Line Chart Example
 
 **ID**: `993dc2d2bd61`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Cycle color between successive plots, then marks},
+        cycle multi list={
+            mark list\nextlist
+            blue,red
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 126. Other Example
+## 126. Line Chart Example
 
 **ID**: `8aaba2a43fea`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Cycle 2 marks between successive plots, then colors},
+        cycle multi list={
+            color list\nextlist
+            [2 of]mark list
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 127. Other Example
+## 127. Line Chart Example
 
 **ID**: `4f0035d85c05`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        cycle multiindex list={
+            red,blue,teal\nextlist
+            solid\\dotted,mark options={solid}\\only marks\\\nextlist
+            mark=*,mark=x,mark=oplus\nextlist
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 128. Other Example
+## 128. Line Chart Example
 
 **ID**: `f19a260ff71c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Same index of each input list},
+        cycle multiindex list={
+            [3 of]mark list\nextlist
+            blue,red\nextlist
+            linestyles\nextlist
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 129. Other Example
+## 129. Line Chart Example
 
 **ID**: `df4ecb2dc630`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Same index of each input list, lists restarted},
+        cycle multiindex* list={
+            [3 of]mark list\nextlist
+            blue,red\nextlist
+            linestyles\nextlist
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 130. Other Example
+## 130. Line Chart Example
 
 **ID**: `dc29474c12fc`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Same index of each input list},
+        cycle multiindex* list={
+            red,blue,teal,brown\nextlist
+            mark=*,mark=square*,mark=triangle*\nextlist
+            dashed,every mark/.append style={
+                solid,draw=.!50!black,fill=.,}\\
+            \nextlist
+        },
+        samples=3,
+        legend entries={0,...,20},
+        legend pos=outer north east,
+    ]
+        \addplot {x};
+        \addplot {x-1};
+        \addplot {x-2};
+        \addplot {x-3};
+        \addplot {x-4};
+        \addplot {x-5};
+        \addplot {x-6};
+        \addplot {x-7};
+        \addplot {x-8};
+        \addplot {x-9};
+        \addplot {x-10};
+        \addplot {x-11};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 131. Other Example
+## 131. 3D Plot Example
 
 **ID**: `25c6fd91f76c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    axis background/.style={fill=blue!10},
+]
+    \addplot3 [
+        surf,
+        y domain=0:1,
+    ]
+        {sin(deg(x)) * y*(1-y)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 132. Other Example
+## 132. Line Chart Example
 
 **ID**: `da2240351051`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}[
+    axis background/.style={
+        shade,top color=gray,bottom color=white,
+    },
+    legend style={fill=white},
+]
+    \addplot {exp(-x)};
+    \addplot {exp(-4*x)};
+
+    \legend{$e^{-x}$,$e^{-4x}$}
+\end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 133. Other Example
+## 133. 3D Plot Example
 
 **ID**: `43d98e6ee694`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[colorbar]
+        \addplot [mesh,point meta=y,thick] {x^2};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 134. Other Example
+## 134. Line Chart Example
 
 **ID**: `3a522c670a46`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% for 'coordinates':
+% provide color data explicitly using [<data>]
+% behind coordinates:
+\addplot+ [point meta=explicit]
+    coordinates {
+        (0,0) [1.0e10]
+        (1,2) [1.1e10]
+        (2,3) [1.2e10]
+        (3,4) [1.3e10]
+        % ...
+    };
+```
 
 
 ---
 
-## 135. Other Example
+## 135. Line Chart Example
 
 **ID**: `44aa5801372e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% for 'table':
+% Assumes a datafile.dat like
+% xcolname  ycolname    colordata
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the file may have more columns.
+\addplot+ [point meta=explicit]
+    table [x=xcolname,y=ycolname,meta=colordata]
+        {datafile.dat};
+% or, equivalently (perhaps a little bit slower):
+\addplot+ [point meta=\thisrow{colordata}]
+    table [x=xcolname,y=ycolname]
+        {datafile.dat};
+```
 
 
 ---
 
-## 136. Other Example
+## 136. Line Chart Example
 
 **ID**: `8cb6b78b6760`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% for 'file':
+% Assumes a datafile.dat like
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the first three columns will be used here as x,y and meta,
+% resp.
+\addplot+ [point meta=explicit]
+    file {datafile.dat};
+```
 
 
 ---
 
-## 137. Other Example
+## 137. Line Chart Example
 
 **ID**: `3c203a71020e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% 'table' using expressions which may depend on all
+% columns:
+% Assumes a datafile.dat like
+% xcolname  ycolname    anything    othercol
+% 0         0           4           15
+% 1         2           5           20
+% 2         2.1         8           30
+% 3         3           42          40
+% ...
+% the file may have more columns.
+\addplot+ [point meta={0.5*(\thisrow{anything} + sqrt(\thisrow{othercol}))}]
+    table [x=xcolname,y=ycolname]
+        {datafile.dat};
+```
 
 
 ---
 
-## 138. Other Example
+## 138. 3D Plot Example
 
 **ID**: `36090f40aaa6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Axis wide color mapping,
+        colorbar,
+        samples=50,point meta rel=axis wide,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] {sin(deg(x))};
+        \addplot [mesh,thick] {3*tanh(x)};
+    \end{axis}
+\end{tikzpicture}
+~
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Per Plot color mapping,
+        colorbar,
+        samples=50,
+        point meta rel=per plot,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] {sin(deg(x))};
+        \addplot [mesh,thick] {3*tanh(x)};
+   \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 139. Other Example
+## 139. Line Chart Example
 
 **ID**: `3033aeaec55b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% requires \usetikzlibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap={brewer}{
+        color=(RdPu-B) color=(RdPu-E)
+        color=(RdPu-G) color=(RdPu-I)
+        color=(RdPu-K)
+    },
+    enlargelimits=false,
+    colorbar as palette,
+]
+    \addplot [
+        matrix plot,
+        nodes near coords,mark=*,
+        point meta=explicit,
+        colormap access=direct,
+    ] coordinates {
+        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [NaN]
+
+        (0,1) [3] (1,1) [4] (2,1) [5] (3,1) [99]
+
+        (0,2) [3.5] (1,2) [-1] (2,2) [2.99] (3,2) [3]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1398,7 +3517,28 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `ddc5b87b0dd0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    colorbar as palette/.style={
+        colorbar sampled={
+            surf,
+            colormap access=direct,
+            shader=flat corner,
+            samples=\pgfplotscolormapsizeof
+            {\pgfkeysvalueof{/pgfplots/colormap name}}+1,
+        },
+        colorbar style={
+            point meta min=0,
+            point meta max=\pgfplotscolormapsizeof
+            {\pgfkeysvalueof{/pgfplots/colormap name}},
+        },
+    },
+}
+```
 
 
 ---
@@ -1408,7 +3548,19 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `349538c36da9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+1 1 194
+1 2 194
+1 3 170
+1 4 193
+1 5 188
+1 6 188
+...
+```
 
 
 ---
@@ -1418,127 +3570,367 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `88c7030612f6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[Z,cm] = imread('legoplane.tiff');
+size(Z)
+[X,Y]=meshgrid(1:size(Z,2), 1:size(Z,1));
+data = [ X(:) Y(:) Z(:) ];
+fid = fopen('legoplane.dat', 'w');
+fprintf(fid, "%d %d %d\n", data');
+fclose(fid);
+fid = fopen('legoplane_cm.tex', 'w');
+fprintf(fid, "\\pgfplotsset{colormap={legoplane palette}{\n");
+fprintf(fid, "rgb=(%f,%f,%f)\n", cm');
+fprintf(fid, "}}\n");
+fclose(fid);
+```
 
 
 ---
 
-## 143. Other Example
+## 143. 3D Plot Example
 
 **ID**: `30264e5649df`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    % load and activate the CM:
+    \input{legoplane_cm.tex}
+\begin{axis}[view={0}{90},axis equal,enlargelimits=false]
+    \addplot3 [
+        matrix plot,
+        colormap access=direct,
+        mesh/rows=128,
+        mesh/ordering=colwise,
+    ] table {legoplane.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 144. Other Example
+## 144. 3D Plot Example
 
 **ID**: `a1c29e158e28`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 145. Other Example
+## 145. 3D Plot Example
 
 **ID**: `df19270d8a02`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+% requires \usepgfplotslibrary{colorbrewer}
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 146. Other Example
+## 146. 3D Plot Example
 
 **ID**: `323f4aa72c56`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    colormap access=piecewise constant,
+    colormap={my sampled version of viridis}{
+        samples of colormap=(10 of viridis)
+    },
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 147. Other Example
+## 147. Line Chart Example
 
 **ID**: `b066429e7fa6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[grid=major]
+    \addplot+ [
+        unbounded coords=jump,
+        x filter/.expression={x+1},
+        y filter/.expression={y==3 ? nan : y},
+    ] table {
+        x   y
+        1   2
+        1.5 2.5
+        2   3
+        2.5 3.5
+        3   4
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 148. Other Example
+## 148. Line Chart Example
 
 **ID**: `86afaf7f012e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+[
+        x filter/.expression={
+            \thisrow{W} == 42 ? 0.2 : x
+        },
+    ] table {
+        x y     W
+        0 0     41
+        0.5 0.5 42
+        1 1     43
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 149. Other Example
+## 149. Line Chart Example
 
 **ID**: `4798f55db1ab`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+[
+        y filter/.append expression={
+            abs(x-1) < 1e-4 ? 1.5 : \pgfmathresult
+        },
+        y filter/.append expression={
+            abs(x-3) < 1e-4 ? NaN : \pgfmathresult
+        },
+    ] table {
+        x y
+        0 0
+        1 1
+        2 2
+        3 3
+        4 4
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 150. Other Example
+## 150. Line Chart Example
 
 **ID**: `bd7a3b03cb77`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    % equivalent to 'x filter/.expression={x+0.5}'
+    x filter/.code={
+        \pgfmathadd{#1}{0.5},
+    },
+]
+    \addplot coordinates {
+        (4,0)
+        (6,1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 151. Other Example
+## 151. Line Chart Example
 
 **ID**: `b932a4378846`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    samples=20,
+    % equivalent to
+    % x filter/.expression={
+    %   \coordindex>4 && \coordindex<11 ? nan : x
+    % },
+    x filter/.code={
+        \ifnum\coordindex>4
+            \ifnum\coordindex<11
+                \def\pgfmathresult{}
+            \fi
+        \fi
+    },
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 152. Other Example
+## 152. Line Chart Example
 
 **ID**: `7ec86a463f03`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}
+    \addplot+ [
+        restrict expr to domain={rawy}{1e0:1.5e1},
+    ] {exp(x)};
+\end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 153. Other Example
+## 153. Line Chart Example
 
 **ID**: `cf80fe504c45`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    samples=20,
+    skip coords between index={5}{11},
+    skip coords between index={15}{18},
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 154. Other Example
+## 154. Line Chart Example
 
 **ID**: `71bf66eaa6ee`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        restrict y to domain=-10:10,
+        samples=1000,
+        % some fine-tuning for the display:
+        width=10cm, height=210pt,
+        xmin=-4.7124, xmax=4.7124,
+        xtick={-4.7124,-1.5708,...,10},
+        xticklabels={$-\frac32 \pi$,$-\pi/2$,$\pi/2$,$\frac32 \pi$},
+        axis x line=center,
+        axis y line=center,
+    ]
+        \addplot [blue] gnuplot [id=tangens,domain=-1.5*pi:1.5*pi] {tan(x)};
+        \legend{$\tan(x)$}
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1548,17 +3940,53 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `294cd8dfcb6f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \pgfplotsset{
+        every axis post/.style={
+            xmin=0,xmax=1,
+        },
+    }
+    \begin{axis}[
+        xmin=-1,xmax=2,
+        ymin=0,ymax=1,
+    ]
+        ...
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 156. Other Example
+## 156. Line Chart Example
 
 **ID**: `355c9e2e09ff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\pgfplotsset{
+    every axis plot post/.append style={mark=none},
+}
+\begin{axis}[
+    legend pos=north west,
+    domain=0:1,
+]
+    \addplot {x^2};
+    \addplot {exp(x)};
+    \legend{$x^2$,$e^x$}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1568,7 +3996,13 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `79e101c3e45b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every axis title/.style={at={(0.5,1)},above,yshift=6pt}}
+```
 
 
 ---
@@ -1578,7 +4012,23 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `6ef654f4633b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every axis legend/.style={
+        cells={anchor=center},
+        inner xsep=3pt,inner ysep=2pt,
+        nodes={inner sep=2pt,text depth=0.15em},
+        anchor=north east,
+        shape=rectangle,
+        fill=white,draw=black,
+        at={(0.98,0.98)},
+    },
+}
+```
 
 
 ---
@@ -1588,7 +4038,30 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `32ba82786395`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every x tick scale label/.style={
+        at={(xticklabel cs:0.9,5pt)},
+        anchor=near xticklabel,
+        inner sep=0pt,
+    },
+    every y tick scale label/.style={
+        at={(yticklabel* cs:1.03,-0.3em)},
+        /pgfplots/near ticklabel align=outside,
+        anchor=near yticklabel opposite,
+        inner sep=0pt,
+    },
+    every z tick scale label/.style={
+        at={(zticklabel* cs:1.2,-0.3em)},
+        anchor=near zticklabel,
+        inner sep=0pt,
+    },
+}
+```
 
 
 ---
@@ -1598,7 +4071,16 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `11fa7f94a4b3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every extra x tick/.style={/pgfplots/log identify minor tick positions=true},
+    every extra y tick/.style={/pgfplots/log identify minor tick positions=true},
+}
+```
 
 
 ---
@@ -1608,17 +4090,54 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `5b503a1364f0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every extra x tick/.append style={grid=major}}
+\pgfplotsset{every extra x tick/.append style={major tick length=0pt}}
+\pgfplotsset{every extra x tick/.append style={/pgf/number format=sci subscript}}
+\pgfplotsset{
+    extra x tick style={
+        grid style={
+            color=red,
+        },
+        tickwidth=3mm,
+        % the initial 'every tick style' defines a 'line width'.
+        % this here redefines it:
+        tick style={
+            line width=2mm,
+        },
+    },
+}
+```
 
 
 ---
 
-## 162. Other Example
+## 162. Line Chart Example
 
 **ID**: `167dbe860bb7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{
+    my personal style/.style={
+        grid=major,
+        font=\large,
+    },
+}
+\begin{tikzpicture}
+\begin{axis}[my personal style]
+    \addplot coordinates {(0,0) (1,1)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1629,135 +4148,324 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: environment  
 **Package**: pgfplots  
 
+### Description
+
+} Bounding Box Control!Disable {data bounding box modifications} Everything in environment contents will not contribute to the data bounding box. The same effect can be achieved with |update limits=false| inside curly braces.
+
 
 ---
 
-## 164. Other Example
+## 164. Line Chart Example
 
 **ID**: `0b317838ce96`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Auto Limits,
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 165. Other Example
+## 165. Line Chart Example
 
 **ID**: `d00777279a78`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={\texttt{xmin=0}},
+    xmin=0,
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 166. Other Example
+## 166. Line Chart Example
 
 **ID**: `b3f9ffb38e10`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={\texttt{ymax=10}},
+    ymax=10,
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 167. Other Example
+## 167. Line Chart Example
 
 **ID**: `886f700c0b12`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+ % Show (automatically) computed limits:
+ title={
+  Axis limits are
+  $
+ [\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/xmin}}
+ :\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/xmax}}
+ ]  \times
+ [\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/ymin}}
+ :\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/ymax}}
+ ]$ },
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 168. Other Example
+## 168. Line Chart Example
 
 **ID**: `8441094d72fd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=$x$ \emph{decreasing} $\to$,
+    x dir=reverse,
+]
+    \addplot {x + rand*0.3};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 169. Other Example
+## 169. Line Chart Example
 
 **ID**: `cf6d8c836094`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ylabel=$y$ \emph{decreasing} $\to$,
+    y dir=reverse,
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 170. Other Example
+## 170. Scatter Plot Example
 
 **ID**: `dee3b14cc613`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        ylabel=$y$ \emph{decreasing} $\to$,
+        xlabel=$x$ normal,
+        title=reversed axis,
+        y dir=reverse,
+        colorbar,
+        colorbar style={y dir=reverse},
+    ]
+        \addplot+ [mesh,scatter] {x^15};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 171. Other Example
+## 171. Line Chart Example
 
 **ID**: `1630588a1ddf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    small,
+]
+    \addplot {5 * x^3 - x^2 + 4*x -2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 172. Other Example
+## 172. Line Chart Example
 
 **ID**: `d63dda5e9815`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    small,
+    enlarge x limits=0.2,
+]
+    \addplot {5 * x^3 - x^2 + 4*x -2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 173. Other Example
+## 173. Line Chart Example
 
 **ID**: `a392e3c1f522`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    small,
+    minor x tick num=1,
+    enlarge x limits={rel=0.5,upper},
+]
+    \addplot {5 * x^3 - x^2 + 4*x -2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 174. Other Example
+## 174. Line Chart Example
 
 **ID**: `da9445a1ca17`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    small,
+    minor x tick num=1,
+    enlarge x limits={abs=3},
+]
+    \addplot {5 * x^3 - x^2 + 4*x -2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 175. Other Example
+## 175. Line Chart Example
 
 **ID**: `0118f438690a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[small,minor x tick num=1,
+    enlarge x limits={abs=1cm},
+]
+    \addplot {5 * x^3 - x^2 + 4*x -2}
+        coordinate [pos=0] (first)
+        coordinate [pos=1] (last);
+
+    \draw [red,->] (first) -- ++(-1cm,0pt);
+    \draw [red,->] (last)  -- ++( 1cm,0pt);
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 176. Other Example
+## 176. Line Chart Example
 
 **ID**: `fce18086363e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    small,
+    enlarge x limits={abs=11},
+]
+    \addplot+ [domain=1:100000] {x^-2};
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1768,6 +4476,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} There are 256 Integer registers which provide 32 Bit Integer arithmetics. The registers can be used for example with |0=42 | or |7= | where || expands to a number. The value of a register can be typeset using ||register. codeexample[] 0=42 The value is now `0'. -123456 0= The value is now `0'. codeexample The `|=|' sign is optional and can be omitted. One thing is common among the registers: an assignment of the form |0=|$$ expands everything which follows until the expansion doesn't need more
+
 
 ---
 
@@ -1776,6 +4488,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `6e1de2ebd8b2`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} There are also 255 registers for fixed point numbers which are used pretty much in the same way as the || registers -- but || register assignments require a unit like `|cm|' or `|pt|'. String access with `||' works in exactly the same way as for || registers. codeexample[] 0=1pt The value is now 0. 0=0.0001pt The value is now 0. 1234.5678 0= pt The value is now 0. codeexample The same rules with expansion of macros after assignments apply here as well. The || registers perform their arithmetic
 
 
 ---
@@ -1786,6 +4502,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} cmd:toks There are also 255 token registers which can be thought of as special string variables. Of course, every macro assignment ||content is also some kind of string variable, but token registers are special: their contents won't be expanded when used with ||number. This can be used for fine grained expansion control, see Section~sec:expansion:control below. codeexample[] 0={abc} 1={DEF} The value is now 0 1. codeexample Note the white space after |0|: its purpose is to stop the number pars
+
 
 ---
 
@@ -1794,6 +4514,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `f188432ea87c`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+byquantity} codeexample[] 0=42 0 by 10 The value is now 0. codeexample codeexample[] 0=1pt 0 by 10pt The value is now 0. codeexample
 
 
 ---
@@ -1804,6 +4528,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+byinteger} codeexample[] 0=42 0 by -10 The value is now 0. codeexample codeexample[] 0=0.5pt 0 by 20 The value is now 0. codeexample
+
 
 ---
 
@@ -1812,6 +4540,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `fc374425ccf9`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+byinteger} This allows integer division by integer with truncation. codeexample[] 0=5 0 by 2 The value is now 0. codeexample Scaling of || registers: codeexample[] 0=10pt 0 by 20 The value is now 0. codeexample It is impossible to divide by some non--integer number.
 
 
 ---
@@ -1822,6 +4554,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+=fixed point number without unit dimennumber} This allows fixed point multiplication in || registers. codeexample[] 1=50pt 0=0.61 The value is now 0. codeexample
+
 
 ---
 
@@ -1830,6 +4566,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `0f6e27d327a2`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} This command expands to the contents of macro as it is seen by . codeexample[] text 0=42 0. Debug message: '' codeexample As result, the log file and terminal output will contain |Debug message: 'macro:->Replacement text 0=42 0.'|
 
 
 ---
@@ -1840,6 +4580,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+argument patternreplacement text} A new macro named macroname will be defined (or re-defined). The replacement text is the macro body, whenever the macro is executed, it expands to replacement text. The replacement text is a token list which can contain other macros. On the time of the definition, \ does not process (expand) the replacement text. The replacement text will only be expanded if the macro is executed. This does also apply to any macros which are inside of replacement text. codeexamp
+
 
 ---
 
@@ -1848,6 +4592,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `ba7439b69dba`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+next token} The || command is an -- at first sight confusing -- method to alter the input token list. But: it solves our problem with ||! codeexample[] (#1,#2){we do something with #1 and #2} (42,1234) codeexample Why did that work!? The command || scans for the token after || in the input token list. This is || in our case. Then, it scans for the next token which is || in our case (remember: macros are considered to be elementary tokens, just like characters `|a|' or so). The two scanned argume
 
 
 ---
@@ -1858,6 +4606,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+argument patternreplacement text} The || command is the same as || insofar as it defines a new macro. However, it expands replacement text until only unexpandable tokens remain (|| $=$ expanded definition). codeexample[] 3 2 1 = Macro `d' is defined to be `' = Macro `d' is e-defined to be `' Macro `d' is defined to be `' using expandafter codeexample This listing results in the log-file output |Macro `d' is defined to be `macro:->value= '| |Macro `d' is e-defined to be `macro:->value=123'| |Macr
+
 
 ---
 
@@ -1866,6 +4618,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `70bce8f2503c`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} The || command is only useful inside of the replacement text of an || command. As soon as || encounters the ||, the || will be removed and the expandable token will be converted into an unexpandable token. Thus, the code codeexample[] another macro Macro `d' is defined to be `' codeexample yields the terminal output |Macro `d' is defined to be `macro:->Invoke another macro'| because || yields the token `||' (unexpanded)The { noexpand key is actually used to implement the \ command protect: 's 
 
 
 ---
@@ -1876,6 +4632,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+argument patternreplacement text} Defines a new macro named || without expanding replacement text, see above.
+
 
 ---
 
@@ -1884,6 +4644,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `a15d871ecf17`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+argument patternreplacement text} Defines a new macro named ||, expanding replacement text completely (see above).
 
 
 ---
@@ -1894,6 +4658,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+=token} Defines or redefines || to be an equivalent to token. For example, |=| will create a new copy of macro ||. The copy is named ||, and it will have exactly the same replacement text and argument pattern as ||. It is also possible that token is something different than a macro, for example a named register or a single character.
+
 
 ---
 
@@ -1902,6 +4670,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `d11546c58ea6`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+argument patternreplacement text} A shortcut for ||. It defines || globally, independent of the current scope. You should avoid macros which exist in both, the global namespace and a local scope, with different meanings. Section~sec:scopes explains more about scoping.
 
 
 ---
@@ -1912,6 +4684,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+argument patternreplacement text} A shortcut for ||. It defines || globally, independent of the current scope. You should avoid macros which exist in both, the global namespace and a local scope, with different meanings. Section~sec:scopes explains more about scoping.
+
 
 ---
 
@@ -1920,6 +4696,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `e0fe23a1840e`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+endcsname} This command is not a macro definition, it is a definition of a macro's name. The ``cs'' means ``control sequence''. The ||, || pair defines a control sequence name (a macro name) using expandable tokens. The control sequence character `|\|' will be prepended automatically by ||.In fact, the contents of { escapechar will be used here. If its value is -1, no character will be prepended. The same holds for any occurrence where a backslash would be inserted by \ commands.} codeexample[] 
 
 
 ---
@@ -1930,6 +4710,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} This command does not define a macro. Instead, it returns a macro's name as a sequence of separate tokens, including the control sequence token `|\|'. codeexample[] I have just defined `' using `'. codeexample You can also use || on other tokens -- for example characters. That doesn't hurt, the character will be returned as-is.
+
 
 ---
 
@@ -1939,6 +4723,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+}
+
 
 ---
 
@@ -1947,6 +4735,10 @@ Showing items **1-200** of **1472** | Page **1** of **8**
 **ID**: `aabf90de330c`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+}
 
 
 ---

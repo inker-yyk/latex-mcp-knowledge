@@ -16,7 +16,13 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3ee1c67b12a4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathbasetoBase\mynumber{121212}{3}{12} \mynumber
+```
 
 
 ---
@@ -26,7 +32,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3fa746f92879`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathsetbasenumberlength{8}
+\pgfmathdectobase\mynumber{15}{2} \mynumber
+```
 
 
 ---
@@ -36,7 +49,21 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `60c9793b9291`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathsetbasenumberlength{8}
+\begin{tikzpicture}[x=0.25cm, y=0.25cm]
+  \foreach \n [count=\y] in {0, 60, 102, 102, 126, 102, 102, 102, 0}{
+    \pgfmathdectobase{\binary}{\n}{2}
+    \pgfmathtodigitlist{\digitlist}{\binary}
+    \foreach \digit [count=\x, evaluate={\c=\digit*50+15;}] in \digitlist
+      \fill [fill=black!\c] (\x, -\y) rectangle ++(1,1);
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -46,7 +73,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `1b229bd22ef1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathanglebetweenpoints{\pgfpoint{1cm}{3cm}}{\pgfpoint{2cm}{4cm}}
+\pgfmathresult
+```
 
 
 ---
@@ -56,7 +90,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2006d68ee033`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathanglebetweenlines{\pgfpoint{1cm}{3cm}}{\pgfpoint{2cm}{4cm}}
+                         {\pgfpoint{0cm}{1cm}}{\pgfpoint{1cm}{0cm}}
+\pgfmathresult
+```
 
 
 ---
@@ -67,6 +109,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+function namenumber of argumentscode} This will set up the parser to recognize a function called name. The name of the function can consist of, uppercase or lowercase letters, numbers or the underscore |_|. In line with many programming languages, a function name cannot begin with a number or contain any spaces. The function may not have been declared earlier, unless the optional star (|*|) is provided, which forces an ``overwriting'' of the function by the new function. Note that you should nev
+
 
 ---
 
@@ -76,6 +122,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} This command redefines the ||function name|@| macro with the new code. See the description of the || for details. You cannot change the number of arguments for an existing function. codeexample[] foo{1}{ @x=#1pt @x by2 @x } foo(42) foo{ @x=#1pt @x by3 @x } foo(42) codeexample
+
 
 ---
 
@@ -84,7 +134,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d92a782a705a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\pgfmathdeclarefunction{double}{1}{
+  \begingroup
+    \pgf@x=#1pt\relax
+    \multiply\pgf@x by2\relax
+    \pgfmathreturn\pgf@x
+  \endgroup
+}
+\makeatother
+\pgfmathparse{double(44.3)}\pgfmathresult
+```
 
 
 ---
@@ -94,7 +159,30 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4211e66af1b6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\pgfmathdeclarefunction{foo}{1}{
+  \begingroup
+    \pgf@x=#1pt\relax
+    \multiply\pgf@x by2\relax
+    \pgfmathreturn\pgf@x
+  \endgroup
+}
+\pgfmathparse{foo(42)}\pgfmathresult
+\pgfmathredeclarefunction{foo}{
+  \begingroup
+    \pgf@x=#1pt\relax
+    \multiply\pgf@x by3\relax
+    \pgfmathreturn\pgf@x
+  \endgroup
+}
+\pgfmathparse{foo(42)}\pgfmathresult
+\makeatother
+```
 
 
 ---
@@ -104,7 +192,20 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3feb40881dfc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \draw [blue, thick, x=0.0085cm, y=1cm,
+    declare function={
+      sines(\t,\a,\b)=1 + 0.5*(sin(\t)+sin(\t*\a)+sin(\t*\b));
+    }]
+    plot [domain=0:360, samples=144, smooth] (\x,{sines(\x,3,5)});
+\end{tikzpicture}
+```
 
 
 ---
@@ -114,7 +215,25 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3a1d955a9009`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  declare function={
+    excitation(\t,\w) = sin(\t*\w);
+    noise             = rnd - 0.5;
+    source(\t)        = excitation(\t,20) + noise;
+    filter(\t)        = 1 - abs(sin(mod(\t, 90)));
+    speech(\t)        = 1 + source(\t)*filter(\t);
+  }
+]
+  \draw [help lines] (0,0) grid (3,2);
+  \draw [blue, thick, x=0.0085cm, y=1cm] (0,1) --
+    plot [domain=0:360, samples=144, smooth] (\x,{speech(\x)});
+\end{tikzpicture}
+```
 
 
 ---
@@ -124,7 +243,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `597cc3b70617`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[3d view]
+  \draw[->] (-1,0,0) -- (1,0,0) node[pos=1.1]{x};
+  \draw[->] (0,-1,0) -- (0,1,0) node[pos=1.1]{y};
+  \draw[->] (0,0,-1) -- (0,0,1) node[pos=1.1]{z};
+\end{tikzpicture}
+```
 
 
 ---
@@ -134,7 +263,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8273a898a9ba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[isometric view]
+  \draw[->] (-1,0,0) -- (1,0,0) node[pos=1.1]{x};
+  \draw[->] (0,-1,0) -- (0,1,0) node[pos=1.1]{y};
+  \draw[->] (0,0,-1) -- (0,0,1) node[pos=1.1]{z};
+\end{tikzpicture}
+```
 
 
 ---
@@ -144,7 +283,34 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `e4732266d779`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newcommand\simplecuboid[3]{%
+  \fill[gray!80!white] (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=0,y=#2,z=#3)
+    -- (tpp cs:x=#1,y=#2,z=#3)
+    -- (tpp cs:x=#1,y=0,z=#3) -- cycle;
+  \fill[gray]  (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=0,y=#2,z=#3)
+    -- (tpp cs:x=0,y=#2,z=0) -- cycle;
+  \fill[gray!50!white] (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=#1,y=0,z=#3)
+    -- (tpp cs:x=#1,y=0,z=0) -- cycle;}
+\newcommand{\simpleaxes}[3]{%
+  \draw[->] (-0.5,0,0) -- (#1,0,0) node[pos=1.1]{x};
+  \draw[->] (0,-0.5,0) -- (0,#2,0) node[pos=1.1]{y};
+  \draw[->] (0,0,-0.5) -- (0,0,#3) node[pos=1.1]{z};}
+
+\begin{tikzpicture}[3d view]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -154,7 +320,30 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `f65f3b1dacd2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newcommand\simplecuboid[3]{%
+  \fill[gray!80!white] (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=0,y=#2,z=#3)
+    -- (tpp cs:x=#1,y=#2,z=#3)
+    -- (tpp cs:x=#1,y=0,z=#3) -- cycle;
+  \fill[gray]  (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=0,y=#2,z=#3)
+    -- (tpp cs:x=0,y=#2,z=0) -- cycle;
+  \fill[gray!50!white] (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=0,z=#3)
+    -- (tpp cs:x=#1,y=0,z=#3)
+    -- (tpp cs:x=#1,y=0,z=0) -- cycle;}
+
+\newcommand{\simpleaxes}[3]{%
+  \draw[->] (-0.5,0,0) -- (#1,0,0) node[pos=1.1]{x};
+  \draw[->] (0,-0.5,0) -- (0,#2,0) node[pos=1.1]{y};
+  \draw[->] (0,0,-0.5) -- (0,0,#3) node[pos=1.1]{z};}
+```
 
 
 ---
@@ -164,7 +353,16 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6805f1b7d713`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[3d view,perspective]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -174,7 +372,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `b9d8e7b2a6ee`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    p = {(5,0,0)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -184,7 +394,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `98f67f8c072f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    p = {(5,0,1)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -194,7 +416,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `df70a28ee62e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    p = {(5,1,0)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -204,7 +438,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `38ff754131d0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    p = {(5,1,1)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -214,7 +460,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `e7da781d20fa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    q = {(0,5,0)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -224,7 +482,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `46b72b389dbd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    r = {(0,0,5)}}]
+  \simplecuboid{2}{2}{2}
+  \simpleaxes{2}{2}{2}
+\end{tikzpicture}
+```
 
 
 ---
@@ -234,7 +504,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4e33b5ffa2a1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  isometric view,
+  perspective={
+    p = {(8,0,0)},
+    q = {(0,8,0)},
+    r = {(0,0,-8)}}]
+
+  \simplecuboid{2}{2}{2}
+
+\end{tikzpicture}
+```
 
 
 ---
@@ -244,7 +529,27 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5e14cd9b756d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  isometric view,
+  perspective={
+    p = {(4,0,0)},
+    q = {(0,4,0)}}]
+
+    \node[fill=red,circle,inner sep=1.5pt,label=above:p] at (4,0,0){};
+
+    \foreach \i in {0,...,100}{
+      \filldraw[fill = gray] (tpp cs:x=\i,y=0,z=0)
+        -- (tpp cs:x=\i+0.5,y=0,z=0)
+        -- (tpp cs:x=\i+0.5,y=2,z=0)
+        -- (tpp cs:x=\i,y=2,z=0)
+        -- cycle;}
+\end{tikzpicture}
+```
 
 
 ---
@@ -254,17 +559,75 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4c86f4ba1339`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  scale=0.7,
+  3d view,
+  perspective={
+    p = {(20,0,0)},
+    q = {(0,20,0)}}]
+
+  \filldraw[fill=brown] (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=4,z=0)
+    -- (tpp cs:x=0,y=4,z=2)
+    -- (tpp cs:x=0,y=2,z=4)
+    -- (tpp cs:x=0,y=0,z=2) -- cycle;
+  \filldraw[fill=red!70!black] (tpp cs:x=0,y=0,z=2)
+    -- (tpp cs:x=5,y=0,z=2)
+    -- (tpp cs:x=5,y=2,z=4)
+    -- (tpp cs:x=0,y=2,z=4) -- cycle;
+  \filldraw[fill=brown!80!white] (tpp cs:x=0,y=0,z=0)
+    -- (tpp cs:x=0,y=0,z=2)
+    -- (tpp cs:x=5,y=0,z=2)
+    -- (tpp cs:x=5,y=0,z=0) -- cycle;
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4226. Other Example
+## 4226. Node Graph Example
 
 **ID**: `486321f27eda`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  3d view,
+  perspective={
+    p = {(2,0,0)},
+    q = {(0,2,0)},
+    r = {(0,0,2)}},
+  scale=4,
+  vanishing point/.style={fill,circle,inner sep=2pt}]
+
+  \simplecuboid{3}{1}{2}
+
+  \node[vanishing point,label = right:p] (p) at (2,0,0){};
+  \node[vanishing point,label = left:q] (q) at (0,2,0){};
+  \node[vanishing point,label = above:r] (r) at (0,0,2){};
+
+  \begin{scope}[dotted]
+    \foreach \y in {0,1}{
+      \foreach \z in {0,2}{
+        \draw (tpp cs:x=0,y=\y,z=\z) -- (p.center);}}
+    \foreach \x in {0,3}{
+      \foreach \z in {0,2}{
+        \draw (tpp cs:x=\x,y=0,z=\z) -- (q.center);}}
+    \foreach \x in {0,3}{
+      \foreach \y in {0,1}{
+        \draw (tpp cs:x=\x,y=\y,z=0) -- (r.center);}}
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -274,7 +637,57 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4da93e096601`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  cycle of vertices/.style 2 args={
+    insert path={
+      foreach \i [count=\j,evaluate=\j as \k using
+        {ifthenelse(\j==1,"","-- "}] in {#2}{\k (vert-#1-\i)} -- cycle}},
+  scale=0.7,
+  line join=round,
+  bottom/.style={draw=white!50!black,fill=white!40!black},
+  front/.style={draw=white!50!black,fill=black},
+  side/.style={draw=white!50!black,fill=white!80!black},
+]
+  \begin{scope}[
+    3d view={-20}{0},
+    perspective={
+      p = {(20,0,0)},
+      q = {(0,20,0)},
+      r = {(5,1,50)},
+    }]
+    \path foreach \x/\y/\z [count=\i] in {
+      3.5/2.0/0.0,3.5/2.0/4.0,6.0/2.0/4.0,6.5/2.0/3.5,6.5/2.0/0.5,6.0/2.0/0.0,
+      4.5/2.0/1.0,4.5/2.0/3.0,5.5/2.0/3.0,5.5/2.0/1.0,3.5/0.0/0.0,3.5/0.0/4.0,
+      6.0/0.0/4.0,6.5/0.0/3.5,6.5/0.0/0.5,6.0/0.0/0.0,4.5/0.0/1.0,4.5/0.0/3.0,
+      5.5/0.0/3.0,5.5/0.0/1.0%
+    }{(tpp cs:x=\x,y=\y,z=\z) coordinate[name=vert-D-\i]};
+    \filldraw[front,cycle of vertices={D}{1,...,6},
+      cycle of vertices={D}{7,10,9,8}];
+    \filldraw[side,cycle of vertices={D}{10,9,19,20}];
+    \filldraw[bottom,cycle of vertices={D}{8,9,19,18}];
+    \filldraw[front,cycle of vertices={D}{11,...,16},
+      cycle of vertices={D}{17,20,19,18}];
+    \filldraw[side,cycle of vertices={D}{1,2,12,11}];
+    % '3'
+    \path foreach \x/\y/\z [count=\i] in {
+      0.0/2.0/0.0,0.0/2.0/1.0,2.0/2.0/1.0,2.0/2.0/1.5,0.0/2.0/1.5,0.0/2.0/2.5,
+      2.0/2.0/2.5,2.0/2.0/3.0,0.0/2.0/3.0,0.0/2.0/4.0,3.0/2.0/4.0,3.0/2.0/0.0,
+      0.0/0.0/0.0,0.0/0.0/1.0,2.0/0.0/1.0,2.0/0.0/1.5,0.0/0.0/1.5,0.0/0.0/2.5,
+      2.0/0.0/2.5,2.0/0.0/3.0,0.0/0.0/3.0,0.0/0.0/4.0,3.0/0.0/4.0,3.0/0.0/0.0%
+    }{(tpp cs:x=\x,y=\y,z=\z) coordinate[name=vert-3-\i]};
+    \filldraw[front,cycle of vertices={3}{1,...,12}];
+    \filldraw[side,cycle of vertices={3}{3,4,16,15}];
+    \filldraw[side,cycle of vertices={3}{7,8,20,19}];
+    \filldraw[side,cycle of vertices={3}{1,2,14,13}];
+    \filldraw[side,cycle of vertices={3}{5,6,18,17}];
+    \filldraw[side,cycle of vertices={3}{9,10,22,
+... (truncated)
+```
 
 
 ---
@@ -285,6 +698,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+counter} This macro converts a date in a format to be described in a moment to the Julian day number in the Gregorian calendar. The date should expand to a string of the following form: enumerate calendar-date-format It should start with a number representing the year. Use || for the current year, that is, the year the file is being typeset. The year must be followed by a hyphen. Next should come a number representing the month. Use || for the current month. You can, but need not, use leading ze
+
 
 ---
 
@@ -293,6 +710,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5a7aa6619fcf`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+year macromonth macroday macro} This command converts a Julian day number to an ISO-date. The Julian day must be a number or \ counter, the year macro, month macro and day macro must be \ macro names. They will be set to numbers representing the year, month, and day of the given Julian day in the Gregorian calendar. The year macro will be assigned the year without leading zeros. Note that this macro will produce year 0 (as opposed to other calendars, where year 0 does not exist). However, if you
 
 
 ---
@@ -303,6 +724,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+week day counter} This command converts a Julian day to a week day by computing the day modulo 7. The week day counter must be a \ counter. It will be set to 0 for a Monday, to 1 for a Tuesday, and so on. |2454115{}| sets || to 2454115{}\ (it was a Sunday).
+
 
 ---
 
@@ -311,6 +736,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `ca604c055dc8`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+counter} This command computes the date of Easter Sunday as a Julian date and stores it in counter. |2019{}| sets || to 2019{}, which corresponds to {}{}{} --.
 
 
 ---
@@ -321,6 +750,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+testscodeelse code} pgfcalendarifdate This command is used to execute code based on properties of date. The date must be a date in ISO-format. For this date, the tests are checked (to be detailed later) and if one of the tests succeeds, the code is executed. If none of the tests succeeds, the else code is executed. |2007-02-07{Wednesday}{Is a Wednesday}{Is not a Wednesday}| yields {2007-02-07{Wednesday}{Is a Wednesday}{Is not a Wednesday}}. The tests is a comma-separated list of key--value pairs
+
 
 ---
 
@@ -329,6 +762,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `acb0604280e1`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command expands to a textual representation of the day of week, given by the week day number. Thus, |0| expands to |Monday| if the current language is English and to |Montag| if the current language is German, and so on. See Section~section-calendar-locale for more details on translations. |2| yields {2}.
 
 
 ---
@@ -339,6 +776,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command works similarly to the previous command, only an abbreviated version of the week day is produced. |2| yields {2}.
+
 
 ---
 
@@ -347,6 +788,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `48f1cdfc9bc7`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command expands to a textual representation of the month, which is given by the month number. |12| yields {12}.
 
 
 ---
@@ -357,6 +802,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} As above, only an abbreviated version is produced. |12| yields {12}.
+
 
 ---
 
@@ -365,6 +814,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `ac33dc72fb2c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+start dateend daterendering code} This command can be used to typeset a calendar. It is a very general command, the actual work has to be done by giving clever implementations of rendering code. Note that this macro need not be called inside a |{pgfpicture}| environment (even though it typically will be) and you can use it to typeset calendars in normal \ or using packages other than . Basic typesetting process. A calendar is typeset as follows: The start date and end date specify a range of dat
 
 
 ---
@@ -375,6 +828,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+representation} pgfcalendarshorthand This command can be used inside a ||, where it will expand to a representation of the current day, month, year or day of week, depending on whether kind is |d|, |m|, |y| or |w|. The representation can be one of the following: |-|, |=|, |0|, |.|, and |t|. They have the following meanings: itemize The minus sign selects the shortest numerical representation possible (no leading zeros). The equal sign also selects the shortest numerical representation, but a spa
+
 
 ---
 
@@ -384,6 +841,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro expands to a suggested name for nodes representing days in a calendar. If the prefix is empty, it expands to the empty string, otherwise it expands to the prefix of the calendar, followed by a hyphen, followed by the ISO format version of the date. Thus, when the date |2007-01-01| is typeset in a calendar for the prefix |mycal|, the macro expands to |mycal-2007-01-01|.
+
 
 ---
 
@@ -392,7 +853,13 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `515e3b0c0b02`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfcalendar{cal}{2007-01-20}{2007-02-10}{\pgfcalendarcurrentday\ }
+```
 
 
 ---
@@ -402,7 +869,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `531e7fccc8bf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfcalendar{cal}{2007-01-20}{2007-02-10}
+{
+  \pgfcalendarcurrentday\
+  \ifdate{Sunday}{\par}{}
+}
+```
 
 
 ---
@@ -412,7 +889,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6a5b0dc7df9c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfcalendar{cal}{2007-01-20}{2007-02-10}
+{%
+  \leavevmode%
+  \hbox to0pt{\hskip\pgfcalendarcurrentweekday cm\pgfcalendarcurrentday\hss}%
+  \ifdate{Sunday}{\par}{}%
+}
+```
 
 
 ---
@@ -422,17 +910,52 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `323ff15176be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfcalendar{cal}{2007-01-01}{2007-02-28}{%
+  \ifdate{day of month=1}{
+    \par\bigskip\hbox to7.5cm{\itshape\hss\pgfcalendarshorthand mt\hss}\par
+  }{}%
+  \leavevmode%
+  {%
+    \ifdate{weekend}{\color{black!50}}{\color{black}}%
+    \hbox to0pt{%
+      \hskip\pgfcalendarcurrentweekday cm%
+      \hbox to1cm{\hss\pgfcalendarshorthand d-}\hss%
+    }%
+  }%
+  \ifdate{Sunday}{\par}{}%
+}
+```
 
 
 ---
 
-## 4244. Other Example
+## 4244. Node Graph Example
 
 **ID**: `35ac06c7b3de`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfcalendar{cal}{2007-01-20}{2007-02-10}{%
+    \ifdate{workday}
+      {\tikzset{filling/.style={fill=blue!20}}}
+      {\tikzset{filling/.style={fill=red!20}}}
+    \node (\pgfcalendarsuggestedname) at (\pgfcalendarcurrentweekday,0)
+      [anchor=base,circle,filling] {\pgfcalendarcurrentday};
+    \ifdate{Sunday}{\pgftransformyshift{-3em}}{}%
+  }
+  \draw (cal-2007-01-21) -- (cal-2007-02-03);
+\end{tikzpicture}
+```
 
 
 ---
@@ -442,7 +965,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `0f4a6d90c45c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\let\%=\pgfcalendarshorthand
+\pgfcalendar{cal}{2007-01-20}{2007-01-20}
+{ ISO form: \%y0-\%m0-\%d0, long form: \%wt, \%mt \%d-, \%y0}
+```
 
 
 ---
@@ -452,7 +983,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3239cfc9c100`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% For LaTeX:
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,through,backgrounds}
+```
 
 
 ---
@@ -462,7 +1001,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `e538d811f058`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% For plain TeX:
+\input tikz.tex
+\usetikzlibrary{calc,intersections,through,backgrounds}
+```
 
 
 ---
@@ -472,7 +1019,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2b0244dbbc84`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% For ConTeXt:
+\usemodule[tikz]
+\usetikzlibrary[calc,intersections,through,backgrounds]
+```
 
 
 ---
@@ -482,7 +1037,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `9f3d367e693c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (1.25,0.25);
+
+  \draw[blue] (A) -- (B);
+\end{tikzpicture}
+```
 
 
 ---
@@ -492,7 +1058,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `118a0d23041a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:\textcolor{blue}{$A$}]  (A) at (0,0);
+  \coordinate [label=right:\textcolor{blue}{$B$}] (B) at (1.25,0.25);
+
+  \draw[blue] (A) -- (B);
+\end{tikzpicture}
+```
 
 
 ---
@@ -502,7 +1079,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `7af230702f3e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\coordinate [...] (A) at (0+0.1*rand,0+0.1*rand);
+\coordinate [...] (B) at (1.25+0.1*rand,0.25+0.1*rand);
+```
 
 
 ---
@@ -512,7 +1096,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `92b2ebe63f98`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\coordinate [...] (A) at ($ (0,0) + .1*(rand,rand) $);
+\coordinate [...] (B) at ($ (1.25,0.25) + .1*(rand,rand) $);
+```
 
 
 ---
@@ -522,7 +1113,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3a90cbaa74a1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+
+  \draw (A) let
+              \p1 = ($ (B) - (A) $)
+            in
+              circle ({veclen(\x1,\y1)});
+\end{tikzpicture}
+```
 
 
 ---
@@ -532,7 +1138,23 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `15d362cee13a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+
+  \draw let \p1 = ($ (B) - (A) $),
+            \n2 = {veclen(\x1,\y1)}
+        in
+          (A) circle (\n2)
+          (B) circle (\n2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -542,117 +1164,359 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `05c049b6511e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+
+  \draw let \p1        = ($ (B) - (A) $),
+            \n{radius} = {veclen(\x1,\y1)}
+        in
+          (A) circle (\n{radius})
+          (B) circle (\n{radius});
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4256. Other Example
+## 4256. Node Graph Example
 
 **ID**: `91c2bd015921`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+
+  \node [draw,circle through=(B),label=left:$D$] at (A) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4257. Other Example
+## 4257. Node Graph Example
 
 **ID**: `14c104f26379`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+
+  \node (D) [name path=D,draw,circle through=(B),label=left:$D$]  at (A) {};
+  \node (E) [name path=E,draw,circle through=(A),label=right:$E$] at (B) {};
+
+  % Name the coordinates, but do not draw anything:
+  \path [name intersections={of=D and E}];
+
+  \coordinate [label=above:$C$] (C) at (intersection-1);
+
+  \draw [red] (A) -- (C);
+  \draw [red] (B) -- (C);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4258. Other Example
+## 4258. Node Graph Example
 
 **ID**: `05c36c69a006`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw [name path=A--B] (A) -- (B);
+
+  \node (D) [name path=D,draw,circle through=(B),label=left:$D$]  at (A) {};
+  \node (E) [name path=E,draw,circle through=(A),label=right:$E$] at (B) {};
+
+  \path [name intersections={of=D and E, by={[label=above:$C$]C, [label=below:$C'$]C'}}];
+
+  \draw [name path=C--C',red] (C) -- (C');
+
+  \path [name intersections={of=A--B and C--C',by=F}];
+  \node [fill=red,inner sep=1pt,label=-45:$F$] at (F) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4259. Other Example
+## 4259. Node Graph Example
 
 **ID**: `e5cca1bbdf22`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[thick,help lines/.style={thin,draw=black!50}]
+  \def\A{\textcolor{input}{$A$}}     \def\B{\textcolor{input}{$B$}}
+  \def\C{\textcolor{output}{$C$}}    \def\D{$D$}
+  \def\E{$E$}
+
+  \colorlet{input}{blue!80!black}    \colorlet{output}{red!70!black}
+  \colorlet{triangle}{orange}
+
+  \coordinate [label=left:\A]  (A) at ($ (0,0) + .1*(rand,rand) $);
+  \coordinate [label=right:\B] (B) at ($ (1.25,0.25) + .1*(rand,rand) $);
+
+  \draw [input] (A) -- (B);
+
+  \node [name path=D,help lines,draw,label=left:\D]   (D) at (A) [circle through=(B)] {};
+  \node [name path=E,help lines,draw,label=right:\E]  (E) at (B) [circle through=(A)] {};
+
+  \path [name intersections={of=D and E,by={[label=above:\C]C}}];
+
+  \draw [output] (A) -- (C) -- (B);
+
+  \foreach \point in {A,B,C}
+    \fill [black,opacity=.5] (\point) circle (2pt);
+
+  \begin{pgfonlayer}{background}
+    \fill[triangle!80] (A) -- (C) -- (B) -- cycle;
+  \end{pgfonlayer}
+
+  \node [below right, text width=10cm,align=justify] at (4,3) {
+    \small\textbf{Proposition I}\par
+    \emph{To construct an \textcolor{triangle}{equilateral triangle}
+      on a given \textcolor{input}{finite straight line}.}
+    \par\vskip1em
+    Let \A\B\ be the given \textcolor{input}{finite straight line}.  \dots
+  };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4260. Other Example
+## 4260. Node Graph Example
 
 **ID**: `b4ef41c50989`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+  \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4261. Other Example
+## 4261. Node Graph Example
 
 **ID**: `ca6dcd1bc72c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+  \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
+  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at
+    ($ (X) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (A) -- (D) -- (B);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4262. Other Example
+## 4262. Node Graph Example
 
 **ID**: `60c40cd1eea1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (1.25,0.25);
+  \draw (A) -- (B);
+  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at
+    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (A) -- (D) -- (B);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4263. Other Example
+## 4263. Node Graph Example
 
 **ID**: `d91f16361b2a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (0.75,0.25);
+  \coordinate [label=above:$C$] (C) at (1,1.5);
+  \draw (A) -- (B) -- (C);
+  \coordinate [label=above:$D$] (D) at
+    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
+  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
+  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 4264. Other Example
+## 4264. Node Graph Example
 
 **ID**: `40a6f2d11889`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+(A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (0.75,0.25);
+  \coordinate [label=above:$C$] (C) at (1,1.5);
+  \draw (A) -- (B) -- (C);
+  \coordinate [label=above:$D$] (D) at
+    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
+  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
+    post={\end{tikzpicture}},
+]
+  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
+  \path let \p1 = ($ (B) - (C) $) in
+    coordinate [label=left:$G$] (G) at ($ (B) ! veclen(\x1,\y1) ! (F) $);
+  \fill[red,opacity=.5] (G) circle (2pt);
+```
 
 
 ---
 
-## 4265. Other Example
+## 4265. Node Graph Example
 
 **ID**: `fdaaba562b1b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+(A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (0.75,0.25);
+  \coordinate [label=above:$C$] (C) at (1,1.5);
+  \draw (A) -- (B) -- (C);
+  \coordinate [label=above:$D$] (D) at
+    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
+  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
+    post={\end{tikzpicture}},
+]
+  \node (H) [name path=H,label=135:$H$,draw,circle through=(C)] at (B) {};
+  \path [name path=B--F] (B) -- (F);
+  \path [name intersections={of=H and B--F,by={[label=left:$G$]G}}];
+  \fill[red,opacity=.5] (G) circle (2pt);
+```
 
 
 ---
 
-## 4266. Other Example
+## 4266. Node Graph Example
 
 **ID**: `1d16119c7346`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[thick,help lines/.style={thin,draw=black!50}]
+  \def\A{\textcolor{orange}{$A$}}   \def\B{\textcolor{input}{$B$}}
+  \def\C{\textcolor{input}{$C$}}    \def\D{$D$}
+  \def\E{$E$}                       \def\F{$F$}
+  \def\G{$G$}                       \def\H{$H$}
+  \def\K{$K$}                       \def\L{\textcolor{output}{$L$}}
+
+  \colorlet{input}{blue!80!black}    \colorlet{output}{red!70!black}
+
+  \coordinate [label=left:\A]  (A) at ($ (0,0) + .1*(rand,rand) $);
+  \coordinate [label=right:\B] (B) at ($ (1,0.2) + .1*(rand,rand) $);
+  \coordinate [label=above:\C] (C) at ($ (1,2) + .1*(rand,rand) $);
+
+  \draw [input] (B) -- (C);
+  \draw [help lines] (A) -- (B);
+
+  \coordinate [label=above:\D] (D) at ($ (A)!.5!(B) ! {sin(60)*2} ! 90:(B) $);
+
+  \draw [help lines] (D) -- ($ (D)!3.75!(A) $) coordinate [label=-135:\E] (E);
+  \draw [help lines] (D) -- ($ (D)!3.75!(B) $) coordinate [label=-45:\F] (F);
+
+  \node (H) at (B) [name path=H,help lines,circle through=(C),draw,label=135:\H] {};
+  \path [name path=B--F] (B) -- (F);
+  \path [name intersections={of=H and B--F,by={[label=right:\G]G}}];
+
+  \node (K) at (D) [name path=K,help lines,circle through=(G),draw,label=135:\K] {};
+  \path [name path=A--E] (A) -- (E);
+  \path [name intersections={of=K and A--E,by={[label=below:\L]L}}];
+
+  \draw [output] (A) -- (L);
+
+  \foreach \point in {A,B,C,D,G,L}
+    \fill [black,opacity=.5] (\point) circle (2pt);
+
+  % \node ...
+\end{tikzpicture}
+```
 
 
 ---
@@ -662,7 +1526,13 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5d25c5b75f1f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfpointadd{\pgfpoint{\pgf@xa}{\pgf@ya}}{\pgfpoint{\pgf@xb}{\pgf@yb}}
+```
 
 
 ---
@@ -672,7 +1542,16 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `579f8b6610a8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\immediate\openout\w@pgf@writea=myfile.dat
+\immediate\write\w@pgf@writea{...}%
+\immediate\write\w@pgf@writea{...}%
+\immediate\closeout\w@pgf@writea%
+```
 
 
 ---
@@ -682,7 +1561,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2dfa764a7c8d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\immediate\openin\r@pgf@reada=myfile.dat
+% do something with \macro
+\ifeof\r@pgf@reada
+    % end of file or it doesn't exist
+\else
+    % loop or whatever
+    \immediate\read\r@pgf@reada to\macro
+    ...
+\fi
+\immediate\closein\r@pgf@reada
+```
 
 
 ---
@@ -692,7 +1586,36 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2bddbd30f78d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\sffamily\scriptsize
+\tikz \pic [
+  transform shape,
+  every calendar/.style={
+    at={(-8ex,4ex)},
+    week list,
+    month label above centered,
+    month text=\bfseries\textcolor{red}{\%mt} \%y0,
+    if={(Sunday) [black!50]}
+  },
+  folding line length=2.5cm,
+  face 1={ \calendar [dates=\the\year-01-01 to \the\year-01-last];},
+  face 2={ \calendar [dates=\the\year-02-01 to \the\year-02-last];},
+  face 3={ \calendar [dates=\the\year-03-01 to \the\year-03-last];},
+  face 4={ \calendar [dates=\the\year-04-01 to \the\year-04-last];},
+  face 5={ \calendar [dates=\the\year-05-01 to \the\year-05-last];},
+  face 6={ \calendar [dates=\the\year-06-01 to \the\year-06-last];},
+  face 7={ \calendar [dates=\the\year-07-01 to \the\year-07-last];},
+  face 8={ \calendar [dates=\the\year-08-01 to \the\year-08-last];},
+  face 9={ \calendar [dates=\the\year-09-01 to \the\year-09-last];},
+  face 10={\calendar [dates=\the\year-10-01 to \the\year-10-last];},
+  face 11={\calendar [dates=\the\year-11-01 to \the\year-11-last];},
+  face 12={\calendar [dates=\the\year-12-01 to \the\year-12-last];}
+] {dodecahedron folding};
+```
 
 
 ---
@@ -702,7 +1625,20 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `e92818914eec`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [
+  transform shape,
+  folding line length=6mm,
+  face 1={ \node[red] {1};},
+  face 2={ \node      {2};},
+  face 3={ \node      {3};},
+  face 4={ \node      {4};}
+] {tetrahedron folding};
+```
 
 
 ---
@@ -712,7 +1648,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `46ce7e3546e8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic[
+  every cut/.style=red,
+  every fold/.style=dotted,
+  folding line length=6mm
+] { tetrahedron folding };
+```
 
 
 ---
@@ -722,7 +1668,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `1a7f9b49e4aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { tetrahedron truncated folding };
+```
 
 
 ---
@@ -732,7 +1685,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `787f8c8d90fb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { cube folding };
+```
 
 
 ---
@@ -742,7 +1702,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `dfc675d0ef5d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { cube truncated folding };
+```
 
 
 ---
@@ -752,7 +1719,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c8afed187e1e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { octahedron folding };
+```
 
 
 ---
@@ -762,7 +1736,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c52b3cf880cf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { octahedron truncated folding };
+```
 
 
 ---
@@ -772,7 +1753,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d9d113f7f0ef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { dodecahedron folding };
+```
 
 
 ---
@@ -782,7 +1770,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `62cfe7dce8c7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { dodecahedron' folding };
+```
 
 
 ---
@@ -792,7 +1787,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `ab928f018b36`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { dodecahedron rhombic folding };
+```
 
 
 ---
@@ -802,7 +1804,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `bc7484b6f07b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { dodecahedron golden folding };
+```
 
 
 ---
@@ -812,7 +1821,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4b49954ee5ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { cuboctahedron folding };
+```
 
 
 ---
@@ -822,7 +1838,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `7c99388d8d0b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { cuboctahedron truncated folding };
+```
 
 
 ---
@@ -832,7 +1855,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c68af2247113`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { icosahedron folding };
+```
 
 
 ---
@@ -842,7 +1872,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8457e8b4d773`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { rhombicuboctahedron folding };
+```
 
 
 ---
@@ -852,7 +1889,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `892639d00ab8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { snub cube folding };
+```
 
 
 ---
@@ -862,7 +1906,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `117c7c52ae81`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \pic [folding line length=6mm, numbered faces, transform shape]
+  { icosidodecahedron folding };
+```
 
 
 ---
@@ -873,6 +1924,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command declares a layer named name for later use. Mainly, this will set up some internal bookkeeping.
+
 
 ---
 
@@ -881,6 +1936,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `00ebc126f63b`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command tells \ which layers will be used in pictures. They are stacked on top of each other in the order given. The layer |main| should always be part of the list. Here is an example: codeexample[code only] background foreground background,main,foreground codeexample This command should be given either outside of any picture or ``directly inside'' of a picture. Here, the ``directly inside'' means that there should be no further level of \ grouping between || and the matching |pgfpicture|
 
 
 ---
@@ -891,6 +1950,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: environment  
 **Package**: tikz-pgf  
 
+### Description
+
+layer name} The whole environment contents is added to the layer with the name layer name. This environment can be used anywhere inside a picture. Thus, even if it is used inside a |{pgfscope}| or a \ group, the contents will still be added to the ``whole'' picture. Using this environment multiple times inside the same picture will cause the environment contents to accumulate. Note: You can not add anything to the |main| layer using this environment. The only way to add anything to the main laye
+
 
 ---
 
@@ -899,7 +1962,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5891e87d94d7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+```
 
 
 ---
@@ -909,7 +1980,34 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `1343a5a68ab4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{background layer,main,foreground layer}
+\begin{tikzpicture}
+  % On main layer:
+  \fill[blue] (0,0) circle (1cm);
+
+  \begin{pgfonlayer}{background layer}
+    \fill[yellow] (-1,-1) rectangle (1,1);
+  \end{pgfonlayer}
+
+  \begin{pgfonlayer}{foreground layer}
+    \node[white] {foreground};
+  \end{pgfonlayer}
+
+  \begin{pgfonlayer}{background layer}
+    \fill[black] (-.8,-.8) rectangle (.8,.8);
+  \end{pgfonlayer}
+
+  % On main layer again:
+  \fill[blue!50] (-.5,-1) rectangle (.5,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -920,6 +2018,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+text} This command is used to parse the text using the (previously defined) parser named parser name. The text is not contained in curly braces, rather it is all the text that follows. The end of the text is determined implicitly, namely when the final state of the parser has been reached. If you defined a final action for the parser using || it is executed now. The parser works as follows: At any moment, it is in a certain state, initially this state is called |initial|. Then, the first letter 
+
 
 ---
 
@@ -928,6 +2030,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `32982c5373fd`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+stateaction} With this macro you can define an action for the parser name parser in state if no action was defined for the letter which was encountered.
 
 
 ---
@@ -938,6 +2044,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+action} Every parser can call a final action after the state was switched to |final|. This action is executed after everything else, so you can use something that grabs more arguments if you want to.
+
 
 ---
 
@@ -946,6 +2056,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `87b9294c83e0`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command can be called inside the action code of a parser to cause a state switch to state.
 
 
 ---
@@ -956,6 +2070,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+truefalse} Remember that some of the optional argument types set special marks? With || you can test whether arg is such a mark. So if there was no optional argument for the argument types |o| and |d| the true branch will be executed, else the false branch. For the |t| type argument the true branch is executed if the token was encountered.
+
 
 ---
 
@@ -964,6 +2082,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `bf2ca3b6201a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+You can use this as the final macro in an action of || or ||. This has the effect that the contents of || will be parsed next. Without any redefinition the result will be that the last token will be parsed again. You can change the definition of || just before || as well to parse some specific tokens next.
 
 
 ---
@@ -974,6 +2096,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Expands to the current state of the parser.
+
 
 ---
 
@@ -982,6 +2108,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `105368e3520e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This is the macro which is let to the following token with ||. You can use it inside an action code.
 
 
 ---
@@ -992,6 +2122,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro stores the letter to which || was let. So if you'd use |fooa| this macro would be defined with ||. This definition is done before any action code is executed. There are four special cases: If the next token is of category code 1, 2, 6, or 10, so with standard category codes the tokens |{|, |}|, |#|, and \ (a space), it would be treated differently. In those cases this macro expands to ||, ||, |##|, and \ for the categories 1, 2, 6, and 10, respectively.
+
 
 ---
 
@@ -1001,6 +2135,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} The |pgfparser| module has a few keys you can access through this macro. It is just a shortcut for |/pgfparser/.cd,#1|. The available keys are listed in subsection~sec:parser:keys.
+
 
 ---
 
@@ -1009,7 +2147,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `38fa403bab44`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newcount\mycount
+\pgfparserdef{myparser}{initial}{the letter a}%
+{\advance\mycount by 1\relax}%
+\pgfparserdef{myparser}{initial}{the letter b}%
+{} % do nothing
+\pgfparserdef{myparser}{initial}{the letter c}%
+{\pgfparserswitch{final}}% done!
+
+\pgfparserparse{myparser}aabaabababbbbbabaabcccc
+There are \the\mycount\ a's.
+```
 
 
 ---
@@ -1019,7 +2172,23 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3cc63b20113f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\mycount=0
+% using the shortcut syntax of just placing ; after the state
+\pgfparserdef{different letters}{all};{\pgfparserswitch{final}}%
+\pgfparserdefunknown{different letters}{all}%
+  {\pgfparserdef{different letters}{all}\pgfparsertoken{}\advance\mycount1}%
+\pgfparserdeffinal{different letters}%
+  {\the\mycount\ different letters found}%
+% don't throw errors for unknown letters
+\pgfparserset{different letters/silent=true}%
+
+\pgfparserparse{different letters}udiaternxqlchudiea;
+```
 
 
 ---
@@ -1029,7 +2198,22 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `a7c1868f031c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% using the long syntax of \pgfparserdef
+\pgfparserdef{arguments}{initial}{the letter a}[d()]
+  {\pgfparserifmark{#1}{\textcolor{red}{\textit{use}}}{\textbf{#1}} }%
+% using the shortcut syntax
+\pgfparserdef{arguments}{initial}t[m]{\texttt{#1} }%
+\pgfparserdef{arguments}{initial}c[t*O{blue}m]
+  {\pgfparserifmark{#1}{#3}{\textcolor{#2}{#3}}}%
+\pgfparserdef{arguments}{all};{\pgfparserswitch{final}}%
+
+\pgfparserparse{arguments}t{nobody}a(will)ac[green]{P}c*{arse}c{r};
+```
 
 
 ---
@@ -1040,6 +2224,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro should expand to the name of the driver to be used by |pgfsys|. The default from |pgf.cfg| is |pgfsys-@driver|. This is very likely to be correct if you are using . For plain , the macro will be set to |pgfsys-pdftex.def| if |pdftex| is used and to |pgfsys-dvips.def| otherwise.
+
 
 ---
 
@@ -1048,6 +2236,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `acb07b602795`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+shading nameshading heightcolor specification} Declares a horizontal shading named shading name of the specified height with the specified colors. The width of the bar is deduced automatically from the maximum dimension in the specification. codeexample[] myshadingA {1cm}{rgb(0cm)=(1,0,0); color(2cm)=(green); color(4cm)=(blue)} myshadingA codeexample The effect of the color list, which is a comma-separated list of colors, is the following: Normally, when this list is empty, once a shading has be
 
 
 ---
@@ -1058,6 +2250,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+shading nameshading widthcolor specification} Declares a vertical shading named shading name of the specified width. The height of the bar is deduced automatically. The effect of color list is the same as for horizontal shadings. codeexample[] myshadingC {4cm}{rgb(0cm)=(1,0,0); rgb(1.5cm)=(0,1,0); rgb(2cm)=(0,0,1)} myshadingC codeexample
+
 
 ---
 
@@ -1066,6 +2262,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c1facfaff85e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+shading namecenter pointcolor specification} Declares a radial shading. A radial shading is a circle whose inner color changes as specified by the color specification. Assuming that the center of the shading is at the origin, the color of the center will be the color specified for 0cm and the color of the border of the circle will be the color for the maximum dimension given in the color specified. This maximum will also be the radius of the circle. If the center point is not at the origin, the 
 
 
 ---
@@ -1076,6 +2276,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+shading namelower left cornerupper right corner\\ init codetype 4 function } Warning: These shadings are the least portable of all and they put the heaviest burden of the renderer. They are slow and, possibly, will not print correctly! This command creates a functional shading. For such a shading, the color of each point is calculated by calling a function that takes the coordinates of the point as input and yields the color as an output. Note that the function is evaluated by the renderer, not 
+
 
 ---
 
@@ -1084,6 +2288,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d65a03155c5a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+macro} This command takes color name as input, converts it to cmyk and stores the color's cyan/magenta/yellow/black components real numbers between 0.0 and 1.0 separated by spaces. In addition, four macros suffixed with |cyan|, |magenta|, |yellow| and |black| are defined, which store the individual components of color name.
 
 
 ---
@@ -1094,6 +2302,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+macro} This command takes color name as input converts it to grayscale and stores the color's value as a real number between 0.0 and 1.0. Although it's not needed, for consistency a second macro suffixed with |gray| is also defined.
+
 
 ---
 
@@ -1102,6 +2314,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `b070d80ee08c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top 3 elements on the stack from rgb to cmyk. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
 
 
 ---
@@ -1112,6 +2328,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top 3 elements on the stack from rgb to grayscale. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+
 
 ---
 
@@ -1120,6 +2340,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `a909cfe2520c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top 4 elements on the stack from cmyk to rgb. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
 
 
 ---
@@ -1130,6 +2354,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top 4 elements on the stack from cmyk to grayscale. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+
 
 ---
 
@@ -1138,6 +2366,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `128463b4e07f`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top element on the stack from grayscale to rgb. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
 
 
 ---
@@ -1148,6 +2380,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Within the type 4 function argument of ||, this command can be used to convert the top element on the stack from grayscale to cmyk. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+
 
 ---
 
@@ -1156,6 +2392,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2de76ea6f590`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |rgb| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
 
 
 ---
@@ -1166,6 +2406,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |cmyk| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
+
 
 ---
 
@@ -1174,6 +2418,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `95b6e75683f6`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |gray| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
 
 
 ---
@@ -1184,6 +2432,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Inserts a previously declared shading into the text. If you wish to use it in a |pgfpicture| environment, you should put a || around it. codeexample[] pgfpicture myshadingD {20pt}{color(0pt)=(red); color(20pt)=(blue)} [at=1cm{0cm}] {myshadingD} [at=2cm{0.5cm}]{myshadingD} pgfpicture codeexample
+
 
 ---
 
@@ -1192,6 +2444,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `b80f3ec85330`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+angle} This command must be used inside a |{pgfpicture}| environment. The effect is a bit complex, so let us go over it step by step. First, \ will set up a local scope. Second, it uses the current path to clip everything inside this scope. However, the current path is once more available after the scope, so it can be used, for example, to stroke it. Now, the shading name should be a shading whose width and height are 100\,bp, that is, 100 big points. \ has a look at the bounding box of the curr
 
 
 ---
@@ -1202,6 +2458,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command allows you to specify an additional transformation that should be applied to shadings when the || command is used. The transformation should be transformation code like |20|.
+
 
 ---
 
@@ -1210,7 +2470,13 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c6c68df1d599`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
+```
 
 
 ---
@@ -1220,7 +2486,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `cb661a2aec86`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \fill[green] (0,0) rectangle (1,1);
+  \shade[left color=green, right color=magenta] (1.25,0) rectangle (3.75,1);
+  \fill[magenta] (4,0) rectangle (5,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1230,7 +2506,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `bd51d2ab707d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarehorizontalshading{myshadingA}
+  {1cm}{rgb(0cm)=(1,0,0); color(2cm)=(green); color(4cm)=(blue)}
+\pgfuseshading{myshadingA}
+```
 
 
 ---
@@ -1240,7 +2524,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `0c0a9bf54eac`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarehorizontalshading[mycolor]{myshadingB}
+  {1cm}{rgb(0cm)=(1,0,0); color(2cm)=(mycolor)}
+\colorlet{mycolor}{green}
+\pgfuseshading{myshadingB}
+\colorlet{mycolor}{blue}
+\pgfuseshading{myshadingB}
+```
 
 
 ---
@@ -1250,7 +2545,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `41bcef83a2bc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareverticalshading{myshadingC}
+  {4cm}{rgb(0cm)=(1,0,0); rgb(1.5cm)=(0,1,0); rgb(2cm)=(0,0,1)}
+\pgfuseshading{myshadingC}
+```
 
 
 ---
@@ -1260,7 +2563,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `dcd22c185133`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareradialshading{sphere}{\pgfpoint{0.5cm}{0.5cm}}%
+  {rgb(0cm)=(0.9,0,0);
+   rgb(0.7cm)=(0.7,0,0);
+   rgb(1cm)=(0.5,0,0);
+   rgb(1.05cm)=(1,1,1)}
+\pgfuseshading{sphere}
+```
 
 
 ---
@@ -1270,7 +2584,31 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `fcebb989ba72`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefunctionalshading{twospots}
+    {\pgfpointorigin}{\pgfpoint{4cm}{4cm}}{}{
+  % Save coordinates for later
+  2 copy
+  % Compute distance from (40bp,45bp), with x doubled
+  45 sub dup mul exch
+  40 sub dup mul 0.5 mul add sqrt
+  % exponential decay
+  dup mul neg 1.0005 exch exp 1.0 exch sub
+  % Compute distance from (70bp,70bp) from stored coordinate, scaled
+  3 1 roll
+  70 sub dup mul .5 mul exch
+  70 sub dup mul add sqrt
+  % Decay
+  dup mul neg 1.002 exch exp 1.0 exch sub
+  % red component
+  1.0 3 1 roll
+}
+\pgfuseshading{twospots}
+```
 
 
 ---
@@ -1280,7 +2618,40 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `1f2adb8f64b4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefunctionalshading[mycol]{sweep}{\pgfpoint{-1cm}{-1cm}}
+{\pgfpoint{1cm}{1cm}}{\pgfshadecolortorgb{mycol}{\myrgb}}{
+  2 copy        % whirl
+  % Calculate "safe" atan of position
+  2 copy abs exch abs add 0.0001 ge { atan } { pop } ifelse
+  3 1 roll
+  dup mul exch
+  dup mul add sqrt
+  30 mul
+  add
+  sin
+  1 add 2 div
+  dup
+  \myrgb        % push mycol
+  5 4 roll      % multiply all components by calculated value
+  mul
+  3 1 roll
+  3 index
+  mul
+  3 1 roll
+  4 3 roll
+  mul
+  3 1 roll
+}
+\colorlet{mycol}{white}%
+\pgfuseshading{sweep}%
+\colorlet{mycol}{red}%
+\pgfuseshading{sweep}
+```
 
 
 ---
@@ -1290,7 +2661,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `63ef29344d5d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfshadecolortorgb{orange}{\mycol}
+|\mycol|=\mycol |\mycolred|=\mycolred |\mycolgreen|=\mycolgreen |\mycolblue|=\mycolblue
+```
 
 
 ---
@@ -1300,7 +2678,42 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `f8b58311aa00`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefunctionalshading[col1,col2,col3,col4]{bilinear interpolation}
+{\pgfpointorigin}{\pgfpoint{100bp}{100bp}}
+{
+\pgfshadecolortorgb{col1}{\first}\pgfshadecolortorgb{col2}{\second}
+\pgfshadecolortorgb{col3}{\third}\pgfshadecolortorgb{col4}{\fourth}
+}{
+  100 div exch 100 div 2 copy                   % Calculate y/100 x/100.
+  neg 1 add exch neg 1 add                      % Calculate 1-y/100 1-x/100.
+  3 1 roll 2 copy exch 5 2 roll 6 copy 6 copy   % Set up stack.
+  \firstred mul exch \secondred mul add mul     % Process red component.
+  4 1 roll
+  \thirdred mul exch \fourthred mul add mul
+  add
+  13 1 roll
+  \firstgreen mul exch \secondgreen mul add mul % Process green component.
+  4 1 roll
+  \thirdgreen mul exch \fourthgreen mul add mul
+  add
+  7 1 roll
+  \firstblue mul exch \secondblue mul add mul   % Process blue component.
+  4 1 roll
+  \thirdblue mul exch \fourthblue mul add mul
+  add
+}
+
+\colorlet{col1}{blue}
+\colorlet{col2}{yellow}
+\colorlet{col3}{red}
+\colorlet{col4}{green}
+\pgfuseshading{bilinear interpolation}
+```
 
 
 ---
@@ -1310,7 +2723,29 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8274dc0d6bf3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclarefunctionalshading[black]{portabletwospots}{\pgfpointorigin}{\pgfpoint{3.5cm}{3.5cm}}{}{
+  2 copy
+  45 sub dup mul exch
+  40 sub dup mul 0.5 mul add sqrt
+  dup mul neg 1.0005 exch exp 1.0 exch sub
+  3 1 roll
+  70 sub dup mul .5 mul exch
+  70 sub dup mul add sqrt
+  dup mul neg 1.002 exch exp 1.0 exch sub
+  1.0 3 1 roll
+  \ifpgfshadingmodelcmyk
+    \pgffuncshadingrgbtocmyk
+  \fi
+  \ifpgfshadingmodelgray
+    \pgffuncshadingrgbtogray
+  \fi
+}
+```
 
 
 ---
@@ -1320,7 +2755,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `06ce6c62a8ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfdeclareverticalshading{myshadingD}
+    {20pt}{color(0pt)=(red); color(20pt)=(blue)}
+  \pgftext[at=\pgfpoint{1cm}{0cm}]  {\pgfuseshading{myshadingD}}
+  \pgftext[at=\pgfpoint{2cm}{0.5cm}]{\pgfuseshading{myshadingD}}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1330,7 +2776,30 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `9859653d1435`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareverticalshading{myshadingE}{100bp}
+ {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
+\pgfuseshading{myshadingE}
+\hskip 1cm
+\begin{pgfpicture}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgfshadepath{myshadingE}{0}
+  \pgfusepath{stroke}
+  \pgfpathrectangle{\pgfpoint{3cm}{0cm}}{\pgfpoint{1cm}{2cm}}
+  \pgfshadepath{myshadingE}{0}
+  \pgfusepath{stroke}
+  \pgfpathrectangle{\pgfpoint{5cm}{0cm}}{\pgfpoint{2cm}{2cm}}
+  \pgfshadepath{myshadingE}{45}
+  \pgfusepath{stroke}
+  \pgfpathcircle{\pgfpoint{9cm}{1cm}}{1cm}
+  \pgfshadepath{myshadingE}{45}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1340,7 +2809,31 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8e324fda1843`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareverticalshading{myshadingF}{100bp}
+ {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
+\begin{tikzpicture}
+  \draw (50bp,50bp) node {\pgfuseshading{myshadingF}};
+  \draw[white,thick] (25bp,25bp) rectangle (75bp,75bp);
+  \draw (50bp,0bp) node[below] {first two applications};
+
+  \begin{scope}[xshift=5cm]
+    \draw (50bp,50bp) node{\pgfuseshading{myshadingF}};
+    \draw[rotate around={45:(50bp,50bp)},white,thick] (25bp,25bp) rectangle (75bp,75bp);
+    \draw (50bp,0bp) node[below] {third application};
+  \end{scope}
+
+  \begin{scope}[xshift=10cm]
+    \draw (50bp,50bp) node{\pgfuseshading{myshadingF}};
+    \draw[white,thick] (50bp,50bp) circle (25bp);
+    \draw (50bp,0bp) node[below] {fourth application};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1350,7 +2843,28 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `ca7309a87937`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareradialshading{ballshading}{\pgfpoint{-10bp}{10bp}}
+ {color(0bp)=(red!15!white); color(9bp)=(red!75!white);
+ color(18bp)=(red!70!black); color(25bp)=(red!50!black); color(50bp)=(black)}
+\pgfuseshading{ballshading}
+\hskip 1cm
+\begin{pgfpicture}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{1cm}{1cm}}
+  \pgfshadepath{ballshading}{0}
+  \pgfusepath{}
+  \pgfpathcircle{\pgfpoint{3cm}{0cm}}{1cm}
+  \pgfshadepath{ballshading}{0}
+  \pgfusepath{}
+  \pgfpathcircle{\pgfpoint{6cm}{0cm}}{1cm}
+  \pgfshadepath{ballshading}{45}
+  \pgfusepath{}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1360,7 +2874,25 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `43dd4a49934e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareverticalshading{myshadingG}{100bp}
+ {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
+\begin{pgfpicture}
+  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgfshadepath{myshadingG}{0}
+  \pgfusepath{stroke}
+  \pgfpathrectangle{\pgfpoint{3cm}{0cm}}{\pgfpoint{2cm}{1cm}}
+  \pgfshadepath{myshadingG}{90}
+  \pgfusepath{stroke}
+  \pgfpathrectangle{\pgfpoint{6cm}{0cm}}{\pgfpoint{2cm}{1cm}}
+  \pgfshadepath{myshadingG}{45}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1370,7 +2902,20 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6099800678a3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareverticalshading{rainbow}{100bp}
+ {color(0bp)=(red); color(25bp)=(red); color(35bp)=(yellow);
+  color(45bp)=(green); color(55bp)=(cyan); color(65bp)=(blue);
+  color(75bp)=(violet); color(100bp)=(violet)}
+\begin{tikzpicture}[shading=rainbow]
+  \shade (0,0) rectangle node[white] {\textsc{pride}} (2,1);
+  \shade[shading angle=90] (3,0) rectangle +(1,2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1380,7 +2925,21 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `c4dfc16ed7f7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\newdimen\myypos
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpoint{0cm}{\myypos}}
+  \pgfpathlineto{\pgfpoint{1cm}{\myypos}}
+  \advance \myypos by 1cm
+  \pgfpathlineto{\pgfpoint{1cm}{\myypos}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1391,6 +2950,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Generates pretty-printed output for the (real) number x. The input number x is parsed using || which allows arbitrary precision. Numbers are typeset in math mode using the current set of number printing options, see below. Optional arguments can also be provided using |[|options|]|x.
+
 
 ---
 
@@ -1399,6 +2962,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5ddd9d3fe72a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+macro} Returns the resulting number into macro instead of typesetting it directly.
 
 
 ---
@@ -1409,6 +2976,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+true codefalse code} A command which does the same check as |int detect|, but it invokes true code if the number constant actually is an integer and the false code if not. As a side-effect, || will contain the parsed number, either in integer format or as parsed floating point number. The argument number constant will be parsed with ||. codeexample[] 15 15{is an int: .}{is no int}1em 15.5 15.5{is an int: .}{is no int} codeexample
+
 
 ---
 
@@ -1417,7 +2988,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `1a5f8df77e6e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1427,7 +3009,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `563cdb35eef3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1437,7 +3030,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `68e9c9e82b83`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,std,fixed zerofill,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-05}\hspace{1em}
+\pgfmathprintnumber{1}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1447,7 +3050,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `700f68fa7b84`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1457,7 +3071,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6225c7b3fe5f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci zerofill,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1467,7 +3092,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6826a0be70ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,std,precision=2}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1477,7 +3113,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `fd00daea8419`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/relative*={1}}
+\pgfmathprintnumber{6.42e-16}\hspace{1em}
+\pgfmathprintnumber{1.2}\hspace{1em}
+\pgfmathprintnumber{6}\hspace{1em}
+\pgfmathprintnumber{20.6}\hspace{1em}
+\pgfmathprintnumber{87}
+```
 
 
 ---
@@ -1487,7 +3134,16 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2b7d965aefd3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/relative*={2}}
+\pgfmathprintnumber{123.345}\hspace{1em}
+\pgfmathprintnumber{0.0012}\hspace{1em}
+\pgfmathprintnumber{0.0014}\hspace{1em}
+```
 
 
 ---
@@ -1497,7 +3153,16 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d67196d5b41d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/relative*={-3}}
+\pgfmathprintnumber{123.345}\hspace{1em}
+\pgfmathprintnumber{0.0012}\hspace{1em}
+\pgfmathprintnumber{0.0014}\hspace{1em}
+```
 
 
 ---
@@ -1507,7 +3172,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `133abc4616ef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,relative*={3},precision=0}
+\pgfmathprintnumber{123456999}\hspace{1em}
+\pgfmathprintnumber{123456999.12}
+```
 
 
 ---
@@ -1517,7 +3190,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2bfd4d717141`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,relative*={3},precision=0,relative style=fixed}
+\pgfmathprintnumber{123456999}\hspace{1em}
+\pgfmathprintnumber{123456999.12}
+```
 
 
 ---
@@ -1527,7 +3208,15 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `b9f588d0eced`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed relative,precision=6}
+\pgfmathprintnumber{123456999}\hspace{1em}
+\pgfmathprintnumber{123456999.12}
+```
 
 
 ---
@@ -1537,7 +3226,13 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `dec5ee3cfecd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/every relative/.style=std}
+```
 
 
 ---
@@ -1547,7 +3242,20 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8880393091d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed relative,precision=3}
+\pgfmathprintnumber{1000.0123}\hspace{1em}
+\pgfmathprintnumber{100.0567}\hspace{1em}
+\pgfmathprintnumber{0.000010003452}\hspace{1em}
+\pgfmathprintnumber{0.010073452}\hspace{1em}
+\pgfmathprintnumber{1.23567}\hspace{1em}
+\pgfmathprintnumber{1003.75}\hspace{1em}
+\pgfmathprintnumber{1006.75}\hspace{1em}
+```
 
 
 ---
@@ -1557,7 +3265,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4121d1ebf8a9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,int detect,precision=2}
+\pgfmathprintnumber{15}\hspace{1em}
+\pgfmathprintnumber{20}\hspace{1em}
+\pgfmathprintnumber{20.4}\hspace{1em}
+\pgfmathprintnumber{0.01}\hspace{1em}
+\pgfmathprintnumber{0}
+```
 
 
 ---
@@ -1567,7 +3286,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8bb8a056a208`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+15 \pgfmathifisint{15}{is an int: \pgfretval.}{is no int}\hspace{1em}
+15.5 \pgfmathifisint{15.5}{is an int: \pgfretval.}{is no int}
+```
 
 
 ---
@@ -1577,7 +3303,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `88734fcd45e9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,int trunc}
+\pgfmathprintnumber{4.568}\hspace{1em}
+\pgfmathprintnumber{5e-04}\hspace{1em}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{24415.98123}\hspace{1em}
+\pgfmathprintnumber{123456.12345}
+```
 
 
 ---
@@ -1587,7 +3324,27 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `89044469f731`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/frac}
+\pgfmathprintnumber{0.333333333333333}\hspace{1em}
+\pgfmathprintnumber{0.5}\hspace{1em}
+\pgfmathprintnumber{2.133333333333325e-01}\hspace{1em}
+\pgfmathprintnumber{0.12}\hspace{1em}
+\pgfmathprintnumber{2.666666666666646e-02}\hspace{1em}
+\pgfmathprintnumber{-1.333333333333334e-02}\hspace{1em}
+\pgfmathprintnumber{7.200000000000000e-01}\hspace{1em}
+\pgfmathprintnumber{6.666666666666667e-02}\hspace{1em}
+\pgfmathprintnumber{1.333333333333333e-01}\hspace{1em}
+\pgfmathprintnumber{-1.333333333333333e-02}\hspace{1em}
+\pgfmathprintnumber{3.3333333}\hspace{1em}
+\pgfmathprintnumber{1.2345}\hspace{1em}
+\pgfmathprintnumber{1}\hspace{1em}
+\pgfmathprintnumber{-6}
+```
 
 
 ---
@@ -1597,7 +3354,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `09f5ffde1cd9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,frac, frac denom=10}
+\pgfmathprintnumber{0.1}\hspace{1em}
+\pgfmathprintnumber{0.5}\hspace{1em}
+\pgfmathprintnumber{1.2}\hspace{1em}
+\pgfmathprintnumber{-0.6}\hspace{1em}
+\pgfmathprintnumber{-1.4}\hspace{1em}
+```
 
 
 ---
@@ -1607,7 +3375,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `19735493c046`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,frac, frac whole=false}
+\pgfmathprintnumber{20.1}\hspace{1em}
+\pgfmathprintnumber{5.5}\hspace{1em}
+\pgfmathprintnumber{1.2}\hspace{1em}
+\pgfmathprintnumber{-5.6}\hspace{1em}
+\pgfmathprintnumber{-1.4}\hspace{1em}
+```
 
 
 ---
@@ -1617,7 +3396,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `9d71ece361e0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/read comma as period}
+\pgfmathprintnumber{1234,56}
+```
 
 
 ---
@@ -1627,7 +3413,16 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d475fcb2caa8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    read comma as period,
+    use comma}
+\pgfmathprintnumber{1234,56}
+```
 
 
 ---
@@ -1637,7 +3432,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `9a431003c076`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator={}}
+\pgfmathprintnumber{1234.56}
+```
 
 
 ---
@@ -1647,7 +3453,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `0d52fb088217`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator={}}
+\pgfmathprintnumber{1234567890}
+```
 
 
 ---
@@ -1657,7 +3474,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `11d18eceb4fa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator={.}}
+\pgfmathprintnumber{1234567890}
+```
 
 
 ---
@@ -1667,7 +3495,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `9cb3273b8a88`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator={,}}
+\pgfmathprintnumber{1234567890}
+```
 
 
 ---
@@ -1677,7 +3516,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `877bbab3abe0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator={{{,}}}}
+\pgfmathprintnumber{1234567890}
+```
 
 
 ---
@@ -1687,7 +3537,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `f9de077663f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    precision=999,
+    set thousands separator={\,},
+    1000 sep in fractionals,
+    }
+\pgfmathprintnumber{1234.1234567}
+```
 
 
 ---
@@ -1697,7 +3559,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `5cff6df31b2f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,fixed zerofill,
+    precision=9,
+    set thousands separator={\,},
+    1000 sep in fractionals,
+    }
+\pgfmathprintnumber{1234.1234567}
+```
 
 
 ---
@@ -1707,7 +3581,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `60cbf97536ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    int detect,
+    1000 sep={\,},
+    min exponent for 1000 sep=0}
+\pgfmathprintnumber{5000}; \pgfmathprintnumber{1000000}
+```
 
 
 ---
@@ -1717,7 +3601,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `37d69a49acc8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    int detect,
+    1000 sep={\,},
+    min exponent for 1000 sep=4}
+\pgfmathprintnumber{1000}; \pgfmathprintnumber{5000}
+```
 
 
 ---
@@ -1727,7 +3621,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `3c5c1c973dbe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    int detect,
+    1000 sep={\,},
+    min exponent for 1000 sep=4}
+\pgfmathprintnumber{10000}; \pgfmathprintnumber{1000000}
+```
 
 
 ---
@@ -1737,7 +3641,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `cf5346ff8db2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
+\pgfmathprintnumber{12.3456}
+```
 
 
 ---
@@ -1747,7 +3658,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `8d047a42b6b5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
+\pgfmathprintnumber{1234.56}
+```
 
 
 ---
@@ -1757,7 +3675,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2c3dca07bc00`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
+\pgfmathprintnumber{12.3456}
+```
 
 
 ---
@@ -1767,7 +3692,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `f034ac02962b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
+\pgfmathprintnumber{1234.56}
+```
 
 
 ---
@@ -1777,7 +3709,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `fcbac482c424`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,precision=2,
+    skip 0.}
+\pgfmathprintnumber{0.56}
+```
 
 
 ---
@@ -1787,7 +3729,17 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `afb6c6f29fdb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,precision=2,
+    skip 0.=false}
+\pgfmathprintnumber{0.56}
+```
 
 
 ---
@@ -1797,7 +3749,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `58c48a20d48e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/showpos}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1807,7 +3766,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `bb1c42ac1733`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/showpos=false}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1817,7 +3783,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `d080fe682e52`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,showpos,sci}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1827,7 +3800,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `6d115d2ee9f1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci 10e}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1837,7 +3817,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `b9ea3092f368`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci e}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1847,7 +3834,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `638e0108a0dc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci E}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1857,7 +3851,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `79577f126de7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci subscript}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1867,7 +3868,14 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `cb43c564b74c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/number format/.cd,sci,sci superscript}
+\pgfmathprintnumber{12.345}
+```
 
 
 ---
@@ -1877,7 +3885,18 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `56f593c5e0ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    /pgf/number format/.cd,
+    sci,
+    sci generic={mantissa sep=\times,exponent={10^{#1}}}}
+\pgfmathprintnumber{12.345};
+\pgfmathprintnumber{0.00012345}
+```
 
 
 ---
@@ -1887,7 +3906,19 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `319e3ecc18f4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    /pgf/number format/.cd,
+    sci, retain unit mantissa=false}
+\pgfmathprintnumber{10.5};
+\pgfmathprintnumber{10};
+\pgfmathprintnumber{1010};
+\pgfmathprintnumber[precision=1]{-1010};
+```
 
 
 ---
@@ -1897,7 +3928,21 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `4b62a0730ab3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    /pgf/fpu,
+    /pgf/number format/.cd,
+    sci,
+    verbatim}
+\pgfmathprintnumber{12.345};
+\pgfmathprintnumber{0.00012345};
+\pgfmathparse{exp(15)}
+\pgfmathprintnumber{\pgfmathresult}
+```
 
 
 ---
@@ -1908,6 +3953,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command activates the externalization. It installs commands to replace every -picture. It needs to be called before |document| because it may need to install its separate shipout routine. The optional arguments can be any of the keys described below. Note that the generation/modification of auxiliary files like |.aux|, |.toc| etc.\ is usually suppressed while a single image is externalized (details for || support follow). It is also possible to write ||main job name if the argument is del
+
 
 ---
 
@@ -1916,6 +3965,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `f791360cd070`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Once || has been called, || contains the name of the currently generated output file (which may be |main| or |main-figure0| or |main-figure1| in our example above).
 
 
 ---
@@ -1926,6 +3979,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+The value of || is one of || or ||, depending on the configuration. In short: if auxiliary file support (|| and ||) is activated, |=| (since that's the base file name of auxiliary files).
+
 
 ---
 
@@ -1934,6 +3991,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `64427da3daba`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Assigns a common prefix used by all file names. For example, codeexample[code only] figures/ codeexample will prepend |figures/| to every external graphics file name. Please note that || is the only way to assign a prefix in case you want to prepare your document for environments where \ is not installed (see section~section-libs-external-nopgf).
 
 
 ---
@@ -1944,6 +4005,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the file name for the next \ picture or || short command. It will only be used for the next picture. Pictures for which no explicit file name has been set (or the next file name is empty) will get automatically generated file names. Please note that |prefix| will still be prepended to file name. codeexample[code only] article tikz external [prefix=figures/] document trees tikzpicture {root} child {node {left}} child {node {right} child {node {child}} child {node {child}} }; tikzpicture si
+
 
 ---
 
@@ -1952,6 +4017,10 @@ Showing items **4201-4400** of **6812** | Page **22** of **35**
 **ID**: `2f7fd0931900`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Changes the names of all following figures. It is possible to change |figure name| during the document either using |external/figure name|={name|}| or with this command. A unique counter will be used for each different name, and each counter will start at $0$. The value of |prefix| will be applied after |figure name| has been evaluated. codeexample[code only] article tikz external document tikzpicture {root} child {node {left}} child {node {right} child {node {child}} child {node {child}} }; t
 
 
 ---

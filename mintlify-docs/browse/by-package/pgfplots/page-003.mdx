@@ -11,102 +11,368 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 
 ---
 
-## 601. Other Example
+## 601. Line Chart Example
 
 **ID**: `caaff7331d3b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ytick={1,2,3},
+    yticklabels={Group A, Group B, Group C},
+]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+        },
+    ] coordinates {};
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 602. Other Example
+## 602. Line Chart Example
 
 **ID**: `64b19f3e855a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+]
+    \addplot+ [boxplot prepared={
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+    \addplot+ [boxplot prepared={
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+    \addplot+ [boxplot prepared={draw position=5,
+        lower whisker=2.5, lower quartile=4,
+        median=8.5, upper quartile=12,
+        upper whisker=15},
+    ] coordinates {};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 603. Other Example
+## 603. Line Chart Example
 
 **ID**: `55d12f41ad9b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{
+    only if/.style args={entry of #1 is #2}{
+        /pgfplots/boxplot/data filter/.code={
+            \edef\tempa{\thisrow{#1}}
+            \edef\tempb{#2}
+            \ifx\tempa\tempb
+            \else
+                \def\pgfmathresult{}
+            \fi
+        }
+    }
+}
+
+% 'data.dat' contains
+% v     set
+% 0.1   a
+% 0.2   a
+% 0.3   a
+% 0.8   b
+% 0.9   b
+% 1.0   b
+
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot,
+    table/y=v,
+    boxplot/draw direction=y,
+]
+ \addplot table[only if={entry of set is a}]{data.dat};
+ \addplot table[only if={entry of set is b}]{data.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 604. Other Example
+## 604. Line Chart Example
 
 **ID**: `f1cb6f66a94d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+    x axis line style={opacity=0},
+    axis x line*=bottom,
+    axis y line=left,
+    enlarge y limits,
+    ymajorgrids,
+    xtick={1,2,3},
+    xticklabels={Group A, Group B, Group C},
+]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+        },
+    ] coordinates {};
+
+    \addplot+[
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 605. Other Example
+## 605. Line Chart Example
 
 **ID**: `8c0f20062b43`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ytick={1,2,3},
+    yticklabels={Group A, Group B, Group C},
+    boxplot/variable width,
+]
+    \addplot+ [% Group A:
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            sample size=1000,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [% Group B:
+        boxplot prepared={
+            lower whisker=36, lower quartile=39,
+            median=40,
+            upper quartile=41, upper whisker=43,
+            sample size=100000,
+        },
+    ] coordinates {};
+
+    \addplot+ [% Group C:
+        boxplot prepared={
+            lower whisker=41, lower quartile=44,
+            median=45,
+            upper quartile=46, upper whisker=47,
+            sample size=50000,
+        },
+    ] coordinates {(0,35) (0,55)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 606. Other Example
+## 606. Line Chart Example
 
 **ID**: `078306f2c3ff`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[minor y tick num=1]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            box extend=1,
+        },
+    ] table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            box extend=0.5, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 607. Other Example
+## 607. Line Chart Example
 
 **ID**: `20d9f5a20b9a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=0, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 608. Other Example
+## 608. Line Chart Example
 
 **ID**: `68182fb6a59e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+ [
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=0.5, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 609. Other Example
+## 609. Line Chart Example
 
 **ID**: `6d91199f7242`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+[
+        boxplot prepared={
+            lower whisker=42, lower quartile=45,
+            median=47,
+            upper quartile=47.5, upper whisker=48,
+            draw relative anchor=1, }, ]
+    table [row sep=\\,y index=0] { 40\\ 34\\ 56\\ };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 610. Other Example
+## 610. Line Chart Example
 
 **ID**: `7578db55878a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1cm]
+    \addplot+ [boxplot]
+        table [row sep=\\,y index=0] {
+            data\\
+            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -116,27 +382,95 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `b84253d06969`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/every average/.style={
+        /tikz/mark=diamond*,
+    },
+}
+```
 
 
 ---
 
-## 612. Other Example
+## 612. Line Chart Example
 
 **ID**: `bbe429401842`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1.5cm, ymax=2]
+\addplot+[boxplot]
+table[row sep=\\,y index=0] {
+    data\\
+    1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+    7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+}
+[above]
+node at
+  (boxplot box cs: \boxplotvalue{lower whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{lower whisker}}}
+node at
+  (boxplot box cs: \boxplotvalue{lower quartile},1)
+  {\pgfmathprintnumber{\boxplotvalue{lower quartile}}}
+node[left] at
+  (boxplot box cs: \boxplotvalue{median},0.5)
+  {\pgfmathprintnumber{\boxplotvalue{median}}}
+node at
+  (boxplot box cs: \boxplotvalue{upper quartile},1)
+  {\pgfmathprintnumber{\boxplotvalue{upper quartile}}}
+node at
+  (boxplot box cs: \boxplotvalue{upper whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{upper whisker}}}
+;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 613. Other Example
+## 613. Line Chart Example
 
 **ID**: `fe343e895a53`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[y=1.5cm, ymax=2]
+\addplot+[boxplot]
+table[row sep=\\,y index=0] {
+    data\\
+    1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+    7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+}
+[above]
+node at
+  (boxplot whisker cs:\boxplotvalue{lower whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{lower whisker}}}
+node at
+  (boxplot box cs: \boxplotvalue{median},1)
+  {\pgfmathprintnumber{\boxplotvalue{median}}}
+node at
+  (boxplot whisker cs:\boxplotvalue{upper whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{upper whisker}}}
+;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -146,7 +480,32 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `b78f36f0a193`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/lower whisker/.style={
+        /pgfplots/boxplot/draw/whisker=
+            {\pgfplotsboxplotvalue{lower quartile}}
+            {\pgfplotsboxplotvalue{lower whisker}}
+    },
+    boxplot/draw/upper whisker/.style={
+        /pgfplots/boxplot/draw/whisker=
+            {\pgfplotsboxplotvalue{upper quartile}}
+            {\pgfplotsboxplotvalue{upper whisker}}
+    },
+    boxplot/draw/whisker/.code 2 args={
+        \draw [/pgfplots/boxplot/every whisker/.try]
+            (boxplot cs:#1) -- (boxplot cs:#2)
+            (boxplot whisker cs:#2,0)
+            --
+            (boxplot whisker cs:#2,1)
+        ;
+    },
+}
+```
 
 
 ---
@@ -156,7 +515,21 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `bd29923d5caa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/box/.code={
+        \draw [/pgfplots/boxplot/every box/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue{lower quartile},0)
+            rectangle
+            (boxplot box cs:\pgfplotsboxplotvalue{upper quartile},1)
+        ;
+    },
+}
+```
 
 
 ---
@@ -166,7 +539,21 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `d02174c25e77`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    boxplot/draw/median/.code={
+        \draw [/pgfplots/boxplot/every median/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue{median},0)
+            --
+            (boxplot box cs:\pgfplotsboxplotvalue{median},1)
+        ;
+    },
+}
+```
 
 
 ---
@@ -176,137 +563,415 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `e44b9aa114f2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\pgfplotsset{
+    boxplot/draw/average/.code={
+        \draw [/pgfplots/boxplot/every average/.try]
+            \pgfextra
+            % do NOT use \draw[mark=*] plot coordinates because
+            % boxplots uses the same plot handler to draw its
+            % outliers.
+            \pgftransformshift{%
+                % basic level access to 'boxplot box cs':
+                \pgfplotsboxplotpointabbox
+                    {\pgfplotsboxplotvalue{average}}
+                    {0.5}%
+            }%
+            \pgfuseplotmark{\tikz@plot@mark}%
+            \endpgfextra
+        ;
+    },
+}
+\makeatother
+```
 
 
 ---
 
-## 618. Other Example
+## 618. Bar Chart Example
 
 **ID**: `5dfad5487e2f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xticklabel=
+\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick
+]
+    \addplot+ [hist={bins=3}]
+        table [row sep=\\,y index=0] {
+            data\\
+            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 619. Other Example
+## 619. Bar Chart Example
 
 **ID**: `d2505a004954`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+         \pgfmathprintnumber\nexttick)$
+    },
+    x tick label style={draw=red},
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 620. Other Example
+## 620. Bar Chart Example
 
 **ID**: `954ede03f266`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        tiny,
+        height=4cm,width=12cm,
+        ybar interval,
+        ymin=0,
+        xmin=0,xmax=1,
+        axis on top,
+        extra x ticks={0,1},
+        extra x tick style={
+            grid=none,
+            x tick label as interval=false,
+            xticklabel={$\pgfmathprintnumber\tick$}
+        },
+        xticklabel={$[\pgfmathprintnumber[fixed]\tick,\cdot)$},
+    ]
+        \addplot+ [samples=200,hist] {rnd};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 621. Other Example
+## 621. Bar Chart Example
 
 **ID**: `0040bf3521aa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel={
+        $[\pgfmathprintnumber\tick,
+        \pgfmathprintnumber\nexttick)$
+    },
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist={data=x,cumulative}]
+        file {plotdata/pgfplots.randn.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 622. Other Example
+## 622. Line Chart Example
 
 **ID**: `a6e5339a1572`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0,title=\texttt{hist}]
+        \addplot [
+            hist,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+%
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=density}]
+        \addplot [
+            hist=density,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 623. Other Example
+## 623. Line Chart Example
 
 **ID**: `d534fae4a245`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=cumulative}]
+        \addplot [
+            hist=cumulative,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+%
+\begin{tikzpicture}
+    \begin{axis}[small,ymin=0, title=\texttt{hist=\{cumulative,density\}}]
+        \addplot [
+            hist={cumulative,density},
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] {plotdata/pgfplots.randn.dat};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 624. Other Example
+## 624. Line Chart Example
 
 **ID**: `fd4115be4c0b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={bins=3},
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 625. Other Example
+## 625. Line Chart Example
 
 **ID**: `7fe38147c16c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={const plot},
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 626. Other Example
+## 626. Line Chart Example
 
 **ID**: `c284b37a9b1d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={sharp plot},
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 627. Other Example
+## 627. Line Chart Example
 
 **ID**: `05c8a7178d3b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        hist={
+            bins=3,
+            handler/.style={sharp plot},
+            intervals=false,
+        },
+    ] table [row sep=\\,y index=0] {
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 628. Other Example
+## 628. Bar Chart Example
 
 **ID**: `54c374677a1b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval,
+    hist/symbolic coords={A,B,C,D,E,F,G,H,I,J},
+    xticklabel={[\tick--\nexttick[},
+]
+    \addplot+ [
+        hist={bins=3},
+    ] table [row sep=\\,y index=0] {
+        data\\
+        A\\ B\\ A\\ D\\ F\\ J\\
+        G\\ J\\ I\\ H\\ I\\ I\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 629. Other Example
+## 629. Line Chart Example
 
 **ID**: `426595ff9ab0`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick distance=45,
+    ytick distance=0.5,
+    enlarge x limits=false,
+]
+    \addplot [smooth,domain=0:360] {sin(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 630. Other Example
+## 630. Line Chart Example
 
 **ID**: `719cd9e3956c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    xtick distance=10^(1.5),
+    ytick distance=10^1,
+]
+    \addplot expression [domain=1:10000] {x^-2};
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -316,17 +981,50 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `fef11685b0a1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    xtick={
+        12,
+        9897,
+        1468864
+    },
+]
+    % see above for this macro:
+    \plotcoords
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 632. Other Example
+## 632. Line Chart Example
 
 **ID**: `1605ca1a0a24`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick=\empty,
+    ytick={-2,0.3,3,3.7,4.5},
+]
+    \addplot+ [smooth] coordinates {
+        (-2,3) (-1.5,2) (-0.3,-0.2)
+        (1,1.2) (2,2) (3,5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -336,107 +1034,299 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `c6fe875eb596`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{tick style={very thin,gray}}   % modifies the style `every tick'
+\pgfplotsset{minor tick style={black}}      % modifies the style `every minor tick'
+```
 
 
 ---
 
-## 634. Other Example
+## 634. Line Chart Example
 
 **ID**: `9fb8bb2a43c9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick=data,
+    xmajorgrids,
+]
+    \addplot coordinates {
+        (1,2)
+        (2,5)
+        (4,6.5)
+        (6,8)
+        (10,9)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 635. Other Example
+## 635. Line Chart Example
 
 **ID**: `6c376beecf39`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    title=A log plot with small axis range,
+]
+    \addplot coordinates {
+        (10,1e-4)
+        (17,8.3176e-05)
+        (25,7.0794e-05)
+        (50,5e-5)
+    };
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 636. Other Example
+## 636. Line Chart Example
 
 **ID**: `27f3c73f10be`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    minor tick num=1,
+]
+    \addplot {x^3};
+    \addplot {-20*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 637. Other Example
+## 637. Line Chart Example
 
 **ID**: `681c56359f16`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    minor tick num=3,
+]
+    \addplot {x^3};
+    \addplot {-20*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 638. Other Example
+## 638. Line Chart Example
 
 **ID**: `2f97a70d6850`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    minor x tick num=1,
+    minor y tick num=3,
+]
+    \addplot {x^3};
+    \addplot {-20*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 639. Other Example
+## 639. Line Chart Example
 
 **ID**: `fa07a91e5c5e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    minor xtick={-3,1},
+    grid=minor,
+]
+    \addplot {x^3};
+    \addplot {-20*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 640. Other Example
+## 640. Line Chart Example
 
 **ID**: `b7dac76d7537`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    minor ytick=data,
+]
+    \addplot {x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 641. Other Example
+## 641. Line Chart Example
 
 **ID**: `2effe0ec7b55`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0,xmax=3,ymin=0,ymax=15,
+    extra y ticks={2.71828},
+    extra y tick labels={$e$},
+    extra x ticks={2.2},
+    extra x tick style={grid=major,
+        tick label style={
+            rotate=90,anchor=east}},
+    extra x tick labels={Cut},
+]
+    \addplot {exp(x)};
+    \addlegendentry{$e^x$}
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 642. Other Example
+## 642. Line Chart Example
 
 **ID**: `520aff62726f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{every axis/.append style={width=5.3cm}}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        title=Explicitly Provided Limits,
+        xtickten={1,2},
+        ytickten={-5,-6},
+    ]
+        \addplot coordinates
+            {(10,1e-5) (20,5e-6) (40,2.5e-6)};
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        title=With Extra Ticks,
+        xtickten={1,2},
+        ytickten={-5,-6},
+        extra x ticks={20,40},
+        extra y ticks={5e-6,2.5e-6},
+    ]
+        \addplot coordinates
+            {(10,1e-5) (20,5e-6) (40,2.5e-6)};
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        title=With Extra Ticks; $10^e$ format,
+        extra tick style={log identify minor tick positions=false},
+        xtickten={1,2},
+        ytickten={-5,-6},
+        extra x ticks={20,40},
+        extra y ticks={5e-6,2.5e-6},
+    ]
+        \addplot coordinates
+            {(10,1e-5) (20,5e-6) (40,2.5e-6)};
+    \end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 643. Other Example
+## 643. Line Chart Example
 
 **ID**: `a96ae3c7a89d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}[
+    samples=8,
+    ytickten={-6,-4,...,4},
+    domain=0:10,
+]
+    \addplot {2^(-2*x + 6)};
+    \addlegendentry{$2^{-2x + 6}$}
+
+    % or invoke gnuplot to generate coordinates:
+    \addplot gnuplot [id=pow2]
+        {2**(-1.5*x -3)};
+    \addlegendentry{$2^{-1.5x -3}$}
+\end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -446,7 +1336,13 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `8522ce03fe44`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+xticklabels={$\frac{1}{2}$,$e$}
+```
 
 
 ---
@@ -456,27 +1352,81 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `6f4e57186cf9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+xticklabels={{0,5}, $e$}.
+```
 
 
 ---
 
-## 646. Other Example
+## 646. Line Chart Example
 
 **ID**: `21a527a678c1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick={-1.5,-1,...,1.5},
+    xticklabels={%
+        $-1\frac 12$,
+        $-1$,
+        $-\frac 12$,
+        $0$,
+        $\frac 12$,
+        $1$},
+    % note: \frac can be done automatically:
+    % xticklabel style={/pgf/number format/frac},
+]
+    \addplot [smooth,blue,mark=*] coordinates {
+        (-1,    1)
+        (-0.75, 0.5625)
+        (-0.5,  0.25)
+        (-0.25, 0.0625)
+        (0,     0)
+        (0.25,  0.0625)
+        (0.5,   0.25)
+        (0.75,  0.5625)
+        (1,     1)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 647. Other Example
+## 647. Line Chart Example
 
 **ID**: `44e4f308f855`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}[
+    ytickten={-2,-1,0,1,2},
+    yticklabels={
+        $\frac{1}{100}$,
+        $\frac{1}{10}$,
+        1,10,100
+    },
+]
+    \addplot {exp(x)};
+\end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -486,7 +1436,13 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `7898724d6a54`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\axisdefaultticklabel{$\pgfmathprintnumber{\tick}$}
+```
 
 
 ---
@@ -496,27 +1452,87 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `aaa0ed5dc51f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\axisdefaultticklabellog{%
+    \pgfkeysgetvalue{/pgfplots/log number format code/.@cmd}\pgfplots@log@label@style
+    \expandafter\pgfplots@log@label@style\tick\pgfeov
+}
+```
 
 
 ---
 
-## 650. Other Example
+## 650. Line Chart Example
 
 **ID**: `eca8c93ee4e4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{semilogyaxis}[
+    log ticks with fixed point,
+    xticklabel={$\pgfmathprintnumber{\tick}_e$},
+]
+    \addplot {exp(x)};
+\end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 651. Other Example
+## 651. Line Chart Example
 
 **ID**: `1aeed0cd88ec`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% \usepackage{nicefrace}% required
+\begin{tikzpicture}
+    \begin{axis}[
+        % x ticks explicitly formatted:
+        xtick={0,1,0.5,0.25,0.75},
+        xticklabels={$0$,$1$,$\frac12$,$\frac14$,$\frac34$},
+        % y ticks automatically by some code fragment:
+        ytick=data,
+        yticklabel={
+            \scriptsize
+            \ifdim\tick pt<0pt % a TeX \if -- see TeX Book
+                \pgfmathparse{-10*\tick}
+                $-\nicefrac{\pgfmathprintnumber{\pgfmathresult}}{10}$
+            \else
+                \ifdim\tick pt=0pt
+                \else
+                    \pgfmathparse{10*\tick}
+                    $\nicefrac{\pgfmathprintnumber{\pgfmathresult}}{10}$
+                \fi
+            \fi
+        },
+        % NOTE: this here does the same:
+        % yticklabel style={/pgf/number format/.cd,frac,
+        %     frac TeX=\nicefrac,frac whole=false,frac denom=10},
+        ymajorgrids,
+        title=A special Prewavelet,
+        axis x line=center,
+        axis y line=left,
+    ]
+        \addplot coordinates {(0,-1.2) (0.25,1.1)
+            (0.5,-0.6) (0.75,0.1) (1,0)};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -526,7 +1542,19 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `ccc4532b3e6b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    % this modifies the `every tick label' style
+    tick label style={
+        font=\tiny,
+        /pgf/number format/sci,
+    },
+}
+```
 
 
 ---
@@ -536,7 +1564,19 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `47f5708f8d82`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    % this modifies the `every x tick label' style
+    x tick label style={
+        above,
+        /pgf/number format/fixed zerofill,
+    },
+}
+```
 
 
 ---
@@ -546,27 +1586,74 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `7625c5271879`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    % modifies `every y tick label'
+    y tick label style={font=\bfseries},
+}
+```
 
 
 ---
 
-## 655. Other Example
+## 655. Line Chart Example
 
 **ID**: `31f3a777b964`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label as interval,
+]
+    \addplot {3*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 656. Other Example
+## 656. Bar Chart Example
 
 **ID**: `bbbdda78c037`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar interval=0.9,
+    x tick label as interval,
+    xmin=2003,xmax=2030,
+    ymin=0,ymax=140,
+    xticklabel={
+           $\pgfmathprintnumber{\tick}$
+        -- $\pgfmathprintnumber{\nexttick}$},
+    xtick=data,
+    x tick label style={
+        rotate=90,anchor=east,
+        /pgf/number format/1000 sep=%
+    },
+]
+    \addplot [draw=blue,fill=blue!40!white]
+        coordinates
+        {(2003,40) (2005,100) (2006,15)
+         (2010,90) (2020,120) (2030,3)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -576,87 +1663,246 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `57fead9156bb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{every tick/.append style={color=black}} % applies to major and minor ticks,
+\pgfplotsset{every minor tick/.append style={thin}}  % applies only to minor ticks,
+\pgfplotsset{every major tick/.append style={thick}} % applies only to major ticks.
+```
 
 
 ---
 
-## 658. Other Example
+## 658. Line Chart Example
 
 **ID**: `2b9f88dcf78f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick=data,ytick=data,
+    xtick align=center,
+]
+    \addplot coordinates {
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 659. Other Example
+## 659. Line Chart Example
 
 **ID**: `b31979b431cf`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick=data,ytick=data,
+    ytick align=outside,
+]
+    \addplot coordinates {
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 660. Other Example
+## 660. Line Chart Example
 
 **ID**: `98e8abbc3ae2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick=data,
+    axis x line=center,
+    xticklabels={,,},
+    ytick={-0.6,0,0.1,1},
+    yticklabels={
+        $-\frac{6}{10}$,,
+        $\frac{1}{10}$,$1$},
+    ymajorgrids,
+    axis y line=left,
+    enlargelimits=0.05
+]
+    \addplot coordinates {
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 661. Other Example
+## 661. Line Chart Example
 
 **ID**: `cc415b0736bd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Default,
+        tiny,
+        symbolic x coords={a,T,g},
+        xticklabel style={name=tick no \ticknum},
+        xtick=data,
+    ]
+        \addplot coordinates {(a,0) (T,1) (g,2)};
+    \end{axis}
+    \draw [red,opacity=0.5]
+        (tick no 0.base) -- (tick no 2.base);
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis}[
+        title=With strut,
+        tiny,
+        symbolic x coords={a,T,g},
+        xtick=data,
+        xticklabel style={name=tick no \ticknum},
+        typeset ticklabels with strut,
+    ]
+        \addplot coordinates {(a,0) (T,1) (g,2)};
+    \end{axis}
+    \draw [red,opacity=0.5]
+        (tick no 0.base) -- (tick no 2.base);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 662. Other Example
+## 662. Line Chart Example
 
 **ID**: `095485f5ed11`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[scaled ticks=true]
+    \addplot coordinates {
+        (20000,0.0005)
+        (40000,0.0010)
+        (60000,0.0020)
+    };
+\end{axis}
+\end{tikzpicture}%
+```
 
 
 ---
 
-## 663. Other Example
+## 663. Line Chart Example
 
 **ID**: `dfcb5b418669`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scaled ticks=false,
+]
+    \addplot coordinates {
+        (20000,0.0005)
+        (40000,0.0010)
+        (60000,0.0020)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 664. Other Example
+## 664. Line Chart Example
 
 **ID**: `87f16302209f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scaled ticks=base 10:3,
+    /pgf/number format/sci subscript,
+]
+    \addplot coordinates {
+        (-0.00001,2e12) (-0.00005,4e12)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 665. Other Example
+## 665. Line Chart Example
 
 **ID**: `6314ea012b1b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xtick={0,1.5708,...,10},
+    domain=0:2*pi,
+    scaled x ticks={real:3.1415},
+    xtick scale label code/.code={$\cdot \pi$},
+]
+    \addplot {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -666,27 +1912,73 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `49e942333285`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgfplots/xtick scale label code/.code=
+    {$\pgfkeysvalueof{/pgfplots/tick scale binop} \pgfmathprintnumber{#1}$},
+}
+```
 
 
 ---
 
-## 667. Other Example
+## 667. Line Chart Example
 
 **ID**: `58c8920501f3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scaled x ticks=real:2,
+    scaled y ticks=real:3,
+]
+    \addplot {x^3};
+    \node [pin=135:{$(3,9)$}] at (3,9) {};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 668. Other Example
+## 668. Line Chart Example
 
 **ID**: `405089200f75`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    scaled y ticks=manual:{$+65\,535$}{
+        \pgfmathparse{#1-65535}
+    },
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1,
+    },
+]
+    \addplot coordinates {
+        (0, 65535)
+        (13, 65535)
+        (14, 65536)
+        (15, 65537)
+        (30, 65537)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -696,7 +1988,15 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `3284a98d999e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    xtick scale label code/.code={$\cdot 10^{#1}$},
+}
+```
 
 
 ---
@@ -706,137 +2006,395 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `005a0b0b3669`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    xtick scale label code/.code={$\pgfkeysvalueof{/pgfplots/tick scale binop} 10^{#1}$},
+}
+```
 
 
 ---
 
-## 671. Other Example
+## 671. Line Chart Example
 
 **ID**: `5e91493e8e3f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=\texttt{tick scale
+        binop=\textbackslash cdot},
+]
+    \addplot [
+        mark=none,
+        blue,
+        samples=250,
+        domain=0:5,
+    ] {exp(10*x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 672. Other Example
+## 672. Line Chart Example
 
 **ID**: `625b76482b45`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=\texttt{tick scale
+        binop=\textbackslash times},
+    tick scale binop=\times,
+]
+    \addplot [
+        mark=none,
+        blue,
+        samples=250,
+        domain=0:5,
+    ] {exp(10*x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 673. Other Example
+## 673. Line Chart Example
 
 **ID**: `d2af9b71a2c4`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{semilogyaxis}[log basis y=2,grid=major,samples at={-4,...,4}]
+        \addplot {2^x};
+    \end{semilogyaxis}
+\end{tikzpicture}
+~
+\begin{tikzpicture}
+    \begin{semilogyaxis}[log basis y=10,samples at={-4,...,4}]
+        \addplot {2^x};
+    \end{semilogyaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 674. Other Example
+## 674. Line Chart Example
 
 **ID**: `273ab094e10a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    footnotesize,
+    axis x line=center,
+    axis y line=center,
+    %hide obscured x ticks=false,
+    %hide obscured y ticks=false,
+]
+    \addplot {x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 675. Other Example
+## 675. Line Chart Example
 
 **ID**: `f88e6e4c44d7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    footnotesize,
+    axis x line=center,
+    axis y line=center,
+    hide obscured x ticks=false,
+    hide obscured y ticks=false,
+]
+    \addplot {x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 676. Other Example
+## 676. Line Chart Example
 
 **ID**: `4d5d3a9bd00d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% requires \usepackage[pdftex]{ocg}
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Dynamic PDF Layer Support (see Acrobat Layers),
+        view={110}{35},
+    ]
+        \addplot3+ [
+            execute at begin plot visualization=\begin{ocg}{First Layer}{FirstLayer}{0},
+            execute at end plot visualization=\end{ocg},
+        ]
+            coordinates {(0,0,12) (0,1,2) (1,0,6) (0,0,12)};
+
+        \addplot3+ [
+            execute at begin plot visualization=\begin{ocg}{Second Layer}{SecondLayer}{0},
+            execute at end plot visualization=\end{ocg},
+        ]
+            coordinates {(0,0,9) (0,1,8) (1,0,4) (0,0,9)};
+
+        \addplot3+ [
+            execute at begin plot visualization=\begin{ocg}{Third Layer}{ThirdLayer}{0},
+            execute at end plot visualization=\end{ocg},
+        ]
+            coordinates {(0,0,1) (0,1,7) (1,0,3) (0,0,1)};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 677. Other Example
+## 677. Line Chart Example
 
 **ID**: `3e28a8f855ba`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    % some descriptions:
+    table/x=Basis,
+    table/y={L2/r},
+    xlabel=Degrees of Freedom,
+    ylabel=relative Error,
+    title=New Experiments (old in gray),
+    legend entries={$e_1$,$e_2$,$e_3$},
+]
+    \addplot [black!15,forget plot]
+        table {plotdata/oldexperiment1.dat};
+    \addplot [black!15,forget plot]
+        table {plotdata/oldexperiment2.dat};
+    \addplot [black!15,forget plot]
+        table {plotdata/oldexperiment3.dat};
+    \addplot table {plotdata/newexperiment1.dat};
+    \addplot table {plotdata/newexperiment2.dat};
+    \addplot table {plotdata/newexperiment3.dat};
+    \end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 678. Other Example
+## 678. Line Chart Example
 
 **ID**: `08d8094c1e3d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    forget plot style={opacity=0.2},
+    % same as above:
+    table/x=Basis,
+    table/y={L2/r},
+    xlabel=Degrees of Freedom,
+    ylabel=relative Error,
+    title=New Experiments (old in transparent),
+    legend entries={$e_1$,$e_2$,$e_3$},
+]
+    \foreach \exp in {1,2,3} {
+      \addplot+ [forget plot]
+          table {plotdata/oldexperiment\exp.dat};
+      \addplot table {plotdata/newexperiment\exp.dat};
+    }
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 679. Other Example
+## 679. Line Chart Example
 
 **ID**: `9af8fa5c2dd6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every axis/.append style={
+        before end axis/.code={
+            \fill [red] (1,10) circle(5pt);
+            \node at (-4,10)
+                {\large This text has been inserted
+                 using \texttt{before end axis}.};
+        },
+    },
+}
+\begin{tikzpicture}
+    \begin{axis}
+        \addplot {x^2};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 680. Other Example
+## 680. Line Chart Example
 
 **ID**: `9602c00a6cf5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every axis/.append style={
+        after end axis/.code={
+            \fill [red] (1,10) circle(5pt);
+            \node at (-4,10)
+                {\large This text has been inserted using \texttt{after end axis}.};
+        },
+    },
+}
+\begin{tikzpicture}
+    \begin{axis}
+        \addplot {x^2};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 681. Other Example
+## 681. Line Chart Example
 
 **ID**: `f7578f676949`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    axis on top=true,
+    axis x line=middle,
+    axis y line=middle,
+]
+    \addplot+ [fill] {x^3} \closedcycle;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 682. Other Example
+## 682. Line Chart Example
 
 **ID**: `5de5cbabb9aa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    axis on top=false,
+    axis x line=middle,
+    axis y line=middle,
+]
+    \addplot+ [fill] {x^3} \closedcycle;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 683. Other Example
+## 683. Scatter Plot Example
 
 **ID**: `06a23d19bd33`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        scatter,
+        scatter src=y,
+        samples=40,
+        visualization depends on=
+            {5*cos(deg(x)) \as \perpointmarksize},
+        scatter/@pre marker code/.append style=
+            {/tikz/mark size=\perpointmarksize},
+    ]
+        {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -846,7 +2404,13 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `4b6ab2633b1c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu=false}
+```
 
 
 ---
@@ -857,6 +2421,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} Creates an area which is clickable. A click produces a popup which contains information about the point under the cursor. The complete (!) context needs to be provided using key--value pairs, either set before calling this method of inside of required key-value-options. This command actually creates an AcroForm which invokes JavaScript whenever it is clicked. A JavaScript Object is created which represents the context (axis limits and options). This JavaScript object is available at runtime. T
+
 
 ---
 
@@ -865,37 +2433,134 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `1c6329ba0eb3`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepgfplotslibrary{clickable}
+```
 
 
 ---
 
-## 687. Other Example
+## 687. Line Chart Example
 
 **ID**: `265d1e33907a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    clickable coords={
+        Level \thisrow{level} (q=\thisrow{q})
+    },
+]
+    \addplot table [x=dof,y=error] {
+        level  dof      error           q
+        1      4        2.50000000e-01  48
+        2      16       6.25000000e-02  25
+        3      64       1.56250000e-02  41
+        4      256      3.90625000e-03  8
+        5      1024     9.76562500e-04  22
+        6      4096     2.44140625e-04  46
+        7      16384    6.10351562e-05  40
+        8      65536    1.52587891e-05  3
+        9      262144   3.81469727e-06  1
+        10     1048576  9.53674316e-07  9
+    };
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 688. Other Example
+## 688. Scatter Plot Example
 
 **ID**: `db63d0f63f34`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    clickable coords={(xy): \thisrow{label}},
+    scatter/classes={
+        a={mark=square*,blue},
+        b={mark=triangle*,red},
+        c={mark=o,draw=black}   % <-- don't add comma
+    }
+]
+    \addplot [
+        only marks,
+        scatter,
+        scatter src=explicit symbolic
+    ] table [meta=label] {
+        x     y      label
+        0.1   0.15   a
+        0.45  0.27   c
+        0.02  0.17   a
+        0.06  0.1    a
+        0.9   0.5    b
+        0.5   0.3    c
+        0.85  0.52   b
+        0.12  0.05   a
+        0.73  0.45   b
+        0.53  0.25   c
+        0.76  0.5    b
+        0.55  0.32   c
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 689. Other Example
+## 689. Line Chart Example
 
 **ID**: `342bfd58bc38`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}[clickable coords code={
+    \pgfmathprintnumberto[verbatim,precision=1]
+        {\thisrow{error}}
+        \error
+    \pgfmathprintnumberto[verbatim,frac]
+        {\thisrow{frac}}
+        \fraccomp
+    \edef\pgfplotsretval{error \error, R=\fraccomp}
+}]
+    \addplot table [x=dof,y=error] {
+        level  dof     error           frac
+        1      4       2.50000000e-01  0.5
+        2      16      6.25000000e-02  0.75
+        3      64      1.56250000e-02  0.1
+        4      256     3.90625000e-03  0.2
+        5      1024    9.76562500e-04  0.5
+        6      4096    2.44140625e-04  0.8
+        7      16384   6.10351562e-05  0.125
+        8      65536   1.52587891e-05  0.725
+        9      262144  3.81469727e-06  0.625
+        10     1048576 9.53674316e-07  1
+    };
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -905,7 +2570,14 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `06922d93c2fc`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% \maxdeadcycles=10000 % in case you get the error `Output loop---<N> consecutive dead cycles.'
+\usepackage[pdftex]{eforms}
+```
 
 
 ---
@@ -915,7 +2587,13 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `0842cb5e91a9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/images/include external/.code={\href{file:#1}{\pgfimage{#1}}}}
+```
 
 
 ---
@@ -925,37 +2603,126 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `f0c11f06193a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    every semilogy axis/.append style={/pgfplots/annot/point format={(\%.1f,\%.1e)}},
+    every semilogx axis/.append style={/pgfplots/annot/point format={(\%.1e,\%.1f)}},
+    every loglog axis/.append style={/pgfplots/annot/point format={(\%.1e,\%.1e)}},
+}
+```
 
 
 ---
 
-## 693. Other Example
+## 693. Line Chart Example
 
 **ID**: `628807cd5f9c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[legend pos=outer north east]
+        \addplot table {% plot X versus Y. This is original data.
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        };
+        \addplot table [
+            y={create col/linear regression={y=Y}}, % compute a linear regression from the input table
+        ] {
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        };
+        %\xdef\slope{\pgfplotstableregressiona} %<-- might be handy occasionally
+        \addlegendentry{$y(x)$}
+        \addlegendentry{%
+            $\pgfmathprintnumber{\pgfplotstableregressiona} \cdot x
+            \pgfmathprintnumber[print sign]{\pgfplotstableregressionb}$}
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 694. Other Example
+## 694. Line Chart Example
 
 **ID**: `24e91fadc9a7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}
+ \addplot table [x=dof,y=error2]
+    {pgfplotstable.example1.dat};
+  \addlegendentry{$y(x)$}
+
+ \addplot table [
+      x=dof,
+      y={create col/linear regression={y=error2}},
+ ] {pgfplotstable.example1.dat};
+
+  % might be handy occasionally:
+  %\xdef\slope{\pgfplotstableregressiona}
+ \addlegendentry{slope
+   $\pgfmathprintnumber{\pgfplotstableregressiona}$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 695. Other Example
+## 695. Line Chart Example
 
 **ID**: `e66129fce2c6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{loglogaxis}
+ \addplot table [x=dof,y=error2]
+    {pgfplotstable.example1.dat};
+  \addlegendentry{$y(x)$}
+
+ \addplot table [
+      x=dof,
+        y={create col/linear regression={
+            y=error2,
+            variance list={1000,800,600,500,400},
+        }}
+ ] {pgfplotstable.example1.dat};
+
+ \addlegendentry{slope
+  $\pgfmathprintnumber{\pgfplotstableregressiona}$}
+\end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -965,317 +2732,1047 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `9ff42fbceda1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% file plotdata/approx_exp.dat
+n  eapprox
+1  97.71828182845904
+2  101.38905609893065
+3  87.08553692318768
+4  92.59815003314424
+5  194.4131591025766
+6  410.4287934927351
+7  1174.6331584284585
+8  3032.9579870417283
+9  8198.083927575384
+10 22124.465794806718
+11 59973.14171519782
+```
 
 
 ---
 
-## 697. Other Example
+## 697. Line Chart Example
 
 **ID**: `d05aafe3d313`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+	\addplot table[x=n,y=eapprox]
+		{plotdata/approx_exp.dat};
+	\addplot[no markers,red,thick] 
+		table [x=n,y={create col/linear regression={
+			y=eapprox,ymode=log,
+			variance format=linear}}]
+		{plotdata/approx_exp.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 698. Other Example
+## 698. Line Chart Example
 
 **ID**: `2c1354c33d36`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+  ymode=log,
+  table/create col/linear regression/variance format=linear
+]
+	\addplot table[x=n,y=eapprox]
+		{plotdata/approx_exp.dat};
+	\addplot[no markers,red,thick] 
+		table [x=n,y={create col/linear regression={
+			y=eapprox,ymode=log}}]
+		{plotdata/approx_exp.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 699. Other Example
+## 699. Line Chart Example
 
 **ID**: `19257cf5f6c5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title={\texttt{patch type=quadratic spline}},
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=quadratic spline,
+    ] coordinates {
+        % left, right, middle-> first segment
+        (0,0) (1,1) (0.5,0.5^2)
+        % left, right, middle-> second segment
+        (1.2,1) (2.2,1) (1.7,2)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 700. Other Example
+## 700. Line Chart Example
 
 **ID**: `0fdb743ef7a5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title={\texttt{patch type=cubic spline}},
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=cubic spline,
+    ] coordinates {
+        % left, right, left middle, right middle
+        (-1,-1)
+        (1,1)
+        (-1/3,{(-1/3)^3})
+        (1/3,{(1/3)^3})
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 701. Other Example
+## 701. Line Chart Example
 
 **ID**: `e0874d243cce`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title={\texttt{patch type=bezier spline}},
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=bezier spline,
+    ] table {
+        % left, right, first control, second control
+        0 0
+        1 1
+        0 1
+        1 0
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 702. Other Example
+## 702. Scatter Plot Example
 
 **ID**: `11abcbc5da00`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [
+        samples=5,domain=-3:3,
+        mesh,patch type=cubic spline,
+        patch type sampling,
+        % avoid individual colors per segment:
+        blue,point meta=none,
+    ]
+      {exp(-x^2)};
+
+    % a second plot which shows the
+    % generated x positions:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=cubic spline,
+        patch type sampling,
+        point meta={exp(-x^2)},
+    ]
+      {-0.1};
+
+    % a third plot which shows the marks
+    % without patch type sampling:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        point meta={exp(-x^2)},
+    ]
+      {-0.15};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 703. Other Example
+## 703. Scatter Plot Example
 
 **ID**: `dc7495bad4b8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [surf,shader=interp,
+        patch type=bicubic,
+        patch type sampling,
+        samples=5,domain=-3:3,
+    ] {exp(-x^2-y^2)};
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=bicubic,
+        patch type sampling,
+        point meta={exp(-x^2-y^2)},
+    ] {1.1};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 704. Other Example
+## 704. Scatter Plot Example
 
 **ID**: `87e086337461`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: scatter_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [surf,shader=interp,
+        patch type=bilinear,
+        samples=13,domain=-3:3,
+    ] {exp(-x^2-y^2)};
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=13,domain=-3:3,
+        point meta={exp(-x^2-y^2)},
+    ] {1.1};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 705. Other Example
+## 705. Line Chart Example
 
 **ID**: `dae95b66c701`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    axis on top,
+    enlargelimits,
+    title={Global path with \texttt{cubic spline}},
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=cubic spline,
+        point meta=none,% allow \closedcycle
+        blue,
+        fill=blue!60!black,
+    ] table {
+        % left, right, left middle, right middle
+        -1          -1
+        1           1
+        -0.333333    -0.037037
+        0.333333    +0.037037
+
+        1           1
+        2           -0.5
+        1.333333    1.5
+        1.666666    1
+    }
+    \closedcycle;
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 706. Other Example
+## 706. 3D Plot Example
 
 **ID**: `6acdc5361a02`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Rectangle from matrix input,
+]
+    % note that surf implies 'patch type=rectangle'
+    \addplot3 [
+        surf,
+        shader=interp,
+        samples=2,
+        patch type=rectangle,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 707. Other Example
+## 707. Line Chart Example
 
 **ID**: `352c1fdc9bbe`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Rectangle from patch input,
+]
+    \addplot3 [
+        patch,
+        shader=interp,
+        patch type=rectangle,
+    ] coordinates {
+        (0,0,1) (1,0,0) (1,1,0) (0,1,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 708. Other Example
+## 708. 3D Plot Example
 
 **ID**: `15910366237d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Bilinear from $2\times 2$ matrix input,
+]
+    % note that surf implies 'patch type=rectangle'
+    \addplot3 [
+        surf,
+        shader=interp,
+        samples=2,
+        patch type=bilinear,
+    ] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 709. Other Example
+## 709. Line Chart Example
 
 **ID**: `514754d3ba9f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Bilinear from $4$--point patch input,
+]
+    \addplot3 [
+        patch,
+        shader=interp,
+        patch type=bilinear,
+    ] coordinates {
+        (0,0,1) (1,0,0) (1,1,0) (0,1,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 710. Other Example
+## 710. Line Chart Example
 
 **ID**: `3e74aaf92ceb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    enlargelimits,
+    nodes near coords={(\coordindex)},
+    title=Single Triangle patch,
+]
+    \addplot3 [
+        patch,
+        shader=interp,
+    ] coordinates {
+        (0,0,1)
+        (1,0,0)
+        (1,1,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 711. Other Example
+## 711. Line Chart Example
 
 **ID**: `ea98fb8e30de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Quadratic Triangle,
+]
+    \addplot [
+        patch,
+        patch type=triangle quadr,
+        shader=interp,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [1] (5,4) [2] (0,7) [3]
+        (2,3) [1] (3,6) [2] (-1,4)  [3]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 712. Other Example
+## 712. Line Chart Example
 
 **ID**: `d11f179149c2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Quadratic Triangle,
+]
+    \addplot3 [
+        patch,
+        patch type=triangle quadr,
+        shader=interp,
+    ] coordinates {
+        (0,0,1) (5,4,0) (0,7,0)
+        (2,3,0) (3,6,0) (-1,4,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 713. Other Example
+## 713. Line Chart Example
 
 **ID**: `4eaeabf3a1fa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Single Biquadratic Quadrilateral,
+]
+    \addplot [
+        patch,
+        patch type=biquadratic,
+        shader=interp,
+        point meta=explicit,
+    ] coordinates {
+        (0,0) [1] (6,1) [2] (5,5) [3] (-1,5) [4]
+        (3,1) [1] (6,3) [2] (2,6) [3] (0,3) [4]
+        (3,3.75) [4]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 714. Other Example
+## 714. Line Chart Example
 
 **ID**: `6422316b9254`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Single Biquadratic Quadrilateral,
+]
+    \addplot3 [
+        patch,
+        patch type=biquadratic,
+        shader=interp,
+    ] coordinates {
+        (0,0,1) (6,1,0) (5,5,0) (-1,5,0)
+        (3,1,0) (6,3,0) (2,6,0) (0,3,0)
+        (3,3.75,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 715. Other Example
+## 715. Line Chart Example
 
 **ID**: `c19119bd4c24`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot3 [patch,patch refines=3,
+        shader=faceted interp,
+        patch type=biquadratic,
+    ] table [z expr=x^2-y^2] {
+        x  y
+        -2 -2
+        2  -2
+        2  2
+        -2 2
+        0  -2
+        2  0
+        0  2
+        -2 0
+        0  0
+    };
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 716. Other Example
+## 716. Line Chart Example
 
 **ID**: `be0f0a509462`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    nodes near coords={(\coordindex)},
+    title=Single Bicubic Quadrilateral,
+]
+    \addplot3 [
+        patch,
+        patch type=bicubic,
+        shader=interp,
+    ] coordinates {
+        (0,0,1) (1,0,0) (2,0,0) (3,0,0)
+        (0,1,0) (1,1,0) (2,1,0) (3,1,0)
+        (0,2,0) (1,2,0) (2,2,0) (3,2,0)
+        (0,3,0) (1,3,0) (2,3,0) (3,3,0)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 717. Other Example
+## 717. Line Chart Example
 
 **ID**: `813a42206d89`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[title=Two Bicubic Patches]
+    \addplot3 [patch,patch type=bicubic,
+        shader=interp,point meta=explicit,
+    ] coordinates {
+        (0,0,1)[1] (1,0,0)[0] (2,0,0)[0] (3,0,0)[0]
+        (0,1,0)[0] (1,1,0)[0] (2,1,0)[0] (3,1,0)[0]
+        (0,2,0)[0] (1,2,0)[0] (2,2,0)[0] (3,2,0)[0]
+        (0,3,0)[0] (1,3,0)[0] (2,3,0)[0] (3,3,0)[0]
+
+        (3,0,0)[0] (4,0,0)[0] (5,0,0)[0] (6,0,0)[0.7]
+        (3,1,0)[0] (4,1,.5)[1](5,1,0)[0] (6,1,0)[0]
+        (3,2,0)[0] (4,2,0)[0] (5,2,0)[0] (6,2,0)[0]
+        (3,3,0)[0] (4,3,0)[0] (5,3,0)[0] (6,3,0)[0.1]
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 718. Other Example
+## 718. Line Chart Example
 
 **ID**: `ff1557b22387`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[
+        nodes near coords={(\coordindex)},
+        width=12cm,
+        title=A Coons Patch,
+    ]
+        \addplot [mark=*,patch,patch type=coons,
+            shader=interp,point meta=explicit,
+        ] coordinates {
+            (0,0)      [0] % first corner
+            (1,-1)     [0] % Bezier control point between (0) and (3)
+            (4,0.7)    [0] % Bezier control point between (0) and (3)
+            %
+            (3,2)      [1] % second corner
+            (4,3.5)    [1] % Bezier control point between (3) and (6)
+            (7,2)      [1] % Bezier control point between (3) and (6)
+            %
+            (7,1)      [2] % third corner
+            (6,0.6)    [2] % Bezier control point between (6) and (9)
+            (4.5,-0.5) [2] % Bezier control point between (6) and (9)
+            %
+            (5,-2)     [3] % fourth corner
+            (4,-2.5)   [3] % Bezier control point between (9) and (0)
+            (-1,-2)    [3] % Bezier control point between (9) and (0)
+        };
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 719. Other Example
+## 719. Line Chart Example
 
 **ID**: `3cb5eacd1643`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[view/h=120,xlabel=$x$,ylabel=$y$]
+    \addplot3 [
+        opacity=0.5,
+        table/row sep=\\,
+        patch,
+        patch type=polygon,
+        vertex count=5,
+        patch table with point meta={
+            % pt1 pt2 pt3 pt4 pt5 cdata
+            0 1 7 2 2 0\\
+            1 6 5 5 5 1\\
+            1 5 4 2 7 2\\
+            2 4 3 3 3 3\\
+        },
+    ] table {
+        x y z\\
+        0 2 0\\%0
+        2 2 0\\%1
+        0 1 3\\%2
+        0 0 3\\%3
+        1 0 3\\%4
+        2 0 2\\%5
+        2 0 0\\%6
+        1 1 2\\%7
+    };
+    % replicate the vertex list to show \coordindex:
+    \addplot3 [only marks,
+        nodes near coords=\coordindex,
+    ] table [row sep=\\] {
+        0 2 0\\ 2 2 0\\ 0 1 3\\ 0 0 3\\
+        1 0 3\\ 2 0 2\\ 2 0 0\\ 1 1 2\\
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 720. Other Example
+## 720. Line Chart Example
 
 **ID**: `579bc5e4878f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\foreach \level in {0,1,2} {%
+    \begin{tikzpicture}
+        \begin{axis}[
+            nodes near coords={(\coordindex)},
+            footnotesize,
+            title={patch refines = \level},
+        ]
+            \addplot3 [patch,patch type=triangle quadr,
+                shader=faceted interp,patch refines=\level,
+            ] coordinates {
+                (0,0,0) (5,4,0) (0,7,0)
+                (2,3,0) (3,6,1) (-1,4,0)
+            };
+        \end{axis}
+    \end{tikzpicture}
+}
+```
 
 
 ---
 
-## 721. Other Example
+## 721. Line Chart Example
 
 **ID**: `3fe76b0f06c9`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\foreach \level in {0,1,2} {%
+    \begin{tikzpicture}
+        \begin{axis}[
+            nodes near coords={(\coordindex)},
+            footnotesize,
+            title={Triangulation + \level\ refines},
+        ]
+            \addplot3 [patch,patch type=biquadratic,shader=faceted interp,
+                patch to triangles,patch refines=\level,
+            ] coordinates {
+                (0,0,0) (6,1,0) (5,5,0) (-1,5,0)
+                (3,1,0) (6,3,0) (2,6,0) (0,3,0)
+                (3,3.75,1)
+            };
+        \end{axis}
+    \end{tikzpicture}%
+}
+```
 
 
 ---
 
-## 722. Other Example
+## 722. Line Chart Example
 
 **ID**: `222330b4f603`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\foreach \level in {0,1,2} {%
+    \begin{tikzpicture}
+        \begin{axis}[
+            footnotesize,
+            title={Faceted + \level\ refines},
+        ]
+            \addplot3 [patch,patch type=biquadratic,shader=faceted,
+                patch refines=\level,
+            ] coordinates {
+                (0,0,1) (6,1,0) (5,5,0) (-1,5,0)
+                (3,1,0) (6,3,0) (2,6,0) (0,3,0)
+                (3,3.75,0)
+            };
+        \end{axis}
+    \end{tikzpicture}
+}
+```
 
 
 ---
 
-## 723. Other Example
+## 723. Line Chart Example
 
 **ID**: `8390ee182fde`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={Grids with shader=faceted},
+]
+    \addplot3 [patch,patch type=biquadratic,
+        shader=faceted,patch refines=3,
+    ] coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 724. Other Example
+## 724. Line Chart Example
 
 **ID**: `f910f6806b32`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={Grids with shader=faceted interp},
+]
+    \addplot3 [patch,patch type=biquadratic,
+        shader=faceted interp,patch refines=3]
+    coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 725. Other Example
+## 725. 3D Plot Example
 
 **ID**: `204f79ae6dbc`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={Mesh on top of patches (i): obscured},
+]
+    \addplot3 [patch,patch type=biquadratic,
+        shader=interp,patch refines=3,
+    ] coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+    \addplot3 [patch,patch type=biquadratic,
+        mesh,black,patch refines=3,
+    ] coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 726. Other Example
+## 726. 3D Plot Example
 
 **ID**: `e292b800ba79`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={Mesh on top of patches (ii): unobscured\\
+      \tiny Geometry provided by Prof. Chernov, Bonn},
+    title style={align=center},
+    view={156}{28},
+]
+    \addplot3 [patch,patch type=bilinear,
+        shader=interp,
+        patch table=plotdata/patchexample_conn.dat,
+    ] file {plotdata/patchexample_verts.dat};
+
+    \addplot3 [patch,patch type=bilinear,
+        mesh,black,
+        patch table=plotdata/patchexample_conn.dat,
+    ] file {plotdata/patchexample_verts.dat};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 727. Other Example
+## 727. 3D Plot Example
 
 **ID**: `c15aceca82b1`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title={Separate Grids (iii)},
+]
+    \addplot3 [patch,patch type=biquadratic,
+        shader=interp,patch refines=3,
+    ] coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+    \addplot3 [patch,patch type=biquadratic,
+        mesh,black,
+        z filter/.code={\def\pgfmathresult{1.8}},
+        patch refines=3,
+    ] coordinates {
+        (0,0,1) (6,1,1.6) (5,5,1.3) (-1,5,0)
+        (3,1,0) (6,3,0.4) (2,6,1.1) (0,3,0.9)
+        (3,3.75,0.5)
+    };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1286,6 +3783,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+normal plot commands} cmd:pgfplots:nextgroupplot This command shifts the placement of the plot. Therefore one should always start the environment |groupplot| with the command || in order to create the first plot. The axis options are the options that are supplied to the following axes until the next || command is seen by . The order in which figures are typeset are as seen in the next example. codeexample[] tikzpicture[shorten >=4pt,shorten <=4pt] groupplot[group style={group size=2 by 2}, heigh
+
 
 ---
 
@@ -1295,45 +3796,151 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: environment  
 **Package**: pgfplots  
 
+### Description
+
+options} Once you have loaded the |groupplots| library you will gain access to this environment. This environment is limited to the same restrictions as the |axis| environment. It actually utilizes this environment so consider it as an extension of this. What is important to note is that options are applied to all plots in the entire environment. This can be really handy when you need the same |xmin|, |xmax|, |ymin| and |ymax|.
+
 
 ---
 
-## 730. Other Example
+## 730. Line Chart Example
 
 **ID**: `484c1b66a996`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% Example using groupplots library
+\begin{tikzpicture}
+    \begin{groupplot}[group style={group size=2 by 2},height=3cm,width=3cm]
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,1) (2,2)};
+    \nextgroupplot
+        \addplot coordinates {(0,2) (1,1) (2,0)};
+    \nextgroupplot
+        \addplot coordinates {(0,2) (1,1) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,2) (1,1) (1,0)};
+    \end{groupplot}
+\end{tikzpicture}
+    \qquad
+% Same example created as done without the library
+\begin{tikzpicture}
+    \begin{axis}[name=plot1,height=3cm,width=3cm]
+        \addplot coordinates {(0,0) (1,1) (2,2)};
+    \end{axis}
+    \begin{axis}[name=plot2,at={($(plot1.east)+(1cm,0)$)},anchor=west,height=3cm,width=3cm]
+        \addplot coordinates {(0,2) (1,1) (2,0)};
+    \end{axis}
+    \begin{axis}[name=plot3,at={($(plot1.south)-(0,1cm)$)},anchor=north,height=3cm,width=3cm]
+        \addplot coordinates {(0,2) (1,1) (2,1)};
+    \end{axis}
+    \begin{axis}[name=plot4,at={($(plot2.south)-(0,1cm)$)},anchor=north,height=3cm,width=3cm]
+        \addplot coordinates {(0,2) (1,1) (1,0)};
+    \end{axis}
+    \end{tikzpicture}
+```
 
 
 ---
 
-## 731. Other Example
+## 731. Line Chart Example
 
 **ID**: `3ca36b61ab51`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}[shorten >=4pt,shorten <=4pt]
+    \begin{groupplot}[group style={group size=2 by 2},
+        height=3.5cm,width=3.5cm,/tikz/font=\small]
+    \nextgroupplot%1
+        \addplot coordinates {(0,1) (1,0)};
+    \nextgroupplot%2
+        \addplot coordinates {(0,1) (1,0)};
+    \nextgroupplot%3
+        \addplot coordinates {(0,1) (1,0)};
+    \nextgroupplot%4
+        \addplot coordinates {(0,1) (1,0)};
+    \end{groupplot}
+    \draw [thick,>=latex,->,red]
+        (group c1r1.center) node {1.}  --
+        (group c2r1.center) node {2.};
+    \draw [thick,>=latex,->,red]
+        (group c2r1.center)  --
+        (group c1r2.center) node {3.};
+    \draw [thick,>=latex,->,red]
+        (group c1r2.center)  --
+        (group c2r2.center) node {4.};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 732. Other Example
+## 732. Line Chart Example
 
 **ID**: `a0c328c1060b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=2 by 2,
+      horizontal sep=0pt,vertical sep=0pt,
+      xticklabels at=edge bottom},
+      xmin=0,ymin=0,
+      height=3.7cm,width=4cm,no markers]
+  \nextgroupplot[group/empty plot]
+  \nextgroupplot[xmin=5,xmax=10,ymin=50,ymax=100]
+    \addplot [very thick] file {plotdata/group-1.dat};
+  \nextgroupplot[xmax=5,ymax=50]
+    \addplot [very thick] file {plotdata/group-1.dat};
+  \nextgroupplot[xmin=5,xmax=10,ymax=50,yticklabels={}]
+    \addplot [very thick] file {plotdata/group-1.dat};
+  \end{groupplot}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 733. Other Example
+## 733. Line Chart Example
 
 **ID**: `b3757f718b1f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{groupplot}[group style={group size=3 by 1},xmin=0,ymin=0,height=4cm,width=5cm,no markers]
+    \nextgroupplot
+        \addplot [very thick] file {plotdata/group-1.dat};
+        \draw [red,dashed,thick] (0,0) rectangle (5,30);
+    \nextgroupplot[xmax=5,ymax=30]
+        \addplot [very thick] file {plotdata/group-1.dat};
+        \draw [red,dashed,thick] (3,10) rectangle (5,25);
+    \nextgroupplot[xmin=3,xmax=5,ymin=10,ymax=25]
+        \addplot [very thick] file {plotdata/group-1.dat};
+    \end{groupplot}
+    \draw [thick,blue,->,shorten >=2pt,shorten <=2pt]
+        (group c1r1.east) -- (group c2r1.west);
+    \draw [thick,blue,->,shorten >=2pt,shorten <=2pt]
+        (group c2r1.east) -- (group c3r1.west);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1343,17 +3950,55 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `db198b99ef37`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{group style={a=2,b=3}}
+\pgfplotsset{group/a=2,group/b=3}
+\pgfplotsset{group/.cd,a=2,b=3}
+```
 
 
 ---
 
-## 735. Other Example
+## 735. Line Chart Example
 
 **ID**: `490e518d59de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group name=my plots,
+            group size=2 by 2,
+            xlabels at=edge bottom,
+            ylabels at=edge left,
+        },
+        footnotesize,
+        width=4cm,
+        height=4cm,
+        %
+        xlabel=time $t$ / h,
+        ylabel=$c$ / mol/L,
+    ]
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \end{groupplot}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1363,37 +4008,140 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `533d51485aae`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsset{
+    group/xticklabels at=edge bottom,
+    group/yticklabels at=edge right,
+}
+```
 
 
 ---
 
-## 737. Other Example
+## 737. Line Chart Example
 
 **ID**: `7fc9e58f0191`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group name=my plots,
+            group size=2 by 2,
+            %
+            x descriptions at=edge bottom,
+            y descriptions at=edge right,
+            horizontal sep=0.5cm,
+            vertical sep=0.5cm,
+        },
+        footnotesize,
+        width=4cm,
+        height=4cm,
+        %
+        xlabel=time $t$ / h,
+        ylabel=$c$ / mol/L,
+    ]
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \end{groupplot}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 738. Other Example
+## 738. Line Chart Example
 
 **ID**: `4266730f75e6`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group name=my plots,
+            group size=2 by 2,
+        },
+        width=4cm,height=4cm,
+    ]
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \end{groupplot}
+    \draw (my plots c1r1.east)
+        circle (3pt) node {East};
+    \draw (my plots c2r1.north)
+        circle (3pt) node {north};
+    \draw (my plots c1r2.center)
+        circle (3pt) node {center};
+    \draw (my plots c2r2.north west)
+        circle (3pt) node {North west};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 739. Other Example
+## 739. Line Chart Example
 
 **ID**: `6f07dc943512`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{groupplot}[
+        group style={
+            group name=my plots,
+            group size=2 by 2,
+        },
+        width=4cm,height=4cm,
+    ]
+    \nextgroupplot[group/empty plot]
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \nextgroupplot
+        \addplot coordinates {(0,0) (1,2) (2,1)};
+    \end{groupplot}
+    \draw (my plots c1r1.east)
+        circle (3pt) node {East};
+    \draw (my plots c2r1.north)
+        circle (3pt) node {north};
+    \draw (my plots c1r2.center)
+        circle (3pt) node {center};
+    \draw (my plots c2r2.north west)
+        circle (3pt) node {North west};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1404,6 +4152,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+|in| list commands} A powerful loop command provided by , see~[Section ``Utilities'']{tikz}. codeexample[] in {1,2,...,4} {Iterating . } codeexample A related example could be codeexample[code only] in {1,2,...,10} { table {datafile}; } codeexample
+
 
 ---
 
@@ -1412,6 +4164,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `17caf59766fc`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+|in| list command} A specialised variant of || which can do two things: it does not introduce extra groups while executing command and it allows to invoke the math parser for (simple!) $x_0$|,|$x_1$|,...,|$x_n$ expressions. codeexample[] in {1,2,...,4} {Iterating . , } All collected = . codeexample A more useful example might be to work with tables. The following example is taken from : codeexample[code only] in {1,2,...,10} { {datafile} } codeexample Remark: The special syntax list=$x_0$|,|$x_1
 
 
 ---
@@ -1422,6 +4178,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+command} A variant of || (and such also of ||) which replaces any occurrence of |#1| inside of command once for every element in list. Thus, it actually assumes that command is like a || body. In other words, command is invoked for every element of list. The actual element of list is available as |#1|. As ||, this command does not introduce extra scopes (i.e.\@ it is ungrouped as well). The difference to | in |listcommand is subtle: the || would not be expanded whereas |#1| is. codeexample[] oth
+
 
 ---
 
@@ -1430,6 +4190,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `cc2087fdc98e`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} Invokes the math parser for expression and defines to be the result. codeexample[] 1+41 The result is `'. codeexample The math engine in typically uses 's internal arithmetics. That means: it is well suited for numbers in the range $[-16384,16384]$ and has a precision of $5$ digits. The number range is typically too small for plotting applications. improves the number range by means of |/pgf/fpu1+41| to activate the ``floating point unit'' (fpu) and to apply all following operations in floatin
 
 
 ---
@@ -1440,6 +4204,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} Please refer to the manual of , |pgfplotstable.pdf|, which is part of the bundle.
+
 
 ---
 
@@ -1448,6 +4216,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `a4e90779595d`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} Please refer to the manual of , |pgfplotstable.pdf|, which is part of the bundle.
 
 
 ---
@@ -1458,6 +4230,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+true codefalse code} Invokes true code if filename exists and false code if not. Can be used in looping macros, for example to plot every data file until there are no more of them.
+
 
 ---
 
@@ -1466,6 +4242,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `47c457105604`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+secondtrue codefalse code} A simple ``strcmp'' tool which invokes true code if first $=$second and false code otherwise. This does not expand macros.
 
 
 ---
@@ -1476,6 +4256,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+This command should no longer be used, although it will be kept as technical implementation detail. Please use the `|cycle list|' option, Section~sec:cycle:list.
+
 
 ---
 
@@ -1484,6 +4268,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `3ee9fc0b6cc1`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+Expands to the constant $(10)$. Useful for log plots because $(10^i) = i(10)$. This command is only available inside of a picture.
 
 
 ---
@@ -1494,6 +4282,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} Generates pretty-printed outputThis method was previously { prettyprintnumber. Its functionality has been included into and the old command is now deprecated.} for number. This method is used for every tick label. The number is printed using the current number printing options, see the manual of which comes with this package for the different number styles, rounding precision and rounding methods.
+
 
 ---
 
@@ -1502,6 +4294,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `c263c94fa34d`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+Inside of any of the axis environments, associated style, option or command, || expands to the total number of plots.
 
 
 ---
@@ -1512,6 +4308,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+Like ||, this macro returns the total number of plots which have the same plot handler. Thus, if you have |sharp plot| active, it returns the number of all |sharp plots|. If you have |ybar| active, it returns the number of |ybar| plots and so on.
+
 
 ---
 
@@ -1520,6 +4320,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `892f67c96bfd`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+Inside of || or any associated style, option or command, || expands to the current plot's number, starting with~$0$.
 
 
 ---
@@ -1530,6 +4334,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+Like ||, but it returns the number among all plots of the same type. The number of all such plots is available using ||.
+
 
 ---
 
@@ -1538,6 +4346,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `dd1face74401`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+Inside of an || command, this macro expands to the number of the actual coordinate (starting with~$0$). It is useful together with |x filter| or |y filter| to (de)select coordinates.
 
 
 ---
@@ -1548,6 +4360,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} A command to execute low-level path commands in a axis. Since any drawing commands inside of an axis need to be postponed until the axis is complete and the scaling has been initialised, it is not possible to simply draw any paths. Instead, it is necessary to draw them as soon as the axis is finished. This is done automatically for every path -- and it is also done manually if you write ||commands. codeexample[] tikzpicture axis[xmin=0,xmax=3,ymin=0,ymax=5] {{1{2}} {2{4}} stroke } axis tikzpic
+
 
 ---
 
@@ -1556,6 +4372,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `9baeed5054bd`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+Generates a path which resembles the outline of the current axis. This path is used for clip paths and the background paths (if any).
 
 
 ---
@@ -1566,6 +4386,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+dimension}
+
 
 ---
 
@@ -1574,6 +4398,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `b2c51bba51cc`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+coordinatenormal distance } Provides a point coordinate on one of the available four axes in case of a two dimensional figure or on one of the available twelve axes in case of a three dimensional figure. The desired axis is uniquely identified by a three character string, provided as first argument to the command. The first of the three characters is `|0|' if the $x$-coordinate of the specified axis passes through the lower axis limit. It is `|1|', if the $x$-coordinate of the specified axis pas
 
 
 ---
@@ -1584,6 +4412,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+axis fractionnormal distance } This point coordinate is a variant of || which allows to provide an axis fraction instead of an absolute coordinate. The fraction is a number between $0$ (lower axis limit) and $1$ (upper axis limit), i.e.\@ it is given in percent of the total axis. It is possible to provide negative values or values larger than one. The || command is similar in spirit to |rel axis cs|. There is one speciality in conjunction with reversed axes: if the axis has been reversed by |x d
+
 
 ---
 
@@ -1592,6 +4424,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `fc7dfa2918d8`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} A point command which yields the outer normal vector of the respective axis. The normal vector has length $1$ (computed with ||). It is the same normal vector used inside of || and its variants. The output of this command will be cached and reused during the lifetime of an axis.
 
 
 ---
@@ -1602,6 +4438,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} Expands to the three character identification for the axis containing tick labels for the chosen axis, either x, y or z.
+
 
 ---
 
@@ -1610,6 +4450,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `b65bccd98dd0`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} Expands to the largest distance of a tick position to its tick label bounding box in direction of the outer unit normal vector. It does also include the value of the |ticklabel shift| key. This value is used for |ticklabel cs|.
 
 
 ---
@@ -1620,6 +4464,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+A macro which is very similar to ||. Consequently, it is also supposed to be called during the visualization phase. It assigns the very same output macros, but the values are different. More precisely, it defines the macros /data point/x will contain the current point's normalized $x$-coordinate. /data point/y will contain the current point's normalized $y$-coordinate. /data point/z will contain the current point's normalized $z$-coordinate (if applicable). /data point/meta will contain the curr
+
 
 ---
 
@@ -1628,6 +4476,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `9e3eb47aa6e0`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} A low-level command which will check if the current axis has layer support activated and, if so, calls ||layer name. There must be a || to delimit the environment.
 
 
 ---
@@ -1638,6 +4490,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+The end of ||.
+
 
 ---
 
@@ -1646,6 +4502,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `5c66c4f6096a`  
 **Type**: command  
 **Package**: pgfplots  
+
+### Description
+
+} A low-level command of which will collect everything until the matching || into layer layer name. The layer name must be active, i.e.\@ it must be part of the layer names of |set layers|. The only special case is if you call |discard| somewhere: this special layer has a ``magical name'' which serves as |/dev/null| if it is enabled using |discard|: it does not need to be active and everything assigned to this layer will be thrown away if it is not part of the layer name configuration. There mus
 
 
 ---
@@ -1656,6 +4516,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+The end of ||.
+
 
 ---
 
@@ -1665,6 +4529,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+} This is a low-level command of . At the time of this writing, it is the only way to tell which layers it shall use for the current/next picture. It is used implicitly by |set layers|.
+
 
 ---
 
@@ -1673,17 +4541,29 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `57ae5509ab7d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\foreach \x in {1,2,...,4} {Iterating \x. }%
+```
 
 
 ---
 
-## 771. Other Example
+## 771. Line Chart Example
 
 **ID**: `eefae37de9a2`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\foreach \i in {1,2,...,10} {\addplot table {datafile\i}; }%
+```
 
 
 ---
@@ -1693,7 +4573,15 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `0c1285ac4b7d`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\allcollected{}
+\pgfplotsforeachungrouped \x in {1,2,...,4} {Iterating \x. \edef\allcollected{\allcollected, \x}}%
+All collected = \allcollected.
+```
 
 
 ---
@@ -1703,7 +4591,17 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `bd284fbd506a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsforeachungrouped \i in {1,2,...,10} {%
+    \pgfplotstablevertcat{\output}{datafile\i} % appends `datafile\i' -> `\output'
+}%
+% since it was ungrouped, \output is still defined (would not work
+% with \foreach)
+```
 
 
 ---
@@ -1713,7 +4611,21 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `dd989130d4fa`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfplotsforeachungrouped \i/\j in {
+    1 / a,
+    2 / b,
+    3 / c
+}{
+    \edef\temp{\noexpand\node at (axis cs: \i,0.5) {\j};}
+    % \show\temp % lets TeX show you what \temp contains
+    \temp
+}
+```
 
 
 ---
@@ -1723,7 +4635,22 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `5360217d81e8`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    otherstyle a/.code={[a]},
+    otherstyle b/.code={[b]},
+    otherstyle c/.code={[c]},
+    otherstyle d/.code={[d]}}
+\pgfplotsinvokeforeach{a,b,c,d}
+    {\pgfkeys{key #1/.style={otherstyle #1}}}
+Invoke them:
+\pgfkeys{key a} \pgfkeys{key b}
+\pgfkeys{key c} \pgfkeys{key d}
+```
 
 
 ---
@@ -1733,7 +4660,22 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `22f36545b8ee`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{
+    otherstyle a/.code={[a]},
+    otherstyle b/.code={[b]},
+    otherstyle c/.code={[c]},
+    otherstyle d/.code={[d]}}
+\pgfplotsforeachungrouped \x in {a,b,c,d}
+    {\pgfkeys{key \x/.style={otherstyle \x}}}
+Invoke them:
+\pgfkeys{key a} \pgfkeys{key b}
+\pgfkeys{key c} \pgfkeys{key d}
+```
 
 
 ---
@@ -1743,7 +4685,15 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `5320a92f98de`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathparse{1+41}
+
+The result is `\pgfmathresult'.
+```
 
 
 ---
@@ -1753,17 +4703,43 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `1e61023bce05`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu}%
+\pgfmathparse{1000*1000}
+
+The result is `\pgfmathprintnumber{\pgfmathresult}'.
+```
 
 
 ---
 
-## 779. Other Example
+## 779. Line Chart Example
 
 **ID**: `bac9774e7efd`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    declare function={
+        C=4;
+        square(\t)=(\t)^2 + C;
+    },
+]
+    \addplot+ [samples=2] {C*x};
+
+    \addplot {square(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1773,17 +4749,61 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `75fea01fa460`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[xmin=0,xmax=3,ymin=0,ymax=5]
+    \pgfplotsextra{
+        \pgfpathmoveto{\pgfplotspointaxisxy{1}{2}}
+        \pgfpathlineto{\pgfplotspointaxisxy{2}{4}}
+        \pgfusepath{stroke}
+    }
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 781. Other Example
+## 781. Line Chart Example
 
 **ID**: `a3c878a4c166`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-3,   xmax=3,
+    ymin=-3,   ymax=3,
+    extra x ticks={-1,1},
+    extra y ticks={-2,2},
+    extra tick style={grid=major},
+]
+    \draw [red] \pgfextra{
+        \pgfpathellipse{\pgfplotspointaxisxy{0}{0}}
+            {\pgfplotspointaxisdirectionxy{1}{0}}
+            {\pgfplotspointaxisdirectionxy{0}{2}}
+    % see also the documentation of
+    % 'axis direction cs' which
+    % allows a simpler way to draw this ellipse
+    };
+    \draw [blue] \pgfextra{
+        \pgfpathellipse{\pgfplotspointaxisxy{0}{0}}
+            {\pgfplotspointaxisdirectionxy{1}{1}}
+            {\pgfplotspointaxisdirectionxy{0}{2}}
+    };
+    \addplot [only marks,mark=*] coordinates
+        { (0,0) };
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1793,7 +4813,27 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `2d50e354919c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\pgfplotsset{compat/pgfpoint substitution=1.3}
+\begin{axis}[xmin=0,xmax=2,ymin=0,ymax=5]
+    \pgfplotsextra{
+        \pgfplotstransformcoordinatex{1}
+        \let\xcoord=\pgfmathresult
+        \pgfplotstransformcoordinatey{1}
+        \let\ycoord=\pgfmathresult
+        \pgfpathcircle
+            {\pgfqpointxy{\xcoord}{\ycoord}}
+            {5pt}
+        \pgfusepath{fill}
+    }
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1803,37 +4843,143 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `f204749c8937`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% \pgfplotsconvertunittocoordinate{x}{5pt}
+% % now, the command uses exactly 5pt in x direction:
+% \pgfqpointxyz{\pgfmathresult}{4}{3}
+%
+```
 
 
 ---
 
-## 784. Other Example
+## 784. Line Chart Example
 
 **ID**: `6face581455b`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    \addplot+ [
+        domain=0:360,
+        samples=9,
+        only marks,
+        nodes near coords={%
+            \footnotesize
+            $(\pgfmathprintnumber
+                {\pgfkeysvalueof{/data point/x}},
+               \pgfmathprintnumber
+                {\pgfkeysvalueof{/data point/y}})$%
+        },
+    ] {sin(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 785. Other Example
+## 785. Bar Chart Example
 
 **ID**: `1b7eeb975cbb`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: bar_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    nodes near coords,
+    %
+    % we want to provide absolute 'at' values
+    % for the nodes:
+    scatter/position=absolute,
+    every node near coord/.style={
+        at={(\pgfkeysvalueof{/data point/x},-1)},
+        % pretty printing:
+        anchor=north,
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1,
+        % assign a name which can be referenced below:
+        name=NNC\pgfkeysvalueof{/data point/index},
+    },
+    % ... draw a dotted line between
+    % the marker and the bar:
+    /pgfplots/scatter/@post marker code/.add code={}{
+        \draw [dotted,help lines]
+            (NNC\pgfkeysvalueof{/data point/index})
+            -- (\pgfkeysvalueof{/data point/x},
+            {min(0,\pgfkeysvalueof{/data point/y})});
+    },
+    % assign suitable tick labels:
+    xtick=data,
+]
+    % some dummy data:
+    \addplot+ [
+        domain=0:360,
+        bar width=360/9,
+        samples=9,
+    ] {sin(x)};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 786. Other Example
+## 786. Line Chart Example
 
 **ID**: `efe3da2af782`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+% requires \usetikzlibrary{intersections}
+\begin{tikzpicture}
+\begin{axis}
+    \addplot [name path=A] {x^3};
+
+    \draw [red,name path=HelperLine]
+        (axis cs:-6,-100) -- (axis cs:6,130);
+
+    \draw [
+        font=\footnotesize,
+        name intersections={of=A and HelperLine},
+    ]
+    node [pin={right:
+      \pgfplotspointgetcoordinates{(intersection-1)}
+        $(\pgfmathprintnumber[fixed]{
+            \pgfkeysvalueof{/data point/x}},
+          \pgfmathprintnumber[fixed]{
+            \pgfkeysvalueof{/data point/y}})$
+      }
+    ] at (intersection-1) {}
+    node [pin={
+      \pgfplotspointgetcoordinates{(intersection-2)}
+        $(\pgfmathprintnumber[fixed]{
+            \pgfkeysvalueof{/data point/x}},
+          \pgfmathprintnumber[fixed]{
+            \pgfkeysvalueof{/data point/y}})$
+      }
+    ] at (intersection-2) {};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1844,6 +4990,10 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+This macro defines the default width. It is preset to |240pt|. This default width defines the aspect ratio which will be used whenever just one of |width| or |height| is specified: the aspect ratio is the ratio between || and ||. You can change it using codeexample[code only] 10cm codeexample
+
 
 ---
 
@@ -1853,25 +5003,54 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **Type**: command  
 **Package**: pgfplots  
 
+### Description
+
+This macro defines the default height. It is preset to |207pt|. See ||.
+
 
 ---
 
-## 789. Other Example
+## 789. Line Chart Example
 
 **ID**: `37c63c50ff5f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    width=5cm,
+]
+    \addplot {x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 790. Other Example
+## 790. Line Chart Example
 
 **ID**: `ecab98e666f7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    width=5cm,
+    scale only axis,
+]
+    \addplot {x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1881,57 +5060,129 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `6eb1c084303e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\axisdefaultwidth{10cm}
+```
 
 
 ---
 
-## 792. Other Example
+## 792. Line Chart Example
 
 **ID**: `75501b44b1a7`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x=1cm,
+    y=1cm,
+]
+    \addplot expression [domain=0:3] {2*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 793. Other Example
+## 793. Line Chart Example
 
 **ID**: `ad29b3aab73f`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x=1cm,
+    y=0.5cm,
+    y dir=reverse,
+]
+    \addplot expression [domain=0:3] {2*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 794. Other Example
+## 794. Line Chart Example
 
 **ID**: `bd992186a54a`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x=1cm,
+    title=Height is deduced from height option,
+]
+    \addplot expression [domain=0:3] {2*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 795. Other Example
+## 795. Line Chart Example
 
 **ID**: `e690d2718b0e`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x={(1cm,0.1cm)},
+    y=1cm,
+]
+    \addplot expression [domain=0:3] {2*x};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 796. Other Example
+## 796. Line Chart Example
 
 **ID**: `2b5457d80b28`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    x={(5pt,1pt)},
+    y={(-4pt,4pt)},
+]
+    \addplot {1-x^2};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1941,37 +5192,96 @@ Showing items **601-800** of **1472** | Page **4** of **8**
 **ID**: `16a8826394f5`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[x=1.5cm]
+\begin{axis}
+    ...
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 798. Other Example
+## 798. 3D Plot Example
 
 **ID**: `8b23a4e5fe6c`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: 3d_plot  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+\begin{axis}[
+    title=Allow to rescale \emph{lengths},
+    x={(0.1cm,-0.05cm)},
+    y=0.1cm,
+    z=0cm,
+    axis on top,
+    scale mode=scale uniformly,
+]
+    \addplot3 [surf,shader=interp] {x*y};
+\end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 799. Other Example
+## 799. Line Chart Example
 
 **ID**: `f9f93dc26925`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{axis}[axis equal=false,grid=major]
+        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
+    \end{axis}
+\end{tikzpicture}
+    \hspace{1cm}
+\begin{tikzpicture}
+    \begin{axis}[axis equal=true,grid=major]
+        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
+    \end{axis}
+\end{tikzpicture}
+```
 
 
 ---
 
-## 800. Other Example
+## 800. Line Chart Example
 
 **ID**: `4898aacf41af`  
 **Type**: executable_example  
 **Package**: pgfplots  
-**Chart Type**: N/A  
+**Chart Type**: line_chart  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \begin{loglogaxis}[axis equal=false,grid=major]
+        \addplot expression [domain=1:10000] {x^-2};
+    \end{loglogaxis}
+\end{tikzpicture}
+    \hspace{1cm}
+\begin{tikzpicture}
+    \begin{loglogaxis}[axis equal=true,grid=major]
+        \addplot expression [domain=1:10000] {x^-2};
+    \end{loglogaxis}
+\end{tikzpicture}
+```
 
 
 ---

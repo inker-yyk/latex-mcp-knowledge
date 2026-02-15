@@ -17,6 +17,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}{num}} Defines || to be $x 10^{num}$. The operation is an arithmetic shift base ten and modifies only the exponent of x. The argument num is expected to be a (positive or negative) integer.
+
 
 ---
 
@@ -25,6 +29,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a4445821ec49`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y} Defines || to be the absolute error between two floating point numbers $x$ and $y$, $ x - y $ and returns the result as floating point number.
 
 
 ---
@@ -35,6 +43,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y} Defines || to be the relative error between two floating point numbers $x$ and $y$, $ x - y / y $ and returns the result as floating point number.
+
 
 ---
 
@@ -43,6 +55,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `131720a0d53e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Returns the integer part of the floating point number x, by truncating any digits after the period. This methods truncates the absolute value $ x $ to the next smaller integer and restores the original sign afterwards. The result is returned as floating point number as well. See also || which returns the number in integer format.
 
 
 ---
@@ -53,6 +69,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}} Defines || to be the natural logarithm of x, $(x)$. This method is logically the same as ||, but it applies floating point arithmetic to read number x and employs the logarithm identity \[ (m 10^e) = (m) + e (10) \] to get the result. The factor $(10)$ is a constant, so only $(m)$ with $1 m < 10$ needs to be computed. This is done using standard pgf math operations. Please note that x needs to be a number, expression parsing is not possible here. If x is not a bounded positive real number (fo
+
 
 ---
 
@@ -61,7 +81,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `686d527f9ab9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu}
+\pgfmathparse{1+1}\pgfmathresult
+```
 
 
 ---
@@ -71,7 +98,16 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d57b731d3bff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% \begin{tikzpicture}
+%     \fill[red,fpu,/pgf/fpu/scale results=1e-10] (*1.234e10,*1e10) -- (*2e10,*2e10);
+% \end{tikzpicture}
+%
+```
 
 
 ---
@@ -81,7 +117,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b53972edb4dd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu,/pgf/fpu/output format=float}
+\pgfmathparse{exp(50)*42}\pgfmathresult
+```
 
 
 ---
@@ -91,7 +134,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `dd975c3d860c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu,/pgf/fpu/output format=sci}
+\pgfmathparse{4.22e-8^-2}\pgfmathresult
+```
 
 
 ---
@@ -101,7 +151,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `764adb422a16`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfkeys{/pgf/fpu,/pgf/fpu/output format=fixed}
+\pgfmathparse{sqrt(1e-12)}\pgfmathresult
+```
 
 
 ---
@@ -111,7 +168,17 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `afdb34e78215`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begingroup
+\pgfkeys{/pgf/fpu/install only={divide}}
+\pgfmathparse{12.34/0.001234}\pgfmathresult (good)
+\pgfmathparse{12/4}\pgfmathresult (bad)
+\endgroup
+```
 
 
 ---
@@ -121,7 +188,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `7b113e3fab34`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{2}
+\pgfmathresult
+```
 
 
 ---
@@ -131,7 +205,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2f17e87c3a6f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{0}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -141,7 +223,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9373eec126aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{0.2}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -151,7 +241,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4aaaf2ee4de6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{42}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -161,7 +259,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f588ce0af10a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{20.5E+2}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -171,7 +277,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `3f7a9cb902b8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{1e6}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -181,7 +295,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `27cfe9b99df4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{5.21513e-11}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E.
+```
 
 
 ---
@@ -191,7 +313,18 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `962761da704a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{0.00052}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E
+$\to$
+\pgfmathfloattofixed{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -201,7 +334,18 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a59e5d3bad39`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{123.456e4}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E
+$\to$
+\pgfmathfloattofixed{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -211,7 +355,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `49c5cd950729`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{123456}
+\pgfmathfloattoint{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -221,7 +373,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `34c00181abf5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatcreate{1}{1.0}{327}
+\pgfmathfloattomacro{\pgfmathresult}{\F}{\M}{\E}
+Flags: \F; Mantissa \M; Exponent \E
+```
 
 
 ---
@@ -231,7 +391,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f37ec529600c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{42}
+\pgfmathfloatifflags{\pgfmathresult}{0}{It's zero!}{It's not zero!}
+\pgfmathfloatifflags{\pgfmathresult}{1}{It's positive!}{It's not positive!}
+\pgfmathfloatifflags{\pgfmathresult}{2}{It's negative!}{It's not negative!}
+
+% or, equivalently
+\pgfmathfloatifflags{\pgfmathresult}{+}{It's positive!}{It's not positive!}
+\pgfmathfloatifflags{\pgfmathresult}{-}{It's negative!}{It's not negative!}
+```
 
 
 ---
@@ -241,7 +414,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `7ab691b3f8a5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundto{1}
+\pgfmathresult
+```
 
 
 ---
@@ -251,7 +431,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b395cc34a2fa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundto{4.685}
+\pgfmathresult
+```
 
 
 ---
@@ -261,7 +448,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `57ecc5133e35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundto{19999.9996}
+\pgfmathresult
+```
 
 
 ---
@@ -271,7 +465,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4a8e88ac0e93`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundtozerofill{1}
+\pgfmathresult
+```
 
 
 ---
@@ -281,7 +482,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `69915f25fecd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundto{4.685}
+\pgfmathresult
+```
 
 
 ---
@@ -291,7 +499,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0dbd9e76b4ad`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathroundtozerofill{19999.9996}
+\pgfmathresult
+```
 
 
 ---
@@ -301,7 +516,16 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5bd1ab70391f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{52.5864}
+\pgfmathfloatround{\pgfmathresult}
+\pgfmathfloattosci{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -311,7 +535,16 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2efd6375d042`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{9.995}
+\pgfmathfloatround{\pgfmathresult}
+\pgfmathfloattosci{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -321,7 +554,16 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `33d21865bb7e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{52.5864}
+\pgfmathfloatroundzerofill{\pgfmathresult}
+\pgfmathfloattosci{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -331,7 +573,16 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `c47f3eed56ef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathfloatparsenumber{9.995}
+\pgfmathfloatroundzerofill{\pgfmathresult}
+\pgfmathfloattosci{\pgfmathresult}
+\pgfmathresult
+```
 
 
 ---
@@ -341,7 +592,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `8414248ee7e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathlog{1.452e-7}
+\pgfmathresult
+```
 
 
 ---
@@ -351,7 +609,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a0cdef4e75ee`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfmathlog{6.426e+8}
+\pgfmathresult
+```
 
 
 ---
@@ -361,7 +626,42 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `888ea9bb1a1d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \node {Computational Complexity} % root
+    child { node {Computational Problems}
+      child { node {Problem Measures} }
+      child { node {Problem Aspects} }
+      child { node {Problem Domains} }
+      child { node {Key Problems} }
+    }
+    child { node {Computational Models}
+      child { node {Turing Machines} }
+      child { node {Random-Access Machines} }
+      child { node {Circuits} }
+      child { node {Binary Decision Diagrams} }
+      child { node {Oracle Machines} }
+      child { node {Programming in Logic} }
+    }
+    child { node {Measuring Complexity}
+      child { node {Complexity Measures} }
+      child { node {Classifying Complexity} }
+      child { node {Comparing Complexity} }
+      child { node {Describing Complexity} }
+    }
+    child { node {Solving Problems}
+      child { node {Exact Algorithms} }
+      child { node {Randomization} }
+      child { node {Fixed-Parameter Algorithms} }
+      child { node {Parallel Computation} }
+      child { node {Partial Solutions} }
+      child { node {Approximation} }
+    };
+```
 
 
 ---
@@ -371,7 +671,41 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `70cadc15c98e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node {Computational Complexity} % root
+            child { node {Computational Problems}
+              child { node {Problem Measures} }           child { node {Problem Aspects} }
+              child { node {Problem Domains} }            child { node {Key Problems} }
+            }
+            child { node {Computational Models}
+              child { node {Turing Machines} }            child { node {Random-Access Machines} }
+              child { node {Circuits} }                   child { node {Binary Decision Diagrams} }
+              child { node {Oracle Machines} }            child { node {Programming in Logic} }
+            }
+            child { node {Measuring Complexity}
+              child { node {Complexity Measures} }        child { node {Classifying Complexity} }
+              child { node {Comparing Complexity} }       child { node {Describing Complexity} }
+            }
+            child { node {Solving Problems}
+              child { node {Exact Algorithms} }           child { node {Randomization} }
+              child { node {Fixed-Parameter Algorithms} } child { node {Parallel Computation} }
+              child { node {Partial Solutions} }          child { node {Approximation} }
+            };
+    },
+]
+\tikz [font=\footnotesize,
+       grow=right, level 1/.style={sibling distance=6em},
+                   level 2/.style={sibling distance=1em}, level distance=5cm]
+  \node {Computational Complexity} % root
+    child { node {Computational Problems}
+      child { node {Problem Measures} }
+      child { node {Problem Aspects} }
+      ... % as before
+```
 
 
 ---
@@ -381,7 +715,42 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `fa1812c433ec`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node[font=\bfseries] {Computational Complexity} % root
+            child { node {Computational Problems}
+              child { node {Problem Measures} }           child { node {Problem Aspects} }
+              child { node {Problem Domains} }            child { node {Key Problems} }
+            }
+            child { node {Computational Models}
+              child { node {Turing Machines} }            child { node {Random-Access Machines} }
+              child { node {Circuits} }                   child { node {Binary Decision Diagrams} }
+              child { node {Oracle Machines} }            child { node {Programming in Logic} }
+            }
+            child { node {Measuring Complexity}
+              child { node {Complexity Measures} }        child { node {Classifying Complexity} }
+              child { node {Comparing Complexity} }       child { node {Describing Complexity} }
+            }
+            child { node {Solving Problems}
+              child { node {Exact Algorithms} }           child { node {Randomization} }
+              child { node {Fixed-Parameter Algorithms} } child { node {Parallel Computation} }
+              child { node {Partial Solutions} }          child { node {Approximation} }
+            };
+    },
+]
+\tikz [text width=2.7cm, align=flush center,
+       grow cyclic,
+       level 1/.style={level distance=2.5cm,sibling angle=90},
+       level 2/.style={text width=2cm, font=\footnotesize, level distance=3cm,sibling angle=30}]
+  \node[font=\bfseries] {Computational Complexity} % root
+    child { node {Computational Problems}
+      child { node {Problem Measures} }
+      child { node {Problem Aspects} }
+      ... % as before
+```
 
 
 ---
@@ -391,7 +760,52 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4c3e554364b7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node [root concept] {Computational Complexity} % root
+            child { node {\hbox to 2cm{Computational\hss} Problems}
+              child { node {Problem Measures} }
+              child { node {Problem Aspects} }
+              child { node {Problem Domains} }
+              child { node {Key Problems} }
+            }
+            child { node {\hbox to 2cm{Computational\hss} Models}
+              child { node {Turing Machines} }
+              child { node {Random-Access Machines} }
+              child { node {Circuits} }
+              child { node {Binary Decision Diagrams} }
+              child { node {Oracle Machines} }
+              child { node {\hbox to1.5cm{Programming\hss} in Logic} }
+            }
+            child { node {Measuring Complexity}
+              child { node {Complexity Measures} }
+              child { node {Classifying Complexity} }
+              child { node {Comparing Complexity} }
+              child { node {Describing Complexity} }
+            }
+            child { node {Solving Problems}
+              child { node {Exact Algorithms} }
+              child { node {\hbox to 1.5cm{Randomization\hss}} }
+              child { node {Fixed-Parameter Algorithms} }
+              child { node {Parallel Computation} }
+              child { node {Partial Solutions} }
+              child { node {\hbox to1.5cm{Approximation\hss}} }
+            };
+    },
+]
+\tikz [mindmap, every node/.style=concept, concept color=black!20,
+       grow cyclic,
+       level 1/.append style={level distance=4.5cm,sibling angle=90},
+       level 2/.append style={level distance=3cm,sibling angle=45}]
+  \node [root concept] {Computational Complexity} % root
+    child { node {Computational Problems}
+      child { node {Problem Measures} }
+      child { node {Problem Aspects} }
+      ... % as before
+```
 
 
 ---
@@ -401,7 +815,59 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `7ef491493199`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\clip (-1,2) rectangle ++ (-4,5);
+          \node [root concept] {Computational Complexity} % root
+            child { node {Computational Problems}
+              child { node {Problem Measures} }
+              child { node {Problem Aspects} }
+              child { node {Problem Domains} }
+              child { node {Key Problems} }
+            }
+            child { node {Computational Models}
+              child { node {Turing Machines} }
+              child { node {Random-Access Machines} }
+              child { node {Circuits} }
+              child { node {Binary Decision Diagrams} }
+              child { node {Oracle Machines} }
+              child { node {Programming in Logic} }
+            }
+            child { node {Measuring Complexity}
+              child { node {Complexity Measures} }
+              child { node {Classifying Complexity} }
+              child { node {Comparing Complexity} }
+              child { node {Describing Complexity} }
+            }
+            child { node {Solving Problems}
+              child { node {Exact Algorithms} }
+              child { node {Randomization} }
+              child { node {Fixed-Parameter Algorithms} }
+              child { node {Parallel Computation} }
+              child { node {Partial Solutions} }
+              child { node {Approximation} }
+            };
+        \end{tikzpicture}
+    },
+]
+\begin{tikzpicture}
+  [mindmap,
+   every node/.style={concept, execute at begin node=\hskip0pt},
+   concept color=black!20,
+   grow cyclic,
+   level 1/.append style={level distance=4.5cm,sibling angle=90},
+   level 2/.append style={level distance=3cm,sibling angle=45}]
+  \clip (-1,2) rectangle ++ (-4,5);
+  \node [root concept] {Computational Complexity} % root
+    child { node {Computational Problems}
+      child { node {Problem Measures} }
+      child { node {Problem Aspects} }
+      ... % as before
+\end{tikzpicture}
+```
 
 
 ---
@@ -411,7 +877,59 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0d2a9a1b5d89`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\clip (0,-1) rectangle ++(4,5);
+          \node [root concept] {Computational Complexity} % root
+            child [concept color=red] { node {Computational Problems}
+              child { node {Problem Measures} }
+              child { node {Problem Aspects} }
+              child { node {Problem Domains} }
+              child { node {Key Problems} }
+            }
+            child [concept color=blue] { node {Computational Models}
+              child { node {Turing Machines} }
+              child { node {Random-Access Machines} }
+              child { node {Circuits} }
+              child { node {Binary Decision Diagrams} }
+              child { node {Oracle Machines} }
+              child { node {Programming in Logic} }
+            }
+            child [concept color=orange] { node {Measuring Complexity}
+              child { node {Complexity Measures} }
+              child { node {Classifying Complexity} }
+              child { node {Comparing Complexity} }
+              child { node {Describing Complexity} }
+            }
+            child [concept color=green!50!black] { node {Solving Problems}
+              child { node {Exact Algorithms} }
+              child { node {Randomization} }
+              child { node {Fixed-Parameter Algorithms} }
+              child { node {Parallel Computation} }
+              child { node {Partial Solutions} }
+              child { node {Approximation} }
+            };
+        \end{tikzpicture}
+    },
+]
+\begin{tikzpicture}
+  [mindmap,
+   every node/.style={concept, execute at begin node=\hskip0pt},
+   root concept/.append style={
+     concept color=black, fill=white, line width=1ex, text=black},
+   text=white,
+   grow cyclic,
+   level 1/.append style={level distance=4.5cm,sibling angle=90},
+   level 2/.append style={level distance=3cm,sibling angle=45}]
+   \clip (0,-1) rectangle ++(4,5);
+  \node [root concept] {Computational Complexity} % root
+    child [concept color=red] { node {Computational Problems}
+      child { node {Proble
+... (truncated)
+```
 
 
 ---
@@ -421,7 +939,47 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5c2b3bd2eb35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{scope}[
+           every node/.style={concept, circular drop shadow,execute at begin node=\hskip0pt},
+           root concept/.append style={
+             concept color=black,
+             fill=white, line width=1ex,
+             text=black, font=\large\scshape},
+           text=white,
+           computational problems/.style={concept color=red,faded/.style={concept color=red!50}},
+           computational models/.style={concept color=blue,faded/.style={concept color=blue!50}},
+           measuring complexity/.style={concept color=orange,faded/.style={concept color=orange!50}},
+           solving problems/.style={concept color=green!50!black,faded/.style={concept color=green!50!black!50}},
+           grow cyclic,
+           level 1/.append style={level distance=4.5cm,sibling angle=90,font=\scshape},
+           level 2/.append style={level distance=3cm,sibling angle=45,font=\scriptsize}]
+          \node [root concept] {Computational Complexity} % root
+            child [computational problems] { node {Computational Problems}
+              child         { node {Problem Measures} }
+              child         { node {Problem Aspects} }
+              child [faded] { node {Problem Domains} }
+              child         { node {Key Problems} }
+            }
+            child [computational models] { node {Computational Models}
+              child         { node {Turing Machines} }
+              child [faded] { node {Random-Access Machines} }
+              child         { node {Circuits} }
+              child [faded] { node {Binary Decision Diagrams} }
+              child         { node {Oracle Machines} }
+              child         { node {Programming in Logic} }
+            }
+            child [measuring complexity] { node {Measuring Complexity}
+              child         { node {Complexity Measures} }
+              child         { node {Classifying Complexity} }
+              child         { node {Comparing Complexity} }
+              child [faded] { node {Desc
+... (truncated)
+```
 
 
 ---
@@ -431,7 +989,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d0721c8f3df4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node [root concept] (Computational Complexity) {Computational Complexity}
+  child [computational problems] { node (Computational Problems) {Computational Problems}
+    child         { node (Problem Measures) {Problem Measures} }
+    child         { node (Problem Aspects) {Problem Aspects} }
+    child [faded] { node (Problem Domains) {Problem Domains} }
+    child         { node (Key Problems) {Key Problems} }
+  }
+...
+```
 
 
 ---
@@ -441,7 +1012,42 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9f11ad1e6cda`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\clip (-5.25,-3) rectangle ++ (4,5);
+          \begin{scope}[
+            every node/.style={concept, circular drop shadow,execute at begin node=\hskip0pt},
+            root concept/.append style={
+              concept color=black,
+              fill=white, line width=1ex,
+              text=black, font=\large\scshape},
+            text=white,
+            computational problems/.style={concept color=red,faded/.style={concept color=red!50}},
+            computational models/.style={concept color=blue,faded/.style={concept color=blue!50}},
+            measuring complexity/.style={concept color=orange,faded/.style={concept color=orange!50}},
+            solving problems/.style={concept color=green!50!black,faded/.style={concept color=green!50!black!50}},
+            grow cyclic,
+            level 1/.append style={level distance=4.5cm,sibling angle=90,font=\scshape},
+            level 2/.append style={level distance=3cm,sibling angle=45,font=\scriptsize}]
+            \node [root concept] (Computational Complexity) {Computational Complexity} % root
+              child [computational problems] { node (Computational Problems) {Computational Problems}
+                child         { node (Problem Measures) {Problem Measures} }
+                child         { node (Problem Aspects) {Problem Aspects} }
+                child [faded] { node (Problem Domains) {Problem Domains} }
+                child         { node (Key Problems) {Key Problems} }
+              }
+              child [computational models] { node (Computational Models) {Computational Models}
+                child         { node (Turing Machines) {Turing Machines} }
+                child [faded] { node (Random-Access Machines) {Random-Access Machines} }
+                child         { node (Circuits) {Circuits} }
+                child [faded] { node (Binary Decision Diagrams) {Binary Decision Diagrams} }
+                child         { node (Oracle Machines) {Oracle Machines} }
+                child         { node
+... (truncated)
+```
 
 
 ---
@@ -451,7 +1057,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0595b717aac0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\lecture#1#2#3#4#5#6{
+  \node [annotation, #3, scale=0.65, text width=4cm, inner sep=2mm] at (#4) {
+    Lecture #1: \textcolor{orange}{\textbf{#2}}
+    \list{--}{\topsep=2pt\itemsep=0pt\parsep=0pt
+              \parskip=0pt\labelwidth=8pt\leftmargin=8pt
+              \itemindent=0pt\labelsep=2pt}
+    #5
+    \endlist
+  };
+}
+```
 
 
 ---
@@ -461,7 +1082,49 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `1753aca15878`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+at (##4) {
+    Lecture ##1: \textcolor{orange}{\textbf{##2}}
+    \list{--}{\topsep=2pt\itemsep=0pt\parsep=0pt
+              \parskip=0pt\labelwidth=8pt\leftmargin=8pt
+              \itemindent=0pt\labelsep=2pt}
+    ##5
+    \endlist
+  };
+}},
+    render instead={
+        \begin{tikzpicture}[mindmap,every annotation/.style={fill=white}]
+          \clip (-5.25,-3) rectangle ++ (4,5);
+          \begin{scope}[
+            every node/.style={concept, circular drop shadow,execute at begin node=\hskip0pt},
+            root concept/.append style={
+              concept color=black,
+              fill=white, line width=1ex,
+              text=black, font=\large\scshape},
+            text=white,
+            computational problems/.style={concept color=red,faded/.style={concept color=red!50}},
+            computational models/.style={concept color=blue,faded/.style={concept color=blue!50}},
+            measuring complexity/.style={concept color=orange,faded/.style={concept color=orange!50}},
+            solving problems/.style={concept color=green!50!black,faded/.style={concept color=green!50!black!50}},
+            grow cyclic,
+            level 1/.append style={level distance=4.5cm,sibling angle=90,font=\scshape},
+            level 2/.append style={level distance=3cm,sibling angle=45,font=\scriptsize}]
+            \node [root concept] (Computational Complexity) {Computational Complexity} % root
+              child [computational problems] { node (Computational Problems) {Computational Problems}
+                child         { node (Problem Measures) {Problem Measures} }
+                child         { node (Problem Aspects) {Problem Aspects} }
+                child [faded] { node (problem Domains) {Problem Domains} }
+                child         { node (Key Problems) {Key Problems} }
+              }
+              child [computational models] { node (Computational Models) {Computational Models}
+                child         { node (Turing Machines) {Turing Machines} }
+        
+... (truncated)
+```
 
 
 ---
@@ -471,7 +1134,51 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `92c0cd734258`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+  mindmap,
+  concept color=black,
+  root concept/.append style={
+    concept,
+    circular drop shadow,
+    fill=white, line width=1ex,
+    text=black, font=\large\scshape}
+  ]
+
+  \clip (-1.5,-5) rectangle ++(4,10);
+
+  \node [root concept] (Computational Complexity) {Computational Complexity};
+
+  \begin{pgfonlayer}{background}
+    \clip (-1.5,-5) rectangle ++(4,10);
+
+    \colorlet{upperleft}{green!50!black!25}
+    \colorlet{upperright}{orange!25}
+    \colorlet{lowerleft}{red!25}
+    \colorlet{lowerright}{blue!25}
+
+     % The large rectangles:
+    \fill [upperleft]  (Computational Complexity) rectangle ++(-20,20);
+    \fill [upperright] (Computational Complexity) rectangle ++(20,20);
+    \fill [lowerleft]  (Computational Complexity) rectangle ++(-20,-20);
+    \fill [lowerright] (Computational Complexity) rectangle ++(20,-20);
+
+    % The shadings:
+    \shade [left color=upperleft,right color=upperright]
+      ([xshift=-1cm]Computational Complexity) rectangle ++(2,20);
+    \shade [left color=lowerleft,right color=lowerright]
+      ([xshift=-1cm]Computational Complexity) rectangle ++(2,-20);
+    \shade [top color=upperleft,bottom color=lowerleft]
+      ([yshift=-1cm]Computational Complexity) rectangle ++(-20,2);
+    \shade [top color=upperright,bottom color=lowerright]
+      ([yshift=-1cm]Computational Complexity) rectangle ++(20,2);
+  \end{pgfonlayer}
+\end{tikzpicture}
+```
 
 
 ---
@@ -481,7 +1188,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `c3036695edc0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tiny
+\begin{tikzpicture}
+  \calendar [day list downward,
+             name=cal,
+             dates=2009-04-01 to 2009-04-14]
+    if (weekend)
+      [black!25];
+\end{tikzpicture}
+```
 
 
 ---
@@ -491,7 +1211,25 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5ac3957ddc86`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\lecture#1#2#3#4#5#6{
+  % As before:
+  \node [annotation, #3, scale=0.65, text width=4cm, inner sep=2mm] at (#4) {
+    Lecture #1: \textcolor{orange}{\textbf{#2}}
+    \list{--}{\topsep=2pt\itemsep=0pt\parsep=0pt
+              \parskip=0pt\labelwidth=8pt\leftmargin=8pt
+              \itemindent=0pt\labelsep=2pt}
+    #5
+    \endlist
+  };
+  % New:
+  \node [anchor=base west] at (cal-#6.base east) {\textcolor{orange}{\textbf{#2}}};
+}
+```
 
 
 ---
@@ -501,7 +1239,31 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2fada63eaecd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+at (cal-##6.base east) {\textcolor{orange}{\textbf{##2}}};
+}},
+]
+\tiny
+\begin{tikzpicture}
+  \calendar [day list downward,
+             name=cal,
+             dates=2009-04-01 to 2009-04-14]
+    if (weekend)
+      [black!25];
+
+  % As before:
+  \lecture{1}{Computational Problems}{above,xshift=-3mm}
+  {Computational Problems.north}{
+    \item Knowledge of several key problems
+    \item Knowledge of problem encodings
+    \item Being able to formalize problems
+  }{2009-04-08}
+\end{tikzpicture}
+```
 
 
 ---
@@ -511,7 +1273,42 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2146340ed2ea`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+at (cal-##6.base east) {\textcolor{orange}{\textbf{##2}}};
+}},
+]
+\tiny
+\begin{tikzpicture}
+  \calendar [day list downward,
+             month text=\%mt\ \%y0,
+             month yshift=3.5em,
+             name=cal,
+             dates=2009-04-01 to 2009-05-01]
+    if (weekend)
+      [black!25]
+    if (day of month=1) {
+      \node at (0pt,1.5em) [anchor=base west] {\small\tikzmonthtext};
+    };
+
+  \lecture{1}{Computational Problems}{above,xshift=-3mm}
+  {Computational Problems.north}{
+    \item Knowledge of several key problems
+    \item Knowledge of problem encodings
+    \item Being able to formalize problems
+  }{2009-04-08}
+
+  \lecture{2}{Computational Models}{above,xshift=-3mm}
+  {Computational Models.north}{
+    \item Knowledge of Turing machines
+    \item Being able to compare the computational power of different
+      models
+  }{2009-04-15}
+\end{tikzpicture}
+```
 
 
 ---
@@ -521,7 +1318,25 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5302a88b74df`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\lecture#1#2#3#4#5#6{
+  % As before:
+  \node [annotation, #3, scale=0.65, text width=4cm, inner sep=2mm, fill=white] at (#4) {
+    Lecture #1: \textcolor{orange}{\textbf{#2}}
+    \list{--}{\topsep=2pt\itemsep=0pt\parsep=0pt
+              \parskip=0pt\labelwidth=8pt\leftmargin=8pt
+              \itemindent=0pt\labelsep=2pt}
+    #5
+    \endlist
+  };
+  % New:
+  \node [anchor=base west] at (cal-#6.base east) {\textcolor{orange}{\textbf{#2}}};
+}
+```
 
 
 ---
@@ -531,7 +1346,29 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `97531c387e98`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\noindent
+\begin{tikzpicture}
+  \begin{scope}[
+    mindmap,
+    every node/.style={concept, circular drop shadow,execute at begin node=\hskip0pt},
+    root concept/.append style={
+      concept color=black,
+      fill=white, line width=1ex,
+      text=black, font=\large\scshape},
+    text=white,
+    computational problems/.style={concept color=red,faded/.style={concept color=red!50}},
+    computational models/.style={concept color=blue,faded/.style={concept color=blue!50}},
+    measuring complexity/.style={concept color=orange,faded/.style={concept color=orange!50}},
+    solving problems/.style={concept color=green!50!black,faded/.style={concept color=green!50!black!50}},
+    grow cyclic,
+    level 1/.append style={level distance=4.5cm,sibling angle=90,font=\scshape},
+    level 2/.append style={level distance=3cm,sibling angle=45,font=\scriptsize}]
+```
 
 
 ---
@@ -541,7 +1378,42 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `bbbb8d1c8f8f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node [root concept] (Computational Complexity) {Computational Complexity} % root
+      child [computational problems] { node [yshift=-1cm] (Computational Problems) {Computational Problems}
+        child         { node (Problem Measures) {Problem Measures} }
+        child         { node (Problem Aspects) {Problem Aspects} }
+        child [faded] { node (problem Domains) {Problem Domains} }
+        child         { node (Key Problems) {Key Problems} }
+      }
+      child [computational models] { node [yshift=-1cm]  (Computational Models) {Computational Models}
+        child         { node (Turing Machines) {Turing Machines} }
+        child [faded] { node (Random-Access Machines) {Random-Access Machines} }
+        child         { node (Circuits) {Circuits} }
+        child [faded] { node (Binary Decision Diagrams) {Binary Decision Diagrams} }
+        child         { node (Oracle Machines) {Oracle Machines} }
+        child         { node (Programming in Logic) {Programming in Logic} }
+      }
+      child [measuring complexity] { node [yshift=1cm] (Measuring Complexity) {Measuring Complexity}
+        child         { node (Complexity Measures) {Complexity Measures} }
+        child         { node (Classifying Complexity) {Classifying Complexity} }
+        child         { node (Comparing Complexity) {Comparing Complexity} }
+        child [faded] { node (Describing Complexity) {Describing Complexity} }
+      }
+      child [solving problems] { node [yshift=1cm] (Solving Problems) {Solving Problems}
+        child         { node (Exact Algorithms) {Exact Algorithms} }
+        child         { node (Randomization) {Randomization} }
+        child         { node (Fixed-Parameter Algorithms) {Fixed-Parameter Algorithms} }
+        child         { node (Parallel Computation) {Parallel Computation} }
+        child         { node (Partial Solutions) {Partial Solutions} }
+        child         { node (Approximation) {Approximation} }
+      };
+  \end{scope}
+```
 
 
 ---
@@ -551,7 +1423,24 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b857d3c67fe0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tiny
+  \calendar [day list downward,
+             month text=\%mt\ \%y0,
+             month yshift=3.5em,
+             name=cal,
+             at={(-.5\textwidth-5mm,.5\textheight-1cm)},
+             dates=2009-04-01 to 2009-06-last]
+    if (weekend)
+      [black!25]
+    if (day of month=1) {
+      \node at (0pt,1.5em) [anchor=base west] {\small\tikzmonthtext};
+    };
+```
 
 
 ---
@@ -561,7 +1450,24 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `59b4c6019cf6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\lecture{1}{Computational Problems}{above,xshift=-5mm,yshift=5mm}{Computational Problems.north}{
+    \item Knowledge of several key problems
+    \item Knowledge of problem encodings
+    \item Being able to formalize problems
+  }{2009-04-08}
+
+  \lecture{2}{Computational Models}{above left}
+  {Computational Models.west}{
+    \item Knowledge of Turing machines
+    \item Being able to compare the computational power of different
+      models
+  }{2009-04-15}
+```
 
 
 ---
@@ -571,7 +1477,37 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e508c2073725`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfonlayer}{background}
+    \clip[xshift=-1cm] (-.5\textwidth,-.5\textheight) rectangle ++(\textwidth,\textheight);
+
+    \colorlet{upperleft}{green!50!black!25}
+    \colorlet{upperright}{orange!25}
+    \colorlet{lowerleft}{red!25}
+    \colorlet{lowerright}{blue!25}
+
+     % The large rectangles:
+    \fill [upperleft]  (Computational Complexity) rectangle ++(-20,20);
+    \fill [upperright] (Computational Complexity) rectangle ++(20,20);
+    \fill [lowerleft]  (Computational Complexity) rectangle ++(-20,-20);
+    \fill [lowerright] (Computational Complexity) rectangle ++(20,-20);
+
+    % The shadings:
+    \shade [left color=upperleft,right color=upperright]
+      ([xshift=-1cm]Computational Complexity) rectangle ++(2,20);
+    \shade [left color=lowerleft,right color=lowerright]
+      ([xshift=-1cm]Computational Complexity) rectangle ++(2,-20);
+    \shade [top color=upperleft,bottom color=lowerleft]
+      ([yshift=-1cm]Computational Complexity) rectangle ++(-20,2);
+    \shade [top color=upperright,bottom color=lowerright]
+      ([yshift=-1cm]Computational Complexity) rectangle ++(20,2);
+  \end{pgfonlayer}
+\end{tikzpicture}
+```
 
 
 ---
@@ -581,7 +1517,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `31db544c9f90`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\documentclass{article} % say
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) -- (1,1);
+\end{tikzpicture}
+\end{document}
+```
 
 
 ---
@@ -591,7 +1542,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `bd262d5c3a42`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+%% Plain TeX file
+\input tikz.tex
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\baselineskip=12pt
+\hsize=6.3truein
+\vsize=8.7truein
+\tikzpicture
+  \draw (0,0) -- (1,1);
+\endtikzpicture
+\bye
+```
 
 
 ---
@@ -601,7 +1567,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `04fb8a9c6edd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+%% ConTeXt file
+\usemodule[tikz]
+\usetikzlibrary[arrows.meta,decorations.pathmorphing,backgrounds,positioning,fit,petri]
+
+\starttext
+  \starttikzpicture
+    \draw (0,0) -- (1,1);
+  \stoptikzpicture
+\stoptext
+```
 
 
 ---
@@ -611,7 +1591,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2442d1dc2d4d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \path ( 0,2) node [shape=circle,draw] {}
+        ( 0,1) node [shape=circle,draw] {}
+        ( 0,0) node [shape=circle,draw] {}
+        ( 1,1) node [shape=rectangle,draw] {}
+        (-1,1) node [shape=rectangle,draw] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -621,7 +1613,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `83b75cb21b5e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \path node at ( 0,2) [shape=circle,draw] {}
+        node at ( 0,1) [shape=circle,draw] {}
+        node at ( 0,0) [shape=circle,draw] {}
+        node at ( 1,1) [shape=rectangle,draw] {}
+        node at (-1,1) [shape=rectangle,draw] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -631,7 +1635,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `cd86d11760c4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node at ( 0,2) [circle,draw] {};
+  \node at ( 0,1) [circle,draw] {};
+  \node at ( 0,0) [circle,draw] {};
+  \node at ( 1,1) [rectangle,draw] {};
+  \node at (-1,1) [rectangle,draw] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -641,7 +1657,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `8ed7381cb127`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[thick]
+  \node at ( 0,2) [circle,draw=blue!50,fill=blue!20] {};
+  \node at ( 0,1) [circle,draw=blue!50,fill=blue!20] {};
+  \node at ( 0,0) [circle,draw=blue!50,fill=blue!20] {};
+  \node at ( 1,1) [rectangle,draw=black!50,fill=black!20] {};
+  \node at (-1,1) [rectangle,draw=black!50,fill=black!20] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -651,7 +1679,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ef2ed2750a94`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [place/.style={circle,draw=blue!50,fill=blue!20,thick},
+   transition/.style={rectangle,draw=black!50,fill=black!20,thick}]
+  \node at ( 0,2) [place] {};
+  \node at ( 0,1) [place] {};
+  \node at ( 0,0) [place] {};
+  \node at ( 1,1) [transition] {};
+  \node at (-1,1) [transition] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -661,7 +1703,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4bcd175f5823`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [inner sep=2mm,
+   place/.style={circle,draw=blue!50,fill=blue!20,thick},
+   transition/.style={rectangle,draw=black!50,fill=black!20,thick}]
+  \node at ( 0,2) [place] {};
+  \node at ( 0,1) [place] {};
+  \node at ( 0,0) [place] {};
+  \node at ( 1,1) [transition] {};
+  \node at (-1,1) [transition] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -671,7 +1728,23 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `68a1047e3185`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [place/.style={circle,draw=blue!50,fill=blue!20,thick,
+                 inner sep=0pt,minimum size=6mm},
+   transition/.style={rectangle,draw=black!50,fill=black!20,thick,
+                      inner sep=0pt,minimum size=4mm}]
+  \node at ( 0,2) [place] {};
+  \node at ( 0,1) [place] {};
+  \node at ( 0,0) [place] {};
+  \node at ( 1,1) [transition] {};
+  \node at (-1,1) [transition] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -681,7 +1754,18 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9d0520d91fd5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{
+    place/.style={circle,draw=blue!50,fill=blue!20,thick,
+                  inner sep=0pt,minimum size=6mm},
+    transition/.style={rectangle,draw=black!50,fill=black!20,thick,
+                       inner sep=0pt,minimum size=4mm}
+}
+```
 
 
 ---
@@ -691,7 +1775,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `00e8a8f9cc41`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% ... set up styles
+\begin{tikzpicture}
+  \node (waiting 1)      at ( 0,2) [place] {};
+  \node (critical 1)     at ( 0,1) [place] {};
+  \node (semaphore)      at ( 0,0) [place] {};
+  \node (leave critical) at ( 1,1) [transition] {};
+  \node (enter critical) at (-1,1) [transition] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -701,7 +1798,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e2bb13f8a795`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting 1)      at ( 0,2) {};
+  \node[place]      (critical 1)     at ( 0,1) {};
+  \node[place]      (semaphore)      at ( 0,0) {};
+  \node[transition] (leave critical) at ( 1,1) {};
+  \node[transition] (enter critical) at (-1,1) {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -711,7 +1820,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `cb582d1063cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -721,7 +1842,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `caac603f32bf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+
+  \node [red,above] at (semaphore.north) {$s\le 3$};
+\end{tikzpicture}
+```
 
 
 ---
@@ -731,7 +1866,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `056a5745682a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical,
+                                      label=above:$s\le3$] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -741,7 +1889,14 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b5727307f653`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \node [circle,draw,label=60:$60^\circ$,label=below:$-90^\circ$] {my circle};
+```
 
 
 ---
@@ -751,57 +1906,142 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `aee13a452138`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every label/.style={red}]
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical,
+                                      label=above:$s\le3$] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 276. Other Example
+## 276. Node Graph Example
 
 **ID**: `ee148c2268fd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+  \draw [->] (enter critical.east) -- (critical.west);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 277. Other Example
+## 277. Node Graph Example
 
 **ID**: `f72504657741`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+  \draw [->] (enter critical.east) -- (critical.west);
+  \draw [->] (waiting.west) .. controls +(left:5mm) and +(up:5mm)
+                            .. (enter critical.north);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 278. Other Example
+## 278. Node Graph Example
 
 **ID**: `18adfc0c4901`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+  \draw [->] (enter critical) -- (critical);
+  \draw [->] (waiting) .. controls +(left:8mm) and +(up:8mm)
+                       .. (enter critical);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 279. Other Example
+## 279. Node Graph Example
 
 **ID**: `71d49454abe0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+  \draw [->] (enter critical) to                 (critical);
+  \draw [->] (waiting)        to [out=180,in=90] (enter critical);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 280. Other Example
+## 280. Node Graph Example
 
 **ID**: `802e9a10c5f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {};
+  \draw [->] (enter critical) to                 (critical);
+  \draw [->] (waiting)        to [bend right=45] (enter critical);
+  \draw [->] (enter critical) to [bend right=45] (semaphore);
+\end{tikzpicture}
+```
 
 
 ---
@@ -811,7 +2051,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9bc436ea59cd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+  \node[transition] (leave critical) [right=of critical] {};
+  \node[transition] (enter critical) [left=of critical]  {}
+    edge [->]               (critical)
+    edge [<-,bend left=45]  (waiting)
+    edge [->,bend right=45] (semaphore);
+\end{tikzpicture}
+```
 
 
 ---
@@ -821,17 +2076,55 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f1d30bef3585`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Styles place and transition as before
+\begin{tikzpicture}
+  [bend angle=45,
+   pre/.style={<-,shorten <=1pt,>={Stealth[round]},semithick},
+   post/.style={->,shorten >=1pt,>={Stealth[round]},semithick}]
+
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+
+  \node[transition] (leave critical) [right=of critical] {}
+    edge [pre]             (critical)
+    edge [post,bend right] (waiting)
+    edge [pre, bend left]  (semaphore);
+  \node[transition] (enter critical) [left=of critical]  {}
+    edge [post]            (critical)
+    edge [pre, bend left]  (waiting)
+    edge [post,bend right] (semaphore);
+\end{tikzpicture}
+```
 
 
 ---
 
-## 283. Other Example
+## 283. Node Graph Example
 
 **ID**: `5c367e755334`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[auto,bend right]
+  \node (a) at (0:1) {$0^\circ$};
+  \node (b) at (120:1) {$120^\circ$};
+  \node (c) at (240:1) {$240^\circ$};
+
+  \draw (a) to node {1} node [swap] {1'} (b)
+        (b) to node {2} node [swap] {2'} (c)
+        (c) to node {3} node [swap] {3'} (a);
+\end{tikzpicture}
+```
 
 
 ---
@@ -841,7 +2134,31 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4c0d6f3e27c4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+},semithick},
+    post/.style={->,shorten >=1pt,>={Stealth[round]},semithick},
+}},
+]
+% Styles as before
+\begin{tikzpicture}[bend angle=45]
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+
+  \node[transition] (leave critical) [right=of critical] {}
+    edge [pre]                                 (critical)
+    edge [post,bend right] node[auto,swap] {2} (waiting)
+    edge [pre, bend left]                      (semaphore);
+  \node[transition] (enter critical) [left=of critical]  {}
+    edge [post]                                (critical)
+    edge [pre, bend left]                      (waiting)
+    edge [post,bend right]                     (semaphore);
+\end{tikzpicture}
+```
 
 
 ---
@@ -851,7 +2168,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e3e90c381a51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [->,decorate,decoration=snake] (0,0) -- (2,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -861,7 +2186,17 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `17bc9ecfe858`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [->,decorate,
+     decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}]
+    (0,0) -- (3,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -871,7 +2206,23 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `103184f5d040`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [->,decorate,
+      decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}]
+    (0,0) -- (3,0)
+    node [above,align=center,midway]
+    {
+      replacement of\\
+      the \textcolor{red}{capacity}\\
+      by \textcolor{red}{two places}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -881,7 +2232,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `3efce7513053`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [->,decorate,
+      decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}]
+    (0,0) -- (3,0)
+    node [above,text width=3cm,align=center,midway]
+    {
+      replacement of the \textcolor{red}{capacity} by
+      \textcolor{red}{two places}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -891,7 +2257,36 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `fb038a9d7b31`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+},semithick},
+    post/.style={->,shorten >=1pt,>={Stealth[round]},semithick},
+}},
+]
+% Styles as before
+\begin{tikzpicture}[bend angle=45]
+  \node[place]      (waiting)                            {};
+  \node[place]      (critical)       [below=of waiting]  {};
+  \node[place]      (semaphore)      [below=of critical] {};
+
+  \node[transition] (leave critical) [right=of critical] {}
+    edge [pre]                                 (critical)
+    edge [post,bend right] node[auto,swap] {2} (waiting)
+    edge [pre, bend left]                      (semaphore);
+  \node[transition] (enter critical) [left=of critical]  {}
+    edge [post]                                (critical)
+    edge [pre, bend left]                      (waiting)
+    edge [post,bend right]                     (semaphore);
+
+  \begin{scope}[on background layer]
+    \node [fill=black!30,fit=(waiting) (critical) (semaphore)
+             (leave critical) (enter critical)] {};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -901,7 +2296,18 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ec410ef7ec13`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [node distance=1.3cm,on grid,>={Stealth[round]},bend angle=45,auto,
+   every place/.style=     {minimum size=6mm,thick,draw=blue!75,fill=blue!20},
+   every transition/.style={thick,draw=black!75,fill=black!20},
+   red place/.style=       {place,draw=red!75,fill=red!20},
+   every label/.style=     {red}]
+```
 
 
 ---
@@ -911,7 +2317,39 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b1699621cbc9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+},bend angle=45,auto},
+}%
+\begin{tikzpicture}},
+    post={\end{tikzpicture}},
+]
+   \node [place,tokens=1] (w1)                                    {};
+   \node [place]          (c1) [below=of w1]                      {};
+   \node [place]          (s)  [below=of c1,label=above:$s\le 3$] {};
+   \node [place]          (c2) [below=of s]                       {};
+   \node [place,tokens=1] (w2) [below=of c2]                      {};
+
+   \node [transition] (e1) [left=of c1] {}
+     edge [pre,bend left]                  (w1)
+     edge [post,bend right]                (s)
+     edge [post]                           (c1);
+   \node [transition] (e2) [left=of c2] {}
+     edge [pre,bend right]                 (w2)
+     edge [post,bend left]                 (s)
+     edge [post]                           (c2);
+   \node [transition] (l1) [right=of c1] {}
+     edge [pre]                            (c1)
+     edge [pre,bend left]                  (s)
+     edge [post,bend right] node[swap] {2} (w1);
+   \node [transition] (l2) [right=of c2] {}
+     edge [pre]                            (c2)
+     edge [pre,bend right]                 (s)
+     edge [post,bend left]  node {2}       (w2);
+```
 
 
 ---
@@ -921,17 +2359,74 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0c75229258f8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+},bend angle=45,auto},
+}%
+\begin{tikzpicture}},
+    post={\end{tikzpicture}},
+]
+  \begin{scope}[xshift=6cm]
+    \node [place,tokens=1]     (w1')                            {};
+    \node [place]              (c1') [below=of w1']             {};
+    \node [red place]          (s1') [below=of c1',xshift=-5mm]
+            [label=left:$s$]                                    {};
+    \node [red place,tokens=3] (s2') [below=of c1',xshift=5mm]
+            [label=right:$\bar s$]                              {};
+    \node [place]              (c2') [below=of s1',xshift=5mm]  {};
+    \node [place,tokens=1]     (w2') [below=of c2']             {};
+
+    \node [transition] (e1') [left=of c1'] {}
+      edge [pre,bend left]                  (w1')
+      edge [post]                           (s1')
+      edge [pre]                            (s2')
+      edge [post]                           (c1');
+    \node [transition] (e2') [left=of c2'] {}
+      edge [pre,bend right]                 (w2')
+      edge [post]                           (s1')
+      edge [pre]                            (s2')
+      edge [post]                           (c2');
+    \node [transition] (l1') [right=of c1'] {}
+      edge [pre]                            (c1')
+      edge [pre]                            (s1')
+      edge [post]                           (s2')
+      edge [post,bend right] node[swap] {2} (w1');
+    \node [transition] (l2') [right=of c2'] {}
+      edge [pre]                            (c2')
+      edge [pre]                            (s1')
+      edge [post]                           (s2')
+      edge [post,bend left]  node {2}       (w2');
+  \end{scope}
+```
 
 
 ---
 
-## 293. Other Example
+## 293. Node Graph Example
 
 **ID**: `530c0e426130`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{scope}[on background layer]
+    \node (r1) [fill=black!10,rounded corners,fit=(w1)(w2)(e1)(e2)(l1)(l2)] {};
+    \node (r2) [fill=black!10,rounded corners,fit=(w1')(w2')(e1')(e2')(l1')(l2')] {};
+  \end{scope}
+
+  \draw [shorten >=1mm,->,thick,decorate,
+         decoration={snake,amplitude=.4mm,segment length=2mm,
+                     pre=moveto,pre length=1mm,post length=2mm}]
+    (r1) -- (r2) node [above=1mm,midway,text width=3cm,align=center]
+      {replacement of the \textcolor{red}{capacity} by \textcolor{red}{two places}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -941,7 +2436,17 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `722ed9b52b38`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% from <tikzlibrarypetri.code.tex>
+\tikzset{
+    place/.style={circle,draw,inner sep=0pt,minimum size=5ex,every place},
+    transition/.style={rectangle,draw,inner sep=0pt,minimum size=4mm,every transition},
+}
+```
 
 
 ---
@@ -951,7 +2456,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `55cbc3ed9cd2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+local InterfaceToDisplay = require "pgf.gd.interface.InterfaceToDisplay"
+InterfaceToDisplay.bind(require "pgf.gd.examples.BindingToASCII")
+
+-- Load two libraries that define graph drawing algorithms. We can do this only *after* the binding
+-- has been created since they call the declare function internally.
+require "pgf.gd.layered.library"
+require "pgf.gd.force.library"
+```
 
 
 ---
@@ -961,7 +2478,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0bd5cbe4bc6f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+local algorithm = io.read():match("%s*graph%s*%[(.-)%]")
+
+InterfaceToDisplay.pushPhase(algorithm, "main", 1)
+InterfaceToDisplay.pushOption("level distance", 6, 2)
+InterfaceToDisplay.pushOption("sibling distance", 8, 3)
+InterfaceToDisplay.beginGraphDrawingScope(3)
+InterfaceToDisplay.pushLayout(4)
+```
 
 
 ---
@@ -971,7 +2500,23 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `6f9609a0e725`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+for line in io.lines() do
+  if line:match("}") then
+    break
+  elseif line:find("-") then
+    local n1, dir, n2 = string.match(line, "^%s*(.-)%s*(-.)%s*(.-)%s*;")
+    InterfaceToDisplay.createEdge(n1, n2, dir, 4)
+  else
+    local n1 = string.match(line, "^%s*(.-)%s*;")
+    InterfaceToDisplay.createVertex(n1, "rectangle", nil, 4)
+  end
+end
+```
 
 
 ---
@@ -981,7 +2526,15 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `97bb0b87a90f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+InterfaceToDisplay.runGraphDrawingAlgorithm()
+InterfaceToDisplay.renderGraph()
+InterfaceToDisplay.endGraphDrawingScope()
+```
 
 
 ---
@@ -992,6 +2545,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} |on| coordinate in node node options|;|} This command can only be used inside a |spy scope|. Let us start with the syntax: itemize The || command is not a special case of ||. Rather, it has a small parser of its own. Following the optional options, you must write |on|, followed by a coordinate. This coordinate will be the center of the area that is to be magnified. Following the coordinate, you must write |in node| followed by some node options. The syntax for these options is the same as for 
+
 
 ---
 
@@ -1000,7 +2557,26 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `38c4d47b07d0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using outlines={circle, magnification=4, size=2cm, connect spies}]
+
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw [decoration=Koch curve type 1]
+    decorate { decorate{ decorate{ decorate{ (0,0) -- (2,0) }}}};
+
+  \spy [red] on (1.6,0.3)
+             in node [left] at (3.5,-1.25);
+
+  \spy [blue, size=1cm] on (1,1)
+              in node [right] at (0,-1.25);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1010,7 +2586,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d06aeec81ba2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[spy using overlays={size=12mm}]
+  \draw [decoration=Koch snowflake]
+    decorate { decorate{ decorate{ decorate{ (0,0) -- (2,0) }}}};
+
+  \spy [green,magnification=3] on (0.6,0.1) in node at (-0.3,-1);
+  \spy [blue,magnification=5]  on (1,0.5)   in node at (1,-1);
+  \spy [red,magnification=10]  on (1.6,0.1) in node at (2.3,-1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1020,7 +2609,29 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `27d0738ac0e5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using outlines={rectangle, red, magnification=5,
+                       size=1.5cm, connect spies}]
+
+  \begin{scope}
+    [spy using outlines={circle, blue,
+                         magnification=3, size=1.5cm, connect spies}]
+    \draw [help lines] (0,0) grid (3,2);
+
+    \draw [decoration=Koch curve type 1]
+      decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+    \spy on (1.6,0.3) in node (zoom) [left] at (3.5,-1.25);
+  \end{scope}
+
+  \spy on (zoom.north west) in node [right] at (0,-1.25);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1030,7 +2641,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `93c3c160b517`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using outlines={circle, magnification=3, size=1cm}]
+
+  \draw [decoration=Koch curve type 1]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [red]  on (1.6,0.3) in node;
+  \spy [blue] on (1,1)     in node at (1,-1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1040,7 +2665,25 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `36f2b7678274`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \begin{scope}
+    [spy using outlines={circle, magnification=3, size=2cm, connect spies}]
+
+    \draw [decoration=Koch curve type 1]
+      decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+    \spy [red] on (1.6,0.3) in node (a) [left] at (3.5,-1.25);
+
+    \spy [blue, size=1cm] on (1,1) in node (b) [right] at (0,-1.25);
+  \end{scope}
+  \draw [ultra thick, green!50!black] (b) -- (a.north west);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1050,7 +2693,13 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e0ef49e8c71c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw[thin] (tikzspyonnode) -- (tikzspyinnode);
+```
 
 
 ---
@@ -1060,7 +2709,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e4d5ef7fd06e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using outlines={lens={scale=3,rotate=20}, size=2cm, connect spies}]
+
+  \draw [decoration=Koch curve type 1]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [red] on (1.6,0.3) in node at (2.5,-1.25);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1070,7 +2732,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b0ebed26c91e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using outlines={circle, magnification=3, size=1cm, connect spies}]
+
+  \draw [decoration=Koch curve type 1]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [red] on (1.6,0.3) in node at (3,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1080,7 +2755,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f7469f647ae6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using overlays={circle, magnification=3, size=1cm, connect spies}]
+
+  \draw [decoration=Koch curve type 1]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [green] on (1.6,0.3) in node at (3,1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1090,7 +2778,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0b3c6c2bb1aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy using overlays={circle, magnification=3, size=1cm}]
+
+  \draw [decoration=Koch curve type 2]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [green] on (1.6,0.1) in node at (3,1);
+  \spy [red,connect spies] on (0.5,0.4) in node at (1,1.5);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1100,7 +2802,28 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4b19cb80736d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{spy using mag glass/.style={
+    spy scope={
+      every spy on node/.style={
+        circle,
+        fill, fill opacity=0.2, text opacity=1},
+      every spy in node/.style={
+        magnifying glass, circular drop shadow,
+        fill=white, draw, ultra thick, cap=round},
+      #1
+    }}}
+\begin{tikzpicture}[spy using mag glass={magnification=3, size=1cm}]
+  \draw [decoration=Koch curve type 2]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy [green!50!black] on (1.6,0.1) in node at (2.5,-0.5);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1110,7 +2833,23 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `bf08446d1bbf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [spy scope={magnification=4, size=1cm},
+   every spy in node/.style={
+     magnifying glass, circular drop shadow,
+     fill=white, draw, ultra thick, cap=round}]
+
+  \draw [decoration=Koch curve type 2]
+    decorate{ decorate{ decorate{ (0,0) -- (2,0) }}};
+
+  \spy on (1.6,0.1) in node;
+\end{tikzpicture}
+```
 
 
 ---
@@ -1121,6 +2860,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command expects a -coordinate like || as its parameter. When the current path is empty, this operation will start the path at the given coordinate. If a path has already been partly constructed, this command will end the current part of the path and start a new one. codeexample[] pgfpicture {1cm{1cm}} {2cm{1cm}} {3cm{0.5cm}} {3cm{0cm}} yellow!80!black fill,stroke pgfpicture codeexample codeexample[] pgfpicture {1cm{1cm}} {2cm{1cm}} {2cm{1cm}} {3cm{0.5cm}} {3cm{0cm}} yellow!80!black fill,s
+
 
 ---
 
@@ -1129,6 +2872,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a8a9188a75c0`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command extends the current path in a straight line to the given coordinate. If this command is given at the beginning of path without any other path construction command given before (in particular without a move-to operation), the \ file may compile without an error message, but a viewer application may display an error message when trying to render the picture. codeexample[] pgfpicture {1cm{1cm}} {2cm{1cm}} yellow!80!black fill,stroke pgfpicture codeexample The command will apply the c
 
 
 ---
@@ -1139,6 +2886,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+support 2coordinate} This command extends the current path with a Bézier curve from the last point of the path to coordinate. The support 1 and support 2 are the first and second support point of the Bézier curve. For more information on Bézier curves, please consult a standard textbook on computer graphics. Like the line-to command, this command may not be the first path construction command in a path. codeexample[] pgfpicture {1cm{1cm}}{2cm{1cm}}{3cm{0cm}} yellow!80!black fill,stroke pgfpictur
+
 
 ---
 
@@ -1147,6 +2898,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `107479182dbe`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+coordinate} This command works like ||, only it uses a quadratic Bézier curve rather than a cubic one. This means that only one support point is needed. codeexample[] pgfpicture {1cm{1cm}}{2cm{0cm}} yellow!80!black fill,stroke pgfpicture codeexample Internally, the quadratic curve is converted into a cubic curve. The only noticeable effect of this is that the points used for computing the bounding box are the control points of the converted curve rather than support. The main effect of this is t
 
 
 ---
@@ -1157,6 +2912,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+time $t_2$point ppoint $s_1$point $s_2$point q} This command draws the part of the curve described by $p$, $s_1$, $s_2$ and $q$ between the times $t_1$ and $t_2$. A time value of 0 indicates the point $p$ and a time value of 1 indicates point $q$. This command includes a moveto operation to the first point. codeexample[] tikzpicture [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2); 0.25{0.9}{0{0}}{0{2}} {3{0}}{3{2}} red 0.5 2pt stroke tikzpicture codeexample
+
 
 ---
 
@@ -1165,6 +2924,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `413abce5fb93`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+time $t_2$point ppoint $s_1$point $s_2$point q} This command works like ||, except that a moveto operation is not made to the first point.
 
 
 ---
@@ -1175,6 +2938,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command closes the current part of the path by appending a straight line to the start point of the current part. Note that there is a difference between closing a path and using the line-to operation to add a straight line to the start of the current path. The difference is demonstrated by the upper corners of the triangles in the following example: codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 5pt {1cm{1cm}} {0cm{-1cm}} {1cm{-1cm}} {2.5cm{1cm}} {1.5cm{-1cm}} {2.5cm{-1cm}} {2.5cm
+
 
 ---
 
@@ -1183,6 +2950,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `4445c656d2b5`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+end angle{`\{}radius| and |{y-radius}{`\}}} This command appends a part of a circle (or an ellipse) to the current path. Imagine the curve between start angle and end angle on a circle of radius radius (if $start angle < end angle$, the curve goes around the circle counterclockwise, otherwise clockwise). This curve is now moved such that the point where the curve starts is the previous last point of the path. Note that this command will not start a new part of the path, which is important for ex
 
 
 ---
@@ -1193,6 +2964,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+end anglefirst axissecond axis} This command is similar to ||. The main difference is how the ellipse or circle is specified from which the arc is taken. The two parameters first axis and second axis are the $0^$-axis and the $90^$-axis of the ellipse from which the path is taken. Thus, |0{90}{1cm and 2cm}| has the same effect as verbatim 0{90}{1cm{0cm}}{0cm{2cm}} verbatim codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2cm,5mm) (0,0) -- (0cm,1cm); {2cm{5mm}} 0{90}{2cm{5mm}}{0
+
 
 ---
 
@@ -1201,6 +2976,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `955277df1be9`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y-radiusrotation large arc flagcounterclockwise flag\ point} This command (which directly corresponds to the arc-path command of svg) is used to add an arc to the path that starts at the current point and ends at target point. This arc is part of an ellipse that is determined in the following way: Imagine an ellipse with radii x-radius and y-radius that is rotated around its center by rotation degrees. When you move this ellipse around in the plane, there will be exactly two positions such that 
 
 
 ---
@@ -1211,6 +2990,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+start angleend angleend point\-radiusy-radiusratio x-radius/y-radiusratio y-radius/x-radius} A specialized arc operation which is fast and numerically stable, provided a lot of information is given in advance. In contrast to ||, it explicitly interpolates start and end points. In contrast to ||, this routine is numerically stable and quite fast since it relies on a lot of available information. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1.5cm 1cm 0 270 1.5cm 0.5cm /= /= {+*cos(){+*
+
 
 ---
 
@@ -1219,6 +3002,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a36daab1d110`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+first axissecond axis} The effect of this command is to append an ellipse to the current path (if the path is not empty, a new part is started). The ellipse's center will be center and first axis and second axis are the axis vectors. The same effect as this command can also be achieved using an appropriate sequence of move-to, arc, and close operations, but this command is easier and faster. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); {1cm{0cm}} {1.5cm{0cm}} {0cm{1cm}} draw red {1cm
 
 
 ---
@@ -1229,6 +3016,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+radius} A shorthand for || applied to center and the two axis vectors $(radius,0)$ and $(0,radius)$.
+
 
 ---
 
@@ -1237,6 +3028,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `c3ca5a385657`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+diagonal vector} Adds a rectangle to the path whose one corner is corner and whose opposite corner is given by $corner + diagonal vector$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); {1cm{0cm}}{1.5cm{1cm}} {1.5cm{0.25cm}}{1.5cm{1cm}} {2cm{0.5cm}}{1.5cm{1cm}} draw tikzpicture codeexample The command will apply coordinate transformations and update the bounding boxes tightly.
 
 
 ---
@@ -1247,6 +3042,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+opposite corner} Adds a rectangle to the path whose two opposing corners are corner and opposite corner. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); {1cm{0cm}}{1.5cm{1cm}} draw tikzpicture codeexample The command will apply coordinate transformations and update the bounding boxes tightly.
+
 
 ---
 
@@ -1255,6 +3054,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `23ef5d81df7a`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+first cornersecond corner} Appends a grid to the current path. That is, a (possibly large) number of parts are added to the path, each part consisting of a single horizontal or vertical straight line segment. Conceptually, the origin is part of the grid and the grid is clipped to the rectangle specified by the first corner and the second corner. However, no clipping occurs (this command just adds parts to the current path) and the points where the lines enter and leave the ``clipping area'' are 
 
 
 ---
@@ -1265,6 +3068,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+end vector} This command appends two half-parabolas to the current path. The first starts at the current point and ends at the current point plus bend vector. At this point, it has its bend. The second half parabola starts at that bend point and ends at point that is given by the bend plus end vector. If you set end vector to the null vector, you append only a half parabola that goes from the current point to the bend; by setting bend vector to the null vector, you append only a half parabola th
+
 
 ---
 
@@ -1273,6 +3080,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a8a53453e237`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command appends a sine curve in the interval $[0,/2]$ to the current path. The sine curve is squeezed or stretched such that the curve starts at the current point and ends at the current point plus vector. codeexample[] tikzpicture [help lines] (0,0) grid (3,1); {1cm{0cm}} {1cm{1cm}} stroke red {1cm{0cm}} {-2cm{-2cm}} stroke tikzpicture codeexample The command will apply coordinate transformations and update the bounding boxes.
 
 
 ---
@@ -1283,6 +3094,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command appends a cosine curve in the interval $[0,/2]$ to the current path. The curve is squeezed or stretched such that the curve starts at the current point and ends at the current point plus vector. Using several sine and cosine operations in sequence allows you to produce a complete sine or cosine curve codeexample[] pgfpicture {0cm{0cm}} {1cm{1cm}} {1cm{-1cm}} {1cm{-1cm}} {1cm{1cm}} yellow!80!black fill,stroke pgfpicture codeexample The command will apply coordinate transformations 
+
 
 ---
 
@@ -1291,6 +3106,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ee1b8fd5ce92`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command causes all subsequent corners to be replaced by little arcs. The effect of this command lasts till the end of the current \ scope. The point dictates how large the corner arc will be. Consider a corner made by two lines $l$ and~$r$ and assume that the line $l$ comes first on the path. The $x$-dimension of the point decides by how much the line~$l$ will be shortened, the $y$-dimension of point decides by how much the line $r$ will be shortened. Then, the shortened lines are connect
 
 
 ---
@@ -1301,6 +3120,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Resets the picture's bounding box. The picture will simply forget any previous bounding box updates and start collecting from scratch. You can use this together with |use as bounding box| to replace the bounding box by the one of a particular path (ignoring subsequent paths).
+
 
 ---
 
@@ -1309,6 +3132,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `e10ec49b5b65`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+y-dimension} Updates all of the above dimensions in such a way that the point specified by the two arguments is inside both bounding boxes. For the picture's bounding box this updating occurs only if |@relevantforpicturesize| is true, see below.
 
 
 ---
@@ -1319,6 +3146,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Suppresses updating of the picture's bounding box.
+
 
 ---
 
@@ -1328,6 +3159,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Causes updating of the picture's bounding box.
+
 
 ---
 
@@ -1336,7 +3171,25 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ff7efd2e0567`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[scale=2]
+  \draw[thick,red]
+       (0,0) coordinate (a)
+    -- coordinate (ab) (1,.5) coordinate (b)
+    .. coordinate (bc) controls +(up:1cm) and +(left:1cm) .. (3,1)  coordinate (c)
+       (0,1) -- (2,1) -- coordinate (x) (1,2) -- cycle;
+
+  \draw (a)  node[below] {start part 1}
+        (ab) node[below right] {straight segment}
+        (b)  node[right] {end first segment}
+        (c)  node[right] {end part 1}
+        (x)  node[above right]  {part 2 (closed)};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1346,7 +3199,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b464d9d11518`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{2cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{3cm}{0.5cm}}
+  \pgfpathlineto{\pgfpoint{3cm}{0cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1356,7 +3223,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `3cecf76a78aa`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{2cm}{1cm}}
+  \pgfpathmoveto{\pgfpoint{2cm}{1cm}} % New part
+  \pgfpathlineto{\pgfpoint{3cm}{0.5cm}}
+  \pgfpathlineto{\pgfpoint{3cm}{0cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1366,7 +3248,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `7237df86ca78`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{2cm}{1cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1376,7 +3270,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d65ecdfdb28f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathcurveto
+    {\pgfpoint{1cm}{1cm}}{\pgfpoint{2cm}{1cm}}{\pgfpoint{3cm}{0cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1386,7 +3292,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `1177cef22433`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathquadraticcurveto
+    {\pgfpoint{1cm}{1cm}}{\pgfpoint{2cm}{0cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1396,7 +3314,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `459238ca6870`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2);
+  \pgfpathcurvebetweentime{0.25}{0.9}{\pgfpointxy{0}{0}}{\pgfpointxy{0}{2}}
+    {\pgfpointxy{3}{0}}{\pgfpointxy{3}{2}}
+  \pgfsetstrokecolor{red}
+  \pgfsetstrokeopacity{0.5}
+  \pgfsetlinewidth{2pt}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1406,7 +3338,25 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `fab39a5335a9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth{5pt}
+  \pgfpathmoveto{\pgfpoint{1cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{0cm}{-1cm}}
+  \pgfpathlineto{\pgfpoint{1cm}{-1cm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfpoint{2.5cm}{1cm}}
+  \pgfpathlineto{\pgfpoint{1.5cm}{-1cm}}
+  \pgfpathlineto{\pgfpoint{2.5cm}{-1cm}}
+  \pgfpathlineto{\pgfpoint{2.5cm}{1cm}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1416,7 +3366,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ff581a0d88ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{0cm}{1cm}}
+  \pgfpatharc{180}{90}{.5cm}
+  \pgfpathlineto{\pgfpoint{3cm}{1.5cm}}
+  \pgfpatharc{90}{-45}{.5cm}
+  \pgfusepath{fill}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1426,7 +3390,18 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `be6ecbc4efed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharc{180}{45}{2cm and 1cm}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1436,7 +3411,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `7be4f6890978`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformrotate{30}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharc{180}{45}{2cm and 1cm}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1446,7 +3433,20 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `87d8023f6c77`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw (0,0) -- (2cm,5mm) (0,0) -- (0cm,1cm);
+
+  \pgfpathmoveto{\pgfpoint{2cm}{5mm}}
+  \pgfpatharcaxes{0}{90}{\pgfpoint{2cm}{5mm}}{\pgfpoint{0cm}{1cm}}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1456,7 +3456,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `58c7d019ff3f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \pgfpathmoveto{\pgfpoint{0mm}{20mm}}
+  \pgfpatharcto{3cm}{1cm}{0}{0}{0}{\pgfpoint{3cm}{1cm}}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1466,7 +3478,35 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `3114b5aaa6f5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \pgfsetlinewidth{2pt}
+  % Flags 0 0: red
+  \pgfsetstrokecolor{red}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharcto{20pt}{10pt}{0}{0}{0}{\pgfpoint{20pt}{10pt}}
+  \pgfusepath{stroke}
+  % Flags 0 1: blue
+  \pgfsetstrokecolor{blue}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharcto{20pt}{10pt}{0}{0}{1}{\pgfpoint{20pt}{10pt}}
+  \pgfusepath{stroke}
+  % Flags 1 0: orange
+  \pgfsetstrokecolor{orange}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharcto{20pt}{10pt}{0}{1}{0}{\pgfpoint{20pt}{10pt}}
+  \pgfusepath{stroke}
+  % Flags 1 1: black
+  \pgfsetstrokecolor{black}
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpatharcto{20pt}{10pt}{0}{1}{1}{\pgfpoint{20pt}{10pt}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1476,7 +3516,37 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d29fe0abe10a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \def\cx{1.5cm}% center x
+  \def\cy{1cm}% center y
+  \def\startangle{0}%
+  \def\endangle{270}%
+  \def\a{1.5cm}% xradius
+  \def\b{0.5cm}% yradius
+  \pgfmathparse{\a/\b}\let\abratio=\pgfmathresult
+  \pgfmathparse{\b/\a}\let\baratio=\pgfmathresult
+  %
+  % start point:
+  \pgfpathmoveto{\pgfpoint{\cx+\a*cos(\startangle)}{\cy+\b*sin(\startangle)}}%
+  \pgfpatharctoprecomputed
+    {\pgfpoint{\cx}{\cy}}
+    {\startangle}
+    {\endangle}
+    {\pgfpoint{\cx+\a*cos(\endangle)}{\cy+\b*sin(\endangle)}}% end point
+    {\a}
+    {\b}
+    {\abratio}
+    {\baratio}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1486,7 +3556,24 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9c2bb726dcd2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathellipse{\pgfpoint{1cm}{0cm}}
+                 {\pgfpoint{1.5cm}{0cm}}
+                 {\pgfpoint{0cm}{1cm}}
+  \pgfusepath{draw}
+  \color{red}
+  \pgfpathellipse{\pgfpoint{1cm}{0cm}}
+                 {\pgfpoint{1cm}{1cm}}
+                 {\pgfpoint{-0.5cm}{0.5cm}}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1496,7 +3583,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `cc4dec9d43e4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathrectangle{\pgfpoint{1cm}{0cm}}{\pgfpoint{1.5cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1.5cm}{0.25cm}}{\pgfpoint{1.5cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{2cm}{0.5cm}}{\pgfpoint{1.5cm}{1cm}}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1506,7 +3605,17 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `8d7b2f278a3b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathrectanglecorners{\pgfpoint{1cm}{0cm}}{\pgfpoint{1.5cm}{1cm}}
+  \pgfusepath{draw}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1516,7 +3625,22 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5cfd9b004a80`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetlinewidth{0.8pt}
+  \pgfpathgrid[step={\pgfpoint{1cm}{1cm}}]
+    {\pgfpoint{-3mm}{-3mm}}{\pgfpoint{33mm}{23mm}}
+  \pgfusepath{stroke}
+  \pgfsetlinewidth{0.4pt}
+  \pgfpathgrid[stepx=1mm,stepy=1mm]
+    {\pgfpoint{-1.5mm}{-1.5mm}}{\pgfpoint{31.5mm}{21.5mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1526,7 +3650,17 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2d9d467e60b5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgftransformrotate{10}
+  \pgfpathgrid[stepx=1mm,stepy=2mm]{\pgfpoint{0mm}{0mm}}{\pgfpoint{30mm}{30mm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1536,7 +3670,31 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d673daa2f763`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  % Half-parabola going ``up and right''
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathparabola{\pgfpointorigin}{\pgfpoint{2cm}{4cm}}
+  \color{red}
+  \pgfusepath{stroke}
+
+  % Half-parabola going ``down and right''
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathparabola{\pgfpoint{-2cm}{4cm}}{\pgfpointorigin}
+  \color{blue}
+  \pgfusepath{stroke}
+
+  % Full parabola
+  \pgfpathmoveto{\pgfpoint{-2cm}{2cm}}
+  \pgfpathparabola{\pgfpoint{1cm}{-1cm}}{\pgfpoint{2cm}{4cm}}
+  \color{orange}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1546,7 +3704,23 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `94b5d49e1952`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,1);
+  \pgfpathmoveto{\pgfpoint{1cm}{0cm}}
+  \pgfpathsine{\pgfpoint{1cm}{1cm}}
+  \pgfusepath{stroke}
+
+  \color{red}
+  \pgfpathmoveto{\pgfpoint{1cm}{0cm}}
+  \pgfpathsine{\pgfpoint{-2cm}{-2cm}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1556,7 +3730,21 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `abcb36a85191`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfpathmoveto{\pgfpoint{0cm}{0cm}}
+  \pgfpathsine{\pgfpoint{1cm}{1cm}}
+  \pgfpathcosine{\pgfpoint{1cm}{-1cm}}
+  \pgfpathsine{\pgfpoint{1cm}{-1cm}}
+  \pgfpathcosine{\pgfpoint{1cm}{1cm}}
+  \pgfsetfillcolor{yellow!80!black}
+  \pgfusepath{fill,stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -1566,7 +3754,19 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `ce0ecd98dd15`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \pgfsetcornersarced{\pgfpoint{5mm}{5mm}}
+  \pgfpathrectanglecorners{\pgfpointorigin}{\pgfpoint{3cm}{2cm}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1576,7 +3776,27 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `b4e5e1791371`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+
+  \pgfsetcornersarced{\pgfpoint{10mm}{5mm}}
+  % 10mm entering,
+  % 5mm leaving.
+  \pgfpathmoveto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{0cm}{2cm}}
+  \pgfpathlineto{\pgfpoint{3cm}{2cm}}
+  \pgfpathcurveto
+    {\pgfpoint{3cm}{0cm}}
+    {\pgfpoint{2cm}{0cm}}
+    {\pgfpoint{1cm}{0cm}}
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1586,27 +3806,76 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f9633ac1a571`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{pgfpicture}
+  \pgfsetcornersarced{\pgfpoint{4pt}{4pt}}
+  \pgfpathmoveto{\pgfpointpolar{0}{1cm}}
+  \pgfpathlineto{\pgfpointpolar{72}{1cm}}
+  \pgfpathlineto{\pgfpointpolar{144}{1cm}}
+  \pgfpathlineto{\pgfpointpolar{216}{1cm}}
+  \pgfpathlineto{\pgfpointpolar{288}{1cm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
 
-## 362. Other Example
+## 362. Node Graph Example
 
 **ID**: `68f76a5d0732`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[inner sep=0pt,thick,
+                    dot/.style={fill=blue,circle,minimum size=3pt}]
+  \draw[help lines] (0,0) grid (3,2);
+  \node[dot] (a) at (1,1) {};
+  \node[dot] (b) at (2,2) {};
+  \node[dot] (c) at (1,2) {};
+  \node[dot] (d) at (1.25,0.25) {};
+  \node[dot] (e) at (1.75,1.5) {};
+
+  \node[draw=red,   fit=(a) (b) (c) (d) (e)] {box};
+  \node[draw,circle,fit=(a) (b) (c) (d) (e)] {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 363. Other Example
+## 363. Node Graph Example
 
 **ID**: `1560b7fa226f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[inner sep=0pt,thick,
+                    dot/.style={fill=blue,circle,minimum size=3pt}]
+  \draw[help lines] (0,0) grid (3,2);
+  \node[dot] (a) at (1,1) {};
+  \node[dot] (b) at (2,2) {};
+  \node[dot] (c) at (1,2) {};
+  \node[dot] (d) at (1.25,0.25) {};
+  \node[dot] (e) at (1.75,1.5) {};
+
+  \node[draw=red,fit=(a) (b) (c) (d) (e)] (fit) {};
+  \node[below] at (fit.north) {box};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1616,17 +3885,64 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `0ab9cb39bf93`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [vertex/.style={minimum size=2pt,fill,draw,circle},
+   open/.style={fill=none},
+   sibling distance=1.5cm,level distance=.75cm,
+   every fit/.style={ellipse,draw,inner sep=-2pt},
+   leaf/.style={label={[name=#1]below:$#1$}},auto]
+
+  \node [vertex] (root) {}
+  child { node [vertex,open] {}
+    child { node [vertex,open] {}
+      child { node [vertex] (b's parent) {}
+        child { node [vertex] {}
+          child { node [vertex,leaf=d] {} }
+          child { node [vertex,leaf=e] {} } }
+        child { node [vertex,leaf=b] {} } }
+      child { node [vertex,leaf=a] {} } }
+    child { node [coordinate] {}
+      child[missing]
+      child { node [vertex] (f's parent) {}
+        child { node [vertex,leaf=c] {} }
+        child { node [vertex,leaf=f] {} } } }
+    edge from parent node {$\rho$} };
+
+  \node [fit=(d) (e) (b) (b's parent),label=above left:$F^{(b,R)}$] {};
+  \node [fit=(c) (f) (f's parent),label=above right:$F^{(c,R)}$]    {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 365. Other Example
+## 365. Node Graph Example
 
 **ID**: `75fd04b48e84`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[inner sep=0pt,thick,
+  dot/.style={fill=blue,circle,minimum size=3pt}]
+  \draw[help lines] (0,0) grid (3,2);
+  \node[dot] (a) at (1,1) {};
+  \node[dot] (b) at (2,2) {};
+  \node[dot] (c) at (1,2) {};
+  \node[dot] (d) at (1.25,0.25) {};
+  \node[dot] (e) at (1.75,1.5) {};
+  \node[draw, fit=(a) (b) (c) (d) (e)] {};
+  \node[draw=red, rotate fit=30, fit=(a) (b) (c) (d) (e)] {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1637,6 +3953,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Once the core has been loaded, you can use this command to load further modules. The modules in the module names list should be separated by commas. Instead of curly braces, you can also use square brackets, which is something Con t users will like. If you try to load a module a second time, nothing will happen. |matrix,shapes| What this command does is to load the file |pgfmodule|module|.code.tex| for each module in the list of module names. Thus, to write your own module, all you need to do 
+
 
 ---
 
@@ -1645,6 +3965,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d36c7b31a3dd`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Use this command to load further libraries. The list of libraries should contain the names of libraries separated by commas. Instead of curly braces, you can also use square brackets. If you try to load a library a second time, nothing will happen. |arrows| This command causes the file |pgflibrary|library|.code.tex| to be loaded for each library in the list of libraries. This means that in order to write your own library file, place a file of the appropriate name somewhere where \ can find it.
 
 
 ---
@@ -1655,6 +3979,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Determines whether the position of pictures on the page should be recorded. The value of this -if at the end of a |{pgfpicture}| environment is important, not the value at the beginning. If this option is set to true of a picture, \ will attempt to record the position of the picture on the page. (This attempt will fail with most drivers and when it works, it typically requires two runs of .) The position is not directly accessible. Rather, the nodes mechanism will use this position if you access
+
 
 ---
 
@@ -1663,6 +3991,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `98091cbd72b2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command specifies a $y$-coordinate of the picture that should be used as the baseline of the whole picture. When a \ picture has been typeset completely, \ must decide at which height the baseline of the picture should lie. Normally, the baseline is set to the $y$-coordinate of the bottom of the picture, but it is often desirable to use a different height. codeexample[] Text pgfpicture {1ex}stroke pgfpicture, pgfpicture 0pt {1ex}stroke pgfpicture, pgfpicture .5ex {1ex}stroke pgfpicture, p
 
 
 ---
@@ -1673,6 +4005,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command specifies the baseline indirectly, namely as the $y$-coordinate that the given point has when the command is called.
+
 
 ---
 
@@ -1681,6 +4017,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `5ab2d79cb183`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command also specifies the baseline indirectly, but the $y$-coordinate of the given point is only computed at the end of the picture. codeexample[] Hello pgfpicture {X{base}} cross out{center}{world.}{X}{stroke} pgfpicture codeexample
 
 
 ---
@@ -1691,6 +4031,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}text} This command will typeset text in normal \ mode and insert the resulting box into the |{pgfpicture}|. The bounding box of the graphic will be updated so that all of the text box is inside. By default, the text box is centered at the origin, but this can be changed either by giving appropriate options or by applying an appropriate coordinate transformation beforehand. The text may contain verbatim text. (In other words, the text ``argument'' is not a normal argument, but is put in a box an
+
 
 ---
 
@@ -1699,6 +4043,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `36c5c73f21b7`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} The name is a string by which the object will be referenced (see ||). The next time a graphic object is created in the current \ scope, the name will be attached to it (actually, it will get a system layer identifier attached to it that is automatically created using |@new@id|, the name is bound to that identifier and it can be retrieved using ||). This holds true only for the next object: If a second object is created, it will not get the name attached to it. This does not mean, however, that
 
 
 ---
@@ -1709,6 +4057,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Pushes the current type on an internal global stack. The idea is to allow you to temporarily change the current type without having to open a \ scope.
+
 
 ---
 
@@ -1717,6 +4069,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f40d6e9ab365`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Restores the most recent type from the internal global stack of types.
 
 
 ---
@@ -1727,6 +4083,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Clears the current id (and type) for the local scope.
+
 
 ---
 
@@ -1735,6 +4095,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `da44a38df425`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+name} This command assigns a system layer identifier (the identifier returned by |@new@id|) to the macro, namely the one that will be used the next time || is used. You use this command for ``forward referencing''. A typical use case is the following: A key like |whom| for animations uses this command to get the system identifier that will be used for a future object. Then, this identifier can be passed to system layer commands like |@animation@whom|. Note that the ``next'' use need not be on th
 
 
 ---
@@ -1745,6 +4109,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+name} Works like ||, only it references the most recent previous use of the name. As for ||, the most recent use need not be on the same page.
+
 
 ---
 
@@ -1753,6 +4121,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2e9cb6e57fbc`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+name} Creates an alias of a name inside the current \ scope. After calling this command, you can use alias anywhere where you would normally use name. Note that the binding between alias and name is not kept when || is used on the name (or the alias).
 
 
 ---
@@ -1763,6 +4135,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+2} Like ||, only the alias is set globally.
+
 
 ---
 
@@ -1771,6 +4147,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `d1403758623c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+then codeelse code} If name has been referenced, then code is executed, otherwise else code.
 
 
 ---
@@ -1781,6 +4161,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Adds the rdf attribute |about="|text|"| to the next id scope (please see the rdfa specification for details on the semantics of |about| in the context of the resource description framework).
+
 
 ---
 
@@ -1789,6 +4173,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `9f7b055c7c09`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1799,6 +4187,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}
+
 
 ---
 
@@ -1807,6 +4199,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `f64255bf7df6`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1826,6 +4222,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}
+
 
 ---
 
@@ -1834,6 +4234,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `2fb2ae763ff4`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1844,6 +4248,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}
+
 
 ---
 
@@ -1852,6 +4260,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `700332551672`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1862,6 +4274,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}
+
 
 ---
 
@@ -1870,6 +4286,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a98e123ab84e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1880,6 +4300,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+}
+
 
 ---
 
@@ -1888,6 +4312,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `1a49f3b4e927`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+}
 
 
 ---
@@ -1898,6 +4326,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Stops the processing of the current document and prints out the message. In , this will be done using ||, otherwise || is used directly.
+
 
 ---
 
@@ -1906,6 +4338,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `a3b3c421237e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Prints the message on the output, but does not interrupt the processing. In , this will be done using ||, otherwise a write to stream $17$ is used.
 
 
 ---
@@ -1916,6 +4352,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: environment  
 **Package**: tikz-pgf  
 
+### Description
+
+} This environment will insert a \ box containing the graphic drawn by the environment contents at the current position. The size of the bounding box. The size of the box is determined in the following manner: While \ parses the environment contents, it keeps track of a bounding box for the graphic. Essentially, this bounding box is the smallest box that contains all coordinates mentioned in the graphics. Some coordinates may be ``mentioned'' by \ itself; for example, when you add circle to the 
+
 
 ---
 
@@ -1924,6 +4364,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `8653587f4806`  
 **Type**: environment  
 **Package**: tikz-pgf  
+
+### Description
+
+} All changes to the graphic state done inside this environment are local to the environment. The graphic state includes the following: itemize The line width. The stroke and fill colors. The dash pattern. The line join and cap. The miter limit. The canvas transformation matrix. The clipping path. itemize Other parameters may also influence how graphics are rendered, but they are not part of the graphic state. For example, the arrow tip kind is not part of the graphic state and the effect of com
 
 
 ---
@@ -1934,6 +4378,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **Type**: environment  
 **Package**: tikz-pgf  
 
+### Description
+
+} This environment can be used to temporarily interrupt the construction of the current path. The effect will be that the path currently under construction will be ``stored away'' and restored at the end of the environment. Inside the environment you can construct a new path and do something with it. An example application of this environment is the arrow tip caching. Suppose you ask \ to use a specific arrow tip kind. When the arrow tip needs to be rendered for the first time, \ will ``cache'' 
+
 
 ---
 
@@ -1942,6 +4390,10 @@ Showing items **201-400** of **3696** | Page **2** of **19**
 **ID**: `41a006395721`  
 **Type**: environment  
 **Package**: tikz-pgf  
+
+### Description
+
+} This environment can be used to temporarily interrupt a |{pgfpicture}|. However, the environment is intended only to be used at the beginning and end of a box that is (later) inserted into a |{pgfpicture}| using ||. You cannot use this environment directly inside a |{pgfpicture}|. codeexample[] pgfpicture {0cm{0cm}} = {pgfinterruptpicture Sub-pgfpicture {1cm{0cm}} {1cm{1cm}} stroke pgfpicture-picture. pgfinterruptpicture } {0cm{1cm}} stroke pgfpicture3.9cm codeexample
 
 
 ---

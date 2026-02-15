@@ -16,7 +16,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `1d14863f1abd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place,label=above:$p_1$] {}
+  [children are tokens]
+  child {node [token] {1}}
+  child {node [token] {2}}
+  child {node [token] {3}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -26,7 +38,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `9e3bf2f00d4b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place,label=above:$p_2$] {}
+  [children are tokens]
+  child {node [token] {1}}
+  child {node [token,fill=red] {2}}
+  child {node [token,fill=red] {2}}
+  child {node [token] {1}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -36,7 +61,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f645875c08cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[place,label=above:$p_3$] {}
+  [children are tokens,token distance=1.1ex]
+  child {node [token] {}}
+  child {node [token,red] {}}
+  child {node [token,blue] {}}
+  child {node [token] {}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -46,7 +84,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `12f72de8f1de`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \node[place] {}
+  [children are tokens]
+  child {node [token] {}}
+  child {node [token] {}}
+  child {node [token] {}};
+\tikz
+  \node[place,tokens=3] {};
+```
 
 
 ---
@@ -56,7 +107,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f12ef86aed01`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every place/.style={minimum size=9mm}]
+
+  \foreach \x/\y/\tokennumber in {0/2/1,1/2/2,2/2/3,
+                                  0/1/4,1/1/5,2/1/6,
+                                  0/0/7,1/0/8,2/0/9}
+    \node [place,tokens=\tokennumber] at (\x,\y) {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -66,7 +129,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `edb7b74689f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz  \node[place,colored tokens={black,black,red,blue}] {};
+```
 
 
 ---
@@ -76,7 +145,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `5c739259b3a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz  \node[place,structured tokens={$x$,$y$,$z$}] {};
+```
 
 
 ---
@@ -86,7 +161,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `75fbf6fc49e1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every place/.style={minimum size=9mm}]
+
+  \foreach \x/\y/\tokennumber in {0/2/1,1/2/2,2/2/3,
+                                  0/1/4,1/1/5,2/1/6,
+                                  0/0/7,1/0/8,2/0/9}
+    \node [place,structured tokens={1,...,\tokennumber}] at (\x,\y) {};
+\end{tikzpicture}
+```
 
 
 ---
@@ -96,7 +183,48 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e918c17192df`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[yscale=-1.6,xscale=1.5,thick,
+  every transition/.style={draw=red,fill=red!20,minimum size=3mm},
+  every place/.style={draw=blue,fill=blue!20,minimum size=6mm}]
+
+  \foreach \i in {1,...,6} {
+    \node[place,label=left:$p_\i$] (p\i) at (0,\i) {};
+    \node[place,label=right:$q_\i$] (q\i) at (8,\i) {};
+  }
+  \foreach \name/\var/\vala/\valb/\height/\x in
+      {m1/m_1/f/t/2.25/3,m2/m_2/f/t/2.25/5,h/\mathit{hold}/1/2/4.5/4} {
+    \node[place,label=above:{$\var = \vala$}] (\name\vala) at (\x,\height) {};
+    \node[place,yshift=-8mm,label=below:{$\var = \valb$}] (\name\valb) at (\x,\height) {};
+  }
+  \node[token] at (p1) {};   \node[token] at (q1) {};
+  \node[token] at (m1f) {};  \node[token] at (m2f) {};
+  \node[token] at (h1) {};
+
+  \node[transition] at (1.5,1.5) {}  edge [pre] (p1)  edge [post] (p2);
+  \node[transition] at (1.5,2.5) {}  edge [pre] (p2)  edge[pre]   (m1f)
+                                     edge [post](p3)  edge[post]  (m1t);
+  \node[transition] at (1.5,3.3) {}  edge [pre] (p3)  edge [post] (p4)
+                                     edge [pre and post] (h1);
+  \node[transition] at (1.5,3.7) {}  edge [pre] (p3)  edge [pre] (h2)
+                                     edge [post] (p4) edge [post] (h1.west);
+  \node[transition] at (1.5,4.3) {}  edge [pre] (p4)  edge [post] (p5)
+                                     edge [pre and post] (m2f);
+  \node[transition] at (1.5,4.7) {}  edge [pre] (p4)  edge [post] (p5)
+                                     edge [pre and post] (h2);
+  \node[transition] at (1.5,5.5) {}  edge [pre] (p5)  edge [pre] (m1t)
+                                     edge [post] (p6) edge [post] (m1f);
+  \node[transition] at (1.5,6.5) {}  edge [pre] (p6)  edge [post] (p1.south east);
+  \node[transition] at (6.5,1.5) {}  edge [pre] (q1)  edge [post] (q2);
+  \node[transition] at (6.5,2.5) {}  edge [pre] (q2)  edge [pre] (m2f)
+                                     edge [post] (q3) edge [post] (m2t);
+  \node[transition] at (6.5,3.3) 
+... (truncated)
+```
 
 
 ---
@@ -106,7 +234,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `c87de11fed26`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[yscale=-1.1,thin,>=stealth,
+  every transition/.style={fill,minimum width=1mm,minimum height=3.5mm},
+  every place/.style={draw,thick,minimum size=6mm}]
+```
 
 
 ---
@@ -116,7 +252,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f789b13508ab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [binary tree layout, level distance=5mm] {
+  4 -- {
+    3 -- 0 -- 1[second],
+    10 -- {
+      8 -- {
+        6 -- {5,7},
+        9
+  } } }
+};
+```
 
 
 ---
@@ -126,7 +276,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `6e22ea6afdbb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [spring layout,
+  edge quotes mid,
+  edges={nodes={font=\scriptsize, fill=white, sloped, inner sep=1pt}}]
+{
+  1 ->["Das"] 2 ->["ist"] 3 ->["das"] 4 ->["Haus"]
+  2 ->["vom" near start] 5 ->["Ni"] 4 ->["ko" near start]
+  1 ->["laus", orient=right] 5;
+};
+```
 
 
 ---
@@ -136,7 +299,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e4ab04e53d17`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [>={Stealth[round,sep]}]
+  \graph [layered layout, components go right top aligned, nodes=draw, edges=rounded corners]
+  {
+    first root -> {1 -> {2, 3, 7} -> {4, 5}, 6 }, 4 -- 5;
+    second root -> x -> {a -> {u,v}, b, c -> d -> {w,z} };
+    third root -> child -> grandchild -> youngster -> third root;
+  };
+```
 
 
 ---
@@ -146,17 +321,58 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `b3a7595fa6ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [grow'=up, binary tree layout, nodes={circle,draw}]
+  \node {1}
+  child { node {2}
+    child { node {3} }
+    child { node {4}
+      child { node {5} }
+      child { node {6} }
+    }
+  }
+  child { node {7}
+    child { node {8}
+      child[missing]
+      child { node {9} }
+    }
+  };
+```
 
 
 ---
 
-## 4615. Other Example
+## 4615. Node Graph Example
 
 **ID**: `e2096778a5d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [spring electrical layout, node distance=1.3cm,
+       every edge/.style={
+         decoration={coil, aspect=-.5, post length=1mm,
+                     segment length=1mm, pre length=2mm},
+         decorate, draw}]
+{
+  \foreach \i in {1,...,6}
+    \node (node \i) [fill=blue!50, text=white, circle] {\i};
+
+  \draw (node 1) edge (node 2)
+        (node 2) edge (node 3)
+                 edge (node 4)
+        (node 3) edge (node 4)
+                 edge (node 5)
+                 edge (node 6);
+}
+```
 
 
 ---
@@ -166,7 +382,14 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `773612d6f2f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% ...
+%
+```
 
 
 ---
@@ -177,6 +400,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+image namefilename} Declares an image, but does not paint anything. To draw the image, use ||{image name|}|. The filename may not have an extension. For pdf, the extensions |.pdf|, |.jpg|, and |.png| will automatically tried. For PostScript, the extensions |.eps|, |.epsi|, and |.ps| will be tried. The following options are possible: itemize |height=|{dimension} sets the height of the image. If the width is not specified simultaneously, the aspect ratio of the image is kept. |width=|{dimension} s
+
 
 ---
 
@@ -185,6 +412,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `5ece92dd9536`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+existing image name} The existing image name is ``cloned'' and the new image name can now be used whenever the original image is used. This command is useful for creating aliases for alternate extensions and for accessing the last image inserted using ||. |image.!30!white{image.!25!white}|
 
 
 ---
@@ -195,6 +426,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Inserts a previously declared image into the normal text. If you wish to use it in a |{pgfpicture}| environment, you must put a || around it. If the macro || expands to some nonempty alternate extension, \ will first try to use the image named image name|.|alternate extension. If this image is not defined, \ will next check whether alternate extension contains a |!| character. If so, everything up to this exclamation mark and including it is deleted from alternate extension and the \ again tri
+
 
 ---
 
@@ -203,6 +438,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ef66e60bf5ab`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+You should redefine this command to install a different alternate extension. |!25!white|
 
 
 ---
@@ -213,6 +452,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+filename} Declares the image under the name |pgflastimage| and immediately uses it. You can ``save'' the image for later usage by invoking || on |pgflastimage|. codeexample[preamble={xxcolor}] colormixin{25!white} pgfpicture [at=1cm{5cm},left,base] {[interpolate=true,width=1cm,height=1cm]{brave-gnu-world-logo}} [at=1cm{3cm},left,base] {[interpolate=true,width=1cm]{brave-gnu-world-logo}} [at=1cm{1cm},left,base] {[interpolate=true,height=1cm]{brave-gnu-world-logo}} {1cm{5cm}}{1cm{1cm}} {1cm{3cm}}{
+
 
 ---
 
@@ -222,6 +465,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+mask namefilename} Declares a transparency mask named mask name (called a soft mask in the pdf specification). This mask is read from the file filename. This file should contain a grayscale image that is as large as the actual image. A white pixel in the mask will correspond to ``transparent'', a black pixel to ``solid'', and gray values correspond to intermediate values. The mask must have a single ``color channel''. This means that the mask must be a ``real'' grayscale image, not an rgb-image 
+
 
 ---
 
@@ -230,7 +477,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `c1fe3dbe991a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareimage[interpolate=true,height=1cm]{image1}{brave-gnu-world-logo}
+\pgfdeclareimage[interpolate=true,width=1cm,height=1cm]{image2}{brave-gnu-world-logo}
+\pgfdeclareimage[interpolate=true,height=1cm]{image3}{brave-gnu-world-logo}
+```
 
 
 ---
@@ -240,7 +495,26 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `334d7b1b979e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareimage[interpolate=true,width=1cm,height=1cm]
+  {image1}{brave-gnu-world-logo}
+\pgfdeclareimage[interpolate=true,width=1cm]{image2}{brave-gnu-world-logo}
+\pgfdeclareimage[interpolate=true,height=1cm]{image3}{brave-gnu-world-logo}
+\begin{pgfpicture}
+  \pgftext[at=\pgfpoint{1cm}{5cm},left,base]{\pgfuseimage{image1}}
+  \pgftext[at=\pgfpoint{1cm}{3cm},left,base]{\pgfuseimage{image2}}
+  \pgftext[at=\pgfpoint{1cm}{1cm},left,base]{\pgfuseimage{image3}}
+
+  \pgfpathrectangle{\pgfpoint{1cm}{5cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{3cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{1cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+```
 
 
 ---
@@ -250,7 +524,30 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `cd90fbc24259`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfdeclareimage[interpolate=true,width=1cm,height=1cm]
+  {image1.!25!white}{brave-gnu-world-logo.25}
+\pgfdeclareimage[interpolate=true,width=1cm]
+  {image2.25!white}{brave-gnu-world-logo.25}
+\pgfdeclareimage[interpolate=true,height=1cm]
+  {image3.white}{brave-gnu-world-logo.25}
+\begin{colormixin}{25!white}
+\begin{pgfpicture}
+  \pgftext[at=\pgfpoint{1cm}{5cm},left,base]{\pgfuseimage{image1}}
+  \pgftext[at=\pgfpoint{1cm}{3cm},left,base]{\pgfuseimage{image2}}
+  \pgftext[at=\pgfpoint{1cm}{1cm},left,base]{\pgfuseimage{image3}}
+
+  \pgfpathrectangle{\pgfpoint{1cm}{5cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{3cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{1cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+\end{colormixin}
+```
 
 
 ---
@@ -260,7 +557,27 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `739f3f5bac51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{colormixin}{25!white}
+\begin{pgfpicture}
+  \pgftext[at=\pgfpoint{1cm}{5cm},left,base]
+    {\pgfimage[interpolate=true,width=1cm,height=1cm]{brave-gnu-world-logo}}
+  \pgftext[at=\pgfpoint{1cm}{3cm},left,base]
+    {\pgfimage[interpolate=true,width=1cm]{brave-gnu-world-logo}}
+  \pgftext[at=\pgfpoint{1cm}{1cm},left,base]
+    {\pgfimage[interpolate=true,height=1cm]{brave-gnu-world-logo}}
+
+  \pgfpathrectangle{\pgfpoint{1cm}{5cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{3cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfpathrectangle{\pgfpoint{1cm}{1cm}}{\pgfpoint{1cm}{1cm}}
+  \pgfusepath{stroke}
+\end{pgfpicture}
+\end{colormixin}
+```
 
 
 ---
@@ -270,7 +587,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `efae54e3edf3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+%% Draw a large colorful background
+\pgfdeclarehorizontalshading{colorful}{5cm}{color(0cm)=(red);
+color(2cm)=(green); color(4cm)=(blue); color(6cm)=(red);
+color(8cm)=(green); color(10cm)=(blue); color(12cm)=(red);
+color(14cm)=(green)}
+\hbox{\pgfuseshading{colorful}\hskip-14cm\hskip1cm
+\pgfimage[height=4cm]{brave-gnu-world-logo}\hskip1cm
+\pgfimage[height=4cm]{brave-gnu-world-logo-mask}\hskip1cm
+\pgfdeclaremask{mymask}{brave-gnu-world-logo-mask}
+\pgfimage[mask=mymask,height=4cm,interpolate=true]{brave-gnu-world-logo}}
+```
 
 
 ---
@@ -280,7 +612,27 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `9375830dcd5a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+% Define a data set:
+\tikz \datavisualization data group {example} = {
+data {
+  x, y
+  0, 0
+  0.5, 2
+  1, 2
+  1.5, 1.5
+  2, 0.5
+}};
+\tikz \datavisualization [school book axes, visualize as line]        data group {example};
+\qquad
+\tikz \datavisualization [school book axes, visualize as smooth line] data group {example};
+\qquad
+\tikz \datavisualization [school book axes, visualize as scatter]     data group {example};
+```
 
 
 ---
@@ -290,7 +642,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `546da0f2c23e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+visualize as line=sin,
+visualize as line=cos,
+visualize as scatter=tan
+```
 
 
 ---
@@ -300,7 +660,34 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `36976b729076`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as line=sin,
+  visualize as line=cos,
+  visualize as scatter=tan]
+data {
+  x, y, set
+  0, 0, sin
+  1, 1, sin
+  2, 0, sin
+  3, -1, sin
+  4, 0, sin
+  0, 1, cos
+  1, 0, cos
+  0, 0, tan
+  1, 1, tan
+  2, 2, tan
+  3, 4, tan
+  2, -1, cos
+  3, 0, cos
+  4, 1, cos
+};
+```
 
 
 ---
@@ -310,7 +697,32 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `6e8d9dfa9ba1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as line=sin,
+  visualize as line=cos]
+data [set=sin] {
+  x, y
+  0, 0
+  1, 1
+  2, 0
+  3, -1
+  4, 0
+}
+data [set=cos] {
+  x, y
+  0, 1
+  1, 0
+  2, -1
+  3, 0
+  4, 1
+};
+```
 
 
 ---
@@ -320,7 +732,27 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ffe1931b025a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as line/.list={sin, cos, tan}]
+data [set=sin, format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(\value x r);
+}
+data [set=cos, format=function] {
+  var x : interval[0:3*pi];
+  func y = cos(\value x r);
+}
+data [set=tan, format=function] {
+  var x : interval[0:pi/2.2];
+  func y = tan(\value x r);
+};
+```
 
 
 ---
@@ -330,7 +762,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a3d5ce78cfd4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+/tikz/data visualization/visualizer options/
+```
 
 
 ---
@@ -340,7 +778,25 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `d067d869614a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as smooth line/.list={sin, cos},
+  sin={style=red},
+  cos={style=blue}]
+data [set=sin, format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(\value x r);
+}
+data [set=cos, format=function] {
+  var x : interval[0:3*pi];
+  func y = cos(\value x r);
+};
+```
 
 
 ---
@@ -350,7 +806,27 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `122c8b05dee5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as smooth line=sin,
+  sin={style={red, densely dotted}},
+  visualize as smooth line=cos,
+  cos={style={mark=x}},
+]
+data [set=sin, format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(\value x r);
+}
+data [set=cos, format=function] {
+  var x : interval[0:3*pi];
+  func y = cos(\value x r);
+};
+```
 
 
 ---
@@ -360,7 +836,38 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `b3758112cfce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes={clean, end labels},
+  x axis={label=$x$}, y axis={grid={major also at=0}},
+  visualize as smooth line/.list={sin,cos,sin 2,cos 2},
+  legend={below, rows=2},
+  sin={label in legend={text=$\sin x$}},
+  cos={label in legend={text=$\cos x$}},
+  sin 2={label in legend={text=$\sin 2x$}},
+  cos 2={label in legend={text=$\cos 2x$}},
+  style sheet=strong colors]
+data [set=sin, format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(\value x r);
+}
+data [set=cos, format=function] {
+  var x : interval[0:3*pi];
+  func y = cos(\value x r);
+}
+data [set=sin 2, format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(2*\value x r);
+}
+data [set=cos 2, format=function] {
+  var x : interval[0:3*pi];
+  func y = cos(2*\value x r);
+};
+```
 
 
 ---
@@ -370,7 +877,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `102c2366fd47`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  every visualizer/.style={dashed},
+  visualize as smooth line]
+data [format=function] {
+  var x : interval[0:3*pi];
+  func y = sin(\value x r);
+};
+```
 
 
 ---
@@ -380,7 +900,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `9e7343cf05ee`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as line=my data,
+  my data={style={mark=x, mark repeat=3}}]
+data [format=function] {
+  var x : interval [0:pi] samples 10;
+  func y = sin(\value x r);
+};
+```
 
 
 ---
@@ -390,7 +923,24 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f493203e41ee`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean, x axis={grid={major at=(pi/2)}},
+  visualize as smooth line]
+data [format=function] {
+  var x : interval[0:pi/2-0.1];
+  func y = tan(\value x r);
+}
+data point [outlier]
+data [format=function] {
+  var x : interval[pi/2+0.1:pi];
+  func y = tan(\value x r);
+};
+```
 
 
 ---
@@ -400,7 +950,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `480fa89b3977`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={straight line}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -410,7 +973,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `226e9e7e138e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={straight cycle}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -420,7 +996,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `610161b8572b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={smooth line}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -430,7 +1019,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `27a5109c564f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={smooth cycle}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -440,7 +1042,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `75daad87adb7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={gap line}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -450,7 +1065,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `55195814df22`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={gap cycle}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -460,7 +1088,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `2ff38245de2a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [scale=.55] \datavisualization
+ [scientific axes=clean, all axes={ticks=few},
+  visualize as smooth line=my data,  my data={no lines, style={mark=x}}]
+data [format=function] {
+  var t : interval [0:4] samples 5;
+  func x = cos(\value t r);
+  func y = sin(\value t r);
+};
+```
 
 
 ---
@@ -470,7 +1111,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `49aeec547605`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization
+ [scientific axes=clean,
+  visualize as scatter]
+data [format=function] {
+  var x : interval [0:pi] samples 10;
+  func y = sin(\value x r);
+};
+```
 
 
 ---
@@ -480,7 +1133,36 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ab35e13f6d3c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfooclass{circle visualizer}
+{
+  % Stores the name of the visualizer. This is needed for filtering and configuration
+  \attribute name;
+
+  % The constructor. Just setup the attribute.
+  \method circle visualizer(#1) { \pgfooset{name}{#1} }
+
+  % Connect to visualize signal.
+  \method default connects() {
+    \pgfoothis.get handle(\me)
+    \pgfkeysvalueof{/pgf/data visualization/obj}.connect(\me,visualize,visualize datapoint signal)
+  }
+
+  % This method is invoked for each data point. It checks whether the data point belongs to the correct
+  % visualizer and, if so, calls the macro \dovisualization to do the actual visualization.
+  \method visualize() {
+    \pgfdvfilterpassedtrue
+    \pgfdvnamedvisualizerfilter
+    \ifpgfdvfilterpassed
+      \dovisualization
+    \fi
+  }
+}
+```
 
 
 ---
@@ -490,7 +1172,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `8a20afd78bfd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\dovisualization{
+  \pgfkeysvalueof{/data point/\pgfoovalueof{name}/execute at begin}
+    \pgfpathcircle{\pgfpointdvdatapoint}{\pgfkeysvalueof{/data point/radius}}
+    % \pgfusepath is done by |execute at end|
+  \pgfkeysvalueof{/data point/\pgfoovalueof{name}/execute at end}
+}
+```
 
 
 ---
@@ -500,7 +1193,28 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `36a1e9b778ac`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzdatavisualizationset{
+  visualize as circle/.style={
+    new object={
+      when=after survey,
+      store=/tikz/data visualization/visualizers/#1,
+      class=circle visualizer,
+      arg1=#1
+    },
+    new visualizer={#1}{%
+      color=visualizer color,        % a color setup by the style sheet
+      every path/.style={fill,draw}, % fill and draw the circle by default,
+    }{}, % let's ignore legends in this example
+    /data point/set=#1
+  },
+  visualize as circle/.default=circle
+}
+```
 
 
 ---
@@ -510,7 +1224,35 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `446be4057c9e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \datavisualization [
+  scientific axes=clean,
+  visualize as circle/.list={a, b, c},
+  style sheet=strong colors]
+data [set=a] {
+  x, y, radius
+  0, 0, 2pt
+  1, 1, 3pt
+  1, 2, 3pt
+  2, 0, 1pt
+}
+data [set=b] {
+  x, y, radius
+  0.5, 0.5, 5pt
+  1, 1.5, 2pt
+  1, 2.5, 3pt
+  0, 2, 4pt
+}
+data [set=c] {
+  x, y, radius
+  3, 2, 3pt
+  2.5, 0.5, 4pt
+};
+```
 
 
 ---
@@ -520,7 +1262,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `351932fc6638`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(5pt,0pt) -- (0pt,0pt) -- (0pt,5pt) -- cycle
+```
 
 
 ---
@@ -530,7 +1278,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `c69054dca107`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw[line width=2pt,color=red] (1,0) -- (0,0) -- (0,1) -- cycle;
+```
 
 
 ---
@@ -540,7 +1294,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `fd70b53aea97`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw (1,1) node {text} -- (2,2);
+```
 
 
 ---
@@ -550,7 +1310,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `027756278d50`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node {root}
+    child {node {left}}
+    child {node {right}
+      child {node {child}}
+      child {node {child}}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -560,7 +1333,23 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `319d6b981364`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [edge from parent fork down, sibling distance=15mm, level distance=15mm,
+   every node/.style={fill=red!30,rounded corners},
+   edge from parent/.style={red,-{Circle[open]},thick,draw}]
+  \node {root}
+      child {node {left}}
+      child {node {right}
+        child {node {child}}
+        child {node {child}}
+      };
+\end{tikzpicture}
+```
 
 
 ---
@@ -570,7 +1359,24 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `5e76be444a96`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [parent anchor=east,child anchor=west,grow=east,
+   sibling distance=15mm, level distance=15mm,
+   every node/.style={ball color=red,circle,text=white},
+   edge from parent/.style={draw,dashed,thick,red}]
+  \node {root}
+      child {node {left}}
+      child {node {right}
+        child {node {child}}
+        child {node {child}}
+      };
+\end{tikzpicture}
+```
 
 
 ---
@@ -580,7 +1386,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `fa1eb79c654d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [grow down, branch right] {
+  root -> { left, right -> {child, child} }
+};
+```
 
 
 ---
@@ -590,7 +1404,24 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `4b084bfdda14`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \begin{scope}[color=red]
+    \draw (0mm,10mm) -- (10mm,10mm);
+    \draw (0mm, 8mm) -- (10mm, 8mm);
+    \draw (0mm, 6mm) -- (10mm, 6mm);
+  \end{scope}
+  \begin{scope}[color=green]
+    \draw             (0mm, 4mm) -- (10mm, 4mm);
+    \draw             (0mm, 2mm) -- (10mm, 2mm);
+    \draw[color=blue] (0mm, 0mm) -- (10mm, 0mm);
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -601,6 +1432,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Shifts coordinates by point. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); {1cm{1cm}} [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+
 
 ---
 
@@ -609,6 +1444,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `4de8419b7d93`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Shifts coordinates by dimension along the $x$-axis. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .5cm [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
 
 
 ---
@@ -619,6 +1458,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Like ||, only for the $y$-axis.
+
 
 ---
 
@@ -627,6 +1470,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `7a9ef873a60e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Scales coordinates by factor. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .75 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
 
 
 ---
@@ -637,6 +1484,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Scales coordinates by factor in the $x$-direction. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .75 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+
 
 ---
 
@@ -645,6 +1496,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `c4a6e17130d2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Like ||, only for the $y$-axis.
 
 
 ---
@@ -655,6 +1510,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Slants coordinates by factor in the $x$-direction. Here, a factor of |1| means $45^$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .5 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+
 
 ---
 
@@ -663,6 +1522,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `3e345c6680c8`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Slants coordinates by factor in the $y$-direction. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); -1 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
 
 
 ---
@@ -673,6 +1536,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Rotates coordinates counterclockwise by angles given in degrees. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); 30 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+
 
 ---
 
@@ -681,6 +1548,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `3663c184438c`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+bc} This command transforms the coordinate system in such a way that the triangle given by the points a, b and c lies at the coordinates $(0,0)$, $(1pt,0pt)$ and $(0pt,1pt)$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); {1cm{0cm}} {0cm{2cm}} {3cm{1cm}} (0,0) -- (1pt,0pt) -- (0pt,1pt) -- cycle; tikzpicture codeexample
 
 
 ---
@@ -691,6 +1562,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+bcdpoint} Applies the transformation matrix given by $a$, $b$, $c$, and $d$ and the shift point to coordinates (in addition to any previous transformations already in force). codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); 1{1}{0}{1}{.25cm{.25cm}} [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+
 
 ---
 
@@ -699,6 +1574,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `62f73f099f13`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+end} Shifts coordinates to the end of the line going from start to end with the correct rotation. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (3,1); {3cm{1cm}} tip tikzpicture codeexample
 
 
 ---
@@ -709,6 +1588,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+startend} Shifts coordinates by a specific point on a line at a specific time. The point by which the coordinate is shifted is calculated by calling ||, see Section~section-pointsattime. In addition to shifting the coordinate, a rotation may also be applied. Whether this is the case depends on whether the \ if || is set to true or not. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1); .25{}{2cm{1cm}} Hi! tikzpicture codeexample codeexample[] tikzpicture [help lines] (0,0) 
+
 
 ---
 
@@ -717,6 +1600,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `6fc89c7d1546`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+startfirst supportsecond supportend} Shifts coordinates by a specific point on a curve at a specific time, see Section~section-pointsattime once more. As for the line-at-time transformation command, || decides whether an additional rotation should be applied. Again, the value of || is also considered. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) .. controls (0,2) and (1,2) .. (2,1); .25{} {0cm{2cm}}{1cm{2cm}}{2cm{1cm}} Hi! tikzpicture codeexample codeexample[] tikzpicture [help
 
 
 ---
@@ -727,6 +1614,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+center0-degree axis90-degree axisstart angleend angle } Shifts coordinates by a specific point on an arc at a specific time, see Section~section-pointsattime once more. As for the previous commands, || decides whether an additional rotation should be applied and || is also considered. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); {2cm{1cm}} 0{60}{2cm{0cm}}{0cm{1cm}} stroke .25 {0cm{1cm}} {2cm{0cm}}{0cm{1cm}} {0}{60} Hi! tikzpicture codeexample The value of || is also taken into accoun
+
 
 ---
 
@@ -735,6 +1626,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e63f2c1d8ef2`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Resets the coordinate transformation matrix to the identity matrix. Thus, once this command is given no transformations are applied till the end of the scope. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 30 (0,0) -- (2,1) -- (1,0); [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
 
 
 ---
@@ -745,6 +1640,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command sets the $a$, $b$, $c$, and $d$ part of the coordinate transformation matrix to $a=1$, $b=0$, $c=0$, and $d=1$. However, the current shifting of the matrix is not modified. The effect of this command is that any rotation/scaling/slanting is undone in the current \ group, but the origin is not ``moved back''. This command is mostly useful directly before a || command to ensure that the text is not scaled or rotated. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 2 30 1cm {r
+
 
 ---
 
@@ -753,6 +1652,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f91f83e7aae9`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+Replaces the coordinate transformation matrix by a coordinate transformation matrix that ``exactly undoes the original transformation''. For example, if the original transformation was ``scale by 2 and then shift right by 1cm'' the new one is ``shift left by 1cm and then scale by $1/2$''. This command will produce an error if the determinant of the matrix is too small, that is, if the matrix is near-singular. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 30 (0,0) -- (2,1) -- (1,0); [r
 
 
 ---
@@ -763,6 +1666,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command will (locally) define macro to a representation of the current coordinate transformation matrix. This matrix can later on be reinstalled using ||.
+
 
 ---
 
@@ -771,6 +1678,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `471f53419c81`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Reinstalls a coordinate transformation matrix that was previously saved using ||.
 
 
 ---
@@ -781,6 +1692,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+macro for bmacro for cmacro for dmacro for shift xmacro for shift y } This command is similar to || except that it stores the current coordinate transformation matrix in a set of six macros. The matrix can later on be reinstalled using ||. Furthermore, all these macros (or just a few of them) can be used as arguments for ||.
+
 
 ---
 
@@ -789,6 +1704,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a3a1d58e974d`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+bcdshiftxshifty} Reinstalls a coordinate transformation matrix that was previously saved using the storage command ||. This command can also be used to replace any previously existing coordinate transformation matrix (it is thus equivalent to || followed by ||).
 
 
 ---
@@ -799,6 +1718,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Applies current transformation matrix to point $(x,y)$ and returns a transformed point $(ax+cy+s,bx+dy+t)$. Normally, this is done automatically by commands like || or ||, but sometimes you may wish to access a transformed point yourself.
+
 
 ---
 
@@ -807,6 +1730,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f96c712a2052`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command computes ``adjustments'' for the current transformation matrix so that even when you install a transformation matrix that scales everything by a certain factor, you can still draw something of ``an absolute size''. Suppose for instance that you install a transformation matrix that scales everything by a factor of 4 and you now wish to draw a horizontal line of length 1cm. Then, if you do not reset the transformation matrix, you can draw a line of logical length 2.5mm, which will the
 
 
 ---
@@ -817,6 +1744,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+$1/\|transform(0,1)\|_2$.
+
 
 ---
 
@@ -825,6 +1756,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `2e38a7017ceb`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command concatenates the canvas transformation matrix with the current coordinate transformation matrix. Afterward, the coordinate transformation matrix is reset. The effect of this command is to ``synchronize'' the coordinate transformation matrix and the canvas transformation matrix. All transformations that were previously applied by the coordinate transformations matrix are now applied by the canvas transformation matrix. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt 5 (0
 
 
 ---
@@ -835,6 +1770,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command concatenates the canvas transformation matrix with the coordinate transformation specified by transformation code. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt {5} (0,0) -- (0.4,.2); tikzpicture codeexample
+
 
 ---
 
@@ -843,6 +1782,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `fe75ae76002e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+code} This command creates a local |{pgfscope}|. Inside this scope, || is first called with the argument transformation code, then the code is inserted. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt {5} { (0,0) -- (0.4,.2);} {-1cm}{ (0,0) -- (0.4,.2);} tikzpicture codeexample
 
 
 ---
@@ -853,6 +1796,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command adds the transformation code to the list of non-linear transformations currently in force. Thus, similar to linear coordinate transformations, each additional call to this function adds another transformation to the current \ scope and the effect ends at the end of the current scope. In practice, however, you typically will not have more than one active nonlinear transformation. The job of the transformation code is to map a point~$p$ given in the registers |@x| and |@y| to a new 
+
 
 ---
 
@@ -861,6 +1808,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `632f9a4aa963`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Works like ||, but also applies the current nonlinear transformation; that is, it first applies the current linear transformation and then the current nonlinear transformations. Note that, just like ||, you normally do not call this function directly since it is called internally by the path drawing commands.
 
 
 ---
@@ -871,6 +1822,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+(initially 5pt)} Whenever in a to-be-drawn curve the $L^$-distance (maximum of the distances in $x$- and $y$-directions) between the start of a curve and its first control point or between the first and second control points or between the second control point and the end is more than distance, the curve gets split in the middle (more precisely, at time $t= 0.5$) and we draw the two parts individually (for them, splitting may occur again, if the curve is still too long). codeexample[preamble={no
+
 
 ---
 
@@ -879,6 +1834,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a38d7c799204`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command will do two things: enumerate It clears the nonlinear transformations for the rest of the current \ scope, so only linear transformations apply. However, before removing the nonlinear transformations, the linear transformation matrix is modified so that it mimics the effect the nonlinear transformation had at the origin. That is, after you call this command, drawing something near the origin will look almost the same as if you had not called it. enumerate codeexample[preamble={nonli
 
 
 ---
@@ -889,6 +1848,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command works like the normal approximation command, but it will only approximate how the origin gets translated, it will not approximate the rotation, skewing, or scaling that is involved. This is useful for drawing text at the right position, but without ``mutilating'' the text. codeexample[preamble={nonlineartransformations}] tikzpicture [help lines] (0,0) grid (3,2); (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm); scope[shift={(45pt,20mm)}] [red] (-10pt,-10pt) -- (10pt,10pt); [red]
+
 
 ---
 
@@ -897,6 +1860,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ca72293e6ad7`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+first supportsecond supportend} Prior to using any other command from this library, you first call this function to ``install'' a Bézier curve to which the commands will refer. This curve will be local to the current \ scope and you can install only one curve at a time. The main job of this command is to store the passed points internally and to build a lookup table for distance-to-time conversions, see the next command. codeexample[code only] {} {1cm{1cm}} {2cm{1cm}} {3cm{0cm}} codeexample
 
 
 ---
@@ -907,6 +1874,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command does a ``distance-to-time-conversion'': It tries to compute a time $t$, returned in |@x|, that corresponds to travelling distance along the curve that has last been installed using the command ||. The distance-to-time-conversion uses the precomputations done by that command. Note that several compromises had to be made between speed and accuracy: itemize The conversion will be best near the start of the curve. The more ``degenerate'' the curve, the worse the results. itemize
+
 
 ---
 
@@ -915,6 +1886,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `842e21571d64`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+offset} This command computes the following point: Consider the curve last installed using the command ||. We travel along this curve by distance, arriving at a point $p$. Then, we turn by $90^$ and travel by offset units ``always from the curve'', arriving at a point $q$. This point $q$ will now be returned in |@x| and |@y|; furthermore, the transformed local coordinate system at point $q$ will also be returned |@xa| and the other registers, see || for details. codeexample[ preamble={nonlineart
 
 
 ---
@@ -925,6 +1900,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+y} This command is similar to the previous version, but the transformation is different: The idea is that a line form $(0,0)$ to $(x,0)$ gets transformed to the curve from the start of the curve to a point at distance $x$ along the curve. This is identical to what the ``orthogonal'' transformation above also does. The difference is that a line from $(0,0)$ to $(0,y)$ gets still transformed to an initial segment of the curve of a length of $y$, but now rotated by $90^$. In general, the point $p =
+
 
 ---
 
@@ -933,6 +1912,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `bfe312c52003`  
 **Type**: environment  
 **Package**: tikz-pgf  
+
+### Description
+
+transformation code} This environment first surrounds the environment contents by a |{pgfscope}|. Then it calls || with the argument transformation code. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt pgflowlevelscope{5} (0,0) -- (0.4,.2); pgflowlevelscope pgflowlevelscope{-1cm} (0,0) -- (0.4,.2); pgflowlevelscope tikzpicture codeexample
 
 
 ---
@@ -943,6 +1926,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: environment  
 **Package**: tikz-pgf  
 
+### Description
+
+$ll_1$$ur_1$$ll_2$$ur_2$meet or slice} Inside the viewbox scope, the source rectangle (with the two \ points $ll_1$ and $ur_1$ as corners) will be translated and scaled so that it becomes centered on the target rectangle (with the corners $ll_2$ and $ur_2$) and will, for |meet| as last parameter, be as large as possible so that it fits inside the target and, for |slice|, be as small as possible so that it encompasses the target. codeexample[] { [red, very thick] (0,0) rectangle (20mm,20mm); pgfv
+
 
 ---
 
@@ -951,7 +1938,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ac38a983d103`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformshift{\pgfpoint{1cm}{1cm}}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -961,7 +1959,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `96c47cfd02ab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformxshift{.5cm}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -971,7 +1980,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `6633f198c76f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformscale{.75}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -981,7 +2001,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `3dbcd8eb9fb6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformxscale{.75}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -991,7 +2022,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `fcfc32fa6e8d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformxslant{.5}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1001,7 +2043,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `99fc0cfc36d7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformyslant{-1}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1011,7 +2064,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `9e46391955f8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformrotate{30}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1021,7 +2085,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e4f84353ade4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformtriangle
+  {\pgfpoint{1cm}{0cm}}
+  {\pgfpoint{0cm}{2cm}}
+  {\pgfpoint{3cm}{1cm}}
+
+  \draw (0,0) -- (1pt,0pt) -- (0pt,1pt) -- cycle;
+\end{tikzpicture}
+```
 
 
 ---
@@ -1031,7 +2109,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `08e7527cd211`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformcm{1}{1}{0}{1}{\pgfpoint{.25cm}{.25cm}}
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1041,7 +2130,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `52838f6110eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (3,1);
+  \pgftransformarrow{\pgfpointorigin}{\pgfpoint{3cm}{1cm}}
+  \pgftext{tip}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1051,7 +2151,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `af97170cbfee`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1);
+  \pgftransformlineattime{.25}{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1061,7 +2172,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `7b06cbea3087`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (2,1);
+  \pgfslopedattimetrue
+  \pgftransformlineattime{.25}{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1071,7 +2194,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `d7e3334b87d8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformscale{1.5}
+  \draw      (0,0) -- (2,1);
+  \pgfslopedattimetrue
+  \pgfresetnontranslationattimefalse
+  \pgftransformlineattime{.25}{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1081,7 +2218,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `51a342f6d187`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformscale{1.5}
+  \draw      (0,0) -- (2,1);
+  \pgfslopedattimetrue
+  \pgfresetnontranslationattimetrue
+  \pgftransformlineattime{.25}{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1091,7 +2242,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f06da1af583b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) .. controls (0,2) and (1,2) .. (2,1);
+  \pgftransformcurveattime{.25}{\pgfpointorigin}
+    {\pgfpoint{0cm}{2cm}}{\pgfpoint{1cm}{2cm}}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1101,7 +2264,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `512aa6ae08a2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) .. controls (0,2) and (1,2) .. (2,1);
+  \pgfslopedattimetrue
+  \pgftransformcurveattime{.25}{\pgfpointorigin}
+    {\pgfpoint{0cm}{2cm}}{\pgfpoint{1cm}{2cm}}{\pgfpoint{2cm}{1cm}}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1111,7 +2287,24 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `cc6abd7fb157`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfpathmoveto{\pgfpoint{2cm}{1cm}}
+  \pgfpatharcaxes{0}{60}{\pgfpoint{2cm}{0cm}}{\pgfpoint{0cm}{1cm}}
+  \pgfusepath{stroke}
+  \pgfslopedattimetrue
+  \pgftransformarcaxesattime{.25}
+    {\pgfpoint{0cm}{1cm}}
+    {\pgfpoint{2cm}{0cm}}{\pgfpoint{0cm}{1cm}}
+    {0}{60}
+  \pgftext{Hi!}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1121,7 +2314,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `dbdd466d7337`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformrotate{30}
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransformreset
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1131,7 +2336,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `022c864d582e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformscale{2}
+  \pgftransformrotate{30}
+  \pgftransformxshift{1cm}
+  {\color{red}\pgftext{rotated}}
+  \pgftransformresetnontranslations
+  \pgftext{shifted only}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1141,7 +2360,19 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `d8310417609d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgftransformrotate{30}
+  \draw      (0,0) -- (2,1) -- (1,0);
+  \pgftransforminvert
+  \draw[red] (0,0) -- (2,1) -- (1,0);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1151,7 +2382,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `cb5d1c22dac1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (2,2);
+  \begin{scope}[xscale=2,thick]
+    \draw [red] (1,1) -- ++(1,0);
+
+    \pgftransformationadjustments
+    \draw [blue] (1,0) -- ++(\pgfhorizontaltransformationadjustment,0);
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1161,7 +2406,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `85ddfc199006`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (2,2);
+  \begin{scope}[xscale=2,thick,rotate=90]
+    \draw [red] (1,1) -- ++(1,0);
+
+    \pgftransformationadjustments
+    \draw [blue] (1,0) -- ++(\pgfhorizontaltransformationadjustment,0);
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1171,7 +2430,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `b9002846ce00`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth{1pt}
+  \pgftransformscale{5}
+  \draw      (0,0) -- (0.4,.2);
+  \pgftransformxshift{0.2cm}
+  \pgflowlevelsynccm
+  \draw[red] (0,0) -- (0.4,.2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1181,7 +2454,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `7f211b1f7a96`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth{1pt}
+  \pgflowlevel{\pgftransformscale{5}}
+  \draw      (0,0) -- (0.4,.2);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1191,7 +2475,18 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `84c2bbcd659e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth{1pt}
+  \pgflowlevelobj{\pgftransformscale{5}}    {\draw (0,0) -- (0.4,.2);}
+  \pgflowlevelobj{\pgftransformxshift{-1cm}}{\draw (0,0) -- (0.4,.2);}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1201,7 +2496,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `3599d9262aad`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth{1pt}
+  \begin{pgflowlevelscope}{\pgftransformscale{5}}
+    \draw (0,0) -- (0.4,.2);
+  \end{pgflowlevelscope}
+  \begin{pgflowlevelscope}{\pgftransformxshift{-1cm}}
+    \draw (0,0) -- (0.4,.2);
+  \end{pgflowlevelscope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1211,7 +2521,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `342241f9c733`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
+  \begin{pgfviewboxscope}
+    {\pgfpoint{5mm}{5mm}}{\pgfpoint{25mm}{15mm}} % Source
+    {\pgfpoint{0mm}{0mm}}{\pgfpoint{20mm}{20mm}} % Target
+    {meet}
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [radius=8mm] node {Hi};
+  \end{pgfviewboxscope} }
+```
 
 
 ---
@@ -1221,7 +2545,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f148ed0fe75b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz {
+  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
+  \begin{pgfviewboxscope}
+    {\pgfpoint{5mm}{5mm}}{\pgfpoint{25mm}{15mm}} % Source
+    {\pgfpoint{0mm}{0mm}}{\pgfpoint{20mm}{20mm}} % Target
+    {slice}
+    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
+    \draw [thick] (1,1) circle [radius=8mm] node {Hi};
+  \end{pgfviewboxscope} }
+```
 
 
 ---
@@ -1231,7 +2569,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `7ef37797143f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\draw (0,1) -- (1,1);
+```
 
 
 ---
@@ -1241,7 +2585,23 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `c568e8ee52d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\makeatletter
+\def\polartransformation{
+  % \pgf@x will contain the radius
+  % \pgf@y will contain the distance
+  \pgfmathsincos@{\pgf@sys@tonumber\pgf@x}%
+  % pgfmathresultx is now the cosine of radius and
+  % pgfmathresulty is the sine of radius
+  \pgf@x=\pgfmathresultx\pgf@y%
+  \pgf@y=\pgfmathresulty\pgf@y%
+}
+\makeatother
+```
 
 
 ---
@@ -1251,7 +2611,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f0fe2d6d6293`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\polartransformation{%
+  % \pgf@x will contain the radius
+  % \pgf@y will contain the distance
+  \pgfmathsincos@{\pgf@sys@tonumber\pgf@x}%
+  % pgfmathresultx is now the cosine of radius and
+  % pgfmathresulty is the sine of radius
+  \pgf@x=\pgfmathresultx\pgf@y%
+  \pgf@y=\pgfmathresulty\pgf@y%
+}
+```
 
 
 ---
@@ -1261,7 +2635,20 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a5f11888ad18`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  % Start nonlinear transformation
+  \pgftransformnonlinear{\polartransformation}% see above
+
+  % Draw something with this transformation in force
+  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1271,7 +2658,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `de9693737518`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  {
+    \pgftransformnonlinear{\polartransformation}
+    % The curve with the controls computed by pgf: a nice quarter arc
+    \draw [red] (0,20mm) -- (90pt,20mm);
+  }
+  % Here is the curve with controls just transformed:
+  \draw (0:20mm) .. controls (30pt:20mm) and (60pt:20mm) .. (90pt:20mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1281,7 +2683,21 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f11e702b9066`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \draw[red] (0:20mm) arc [start angle=0, end angle=90, radius=2cm];
+  {
+    \pgftransformnonlinear{\polartransformation}
+    \pgfsettransformnonlinearflatness{2pt} % very precise
+    \draw (0,20mm) -- (90pt,20mm);
+  }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1291,7 +2707,26 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `84d735e652a9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \pgftransformnonlinear{\polartransformation}% see above
+
+  % Draw something with this transformation in force
+  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
+
+  \foreach \angle in {0,30,60,90}
+    \foreach \dist in {1,2}
+      {
+        \pgftransformshift{\pgfpoint{\angle pt}{\dist cm}}
+        \pgftext{\angle$^\circ$}
+      }
+\end{tikzpicture}
+```
 
 
 ---
@@ -1301,7 +2736,29 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `842b3ddeebb5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \pgftransformnonlinear{\polartransformation}% see above
+  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
+
+  \begin{scope}[shift={(45pt,20mm)}]
+    % Draw something near "origin":
+    \draw [red] (-10pt,-10pt) -- (10pt,10pt);
+    \draw [red] (10pt,-10pt) -- (-10pt,10pt);
+
+    % Now draw the same, but in the "approximate" coordinate system:
+    \pgfapproximatenonlineartransformation
+    \draw [] (-10pt,-10pt) -- (10pt,10pt);
+    \draw [] (10pt,-10pt) -- (-10pt,10pt);
+    \pgftext{foo}
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1311,7 +2768,29 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e4b141f0a114`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \pgftransformnonlinear{\polartransformation}% see above
+  \draw (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm);
+
+  \begin{scope}[shift={(45pt,20mm)}]
+    % Draw something near "origin":
+    \draw [red] (-10pt,-10pt) -- (10pt,10pt);
+    \draw [red] (10pt,-10pt) -- (-10pt,10pt);
+
+    % Now draw the same, but in the "approximate" coordinate system:
+    \pgfapproximatenonlineartranslation
+    \draw [] (-10pt,-10pt) -- (10pt,10pt);
+    \draw [] (10pt,-10pt) -- (-10pt,10pt);
+    \pgftext{foo}
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1321,7 +2800,17 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `e3b528ffb954`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\pgfsetcurvilinearbeziercurve
+  {\pgfpointorigin}
+  {\pgfpoint{1cm}{1cm}}
+  {\pgfpoint{2cm}{1cm}}
+  {\pgfpoint{3cm}{0cm}}
+```
 
 
 ---
@@ -1331,7 +2820,26 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `635ff5765b56`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  {
+    \pgfsetcurvilinearbeziercurve
+      {\pgfpoint{0mm}{20mm}}
+      {\pgfpoint{11mm}{20mm}}
+      {\pgfpoint{20mm}{11mm}}
+      {\pgfpoint{20mm}{0mm}}
+    \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
+    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
+  }
+  \draw[red, very thick]
+    (0mm,20mm) .. controls (11mm,20mm) and (20mm,11mm) .. (20mm,0mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1341,7 +2849,26 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `2d4d451b1df6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  {
+    \pgfsetcurvilinearbeziercurve
+      {\pgfpoint{0mm}{20mm}}
+      {\pgfpoint{10mm}{20mm}}
+      {\pgfpoint{10mm}{10mm}}
+      {\pgfpoint{20mm}{10mm}}
+    \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
+    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
+  }
+  \draw[red, very thick]
+    (0mm,20mm) .. controls (10mm,20mm) and (10mm,10mm) .. (20mm,10mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1351,7 +2878,28 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `53415242799c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  {
+    \pgfsetcurvilinearbeziercurve
+      {\pgfpoint{0mm}{20mm}}
+      {\pgfpoint{11mm}{20mm}}
+      {\pgfpoint{20mm}{11mm}}
+      {\pgfpoint{20mm}{0mm}}
+    \pgftransformnonlinear{\pgfpointcurvilinearbezierpolar\pgf@x\pgf@y}%
+    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
+    % Add a "barb":
+    \draw [blue, very thick] (20pt,10pt) -- (0,0) -- (20pt,-10pt);
+  }
+  \draw[red, very thick]
+    (0mm,20mm) .. controls (11mm,20mm) and (20mm,11mm) .. (20mm,0mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1361,7 +2909,28 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `7b7150be2a76`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  {
+    \pgfsetcurvilinearbeziercurve
+      {\pgfpoint{0mm}{20mm}}
+      {\pgfpoint{10mm}{20mm}}
+      {\pgfpoint{10mm}{10mm}}
+      {\pgfpoint{20mm}{10mm}}
+    \pgftransformnonlinear{\pgfpointcurvilinearbezierpolar\pgf@x\pgf@y}%
+    \draw (0,-30pt) grid [step=10pt] (80pt,30pt);
+    % Add a "barb":
+    \draw [blue, very thick] (20pt,10pt) -- (0,0) -- (20pt,-10pt);
+  }
+  \draw[red, very thick]
+    (0mm,20mm) .. controls (10mm,20mm) and (10mm,10mm) .. (20mm,10mm);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1372,6 +2941,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Defines a new profiler entry named name. This updates a set of internal registers used to track the profiler entry. The name can be arbitrary, it doesn't need to be related to any \ macro. The actual job of counting seconds is accomplished using ||name followed eventually by the command ||name. It doesn't hurt if || is called multiple times with the same name.
+
 
 ---
 
@@ -1380,6 +2953,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `482b096cfe55`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+macroarguments} Defines a new profiler entry which will measure the time spent in macro. This calls || and replaces the current definition of macro with a new one. If profiler entry name has been provided, this defines the argument for ||. It is allowed to use the same name for multiple commands; in this case, they are treated as if it where the same command. If the optional argument is not used, the profiler entry will be called `' (macro without backslash) where || is predefined to be |<CS>|. 
 
 
 ---
@@ -1390,6 +2967,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+macroargument patterninvocation pattern} A variant of || which can be used with arbitrary argument patterns. Example: codeexample[code only] #1#2#3{ ... } {#1#2#3}{{#1}#2#3} codeexample Note that || is a special case of ||: codeexample[code only] #1#2{ ... } 2 {#1#2}{{#1}{#2}} codeexample Thus, argument pattern is a copy-paste from the definition of your command. The invocation pattern is used by the |profiler| library to invoke the original command, so it is closely related to argument pattern,
+
 
 ---
 
@@ -1398,6 +2979,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `716c3c94c7e7`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Enables verbose output for every invocation of profiler entry name. This is only available for profiler entries for commands (those created by || for example). It will also show all given arguments.
 
 
 ---
@@ -1408,6 +2993,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} A variant of || which will expand all arguments for profiler entry name before showing them. The invocation as such is not affected by this expansion. This expansion (with ||) might yield unrecoverable errors for some commands. Handle with care.
+
 
 ---
 
@@ -1416,6 +3005,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `07e6c3339e9b`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+environment name} Defines a new profiler entry which measures time spent in the environment environment name. This calls || and handles the begin/end of the environment automatically. The argument for || is profiler entry name, or, if this optional argument is not used, it is ` name' where || is predefined as |<ENV>|. Again, it is permitted to use the same profiler entry name multiple times to merge different commands into one output section.
 
 
 ---
@@ -1426,6 +3019,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Starts (or resumes) timing of profiler entry name. The argument must have been declared in the preamble using ||. Nested calls of || with the same argument will be ignored. The invocation of this command doesn't change the environment: it doesn't introduce any \ groups nor does it modify the token list.
+
 
 ---
 
@@ -1434,6 +3031,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `84b850ab22ae`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Stops (or interrupts) timing of profiler entry name. This command finishes a preceding call to ||.
 
 
 ---
@@ -1444,6 +3045,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+For , this command is installed automatically in |document|. It stops all running timings, evaluates them and returns the result into the logfile. Furthermore, it generates a text table called |.profiler.|YYYY|-|MM|-|DD|_|HH|h_|MM|m.dat| with the same information. Note that the |profiler| library predefines two profiler entries, namely |main job| which counts time from the beginning of the document until || and |preamble| which counts time from the beginning of the document until |document|.
+
 
 ---
 
@@ -1452,6 +3057,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `5acd9c473ab4`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+(initially main job)} Sets the profiler entry whose total time will be used to compute all other relative times. Thus, profiler entry name will use $100\ total time per definition, all other relative times are relative to this one.
 
 
 ---
@@ -1462,6 +3071,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+true codefalse code} Invokes true code if profiler entry name is currently running and false code otherwise.
+
 
 ---
 
@@ -1470,7 +3083,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `5e959265154e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\usepgflibrary{profiler}
+\pgfprofilenewforenvironment{tikzpicture}
+\pgfprofilenewforcommand{\pgfkeys}{1}
+```
 
 
 ---
@@ -1480,7 +3101,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `27b3f84aad85`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+pgflibraryprofiler(main job) {total time=1.07378sec; (100.0122%) self time=0.034sec; (3.1662%)}
+ pgflibraryprofiler(<ENV>tikzpicture) {total time=1.03978sec; (96.84601%) self time=1.00415sec; (93.52722%)}
+ pgflibraryprofiler(<CS>pgfkeys) {total time=0.03563sec; (3.31726%) self time=0.03563sec; (3.31726%)}
+```
 
 
 ---
@@ -1490,7 +3119,16 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `40ac5b0918d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+profilerentry       totaltime[s]        totaltime[percent]  selftime[s]         selftime[percent]
+main job            1.07378             100.0122            0.034               3.1662
+<ENV>tikzpicture    1.03978             96.84601            1.00415             93.52722
+<CS>pgfkeys         0.03563             3.31726             0.03563             3.31726
+```
 
 
 ---
@@ -1500,7 +3138,14 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `8b6250e620e7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\mymacro#1\to#2\in#3{ ... }
+\pgfprofilenewforcommandpattern{\mymacro}{#1\to#2\in#3}{{#1}\to{#2}\in{#3}}
+```
 
 
 ---
@@ -1510,7 +3155,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `69e96fdfca40`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\mymacro#1#2{ ... }
+\pgfprofilenewforcommand\macro{2}
+\pgfprofilenewforcommandpattern{\mymacro}{#1#2}{{#1}{#2}}
+```
 
 
 ---
@@ -1520,7 +3173,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `db03b0a3bf5f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw[top color=red] (0,0) rectangle (2,1);
+```
 
 
 ---
@@ -1530,7 +3189,14 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `65382524cf8c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw[top color=white,bottom color=black,middle color=red]
+  (0,0) rectangle (2,1);
+```
 
 
 ---
@@ -1540,7 +3206,17 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `00dca0403be6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \shade[ball color=white] (0,0) circle (2ex);
+  \shade[ball color=red] (1,0) circle (2ex);
+  \shade[ball color=black] (2,0) circle (2ex);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1550,7 +3226,16 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `552539320e21`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz
+  \shade[upper left=red,upper right=green,
+         lower left=blue,lower right=yellow]
+    (0,0) rectangle (3,2);
+```
 
 
 ---
@@ -1560,7 +3245,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `43be00502c68`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \shade[shading=color wheel] (0,0) circle (1.5);
+```
 
 
 ---
@@ -1570,7 +3261,15 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `953706df5076`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \shade[shading=color wheel] [even odd rule]
+  (0,0) circle (1.5)
+  (0,0) circle (1);
+```
 
 
 ---
@@ -1580,7 +3279,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a7a738a9fc67`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \shade[shading=color wheel black center] (0,0) circle (1.5);
+```
 
 
 ---
@@ -1590,7 +3295,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `d1de8d66be8a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \shade[shading=color wheel white center] (0,0) circle (1.5);
+```
 
 
 ---
@@ -1600,7 +3311,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `b91455b0e907`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \shade[shading=Mandelbrot set] (0,0) rectangle (2,2);
+```
 
 
 ---
@@ -1610,7 +3327,13 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `a0ecf1f6539e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw[inner color=red] (0,0) rectangle (2,1);
+```
 
 
 ---
@@ -1620,7 +3343,14 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `db2fe769bda2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw[outer color=red,inner color=white]
+  (0,0) rectangle (2,1);
+```
 
 
 ---
@@ -1631,6 +3361,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler will issue a || command for each point of the plot, except possibly for the first. As for the line-to handler, what happens with the first point can be specified using || or ||. Obviously, the || command needs, in addition to the points on the path, some control points. These are generated automatically using a somewhat ``dumb'' algorithm: Suppose you have three points $x$, $y$, and $z$ on the curve such that $y$ is between $x$ and $z$: codeexample[] tikzpicture [gray] (0,0) node {x
+
 
 ---
 
@@ -1639,6 +3373,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `4b291303c9bb`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the factor used by the curve plot handlers to determine the distance of the control points from the points they control. The higher the curvature of the curve points, the higher this value should be. A value of $1$ will cause four points at quarter positions of a circle to be connected using a circle. The default is $0.5$. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; 0.75 {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1649,6 +3387,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler works like the curve-to plot handler, only it will add a new part to the current path that is a closed curve through the plot points. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1657,6 +3399,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `de0512210e46`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler works like the line-to plot handler, only it will produce a connected, piecewise constant path to connect the points. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1667,6 +3413,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+A variant of || which places its mark on the right line ends. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1675,6 +3425,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `2374902d05c6`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+A variant of || which places its mark on the center of the line. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample The plot handler always connects two data points by a horizontal line starting from the previous data points, followed by a vertical line in the middle between the two data points, followed by a horizontal line between the middle and the current data point. This results in a symmetric con
 
 
 ---
@@ -1685,6 +3439,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the left open pieces. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1693,6 +3451,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `cd9965e550be`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the right open pieces. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1703,6 +3465,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler works like the ||, but it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed in the center of the horizontal line segment.. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample See || for details.
+
 
 ---
 
@@ -1711,6 +3477,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `627b9b8ec0ed`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler converts each point in the plot stream into a line from the $y$-axis to the point's coordinate, resulting in a ``horizontal comb''. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1721,6 +3491,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler converts each point in the plot stream into a line from the $x$-axis to the point's coordinate, resulting in a ``vertical comb''. This handler is useful for creating ``bar diagrams''. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1729,6 +3503,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `49c72454b217`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler converts each point in the plot stream into a line from the origin to the point's coordinate. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1739,6 +3517,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This zero level stream always returns dimension instead of $x=0$pt. It is used for |xcomb| and |xbar|.
+
 
 ---
 
@@ -1747,6 +3529,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `baadc219fb3f`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This zero level stream always returns dimension instead of $y=0$pt. It is used for |ycomb| and |ybar|.
 
 
 ---
@@ -1757,6 +3543,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This handler converts each point in the plot stream into a rectangle from the $x$-axis to the point's coordinate. The rectangle is placed centered at the $x$-axis. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1765,6 +3555,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `b4cd5b5d3bb8`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler converts each point in the plot stream into a rectangle from the $y$-axis to the point's coordinate. The rectangle is placed centered at the $y$-axis. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1775,6 +3569,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Expands to the value of |/pgf/bar width|.
+
 
 ---
 
@@ -1783,6 +3581,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f2fc8b8c0d67`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler is a variant of || which works with intervals instead of points. Bars are drawn between successive input coordinates and the width is determined relatively to the interval length. codeexample[] tikzpicture [gray] (0,2) node {$x_1$} (1,1) node {$x_2$} (2,.5) node {$x_3$} (4,0.7) node {$x_4$}; {0cm{2cm}} {1cm{1cm}} {2cm{0.5cm}} {4cm{0.7cm}} stroke tikzpicture codeexample In more detail, if $(x_i,y_i)$ and $(x_{i+1},y_{i+1})$ denote successive input coordinates, the bar will be placed 
 
 
 ---
@@ -1793,6 +3595,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+As ||, this handler provides bar plots with relative bar sizes and offsets, one bar for each $y$~coordinate interval.
+
 
 ---
 
@@ -1801,6 +3607,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `43dda86778d1`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This handler will connect the points of the plots by straight line segments. However, at the start and the end of the lines there will be a small gap, given by the following key: key{/pgf/gap around stream point=dimension (initially 1.5pt)} The dimension by which the lines between consecutive stream points are shortened at the beginning and end. key codeexample[] tikzpicture {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1811,6 +3621,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Works like ||, but the last point is connected to the first in the same fashion: codeexample[] tikzpicture {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1819,6 +3633,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `4f4ce1481085`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command will execute the mark code for some points of the plot, but each time the coordinate transformation matrix will be set up such that the origin is at the position of the point to be plotted. This way, if the mark code draws a little circle around the origin, little circles will be drawn at some point of the plot. By default, a mark is drawn at all points of the plot. However, two parameters $r$ and $p$ influence this. First, only every $r$th mark is drawn. Second, the first mark dr
 
 
 ---
@@ -1829,6 +3647,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} Sets the $r$ parameter to repeat, that is, only every $r$th mark will be drawn.
+
 
 ---
 
@@ -1837,6 +3659,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `f26828e8eab3`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Sets the $p$ parameter to phase, that is, the first mark to be drawn is the $p$th, followed by the $(p+r)$th, then the $(p+2r)$th, and so on.
 
 
 ---
@@ -1847,6 +3673,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+index list} This command works similar to the previous one. However, marks will only be placed at those indices in the given index list. The syntax for the list is the same as for the || statement. For example, if you provide the list |1,3,...,25|, a mark will be placed only at every second point. Similarly, |1,2,4,8,16,32| yields marks only at those points that are powers of two. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {{4pt}stroke} {1,3} {0cm{0cm}} {1cm{
+
 
 ---
 
@@ -1855,6 +3685,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `851285311952`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Draws the given plot mark name at the origin. The plot mark name must have been previously declared using ||. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {pentagon} {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
 
 
 ---
@@ -1865,6 +3699,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+code} Declares a plot mark for later used with the || command. codeexample[] my plot mark {{0cm{1ex}}{1ex}} tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; {my plot mark} {0cm{0cm}} {1cm{1cm}} {2cm{0.5cm}} stroke tikzpicture codeexample
+
 
 ---
 
@@ -1874,6 +3712,10 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command sets the \ dimension || to dimension. This dimension is a ``recommendation'' for plot mark code at which size the plot mark should be drawn; plot mark code may choose to ignore this dimension altogether. For circles, dimension should be the radius, for other shapes it should be about half the width/height. The predefined plot marks all take this dimension into account. codeexample[] tikzpicture [gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z}; 1ex {*} {0cm{0cm}} {1cm{1cm}} {2c
+
 
 ---
 
@@ -1882,7 +3724,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `ccb1e4b8cf5e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfplothandlercurveto
+  \pgfplotstreamstart
+  \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+  \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+  \pgfplotstreampoint{\pgfpoint{2cm}{.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1892,7 +3749,23 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `3315d7831efc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfsetplottension{0.75}
+  \pgfplothandlercurveto
+  \pgfplotstreamstart
+  \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+  \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+  \pgfplotstreampoint{\pgfpoint{2cm}{0.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1902,7 +3775,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `889ed0323b0d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfplothandlerclosedcurve
+  \pgfplotstreamstart
+  \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+  \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+  \pgfplotstreampoint{\pgfpoint{2cm}{0.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1912,7 +3800,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `eeede100a6b9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfplothandlerconstantlineto
+  \pgfplotstreamstart
+  \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+  \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+  \pgfplotstreampoint{\pgfpoint{2cm}{0.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1922,7 +3825,22 @@ Showing items **4601-4800** of **6812** | Page **24** of **35**
 **ID**: `33a5bc482b4b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfplothandlerconstantlinetomarkright
+  \pgfplotstreamstart
+  \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+  \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+  \pgfplotstreampoint{\pgfpoint{2cm}{0.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{tikzpicture}
+```
 
 
 ---

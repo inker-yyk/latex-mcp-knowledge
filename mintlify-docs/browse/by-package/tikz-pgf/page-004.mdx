@@ -16,7 +16,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `46a2b30ce442`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node {root}
+    child {[fill] circle (2pt)}
+    child {[fill] circle (2pt)};
+\end{tikzpicture}
+```
 
 
 ---
@@ -26,7 +36,24 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b73a2ce08543`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[sibling distance=15mm]
+  \node (root) {root}
+    child
+    child {
+      child {coordinate (special)}
+      child
+    };
+  \node at (root-1) {root-1};
+  \node at (root-2) {root-2};
+  \node at (special) {special};
+  \node at (root-2-2) {root-2-2};
+\end{tikzpicture}
+```
 
 
 ---
@@ -36,7 +63,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `bbb5000eba8c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [thick,level 1/.style={sibling distance=15mm},
+         level 2/.style={sibling distance=10mm}]
+  \coordinate
+    child[red]   {child child}
+    child[green] {child child[blue]};
+\end{tikzpicture}
+```
 
 
 ---
@@ -46,7 +85,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `9d65039ab918`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[thick]
+  \node [red] {root}
+    child
+    child;
+\end{tikzpicture}
+```
 
 
 ---
@@ -56,7 +105,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `3399a5cc9d7f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[thick]
+  \node [red] {root}
+    [green] % option applies to all children
+    child
+    child;
+\end{tikzpicture}
+```
 
 
 ---
@@ -66,7 +126,25 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `41b39d1bafda`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \scoped
+    [...]              % Options apply to the whole tree
+    \node[...] {root}  % Options apply to the root node only
+       [...]           % Options apply to all children
+       child[...]      % Options apply to this child and all its children
+       {
+         node[...] {}  % Options apply to the child node only
+         ...
+       }
+       child[...]      % Options apply to this child and all its children
+    ;
+\end{tikzpicture}
+```
 
 
 ---
@@ -76,7 +154,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `578ad6d4a5ab`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level/.style={sibling distance=20mm/#1}]
+  \node {root}
+    child { child child }
+    child { child child child };
+\end{tikzpicture}
+```
 
 
 ---
@@ -86,7 +174,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `733153de8c1f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [level 1/.style={sibling distance=20mm},
+   level 2/.style={sibling distance=5mm}]
+  \node {root}
+    child { child child }
+    child { child child child };
+\end{tikzpicture}
+```
 
 
 ---
@@ -96,7 +196,27 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `088a935b800e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[sibling distance=15mm, level distance=15mm]
+  \path [help lines]
+    node (root) {root}
+    [grow=-10]
+    child {node {1}}
+    child {node {2}}
+    child {node {3}}
+    child {node {4}};
+
+  \draw[|<->|,thick] (root-1.center)
+    -- node[above,sloped] {sibling distance} (root-2.center);
+
+  \draw[|<->|,thick] (root.center)
+    -- node[above,sloped] {level distance} +(-10:\tikzleveldistance);
+\end{tikzpicture}
+```
 
 
 ---
@@ -106,7 +226,24 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `309ff64705d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node {root}
+    [level distance=20mm]
+    child
+    child {
+      [level distance=5mm]
+      child
+      child
+      child
+    }
+    child[level distance=10mm];
+\end{tikzpicture}
+```
 
 
 ---
@@ -116,7 +253,24 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `23214a0da24b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [level 1/.style={level distance=10mm},
+   level 2/.style={level distance=5mm}]
+  \node {root}
+    child
+    child {
+      child
+      child[level distance=10mm]
+      child
+    }
+    child;
+\end{tikzpicture}
+```
 
 
 ---
@@ -126,7 +280,27 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `f2e82517ea87`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [level distance=4mm,
+   level 1/.style={sibling distance=8mm},
+   level 2/.style={sibling distance=4mm},
+   level 3/.style={sibling distance=2mm}]
+  \coordinate
+     child {
+       child {child child}
+       child {child child}
+     }
+     child {
+       child {child child}
+       child {child child}
+     };
+\end{tikzpicture}
+```
 
 
 ---
@@ -136,7 +310,37 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a14fd802f940`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [level distance=10mm,
+   every node/.style={fill=red!60,circle,inner sep=1pt},
+   level 1/.style={sibling distance=20mm,nodes={fill=red!45}},
+   level 2/.style={sibling distance=10mm,nodes={fill=red!30}},
+   level 3/.style={sibling distance=5mm,nodes={fill=red!25}}]
+  \node {31}
+     child {node {30}
+       child {node {20}
+         child {node {5}}
+         child {node {4}}
+       }
+       child {node {10}
+         child {node {9}}
+         child {node {1}}
+       }
+     }
+     child {node {20}
+       child {node {19}
+         child {node {1}}
+         child[missing]
+       }
+       child {node {18}}
+     };
+\end{tikzpicture}
+```
 
 
 ---
@@ -146,7 +350,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7d8ddf766a52`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node {root} [grow=right] child child;
+```
 
 
 ---
@@ -156,7 +366,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `5fb56c07bdd8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node {root} [grow=south west] child child;
+```
 
 
 ---
@@ -166,27 +382,74 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `10f58d3b7655`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level distance=10mm,sibling distance=5mm]
+  \node {root}
+    [grow=down]
+    child
+    child
+    child[grow=right] {
+      child child child
+    };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 817. Other Example
+## 817. Node Graph Example
 
 **ID**: `25512dd32b19`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level distance=2em]
+  \node {C}
+    child[grow=up]    {node {H}}
+    child[grow=left]  {node {H}}
+    child[grow=down]  {node {H}}
+    child[grow=right] {node {C}
+        child[grow=up]    {node {H}}
+        child[grow=right] {node {H}}
+        child[grow=down]  {node {H}}
+      edge from parent[double]
+        coordinate (wrong)
+    };
+  \draw[<-,red] ([yshift=-2mm]wrong) -- +(0,-1)
+    node[below]{This is wrong!};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 818. Other Example
+## 818. Node Graph Example
 
 **ID**: `b1bf7a0f25ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[rectangle,draw] (a) at (0,0) {start node};
+  \node[rectangle,draw] (b) at (2,1) {end};
+
+  \draw (a) -- (b)
+    node[coordinate,midway] {}
+      child[grow=100,<-] {node[above] {the middle is here}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -196,17 +459,46 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ee902676d1cb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level distance=10mm,sibling distance=5mm]
+  \node {root} [grow=down]
+    child          { node {1} }
+    child          { node {2} }
+    child          { node {3} }
+    child[missing] { node {4} }
+    child          { node {5} }
+    child          { node {6} };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 820. Other Example
+## 820. Node Graph Example
 
 **ID**: `8a4c84586919`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level distance=1cm]
+  \node [rectangle,draw] (a) at (0,0) {root}
+  [growth parent anchor=south] child;
+
+  \node [rectangle,draw] (b) at (2,0) {root}
+  [growth parent anchor=north east] child;
+
+  \draw [red,thick,dashed] (a.south) -- (a-1);
+  \draw [red,thick,dashed] (b.north east) -- (b-1);
+\end{tikzpicture}
+```
 
 
 ---
@@ -216,7 +508,21 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `6c4c97d60c94`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [level distance=2cm,growth parent anchor=north,
+   every node/.style={anchor=north,rectangle,draw}
+   every child node/.style={anchor=south}]
+
+  \node at (0,0) {root} child {node {small}};
+
+  \node at (2,0) {big root} child {node {\large big}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -226,7 +532,21 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `111773e4f16e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [edge from parent/.style={draw,red,thick}]
+  \node {root}
+    child {node {left} edge from parent[dashed]}
+    child {node {right}
+      child {node {child}}
+      child {node {child} edge from parent[draw=none]}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -236,7 +556,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `6aef8c99f48f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(\tikzparentnode\tikzparentanchor) -- (\tikzchildnode\tikzchildanchor)
+```
 
 
 ---
@@ -246,7 +572,23 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `562f448f4517`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[level distance=15mm, sibling distance=15mm,
+  edge from parent path=
+  {(\tikzparentnode.south) .. controls +(0,-1) and +(0,1)
+                           .. (\tikzchildnode.north)}]
+  \node {root}
+    child {node {left}}
+    child {node {right}
+      child {node {child}}
+      child {node {child}}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -256,7 +598,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `255f5a4a8606`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\node (root) {} child {node (child) {} edge to parent node {label}};
+```
 
 
 ---
@@ -266,7 +614,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b4a9da37a8ae`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+(root) -- (child) node [pos=0.5] {label}
+```
 
 
 ---
@@ -276,7 +630,32 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7c9e7ffa89ef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node {root}
+    child {
+      node {left}
+      edge from parent
+        node[left] {a}
+        node[right] {b}
+    }
+    child {
+      node {right}
+        child {
+          node {child}
+          edge from parent
+            node[left] {c}
+        }
+        child {node {child}}
+      edge from parent
+        node[near end] {x}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -286,7 +665,21 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d4fa46c34aef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node {root}
+    [child anchor=north]
+    child {node {left} edge from parent[dashed]}
+    child {node {right}
+      child {node {child}}
+      child {node {child} edge from parent[draw=none]}
+    };
+\end{tikzpicture}
+```
 
 
 ---
@@ -296,7 +689,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `03d261b44dfb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\mymacro#1#2{
+  [style=edge from parent, #1]
+  (\tikzparentnode\tikzparentanchor) -- #2 (\tikzchildnode\tikzchildanchor)
+}
+```
 
 
 ---
@@ -306,7 +708,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `64aeb6e31a81`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[turtle/distance=2mm]
+  \draw [turtle={home,forward,right,forward,left,forward,left,forward}];
+```
 
 
 ---
@@ -316,7 +725,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `940e7b239562`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[turtle/distance=2mm]
+  \draw [turtle={home,fd,rt,fd,lt,fd,lt,fd}];
+```
 
 
 ---
@@ -326,7 +742,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `c3887fe95227`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw [turtle={how/.style={bend left},home,forward,right,forward}];
+```
 
 
 ---
@@ -336,7 +758,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e87d8242003f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \filldraw [thick,blue,fill=blue!20]
+  [turtle=home]
+  \foreach \i in {1,...,5}
+  {
+    [turtle={forward,right=144}]
+  };
+```
 
 
 ---
@@ -346,47 +779,132 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `c6f32e7444ed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{
+  shape example/.style= {color      = black!30,
+                         draw,
+                         fill       = yellow!30,
+                         line width =  .5cm,
+                         inner xsep = 2.5cm,
+                         inner ysep = 0.5cm}
+}
+```
 
 
 ---
 
-## 835. Other Example
+## 835. Node Graph Example
 
 **ID**: `ed7a7efcbfed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circle,shape example] {Circle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 836. Other Example
+## 836. Node Graph Example
 
 **ID**: `0fb0380dbcdb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rectangle,shape example] {Rectangle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 837. Other Example
+## 837. Node Graph Example
 
 **ID**: `8f581b38d890`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=diamond,shape example] {Diamond\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid/above,
+     base/below,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 838. Other Example
+## 838. Node Graph Example
 
 **ID**: `59e565ff6ee3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=ellipse,shape example] {Ellipse\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -396,157 +914,396 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7c2bc2744be5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={trapezium, draw}]
+   \node at (0,2) {A};
+   \node[trapezium left angle=75, trapezium right angle=45]
+         at (0,1) {B};
+   \node[trapezium left angle=120, trapezium right angle=60]
+         at (0,0) {C};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 840. Other Example
+## 840. Node Graph Example
 
 **ID**: `d1dcc76bccb1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth, every node/.style={text=black},
+    shape border uses incircle, shape border rotate=60]
+  \node [trapezium, fill=gray!25, minimum width=2cm] (t) {};
+  \draw [red, <->] (t.bottom left corner) -- (t.bottom right corner)
+    node [midway, below right] {width};
+  \draw [red, <->] (t.top side) -- (t.bottom side)
+    node [at start, above] {height};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 841. Other Example
+## 841. Node Graph Example
 
 **ID**: `9cd061085559`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
+\begin{tikzpicture}
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                                      {A};
+  \node [my node=green, minimum height=1.5cm] at (1, 1.25) {B};
+  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    {C};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 842. Other Example
+## 842. Node Graph Example
 
 **ID**: `18a9468ce54a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
+\begin{tikzpicture}
+\tikzset{trapezium stretches=true}
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                                      {A};
+  \node [my node=green, minimum height=1.5cm] at (1, 1.25) {B};
+  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    {C};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 843. Other Example
+## 843. Node Graph Example
 
 **ID**: `90b4d9ff4e27`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
+\begin{tikzpicture}
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                      at (1.5,.25)  {A};
+  \node [my node=green, minimum width=3cm, trapezium stretches]
+    at (1.5,1)    {B};
+  \node [my node=blue,  minimum width=3cm, trapezium stretches body]
+    at (1.5,1.75) {C};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 844. Other Example
+## 844. Node Graph Example
 
 **ID**: `8dc17aa85cc8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=trapezium, shape example, inner sep=1cm]
+    {Trapezium\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {bottom left corner/below, top right corner/right,
+     top left corner/left,     bottom right corner/below,
+     bottom side/below,        left side/left,
+     right side/right,         top side/above,
+     center/above,   text/below,      mid/right,       base/below,
+     mid west/right, base west/below, mid east/left,   base east/below,
+     west/above,     east/above,      north/below,     south/above,
+     north west/above, north east/above,
+     south west/below, south east/below, 160/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 845. Other Example
+## 845. Node Graph Example
 
 **ID**: `28d4df747d8c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=semicircle,shape border rotate=0,shape example, inner sep=1cm]
+    {Semicircle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {apex/above,      arc start/below, arc end/below,  chord center/below,
+     center/above,    base/below,      mid/right,      text/left,
+     base west/below, base east/below, mid west/left, mid east/right,
+     north/below,     south/above,     east/above,     west/above,
+     north west/above left, north east/above right,
+     south west/below,      south east/below, 30/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 846. Other Example
+## 846. Node Graph Example
 
 **ID**: `e83212f00c2c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \a in {3,...,7}{
+    \draw[red, dashed] (\a*2,0)  circle(0.5cm);
+    \node[regular polygon, regular polygon sides=\a, draw,
+     inner sep=0.3535cm] at (\a*2,0) {};
+   }
+\end{tikzpicture}
+```
 
 
 ---
 
-## 847. Other Example
+## 847. Node Graph Example
 
 **ID**: `5f9fe4faba32`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \foreach \a in {3,...,7}{
+    \draw[blue, dashed] (\a*2,0)  circle(0.5cm);
+    \node[regular polygon, regular polygon sides=\a, minimum size=1cm, draw] at (\a*2,0) {};
+   }
+\end{tikzpicture}
+```
 
 
 ---
 
-## 848. Other Example
+## 848. Node Graph Example
 
 **ID**: `455d65bf4a85`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=regular polygon, shape example, inner sep=.5cm]
+    {Regular Polygon\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {corner 1/above, corner 2/above, corner 3/left, corner 4/right, corner 5/above,
+     side 1/above,   side 2/left,    side 3/below,  side 4/right,   side 5/above,
+     center/above, text/left,  mid/right,   base/below, 75/above,
+     west/above,   east/above, north/below, south/above,
+     north east/below, south east/above, north west/below, south west/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 849. Other Example
+## 849. Node Graph Example
 
 **ID**: `0cf650049cd6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+   \draw [help lines]   (0,0) grid (2,2);
+   \draw [blue, dashed]  (1,1) circle(1cm);
+   \draw [red, dashed] (1,1) circle(.5cm);
+   \node [star, star point height=.5cm, minimum size=2cm, draw]
+       at (1,1) {S};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 850. Other Example
+## 850. Node Graph Example
 
 **ID**: `0d32e644ee70`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=star, star points=5, star point ratio=1.65, shape example, inner sep=1.5cm]
+    {Star\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+     {inner point 1/above, inner point 2/above, inner point 3/below, inner point 4/right,
+      inner point 5/above, outer point 1/above, outer point 2/above, outer point 3/left,
+      outer point 4/right, outer point 5/above,
+      center/above, text/left,  mid/right,   base/below, 75/above,
+         west/above,   east/above, north/below, south/above,
+         north east/below, south east/above, north west/below, south west/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 851. Other Example
+## 851. Node Graph Example
 
 **ID**: `4770a88e3b86`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth, every node/.style={text=black},
+    shape border uses incircle, shape border rotate=-30]
+  \node [isosceles triangle, fill=gray!25, minimum width=1.5cm] (t) {};
+  \draw [red, <->] (t.left corner) -- (t.right corner)
+    node [midway, above left] {width};
+  \draw [red, <->] (t.apex) -- (t.lower side)
+    node [midway, above right] {height};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 852. Other Example
+## 852. Node Graph Example
 
 **ID**: `c1e9e7d3fb4f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[paint/.style={draw=#1!75, fill=#1!20}]
+  \tikzset{every node/.style={isosceles triangle, draw, inner sep=0pt,
+    anchor=left corner, shape border rotate=90}}
+  \draw[help lines] grid(4,2);
+  \foreach \a/\c in {1.5/blue, 1/green, 0.5/red}{
+    \node[paint=\c, minimum height=\a cm] at (0,0) {};
+    \node[paint=\c, minimum width=\a cm] at (2,0) {};
+  }
+\end{tikzpicture}
+```
 
 
 ---
 
-## 853. Other Example
+## 853. Node Graph Example
 
 **ID**: `55bc290101d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[paint/.style={draw=#1!75, fill=#1!20}]
+  \tikzset{every node/.style={isosceles triangle, draw, inner sep=0pt,
+     anchor=south, shape border rotate=90, isosceles triangle stretches}}
+  \draw[help lines] grid(4,2);
+  \foreach \a/\c in {1.5/blue, 1/green, 0.5/red}{
+    \node[paint=\c, minimum height=\a cm, minimum width=1.5cm] at (0.75,0) {};
+    \node[paint=\c, minimum width=\a cm, minimum height=1.5cm] at (3,0)    {};
+  }
+\end{tikzpicture}
+```
 
 
 ---
 
-## 854. Other Example
+## 854. Node Graph Example
 
 **ID**: `d9d84ebcaee1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=isosceles triangle, shape example, inner xsep=1cm]
+    {Isosceles Triangle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {apex/above,      left corner/right, right corner/right,
+     left side/above, right side/below,  lower side/right,
+     center/above,    text/right,        150/above,
+     mid/right,       mid west/above,    mid east/right,
+     base/below,      base west/below,   base east/below,
+     west/above, east/below, north/below, south/above,
+     north west/below, north east/below,
+     south west/above, south east/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -556,37 +1313,101 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e8b14e0b3a51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={kite, draw}]
+  \node[kite upper vertex angle=135, kite lower vertex angle=70] at (0,0) {A};
+  \node[kite vertex angles=90 and 45] at (1,0) {B};
+  \node[kite vertex angles=60]        at (2,0) {C};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 856. Other Example
+## 856. Node Graph Example
 
 **ID**: `5db3fee1fb1d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=kite, shape example, inner sep=1.5cm]
+    {Kite\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {upper vertex/above, left vertex/above,    lower vertex/below,
+     right vertex/above, upper left side/above, upper right side/above,
+     lower left side/below, lower right side/below,
+     center/above,   text/left,       mid/right,        base/below,
+     mid west/left,  base west/below, mid east/right,   base east/below,
+     west/above,     east/above,      north/below,     south/above,
+     north west/left, north east/right,
+     south west/above, south east/above, 110/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 857. Other Example
+## 857. Node Graph Example
 
 **ID**: `40e1c66cfd3c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+   \node[dart, draw, gray, shape border uses incircle, shape border rotate=45]
+       (d) {dart};
+   \draw [<->] (d.tip)++(202.5:.5cm) arc(202.5:247.5:.5cm);
+   \node [left=.5cm] at (d.tip) {tip angle};
+   \draw [<->] (d.tail center)++(157.5:.5cm) arc(157.5:292.5:.5cm);
+   \node [right] at (d.tail center) {tail angle};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 858. Other Example
+## 858. Node Graph Example
 
 **ID**: `eddce9628dc3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=dart, shape border rotate=90, shape example, inner sep=1.25cm]
+    {Dart\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {tip/above,       tail center/below, right tail/below,
+     left tail/below, right tail/below,  left side/left,   right side/right,
+     center/above,    text/left,         mid/right,        base/below,
+     mid west/left,   base west/below,   mid east/right,   base east/below,
+     west/above,      east/above,        north/below,      south/above,
+     north west/left, north east/right,  south west/above, south east/above,
+     110/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -596,17 +1417,46 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8e20daf48e25`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+   every node/.style={circular sector, shape border uses incircle, draw},
+]
+   \node at (0,0) {A};
+   \node [shape border rotate=30] at (1.5,0) {A};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 860. Other Example
+## 860. Node Graph Example
 
 **ID**: `38e749317c27`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circular sector,  style=shape example, inner sep=1cm]
+      {Circular Sector\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+   {sector center/above, arc start/below, arc end/below, arc center/below,
+    center/above,        base/below,      mid/right,     text/below,
+    north/below,         south/above,     east/below,    west/above,
+    north west/above left, north east/above right,
+    south west/below,      south east/below, 30/right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -616,17 +1466,38 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `481c1b773d78`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[cylinder, draw, shape aspect=.5] {ABC};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 862. Other Example
+## 862. Node Graph Example
 
 **ID**: `d7599857f349`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth]
+  \node [cylinder, gray!50, rotate=30, draw,
+    minimum height=2cm, minimum width=1cm] (c) {Cylinder};
+  \draw[red, <->] (c.top)   -- (c.bottom)
+    node [at end, below, black]   {height};
+  \draw[red, <->] (c.north) -- (c.south)
+    node [at start, above, black] {width};
+\end{tikzpicture}
+```
 
 
 ---
@@ -636,7 +1507,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `9500850d1cdd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[shape aspect=.5]
+  \tikzset{every node/.style={cylinder, shape border rotate=90, draw}}
+  \node [minimum height=1.5cm]            {A};
+  \node [minimum width=1.5cm]  at (1.5,0) {B};
+\end{tikzpicture}
+```
 
 
 ---
@@ -646,7 +1527,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `1a8a41641788`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[]
+  \tikzset{every node/.style={cylinder, shape border rotate=90, draw}}
+  \node [aspect=1.0]           {A};
+  \node [aspect=0.5]  at (1,0) {B};
+  \node [aspect=0.25] at (2,0) {C};
+\end{tikzpicture}
+```
 
 
 ---
@@ -656,17 +1548,47 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `60739bfff6b4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[aspect=0.5]
+  \node [cylinder, cylinder uses custom fill, cylinder end fill=red!50,
+         cylinder body fill=red!25] {Cylinder};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 866. Other Example
+## 866. Node Graph Example
 
 **ID**: `0e0daefdbf34`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=cylinder, shape example, aspect=.5, inner xsep=3cm,
+        inner ysep=1cm] {Cylinder\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {before top/above,    top/above,       after top/below,
+     before bottom/below, bottom/above,    after bottom/above,
+     mid/right,           mid west/right,  mid east/left,
+     base/below,          base west/below, base east/below,
+     center/above,        text/above,      shape center/right,
+     west/right, east/left, north/above, south/below,
+     north west/below, north east/above,
+     south west/above, south east/below, 160/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -676,7 +1598,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ac86b0161105`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [correct forbidden sign,line width=1ex,draw=red,fill=white] {Smoking};
+\end{tikzpicture}
+```
 
 
 ---
@@ -686,7 +1616,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `0efe32332284`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [forbidden sign,line width=1ex,draw=red,fill=white] {Smoking};
+\end{tikzpicture}
+```
 
 
 ---
@@ -696,7 +1634,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7548d347f3d9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [magnifying glass,line width=1ex,draw] {huge};
+\end{tikzpicture}
+```
 
 
 ---
@@ -706,7 +1652,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d38534c15b5a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[cloud, draw, fill=gray!20, aspect=2] {ABC};
+  \node[cloud, draw, fill=gray!20] at (1.5,0) {D};
+\end{tikzpicture}
+```
 
 
 ---
@@ -716,27 +1671,67 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `1bbdcdbd912e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[aspect=1, every node/.style={cloud, cloud puffs=11, draw}]
+  \node [fill=gray!20]                                {rain};
+  \node [cloud ignores aspect, fill=white] at (1.5,0) {snow};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 872. Other Example
+## 872. Node Graph Example
 
 **ID**: `84815f5202d0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] grid (3,2);
+  \draw [blue, dashed] (1.5, 1) ellipse (1.5cm and 1cm);
+  \node [cloud, cloud puffs=9, draw, minimum width=3cm, minimum height=2cm]
+    at (1.5, 1) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 873. Other Example
+## 873. Node Graph Example
 
 **ID**: `85f4674a2a5f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=cloud, style=shape example, cloud puffs=11, aspect=1.5,
+       cloud puff arc=120,inner ysep=1cm] {Cloud\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+   {puff 1/above, puff 2/above,  puff 3/above,  puff 4/below,
+    puff 5/left,  puff 6/below,  puff 7/below,  puff 8/right,
+    puff 9/below, puff 10/above, puff 11/above, 70/right,
+    center/above, base/below,    mid/right,     text/left,
+    north/below,  south/below,   east/above,    west/above,
+    north west/left,             north east/right,
+    south west/below,            south east/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -746,27 +1741,68 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `1bdae1ad0106`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[starburst, fill=yellow, draw=red, line width=2pt] {\bf BANG!};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 875. Other Example
+## 875. Node Graph Example
 
 **ID**: `87b698d0696f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw[help lines] grid(3,2);
+  \node[starburst, draw, minimum width=3cm, minimum height=2cm]
+    at (1.5, 1) {\bf BOOM!};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 876. Other Example
+## 876. Node Graph Example
 
 **ID**: `2efe2fd9f169`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=starburst, starburst points=9, starburst point height=3.5cm,
+        style=shape example,inner sep=1cm]
+    {Starburst\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {outer point 1/above, outer point 2/above, outer point 3/right,
+     outer point 4/above, outer point 5/below, outer point 6/above,
+     outer point 7/left,  outer point 8/above, outer point 9/above,
+     inner point 1/below, inner point 2/above, inner point 3/left,
+     inner point 4/above, inner point 5/above, inner point 6/above,
+     inner point 7/below, inner point 8/above, inner point 9/below,
+     center/above, text/left,   mid/right, base/below, 80/above,
+     north/below,  south/below, east/left, west/right,
+     north east/below, south west/below, south east/below, north west/below}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -776,17 +1812,47 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b9fdb341862f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  [every node/.style={signal, draw,  text=white, signal to=nowhere}]
+  \node[fill=green!65!black, signal to=east] at (0,1) {To East};
+  \node[fill=red!65!black, signal from=east] at (0,0) {From East};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 878. Other Example
+## 878. Node Graph Example
 
 **ID**: `9c9d513e2705`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=signal, signal from=west, shape example, inner sep=2cm]
+    {Signal\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/left,   center/above,    70/above,
+     base/below,  base east/below, base west/below,
+     mid/right,   mid east/above left,  mid west/above left,
+     north/above,      south/below,
+     east/above,       west/above,
+     north west/above, north east/above,
+     south west/below, south east/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -796,17 +1862,38 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `9961d3ffb964`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[tape, draw]{ABCD};
+  \node[tape, draw, tape bend top=none] at (1.5, 0) {EFGH};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 880. Other Example
+## 880. Node Graph Example
 
 **ID**: `bfda68ee4f94`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[-stealth]
+  \node[tape, draw, gray, minimum width=2cm](t){Tape};
+  \draw [blue]([yshift=5pt] t.north west) -- ([yshift=5pt]t.north east)
+         node[midway, above, black]{in and out};
+  \draw [blue]([yshift=-5pt]t.south east) -- ([yshift=-5pt]t.south west)
+         node[sloped, allow upside down, midway, above, black]{in and out};
+\end{tikzpicture}
+```
 
 
 ---
@@ -816,27 +1903,67 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8b74470e97cd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={tape, draw}]
+  \node [tape bend top=out and in, tape bend bottom=out and in] {Parallel};
+  \node at (2,0) [tape bend bottom=out and in]                  {Why?};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 882. Other Example
+## 882. Node Graph Example
 
 **ID**: `4c15cd886786`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth]
+  \draw [help lines] grid(3,2);
+  \node [tape, fill, minimum size=2cm, red!50, tape bend top=none,
+         tape bend height=1cm] at (1.5,1.5) (t) {};
+  \draw [|<->|, blue] (1.5,0) -- (1.5,1)
+         node [at end, above, black]{tape bend height};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 883. Other Example
+## 883. Node Graph Example
 
 **ID**: `a23dfb21526b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=tape, tape bend height=1cm, shape example, inner xsep=3cm]
+    {Tape\vrule width1pt height2cm};
+   \foreach \anchor/\placement in
+    {text/left,  center/above,    60/above,
+     base/below, base east/below, base west/below,
+     mid/right,  mid east/left,   mid west/right,
+     north/above, south/below,  east/above, west/above,
+     north west/above, north east/above,
+     south west/below, south east/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -846,7 +1973,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ce704ce6e9d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz\node [magnetic tape, draw] (A) {A};
+```
 
 
 ---
@@ -856,7 +1989,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `3e9fefe344be`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={magnetic tape, draw}]
+  \node [magnetic tape tail extend=0cm]    at (0,0) {A};
+  \node [magnetic tape tail extend=0.25cm] at (0,1) {B};
+\end{tikzpicture}
+```
 
 
 ---
@@ -866,17 +2008,47 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e5ec28abcdba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={magnetic tape, draw}]
+  \node [magnetic tape tail=0.5, magnetic tape tail extend=0.5cm] {A};
+  \node [magnetic tape tail=0.25] at (0,1) {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 887. Other Example
+## 887. Node Graph Example
 
 **ID**: `a123defcee51`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+\node[name=s,shape=magnetic tape,shape example,inner sep=0.75cm,
+magnetic tape tail extend=0.5cm]
+  {Magnetic Tape\vrule width 1pt height 2cm};
+\foreach \anchor/\placement in
+  {north west/above left, north/above, north east/above right,
+  west/left, center/above, east/right,
+  mid west/right, mid/right, mid east/left,
+  base west/below, base/below, base east/right,
+  south west/below left, south/below, south east/left,
+  text/left, 10/right, 130/above,
+  tail east/right, tail south east/below, tail north east/above}
+    \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+      node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -886,27 +2058,63 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d53e047841ff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={single arrow, draw},
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node {right};
+  \node at (2,0) [shape border rotate=90]{up};
+  \node at (1,1) [rotate border=37, inner sep=0pt]{$37^\circ$};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 889. Other Example
+## 889. Node Graph Example
 
 **ID**: `815cedb7436d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth,
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node[rotate border=-30, fill=gray!25, minimum height=3cm, single arrow,
+    single arrow head extend=.5cm, single arrow head indent=.25cm] (arrow) {};
+  \draw[red, <->] (arrow.before tip) -- (arrow.after tip)
+    node [near end, left, black] {width};
+  \draw[red, <->] (arrow.tip) -- (arrow.tail)
+    node [near end, below left, black] {height};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 890. Other Example
+## 890. Node Graph Example
 
 **ID**: `6b28184b00d1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[single arrow, draw, single arrow head extend=.5cm, gray!50, rotate=60]
+     (a) {Arrow};
+  \draw[red, |<->|] (a.before tip) -- (a.before head)
+    node [midway, below, sloped, black] {head extend};
+\end{tikzpicture}
+```
 
 
 ---
@@ -916,17 +2124,46 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d7c82a2557fe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={single arrow, draw=none, rotate=60}]
+  \node [fill=red!50]                                           {arrow 1};
+  \node [fill=blue!50, single arrow head indent=1ex] at (1.5,0) {arrow 2};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 892. Other Example
+## 892. Node Graph Example
 
 **ID**: `d253149e0836`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=single arrow, shape example, single arrow head extend=1.5cm]
+    {Single Arrow\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/above,      center/above, 20/above,
+     mid west/left,   mid/above,    mid east/above left,
+     base west/below, base/below,   base east/below,
+     tip/above, before tip/above, after tip/below, before head/above,
+     after head/below, after tail/above, before tail/below, tail/right,
+     north/above, south/below, east/below, west/above,
+     north west/above, north east/below, south west/below, south east/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -936,17 +2173,39 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `92e1b912fbda`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={double arrow, draw}]
+  \node [double arrow, draw] {Left or Right};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 894. Other Example
+## 894. Node Graph Example
 
 **ID**: `940ad28ab901`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[>=stealth,
+    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
+  \node[rotate border=210, fill=gray!25, minimum height=3cm, double arrow,
+    double arrow head extend=.5cm, double arrow head indent=.25cm] (arrow) {};
+  \draw[red, <->] (arrow.before tip 1) -- (arrow.after tip 1)
+    node [near start, right, black] {width};
+  \draw[red, <->] (arrow.tip 1) -- (arrow.tip 2)
+    node [near end, above left, black] {height};
+\end{tikzpicture}
+```
 
 
 ---
@@ -956,17 +2215,46 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `2bc454896c36`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={double arrow, draw=none, rotate=-60}]
+  \node [fill=red!50]                                           {arrow 1};
+  \node [fill=blue!50, double arrow head indent=1ex] at (1.5,0) {arrow 2};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 896. Other Example
+## 896. Node Graph Example
 
 **ID**: `de66d3326bc5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=double arrow, double arrow head extend=1.5cm, shape example, inner xsep=2cm]
+    {Double Arrow\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/above, center/above, 20/above,
+     mid west/above right, mid/above, mid east/above left,
+     base west/below, base/below, base east/below,
+     before head 1/above, before tip 1/above, tip 1/above, after tip 1/below, after head 1/below,
+     before head 2/above, before tip 2/below, tip 2/above, after tip 2/above, after head 2/below,
+     north/above, south/below, east/below, west/below,
+     north west/below, north east/below, south west/above, south east/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -976,27 +2264,75 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `46d934ba8dff`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[arrow box, draw] {A};
+  \node[arrow box, draw, arrow box arrows={north:.5cm, west:0.75cm}]
+    at (2,0) {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 898. Other Example
+## 898. Node Graph Example
 
 **ID**: `ec73239e4f1d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \tikzset{box/.style={arrow box, fill=#1}}
+    \draw [help lines] grid(3,2);
+  \node[box=blue!50, arrow box arrows={east:2cm}]             at (1,1.5){One};
+  \node[box=red!50,  arrow box arrows={east:2cm from center}] at (1,0.5){Two};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 899. Other Example
+## 899. Node Graph Example
 
 **ID**: `734e8444146d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[shape=arrow box, shape example, inner xsep=1cm, inner ysep=1.5cm, arrow box shaft width=2cm,
+    arrow box arrows={north:3.5cm from border, south, east:5cm from border, west},
+    arrow box head extend=0.75cm, rotate=-90](s) {Arrow Box\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+   {center/above, text/above, mid/right, base/below, 75/above,
+    mid east/right, mid west/left, base east/right, base west/left,
+    north/below, south/below, east/below, west/below,
+    north east/above, south east/above, south west/below, north west/below,
+    north arrow tip/above,south arrow tip/above, east arrow tip/above, west arrow tip/above,
+    before north arrow/above, before north arrow head/below left, before north arrow tip/above left,
+    after north arrow tip/above right, after north arrow head/below right, after north arrow/below,
+    before south arrow/below, before south arrow head/above right, before south arrow tip/below right,
+    after south arrow tip/below left, after south arrow head/above left, after south arrow/above,
+    before east arrow/above, before east arrow head/above right, before east arrow tip/above,
+    after east arrow tip/below, after east arrow head/below right, after east arrow/below,
+    before west arrow/below, before west arrow head/below left, before west arrow tip/below,
+    after west arrow tip/above, after west arrow head/above left, after west arrow/below}
+      \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+        node[\placement, rotate=-90] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1006,17 +2342,48 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `5122a4a1f6c8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [circle split,draw,double,fill=red!20]
+  {
+    $q_1$
+    \nodepart{lower}
+    $00$
+  };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 901. Other Example
+## 901. Node Graph Example
 
 **ID**: `e71439921a54`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circle split,shape example] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1026,37 +2393,101 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `c2ec955c8e79`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node [circle solidus,draw,double,fill=red!20]
+  {
+    $q_1$
+    \nodepart{lower}
+    $00$
+  };
+\end{tikzpicture}
+```
 
 
 ---
 
-## 903. Other Example
+## 903. Node Graph Example
 
 **ID**: `25a8f6b34ddf`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=circle solidus,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 904. Other Example
+## 904. Node Graph Example
 
 **ID**: `5db383b91bed`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=ellipse split,shape example] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {center/below, text/left, lower/left, 60/above right,
+     mid/above, mid east/above, mid west/above,
+     base/right, base east/left, base west/right,
+     north/above, south/below, east/below, west/below,
+     north east/above, south east/below, south west/below, north west/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 905. Other Example
+## 905. Node Graph Example
 
 **ID**: `762c51f2edbd`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=diamond split,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/below, east/right, mid/above, base/below,
+     south west/below left, south/below, south east/below right,
+     text/left, lower/left, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1066,7 +2497,23 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `dc61fe9e82a2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[my shape/.style={
+  rectangle split, rectangle split parts=#1, draw, anchor=center}]
+  \node [my shape=5] at (0,1)
+    {a\nodepart{two}b\nodepart{three}c\nodepart{four}d\nodepart{five}e};
+  \node [my shape=5, rectangle split horizontal] at (2,2)
+    {1\nodepart{two}2\nodepart{three}3\nodepart{four}4\nodepart{five}5};
+  \node [my shape=3] at (3,0.5)
+    {A\nodepart{two}B\nodepart{three}C};
+  \node [my shape=4, rectangle split horizontal] at (1.5,0.5)
+    {1\nodepart{two}2\nodepart{three}3\nodepart{four}4};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1076,7 +2523,22 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7ad1308036c1`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every text node part/.style={align=center}]
+  \node[rectangle split, rectangle split parts=3, draw, text width=2.75cm]
+    {Student
+     \nodepart{two}
+       age:int \\
+       name:String
+     \nodepart{three}
+       getAge():int \\
+       getName():String};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1086,7 +2548,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `0d5d15b4f880`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[every node/.style={draw, anchor=text, rectangle split,
+    rectangle split parts=3}]
+  \node {text \nodepart{second} \nodepart{third}third};
+  \node [rectangle split ignore empty parts] at (2,0)
+        {text \nodepart{second} \nodepart{third}third};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1096,7 +2569,21 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `2765fd29131c`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\x{one \nodepart{two} 2 \nodepart{three} three \nodepart{four} 4}
+\begin{tikzpicture}[
+  every node/.style={rectangle split, rectangle split parts=4,
+    draw}
+  ]
+  \node[rectangle split part align={center, left, right}] at (0,0)    {\x};
+  \node[rectangle split part align={center, left}]        at (1.25,0) {\x};
+  \node[rectangle split part align={center}]              at (2.5,0)  {\x};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1106,7 +2593,22 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `2014a43fa521`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\def\x{\Large w\nodepart{two}x\nodepart{three}\Huge y\nodepart{four}\tiny z}
+\begin{tikzpicture}[
+  every node/.style={rectangle split, rectangle split parts=4,
+    draw, rectangle split horizontal}
+  ]
+  \node[rectangle split part align={center, top, bottom}] at (0,0)     {\x};
+  \node[rectangle split part align={center, top}]         at (0,-1.25) {\x};
+  \node[rectangle split part align={center}]              at (0,-2.5)  {\x};
+  \node[rectangle split part align=base]                  at (0,-3.75) {\x};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1116,17 +2618,54 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `853347b308f0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={rectangle split, draw, minimum width=.5cm}}
+  \node[rectangle split part fill={red!50, green!50, blue!50, yellow!50}]  {};
+  \node[rectangle split part fill={red!50, green!50, blue!50}] at (0.75,0) {};
+  \node[rectangle split part fill={red!50, green!50}]          at (1.5,0)  {};
+  \node[rectangle split part fill={red!50}]                    at (2.25,0) {};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 912. Other Example
+## 912. Node Graph Example
 
 **ID**: `112ac5548178`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rectangle split, rectangle split parts=4, shape example,
+    inner ysep=0.75cm]
+    {\nodepart{text}text\nodepart{two}two
+        \nodepart{three}three\nodepart{four}four};
+  \foreach \anchor/\placement in
+    {text/left, text east/above, text west/above,
+     two/left, two east/above, two west/above,
+     three/left, three east/below, three west/below,
+     four/left, four east/below, four west/below,
+     text split/left, text split east/above, text split west/above,
+     two split/left, two split east/above, two split west/above,
+     three split/left, three split east/below, three split west/below,
+     north/above, south/below, east/below, west/below,
+     north west/above, north east/above, south west/below, south east/below,
+     center/above, 70/above, mid/above, base/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1136,47 +2675,122 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7b2cf55486f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[remember picture]
+  \node[ellipse callout, draw] (hallo) {Hallo!};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 914. Other Example
+## 914. Node Graph Example
 
 **ID**: `e37075630525`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}[remember picture, note/.style={rectangle callout, fill=#1}]
+  \draw [help lines] grid(3,2);
+  \node [note=red!50,  callout relative pointer={(0,1)}] at (3,1) {Relative};
+  \node [note=blue!50, callout absolute pointer={(0,1)}] at (1,0) {Absolute};
+  \node [note=green!50, opacity=.5, overlay,
+         callout absolute pointer={(hallo.south)}]       at (1,2) {Outside};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 915. Other Example
+## 915. Node Graph Example
 
 **ID**: `88a7920749de`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+    \tikzset{callout/.style={ellipse callout, callout pointer arc=30,
+      callout absolute pointer={#1}}}
+  \draw (0,0) grid (3,2);
+  \node[callout={(3,1.5)}, fill=red!50] at (0,1.5) {A};
+  \node[callout={(3,.5)},  fill=green!50, callout pointer shorten=1cm]
+    at (0,.5)  {B};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 916. Other Example
+## 916. Node Graph Example
 
 **ID**: `8507bd04760e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rectangle callout, callout relative pointer={(1.25cm,-1cm)},
+     callout pointer width=2cm, shape example, inner xsep=2cm, inner ysep=1cm]
+      {Rectangle Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      60/above,
+     mid/right,    mid west/left,  mid east/right,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above, north east/above,
+     south west/below, south east/below,
+     pointer/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 917. Other Example
+## 917. Node Graph Example
 
 **ID**: `aeed8d5c36eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=ellipse callout, callout relative pointer={(1.25cm,-1cm)},
+    callout pointer width=2cm, shape example, inner xsep=1cm, inner ysep=.5cm]
+      {Ellipse Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      60/above,
+     mid/above,    mid west/right,  mid east/left,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above left,    north east/above right,
+     south west/below left,    south east/below right,
+     pointer/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1186,27 +2800,67 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `bdfdcd232deb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[cloud callout, cloud puffs=15, aspect=2.5, cloud puff arc=120,
+    shading=ball,text=white] {\bf Imagine...};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 919. Other Example
+## 919. Node Graph Example
 
 **ID**: `52c7d979a6f9`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s, shape=cloud callout, style=shape example, cloud puffs=11, aspect=1.5,
+    cloud puff arc=120,inner xsep=.5cm, callout pointer start size=.25 of callout,
+    callout pointer end size=.15 of callout, callout relative pointer={(315:4cm)},
+    callout pointer segments=2] {Cloud Callout\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {puff 1/above, puff 2/above, puff 3/above, puff 4/below,
+     puff 5/left, puff 6/below, puff 7/below, puff 8/right,
+     puff 9/below, puff 10/above, puff 11/above, 70/right,
+     center/above, base/below, mid/right, text/left,
+     north/below, south/below, east/above, west/above,
+     north west/left, north east/right,
+     south west/below, south east/below,pointer/above}
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 920. Other Example
+## 920. Node Graph Example
 
 **ID**: `684fed3d46ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \draw [help lines] (0,0) grid (3,2);
+  \node [cross out,draw=red] at (1.5,1) {cross out};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1216,17 +2870,41 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ae6914ea035d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Cross \tikz[baseline] \node [cross out,draw,anchor=text] {me}; out!
+```
 
 
 ---
 
-## 922. Other Example
+## 922. Node Graph Example
 
 **ID**: `1e873ffa2a35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=cross out,shape example] {cross out\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1236,7 +2914,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `6eb8601940e3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+Strike \tikz[baseline] \node [strike out,draw,anchor=text] {me}; out!
+```
 
 
 ---
@@ -1246,7 +2930,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8cade7d224e2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[rounded rectangle, draw, fill=red!20]{Hallo};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1256,7 +2948,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `6b13170d36c6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \matrix[row sep=5pt, every node/.style={draw, rounded rectangle}]{
+    \node[rounded rectangle arc length=180] {180}; \\
+    \node[rounded rectangle arc length=120] {120}; \\
+    \node[rounded rectangle arc length=90]  {90};  \\};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1266,17 +2969,47 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ae4bf9374802`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \matrix[row sep=5pt, every node/.style={draw, rounded rectangle}]{
+    \node[rounded rectangle west arc=concave] {Concave}; \\
+    \node[rounded rectangle west arc=convex]  {Convex};  \\
+    \node[rounded rectangle left arc=none]    {None};    \\};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 927. Other Example
+## 927. Node Graph Example
 
 **ID**: `ffb90181bf35`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=rounded rectangle, shape example, inner xsep=1.5cm, inner ysep=1cm]
+      {Rounded Rectangle\vrule width 1pt height 2cm};
+  \foreach \anchor/\placement in
+    {center/above, text/below,      10/above,
+     mid/above,    mid west/right,  mid east/left,
+     base/below,   base west/below, base east/below,
+     north/above,  south/below, east/above, west/above,
+     north west/above left,    north east/above right,
+     south west/below left,    south east/below right}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1286,7 +3019,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b9149569974a`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \node[chamfered rectangle, white, fill=red, double=red, draw, very thick]
+    {\bf STOP!};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1296,7 +3038,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `2f079e93b8f2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle angle=30] {abc};
+  \node[chamfered rectangle angle=60] at (1.5,0) {123};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1306,7 +3058,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `894b44a1b215`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle xsep=2pt] {def};
+  \node[chamfered rectangle xsep=2cm] at (1.5,0) {456};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1316,17 +3078,49 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `7ab35a3719b0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \tikzset{every node/.style={chamfered rectangle, draw}}
+  \node[chamfered rectangle corners=north west] {ghi};
+  \node[chamfered rectangle corners={north east, south east}] at (1.5,0) {789};
+\end{tikzpicture}
+```
 
 
 ---
 
-## 932. Other Example
+## 932. Node Graph Example
 
 **ID**: `702319c49090`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\Huge
+\begin{tikzpicture}
+  \node[name=s,shape=chamfered rectangle, chamfered rectangle sep=1cm,
+        shape example, inner ysep=1cm, inner xsep=.75cm]
+    {Chamfered Rectangle\vrule width1pt height2cm};
+  \foreach \anchor/\placement in
+    {text/right, center/above,    70/above,
+     base/below, base east/left, base west/right,
+     mid/right,  mid east/above,   mid west/above,
+     north/above, south/below, east/above, west/above,
+     before north east/above, north east/above, after north east/above,
+     before north west/above, north west/above, after north west/above,
+     before south west/below, south west/below, after south west/below,
+     before south east/below, south east/below, after south east/below}
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
+\end{tikzpicture}
+```
 
 
 ---
@@ -1337,6 +3131,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This macro starts a \ scope inside which the following things happen: enumerate The display layer method |beginGraphDrawingScope| is called, which created a new graph drawing scope inside the graph drawing system and places it on top of an internal stack. From now on, all subsequent interface calls will refer to this scope until || is called, which will pop the scope once more. Inside the \ scope, nodes are not placed immediately. Rather, ||, see Section~section-shapes-deferred-node-positioning,
+
 
 ---
 
@@ -1345,6 +3143,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d1c40eb9be7e`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This macro is used to end a graph drawing scope. It must be given on the same \ grouping level as the corresponding ||. When the macro is called, it triggers a lot of new calls: enumerate The special treatment of newly created boxes is ended. Nodes are once more created normally. The effects of the code that was inserted via the specification hook command also ends (provided it had no global effects). We call |InterfaceToDisplay.runGraphDrawingAlgorithm|. This will cause the algorithm(s) for the
 
 
 ---
@@ -1355,6 +3157,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+second nodeedge directionedge optionsedge nodes} This command is used to tell the graph drawing engine that there is an edge between first node and second node in your graph. The ``kind'' of connection is indicated by direction, which may be one of the following: itemize |->| indicates a directed edge (also known as an arc) from first node to second node. |--| indicates an undirected edge between first node and second node, |<-| indicates a directed edge from second node to first node, but with 
+
 
 ---
 
@@ -1363,6 +3169,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `c0319807db36`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command allows you to change the macro that gets called form inside the graph drawing system at the end of the creation of a graph, when the nodes have been positioned. The macro will be called once for each edge with the following parameters: quote macrofirst nodesecond nodedirectionedge optionsedge nodes\\ algorithm-generated optionsbend informationanimations quote The first five parameters are the original values that were passed down to the || command. The algorithm-generated options 
 
 
 ---
@@ -1373,6 +3183,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+This command first starts a new \ scope and then informs the display layer that a new (sub)layout should be started. For each graph there may be a hierarchy of layouts, each of which contains a certain number of vertices and edges. This hierarchy is created through calls to this macros and the corresponding calls of ||. For each graph drawing scope there has to be exactly one main layout that encompasses all nodes and edges and also all sublayouts. Thus, after a graph drawing scope has been open
+
 
 ---
 
@@ -1381,6 +3195,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `25196ec95670`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+This command ends the \ scope of the current layout. Once closed, no nodes or edges can be added to a layout.
 
 
 ---
@@ -1391,6 +3209,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+} This command can only be called when the node named node name has already been created inside the current graph drawing scope. The effect of calling this macro will be that all options currently on the graph drawing system's option stack will be added to the node's option, possibly overwriting the original option settings. Furthermore, the node will become part of all layouts currently on the option stack. This means that you can use this command to add a node to several layouts that are not i
+
 
 ---
 
@@ -1399,6 +3221,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `55684a3a30ca`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} This command sets up macro as the macro that is called whenever a layout key ``requests'' that a layout and, possibly, a graph drawing scope is opened. When macro is called, it gets two parameters, the begin code and the end code. In addition to whatever setup the macro would like to do, it should execute the begin code at the beginning of a \ scope (the code will open graph drawing and layout scopes) and the end code at the end of the same \ scope. The need for this slightly strange macro ari
 
 
 ---
@@ -1409,6 +3235,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+parameter} Calls |createEvent| of the graph drawing system's interface class. This creates a new |Event| object on the Lua layer whose |kind| field is set to kind and the |parameters| field to parameter. You must be inside a graph drawing scope to use this command.
+
 
 ---
 
@@ -1417,6 +3247,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `4a2fb527e220`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Starts an event group. This just means that an |Event| of kind |begin| is created with the given parameter.
 
 
 ---
@@ -1427,6 +3261,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+Ends an event group. This is done by adding an event of kind |end| without any parameters to the event string.
+
 
 ---
 
@@ -1435,6 +3273,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `6d86401476a9`  
 **Type**: command  
 **Package**: tikz-pgf  
+
+### Description
+
+} Starts an event group just like ||, but adds a corresponding closing |end| event at the end of the current \ group (using ||).
 
 
 ---
@@ -1445,6 +3287,10 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **Type**: command  
 **Package**: tikz-pgf  
 
+### Description
+
+node optionsnode text} A subgraph node is a node that ``surrounds'' the nodes of a subgraph. The special property of a subgraph node opposed to a normal node is that it is created only after the subgraph has been laid out. However, the difference to a collection like |hyper| is that the node is available immediately as a normal node in the sense that you can connect edges to it. What happens internally is that subgraph nodes get ``registered'' immediately both on the \ level and on the Lua level
+
 
 ---
 
@@ -1453,17 +3299,34 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `72cdcc7665a6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz[tree layout]
+  \graph {root [as=Hello] -> World[fill=blue!20]};
+```
 
 
 ---
 
-## 947. Other Example
+## 947. Node Graph Example
 
 **ID**: `cf2b7e25b791`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: node_graph  
+
+### Code
+
+```latex
+\tikz [spring layout] {
+  \node (a) {a};
+  \node (b) {b};
+  \draw (a) -- (b);
+}
+```
 
 
 ---
@@ -1473,7 +3336,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8ca84b619b34`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+/tikz/.cd, color=red, very thick, orient=down
+```
 
 
 ---
@@ -1483,7 +3352,27 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `bdb38e1aab57`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [tree layout] \graph        {1 -> {b,c}};
+\tikz \graph [tree layout]        {2 -> {b,c}};
+\tikz \path graph [tree layout]   {3 -> {b,c}};
+
+\begin{tikzpicture}[tree layout]
+  \graph                          {4 -> {b,c}};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \scoped [tree layout] \graph    {5 -> {b,c}};
+
+  \begin{scope}[tree layout, xshift=1.5cm]
+    \graph                        {6 -> {b,c}};
+  \end{scope}
+\end{tikzpicture}
+```
 
 
 ---
@@ -1493,7 +3382,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e2fd1aaf8b8e`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}
+  \scoped [tree layout]
+    \node {root}
+    child { node {left child} }
+    child { node {right child} };
+\end{tikzpicture}
+```
 
 
 ---
@@ -1503,7 +3403,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `abe17da711e0`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [tree layout]
+  \node {root}
+  child { node {left child} }
+  child { node {right child} };
+```
 
 
 ---
@@ -1513,7 +3422,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `2214a67a15b4`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \graph [tree layout] { root -- {left child, right child} };
+```
 
 
 ---
@@ -1523,7 +3438,33 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `3f06f4291414`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{tikzpicture}[
+    animate/orbit/.style 2 args = {
+        myself:shift = {
+          along = {
+            (0,0) circle [radius=#1]
+          } sloped in #2s/10,
+          repeats }} ]
+
+ \node :color = {0s = "orange",
+                 2s = "red",
+                 4s = "orange",
+                 repeats}
+       {Sun};
+
+  \begin{scope}[animate={orbit={2.5cm}{365}}]
+    \node {Earth};
+    \node [animate={orbit={1cm}{28}}] {Moon};
+  \end{scope}
+
+  \useasboundingbox (-3.8,-3.8) (3.8,3.8);
+\end{tikzpicture}
+```
 
 
 ---
@@ -1533,7 +3474,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `3d8c7bad7d10`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \draw :xshift = {0s = "0cm", 30s = "-3cm", repeats} (0,0) circle (5mm);
+```
 
 
 ---
@@ -1543,7 +3490,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `eb56d3052fe5`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [fill, text = white, animate = {
+  myself:fill = {0s = "red", 2s = "blue", begin on = click }}] {Click me};
+```
 
 
 ---
@@ -1553,7 +3507,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `61dc0bd49072`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {a node:fill = {0s = "red", 2s = "blue",
+                                 begin on = click}}]
+  \node (a node) [fill, text = white] {Click me};
+```
 
 
 ---
@@ -1563,7 +3525,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ac72db57e79f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikzset{
+  animate/shake/.style = {myself:xshift = { begin on=click,
+      0s = "0mm", 50ms = "#1", 150ms = "-#1", 250ms = "#1", 300ms = "0mm" }}}
+\tikz \node [fill = blue!20, draw=blue, very thick, circle,
+  animate = {shake = 1mm}] {Shake};
+\tikz \node [fill = blue!20, draw=blue, very thick, circle,
+  animate = {shake = 2mm}] {SHAKE};
+```
 
 
 ---
@@ -1573,7 +3547,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ffbc4a0a08b7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node, attribute = fill, time = 0s, value = red, entry,
+  object = node, attribute = fill, time = 2s, value = blue, entry,
+  object = node, attribute = fill, begin on = click, entry}]
+  \node (node) [fill, text=white] { Click me };
+```
 
 
 ---
@@ -1583,7 +3567,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d45fad9f5a2b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node, attribute = fill, time = 0s, value = red, entry,
+                                   time = 2s, value = blue, entry,
+                                   begin on = click, entry}]
+  \node (node) [fill, text=white] { Click me };
+```
 
 
 ---
@@ -1593,7 +3587,22 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a9e5bbedd658`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  object = node,  attribute = fill, time = 0s, value = red, entry,
+  object = node2, attribute = draw, entry,
+  object = node,  attribute = fill, time = 2s, value = blue, entry,
+  object = node2, attribute = draw, entry,
+  object = node,  attribute = fill, begin on = click, entry,
+  object = node2, attribute = draw, begin on = click, entry}] {
+  \node (node)  [fill, text=white]            { Node 1 };
+  \node (node2) [draw, ultra thick] at (0,-1) { Node 2 };
+}
+```
 
 
 ---
@@ -1603,7 +3612,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `16d852e0627b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = { object = b, :fill = {0s = "red", 2s = "blue",
+                                        begin on = click }}] {
+  \node (a) [fill, text = white, minimum width=1.5cm] at (0,1cm) {a};
+  \node (b) [fill, text = white, minimum width=1.5cm] at (0,5mm) {b};
+  \node (c) [fill, text = white, minimum width=1.5cm] at (0,0mm) {c}; }
+```
 
 
 ---
@@ -1613,7 +3632,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ef53d8aa59ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = { object = b, :fill = {0s = "red", 2s = "blue",
+                                        begin on = click },
+                   object = c, :fill = {0s = "green", 2s = "blue",
+                                        begin on = click } }] {
+  \scoped [name = a, yshift=1cm] \fill (0,0) rectangle (1.5cm,2mm);
+  \scoped [name = b, yshift=5mm] \fill (0,0) rectangle (1.5cm,2mm);
+  \scoped [name = c, yshift=0mm] \fill (0,0) rectangle (1.5cm,2mm); }
+```
 
 
 ---
@@ -1623,7 +3654,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `382e41a0f757`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {attribute = fill, n: = { 0s = "red", 2s = "blue",
+                                           begin on = click } }]
+  \node (n) [fill, text = white] {The node};
+```
 
 
 ---
@@ -1633,7 +3672,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `74eddb7816ba`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {
+  id = 1, n:shift = { 0s = "{(0,0)}", 2s = "{(0,5mm)}", begin on = click },
+  id = 2, n:shift = { 0s = "{(0,0)}", 2s = "{(5mm,0)}", begin on = click }
+}]
+  \node (n) [fill = blue!20, draw=blue, very thick] {The node};
+```
 
 
 ---
@@ -1643,7 +3692,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `47a5201f34f3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :fill = { begin on = click,
+    0s = "white",
+    500ms later = "red",
+    500ms later = "green",  % same as 1s   = "-5mm"
+    500ms later = "blue"} % same as 1.5s = "-2.5mm"
+  [fill=blue!20, draw=blue, very thick, circle] {Click me};
+```
 
 
 ---
@@ -1653,7 +3713,23 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `daea2e1a4112`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+time = 2s,
+time = 1s later,    % same as time = 3s
+time = 500ms later, % same as time = 3.5s
+time = 4s,
+time = 1s later,    % same as time = 5s
+scope = {           % opens a local scope
+  time = 1s later,  % same as time = 6s
+  time = 10s
+  time = 1s later   % same as time = 11s
+},                  % closes the scope, most recent time is 5s once more
+time = 2s later     % same as time = 7s
+```
 
 
 ---
@@ -1663,7 +3739,20 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `57c5058f034b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate/highlight/.style = {
+    scope = { fork = #1,
+              :fill = { 0s = "black", 0.1s = "white", 0.2s = "black"} }
+  }]
+  \node [animate = { myself: = {
+            :fill = { 0s = "black", begin on = click },
+                      highlight = 1s, highlight = 2s } },
+         fill = blue, text=white, very thick, circle] { Click me };
+```
 
 
 ---
@@ -1673,7 +3762,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `9809c2e76726`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+time = 2s,
+fork = 2s later,    % fork time is now 4s
+time = 1s,          % local time is 1s, absolute time is 5s (1s + fork time)
+time = 1s later,    % local time is 2s, absolute time is 6s (2s + fork time)
+remember = \mytime  % \mytime is now 6s
+```
 
 
 ---
@@ -1683,7 +3782,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ebcc809df3d2`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+fork = 4s,
+time = 1s,
+remember = \mytime  % \mytime is now 5s
+fork = 2s,          % fork time is now 2s, local time is 0s
+resume   = \mytime  % fork time is still 2s, local time is 3s
+```
 
 
 ---
@@ -1693,7 +3802,31 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `68723642240f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+scope = {
+  fork,
+  time = 1s later,
+  ...
+  remember = \forka
+},
+scope = {
+  fork,
+  time = 5s later,
+  ...
+  remember = \forkb
+},
+scope = {
+  fork,
+  time = 2s later,
+  ...
+  remember = \forkc
+},
+resume = {max(\forka,\forkb,\forkc)} % "join" the three forks
+```
 
 
 ---
@@ -1703,7 +3836,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b05c6817bf46`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = { obj:color = { 0s = "current value", 2s = "white" } }
+```
 
 
 ---
@@ -1713,7 +3852,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d28e023bbc55`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node [animate = { myself: = { begin on = click,
+    scope = { attribute = fill, repeats = 3, 0s = "red", 2s = "red!50" },
+    scope = { attribute = draw,              0s = "red", 2s = "red!50" }
+  }},
+  fill=blue!20, draw=blue, very thick, circle] {Click me};
+```
 
 
 ---
@@ -1723,7 +3872,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `c11d56e2c5bc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  mynode:opacity    = { 0s = "1",   5s = "0" },
+  mynode:color      = { 0s = "red", 5s = "blue" },
+  othernode:opacity = { 0s = "1",   5s = "0" },
+}
+```
 
 
 ---
@@ -1733,7 +3892,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `12baeacbf2cc`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  mynode: = {
+    :opacity        = { 0s = "1",   5s = "0" },
+    :color          = { 0s = "red", 5s = "blue" }
+  },
+  othernode:opacity = { 0s = "1",   5s = "0" },
+}
+```
 
 
 ---
@@ -1743,7 +3914,19 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `0f1abe096360`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  :opacity = {
+    mynode:         = { 0s = "1",   5s = "0" },
+    othernode:      = { 0s = "1",   5s = "0" }
+  },
+  mynode:color      = { 0s = "red", 5s = "blue" }
+}
+```
 
 
 ---
@@ -1753,7 +3936,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a39b8666f2ce`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  {mynode,othernode}:opacity = { 0s = "1",   5s = "0" },
+  mynode:color               = { 0s = "red", 5s = "blue" }
+}
+```
 
 
 ---
@@ -1763,7 +3955,20 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `0c4e7c57f76f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\begin{scope} [animate = {
+                 myself: = { % Animate the attribute of the scope
+                   :opacity = { ... },
+                   :xshift  = { ... }
+                 }
+               }]
+  ...
+\end{scope}
+```
 
 
 ---
@@ -1773,7 +3978,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8737609d9ecb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+[animate = { myself: = { :some attribute = {...} } } ]
+```
 
 
 ---
@@ -1783,7 +3994,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `0042d285c28d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Here!};
+```
 
 
 ---
@@ -1793,7 +4012,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e36564c1e446`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  :rotate = { 0s="0", 2s="90", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Here!};
+```
 
 
 ---
@@ -1803,7 +4031,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `e8eebb622968`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node
+  :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle]
+  :rotate = { 0s="0", 2s="90", begin on=click } {Here!};
+```
 
 
 ---
@@ -1813,7 +4050,16 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `5e36c60944eb`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz  :fill opacity = { 0s="1", 2s="0", begin on=click }
+       :rotate = { 0s="0", 2s="90", begin on=click }
+       [ultra thick]
+  \node [fill = blue!20, draw = blue, circle] {Here!};
+```
 
 
 ---
@@ -1823,7 +4069,13 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `5e7e49c950d3`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+sync = { time = 1s, sync = { value = red, entry }, entry }
+```
 
 
 ---
@@ -1833,7 +4085,21 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `05feededaad6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj:color = {
+    0s = "red",
+    2s = "blue",
+    1s later = "green",
+    1s later = "green!50!black",
+    10s = "black"
+  }
+}
+```
 
 
 ---
@@ -1843,7 +4109,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a302c12dd306`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj: = {
+    :color = { 0s = "red", 2s = "green" },
+    :opacity = { 0s = "1", 2s = "0" }
+  }
+}
+```
 
 
 ---
@@ -1853,7 +4130,22 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d0cf1beef2ca`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  0s = {
+    obj:color = "red",
+    obj:opacity = "1"
+  },
+  2s = {
+    obj:color = "green",
+    obj:opacity = "0"
+  }
+}
+```
 
 
 ---
@@ -1863,7 +4155,24 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `bd23a9488996`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  obj: = {
+    0s = {
+      :color = "red",
+      :opacity = "1"
+    },
+    2s = {
+      :color = "green",
+      :opacity = "0"
+    }
+  }
+}
+```
 
 
 ---
@@ -1873,7 +4182,32 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `f07d9624f348`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+animate = {
+  0s = {
+    obj: = {
+      :color = "red",
+      :opacity = "1"
+    },
+    main node: = {
+      :color = "black"
+    }
+  },
+  2s = {
+    obj: = {
+      :color = "green",
+      :opacity = "0"
+    },
+    main node: = {
+      :color = "white"
+    }
+  }
+}
+```
 
 
 ---
@@ -1883,7 +4217,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a2e1dd7c78e6`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz :fill = {0s = "red", 2s = "blue", begin on = click}
+      [text = white, fill = orange ] {
+  \node [fill]                   at (0mm,0) {A};
+  \node [fill]                   at (5mm,0) {B};
+  \node [fill = green!50!black ] at (1cm,0) {C};
+}
+```
 
 
 ---
@@ -1893,7 +4238,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `18ca65620190`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [my anim/.style={ animate = {
+           myself:text = {0s = "red", 2s = "blue", begin on = click}}},
+       text = white, fill = orange ] {
+  \node [fill, my anim] at (0,0) {A};
+  \node [fill, my anim] at (1,0) {B};
+}
+```
 
 
 ---
@@ -1903,7 +4259,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `d8cc9ba5a58b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {myself:text = {0s = "red", 2s = "blue",
+                                 begin on = click}},
+       text = white, fill = orange ] {
+  \node [fill] at (0,0) {A};
+  \node [fill] at (1,0) {B};
+}
+```
 
 
 ---
@@ -1913,7 +4280,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `fef58ac2f5d7`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :fill opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1923,7 +4297,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `80401fa9896f`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :opacity = { 0s="1", 2s="0", begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1933,7 +4314,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `8995cb98562d`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz :visible = {begin on=click, 0s="false", 2s="false"}
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+```
 
 
 ---
@@ -1943,7 +4331,18 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `b4d051ea2716`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz [animate = {example:stage = {
+                   begin on = {click, of next=node},
+                   0s="true", 2s="true" }}] {
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
+  \node at (2,0) (example) [fill = blue!20, circle] {Effect};
+}
+```
 
 
 ---
@@ -1953,7 +4352,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `ca398901a8d8`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :line width = { 0s="1pt", 2s="5mm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1963,7 +4369,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `aa1e2b093bef`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash = { 0s="on 10pt off 1pt  phase 0pt",
+                      2s="on 1pt  off 10pt phase 0pt", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1973,7 +4387,15 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `99f7a2f95dfe`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash = { 0s="on 1cm off 1pt phase 0pt",
+                      2s="on 1cm off 1pt phase 1cm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
@@ -1983,7 +4405,14 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `a479ded22d15`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :dash phase = { 0s="0pt", 2s="1cm", begin on=click}
+  [fill = blue!20, draw = blue, ultra thick, circle, dashed] {Click me!};
+```
 
 
 ---
@@ -1993,7 +4422,17 @@ Showing items **801-1000** of **3696** | Page **5** of **19**
 **ID**: `34a39414f80b`  
 **Type**: executable_example  
 **Package**: tikz-pgf  
-**Chart Type**: N/A  
+**Chart Type**: other  
+
+### Code
+
+```latex
+\tikz \node :path = {
+        0s = "{(0,-1) .. controls (0,0) and (0,0)   .. (0,1) -- (1,1)}",
+        2s = "{(0,-1) .. controls (-1,0) and (-1,0) .. (-1,1) -- (.5,-1)}",
+        begin on=click }
+  [fill = blue!20, draw = blue, ultra thick, circle] {Click me!};
+```
 
 
 ---
