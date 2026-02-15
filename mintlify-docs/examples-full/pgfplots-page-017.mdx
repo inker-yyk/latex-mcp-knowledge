@@ -1,0 +1,871 @@
+---
+title: "PGFPLOTS Examples - Page 18"
+description: "LaTeX examples 511-540 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 18
+
+Showing examples **511-540** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-016) | Page 18 of 44 | [Next →](pgfplots-page-018)
+
+---
+
+## Example 511: Other
+
+**ID**: `b78f36f0a193`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    boxplot/draw/lower whisker/.style=&#123;
+        /pgfplots/boxplot/draw/whisker=
+            &#123;\pgfplotsboxplotvalue&#123;lower quartile&#125;&#125;
+            &#123;\pgfplotsboxplotvalue&#123;lower whisker&#125;&#125;
+    &#125;,
+    boxplot/draw/upper whisker/.style=&#123;
+        /pgfplots/boxplot/draw/whisker=
+            &#123;\pgfplotsboxplotvalue&#123;upper quartile&#125;&#125;
+            &#123;\pgfplotsboxplotvalue&#123;upper whisker&#125;&#125;
+    &#125;,
+    boxplot/draw/whisker/.code 2 args=&#123;
+        \draw [/pgfplots/boxplot/every whisker/.try]
+            (boxplot cs:#1) -- (boxplot cs:#2)
+            (boxplot whisker cs:#2,0)
+            --
+            (boxplot whisker cs:#2,1)
+        ;
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 512: Other
+
+**ID**: `bd29923d5caa`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    boxplot/draw/box/.code=&#123;
+        \draw [/pgfplots/boxplot/every box/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue&#123;lower quartile&#125;,0)
+            rectangle
+            (boxplot box cs:\pgfplotsboxplotvalue&#123;upper quartile&#125;,1)
+        ;
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 513: Other
+
+**ID**: `d02174c25e77`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    boxplot/draw/median/.code=&#123;
+        \draw [/pgfplots/boxplot/every median/.try]
+            (boxplot box cs:\pgfplotsboxplotvalue&#123;median&#125;,0)
+            --
+            (boxplot box cs:\pgfplotsboxplotvalue&#123;median&#125;,1)
+        ;
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 514: Other
+
+**ID**: `e44b9aa114f2`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\makeatletter
+\pgfplotsset&#123;
+    boxplot/draw/average/.code=&#123;
+        \draw [/pgfplots/boxplot/every average/.try]
+            \pgfextra
+            % do NOT use \draw[mark=*] plot coordinates because
+            % boxplots uses the same plot handler to draw its
+            % outliers.
+            \pgftransformshift&#123;%
+                % basic level access to 'boxplot box cs':
+                \pgfplotsboxplotpointabbox
+                    &#123;\pgfplotsboxplotvalue&#123;average&#125;&#125;
+                    &#123;0.5&#125;%
+            &#125;%
+            \pgfuseplotmark&#123;\tikz@plot@mark&#125;%
+            \endpgfextra
+        ;
+    &#125;,
+&#125;
+\makeatother
+</code></pre>
+
+</details>
+
+---
+
+## Example 515: Bar Chart
+
+**ID**: `5dfad5487e2f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    ybar interval,
+    xticklabel=
+\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick
+]
+    \addplot+ [hist=&#123;bins=3&#125;]
+        table [row sep=\\,y index=0] &#123;
+            data\\
+            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 516: Bar Chart
+
+**ID**: `d2505a004954`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel=&#123;
+        $[\pgfmathprintnumber\tick,
+         \pgfmathprintnumber\nexttick)$
+    &#125;,
+    x tick label style=&#123;draw=red&#125;,
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist=&#123;data=x&#125;]
+        file &#123;plotdata/pgfplots.randn.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 517: Bar Chart
+
+**ID**: `954ede03f266`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        tiny,
+        height=4cm,width=12cm,
+        ybar interval,
+        ymin=0,
+        xmin=0,xmax=1,
+        axis on top,
+        extra x ticks=&#123;0,1&#125;,
+        extra x tick style=&#123;
+            grid=none,
+            x tick label as interval=false,
+            xticklabel=&#123;$\pgfmathprintnumber\tick$&#125;
+        &#125;,
+        xticklabel=&#123;$[\pgfmathprintnumber[fixed]\tick,\cdot)$&#125;,
+    ]
+        \addplot+ [samples=200,hist] &#123;rnd&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 518: Bar Chart
+
+**ID**: `0040bf3521aa`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    ybar interval,
+    xtick=,% reset from ybar interval
+    xticklabel=&#123;
+        $[\pgfmathprintnumber\tick,
+        \pgfmathprintnumber\nexttick)$
+    &#125;,
+]
+    % a data file containing 8000 normally distributed
+    % random numbers of mean 0 and variance 1
+    \addplot+ [hist=&#123;data=x,cumulative&#125;]
+        file &#123;plotdata/pgfplots.randn.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 519: Line Chart
+
+**ID**: `a6e5339a1572`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[small,ymin=0,title=\texttt&#123;hist&#125;]
+        \addplot [
+            hist,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+%
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=density&#125;]
+        \addplot [
+            hist=density,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 520: Line Chart
+
+**ID**: `d534fae4a245`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=cumulative&#125;]
+        \addplot [
+            hist=cumulative,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+%
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=\&#123;cumulative,density\&#125;&#125;]
+        \addplot [
+            hist=&#123;cumulative,density&#125;,
+            fill=orange!75,
+            draw=orange!50!black]
+                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 521: Line Chart
+
+**ID**: `fd4115be4c0b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        hist=&#123;bins=3&#125;,
+    ] table [row sep=\\,y index=0] &#123;
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 522: Line Chart
+
+**ID**: `7fe38147c16c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        hist=&#123;
+            bins=3,
+            handler/.style=&#123;const plot&#125;,
+        &#125;,
+    ] table [row sep=\\,y index=0] &#123;
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 523: Line Chart
+
+**ID**: `c284b37a9b1d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        hist=&#123;
+            bins=3,
+            handler/.style=&#123;sharp plot&#125;,
+        &#125;,
+    ] table [row sep=\\,y index=0] &#123;
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 524: Line Chart
+
+**ID**: `05c8a7178d3b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        hist=&#123;
+            bins=3,
+            handler/.style=&#123;sharp plot&#125;,
+            intervals=false,
+        &#125;,
+    ] table [row sep=\\,y index=0] &#123;
+        data\\
+        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
+        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 525: Bar Chart
+
+**ID**: `54c374677a1b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    ybar interval,
+    hist/symbolic coords=&#123;A,B,C,D,E,F,G,H,I,J&#125;,
+    xticklabel=&#123;[\tick--\nexttick[&#125;,
+]
+    \addplot+ [
+        hist=&#123;bins=3&#125;,
+    ] table [row sep=\\,y index=0] &#123;
+        data\\
+        A\\ B\\ A\\ D\\ F\\ J\\
+        G\\ J\\ I\\ H\\ I\\ I\\
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 526: Line Chart
+
+**ID**: `426595ff9ab0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick distance=45,
+    ytick distance=0.5,
+    enlarge x limits=false,
+]
+    \addplot [smooth,domain=0:360] &#123;sin(x)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 527: Line Chart
+
+**ID**: `719cd9e3956c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    xtick distance=10^(1.5),
+    ytick distance=10^1,
+]
+    \addplot expression [domain=1:10000] &#123;x^-2&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 528: Other
+
+**ID**: `fef11685b0a1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    xtick=&#123;
+        12,
+        9897,
+        1468864
+    &#125;,
+]
+    % see above for this macro:
+    \plotcoords
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 529: Line Chart
+
+**ID**: `1605ca1a0a24`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=\empty,
+    ytick=&#123;-2,0.3,3,3.7,4.5&#125;,
+]
+    \addplot+ [smooth] coordinates &#123;
+        (-2,3) (-1.5,2) (-0.3,-0.2)
+        (1,1.2) (2,2) (3,5)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 530: Other
+
+**ID**: `c6fe875eb596`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;tick style=&#123;very thin,gray&#125;&#125;   % modifies the style `every tick'
+\pgfplotsset&#123;minor tick style=&#123;black&#125;&#125;      % modifies the style `every minor tick'
+</code></pre>
+
+</details>
+
+---
+
+## Example 531: Line Chart
+
+**ID**: `9fb8bb2a43c9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=data,
+    xmajorgrids,
+]
+    \addplot coordinates &#123;
+        (1,2)
+        (2,5)
+        (4,6.5)
+        (6,8)
+        (10,9)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 532: Line Chart
+
+**ID**: `6c376beecf39`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=A log plot with small axis range,
+]
+    \addplot coordinates &#123;
+        (10,1e-4)
+        (17,8.3176e-05)
+        (25,7.0794e-05)
+        (50,5e-5)
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 533: Line Chart
+
+**ID**: `27f3c73f10be`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    minor tick num=1,
+]
+    \addplot &#123;x^3&#125;;
+    \addplot &#123;-20*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 534: Line Chart
+
+**ID**: `681c56359f16`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    minor tick num=3,
+]
+    \addplot &#123;x^3&#125;;
+    \addplot &#123;-20*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 535: Line Chart
+
+**ID**: `2f97a70d6850`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    minor x tick num=1,
+    minor y tick num=3,
+]
+    \addplot &#123;x^3&#125;;
+    \addplot &#123;-20*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 536: Line Chart
+
+**ID**: `fa07a91e5c5e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    minor xtick=&#123;-3,1&#125;,
+    grid=minor,
+]
+    \addplot &#123;x^3&#125;;
+    \addplot &#123;-20*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 537: Line Chart
+
+**ID**: `b7dac76d7537`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    minor ytick=data,
+]
+    \addplot &#123;x^2&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 538: Line Chart
+
+**ID**: `2effe0ec7b55`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xmin=0,xmax=3,ymin=0,ymax=15,
+    extra y ticks=&#123;2.71828&#125;,
+    extra y tick labels=&#123;$e$&#125;,
+    extra x ticks=&#123;2.2&#125;,
+    extra x tick style=&#123;grid=major,
+        tick label style=&#123;
+            rotate=90,anchor=east&#125;&#125;,
+    extra x tick labels=&#123;Cut&#125;,
+]
+    \addplot &#123;exp(x)&#125;;
+    \addlegendentry&#123;$e^x$&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 539: Line Chart
+
+**ID**: `520aff62726f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;width=5.3cm&#125;&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;loglogaxis&#125;[
+        title=Explicitly Provided Limits,
+        xtickten=&#123;1,2&#125;,
+        ytickten=&#123;-5,-6&#125;,
+    ]
+        \addplot coordinates
+            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
+    \end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+
+\begin&#123;tikzpicture&#125;
+    \begin&#123;loglogaxis&#125;[
+        title=With Extra Ticks,
+        xtickten=&#123;1,2&#125;,
+        ytickten=&#123;-5,-6&#125;,
+        extra x ticks=&#123;20,40&#125;,
+        extra y ticks=&#123;5e-6,2.5e-6&#125;,
+    ]
+        \addplot coordinates
+            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
+    \end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+
+\begin&#123;tikzpicture&#125;
+    \begin&#123;loglogaxis&#125;[
+        title=With Extra Ticks; $10^e$ format,
+        extra tick style=&#123;log identify minor tick positions=false&#125;,
+        xtickten=&#123;1,2&#125;,
+        ytickten=&#123;-5,-6&#125;,
+        extra x ticks=&#123;20,40&#125;,
+        extra y ticks=&#123;5e-6,2.5e-6&#125;,
+    ]
+        \addplot coordinates
+            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
+    \end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 540: Line Chart
+
+**ID**: `a96ae3c7a89d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;semilogyaxis&#125;[
+    samples=8,
+    ytickten=&#123;-6,-4,...,4&#125;,
+    domain=0:10,
+]
+    \addplot &#123;2^(-2*x + 6)&#125;;
+    \addlegendentry&#123;$2^&#123;-2x + 6&#125;$&#125;
+
+    % or invoke gnuplot to generate coordinates:
+    \addplot gnuplot [id=pow2]
+        &#123;2**(-1.5*x -3)&#125;;
+    \addlegendentry&#123;$2^&#123;-1.5x -3&#125;$&#125;
+\end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-016) | Page 18 of 44 | [Next →](pgfplots-page-018)

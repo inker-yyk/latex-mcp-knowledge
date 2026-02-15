@@ -1,0 +1,922 @@
+---
+title: "PGFPLOTS Examples - Page 39"
+description: "LaTeX examples 1141-1170 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 39
+
+Showing examples **1141-1170** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-037) | Page 39 of 44 | [Next →](pgfplots-page-039)
+
+---
+
+## Example 1141: Other
+
+**ID**: `5e38e6247d1d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every ternary axis/.style=&#123;
+        tick align=outside,
+        grid=major,
+        xticklabel style=&#123;anchor=west&#125;,
+        every 3d description/.style=&#123;&#125;,
+        every axis x label/.style=&#123;at=&#123;(ticklabel cs:0.5)&#125;,anchor=near ticklabel&#125;,
+        every axis y label/.style=&#123;at=&#123;(ticklabel cs:0.5)&#125;,anchor=near ticklabel&#125;,
+        every axis z label/.style=&#123;at=&#123;(ticklabel cs:0.5)&#125;,anchor=near ticklabel&#125;,
+        every x tick scale label/.style=
+          &#123;at=&#123;(xticklabel cs:0.95,5pt)&#125;,anchor=near xticklabel,inner sep=0pt&#125;,
+        every y tick scale label/.style=
+          &#123;at=&#123;(yticklabel cs:0.95,5pt)&#125;,anchor=near yticklabel,inner sep=0pt&#125;,
+        every z tick scale label/.style=
+          &#123;at=&#123;(yticklabel cs:0.95,5pt)&#125;,anchor=near yticklabel,inner sep=0pt&#125;,
+        every axis title shift=15pt,
+        every axis legend/.style=&#123;
+            cells=&#123;anchor=center&#125;,
+            inner xsep=3pt,inner ysep=2pt,nodes=&#123;inner sep=2pt,text depth=0.15em&#125;,
+            shape=rectangle,
+            fill=white,
+            draw=black,
+            at=&#123;(1.03,1.03)&#125;,
+            anchor=north west,
+        &#125;,
+        annot/point format 3d/.initial=&#123;(\%.2f, \%.2f, \%.2f)&#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1142: Line Chart
+
+**ID**: `caa9bc01c390`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;ternaryaxis&#125;[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [tieline,fill=blue!10]
+        table [x=A_IPA,y=A_water,z=A_propene]
+            &#123;plotdata/ternary_data.txt&#125;;
+\end&#123;ternaryaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1143: Line Chart
+
+**ID**: `d04168847db0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;ternaryaxis&#125;[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [
+        tieline=&#123;each nth tie=5&#125;,
+        fill=blue!10,
+    ] table [x=A_IPA,y=A_water,z=A_propene]
+        &#123;plotdata/ternary_data.txt&#125;;
+\end&#123;ternaryaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1144: Line Chart
+
+**ID**: `c7ab24bf6e67`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;ternaryaxis&#125;[
+    xlabel=x (IPA),
+    ylabel=y (water),
+    zlabel=z (propene),
+    axis on top,
+]
+    % plotdata/ternary_data.txt is a table of the form
+    %A_propene A_water A_IPA  B_propene B_water B_IPA
+    % 0.0009   0.9990  0      0.9333    0.0667  0
+    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
+    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
+    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
+    %...
+    \addplot3 [
+        point meta=rand,
+        tieline=&#123;
+            each nth tie=8,
+            tieline style=&#123;contour prepared&#125;,
+        &#125;,
+        fill=blue!10,
+    ] table [x=A_IPA,y=A_water,z=A_propene]
+        &#123;plotdata/ternary_data.txt&#125;;
+\end&#123;ternaryaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1145: Line Chart
+
+**ID**: `1ab13f52d992`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [only marks] table
+        &#123;concat_VV_together_grid.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1146: Line Chart
+
+**ID**: `22b0fa90ae50`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    enlargelimits=false,
+]
+    \addplot+ [only marks,mark size=0.6pt]
+        table &#123;concat_VV_together_grid.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1147: Scatter Plot
+
+**ID**: `cd43ca6e3e6b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        enlargelimits=false,
+        colorbar,
+    ]
+        \addplot+ [
+            only marks,
+            scatter,
+            point meta=&#123;
+                ln(1e-6+abs(\thisrow&#123;f(x)&#125;))/ln(10)
+            &#125;,
+            mark size=0.6pt,
+        ] table &#123;concat_VV_together_grid.dat&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1148: Scatter Plot
+
+**ID**: `76e94cd5ac8f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [
+        scatter,
+        only marks,
+        point meta=explicit symbolic,
+        scatter/classes=&#123;
+            a=&#123;mark=square*,blue&#125;,
+            b=&#123;mark=triangle*,red&#125;,
+            c=&#123;mark=o,draw=black&#125;% &lt;-- don't add comma
+        &#125;,
+    ] table [meta=label] &#123;
+        x      y        label
+        0.1    0.15     a
+        0.45   0.27     c
+        0.02   0.17     a
+        0.06   0.1      a
+        0.9    0.5      b
+        0.5    0.3      c
+        0.85   0.52     b
+        0.12   0.05     a
+        0.73   0.45     b
+        0.53   0.25     c
+        0.76   0.5      b
+        0.55   0.32     c
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1149: Line Chart
+
+**ID**: `ea552cbd3c19`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    enlargelimits=0.2,
+]
+    \addplot+ [nodes near coords,only marks,
+       point meta=explicit symbolic]
+    table [meta=label] &#123;
+        x    y   label
+        0.5  0.2 1
+        0.2  0.1 t2
+        0.7  0.6 3
+        0.35 0.4 Y4
+        0.65 0.1 5
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1150: Other
+
+**ID**: `8bb5e1008864`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+dof        l2_err     level
+5          8.312e-02  2
+17         2.547e-02  3
+49         7.407e-03  4
+129        2.102e-03  5
+321        5.874e-04  6
+769        1.623e-04  7
+1793       4.442e-05  8
+4097       1.207e-05  9
+9217       3.261e-06  10
+</code></pre>
+
+</details>
+
+---
+
+## Example 1151: Other
+
+**ID**: `cc9809001f23`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+dof        l2_err     level
+7          8.472e-02  2
+31         3.044e-02  3
+111        1.022e-02  4
+351        3.303e-03  5
+1023       1.039e-03  6
+2815       3.196e-04  7
+7423       9.658e-05  8
+18943      2.873e-05  9
+47103      8.437e-06  10
+</code></pre>
+
+</details>
+
+---
+
+## Example 1152: Other
+
+**ID**: `246d0b7c5f3b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+dof        l2_err     level
+9          7.881e-02  2
+49         3.243e-02  3
+209        1.232e-02  4
+769        4.454e-03  5
+2561       1.551e-03  6
+7937       5.236e-04  7
+23297      1.723e-04  8
+65537      5.545e-05  9
+178177     1.751e-05  10
+</code></pre>
+
+</details>
+
+---
+
+## Example 1153: Line Chart
+
+**ID**: `b26634d2b2c4`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+%\documentclass&#123;article&#125;
+%\usepackage&#123;pgfplots&#125;
+%\pgfplotsset&#123;compat=1.5&#125;
+
+%\begin&#123;document&#125;
+
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=Convergence Plot,
+    xlabel=&#123;Degrees of freedom&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+]
+    \addplot table &#123;data_d2.dat&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+
+%\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1154: Line Chart
+
+**ID**: `4e6bca6f06ed`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=Convergence Plot,
+    xlabel=&#123;Degrees of freedom&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+]
+    \addplot table &#123;data_d2.dat&#125;;
+    \addplot table &#123;data_d3.dat&#125;;
+    \addplot table &#123;data_d4.dat&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1155: Line Chart
+
+**ID**: `c4809a8bec78`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=Convergence Plot,
+    xlabel=&#123;Degrees of freedom&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+    grid=major,
+    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
+]
+    \addplot table &#123;data_d2.dat&#125;;
+    \addplot table &#123;data_d3.dat&#125;;
+    \addplot table &#123;data_d4.dat&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1156: Line Chart
+
+**ID**: `fdf44594b1d3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+%\usepackage&#123;pgfplotstable&#125;
+%...
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=Convergence Plot,
+    xlabel=&#123;Degrees of freedom&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+    grid=major,
+    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
+]
+    \addplot table &#123;data_d2.dat&#125;;
+    \addplot table &#123;data_d3.dat&#125;;
+    \addplot table &#123;data_d4.dat&#125;;
+    \addplot table [
+      x=dof,
+      y=&#123;create col/linear regression=&#123;y=l2_err,
+       variance list=&#123;1000,800,600,500,400,200,100&#125;&#125;&#125;]
+        &#123;data_d4.dat&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1157: Line Chart
+
+**ID**: `999492356323`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+%\usepackage&#123;pgfplotstable&#125;
+%...
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    title=Convergence Plot,
+    xlabel=&#123;Degrees of freedom&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+    grid=major,
+    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
+]
+    \addplot table &#123;data_d2.dat&#125;;
+    \addplot table &#123;data_d3.dat&#125;;
+    \addplot table &#123;data_d4.dat&#125;;
+    \addplot table [
+      x=dof,
+      y=&#123;create col/linear regression=&#123;y=l2_err,
+       variance list=&#123;1000,800,600,500,400,200,100&#125;&#125;&#125;]
+        &#123;data_d4.dat&#125;
+            % save two points on the regression line
+            % for drawing the slope triangle
+            coordinate [pos=0.25] (A)
+            coordinate [pos=0.4]  (B)
+   ;
+    % save the slope parameter:
+    \xdef\slope&#123;\pgfplotstableregressiona&#125;
+
+    % draw the opposite and adjacent sides
+    % of the triangle
+    \draw (A) -| (B)
+         node [pos=0.75,anchor=west]
+         &#123;\pgfmathprintnumber&#123;\slope&#125;&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1158: Line Chart
+
+**ID**: `083e060b6ad7`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+    \addplot table &#123;data_d2.dat&#125;
+       coordinate [pos=0.25] (A)
+       coordinate [pos=0.4]  (B)
+    ;
+
+    \draw [-stealth] (A) -| (B);
+
+    \node [pin=0:Special.] at (769,1.623e-04) &#123;&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1159: Line Chart
+
+**ID**: `41afdd84a33f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    tiny,
+]
+    \addplot table &#123;data_d2.dat&#125;
+        node [pos=1,pin=0:Special.] &#123;&#125;
+    ;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1160: Line Chart
+
+**ID**: `7659b983b590`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    tiny,
+    clip=false,
+]
+    \addplot table &#123;data_d2.dat&#125;
+        node [pos=1,pin=0:Special.] &#123;&#125;
+    ;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1161: Other
+
+**ID**: `f98c270e8a35`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    x coord trafo/.code=&#123;&#125;,
+    x coord inv trafo/.code=&#123;&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1162: Other
+
+**ID**: `ff80d91359b5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    xticklabel=&#123;\tick&#125;,
+    scaled x ticks=false,
+    plot coordinates/math parser=false,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1163: Line Chart
+
+**ID**: `0d409eb45f03`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    symbolic x coords=&#123;a,b,c,d,e,f,g,h,i&#125;,
+]
+    \addplot+ [smooth] coordinates &#123;
+        (a,42)
+        (b,50)
+        (c,80)
+        (f,60)
+        (g,62)
+        (i,90)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1164: Line Chart
+
+**ID**: `93ab5e11dbbe`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=&#123;0,1,2,...,20&#125;,
+    xticklabels=&#123;a,b,c,d,e,f,g,h,i&#125;,
+    xticklabel style=&#123;
+        anchor=base,
+        yshift=-\baselineskip,
+    &#125;,
+]
+    \addplot+ [smooth] coordinates &#123;
+        (0,42)
+        (1,50)
+        (2,80)
+        (5,60)
+        (6,62)
+        (8,90)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1165: Line Chart
+
+**ID**: `e4f8e7fa8278`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    symbolic x coords=&#123;a,$1 \pm 2$,c,d,1\&1,f,g,h,i&#125;,
+    xtick=data,
+]
+    \addplot+ [smooth] coordinates &#123;
+        (a,42)
+        ($1 \pm 2$,50)
+        (c,80)
+        (1\&1,60)
+        (g,62)
+        (i,90)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1166: Line Chart
+
+**ID**: `b80747c51deb`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    symbolic x coords=&#123;a,b,c,d,e,f,g,h,i&#125;,
+    xmin=&#123;[normalized]-1.7&#125;,
+    minor tick num=1,
+]
+    \addplot+ [smooth] coordinates &#123;
+        (a,42)
+        (b,50)
+        (c,80)
+        (f,60)
+        (g,62)
+        (i,90)&#125;;
+
+    \fill (axis cs:&#123;[normalized]1.5&#125;,60)
+        circle (2pt) coordinate [pin=&#123;$1.5$&#125;];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1167: Line Chart
+
+**ID**: `0896c081b3e9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepgfplotslibrary&#123;dateplot&#125; !
+
+\pgfplotstabletypeset[string type]&#123;plotdata/accounts.dat&#125;
+
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        date coordinates in=x,
+        xticklabel=&#123;\day.\month.&#125;,
+        xlabel=&#123;2008&#125;,
+        stack plots=y,
+        yticklabel=&#123;\pgfmathprintnumber&#123;\tick&#125;\EUR&#123;&#125;&#125;, % &lt;- requires \usepackage&#123;eurosym&#125;
+        ylabel=Total credit,
+        ylabel style=&#123;yshift=10pt&#125;,
+        legend style=&#123;
+            at=&#123;(0.5,-0.3)&#125;,anchor=north,legend columns=-1,
+        &#125;,
+    ]
+        \addplot table [x=date,y=account1] &#123;plotdata/accounts.dat&#125;;
+        \addplot table [x=date,y=account2] &#123;plotdata/accounts.dat&#125;;
+        \addplot table [x=date,y=account3] &#123;plotdata/accounts.dat&#125;;
+        \legend&#123;Giro,Tagesgeld,Sparbuch&#125;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1168: Line Chart
+
+**ID**: `4d92833928ce`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepgfplotslibrary&#123;dateplot&#125; !
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    date coordinates in=x,
+    xtick=data,
+    xticklabel style=
+        &#123;rotate=90,anchor=near xticklabel&#125;,
+    xticklabel=\day. \hour:\minute,
+]
+    \addplot coordinates &#123;
+        (2009-08-18 09:00,  050)
+        (2009-08-18 12:00,  100)
+        (2009-08-18 15:00,  100)
+        (2009-08-18 18:35,  100)
+        (2009-08-18 21:30,  040)
+        (2009-08-19,        020)
+        (2009-08-19 3:00,   000)
+        (2009-08-19 6:0,    035)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1169: Other
+
+**ID**: `b75f4ec775f9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+        \pgfplotsset&#123;set layers&#125;
+    \begin&#123;axis&#125;
+        ...
+    \end&#123;axis&#125;
+
+    % perhaps a second axis which should use the same layers?
+    \begin&#123;axis&#125;
+        ...
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1170: Other
+
+**ID**: `63a635eb6860`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+        \pgfplotsset&#123;set layers=default&#125;
+    \begin&#123;axis&#125;
+        ...
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-037) | Page 39 of 44 | [Next →](pgfplots-page-039)

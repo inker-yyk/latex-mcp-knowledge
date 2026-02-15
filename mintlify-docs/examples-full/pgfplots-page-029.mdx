@@ -1,0 +1,753 @@
+---
+title: "PGFPLOTS Examples - Page 30"
+description: "LaTeX examples 871-900 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 30
+
+Showing examples **871-900** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-028) | Page 30 of 44 | [Next →](pgfplots-page-030)
+
+---
+
+## Example 871: Other
+
+**ID**: `10503a5442ff`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colorbar style=&#123;
+        ticklabel style=&#123;font=\tiny&#125;,
+    &#125;,
+    colormap access=const,
+    colormap=&#123;CM&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;
+                0,200,300,350,375,
+                400,700,800,850,1000
+            &#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+]
+</code></pre>
+
+</details>
+
+---
+
+## Example 872: Other
+
+**ID**: `918ef0d832b1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colorbar as legend,
+    colorbar style=&#123;
+        ticklabel style=&#123;font=\tiny&#125;,
+    &#125;,
+    colormap access=const,
+    colormap=&#123;CM&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;
+                0,200,300,350,375,
+                400,700,800,850,1000
+            &#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+]
+</code></pre>
+
+</details>
+
+---
+
+## Example 873: Other
+
+**ID**: `e941fd4e7af1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colorbar style=&#123;
+        ticklabel style=&#123;
+            /pgf/number format/precision=3,
+            /pgf/number format/relative*=3,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 874: Scatter Plot
+
+**ID**: `88c1e161dfcb`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;footnotesize,samples=10, domain=0:1,point meta min=0, point meta max=1&#125;
+\begin&#123;center&#125;% note that \centering uses less vspace...
+    \begin&#123;tikzpicture&#125;
+        \begin&#123;axis&#125;[colorbar,colorbar horizontal,colorbar to name=&#123;storedcolorbar&#125;]
+            \addplot [scatter,only marks,mark=*] &#123;rnd&#125;;
+        \end&#123;axis&#125;
+    \end&#123;tikzpicture&#125;
+    %
+    \begin&#123;tikzpicture&#125;
+        \begin&#123;axis&#125;
+            \addplot+ [domain=0:1,mark=none,mesh] &#123;x^2&#125;;
+        \end&#123;axis&#125;
+    \end&#123;tikzpicture&#125;
+    %
+    \begin&#123;tikzpicture&#125;
+        \begin&#123;axis&#125;[view=&#123;0&#125;&#123;90&#125;]
+            \addplot3 [surf] &#123;x*y&#125;;
+        \end&#123;axis&#125;
+    \end&#123;tikzpicture&#125;
+    \\
+
+    \ref&#123;storedcolorbar&#125;
+\end&#123;center&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 875: Line Chart
+
+**ID**: `4f1a7ff61473`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepgfplotslibrary&#123;polar&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;polaraxis&#125;
+    \addplot coordinates &#123;(90,1) (180,1)&#125;;
+    \addplot+ [data cs=cart] coordinates &#123;
+        (1,0)
+        (0.5,0.5)
+    &#125;;
+\end&#123;polaraxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 876: Line Chart
+
+**ID**: `35141579b1a6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [data cs=polar,domain=0:360] (\x,1);
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 877: Line Chart
+
+**ID**: `f4a0707c1c21`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [data cs=polarrad,domain=0:2*pi] (\x,1);
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 878: Line Chart
+
+**ID**: `9bf75e091c50`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis equal,
+    minor tick num=1,
+]
+    \def\FREQUENCY&#123;3&#125;
+\addplot [red,domain=0:360,samples=200,
+    smooth,data cs=polar]
+        (x,&#123;30-8*sin(\FREQUENCY*x)&#125;);
+
+\addplot [samples=40,domain=0:2*pi,dashed,
+    data cs=polar] (deg(x),30);
+
+\addplot [mark=oplus,only marks] coordinates &#123;(0,0)&#125;;
+ \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 879: Line Chart
+
+**ID**: `d6f82f4b36bf`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\documentclass&#123;article&#125;
+\usepackage&#123;pgfplots&#125;
+    \usepgfplotslibrary&#123;external&#125;
+    \tikzexternalize% activate externalization!
+\begin&#123;document&#125;
+    \begin&#123;figure&#125;
+        \begin&#123;tikzpicture&#125;
+            \begin&#123;axis&#125;
+                \addplot &#123;x^2&#125;;
+            \end&#123;axis&#125;
+        \end&#123;tikzpicture&#125;
+        \caption&#123;Our first external graphics example&#125;
+    \end&#123;figure&#125;
+
+    \begin&#123;figure&#125;
+        \begin&#123;tikzpicture&#125;
+            \begin&#123;axis&#125;
+                \addplot &#123;x^3&#125;;
+            \end&#123;axis&#125;
+        \end&#123;tikzpicture&#125;
+        \caption&#123;A second graphics&#125;
+    \end&#123;figure&#125;
+\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 880: Other
+
+**ID**: `e82b116e410f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+pdflatex -shell-escape test
+</code></pre>
+
+</details>
+
+---
+
+## Example 881: Other
+
+**ID**: `5f5721b7ea8c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzsetexternalprefix&#123;figures/&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 882: Line Chart
+
+**ID**: `3d03935c3ab8`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\documentclass&#123;article&#125;
+% main document, called main.tex
+\usepackage&#123;tikz&#125;
+    \usepgfplotslibrary&#123;external&#125;
+    \tikzexternalize[prefix=figures/]% activate with a name prefix
+\begin&#123;document&#125;
+\tikzsetnextfilename&#123;firstplot&#125;
+\begin&#123;tikzpicture&#125; % will be written to 'figures/firstplot.pdf'
+    \begin&#123;axis&#125;
+        \addplot &#123;x&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+
+\begin&#123;tikzpicture&#125; % will be written to 'figures/main-figure0.pdf'
+   \draw [help lines] (0,0) grid (5,5);
+\end&#123;tikzpicture&#125;
+\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 883: Other
+
+**ID**: `e187a2f8be78`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+pdflatex -shell-escape main
+</code></pre>
+
+</details>
+
+---
+
+## Example 884: Line Chart
+
+**ID**: `047cca9e1500`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\documentclass&#123;article&#125;
+% main document, called main.tex
+\usepackage&#123;tikz&#125;
+    \usepgfplotslibrary&#123;external&#125;
+    \tikzexternalize% activate externalization!
+\begin&#123;document&#125;
+% will be written to 'main-figure0.pdf'
+\begin&#123;tikzpicture&#125;
+    \begin&#123;semilogyaxis&#125;
+        \addplot &#123;exp(x)&#125;;
+    \end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+
+&#123;
+    \tikzset&#123;external/figure name=&#123;subset_&#125;&#125;
+    A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'subset_0.pdf'
+
+    \begin&#123;tikzpicture&#125; % will be written to 'subset_1.pdf'
+        \begin&#123;axis&#125;
+            \addplot &#123;x^2&#125;;
+        \end&#123;axis&#125;
+    \end&#123;tikzpicture&#125;
+&#125;% here, the old file name will be restored:
+
+\begin&#123;tikzpicture&#125; % will be written to 'main-figure1.pdf'
+    \begin&#123;axis&#125;
+        \addplot[domain=1e-3:100] &#123;1/x&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 885: Other
+
+**ID**: `f5405c0f2c8c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;external/figure name=main&#125;
+
+% uses main_0.pdf, main_1.pdf, ...
+
+\chapter&#123;The first section&#125;
+&#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;_firstsection&#125;&#125;
+    ...
+    % uses main_firstsection_0.pdf, main_firstsection_1.pdf, ...
+&#125;
+
+\chapter&#123;The second section&#125;
+&#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;secondsection_&#125;&#125;
+    ...
+    % uses main_secondsection_0.pdf, main_secondsection_1.pdf, ...
+    \section&#123;Second subsection&#125;
+    &#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;sub_&#125;&#125;
+        ...
+        % uses main_secondsection_sub_0.pdf, main_secondsection_sub_1.pdf, ...
+    &#125;
+    % uses main_secondsection_2.pdf, main_secondsection_3.pdf, ...
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 886: Other
+
+**ID**: `6dbea34c6c4f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;external/system call=&#123;pdflatex \tikzexternalcheckshellescape -halt-on-error
+    -interaction=batchmode -jobname "\image" "\texsource"&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 887: Other
+
+**ID**: `57eeb60c56b0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;external/system call=&#123;latex \tikzexternalcheckshellescape -halt-on-error
+    -interaction=batchmode -jobname "\image" "\texsource" &&
+    dvips -o "\image".ps "\image".dvi&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 888: Other
+
+**ID**: `7cb159384e3a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \usepackage&#123;tikz&#125;
+% \usepackage&#123;pgfplots&#125;
+\usepackage&#123;tikzexternal&#125;
+    \tikzexternalize% activate externalization
+\begin&#123;document&#125;
+    \begin&#123;tikzpicture&#125;
+        ...
+    \end&#123;tikzpicture&#125;
+...
+\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 889: Other
+
+**ID**: `33f9fedce15c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+latex/pgf/utilities/tikzexternal.sty
+</code></pre>
+
+</details>
+
+---
+
+## Example 890: Other
+
+**ID**: `1935dc18a078`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_tikzexternal.sty
+</code></pre>
+
+</details>
+
+---
+
+## Example 891: Line Chart
+
+**ID**: `40ac680bb289`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\documentclass&#123;article&#125;
+\usepackage&#123;pgfplots&#125;
+    \pgfrealjobname&#123;test&#125;
+\begin&#123;document&#125;
+    \begin&#123;figure&#125;
+        \beginpgfgraphicnamed&#123;testfigure&#125;
+            \begin&#123;tikzpicture&#125;
+                \begin&#123;axis&#125;
+                    \addplot &#123;x^2&#125;;
+                \end&#123;axis&#125;
+            \end&#123;tikzpicture&#125;
+        \endpgfgraphicnamed
+        \caption&#123;Our first external graphics example&#125;
+    \end&#123;figure&#125;
+
+    \begin&#123;figure&#125;
+        \beginpgfgraphicnamed&#123;testfigure2&#125;
+            \begin&#123;tikzpicture&#125;
+                \begin&#123;axis&#125;
+                    \addplot &#123;x^3&#125;;
+                \end&#123;axis&#125;
+            \end&#123;tikzpicture&#125;
+        \endpgfgraphicnamed
+        \caption&#123;A second graphics&#125;
+    \end&#123;figure&#125;
+\end&#123;document&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 892: Other
+
+**ID**: `477eea3e2dea`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+pdflatex test
+</code></pre>
+
+</details>
+
+---
+
+## Example 893: Other
+
+**ID**: `8da3e1ea8902`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+pdflatex --jobname testfigure test
+pdflatex --jobname testfigure2 test
+</code></pre>
+
+</details>
+
+---
+
+## Example 894: Other
+
+**ID**: `33862873b9b5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\long\def\beginpgfgraphicnamed#1#2\endpgfgraphicnamed&#123;%
+    \begingroup
+    \setbox1=\hbox&#123;\includegraphics&#123;#1&#125;&#125;%
+    \openin1=#1.dpth
+    \ifeof1 \box1
+    \else
+        \read1 to\pgfincludeexternalgraphicsdp \closein1
+        \dimen0=\pgfincludeexternalgraphicsdp\relax
+        \hbox&#123;\lower\dimen0 \box1 &#125;%
+    \fi
+    \endgroup
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 895: Other
+
+**ID**: `5ebcb71f4ff9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+[X,Y] = meshgrid( linspace(-1,1,5), linspace(4,5,10) );
+Z = X + Y;
+surf(X,Y,Z)
+</code></pre>
+
+</details>
+
+---
+
+## Example 896: Other
+
+**ID**: `37949cbe7b70`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+data = [ X(:) Y(:) Z(:) ]
+% or -ascii
+save P.dat data -ASCII
+size(X)
+ans =
+   10.00    5.00
+</code></pre>
+
+</details>
+
+---
+
+## Example 897: Other
+
+**ID**: `04cb83a0db42`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+XX=X'; YY=Y'; ZZ=Z';
+data = [ XX(:) YY(:) ZZ(:) ]
+save P.dat data -ASCII
+</code></pre>
+
+</details>
+
+---
+
+## Example 898: Other
+
+**ID**: `f9c7471c8e4a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+C = colormap;  % gets data of the current colormap.
+% C = colormap(jet) % gets data of "jet"
+eachnth = 1;
+I = 1:eachnth:size(C,1); % this is nonsense for eachnth=1 -- but perhaps you don't want each color.
+CC = C(I,:);
+TeXstring = [ ...
+ sprintf('\\pgfplotsset&#123;\n\tcolormap=&#123;matlab&#125;&#123;\n') ...
+ sprintf('\t\trgb=(%f,%f,%f)\n',CC') ...
+ sprintf('\t&#125;\n&#125;\n') ]
+</code></pre>
+
+</details>
+
+---
+
+## Example 899: Line Chart
+
+**ID**: `670dd8611ff3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;polaraxis&#125;
+    \addplot coordinates &#123;
+        (0,1)
+        (90,1)
+        (180,1)
+        (270,1)
+    &#125;;
+\end&#123;polaraxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 900: Line Chart
+
+**ID**: `37545622aae5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;polaraxis&#125;
+    \addplot+ [domain=0:3] (360*x,x); % (angle,radius)
+\end&#123;polaraxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-028) | Page 30 of 44 | [Next →](pgfplots-page-030)

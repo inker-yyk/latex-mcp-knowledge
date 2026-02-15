@@ -1,0 +1,908 @@
+---
+title: "TKZ-EUCLIDE Examples - Page 5"
+description: "LaTeX examples 121-150 from tkz-euclide (357 total)"
+---
+
+# TKZ-EUCLIDE Examples - Page 5
+
+Showing examples **121-150** of **357** from the tkz-euclide package.
+
+[← Previous](tkz-euclide-page-003) | Page 5 of 12 | [Next →](tkz-euclide-page-005)
+
+---
+
+## Example 121: Geometry
+
+**ID**: `ce14f84fecb7`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.6]
+ \tkzDefPoint(0,0)&#123;A&#125;
+ \tkzDefPoint(3,2)&#123;B&#125;
+ \tkzInterCC(A,B)(B,A)          \tkzGetSecondPoint&#123;D&#125;
+ \tkzInterCC(D,B)(B,A)          \tkzGetPoints&#123;A&#125;&#123;C&#125;
+ \tkzInterCC(D,B)(A,B)          \tkzGetPoints&#123;E&#125;&#123;B&#125;
+ \tkzInterLC[common=D](C,D)(E,D)\tkzGetFirstPoint&#123;F&#125;
+ \tkzInterLL(A,F)(B,C)          \tkzGetPoint&#123;O&#125;
+ \tkzInterLL(O,D)(A,B)          \tkzGetPoint&#123;H&#125;
+ \tkzInterLL(O,E)(A,B)          \tkzGetPoint&#123;G&#125;
+ \tkzDrawCircles(D,E A,B B,A E,A)
+ \tkzDrawSegments[](O,F O,B O,D O,E)
+ \tkzDrawPoints(A,...,H)
+ \tkzDrawSegments(A,B B,D A,D A,E E,F C,F B,C)
+ \tkzMarkSegments[mark=s|](A,G G,H H,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 122: Geometry
+
+**ID**: `cb180a03f851`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.5]
+ \tkzDefPoints&#123;0/0/A,0/5/B,5/0/C&#125;
+ \tkzDefPoint(54:5)&#123;F&#125;
+ \tkzInterCC[with nodes](A,A,C)(C,B,F)
+ \tkzGetPoints&#123;a&#125;&#123;e&#125;
+ \tkzInterCC(A,C)(a,e) \tkzGetFirstPoint&#123;b&#125;
+ \tkzInterCC(A,C)(b,a) \tkzGetFirstPoint&#123;c&#125;
+ \tkzInterCC(A,C)(c,b) \tkzGetFirstPoint&#123;d&#125;
+ \tkzDrawCircle[new](A,C)
+ \tkzDrawPoints(a,b,c,d,e)
+ \tkzDrawPolygon(a,b,c,d,e)
+ \foreach \vertex/\num in &#123;a/36,b/108,c/180,
+                          d/252,e/324&#125;&#123;%
+ \tkzDrawPoint(\vertex)
+ \tkzLabelPoint[label=\num:$\vertex$](\vertex)&#123;&#125;
+ \tkzDrawSegment(A,\vertex)
+ &#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 123: Geometry
+
+**ID**: `e8bc7d226f3c`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale = .7]
+  \tkzDefPoint(2,2)&#123;A&#125;
+  \tkzDefPoint(0,0)&#123;B&#125;
+  \tkzDefPoint(-2,2)&#123;C&#125;
+  \tkzDefPoint(0,4)&#123;D&#125;
+  \tkzDefPoint(4,2)&#123;E&#125;
+  \tkzCircumCenter(A,B,C)\tkzGetPoint&#123;O&#125;
+  \tkzInterCC[R](O,2)(D,2)\tkzGetPoints&#123;M1&#125;&#123;M2&#125;
+  \tkzInterCC(O,A)(D,O) \tkzGetPoints&#123;1&#125;&#123;2&#125;
+  \tkzInterLC(A,E)(B,M1)\tkzGetSecondPoint&#123;M3&#125;
+  \tkzInterLC(O,C)(M3,D)\tkzGetSecondPoint&#123;L&#125;
+  \tkzDrawSegments(C,L)
+  \tkzDrawPoints(A,B,C,D,E,M1,M2,M3,O,L)
+  \tkzDrawSegments(O,E)
+  \tkzDrawSegments[new](C,A D,B)
+  \tkzDrawPoint(O)
+  \tkzDrawCircles[new](M3,D B,M2 D,O)
+  \tkzDrawCircle(O,A)
+  \tkzLabelPoints[below right](A,B,C,D,E,M1,M2,M3,O,L)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 124: Geometry
+
+**ID**: `15b24cc5a527`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \tkzDefPoints&#123;0/0/P,5/0/Q,3/2/I&#125;
+  \tkzDefCircle[orthogonal from=P](Q,I) 
+  \tkzGetFirstPoint&#123;E&#125;
+  \tkzDrawCircles(P,E Q,E)
+  \tkzInterCC[common=E](P,E)(Q,E) \tkzGetFirstPoint&#123;F&#125;
+  \tkzDefPointOnCircle[through =  center P angle 80 point E] 
+  \tkzGetPoint&#123;A&#125;
+  \tkzInterLC[common=E](A,E)(Q,E)  \tkzGetFirstPoint&#123;C&#125;
+  \tkzInterLL(A,F)(C,Q)  \tkzGetPoint&#123;D&#125;
+  \tkzDrawLines[add=0 and 1](P,Q)
+  \tkzDrawLines[add=0 and 2](A,E)
+  \tkzDrawSegments(P,E E,F F,C A,F C,D)
+  \tkzDrawPoints(P,Q,E,F,A,C,D)
+  \tkzLabelPoints(P,Q,F)
+  \tkzLabelPoints[above](E,A)
+  \tkzLabelPoints[left](D)
+  \tkzLabelPoints[above right](C)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 125: Geometry
+
+**ID**: `2b6cd2476c30`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=1]
+  \tkzDefPoint(3,3)&#123;C&#125;
+  \tkzDefPoint(5,5)&#123;A&#125;
+   \tkzCalcLength(A,C) \tkzGetLength&#123;rAC&#125;
+  \tkzDefCircle[R](C,\rAC) \tkzGetPoint&#123;B&#125;
+  \tkzDrawCircle(C,B)
+  \tkzDrawSegment(C,A)
+  \tkzLabelSegment[above left](C,A)&#123;$2\sqrt&#123;2&#125;$&#125;
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(A,C,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 126: Geometry
+
+**ID**: `b42615a779e2`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \tkzDefPoint(0,0)&#123;O&#125;
+  \tkzDefPoint(2,2)&#123;B&#125;
+  \tkzDefCircle[diameter](O,B) \tkzGetPoint&#123;A&#125;
+  \tkzDrawCircle(A,B)
+  \tkzDrawPoints(O,A,B)
+  \tkzDrawSegment(O,B)
+  \tkzLabelPoints(O,A,B)
+  \tkzLabelSegment[above left](O,A)&#123;$\sqrt&#123;2&#125;$&#125;
+  \tkzLabelSegment[above left](A,B)&#123;$\sqrt&#123;2&#125;$&#125;
+  \tkzMarkSegments[mark=s||](O,A A,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 127: Geometry
+
+**ID**: `b6e7d8f8f43c`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+ \tkzDefPoint(2,2)&#123;A&#125;  \tkzDefPoint(5,-2)&#123;B&#125;
+ \tkzDefPoint(1,-2)&#123;C&#125;
+ \tkzDefCircle[in](A,B,C)
+ \tkzGetPoints&#123;I&#125;&#123;x&#125;   
+ \tkzDefCircle[circum](A,B,C)
+ \tkzGetPoint&#123;K&#125;  
+ \tkzDrawCircles[new](I,x K,A) 
+ \tkzLabelPoints[below](B,C)
+ \tkzLabelPoints[above left](A,I,K)
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints(A,B,C,I,K) 
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 128: Geometry
+
+**ID**: `f4139da136fe`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+  \tkzDefPoints&#123; 0/0/A,4/0/B,0.8/4/C&#125;
+  \tkzDefCircle[ex](B,C,A)                   
+  \tkzGetPoints&#123;J_c&#125;&#123;h&#125;
+  \tkzDefPointBy[projection=onto A--C ](J_c)   
+  \tkzGetPoint&#123;X_c&#125;
+  \tkzDefPointBy[projection=onto A--B ](J_c)   
+  \tkzGetPoint&#123;Y_c&#125;     
+  \tkzDefCircle[in](A,B,C)    
+  \tkzGetPoints&#123;I&#125;&#123;y&#125;
+  \tkzDrawCircles[color=lightgray](J_c,h I,y)
+  \tkzDefPointBy[projection=onto A--C ](I)
+  \tkzGetPoint&#123;F&#125;
+  \tkzDefPointBy[projection=onto A--B ](I)
+  \tkzGetPoint&#123;D&#125;
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawLines[add=0 and 1.5](C,A C,B)
+  \tkzDrawSegments(J_c,X_c I,D  I,F J_c,Y_c)
+  \tkzMarkRightAngles(A,F,I B,D,I J_c,X_c,A%
+     J_c,Y_c,B)
+  \tkzDrawPoints(B,C,A,I,D,F,X_c,J_c,Y_c)
+  \tkzLabelPoints(B,A,J_c,I,D)
+  \tkzLabelPoints[above](Y_c)
+  \tkzLabelPoints[left](X_c)
+  \tkzLabelPoints[above left](C)
+  \tkzLabelPoints[left](F)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 129: Geometry
+
+**ID**: `65df256bf019`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+   \tkzDefPoint(5,3.5)&#123;A&#125; 
+   \tkzDefPoint(0,0)&#123;B&#125; \tkzDefPoint(7,0)&#123;C&#125;
+   \tkzDefCircle[euler](A,B,C)
+   \tkzGetPoints&#123;E&#125;&#123;e&#125;
+   \tkzDefSpcTriangle[medial](A,B,C)&#123;M_a,M_b,M_c&#125;
+   \tkzDrawCircle[new](E,e)
+   \tkzDrawPoints(A,B,C,E,M_a,M_b,M_c)    
+   \tkzDrawPolygon(A,B,C)    
+   \tkzLabelPoints[below](B,C)  
+   \tkzLabelPoints[left](A,E)   
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 130: Geometry
+
+**ID**: `38ae7e5907b5`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.75]
+  \tkzDefPoint(0,0)&#123;A&#125; 
+  \tkzDefPoint(4,0)&#123;B&#125;
+  \tkzDefCircle[apollonius,K=2](A,B)
+  \tkzGetPoints&#123;K1&#125;&#123;x&#125;
+  \tkzDrawCircle[color = teal!50!black,
+      fill=teal!20,opacity=.4](K1,x)
+  \tkzDefCircle[apollonius,K=3](A,B)
+  \tkzGetPoints&#123;K2&#125;&#123;y&#125;
+  \tkzDrawCircle[color=orange!50,
+      fill=orange!20,opacity=.4](K2,y) 
+  \tkzLabelPoints[below](A,B,K1,K2)
+  \tkzDrawPoints(A,B,K1,K2) 
+  \tkzDrawLine[add=.2 and 1](A,B)  
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 131: Geometry
+
+**ID**: `7930027cba0d`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.6]
+  \tkzDefPoint(0,0)&#123;A&#125;
+  \tkzDefPoint(3,0)&#123;B&#125;
+  \tkzDefPoint(1,2.5)&#123;C&#125;
+  \tkzDefCircle[ex](A,B,C) \tkzGetPoints&#123;I&#125;&#123;i&#125;
+  \tkzDefCircle[ex](C,A,B) \tkzGetPoints&#123;J&#125;&#123;j&#125;
+  \tkzDefCircle[ex](B,C,A) \tkzGetPoints&#123;K&#125;&#123;k&#125;
+  \tkzDefCircle[in](B,C,A) \tkzGetPoints&#123;O&#125;&#123;o&#125;
+  \tkzDrawCircles[new](J,j I,i K,k O,o) 
+  \tkzDrawLines[add=1.5 and 1.5](A,B A,C B,C)
+  \tkzDrawPolygon[purple](I,J,K)
+  \tkzDrawSegments[new](A,K B,J C,I)
+  \tkzDrawPoints(A,B,C)
+  \tkzDrawPoints[new](I,J,K)   
+  \tkzLabelPoints(A,B,C,I,J,K)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 132: Geometry
+
+**ID**: `5584e41a1ad5`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=1.25]
+  \tkzDefPoints&#123; 0/0/A,4/0/B,0.8/4/C&#125;
+  \tkzDefSpcTriangle[medial](A,B,C)&#123;M_a,M_b,M_c&#125;
+  \tkzDefTriangleCenter[spieker](A,B,C) 
+  \tkzGetPoint&#123;S_p&#125;
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPolygon[cyan](M_a,M_b,M_c)
+  \tkzDrawPoints(B,C,A)
+  \tkzDefCircle[spieker](A,B,C)
+  \tkzDrawPoints[new](M_a,M_b,M_c,S_p)
+  \tkzDrawCircle[new](tkzFirstPointResult,%
+    tkzSecondPointResult)
+  \tkzLabelPoints[right](M_a)
+  \tkzLabelPoints[left](M_b)
+  \tkzLabelPoints[below](A,B,M_c,S_p)
+  \tkzLabelPoints[above](C)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 133: Geometry
+
+**ID**: `3f43befaa112`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.6]
+\tikzset&#123;line style/.append style=&#123;line width=.2pt&#125;&#125;
+\tikzset&#123;label style/.append style=&#123;color=teal,font=\footnotesize&#125;&#125;
+\tkzDefPoints&#123;0/0/A,5/0/B,0.8/4/C&#125;
+\tkzDefSpcTriangle[excentral,name=J](A,B,C)&#123;a,b,c&#125; 
+\tkzDefSpcTriangle[intouch,name=I](A,B,C)&#123;a,b,c&#125;
+\tkzDefProjExcenter[name=J](A,B,C)(a,b,c)&#123;X,Y,Z&#125;
+\tkzDefCircle[in](A,B,C)   \tkzGetPoint&#123;I&#125; \tkzGetSecondPoint&#123;T&#125;  
+\tkzDrawCircles[red](Ja,Xa Jb,Yb Jc,Zc)
+\tkzDrawCircle(I,T) 
+\tkzDrawPolygon[dashed,color=blue](Ja,Jb,Jc)
+\tkzDrawLines[add=1.5 and 1.5](A,C A,B B,C)
+\tkzDrawSegments(Ja,Xa Ja,Ya Ja,Za
+                 Jb,Xb Jb,Yb Jb,Zb
+                 Jc,Xc Jc,Yc Jc,Zc
+                 I,Ia I,Ib I,Ic)
+\tkzMarkRightAngles[size=.2,fill=gray!15](Ja,Za,B Ja,Xa,B Ja,Ya,C Jb,Yb,C)
+\tkzMarkRightAngles[size=.2,fill=gray!15](Jb,Zb,B Jb,Xb,C Jc,Yc,A Jc,Zc,B)
+\tkzMarkRightAngles[size=.2,fill=gray!15](Jc,Xc,C I,Ia,B I,Ib,C I,Ic,A)
+\tkzDrawSegments[blue](Jc,C Ja,A Jb,B)
+\tkzDrawPoints(A,B,C,Xa,Xb,Xc,Ja,Jb,Jc,Ia,Ib,Ic,Ya,Yb,Yc,Za,Zb,Zc)
+\tkzLabelPoints(A,Ya,Yb,Ja,I)
+\tkzLabelPoints[left](Jb,Ib,Yc)
+\tkzLabelPoints[below](Zb,Ic,Jc,B,Za,Xa)
+\tkzLabelPoints[above right](C,Zc,Yb)
+\tkzLabelPoints[right](Xb,Ia,Xc)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 134: Geometry
+
+**ID**: `a4d0752f6d8f`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+  \tkzDefPoints&#123;0/0/O,1/0/A&#125;
+  \tkzDefPoints&#123;1.5/1.25/B,-2/-3/C&#125;
+  \tkzDefCircle[orthogonal from=B](O,A)
+  \tkzGetPoints&#123;z1&#125;&#123;z2&#125;
+  \tkzDefCircle[orthogonal from=C](O,A)
+  \tkzGetPoints&#123;t1&#125;&#123;t2&#125;
+  \tkzDrawCircle(O,A)
+  \tkzDrawCircles[new](B,z1 C,t1)
+  \tkzDrawPoints(t1,t2,C)
+  \tkzDrawPoints(z1,z2,O,A,B)
+  \tkzLabelPoints[right](O,A,B,C)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 135: Geometry
+
+**ID**: `fe59d093dafb`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=1]
+  \tkzDefPoint(0,0)&#123;O&#125;
+  \tkzDefPoint(1,0)&#123;A&#125;
+  \tkzDrawCircle(O,A)
+  \tkzDefPoint(-1.5,-1.5)&#123;z1&#125;
+  \tkzDefPoint(1.5,-1.25)&#123;z2&#125;
+  \tkzDefCircle[orthogonal through=z1 and z2](O,A)
+   \tkzGetPoint&#123;c&#125;
+  \tkzDrawCircle[new](tkzPointResult,z1)
+  \tkzDrawPoints[new](O,A,z1,z2,c)
+  \tkzLabelPoints[right](O,A,z1,z2,c)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 136: Geometry
+
+**ID**: `74ef5c89da5e`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+    \tkzDefPoint(0,0)&#123;O&#125;
+    \tkzDefPoint(-4,0)&#123;A&#125;
+    \tkzDefPoint(4,0)&#123;B&#125;
+    \tkzDefPoint(-2,0)&#123;I&#125;
+    \tkzDefPoint(2,0)&#123;J&#125;
+    \tkzDrawSector[fill=teal](O,A)(B)
+    \tkzFillCircle[fill=white](J,B) 
+    \tkzFillCircle[fill=teal](I,A) 
+    \tkzDrawCircle(O,A) 
+  \end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 137: Geometry
+
+**ID**: `55be9184d069`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+   \tkzDefPoint(0,0)&#123;B&#125;  \tkzDefPoint(6,0)&#123;C&#125;%
+   \tkzDefSquare(B,C)    \tkzGetPoints&#123;D&#125;&#123;A&#125; 
+   \tkzClipPolygon(B,C,D,A) 
+   \tkzDefMidPoint(A,D)  \tkzGetPoint&#123;F&#125;
+   \tkzDefMidPoint(B,C)  \tkzGetPoint&#123;E&#125;
+   \tkzDefMidPoint(B,D)  \tkzGetPoint&#123;Q&#125;           
+   \tkzDefLine[tangent from = B](F,A) 
+   \tkzGetPoints&#123;H&#125;&#123;G&#125; 
+   \tkzInterLL(F,G)(C,D) \tkzGetPoint&#123;J&#125;
+   \tkzInterLL(A,J)(F,E) \tkzGetPoint&#123;K&#125;
+   \tkzDefPointBy[projection=onto B--A](K)   
+   \tkzGetPoint&#123;M&#125;  
+   \tkzDrawPolygon(A,B,C,D)
+   \tkzFillCircle[red!20](E,B)
+   \tkzFillCircle[blue!20](M,A)
+   \tkzFillCircle[green!20](K,Q)
+  \tkzDrawCircles(B,A M,A E,B K,Q) 
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 138: Geometry
+
+**ID**: `20485411b013`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\tkzDefPoints&#123;0/0/A,4/0/B,2/2/O,3/4/X,4/1/Y,1/0/Z,
+              0/3/W,3/0/R,4/3/S,1/4/T,0/1/U&#125;
+\tkzDefSquare(A,B)\tkzGetPoints&#123;C&#125;&#123;D&#125;
+\tkzDefPointWith[colinear normed=at X,K=1](O,X)
+ \tkzGetPoint&#123;F&#125;
+\begin&#123;scope&#125;
+  \tkzFillCircle[fill=teal!20](O,F)
+  \tkzFillPolygon[white](A,...,D)
+  \tkzClipPolygon(A,...,D)
+  \foreach \c/\t in &#123;S/C,R/B,U/A,T/D&#125;
+  &#123;\tkzFillCircle[teal!20](\c,\t)&#125;
+\end&#123;scope&#125;
+\foreach \c/\t in &#123;X/C,Y/B,Z/A,W/D&#125;
+&#123;\tkzFillCircle[white](\c,\t)&#125;
+  \foreach \c/\t in &#123;S/C,R/B,U/A,T/D&#125;
+  &#123;\tkzFillCircle[teal!20](\c,\t)&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 139: Geometry
+
+**ID**: `33e3096692f8`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.75]
+\tkzDefPoints&#123;0/0/A,8/0/B,8/8/C,0/8/D&#125;
+\tkzDefMidPoint(A,B) \tkzGetPoint&#123;F&#125;
+\tkzDefMidPoint(B,C) \tkzGetPoint&#123;E&#125;
+\tkzDefMidPoint(D,B) \tkzGetPoint&#123;I&#125;
+\tkzDefMidPoint(I,B) \tkzGetPoint&#123;a&#125;
+\tkzInterLC(B,I)(B,C) \tkzGetSecondPoint&#123;K&#125;
+\tkzDefMidPoint(I,K) \tkzGetPoint&#123;b&#125;
+\begin&#123;scope&#125;
+  \tkzFillSector[fill=blue!10](B,C)(A)
+  \tkzDefMidPoint(A,B) \tkzGetPoint&#123;x&#125;
+  \tkzDrawSemiCircle[fill=white](x,B)
+  \tkzDefMidPoint(B,C) \tkzGetPoint&#123;y&#125;
+  \tkzDrawSemiCircle[fill=white](y,C)
+  \tkzClipCircle(E,B)
+  \tkzClipCircle(F,B)
+  \tkzFillCircle[fill=blue!10](B,A)
+\end&#123;scope&#125;
+\tkzDrawSemiCircle[thick](F,B)
+\tkzDrawSemiCircle[thick](E,C)
+\tkzDrawArc[thick](B,C)(A)
+\tkzDrawSegments[thick](A,B B,C)
+\tkzDrawPoints(A,B,C,E,F)
+\tkzLabelPoints[centered](a,b)
+\tkzLabelPoints(A,B,C,E,F)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 140: Geometry
+
+**ID**: `c16c30e4eddb`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \tkzDefPoint(0,0)&#123;A&#125; \tkzDefPoint(1,0)&#123;B&#125;
+  \tkzDefPoint(2,0)&#123;C&#125; \tkzDefPoint(-3,0)&#123;a&#125; 
+  \tkzDefPoint(3,0)&#123;b&#125;  \tkzDefPoint(0,3)&#123;c&#125; 
+  \tkzDefPoint(0,-3)&#123;d&#125;
+\begin&#123;scope&#125;
+ \tkzClipPolygon(a,b,c,d)
+ \tkzFillCircle[teal!20](A,C)
+\end&#123;scope&#125;
+ \tkzFillCircle[white](A,B)
+ \tkzDrawCircle[color=red](A,C)
+ \tkzDrawCircle[color=red](A,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 141: Geometry
+
+**ID**: `da083412faf6`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.5]
+   \tkzDefPoint(0,0)&#123;C&#125; \tkzDefPoint(4,0)&#123;A&#125;
+   \tkzDefPoint(0,3)&#123;B&#125;
+   \tkzDefSquare(B,A)      \tkzGetPoints&#123;E&#125;&#123;F&#125;
+   \tkzDefSquare(A,C)      \tkzGetPoints&#123;G&#125;&#123;H&#125;
+   \tkzDefSquare(C,B)       \tkzGetPoints&#123;I&#125;&#123;J&#125;
+   \tkzFillPolygon[color  =  orange!30   ](A,C,G,H)
+   \tkzFillPolygon[color  =  teal!40  ](C,B,I,J)
+   \tkzFillPolygon[color  =  purple!20](B,A,E,F)
+   \tkzDrawPolygon[line width  =  1pt](A,B,C)
+   \tkzDrawPolygon[line width  =  1pt](A,C,G,H)
+   \tkzDrawPolygon[line width  =  1pt](C,B,I,J)
+   \tkzDrawPolygon[line width  =  1pt](B,A,E,F)
+   \tkzLabelSegment[above](C,A)&#123;$a$&#125;
+   \tkzLabelSegment[right](B,C)&#123;$b$&#125;
+   \tkzLabelSegment[below left](B,A)&#123;$c$&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 142: Geometry
+
+**ID**: `d83549a2c713`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=.6] 
+  \tkzDefPoint(0,0)&#123;O&#125;
+  \tkzDefPoint(-30:3)&#123;A&#125;
+  \tkzDefPointBy[rotation = center O angle -60](A)   
+  \tkzFillSector[fill=purple!20](O,A)(tkzPointResult) 
+    \begin&#123;scope&#125;[shift=&#123;(-60:1)&#125;]
+    \tkzDefPoint(0,0)&#123;O&#125;
+    \tkzDefPoint(-30:3)&#123;A&#125;
+    \tkzDefPointBy[rotation = center O angle -60](A)
+    \tkzGetPoint&#123;A'&#125;
+    \tkzFillSector[color=teal!40](O,A')(A)
+      \end&#123;scope&#125;
+  \end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 143: Geometry
+
+**ID**: `66e101cd78ed`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=1.5]
+ \tkzDefPoint(0,0)&#123;O&#125; \tkzDefPoint(2,2)&#123;A&#125;
+ \tkzFillSector[rotate,color=purple!20](O,A)(30)
+ \tkzFillSector[rotate,color=teal!40](O,A)(-30)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 144: Geometry
+
+**ID**: `a072f2430ccb`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125; 
+   \tkzInit 
+   \tkzDefPoints&#123;0/0/O,2.5/0/A,1.5/2/B&#125;
+   \tkzFillAngle[size=2, fill=gray!10](A,O,B)
+   \tkzDrawLines(O,A O,B)
+   \tkzDrawPoints(O,A,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 145: Geometry
+
+**ID**: `e8b0734807bd`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125; 
+   \tkzInit 
+   \tkzDefPoints&#123;0/0/O,2.5/0/A,1.5/2/B&#125;
+   \tkzFillAngle[size=2,fill=gray!10](B,O,A)
+   \tkzDrawLines(O,A O,B)
+   \tkzDrawPoints(O,A,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 146: Geometry
+
+**ID**: `99d4e93bad87`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125; 
+   \tkzInit 
+   \tkzDefPoints&#123;0/0/O,5/0/A,3/4/B&#125;
+   % Don't forget &#123;&#125; to get, () to use
+   \tkzFillAngle[size=4,left color=white, 
+                 right color=red!50](A,O,B)
+   \tkzDrawLines(O,A O,B)
+   \tkzDrawPoints(O,A,B)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 147: Geometry
+
+**ID**: `45781ae9d4ad`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.5]
+  \tkzDefPoints&#123;0/0/B,8/0/C,0/8/A,8/8/D&#125;
+  \tkzDrawPolygon(B,C,D,A)
+  \tkzDefTriangle[equilateral](B,C) \tkzGetPoint&#123;M&#125;
+  \tkzInterLL(D,M)(A,B) \tkzGetPoint&#123;N&#125;
+  \tkzDefPointBy[rotation=center N angle -60](D) 
+  \tkzGetPoint&#123;L&#125;
+  \tkzInterLL(N,L)(M,B)     \tkzGetPoint&#123;P&#125;
+  \tkzInterLL(M,C)(D,L)     \tkzGetPoint&#123;Q&#125;
+  \tkzDrawSegments(D,N N,L L,D B,M M,C)
+  \tkzDrawPoints(L,N,P,Q,M,A,D) 
+  \tkzLabelPoints[left](N,P,Q)
+  \tkzLabelPoints[above](M,A,D)
+  \tkzLabelPoints(L,B,C)
+  \tkzMarkAngles(C,B,M B,M,C M,C,B D,L,N L,N,D N,D,L)
+  \tkzFillAngles[fill=red!20,opacity=.2](C,B,M%
+      B,M,C M,C,B D,L,N L,N,D N,D,L)
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 148: Geometry
+
+**ID**: `2763a4797a7a`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[&gt;=latex] 
+ \tkzDefPoint(0,0)&#123;A&#125;  \tkzDefPoint(3,1)&#123;B&#125;
+ \tkzDefPoint(3,2)&#123;C&#125;   \tkzDefPoint(4,3)&#123;D&#125;
+ \tkzDefCircleBy[translation= from B to A](C,D) 
+ \tkzGetPoints&#123;C'&#125;&#123;D'&#125; 
+ \tkzDrawPoints[teal](A,B,C,D,C',D')
+ \tkzDrawSegments[orange,-&gt;](A,B)
+ \tkzDrawCircles(C,D C',D')
+ \tkzLabelPoints[color=teal](A,B,C,C') 
+ \tkzLabelPoints[color=teal,above](D,D') 
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 149: Geometry
+
+**ID**: `e422e810ca11`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[&gt;=latex] 
+ \tkzDefPoint(0,0)&#123;A&#125;  \tkzDefPoint(3,1)&#123;B&#125;
+ \tkzDefPoint(3,2)&#123;C&#125;   \tkzDefPoint(4,3)&#123;D&#125;
+ \tkzDefCircleBy[reflection = over A--B](C,D)
+ \tkzGetPoints&#123;C'&#125;&#123;D'&#125; 
+ \tkzDrawPoints[teal](A,B,C,D,C',D')
+ \tkzDrawLine[add =0 and 1][orange](A,B)
+ \tkzDrawCircles(C,D C',D')
+ \tkzLabelPoints[color=teal](A,B,C,C') 
+ \tkzLabelPoints[color=teal,right](D,D') 
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 150: Geometry
+
+**ID**: `7c4bcd1c58e2`
+**Package**: tkz-euclide
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=1.2]
+ \tkzDefPoint(0,0)&#123;A&#125;   \tkzDefPoint(3,1)&#123;B&#125;
+ \tkzDefPoint(3,2)&#123;C&#125;   \tkzDefPoint(4,3)&#123;D&#125;
+ \tkzDefCircleBy[homothety=center A ratio .5](C,D)
+ \tkzGetPoints&#123;C'&#125;&#123;D'&#125;
+ \tkzDrawPoints[teal](A,C,D,C',D')
+ \tkzDrawCircles(C,D C',D')
+ \tkzLabelPoints[color=teal](A,C,C')
+ \tkzLabelPoints[color=teal,right](D,D') 
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tkz-euclide-page-003) | Page 5 of 12 | [Next →](tkz-euclide-page-005)

@@ -1,0 +1,705 @@
+---
+title: "TIKZ-PGF Examples - Page 14"
+description: "LaTeX examples 391-420 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 14
+
+Showing examples **391-420** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-012) | Page 14 of 96 | [Next →](tikz-pgf-page-014)
+
+---
+
+## Example 391: Other
+
+**ID**: `b8e4a5979ed7`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix (network)
+    [matrix of nodes,%
+     nodes in empty cells,
+     nodes=&#123;outer sep=0pt,circle,minimum size=4pt,draw&#125;,
+     column sep=&#123;1cm,between origins&#125;,
+     row sep=&#123;1cm,between origins&#125;]
+  &#123;
+                  &                &                 & \\
+                  &                &                 & \\
+    |[draw=none]| & |[xshift=1mm]| & |[xshift=-1mm]|   \\
+  &#125;;
+  \foreach \a in &#123;1,...,4&#125;&#123;
+    \draw (network-3-2) -- (network-2-\a);
+    \draw (network-3-3) -- (network-2-\a);
+    \draw [-stealth] ([yshift=5mm]network-1-\a.north) -- (network-1-\a);
+    \foreach \b in &#123;1,...,4&#125;
+      \draw (network-1-\a) -- (network-2-\b);
+  &#125;
+  \draw [stealth-] ([yshift=-5mm]network-3-2.south) -- (network-3-2);
+  \draw [stealth-] ([yshift=-5mm]network-3-3.south) -- (network-3-3);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 392: Other
+
+**ID**: `e96ced87d7b5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [auto,
+   decision/.style=&#123;diamond, draw=blue, thick, fill=blue!20,
+                    text width=4.5em,align=flush center,
+                    inner sep=1pt&#125;,
+   block/.style   =&#123;rectangle, draw=blue, thick, fill=blue!20,
+                    text width=5em,align=center, rounded corners,
+                    minimum height=4em&#125;,
+   line/.style    =&#123;draw, thick, -latex',shorten &gt;=2pt&#125;,
+   cloud/.style   =&#123;draw=red, thick, ellipse,fill=red!20,
+                    minimum height=2em&#125;]
+
+  \matrix [column sep=5mm,row sep=7mm]
+  &#123;
+    % row 1
+      \node [cloud] (expert)   &#123;expert&#125;; &
+      \node [block] (init)     &#123;initialize model&#125;; &
+      \node [cloud] (system)   &#123;system&#125;; \\
+    % row 2
+      & \node [block] (identify) &#123;identify candidate model&#125;; & \\
+    % row 3
+      \node [block] (update)   &#123;update model&#125;;  &
+      \node [block] (evaluate) &#123;evaluate candidate models&#125;; & \\
+    % row 4
+      & \node [decision] (decide) &#123;is best candidate&#125;; & \\
+    % row 5
+      & \node [block] (stop)      &#123;stop&#125;; & \\
+  &#125;;
+  \begin&#123;scope&#125;[every path/.style=line]
+    \path          (init)     -- (identify);
+    \path          (identify) -- (evaluate);
+    \path          (evaluate) -- (decide);
+    \path          (update)   |- (identify);
+    \path          (decide)   -| node [near start] &#123;yes&#125; (update);
+    \path          (decide)   -- node [midway] &#123;no&#125; (stop);
+    \path [dashed] (expert)   -- (init);
+    \path [dashed] (system)   -- (init);
+    \path [dashed] (system)   |- (evaluate);
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 393: Other
+
+**ID**: `f47c339f3b41`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfgdset&#123;phylogenetic inner node/.style=&#123;
+    /tikz/.cd, draw, circle, inner sep=0pt, minimum size=5pt
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 394: Other
+
+**ID**: `ff3987c168b5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfgdset&#123;phylogenetic edge/.style=&#123;
+    /tikz/.cd, thick, rounded corners
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 395: Other
+
+**ID**: `951023c6a248`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\pgfsys@moveto#1#2&#123;\pgfsysprotocol@literal&#123;#1 #2 m&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 396: Other
+
+**ID**: `e57d8e641d63`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;opacity&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1&#125;, entry = &#123;2s&#125;&#123;0&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 397: Other
+
+**ID**: `4aa9e531a67e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [make snapshot of=0.5s] \scoped :rotate = &#123; 0s = "0", 2s = "90" &#125;
+  \node [draw=blue, very thick] &#123;\pgfname&#125;;
+\tikz [make snapshot of=1s]   \scoped :rotate = &#123; 0s = "0", 2s = "90" &#125;
+  \node [draw=blue, very thick] &#123;\pgfname&#125;;
+\tikz [make snapshot of=1.5s] \scoped :rotate = &#123; 0s = "0", 2s = "90" &#125;
+  \node [draw=blue, very thick] &#123;\pgfname&#125;;
+\tikz [make snapshot of=2s]   \scoped :rotate = &#123; 0s = "0", 2s = "90" &#125;
+  \node [draw=blue, very thick] &#123;\pgfname&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 398: Other
+
+**ID**: `bc91019ade17`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;opacity&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1&#125;, entry = &#123;2s&#125;&#123;0&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 399: Other
+
+**ID**: `d8725abcae60`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [very thick] &#123;
+  \pgfanimateattribute&#123;rotate&#125;&#123;
+    whom = node, begin on = &#123;end, of next = my move animation, delay = 1s&#125;,
+    entry = &#123;0s&#125;&#123;0&#125;, entry = &#123;2s&#125;&#123;90&#125;, begin snapshot = 3s, &#125;
+  \pgfanimateattribute&#123;translate&#125;&#123;
+    name = my move animation, whom = node, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;\pgfpointorigin&#125;, entry = &#123;2s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-5mm&#125;&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, circle] &#123;Here!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 400: Other
+
+**ID**: `95430fd0e04f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;rotate&#125;&#123;
+    whom = node, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;0&#125;, entry = &#123;1s&#125;&#123;90&#125;, entry = &#123;1.1s&#125;&#123;45&#125;, entry = &#123;2s&#125;&#123;90&#125;
+  &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 401: Node Graph
+
+**ID**: `1f6dd806a885`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \foreach \i in &#123;0,0.125,...,1&#125; \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \pgfanimateattribute&#123;translate&#125;&#123;
+    whom = node, begin on = &#123;click&#125;,
+    exit control=&#123;1&#125;&#123;0&#125;,
+    entry = &#123;0s&#125;&#123;\pgfpointorigin&#125;,
+    linear, % revert to default
+    entry = &#123;1s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-5mm&#125;&#125;,
+    entry control=&#123;0&#125;&#123;1&#125;,
+    entry = &#123;2s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-10mm&#125;&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 402: Node Graph
+
+**ID**: `4eda3ef00ff4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \foreach \i in &#123;0,0.125,...,1&#125; \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \pgfanimateattribute&#123;translate&#125;&#123;
+    whom = node, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;\pgfpointorigin&#125;,
+    stay,
+    entry = &#123;1s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-5mm&#125;&#125;,
+    linear,
+    entry = &#123;2s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-10mm&#125;&#125;,
+    entry = &#123;3s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-15mm&#125;&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 403: Node Graph
+
+**ID**: `3c9b2ee40605`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \foreach \i in &#123;0,0.125,...,1&#125; \draw (-0.9,.9-\i) -- ++(1.8,0);
+  \pgfanimateattribute&#123;translate&#125;&#123;
+    whom = node, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;\pgfpointorigin&#125;,
+    jump,
+    entry = &#123;1s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-1cm&#125;&#125;,
+    linear,
+    entry = &#123;2s&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;-2cm&#125;&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 404: Other
+
+**ID**: `9b21b0ad39b8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;rotate&#125;&#123;
+    whom = node, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;90&#125;, entry = &#123;2s&#125;&#123;180&#125;,
+    base  = 45
+  &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 405: Other
+
+**ID**: `be389b90d0c6`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [make snapshot of=1s,
+       animate = &#123; myself: = &#123;
+         :rotate = &#123; 0s = "0", 2s = "90" &#125;,
+         :color  = &#123; 0s = "red", 2s = "green" &#125;,
+         :line width = &#123; 0s = "0mm", 4s = "4mm" &#125;
+       &#125;&#125;]
+  \node [fill=black!20, draw] &#123; Node &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 406: Other
+
+**ID**: `2876b363d019`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\foreach \t in &#123;0,1,2,3,4&#125; &#123;
+  \pgfsnapshot&#123;\t&#125;
+  \tikz :rotate = &#123; 0s = "0", 2s = "90", 2s = "180", 4s = "270" &#125;
+    \node [draw=blue, very thick] &#123;f&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 407: Other
+
+**ID**: `428e3579e5c6`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\foreach \t in &#123;0,1,2,3,4&#125; &#123;
+  \pgfsnapshotafter&#123;\t&#125;
+  \tikz :rotate = &#123; 0s = "0", 2s = "90", 2s = "180", 4s = "270" &#125;
+    \node [draw=blue, very thick] &#123;f&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 408: Other
+
+**ID**: `3c43ec1929c4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill&#125;&#123;
+    whom = node.background, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 409: Other
+
+**ID**: `79cc115b59f8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;draw&#125;&#123;
+    whom = node.background, begin on = &#123;click&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 410: Other
+
+**ID**: `31b9b817e3a5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill&#125;&#123;
+    whom = example, begin on = &#123;click, of next=node&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+  \begin&#123;scope&#125;[name = example]
+    \fill (1.5,-0.75) rectangle ++ (1,1);
+    \fill [blue] (2,-0.25) rectangle ++ (1,1);
+  \end&#123;scope&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 411: Other
+
+**ID**: `ea6713bcf04c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill&#125;&#123;
+    whom = example, begin on = &#123;click, of next=node&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+  \node at (2,0) (example) [fill = blue!20, circle] &#123;No effect&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 412: Other
+
+**ID**: `d513700242b4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill&#125;&#123;
+    whom = example.background, begin on = &#123;click, of next=node&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+  \node at (2,0) (example) [fill = blue!20, circle] &#123;Effect&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 413: Other
+
+**ID**: `39b37090a348`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill&#125;&#123;
+    whom = example.text, begin on = &#123;click, of next=node&#125;,
+    entry = &#123;0s&#125;&#123;white&#125;, entry = &#123;2s&#125;&#123;red&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+  \node at (2,0) (example) [fill = blue!20, circle, font=\huge] &#123;Text&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 414: Other
+
+**ID**: `0a697fefd1c4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;fill opacity&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1&#125;, entry = &#123;2s&#125;&#123;0&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 415: Other
+
+**ID**: `eba56ff450b4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;draw opacity&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1&#125;, entry = &#123;2s&#125;&#123;0&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 416: Other
+
+**ID**: `002e7225ba1b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;opacity&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1&#125;, entry = &#123;2s&#125;&#123;0&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 417: Other
+
+**ID**: `e816952f2595`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;visible&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;false&#125;, entry = &#123;2s&#125;&#123;false&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 418: Other
+
+**ID**: `5c8b7d714743`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;stage&#125;&#123;
+    whom = example, begin on = &#123;click, of next=node&#125;,
+    entry = &#123;0s&#125;&#123;true&#125;, entry = &#123;2s&#125;&#123;true&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+  \node at (2,0) (example) [fill = blue!20, circle] &#123;Effect&#125;; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 419: Other
+
+**ID**: `449cee46458d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [very thick] &#123;
+  \pgfanimateattribute&#123;line width&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;1pt&#125;, entry = &#123;2s&#125;&#123;5mm&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 420: Other
+
+**ID**: `40ba3952252b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pgfanimateattribute&#123;dash&#125;&#123;
+    whom = node, begin on = &#123;click&#125;, entry = &#123;0s&#125;&#123;&#123;&#123;10pt&#125;&#123;1pt&#125;&#125;&#123;0pt&#125;&#125;,
+                                     entry = &#123;2s&#125;&#123;&#123;&#123;1pt&#125;&#123;10pt&#125;&#125;&#123;0pt&#125;&#125; &#125;
+  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-012) | Page 14 of 96 | [Next →](tikz-pgf-page-014)

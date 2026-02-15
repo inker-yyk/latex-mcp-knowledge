@@ -1,0 +1,786 @@
+---
+title: "PGFPLOTS Examples - Page 10"
+description: "LaTeX examples 271-300 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 10
+
+Showing examples **271-300** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-008) | Page 10 of 44 | [Next →](pgfplots-page-010)
+
+---
+
+## Example 271: Line Chart
+
+**ID**: `813dcdaa1d52`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    enlargelimits=false,
+    axis on top,
+]
+    \addplot graphics [
+        xmin=-3,xmax=3,
+        ymin=-3,ymax=3,
+    ] &#123;external1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 272: Other
+
+**ID**: `8348f288a5a2`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+set samples 30000
+set parametric
+unset border
+unset xtics
+unset ytics
+set output "external2.eps"
+set terminal postscript eps color
+plot [t=0:1] rand(0),rand(0) with dots notitle lw 5
+</code></pre>
+
+</details>
+
+---
+
+## Example 273: Line Chart
+
+**ID**: `cb10bf939300`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis on top,
+    title=Graphics Import,
+]
+    \addplot graphics [
+        xmin=0,xmax=1,
+        ymin=0,ymax=1,
+        % trim=left bottom right top
+        includegraphics=&#123;trim=12 9 12 8,clip&#125;,
+    ] &#123;external2&#125;;
+    \addplot coordinates &#123;(0,0) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 274: Line Chart
+
+**ID**: `69956f7faf9a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[axis on top,title=Graphics Import]
+    % provide options for the legend:
+    \addplot [
+        red,
+        only marks,mark=*,mark size=1pt,
+    ] graphics [
+        xmin=0,xmax=1,ymin=0,ymax=1,
+        % trim=left bottom right top
+        includegraphics=&#123;trim=12 9 12 8,clip&#125;,
+    ] &#123;external2&#125;;
+
+    \addplot coordinates &#123;(0,0) (1,1)&#125;;
+
+    \legend&#123;Scatter,Line&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 275: Line Chart
+
+**ID**: `16f11d3c7ac1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis on top,
+    title=Graphics Import,
+]
+    \addplot graphics [
+        % instead of the min/max things:
+        points=&#123;(0,1) (1,0)&#125;,
+        % trim=left bottom right top
+        includegraphics=&#123;trim=12 9 12 8,clip&#125;,
+    ] &#123;external2&#125;;
+    \addplot coordinates &#123;(0,0) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 276: Other
+
+**ID**: `73aad456e4cf`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    plot graphics/node/.style=&#123;
+        transform shape,
+        inner sep=0pt,
+        outer sep=0pt,
+        every node/.style=&#123;&#125;,
+        anchor=south west,
+        at=&#123;(0pt,0pt)&#125;,
+        rectangle
+    &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 277: Other
+
+**ID**: `d5bde1b9f03a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+[x,y]=meshgrid(linspace(0,1,120));
+surf(x,y,sin(8*pi*x).* exp(-20*(y-0.5).^2) + exp(-(x-0.5).^2*30 - (y-0.25).^2 - (x-0.5).*(y-0.25)))
+xlabel('x'), ylabel('y')
+axis off
+print -dpng plotgraphics3dsurf
+</code></pre>
+
+</details>
+
+---
+
+## Example 278: 3D Plot
+
+**ID**: `e22cc69f577b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    grid=both,minor tick num=1,
+    xlabel=$x$,ylabel=$y$,
+]
+    \addplot3 graphics [
+        points=&#123;% important
+            (0,1,0) =&gt; (0,207-112)
+            (1,0,0) =&gt; (446,207-133)
+            (0.5546,0.5042,1.825) =&gt; (236,207)
+            (0,0,0) =&gt; (194,207-202)
+        &#125;,
+    ] &#123;plotdata/plotgraphics3dsurf.png&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 279: 3D Plot
+
+**ID**: `5e71b4db0134`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xmax=1.5,% extra limits
+    grid=both,minor tick num=1,
+    xlabel=$x$,ylabel=$y$,
+]
+    \addplot3 [surf] % 'surf': only used for legend
+        graphics [
+            points=&#123;
+                (0,1,0) =&gt; (0,207-112)
+                (1,0,0) =&gt; (446,207-133)
+                (0.5546,0.5042,1.825) =&gt; (236,207)
+                (0,0,0) =&gt; (194,207-202)
+        &#125;,
+    ] &#123;plotdata/plotgraphics3dsurf.png&#125;;
+        \addlegendentry&#123;Graphics&#125;
+
+    \addplot3+ [only marks] coordinates &#123;
+        (0,1,0) (1,0,0)
+        (0.5546,0.5042,1.825) (0,0,0)
+    &#125;;
+        \addlegendentry&#123;Scatter&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 280: Line Chart
+
+**ID**: `d6c4800c3e4b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    grid=both,minor tick num=1,
+    xlabel=$x$,ylabel=$y$,
+    title=&#123;\centering
+      Geometry provided by Sven Gro\ss, Bonn\\
+      \url&#123;http://www.igpm.rwth-aachen.de/DROPS&#125;\\&#125;,
+    title style=&#123;text width=6cm,font=\tiny&#125;,
+]
+    \addplot3 graphics [
+        points=&#123;
+            (-0.002625,0.002625,0) =&gt; (140,234)
+            (0,0.00263,0.00263)    =&gt; (230,364)
+            (0,-0.00263,-0.00263)  =&gt; (366,81)
+            (0,-0.00263,0.00263)   =&gt; (366,276)
+            (0.002625,0.002625,0.002625)
+        &#125;,
+    ] &#123;plotdata/risingdrop3d.png&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 281: Line Chart
+
+**ID**: `624052fb4578`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    height=8cm,width=7cm,% improve scaling manually
+    grid=both,minor tick num=1,
+    xlabel=$x$,ylabel=$y$,
+    title=&#123;\centering
+      Geometry provided by Sven Gro\ss, Bonn\\
+      \url&#123;http://www.igpm.rwth-aachen.de/DROPS&#125;\\&#125;,
+    title style=&#123;text width=6cm,font=\tiny&#125;,
+]
+    \addplot3 graphics [
+        points=&#123;
+            (-0.002625,0.002625,0) =&gt; (140,234)
+            (0,0.00263,0.00263)    =&gt; (230,364)
+            (0,-0.00263,-0.00263)  =&gt; (366,81)
+            (0,-0.00263,0.00263)   =&gt; (366,276)
+            (0.002625,0.002625,0.002625)
+        &#125;,
+    ] &#123;plotdata/risingdrop3d.png&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 282: Other
+
+**ID**: `064ba8f27274`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+clear all
+close all
+seed = sum(clock)
+rand('seed',seed);
+X = rand(10,10,10);
+data = smooth3(X,'box',5);
+p1 = patch(isosurface(data,.5), ...
+   'FaceColor','blue','EdgeColor','none');
+p2 = patch(isocaps(data,.5), ...
+    'FaceColor','interp','EdgeColor','none');
+isonormals(data,p1)
+daspect([1 2 2])
+view(3); axis vis3d tight
+camlight; lighting phong
+% print -dpng plotgraphics3withaxis
+axis off
+print -dpng plotgraphics3
+save  plotgraphics3.seed seed -ASCII % to reproduce the result
+</code></pre>
+
+</details>
+
+---
+
+## Example 283: Line Chart
+
+**ID**: `ac61f0680588`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    grid=both,minor tick num=1,
+    xlabel=$x$,ylabel=$y$,
+    3d box,
+]
+    \addplot3 graphics [
+        points=&#123;
+            (1,1,1)    =&gt; (205,48)
+            (10,1,10)  =&gt; (503,324)
+            (1,1,4.044)=&gt; (206,102)
+            (10,10,10) =&gt; (390,398)
+        &#125;,
+    ] &#123;plotdata/plotgraphics3.png&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 284: Other
+
+**ID**: `d8311538326c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+hist3(randn(10000,2)) % some random data
+set(get(gca,'child'),'FaceColor','interp','CDataMode','auto'); % colors
+% make sure the "print" paper format is the same as the screen paper format:
+set(gcf,'PaperPositionMode','auto')
+</code></pre>
+
+</details>
+
+---
+
+## Example 285: Other
+
+**ID**: `421969fb3cac`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+function pgfplotscsconversion
+
+% Hook into the Data Cursor "click" event
+h = datacursormode(gcf);
+set(h,'UpdateFcn',@myupdatefcn,'SnapToDataVertex','off');
+datacursormode on
+
+% select four points in plot using mouse
+
+% The function that gets called on each Data Cursor click
+function [txt] = myupdatefcn(obj,event_obj)
+
+% Get the screen resolution, in dots per inch
+dpi = get(0,'ScreenPixelsPerInch');
+
+% Get the click position in pixels, relative to the lower left of the
+% screen
+screen_location=get(0,'PointerLocation');
+
+% Get the position of the plot window, relative to the lower left of
+% the screen
+figurePos = get(gcf,'Position');
+
+% Get the data coordinates of the cursor
+pos = get(event_obj,'Position');
+
+% Format the data and figure coordinates. The factor "72.27/dpi" is
+% necessary to convert from pixels to TeX points (72.27 points per inch)
+display(['(',num2str(pos(1)),',',num2str(pos(2)),',',num2str(pos(3)),') =&gt; (', ...
+   num2str((screen_location(1)-figurePos(1))*72.27/dpi),',', ...
+   num2str((screen_location(2)-figurePos(2))*72.27/dpi),')'])
+
+% Format the tooltip display
+txt = &#123;['X: ',num2str(pos(1))],['Y: ',num2str(pos(2))],['Z: ',num2str(pos(3))]&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 286: Other
+
+**ID**: `06499d231d81`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+axis off
+print -dpng matlabout -r400 % PNG called "matlabout.png" with 400 dpi resolution
+</code></pre>
+
+</details>
+
+---
+
+## Example 287: Other
+
+**ID**: `e73faf82186e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% It might be better to use print -depsc followed by epstopdf.
+% Use this if you (really) want to use print -dpdf:
+currentScreenUnits=get(gcf,'Units')     % Get current screen units
+currentPaperUnits=get(gcf,'PaperUnits') % Get current paper units
+set(gcf,'Units',currentPaperUnits)      % Set screen units to paper units
+plotPosition=get(gcf,'Position')        % Get the figure position and size
+set(gcf,'PaperSize',plotPosition(3:4))  % Set the paper size to the figure size
+set(gcf,'Units',currentScreenUnits)     % Restore the screen units
+
+print -dpdf matlabout      % PDF called "matlabout.pdf"
+</code></pre>
+
+</details>
+
+---
+
+## Example 288: Line Chart
+
+**ID**: `493dd3b7b1db`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot file &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 289: Other
+
+**ID**: `6e50edf69c1c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+#Curve 0, 20 points
+#x y type
+0.00000 0.00000 i
+0.52632 0.50235 i
+1.05263 0.86873 i
+1.57895 0.99997 i
+...
+9.47368 -0.04889 i
+10.00000 -0.54402 i
+</code></pre>
+
+</details>
+
+---
+
+## Example 290: Line Chart
+
+**ID**: `ce45cba0e284`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot file [skip first] &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 291: Line Chart
+
+**ID**: `9f9580d0c1da`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot table [x index=0,y index=1,header=false] &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 292: Other
+
+**ID**: `4bb9f8f72f3a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[key=value,key2=value2] % axis-wide keys
+...
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 293: Line Chart
+
+**ID**: `bba4dfad393d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;
+        % keys valid for single plots:
+        \addplot ... ;                          % uses the "cycle list" to determine keys
+        \addplot [key=value,key2=value2] ... ;  % uses the provided keys (not the "cycle list")
+        \addplot+ [key=value,key2=value2] ... ; % appends something to the "cycle list"
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 294: Other
+
+**ID**: `83b1682f06f8`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\chapter&#123;My Chapter&#125;
+\pgfplotsset&#123;
+    key=value,
+    key2=value2,
+&#125;
+This chapter has a common key configuration:
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;% uses the key config from above
+    ...
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 295: Other
+
+**ID**: `cea8a163a32a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\documentclass&#123;article&#125;
+
+\usepackage&#123;pgfplots&#125;
+\pgfplotsset&#123;
+    xticklabel=&#123;$\mathsf&#123;\pgfmathprintnumber&#123;\tick&#125;&#125;$&#125;,
+    every axis/.append style=&#123;
+        font=\sffamily,
+    &#125;,
+&#125;
+...
+</code></pre>
+
+</details>
+
+---
+
+## Example 296: Other
+
+**ID**: `cce6f6305b32`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;legend style=&#123;line width=1pt&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 297: Other
+
+**ID**: `36d71170f8e7`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    cycle list=&#123;
+        &#123;red, mark=*&#125;,          &#123;blue,mark=*&#125;,
+        &#123;red, mark=x&#125;,          &#123;blue,mark=x&#125;,
+        &#123;red, mark=square*&#125;,    &#123;blue,mark=square*&#125;,
+        &#123;red, mark=triangle*&#125;,  &#123;blue,mark=triangle*&#125;,
+        &#123;red, mark=diamond*&#125;,   &#123;blue,mark=diamond*&#125;,
+        &#123;red, mark=pentagon*&#125;,  &#123;blue,mark=pentagon*&#125;
+    &#125;,
+    legend style=&#123;
+        at=&#123;(0.5,-0.2)&#125;,
+        anchor=north,
+        legend columns=2,
+        cells=&#123;anchor=west&#125;,
+        font=\footnotesize,
+        rounded corners=2pt,
+    &#125;,
+    xlabel=$x$,
+    ylabel=$f(x)$,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 298: Other
+
+**ID**: `0079555931d5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    My Style 1/.style=&#123;xlabel=$x$, legend entries=&#123;1,2,3&#125; &#125;,
+    My Style 2/.style=&#123;xlabel=$X$, legend entries=&#123;4,5,6&#125; &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 299: Other
+
+**ID**: `14533342d348`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    My Code/.code=&#123;I've been invoked with `#1'&#125;&#125;
+\pgfplotsset&#123;My Code=&#123;this here&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 300: Other
+
+**ID**: `5b4978bfc57b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis legend/.append style=&#123;
+    legend columns=3,font=\Large&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-008) | Page 10 of 44 | [Next →](pgfplots-page-010)

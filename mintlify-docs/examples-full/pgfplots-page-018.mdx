@@ -1,0 +1,786 @@
+---
+title: "PGFPLOTS Examples - Page 19"
+description: "LaTeX examples 541-570 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 19
+
+Showing examples **541-570** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-017) | Page 19 of 44 | [Next →](pgfplots-page-019)
+
+---
+
+## Example 541: Other
+
+**ID**: `8522ce03fe44`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+xticklabels=&#123;$\frac&#123;1&#125;&#123;2&#125;$,$e$&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 542: Other
+
+**ID**: `6f4e57186cf9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+xticklabels=&#123;&#123;0,5&#125;, $e$&#125;.
+</code></pre>
+
+</details>
+
+---
+
+## Example 543: Line Chart
+
+**ID**: `21a527a678c1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=&#123;-1.5,-1,...,1.5&#125;,
+    xticklabels=&#123;%
+        $-1\frac 12$,
+        $-1$,
+        $-\frac 12$,
+        $0$,
+        $\frac 12$,
+        $1$&#125;,
+    % note: \frac can be done automatically:
+    % xticklabel style=&#123;/pgf/number format/frac&#125;,
+]
+    \addplot [smooth,blue,mark=*] coordinates &#123;
+        (-1,    1)
+        (-0.75, 0.5625)
+        (-0.5,  0.25)
+        (-0.25, 0.0625)
+        (0,     0)
+        (0.25,  0.0625)
+        (0.5,   0.25)
+        (0.75,  0.5625)
+        (1,     1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 544: Line Chart
+
+**ID**: `44e4f308f855`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;semilogyaxis&#125;[
+    ytickten=&#123;-2,-1,0,1,2&#125;,
+    yticklabels=&#123;
+        $\frac&#123;1&#125;&#123;100&#125;$,
+        $\frac&#123;1&#125;&#123;10&#125;$,
+        1,10,100
+    &#125;,
+]
+    \addplot &#123;exp(x)&#125;;
+\end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 545: Other
+
+**ID**: `7898724d6a54`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\axisdefaultticklabel&#123;$\pgfmathprintnumber&#123;\tick&#125;$&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 546: Other
+
+**ID**: `aaa0ed5dc51f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\axisdefaultticklabellog&#123;%
+    \pgfkeysgetvalue&#123;/pgfplots/log number format code/.@cmd&#125;\pgfplots@log@label@style
+    \expandafter\pgfplots@log@label@style\tick\pgfeov
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 547: Line Chart
+
+**ID**: `eca8c93ee4e4`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;semilogyaxis&#125;[
+    log ticks with fixed point,
+    xticklabel=&#123;$\pgfmathprintnumber&#123;\tick&#125;_e$&#125;,
+]
+    \addplot &#123;exp(x)&#125;;
+\end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 548: Line Chart
+
+**ID**: `1aeed0cd88ec`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \usepackage&#123;nicefrace&#125;% required
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        % x ticks explicitly formatted:
+        xtick=&#123;0,1,0.5,0.25,0.75&#125;,
+        xticklabels=&#123;$0$,$1$,$\frac12$,$\frac14$,$\frac34$&#125;,
+        % y ticks automatically by some code fragment:
+        ytick=data,
+        yticklabel=&#123;
+            \scriptsize
+            \ifdim\tick pt&lt;0pt % a TeX \if -- see TeX Book
+                \pgfmathparse&#123;-10*\tick&#125;
+                $-\nicefrac&#123;\pgfmathprintnumber&#123;\pgfmathresult&#125;&#125;&#123;10&#125;$
+            \else
+                \ifdim\tick pt=0pt
+                \else
+                    \pgfmathparse&#123;10*\tick&#125;
+                    $\nicefrac&#123;\pgfmathprintnumber&#123;\pgfmathresult&#125;&#125;&#123;10&#125;$
+                \fi
+            \fi
+        &#125;,
+        % NOTE: this here does the same:
+        % yticklabel style=&#123;/pgf/number format/.cd,frac,
+        %     frac TeX=\nicefrac,frac whole=false,frac denom=10&#125;,
+        ymajorgrids,
+        title=A special Prewavelet,
+        axis x line=center,
+        axis y line=left,
+    ]
+        \addplot coordinates &#123;(0,-1.2) (0.25,1.1)
+            (0.5,-0.6) (0.75,0.1) (1,0)&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 549: Other
+
+**ID**: `ccc4532b3e6b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    % this modifies the `every tick label' style
+    tick label style=&#123;
+        font=\tiny,
+        /pgf/number format/sci,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 550: Other
+
+**ID**: `47f5708f8d82`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    % this modifies the `every x tick label' style
+    x tick label style=&#123;
+        above,
+        /pgf/number format/fixed zerofill,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 551: Other
+
+**ID**: `7625c5271879`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    % modifies `every y tick label'
+    y tick label style=&#123;font=\bfseries&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 552: Line Chart
+
+**ID**: `31f3a777b964`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    x tick label as interval,
+]
+    \addplot &#123;3*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 553: Bar Chart
+
+**ID**: `bbbdda78c037`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    ybar interval=0.9,
+    x tick label as interval,
+    xmin=2003,xmax=2030,
+    ymin=0,ymax=140,
+    xticklabel=&#123;
+           $\pgfmathprintnumber&#123;\tick&#125;$
+        -- $\pgfmathprintnumber&#123;\nexttick&#125;$&#125;,
+    xtick=data,
+    x tick label style=&#123;
+        rotate=90,anchor=east,
+        /pgf/number format/1000 sep=%
+    &#125;,
+]
+    \addplot [draw=blue,fill=blue!40!white]
+        coordinates
+        &#123;(2003,40) (2005,100) (2006,15)
+         (2010,90) (2020,120) (2030,3)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 554: Other
+
+**ID**: `57fead9156bb`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every tick/.append style=&#123;color=black&#125;&#125; % applies to major and minor ticks,
+\pgfplotsset&#123;every minor tick/.append style=&#123;thin&#125;&#125;  % applies only to minor ticks,
+\pgfplotsset&#123;every major tick/.append style=&#123;thick&#125;&#125; % applies only to major ticks.
+</code></pre>
+
+</details>
+
+---
+
+## Example 555: Line Chart
+
+**ID**: `2b9f88dcf78f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=data,ytick=data,
+    xtick align=center,
+]
+    \addplot coordinates &#123;
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 556: Line Chart
+
+**ID**: `b31979b431cf`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=data,ytick=data,
+    ytick align=outside,
+]
+    \addplot coordinates &#123;
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 557: Line Chart
+
+**ID**: `98e8abbc3ae2`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=data,
+    axis x line=center,
+    xticklabels=&#123;,,&#125;,
+    ytick=&#123;-0.6,0,0.1,1&#125;,
+    yticklabels=&#123;
+        $-\frac&#123;6&#125;&#123;10&#125;$,,
+        $\frac&#123;1&#125;&#123;10&#125;$,$1$&#125;,
+    ymajorgrids,
+    axis y line=left,
+    enlargelimits=0.05
+]
+    \addplot coordinates &#123;
+        (-3,0) (-2,0.1) (-1,-0.6)
+        (0,1)
+        (1,-0.6) (2,0.1) (3,0)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 558: Line Chart
+
+**ID**: `cc415b0736bd`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=Default,
+        tiny,
+        symbolic x coords=&#123;a,T,g&#125;,
+        xticklabel style=&#123;name=tick no \ticknum&#125;,
+        xtick=data,
+    ]
+        \addplot coordinates &#123;(a,0) (T,1) (g,2)&#125;;
+    \end&#123;axis&#125;
+    \draw [red,opacity=0.5]
+        (tick no 0.base) -- (tick no 2.base);
+\end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=With strut,
+        tiny,
+        symbolic x coords=&#123;a,T,g&#125;,
+        xtick=data,
+        xticklabel style=&#123;name=tick no \ticknum&#125;,
+        typeset ticklabels with strut,
+    ]
+        \addplot coordinates &#123;(a,0) (T,1) (g,2)&#125;;
+    \end&#123;axis&#125;
+    \draw [red,opacity=0.5]
+        (tick no 0.base) -- (tick no 2.base);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 559: Line Chart
+
+**ID**: `095485f5ed11`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[scaled ticks=true]
+    \addplot coordinates &#123;
+        (20000,0.0005)
+        (40000,0.0010)
+        (60000,0.0020)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## Example 560: Line Chart
+
+**ID**: `dfcb5b418669`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    scaled ticks=false,
+]
+    \addplot coordinates &#123;
+        (20000,0.0005)
+        (40000,0.0010)
+        (60000,0.0020)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 561: Line Chart
+
+**ID**: `87f16302209f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    scaled ticks=base 10:3,
+    /pgf/number format/sci subscript,
+]
+    \addplot coordinates &#123;
+        (-0.00001,2e12) (-0.00005,4e12)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 562: Line Chart
+
+**ID**: `6314ea012b1b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xtick=&#123;0,1.5708,...,10&#125;,
+    domain=0:2*pi,
+    scaled x ticks=&#123;real:3.1415&#125;,
+    xtick scale label code/.code=&#123;$\cdot \pi$&#125;,
+]
+    \addplot &#123;sin(deg(x))&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 563: Other
+
+**ID**: `49e942333285`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/pgfplots/xtick scale label code/.code=
+    &#123;$\pgfkeysvalueof&#123;/pgfplots/tick scale binop&#125; \pgfmathprintnumber&#123;#1&#125;$&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 564: Line Chart
+
+**ID**: `58c8920501f3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    scaled x ticks=real:2,
+    scaled y ticks=real:3,
+]
+    \addplot &#123;x^3&#125;;
+    \node [pin=135:&#123;$(3,9)$&#125;] at (3,9) &#123;&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 565: Line Chart
+
+**ID**: `405089200f75`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    scaled y ticks=manual:&#123;$+65\,535$&#125;&#123;
+        \pgfmathparse&#123;#1-65535&#125;
+    &#125;,
+    yticklabel style=&#123;
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1,
+    &#125;,
+]
+    \addplot coordinates &#123;
+        (0, 65535)
+        (13, 65535)
+        (14, 65536)
+        (15, 65537)
+        (30, 65537)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 566: Other
+
+**ID**: `3284a98d999e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    xtick scale label code/.code=&#123;$\cdot 10^&#123;#1&#125;$&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 567: Other
+
+**ID**: `005a0b0b3669`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    xtick scale label code/.code=&#123;$\pgfkeysvalueof&#123;/pgfplots/tick scale binop&#125; 10^&#123;#1&#125;$&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 568: Line Chart
+
+**ID**: `5e91493e8e3f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    title=\texttt&#123;tick scale
+        binop=\textbackslash cdot&#125;,
+]
+    \addplot [
+        mark=none,
+        blue,
+        samples=250,
+        domain=0:5,
+    ] &#123;exp(10*x)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 569: Line Chart
+
+**ID**: `625b76482b45`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    title=\texttt&#123;tick scale
+        binop=\textbackslash times&#125;,
+    tick scale binop=\times,
+]
+    \addplot [
+        mark=none,
+        blue,
+        samples=250,
+        domain=0:5,
+    ] &#123;exp(10*x)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 570: Line Chart
+
+**ID**: `d2af9b71a2c4`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;semilogyaxis&#125;[log basis y=2,grid=major,samples at=&#123;-4,...,4&#125;]
+        \addplot &#123;2^x&#125;;
+    \end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+~
+\begin&#123;tikzpicture&#125;
+    \begin&#123;semilogyaxis&#125;[log basis y=10,samples at=&#123;-4,...,4&#125;]
+        \addplot &#123;2^x&#125;;
+    \end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-017) | Page 19 of 44 | [Next →](pgfplots-page-019)

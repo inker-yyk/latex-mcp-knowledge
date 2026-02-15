@@ -1,0 +1,686 @@
+---
+title: "TIKZ-PGF Examples - Page 79"
+description: "LaTeX examples 2341-2370 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 79
+
+Showing examples **2341-2370** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-077) | Page 79 of 96 | [Next →](tikz-pgf-page-079)
+
+---
+
+## Example 2341: Other
+
+**ID**: `9088649ea985`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) node(x) [draw] &#123;X&#125;
+            (2,0) node(y) &#123;Y&#125;
+            (node cs:name=x) .. controls +(1,1) and +(-1,1) ..
+            (node cs:name=y);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2342: Other
+
+**ID**: `abadb62a8f5d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[fill=blue!20]
+  \draw[help lines] (-1,-2) grid (6,3);
+  \path (0,0)  node(a) [ellipse,rotate=10,draw,fill]    &#123;An ellipse&#125;
+        (3,-1) node(b) [circle,draw,fill]               &#123;A circle&#125;
+        (2,2)  node(c) [rectangle,rotate=20,draw,fill]  &#123;A rectangle&#125;
+        (5,2)  node(d) [rectangle,rotate=-30,draw,fill] &#123;Another rectangle&#125;;
+  \draw[thick] (a.south) -- (b) -- (c) -- (d);
+  \draw[thick,red,-&gt;] (a) |- +(1,3) -| (c) |- (b);
+  \draw[thick,blue,&lt;-&gt;] (b) .. controls +(right:2cm) and +(down:1cm) .. (d);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2343: Other
+
+**ID**: `454afb1cac60`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;
+%   \draw[help lines] (0,0) grid (3,2);
+%   \draw (0,0) coordinate (A) -- (3,2) coordinate (B)
+%         (1,2)                -- (3,0);
+%
+%   \fill[red] (intersection cs:
+%     first line=&#123;(A)--(B)&#125;,
+%     second line=&#123;(1,2)--(3,0)&#125;) circle (2pt);
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 2344: Node Graph
+
+**ID**: `cf7dd46332c8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[scale=.25]
+%   \coordinate [label=-135:$a$] (a) at ($ (0,0)   + (rand,rand) $);
+%   \coordinate [label=45:$b$]   (b) at ($ (3,2) + (rand,rand) $);
+%
+%   \coordinate [label=-135:$u$] (u) at (-1,1);
+%   \coordinate [label=45:$v$]   (v) at (6,0);
+%
+%   \draw (a) -- (b)
+%         (u) -- (v);
+%
+%   \node (c1) at (a) [draw,circle through=(b)] &#123;&#125;;
+%   \node (c2) at (b) [draw,circle through=(a)] &#123;&#125;;
+%
+%   \coordinate [label=135:$c$] (c) at (intersection 2 of c1 and c2);
+%   \coordinate [label=-45:$d$] (d) at (intersection of u--v and c2);
+%   \coordinate [label=135:$e$] (e) at (intersection of u--v and a--b);
+%
+%   \foreach \p in &#123;a,b,c,d,e,u,v&#125;
+%     \fill [opacity=.5] (\p) circle (8pt);
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 2345: Node Graph
+
+**ID**: `fc866ba070d1`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+
+  \coordinate (a) at (3,2);
+
+  \node [circle,draw] (c) at (1,1) [minimum size=40pt] &#123;$c$&#125;;
+
+  \draw[red] (a)  -- (tangent cs:node=c,point=&#123;(a)&#125;,solution=1) --
+       (c.center) -- (tangent cs:node=c,point=&#123;(a)&#125;,solution=2) -- cycle;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2346: Other
+
+**ID**: `a280b4a40a7d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\makeatletter
+\define@key&#123;cylindricalkeys&#125;&#123;angle&#125;&#123;\def\myangle&#123;#1&#125;&#125;
+\define@key&#123;cylindricalkeys&#125;&#123;radius&#125;&#123;\def\myradius&#123;#1&#125;&#125;
+\define@key&#123;cylindricalkeys&#125;&#123;z&#125;&#123;\def\myz&#123;#1&#125;&#125;
+\makeatother
+\tikzdeclarecoordinatesystem&#123;cylindrical&#125;%
+&#123;%
+  \setkeys&#123;cylindricalkeys&#125;&#123;#1&#125;%
+  \pgfpointadd&#123;\pgfpointxyz&#123;0&#125;&#123;0&#125;&#123;\myz&#125;&#125;&#123;\pgfpointpolarxy&#123;\myangle&#125;&#123;\myradius&#125;&#125;
+&#125;
+\begin&#123;tikzpicture&#125;[z=0.2pt]
+  \draw [-&gt;] (0,0,0) -- (0,0,350);
+  \foreach \num in &#123;0,10,...,350&#125;
+    \fill (cylindrical cs:angle=\num,radius=1,z=\num) circle (1pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2347: Other
+
+**ID**: `ad54025e4acd`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \path (30:1cm) node(p1) &#123;$p_1$&#125;   (75:1cm) node(p2) &#123;$p_2$&#125;;
+
+  \draw (-0.2,0) -- (1.2,0) node(xline)[right] &#123;$q_1$&#125;;
+  \draw (2,-0.2) -- (2,1.2) node(yline)[above] &#123;$q_2$&#125;;
+
+  \draw[-&gt;] (p1) -- (p1 |- xline);
+  \draw[-&gt;] (p2) -- (p2 |- xline);
+  \draw[-&gt;] (p1) -- (p1 -| yline);
+  \draw[-&gt;] (p2) -- (p2 -| yline);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2348: Node Graph
+
+**ID**: `af5e56801669`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \node (A) at (0,1)    &#123;A&#125;;
+  \node (B) at (1,1.5)  &#123;B&#125;;
+  \node (C) at (2,0)    &#123;C&#125;;
+  \node (D) at (2.5,-2) &#123;D&#125;;
+
+  \draw (A) -- (B) node [midway] &#123;x&#125;;
+  \draw (C) -- (D) node [midway] &#123;x&#125;;
+
+  \node at (&#123;$(A)!.5!(B)$&#125; -| &#123;$(C)!.5!(D)$&#125;) &#123;X&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2349: Other
+
+**ID**: `04a901d064d0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[every node/.style=&#123;opacity=1, black, above left&#125;]
+  \draw [help lines] grid (3,2);
+  \draw [name path=ellipse] (2,0.5) ellipse (0.75cm and 1cm);
+  \draw [name path=rectangle, rotate=10] (0.5,0.5) rectangle +(2,1);
+  \fill [red, opacity=0.5, name intersections=&#123;of=ellipse and rectangle&#125;]
+    (intersection-1) circle (2pt) node &#123;1&#125;
+    (intersection-2) circle (2pt) node &#123;2&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2350: Other
+
+**ID**: `435e83ed23c3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;of=curve 1 and curve 2, name=i, total=\t&#125;]
+        [red, opacity=0.5, every node/.style=&#123;above left, black, opacity=1&#125;]
+        \foreach \s in &#123;1,...,\t&#125;&#123;(i-\s) circle (2pt) node &#123;\footnotesize\s&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2351: Other
+
+**ID**: `7690b0887df2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;of=curve 1 and curve 2, by=&#123;a,b&#125;&#125;]
+        (a) circle (2pt)
+        (b) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2352: Other
+
+**ID**: `d43106f3012f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;
+          of=curve 1 and curve 2,
+          by=&#123;[label=center:a],[label=center:...],[label=center:i]&#125;&#125;];
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2353: Other
+
+**ID**: `8ecf1ed5af8d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\clip (-0.5,-0.75) rectangle (3.25,2.25);
+\foreach \pathname/\shift in &#123;line/0cm, curve/2cm&#125;&#123;
+  \tikzset&#123;xshift=\shift&#125;
+  \draw [-&gt;, name path=curve] (1,1.5) .. controls (-1,1) and (2,0.5) .. (0,0);
+  \draw [-&gt;, name path=line]  (0,-.5) -- (1,2) ;
+  \fill [name intersections=&#123;of=line and curve,sort by=\pathname, name=i&#125;]
+    [red, opacity=0.5, every node/.style=&#123;left=.25cm, black, opacity=1&#125;]
+    \foreach \s in &#123;1,2,3&#125;&#123;(i-\s) circle (2pt) node &#123;\footnotesize\s&#125;&#125;;
+&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2354: Other
+
+**ID**: `ae9fd5b4fde8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw (0,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (2,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (1.5,1.5) -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2355: Other
+
+**ID**: `f0639d9b79ab`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw (0,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (2,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (1.5,1.5) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2356: Other
+
+**ID**: `c4f232684c32`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw (1,0) .. controls +(30:1cm) and +(60:1cm) .. (3,-1);
+  \draw[gray,-&gt;] (1,0) -- +(30:1cm);
+  \draw[gray,&lt;-] (3,-1) -- +(60:1cm);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2357: Other
+
+**ID**: `367250f5b53d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) -- (1,1) -- ([turn]-45:1cm) -- ([turn]-30:1cm);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2358: Other
+
+**ID**: `ed1044ebb189`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [delta angle=30, radius=1cm]
+  \draw (0,0) arc [start angle=0]  -- ([turn]0:1cm)
+              arc [start angle=30] -- ([turn]0:1cm)
+              arc [start angle=60] -- ([turn]30:1cm);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2359: Other
+
+**ID**: `71e311673a24`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) to [bend left] (2,1) -- ([turn]0:1cm);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2360: Other
+
+**ID**: `b6f76fa86454`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw plot coordinates &#123;(0,0) (1,1) (2,0) (3,0) &#125; -- ([turn]30:1cm);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2361: Other
+
+**ID**: `095ca21772bc`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0.5,0.5) -| (2,1) -- ([turn]1,1)
+         .. controls ([turn]0:1cm) .. ([turn]-90:1cm);
+</code></pre>
+
+</details>
+
+---
+
+## Example 2362: Other
+
+**ID**: `69841bc3f026`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0) &#123; -- ++(0,1) &#125; -- ++(-1,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2363: Other
+
+**ID**: `e668f0406ebd`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0)
+     &#123; [current point is local] -- ++(0,1) &#125; -- ++(-1,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2364: Node Graph
+
+**ID**: `e0e354106b39`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node (a) at (1,1) &#123;A&#125;;
+  \fill [red] ($(a) + 1/3*(1cm,0)$) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2365: Other
+
+**ID**: `4a2b8b0f94d5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \fill [red] ($2*(1,1)$) circle (2pt);
+  \fill [green] ($&#123;1+1&#125;*(1,.5)$) circle (2pt);
+  \fill [blue] ($cos(0)*sin(90)*(1,1)$) circle (2pt);
+  \fill [black] ($&#123;3*(4-3)&#125;*(1,0.5)$) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2366: Other
+
+**ID**: `4c2dd5c2fa22`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(1,2)!.75!(3,4)
+</code></pre>
+
+</details>
+
+---
+
+## Example 2367: Node Graph
+
+**ID**: `2f3bffc04f6c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in &#123;0,0.2,0.5,0.9,1&#125;
+    \node at ($(1,0)!\i!(3,2)$) &#123;\i&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2368: Other
+
+**ID**: `5afd0598343d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,3);
+
+  \coordinate (a) at (1,0);
+  \coordinate (b) at (3,2);
+
+  \draw[-&gt;] (a) -- (b);
+
+  \coordinate (c) at ($ (a)!1! 10:(b) $);
+
+  \draw[-&gt;,red] (a) -- (c);
+
+  \fill ($ (a)!.5! 10:(b) $) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2369: Other
+
+**ID**: `cfdebd5131b9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (4,4);
+
+  \foreach \i in &#123;0,0.125,...,2&#125;
+    \fill ($(2,2) !\i! \i*180:(3,2)$) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2370: Other
+
+**ID**: `2e6706af443a`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (0,0) -- (3,2);
+  \draw[red] ($(0,0)!.3!(3,2)$) -- (3,0);
+  \fill[red] ($(0,0)!.3!(3,2)!.7!(3,0)$) circle (2pt);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-077) | Page 79 of 96 | [Next →](tikz-pgf-page-079)

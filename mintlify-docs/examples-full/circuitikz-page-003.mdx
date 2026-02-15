@@ -1,0 +1,708 @@
+---
+title: "CIRCUITIKZ Examples - Page 4"
+description: "LaTeX examples 91-120 from circuitikz (501 total)"
+---
+
+# CIRCUITIKZ Examples - Page 4
+
+Showing examples **91-120** of **501** from the circuitikz package.
+
+[← Previous](circuitikz-page-002) | Page 4 of 17 | [Next →](circuitikz-page-004)
+
+---
+
+## Example 91: Circuit
+
+**ID**: `1e8eafae95a3`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,2) to[currtap, bipoles/currtap/fill=none, *-]
+        ++(2,0) to[currtap, bipoles/currtap/.cd,
+        fill=yellow, color=red, thickness=3,
+        dash=&#123;&#123;1.14pt&#125;&#123;2pt&#125;&#125;] ++(2,0);
+    \draw (0,0) to[currtap=I, *-, name=ct] ++(2,0)
+        to[currtap, -*, name=ct2,
+        bipoles/currtap/dot size=0.3] ++(2,0);
+    \draw (ct.tap) -- ++(0,-1) (ct2.tap) -- ++(0,-1);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 92: Circuit
+
+**ID**: `69419c89d2b6`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+  % Default
+  \foreach [count=\i] \inst in
+    &#123;smeter, qiprobe, qvprobe, qpprobe&#125; &#123;
+    \draw (&#123;1.5*\i&#125;,1.4) to[\inst]
+        (&#123;1.5*(\i+1)&#125;,1.4);
+  &#125;
+  % New indexes
+  \ctikzset&#123;bipoles/smeter/index position=50&#125;
+  \ctikzset&#123;bipoles/qmeter/index position=25&#125;
+  \foreach [count=\i] \inst in
+    &#123;smeter, qiprobe, qvprobe, qpprobe&#125; &#123;
+    \draw (&#123;1.5*\i&#125;,0) to[\inst]
+        (&#123;1.5*(\i+1)&#125;,0);
+  &#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 93: Circuit
+
+**ID**: `0d723ddadd27`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \foreach [count=\i] \wvf in &#123;ramps, sin, square, triangle, lissajous, zero, none&#125; &#123;
+        \ctikzset&#123;bipoles/oscope/waveform=\wvf&#125;
+        \draw (&#123;2*\i&#125;,1.4) node[oscopeshape](O)&#123;&#125;
+              (&#123;2*\i&#125;,0.65) node[anchor=base]&#123;\texttt&#123;\wvf&#125;&#125;;
+    &#125;
+    \ctikzset&#123;bipoles/oscope/width=1.0&#125;
+    \foreach [count=\i] \wvf in &#123;ramps, sin, square, triangle, lissajous, zero, none&#125; &#123;
+        \ctikzset&#123;bipoles/oscope/waveform=\wvf&#125;
+        \draw (&#123;2*\i&#125;,0) node[oscopeshape]&#123;&#125;;
+    &#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 94: Circuit
+
+**ID**: `798bfd6e3263`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\ctikzset&#123;%
+    bipoles/oscope/waveform/mywave/.code=&#123;%
+        \pgfsetcolor&#123;red&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-.75cm&#125;&#123;-.5cm&#125;&#125;
+        \pgfpathlineto&#123;\pgfpoint&#123;.75cm&#125;&#123;.5cm&#125;&#125;
+        \pgfusepath&#123;draw&#125;
+        \pgfsetcolor&#123;green&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-.75cm&#125;&#123;.5cm&#125;&#125;
+        \pgfpathlineto&#123;\pgfpoint&#123;.75cm&#125;&#123;-.5cm&#125;&#125;
+        \pgfusepath&#123;draw&#125;
+    &#125;&#125;
+    \begin&#123;circuitikz&#125;
+        \ctikzset&#123;bipoles/oscope/waveform=mywave&#125;
+        \draw (0,0) node[oscopeshape]&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 95: Circuit
+
+**ID**: `07232f758fee`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \foreach \a in &#123;0,45,...,350&#125; &#123;
+        \draw (0,0) to[oscope] (\a:3);
+    &#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 96: Circuit
+
+**ID**: `56f59bd3c98c`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
+    \ctikzset&#123;rotated instruments&#125; % new default
+    \draw (0,0) to[oscope] ++(0:3);
+    \draw (0,0) to[oscope] ++(60:3);
+    \draw (0,0) to[rmeter, t=A] ++(120:3);
+    % local override
+    \draw (0,0) to[rmeterwa, t=A, straight instruments] ++(180:3);
+    \ctikzset&#123;straight instruments&#125; % back to default
+    \draw (0,0) to[rmeterwa, t=A] ++(240:3);
+    % local override
+    \draw (0,0) to[smeter, t=A, rotated instruments] ++(300:3);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 97: Circuit
+
+**ID**: `790573a39c9d`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,1)
+        to[oscope=$C_1$, fill=green!20!gray, name=O1] ++(2,0);
+    \path (O1.right)
+        node[ground, scale=0.5, below right=4pt]&#123;&#125;;
+    \ctikzset&#123;bipoles/oscope/width=1.0&#125;
+    \draw (1,-1)
+        node[oscopeshape, fill=yellow!20!orange](O2)&#123;$C_2$&#125;;
+    \draw (O2.in 2) to[short, *-] ++(0,-0.5) node[ground]&#123;&#125;;
+    \draw (O2.in 1) to[short, *-] ++(0,-0.5)
+           -- ++(-1,0) node[currarrow, xscale=-1]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 98: Circuit
+
+**ID**: `75ddbe99c894`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [ammeter] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[voltmeter] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 99: Circuit
+
+**ID**: `edc10a3df704`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [ammeter] ++(2,0) --
+    ++(0,-1) node[ground]&#123;&#125;;
+    \draw (1,0) -- (1,1) to[voltmeter]
+    ++(2,0) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 100: Circuit
+
+**ID**: `94ea8149ed0d`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeterwa, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[rmeterwa, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 101: Circuit
+
+**ID**: `a3fafa6a5deb`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeterwa, t=A, i=$i$] ++(2,0) --
+    ++(0,-1) node[ground]&#123;&#125;;
+    \draw (1,0) -- (1,1) to[rmeterwa, t=V, v^=$v$]
+    ++(2,0) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 102: Circuit
+
+**ID**: `b5b392464bd8`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeter, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[rmeter, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 103: Circuit
+
+**ID**: `56e99f02acd4`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [smeter, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[smeter, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 104: Circuit
+
+**ID**: `97c40514c03f`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [qiprobe, l=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[qvprobe, l=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 105: Circuit
+
+**ID**: `b388a1aab84a`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) to[short,-*]  ++(1,0) coordinate(b)
+    to[R] ++(2,0) to [qpprobe, l=$i$, a=$v$, name=P]
+    ++(0,-2.5) node[ground](GND)&#123;&#125;;
+    \draw (P.v-) -| ++(-0.5,-1) coordinate(a)
+    to [short, -*] (a-|GND);
+    \draw (P.v+) -| (b);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 106: Circuit
+
+**ID**: `90d484bbdf74`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(3,0)
+    to [iloop, mirror, name=I] ++(0,-2)
+    node[ground] (GND)&#123;&#125;;
+    \draw (1,0) to[oscope, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+    \draw (I.i) -- ++(-0.5,0) node[oscopeshape, anchor=right, name=O]&#123;&#125;;
+    \draw (O.south) -- (O.south |- GND) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 107: Circuit
+
+**ID**: `3a0b865f420b`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(3,0) to [iloop2, name=I] ++(0,-2)
+    node[ground] (GND)&#123;&#125;;
+    \ctikzset&#123;bipoles/oscope/width=1.6&#125;\ctikzset&#123;bipoles/oscope/height=1.2&#125;
+    \node [oscopeshape, fill=green!10](O) at (6,2)&#123;&#125;;
+    \node [bnc, xscale=-1, anchor=zero](bnc1) at (O.in 1)&#123;&#125;;
+    \node [bnc, , anchor=zero, rotate=-90](bnc2) at (O.in 2)&#123;&#125;;
+    \draw [-latexslim] (bnc1.hot) -| (1,0);
+    \draw (bnc2.hot) |- (I.i+);
+    \draw (I.i-) node[ground, scale=0.5]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 108: Circuit
+
+**ID**: `5e2401ceda92`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \draw (0,0) to[mic, name=M] ++(0,2)
+        to[amp, t=$A$] ++(2,0)
+        to[loudspeaker, name=L] ++(0,-2)
+        to[short, -*] (0,0) node[ground]&#123;&#125;;
+        \node [waves, scale=0.7, left=5pt]
+            at(M.north) &#123;&#125;;
+        \node [waves, scale=0.7, right]
+            at(L.north) &#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 109: Circuit
+
+**ID**: `c0460d062c36`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \draw (0,2) to[mic, name=M] ++(2,0) to[tlmic] ++(2,0);
+    \node [color=red, tlmicshape](T) at (M.center) &#123;&#125;;
+    \ctikzset&#123;bipoles/mic/bar thickness=3&#125;
+    \draw (0,0) to[mic] ++(2,0) to[tlmic] ++(2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 110: Circuit
+
+**ID**: `753ec8e79613`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,3) to[wfuse, bipoles/wfuse/dots=false] ++(2,0);
+    \draw (0,2) to[wfuse, name=A] ++(2,0);
+    \ctikzset&#123;bipoles/wfuse/shape=osquarepole&#125;
+    \draw (0,1) to[wfuse, name=B] ++(2,0);
+    \draw [red, densely dashed]
+        (A-left.-135) to[bend right] (B-left.135);
+    \ctikzset&#123;bipoles/wfuse/shape=circ&#125;
+    \draw (0,0) to[wfuse, name=B] ++(2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 111: Circuit
+
+**ID**: `23005ff5f11d`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \draw (0,0) to[neonlampcc, nodes width=0.03] ++(2,0)
+        to[neonlampac, misc/thickness=3] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 112: Circuit
+
+**ID**: `b605ad7d99d3`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \draw (0,2) to[sparkgap, l=gap\textsubscript&#123;1&#125;] ++(2,0)
+         to[sparkgap, sparkgap/circle,
+            sparkgap/dot, l=S2] ++(2,0);
+     \ctikzset&#123;sparkgap end arrow=&#123;Kite[scale=1.5]&#125;&#125;
+     \draw (0,0) to[sparkgap, l=S3] ++(2,0)
+         to[sparkgap, l=S4, sparkgap/circle,
+         sparkgap/gap=0.15] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 113: Circuit
+
+**ID**: `d058a853bcf0`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[european]
+    \draw (0,1.5) to[generic, name=a] ++(2,0);
+    \node [ac symbol] at (a.center) &#123;&#125;;
+    \draw (0,0) node[dc symbol]&#123;\qty&#123;4&#125;&#123;V&#125;&#125;;
+    \draw (1,0) node[dc symbol, dc symbol segments=1]&#123;\qty&#123;1&#125;&#123;\uA&#125;&#125;;
+    \draw (2,0) node[dc symbol, dc symbol segments=4]&#123;$V_p$&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 114: Circuit
+
+**ID**: `ddd5c71b2204`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) to[multiwire=4] ++(1,0);
+    \draw (0,-2) to[bmultiwire=6] ++(1,0);
+    \draw (0,-4) to[tmultiwire=3] ++(1,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 115: Circuit
+
+**ID**: `983cd3098624`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+\draw(1,-1) to[short] (1,1)
+    (0,0) to[short] (2,0);
+\draw(4,-1) to[short] (4,1)
+    (3,0) to[short] (5,0)
+    (4,0) node[circ]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 116: Circuit
+
+**ID**: `5de5fc29a575`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+\draw(1,-1) to[short] (1,1) (0,0) to[crossing] (2,0);
+\draw(4,-1) to[short] (4,1) (3,0) to[short] (5,0)
+    (4,0) node[circ]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 117: Circuit
+
+**ID**: `0a1252cb5f5e`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \node at (1,1)[jump crossing](X)&#123;&#125;;
+    \draw (X.west) -- ++(-1,0);
+    \draw (X.east) to[R] ++(2,0);
+    \draw (X.north) node[vcc]&#123;&#125;;
+    \draw (X.south) to[C] ++(0,-1.5);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 118: Circuit
+
+**ID**: `16f2ea01a525`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[every node/.append style=&#123;scale=2&#125;]
+        \draw (0,2) node[jump crossing](A)&#123;&#125;;
+        \begin&#123;scope&#125;
+            \ctikzset&#123;crossing vertical/.cd, color=red, dash=&#123;&#123;2pt&#125;&#123;1pt&#125;&#125;&#125;
+            \draw (0,1) node[jump crossing](B)&#123;&#125;;
+        \end&#123;scope&#125;
+        \ctikzset&#123;crossing vertical/dash=none&#125;
+        \draw[densely dotted, blue] (0,0) node[plain crossing](B)&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 119: Circuit
+
+**ID**: `69a22a7c935e`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) to[R, i=f] ++(2,0) node[npn, anchor=B]&#123;&#125;;
+    \draw (0,-2) to[R, f=f, current arrow scale=8] ++(2,0)
+            node[pnp, anchor=B, circuitikz/current arrow scale=8]&#123;&#125;;
+    \draw (0,-4) to[R, f=f, current arrow scale=24] ++(2,0)
+            node[nigbt, anchor=B]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 120: Circuit
+
+**ID**: `a31cbc236850`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american,]
+    \draw [latexslim-latexslim] (0,0) -- (1,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](circuitikz-page-002) | Page 4 of 17 | [Next →](circuitikz-page-004)

@@ -1,0 +1,619 @@
+---
+title: "TIKZ-PGF Examples - Page 19"
+description: "LaTeX examples 541-570 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 19
+
+Showing examples **541-570** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-017) | Page 19 of 96 | [Next →](tikz-pgf-page-019)
+
+---
+
+## Example 541: Other
+
+**ID**: `5ed7f77abc0b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph &#123; subgraph K_n [--, n=5, clockwise, radius=6mm] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 542: Other
+
+**ID**: `8b312bd03c87`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph &#123; subgraph K_n [-&gt;, n=5, clockwise, radius=6mm] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 543: Other
+
+**ID**: `7e2d1742798c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph &#123; subgraph K_n [&lt;-, n=5, clockwise, radius=6mm] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 544: Other
+
+**ID**: `41c743eb6574`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph &#123; subgraph K_n [&lt;-&gt;, n=5, clockwise, radius=6mm] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 545: Other
+
+**ID**: `55e7294c1833`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\myconnect#1&#123;\tikzset&#123;graphs/new -&gt;=&#123;root&#125;&#123;#1&#125;&#123;&#125;&#123;&#125;&#125;&#125;
+
+\begin&#123;tikzpicture&#125;
+  \node (root) at (-1,-1) &#123;root&#125;;
+
+  \graph &#123;
+    x,
+    &#123;
+      [operator=\tikzgraphforeachcolorednode&#123;all&#125;&#123;\myconnect&#125;]
+      a, b, c
+    &#125;
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 546: Other
+
+**ID**: `e1845434b905`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newcount\leftshorecount   \newcount\rightshorecount
+\newcount\mycount          \newcount\myothercount
+\def\zigzag&#123;
+  \tikzgraphpreparecolor&#123;left shore&#125;\leftshorecount&#123;left shore prefix&#125;
+  \tikzgraphpreparecolor&#123;right shore&#125;\rightshorecount&#123;right shore prefix&#125;
+  \mycount=0\relax
+  \loop
+    \advance\mycount by 1\relax%
+    % Add the "forward" edge
+    \tikzgraphsset&#123;new -&gt;=
+      &#123;\csname left shore prefix\the\mycount\endcsname&#125;
+      &#123;\csname right shore prefix\the\mycount\endcsname&#125;&#123;&#125;&#123;&#125;&#125;
+    \myothercount=\mycount\relax%
+    \advance\myothercount by1\relax%
+    \tikzgraphsset&#123;new &lt;-=
+      &#123;\csname left shore prefix\the\myothercount\endcsname&#125;
+      &#123;\csname right shore prefix\the\mycount\endcsname&#125;&#123;&#125;&#123;&#125;&#125;
+  \ifnum\myothercount&lt;\leftshorecount\relax
+  \repeat
+&#125;
+\begin&#123;tikzpicture&#125;
+  \graph [color class=left shore, color class=right shore]
+  &#123; [operator=\zigzag]
+    &#123; [left shore, Cartesian placement]                      a, b, c &#125;,
+    &#123; [right shore, Cartesian placement, nodes=&#123;xshift=1cm&#125;] d, e, f &#125;
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 547: Other
+
+**ID**: `16a0fd3283c5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\hilightsource#1&#123;\fill [green, opacity=.25] (#1) circle [radius=2mm]; &#125;
+\def\hilighttarget#1&#123;\fill [red,   opacity=.25] (#1) circle [radius=2mm]; &#125;
+\tikz \graph
+  [operator=\tikzgraphforeachcolorednode&#123;source&#125;&#123;\hilightsource&#125;,
+   operator=\tikzgraphforeachcolorednode&#123;target&#125;&#123;\hilighttarget&#125;]
+  &#123; &#123;a,b,c&#125; -&gt; &#123;d, e-&gt;f&#125; &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 548: Other
+
+**ID**: `7bde879fd7af`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [default edge operator=matching] &#123;
+  &#123;a, b&#125;    -&gt;[matching and star]
+  &#123;c, d, e&#125; --[complete bipartite]
+  &#123;f, g, h&#125; --
+  &#123;i, j, k&#125;
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 549: Other
+
+**ID**: `a6e668dc05e9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \graph [color class=red, color class=green, math nodes]
+  &#123; [complete bipartite=&#123;red&#125;&#123;green&#125;]
+    &#123; [red,   Cartesian placement]                      r_1, r_2, r_3 &#125;,
+    &#123; [green, Cartesian placement, nodes=&#123;xshift=1cm&#125;]  g_1, g_2, g_3 &#125;
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 550: Other
+
+**ID**: `3bcd3c9fc952`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch down=4mm, declare=&#123;claw&#125;&#123;1 -- &#123;2,3,4&#125;&#125;] &#123;
+  a;
+  claw;
+  b;
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 551: Other
+
+**ID**: `abbcb3d1c734`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [ n/.code=\def\n&#123;#1&#125;, branch down=4mm,
+               declare=&#123;star&#125;&#123;root -- &#123; \foreach \i in &#123;1,...,\n&#125; &#123;\i&#125; &#125;&#125;]
+&#123; star [n=5]; &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 552: Other
+
+**ID**: `c75cab140748`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newcount\mycount
+\tikzgraphsset&#123;
+  levels/.store in=\tikzgraphlevel,
+  levels=1,
+  declare=&#123;bintree&#125;&#123;%
+    [/utils/exec=&#123;%
+      \ifnum\tikzgraphlevel=1\relax%
+        \def\childtrees&#123; / &#125;%
+      \else%
+        \mycount=\tikzgraphlevel%
+        \advance\mycount by-1\relax%
+        \edef\childtrees&#123;
+          / -&gt; &#123;
+            bintree[levels=\the\mycount],
+            bintree[levels=\the\mycount]
+          &#125;&#125;
+      \fi%
+    &#125;,
+    parse/.expand once=\childtrees
+    ]
+    % Everything is inside the \childtrees...
+  &#125;
+&#125;
+\tikz \graph [grow down=5mm, branch right=5mm] &#123; bintree [levels=5] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 553: Other
+
+**ID**: `ee9101ba4211`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch down=4mm, declare=&#123;claw&#125;&#123;1 -- &#123;2,3,4&#125;&#125;] &#123;
+  claw [name=left],
+  claw [name=right]
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 554: Other
+
+**ID**: `fc3ff937dbb2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [no placement]
+&#123;
+  a[at=&#123;(0:0)&#125;] -&gt; b[at=&#123;(1,0)&#125;] -&gt; c[yshift=1cm];
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 555: Other
+
+**ID**: `7028fd6c4573`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [no placement]
+&#123;
+  a[x=0,y=0] -&gt; b[x=1,y=0] -&gt; c[x=0,y=1];
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 556: Other
+
+**ID**: `e7dbff44574a`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [no placement]
+&#123;
+  a -&gt;
+  &#123; [x=1] % group option
+    b [y=0] -&gt; c[y=1]
+  &#125;;
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 557: Other
+
+**ID**: `627c34478219`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz
+  \graph [nodes=&#123;align=center, inner sep=1pt&#125;, grow right=7mm,
+          typeset=&#123;\tikzgraphnodetext\\[-4pt]
+                   \tiny\mywidth\\[-6pt]\tiny\mydepth&#125;,
+          placement/compute position/.append code=
+            \pgfkeysgetvalue&#123;/tikz/graphs/placement/width&#125;&#123;\mywidth&#125;
+            \pgfkeysgetvalue&#123;/tikz/graphs/placement/depth&#125;&#123;\mydepth&#125;]
+&#123;
+  a,
+  b,
+  c -&gt; d -&gt; &#123;
+    e -&gt; f -&gt; g,
+    h -&gt; i
+  &#125; -&gt; j,
+  k -&gt; l
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 558: Other
+
+**ID**: `661097eede07`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [chain shift=(45:1)] &#123;
+  a -&gt; b -&gt; c;
+  d -&gt; e;
+  f -&gt; g -&gt; h;
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 559: Other
+
+**ID**: `012c3f3d78b3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [chain shift=(45:7mm), group shift=(-45:7mm)] &#123;
+  a -&gt; b -&gt; c;
+  d -&gt; e;
+  f -&gt; g -&gt; h;
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 560: Other
+
+**ID**: `3925352f4fcf`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow up=7mm] &#123; a -&gt; b -&gt; c&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 561: Other
+
+**ID**: `02cf8f8dbf0b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow down=7mm] &#123; a -&gt; b -&gt; c&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 562: Other
+
+**ID**: `a97e7dca64e2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow left=7mm] &#123; a -&gt; b -&gt; c&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 563: Other
+
+**ID**: `84d0271ac8b3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow right=7mm] &#123; a -&gt; b -&gt; c&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 564: Other
+
+**ID**: `4c064c924a46`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch up=7mm] &#123; a -&gt; b -&gt; &#123;c, d, e&#125; &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 565: Other
+
+**ID**: `9f9ee96e5429`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch down=7mm] &#123; a -&gt; b -&gt; &#123;c, d, e&#125;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 566: Other
+
+**ID**: `9ea186fb8fed`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch left=7mm, grow down=7mm] &#123; a -&gt; b -&gt; &#123;c, d, e&#125;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 567: Other
+
+**ID**: `a6f03a55b6eb`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [branch right=7mm, grow down=7mm] &#123; a -&gt; b -&gt; &#123;c, d, e&#125;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 568: Other
+
+**ID**: `6bf69220d3fe`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% An example with 6 nodes, 3 columns and therefore 2 rows
+\tikz \graph [grid placement] &#123; subgraph I_n[n=6, wrap after=3] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 569: Other
+
+**ID**: `3a86da2528db`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% An example with 9 nodes with columns and rows computed automatically
+\tikz \graph [grid placement] &#123; subgraph Grid_n [n=9] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 570: Other
+
+**ID**: `0850f77a27c1`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% Directions can be changed
+\tikz \graph [grid placement, branch up, grow left] &#123; subgraph Grid_n [n=9] &#125;;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-017) | Page 19 of 96 | [Next →](tikz-pgf-page-019)

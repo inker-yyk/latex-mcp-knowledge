@@ -1,0 +1,799 @@
+---
+title: "TIKZ-PGF Examples - Page 9"
+description: "LaTeX examples 241-270 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 9
+
+Showing examples **241-270** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-007) | Page 9 of 96 | [Next →](tikz-pgf-page-009)
+
+---
+
+## Example 241: Other
+
+**ID**: `fb038a9d7b31`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+&#125;,semithick&#125;,
+    post/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=&#123;Stealth[round]&#125;,semithick&#125;,
+&#125;&#125;,
+]
+% Styles as before
+\begin&#123;tikzpicture&#125;[bend angle=45]
+  \node[place]      (waiting)                            &#123;&#125;;
+  \node[place]      (critical)       [below=of waiting]  &#123;&#125;;
+  \node[place]      (semaphore)      [below=of critical] &#123;&#125;;
+
+  \node[transition] (leave critical) [right=of critical] &#123;&#125;
+    edge [pre]                                 (critical)
+    edge [post,bend right] node[auto,swap] &#123;2&#125; (waiting)
+    edge [pre, bend left]                      (semaphore);
+  \node[transition] (enter critical) [left=of critical]  &#123;&#125;
+    edge [post]                                (critical)
+    edge [pre, bend left]                      (waiting)
+    edge [post,bend right]                     (semaphore);
+
+  \begin&#123;scope&#125;[on background layer]
+    \node [fill=black!30,fit=(waiting) (critical) (semaphore)
+             (leave critical) (enter critical)] &#123;&#125;;
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 242: Other
+
+**ID**: `ec410ef7ec13`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [node distance=1.3cm,on grid,&gt;=&#123;Stealth[round]&#125;,bend angle=45,auto,
+   every place/.style=     &#123;minimum size=6mm,thick,draw=blue!75,fill=blue!20&#125;,
+   every transition/.style=&#123;thick,draw=black!75,fill=black!20&#125;,
+   red place/.style=       &#123;place,draw=red!75,fill=red!20&#125;,
+   every label/.style=     &#123;red&#125;]
+</code></pre>
+
+</details>
+
+---
+
+## Example 243: Other
+
+**ID**: `b1699621cbc9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+&#125;,bend angle=45,auto&#125;,
+&#125;%
+\begin&#123;tikzpicture&#125;&#125;,
+    post=&#123;\end&#123;tikzpicture&#125;&#125;,
+]
+   \node [place,tokens=1] (w1)                                    &#123;&#125;;
+   \node [place]          (c1) [below=of w1]                      &#123;&#125;;
+   \node [place]          (s)  [below=of c1,label=above:$s\le 3$] &#123;&#125;;
+   \node [place]          (c2) [below=of s]                       &#123;&#125;;
+   \node [place,tokens=1] (w2) [below=of c2]                      &#123;&#125;;
+
+   \node [transition] (e1) [left=of c1] &#123;&#125;
+     edge [pre,bend left]                  (w1)
+     edge [post,bend right]                (s)
+     edge [post]                           (c1);
+   \node [transition] (e2) [left=of c2] &#123;&#125;
+     edge [pre,bend right]                 (w2)
+     edge [post,bend left]                 (s)
+     edge [post]                           (c2);
+   \node [transition] (l1) [right=of c1] &#123;&#125;
+     edge [pre]                            (c1)
+     edge [pre,bend left]                  (s)
+     edge [post,bend right] node[swap] &#123;2&#125; (w1);
+   \node [transition] (l2) [right=of c2] &#123;&#125;
+     edge [pre]                            (c2)
+     edge [pre,bend right]                 (s)
+     edge [post,bend left]  node &#123;2&#125;       (w2);
+</code></pre>
+
+</details>
+
+---
+
+## Example 244: Other
+
+**ID**: `0c75229258f8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+&#125;,bend angle=45,auto&#125;,
+&#125;%
+\begin&#123;tikzpicture&#125;&#125;,
+    post=&#123;\end&#123;tikzpicture&#125;&#125;,
+]
+  \begin&#123;scope&#125;[xshift=6cm]
+    \node [place,tokens=1]     (w1')                            &#123;&#125;;
+    \node [place]              (c1') [below=of w1']             &#123;&#125;;
+    \node [red place]          (s1') [below=of c1',xshift=-5mm]
+            [label=left:$s$]                                    &#123;&#125;;
+    \node [red place,tokens=3] (s2') [below=of c1',xshift=5mm]
+            [label=right:$\bar s$]                              &#123;&#125;;
+    \node [place]              (c2') [below=of s1',xshift=5mm]  &#123;&#125;;
+    \node [place,tokens=1]     (w2') [below=of c2']             &#123;&#125;;
+
+    \node [transition] (e1') [left=of c1'] &#123;&#125;
+      edge [pre,bend left]                  (w1')
+      edge [post]                           (s1')
+      edge [pre]                            (s2')
+      edge [post]                           (c1');
+    \node [transition] (e2') [left=of c2'] &#123;&#125;
+      edge [pre,bend right]                 (w2')
+      edge [post]                           (s1')
+      edge [pre]                            (s2')
+      edge [post]                           (c2');
+    \node [transition] (l1') [right=of c1'] &#123;&#125;
+      edge [pre]                            (c1')
+      edge [pre]                            (s1')
+      edge [post]                           (s2')
+      edge [post,bend right] node[swap] &#123;2&#125; (w1');
+    \node [transition] (l2') [right=of c2'] &#123;&#125;
+      edge [pre]                            (c2')
+      edge [pre]                            (s1')
+      edge [post]                           (s2')
+      edge [post,bend left]  node &#123;2&#125;       (w2');
+  \end&#123;scope&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 245: Node Graph
+
+**ID**: `530c0e426130`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;scope&#125;[on background layer]
+    \node (r1) [fill=black!10,rounded corners,fit=(w1)(w2)(e1)(e2)(l1)(l2)] &#123;&#125;;
+    \node (r2) [fill=black!10,rounded corners,fit=(w1')(w2')(e1')(e2')(l1')(l2')] &#123;&#125;;
+  \end&#123;scope&#125;
+
+  \draw [shorten &gt;=1mm,-&gt;,thick,decorate,
+         decoration=&#123;snake,amplitude=.4mm,segment length=2mm,
+                     pre=moveto,pre length=1mm,post length=2mm&#125;]
+    (r1) -- (r2) node [above=1mm,midway,text width=3cm,align=center]
+      &#123;replacement of the \textcolor&#123;red&#125;&#123;capacity&#125; by \textcolor&#123;red&#125;&#123;two places&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 246: Other
+
+**ID**: `722ed9b52b38`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% from &lt;tikzlibrarypetri.code.tex&gt;
+\tikzset&#123;
+    place/.style=&#123;circle,draw,inner sep=0pt,minimum size=5ex,every place&#125;,
+    transition/.style=&#123;rectangle,draw,inner sep=0pt,minimum size=4mm,every transition&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 247: Other
+
+**ID**: `55cbc3ed9cd2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+local InterfaceToDisplay = require "pgf.gd.interface.InterfaceToDisplay"
+InterfaceToDisplay.bind(require "pgf.gd.examples.BindingToASCII")
+
+-- Load two libraries that define graph drawing algorithms. We can do this only *after* the binding
+-- has been created since they call the declare function internally.
+require "pgf.gd.layered.library"
+require "pgf.gd.force.library"
+</code></pre>
+
+</details>
+
+---
+
+## Example 248: Other
+
+**ID**: `0bd5cbe4bc6f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+local algorithm = io.read():match("%s*graph%s*%[(.-)%]")
+
+InterfaceToDisplay.pushPhase(algorithm, "main", 1)
+InterfaceToDisplay.pushOption("level distance", 6, 2)
+InterfaceToDisplay.pushOption("sibling distance", 8, 3)
+InterfaceToDisplay.beginGraphDrawingScope(3)
+InterfaceToDisplay.pushLayout(4)
+</code></pre>
+
+</details>
+
+---
+
+## Example 249: Other
+
+**ID**: `6f9609a0e725`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+for line in io.lines() do
+  if line:match("&#125;") then
+    break
+  elseif line:find("-") then
+    local n1, dir, n2 = string.match(line, "^%s*(.-)%s*(-.)%s*(.-)%s*;")
+    InterfaceToDisplay.createEdge(n1, n2, dir, 4)
+  else
+    local n1 = string.match(line, "^%s*(.-)%s*;")
+    InterfaceToDisplay.createVertex(n1, "rectangle", nil, 4)
+  end
+end
+</code></pre>
+
+</details>
+
+---
+
+## Example 250: Other
+
+**ID**: `97bb0b87a90f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+InterfaceToDisplay.runGraphDrawingAlgorithm()
+InterfaceToDisplay.renderGraph()
+InterfaceToDisplay.endGraphDrawingScope()
+</code></pre>
+
+</details>
+
+---
+
+## Example 251: Other
+
+**ID**: `38c4d47b07d0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using outlines=&#123;circle, magnification=4, size=2cm, connect spies&#125;]
+
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw [decoration=Koch curve type 1]
+    decorate &#123; decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;&#125;;
+
+  \spy [red] on (1.6,0.3)
+             in node [left] at (3.5,-1.25);
+
+  \spy [blue, size=1cm] on (1,1)
+              in node [right] at (0,-1.25);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 252: Other
+
+**ID**: `d06aeec81ba2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[spy using overlays=&#123;size=12mm&#125;]
+  \draw [decoration=Koch snowflake]
+    decorate &#123; decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;&#125;;
+
+  \spy [green,magnification=3] on (0.6,0.1) in node at (-0.3,-1);
+  \spy [blue,magnification=5]  on (1,0.5)   in node at (1,-1);
+  \spy [red,magnification=10]  on (1.6,0.1) in node at (2.3,-1);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 253: Other
+
+**ID**: `27d0738ac0e5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using outlines=&#123;rectangle, red, magnification=5,
+                       size=1.5cm, connect spies&#125;]
+
+  \begin&#123;scope&#125;
+    [spy using outlines=&#123;circle, blue,
+                         magnification=3, size=1.5cm, connect spies&#125;]
+    \draw [help lines] (0,0) grid (3,2);
+
+    \draw [decoration=Koch curve type 1]
+      decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+    \spy on (1.6,0.3) in node (zoom) [left] at (3.5,-1.25);
+  \end&#123;scope&#125;
+
+  \spy on (zoom.north west) in node [right] at (0,-1.25);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 254: Other
+
+**ID**: `93c3c160b517`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using outlines=&#123;circle, magnification=3, size=1cm&#125;]
+
+  \draw [decoration=Koch curve type 1]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [red]  on (1.6,0.3) in node;
+  \spy [blue] on (1,1)     in node at (1,-1);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 255: Other
+
+**ID**: `36f2b7678274`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \begin&#123;scope&#125;
+    [spy using outlines=&#123;circle, magnification=3, size=2cm, connect spies&#125;]
+
+    \draw [decoration=Koch curve type 1]
+      decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+    \spy [red] on (1.6,0.3) in node (a) [left] at (3.5,-1.25);
+
+    \spy [blue, size=1cm] on (1,1) in node (b) [right] at (0,-1.25);
+  \end&#123;scope&#125;
+  \draw [ultra thick, green!50!black] (b) -- (a.north west);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 256: Other
+
+**ID**: `e0ef49e8c71c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\draw[thin] (tikzspyonnode) -- (tikzspyinnode);
+</code></pre>
+
+</details>
+
+---
+
+## Example 257: Other
+
+**ID**: `e4d5ef7fd06e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using outlines=&#123;lens=&#123;scale=3,rotate=20&#125;, size=2cm, connect spies&#125;]
+
+  \draw [decoration=Koch curve type 1]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [red] on (1.6,0.3) in node at (2.5,-1.25);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 258: Other
+
+**ID**: `b0ebed26c91e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using outlines=&#123;circle, magnification=3, size=1cm, connect spies&#125;]
+
+  \draw [decoration=Koch curve type 1]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [red] on (1.6,0.3) in node at (3,1);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 259: Other
+
+**ID**: `f7469f647ae6`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using overlays=&#123;circle, magnification=3, size=1cm, connect spies&#125;]
+
+  \draw [decoration=Koch curve type 1]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [green] on (1.6,0.3) in node at (3,1);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 260: Other
+
+**ID**: `0b3c6c2bb1aa`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy using overlays=&#123;circle, magnification=3, size=1cm&#125;]
+
+  \draw [decoration=Koch curve type 2]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [green] on (1.6,0.1) in node at (3,1);
+  \spy [red,connect spies] on (0.5,0.4) in node at (1,1.5);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 261: Other
+
+**ID**: `4b19cb80736d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;spy using mag glass/.style=&#123;
+    spy scope=&#123;
+      every spy on node/.style=&#123;
+        circle,
+        fill, fill opacity=0.2, text opacity=1&#125;,
+      every spy in node/.style=&#123;
+        magnifying glass, circular drop shadow,
+        fill=white, draw, ultra thick, cap=round&#125;,
+      #1
+    &#125;&#125;&#125;
+\begin&#123;tikzpicture&#125;[spy using mag glass=&#123;magnification=3, size=1cm&#125;]
+  \draw [decoration=Koch curve type 2]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy [green!50!black] on (1.6,0.1) in node at (2.5,-0.5);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 262: Other
+
+**ID**: `bf08446d1bbf`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [spy scope=&#123;magnification=4, size=1cm&#125;,
+   every spy in node/.style=&#123;
+     magnifying glass, circular drop shadow,
+     fill=white, draw, ultra thick, cap=round&#125;]
+
+  \draw [decoration=Koch curve type 2]
+    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
+
+  \spy on (1.6,0.1) in node;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 263: Other
+
+**ID**: `ff7efd2e0567`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=2]
+  \draw[thick,red]
+       (0,0) coordinate (a)
+    -- coordinate (ab) (1,.5) coordinate (b)
+    .. coordinate (bc) controls +(up:1cm) and +(left:1cm) .. (3,1)  coordinate (c)
+       (0,1) -- (2,1) -- coordinate (x) (1,2) -- cycle;
+
+  \draw (a)  node[below] &#123;start part 1&#125;
+        (ab) node[below right] &#123;straight segment&#125;
+        (b)  node[right] &#123;end first segment&#125;
+        (c)  node[right] &#123;end part 1&#125;
+        (x)  node[above right]  &#123;part 2 (closed)&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 264: Other
+
+**ID**: `b464d9d11518`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0.5cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetfillcolor&#123;yellow!80!black&#125;
+  \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 265: Other
+
+**ID**: `3cecf76a78aa`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125; % New part
+  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0.5cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetfillcolor&#123;yellow!80!black&#125;
+  \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 266: Other
+
+**ID**: `7237df86ca78`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
+  \pgfsetfillcolor&#123;yellow!80!black&#125;
+  \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 267: Other
+
+**ID**: `d65ecdfdb28f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathcurveto
+    &#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetfillcolor&#123;yellow!80!black&#125;
+  \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 268: Other
+
+**ID**: `1177cef22433`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathquadraticcurveto
+    &#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetfillcolor&#123;yellow!80!black&#125;
+  \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 269: Other
+
+**ID**: `459238ca6870`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2);
+  \pgfpathcurvebetweentime&#123;0.25&#125;&#123;0.9&#125;&#123;\pgfpointxy&#123;0&#125;&#123;0&#125;&#125;&#123;\pgfpointxy&#123;0&#125;&#123;2&#125;&#125;
+    &#123;\pgfpointxy&#123;3&#125;&#123;0&#125;&#125;&#123;\pgfpointxy&#123;3&#125;&#123;2&#125;&#125;
+  \pgfsetstrokecolor&#123;red&#125;
+  \pgfsetstrokeopacity&#123;0.5&#125;
+  \pgfsetlinewidth&#123;2pt&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 270: Other
+
+**ID**: `fab39a5335a9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+  \pgfsetlinewidth&#123;5pt&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;0cm&#125;&#123;-1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;-1cm&#125;&#125;
+  \pgfpathclose
+  \pgfpathmoveto&#123;\pgfpoint&#123;2.5cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1.5cm&#125;&#123;-1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2.5cm&#125;&#123;-1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2.5cm&#125;&#123;1cm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-007) | Page 9 of 96 | [Next →](tikz-pgf-page-009)

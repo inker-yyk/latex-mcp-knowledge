@@ -1,0 +1,837 @@
+---
+title: "TIKZ-PGF Examples - Page 12"
+description: "LaTeX examples 331-360 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 12
+
+Showing examples **331-360** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-010) | Page 12 of 96 | [Next →](tikz-pgf-page-012)
+
+---
+
+## Example 331: Other
+
+**ID**: `f97813455c51`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[node distance=5mm and 5mm,
+    skip loop/.style=&#123;to path=&#123;-- ++(0,#1) -| (\tikztotarget)&#125;&#125;]
+  \node (dot)   [terminal]                        &#123;.&#125;;
+  \node (digit) [terminal,right=of dot]           &#123;digit&#125;;
+  \node (E)     [terminal,right=of digit]         &#123;E&#125;;
+
+  \path (dot)   edge[-&gt;]                (digit)  % simple edges
+        (digit) edge[-&gt;]                (E)
+        ($ (digit.east)!.5!(E.west) $)
+                edge[-&gt;,skip loop=-5mm] ($ (digit.west)!.5!(dot.east) $);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 332: Other
+
+**ID**: `e9b22f6c7669`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix[row sep=1mm,column sep=5mm] &#123;
+    % First row:
+      & & & & \node [terminal] &#123;+&#125;; & \\
+    % Second row:
+    \node [nonterminal] &#123;unsigned integer&#125;; &
+    \node [terminal]    &#123;.&#125;;                &
+    \node [terminal]    &#123;digit&#125;;            &
+    \node [terminal]    &#123;E&#125;;                &
+                                            &
+    \node [nonterminal] &#123;unsigned integer&#125;; \\
+    % Third row:
+      & & & & \node [terminal] &#123;-&#125;; & \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 333: Other
+
+**ID**: `8c4f09f9ee53`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[point/.style=&#123;circle,inner sep=0pt,minimum size=2pt,fill=red&#125;,
+                   skip loop/.style=&#123;to path=&#123;-- ++(0,#1) -| (\tikztotarget)&#125;&#125;]
+  \matrix[row sep=1mm,column sep=2mm] &#123;
+    % First row:
+    & & & & & & &  & & & & \node (plus) [terminal] &#123;+&#125;;\\
+    % Second row:
+    \node (p1) [point]  &#123;&#125;; &    \node (ui1)   [nonterminal] &#123;unsigned integer&#125;; &
+    \node (p2) [point]  &#123;&#125;; &    \node (dot)   [terminal]    &#123;.&#125;;                &
+    \node (p3) [point]  &#123;&#125;; &    \node (digit) [terminal]    &#123;digit&#125;;            &
+    \node (p4) [point]  &#123;&#125;; &    \node (p5)    [point]  &#123;&#125;;                      &
+    \node (p6) [point]  &#123;&#125;; &    \node (e)     [terminal]    &#123;E&#125;;                &
+    \node (p7) [point]  &#123;&#125;; &                                                    &
+    \node (p8) [point]  &#123;&#125;; &    \node (ui2)   [nonterminal] &#123;unsigned integer&#125;; &
+    \node (p9) [point]  &#123;&#125;; &    \node (p10)   [point]       &#123;&#125;;\\
+    % Third row:
+    & & & & & & &  & & & & \node (minus)[terminal] &#123;-&#125;;\\
+  &#125;;
+
+  \path (p4) edge [-&gt;,skip loop=-5mm] (p3)
+        (p2) edge [-&gt;,skip loop=5mm]  (p6);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 334: Other
+
+**ID**: `ec59b6e1f3f9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\matrixcontent&#123;
+  % First row:
+  \& \& \& \& \& \& \&  \& \& \& \& \node (plus) [terminal] &#123;+&#125;;\\
+  % Second row:
+  \node (p1) [point]  &#123;&#125;; \&    \node (ui1)   [nonterminal] &#123;unsigned integer&#125;; \&
+  \node (p2) [point]  &#123;&#125;; \&    \node (dot)   [terminal]    &#123;.&#125;;                \&
+  \node (p3) [point]  &#123;&#125;; \&    \node (digit) [terminal]    &#123;digit&#125;;            \&
+  \node (p4) [point]  &#123;&#125;; \&    \node (p5)    [point]  &#123;&#125;;                      \&
+  \node (p6) [point]  &#123;&#125;; \&    \node (e)     [terminal]    &#123;E&#125;;                \&
+  \node (p7) [point]  &#123;&#125;; \&                                                    \&
+  \node (p8) [point]  &#123;&#125;; \&    \node (ui2)   [nonterminal] &#123;unsigned integer&#125;; \&
+  \node (p9) [point]  &#123;&#125;; \&    \node (p10)   [point]       &#123;&#125;;\\
+  % Third row:
+  \& \& \& \& \& \& \&  \& \& \& \& \node (minus)[terminal] &#123;-&#125;;\\
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 335: Other
+
+**ID**: `281efb1343a1`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[skip loop/.style=&#123;to path=&#123;-- ++(0,#1) -| (\tikztotarget)&#125;&#125;,
+                    hv path/.style=&#123;to path=&#123;-| (\tikztotarget)&#125;&#125;,
+                    vh path/.style=&#123;to path=&#123;|- (\tikztotarget)&#125;&#125;]
+  \matrix[row sep=1mm,column sep=2mm] &#123; \matrixcontent &#125;;
+
+  \graph &#123;
+    (p1) -&gt; (ui1) -- (p2) -&gt; (dot) -- (p3) -&gt; (digit) -- (p4)
+         -- (p5)  -- (p6) -&gt; (e) -- (p7) -- (p8) -&gt; (ui2) -- (p9) -&gt; (p10);
+    (p4) -&gt;[skip loop=-5mm]  (p3);
+    (p2) -&gt;[skip loop=5mm]   (p5);
+    (p6) -&gt;[skip loop=-11mm] (p9);
+    (p7) -&gt;[vh path]         (plus)  -&gt; [hv path] (p8);
+    (p7) -&gt;[vh path]         (minus) -&gt; [hv path] (p8);
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 336: Other
+
+**ID**: `b361a63d1c7f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[&gt;=&#123;Stealth[round]&#125;,thick,black!50,text=black,
+                    every new -&gt;/.style=&#123;shorten &gt;=1pt&#125;,
+                    graphs/every graph/.style=&#123;edges=rounded corners&#125;]
+  \matrix[column sep=4mm] &#123; \matrixcontent &#125;;
+
+  \graph [use existing nodes] &#123;
+    p1 -&gt; ui1 -- p2 -&gt; dot -- p3 -&gt; digit -- p4 -- p5  -- p6 -&gt; e -- p7 -- p8 -&gt; ui2 -- p9 -&gt; p10;
+    p4 -&gt;[skip loop=-5mm]  p3;
+    p2 -&gt;[skip loop=5mm]   p5;
+    p6 -&gt;[skip loop=-11mm] p9;
+    p7 -&gt;[vh path] &#123; plus, minus &#125; -&gt; [hv path] p8;
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 337: Other
+
+**ID**: `8b5a23ba0481`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow right=2cm] &#123; unsigned integer -&gt; d -&gt; digit -&gt; E &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 338: Other
+
+**ID**: `0e7a0287792f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow right sep] &#123;
+  unsigned integer[nonterminal] -&gt; "."[terminal] -&gt; digit[terminal] -&gt; E[terminal]
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 339: Other
+
+**ID**: `13bd960d5720`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \graph [grow right sep] &#123;
+  unsigned integer  [nonterminal] -&gt;
+  "."               [terminal] -&gt;
+  digit             [terminal] -&gt;
+  E                 [terminal] -&gt;
+  &#123;
+    "+"             [terminal],
+    ""              [coordinate],
+    "-"             [terminal]
+  &#125; -&gt;
+  ui2/unsigned integer [nonterminal]
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 340: Other
+
+**ID**: `fb62a69ca343`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[&gt;=&#123;Stealth[round]&#125;, thick, black!50, text=black,
+                    every new -&gt;/.style=&#123;shorten &gt;=1pt&#125;,
+                    graphs/every graph/.style=&#123;edges=rounded corners&#125;]
+  \graph [grow right sep, branch down=7mm] &#123;
+    /                  [coordinate] -&gt;
+    unsigned integer   [nonterminal] --
+    p1                 [coordinate] -&gt;
+    "."                [terminal] --
+    p2                 [coordinate] -&gt;
+    digit              [terminal] --
+    p3                 [coordinate] --
+    p4                 [coordinate] --
+    p5                 [coordinate] -&gt;
+    E                  [terminal] --
+    q1                 [coordinate] -&gt;[vh path]
+    &#123; [nodes=&#123;yshift=7mm&#125;]
+      "+"                [terminal],
+      q2/                [coordinate],
+      "-"                [terminal]
+    &#125; -&gt; [hv path]
+    q3                 [coordinate] --
+    /unsigned integer  [nonterminal] --
+    p6                 [coordinate] -&gt;
+    /                  [coordinate];
+
+    p1 -&gt;[skip loop=5mm]   p4;
+    p3 -&gt;[skip loop=-5mm]  p2;
+    p5 -&gt;[skip loop=-11mm] p6;
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 341: Other
+
+**ID**: `9c584767307b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [&gt;=&#123;Stealth[round]&#125;, black!50, text=black, thick,
+       every new -&gt;/.style          = &#123;shorten &gt;=1pt&#125;,
+       graphs/every graph/.style    = &#123;edges=rounded corners&#125;,
+       skip loop/.style             = &#123;to path=&#123;-- ++(0,#1) -| (\tikztotarget)&#125;&#125;,
+       hv path/.style               = &#123;to path=&#123;-| (\tikztotarget)&#125;&#125;,
+       vh path/.style               = &#123;to path=&#123;|- (\tikztotarget)&#125;&#125;,
+       nonterminal/.style           = &#123;
+         rectangle, minimum size=6mm, very thick, draw=red!50!black!50, top color=white,
+         bottom color=red!50!black!20, font=\itshape, text height=1.5ex,text depth=.25ex&#125;,
+       terminal/.style              = &#123;
+         rounded rectangle,  minimum size=6mm, very thick, draw=black!50, top color=white,
+         bottom color=black!20, font=\ttfamily, text height=1.5ex, text depth=.25ex&#125;,
+       shape                        = coordinate
+       ]
+  \graph [grow right sep, branch down=7mm, simple] &#123;
+    / -&gt; unsigned integer[nonterminal] -- p1 -&gt; "." [terminal] -- p2 -&gt; digit[terminal] --
+    p3 -- p4 -- p5 -&gt; E[terminal] -- q1 -&gt;[vh path]
+    &#123;[nodes=&#123;yshift=7mm&#125;]
+      "+"[terminal], q2, "-"[terminal]
+    &#125; -&gt; [hv path]
+    q3 -- /unsigned integer [nonterminal] -- p6 -&gt; /;
+
+    p1 -&gt;[skip loop=5mm]   p4;
+    p3 -&gt;[skip loop=-5mm]  p2;
+    p5 -&gt;[skip loop=-11mm] p6;
+
+    q1 -- q2 -- q3;  % make these edges plain
+  &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 342: Other
+
+**ID**: `7c82b270115e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm]
+%   \node [on chain,nonterminal]  &#123;unsigned integer&#125;;
+%   \node [on chain,terminal]     &#123;.&#125;;
+%   \node [on chain,terminal]     &#123;digit&#125;;
+%   \node [on chain,terminal]     &#123;E&#125;;
+%   \node [on chain,nonterminal]  &#123;unsigned integer&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 343: Other
+
+**ID**: `728914e1cce8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm]
+%   \node [on chain,join,nonterminal]  &#123;unsigned integer&#125;;
+%   \node [on chain,join,terminal]     &#123;.&#125;;
+%   \node [on chain,join,terminal]     &#123;digit&#125;;
+%   \node [on chain,join,terminal]     &#123;E&#125;;
+%   \node [on chain,join,nonterminal]  &#123;unsigned integer&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 344: Other
+
+**ID**: `7d470e83b6ff`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm, every node/.style=&#123;on chain,join&#125;, every join/.style=&#123;-&gt;&#125;]
+%   \node [nonterminal]  &#123;unsigned integer&#125;;
+%   \node [terminal]     &#123;.&#125;;
+%   \node [terminal]     &#123;digit&#125;;
+%   \node [terminal]     &#123;E&#125;;
+%   \node [nonterminal]  &#123;unsigned integer&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 345: Other
+
+**ID**: `3e56a277d390`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm, every node/.style=&#123;on chain,join&#125;, every join/.style=&#123;-&gt;&#125;]
+%   \node [nonterminal]  &#123;unsigned integer&#125;;
+%   \node [terminal]     &#123;.&#125;;
+%   \node [terminal]     &#123;digit&#125;;
+%   \node [terminal]     &#123;E&#125;;
+%   \begin&#123;scope&#125;[start branch=plus]
+%     \node (plus)  [terminal,on chain=going above right] &#123;+&#125;;
+%   \end&#123;scope&#125;
+%   \begin&#123;scope&#125;[start branch=minus]
+%     \node (minus) [terminal,on chain=going below right] &#123;-&#125;;
+%   \end&#123;scope&#125;
+%   \node [nonterminal,join=with plus,join=with minus]  &#123;unsigned integer&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 346: Other
+
+**ID**: `1bfb5377cc14`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm, every on chain/.style=&#123;join&#125;, every join/.style=&#123;-&gt;&#125;]
+%   \node [on chain,nonterminal]  &#123;unsigned integer&#125;;
+%   \node [on chain,terminal]     &#123;.&#125;;
+%   \node [on chain,terminal]     &#123;digit&#125;;
+%   \node [on chain,terminal]     &#123;E&#125;;
+%   &#123; [start branch=plus]
+%     \node (plus)  [terminal,on chain=going above right] &#123;+&#125;;
+%   &#125;
+%   &#123; [start branch=minus]
+%     \node (minus) [terminal,on chain=going below right] &#123;-&#125;;
+%   &#125;
+%   \node [nonterminal,on chain,join=with chain/plus-end,join=with chain/minus-end]  &#123;unsigned integer&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 347: Other
+
+**ID**: `1da9bcfcb4e2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain,node distance=5mm and 2mm,
+%                     every node/.style=&#123;on chain&#125;,
+%                     nonterminal/.append style=&#123;join=by -&gt;&#125;,
+%                     terminal/.append style=&#123;join=by -&gt;&#125;,
+%                     point/.style=&#123;join=by -,circle,fill=red,minimum size=2pt,inner sep=0pt&#125;]
+%   \node [point] &#123;&#125;;  \node [nonterminal] &#123;unsigned integer&#125;;
+%   \node [point] &#123;&#125;;  \node [terminal]    &#123;.&#125;;
+%   \node [point] &#123;&#125;;  \node [terminal]    &#123;digit&#125;;
+%   \node [point] &#123;&#125;;  \node [point]       &#123;&#125;;
+%   \node [point] &#123;&#125;;  \node [terminal]    &#123;E&#125;;
+%   \node [point] &#123;&#125;;
+%   &#123; [node distance=5mm and 1cm] % local change in horizontal distance
+%     &#123; [start branch=plus]
+%       \node (plus)  [terminal,on chain=going above right] &#123;+&#125;;
+%     &#125;
+%     &#123; [start branch=minus]
+%       \node (minus) [terminal,on chain=going below right] &#123;-&#125;;
+%     &#125;
+%     \node [point,below right=of plus,join=with chain/plus-end by -&gt;,join=with chain/minus-end by -&gt;] &#123;&#125;;
+%   &#125;
+%   \node [nonterminal] &#123;unsigned integer&#125;;
+%   \node [point]       &#123;&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 348: Other
+
+**ID**: `b4f1f0b51157`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[start chain] % plus some styles that are not shown
+%   \node                [point] &#123;&#125;;
+%   \node (before digit) [point] &#123;&#125;;
+%   \node                [terminal]    &#123;digit&#125;;
+%   \node                [point] &#123;&#125;;
+%   &#123; [start branch=digit loop]
+%     \chainin (before digit) [join=by &#123;-&gt;,skip loop=-5mm&#125;];
+%   &#125;
+%   \node                [point] &#123;&#125;;
+% \end&#123;tikzpicture&#125;
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 349: Other
+
+**ID**: `4e2aa5c9cd86`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \begin&#123;tikzpicture&#125;[point/.style=&#123;coordinate&#125;,&gt;=&#123;Stealth[round]&#125;,thick,draw=black!50,
+%                     tip/.style=&#123;-&gt;,shorten &gt;=1pt&#125;,every join/.style=&#123;rounded corners&#125;,
+%                     hv path/.style=&#123;to path=&#123;-| (\tikztotarget)&#125;&#125;,
+%                     vh path/.style=&#123;to path=&#123;|- (\tikztotarget)&#125;&#125;]
+%   \matrix[column sep=4mm] &#123;
+%     % First row:
+%     & & & & & & &  & & & & \node (plus) [terminal] &#123;+&#125;;\\
+%     % Second row:
+%     \node (p1) [point]  &#123;&#125;; &    \node (ui1)   [nonterminal] &#123;unsigned integer&#125;; &
+%     \node (p2) [point]  &#123;&#125;; &    \node (dot)   [terminal]    &#123;.&#125;;                &
+%     \node (p3) [point]  &#123;&#125;; &    \node (digit) [terminal]    &#123;digit&#125;;            &
+%     \node (p4) [point]  &#123;&#125;; &    \node (p5)    [point]  &#123;&#125;;                      &
+%     \node (p6) [point]  &#123;&#125;; &    \node (e)     [terminal]    &#123;E&#125;;                &
+%     \node (p7) [point]  &#123;&#125;; &                                                    &
+%     \node (p8) [point]  &#123;&#125;; &    \node (ui2)   [nonterminal] &#123;unsigned integer&#125;; &
+%     \node (p9) [point]  &#123;&#125;; &    \node (p10)   [point]       &#123;&#125;;\\
+%     % Third row:
+%     & & & & & & &  & & & & \node (minus)[terminal] &#123;-&#125;;\\
+%   &#125;;
+%
+%   &#123; [start chain]
+%     \chainin (p1);
+%     \chainin (ui1)   [join=by tip];
+%     \chainin (p2)    [join];
+%     \chainin (dot)   [join=by tip];
+%     \chainin (p3)    [join];
+%     \chainin (digit) [join=by tip];
+%     \chainin (p4)    [join];
+%     &#123; [start branch=digit loop]
+%       \chainin (p3) [join=by &#123;skip loop=-6mm,tip&#125;];
+%     &#125;
+%     \chainin (p5)    [join,join=with p2 by &#123;skip loop=6mm,tip&#125;];
+%     \chainin (p6)    [join];
+%     \chainin (e)     [join=by tip];
+%     \cha
+... (truncated)
+</code></pre>
+
+</details>
+
+---
+
+## Example 350: Other
+
+**ID**: `95287c9a0cea`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix (magic) [matrix of nodes]
+  &#123;
+    8 & 1 & 6 \\
+    3 & 5 & 7 \\
+    4 & 9 & 2 \\
+  &#125;;
+
+  \draw[thick,red,-&gt;] (magic-1-1) |- (magic-2-3);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 351: Other
+
+**ID**: `e5baa0f729cf`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[row 2 column 3/.style=red]
+  \matrix [matrix of nodes]
+  &#123;
+    8 & 1 & 6 \\
+    3 & 5 & 7 \\
+    4 & 9 & 2 \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 352: Other
+
+**ID**: `958090e1ec07`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of nodes]
+  &#123;
+    8 & 1 &         6 \\
+    3 & 5 & |[red]| 7 \\
+    4 & 9 &         2 \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 353: Other
+
+**ID**: `d5941f8ec1b3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of nodes]
+  &#123;
+    8 &[1cm] 1 &[3mm] |[red]| 6 \\
+    3 &      5 &      |[red]| 7 \\
+    4 &      9 &              2 \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 354: Node Graph
+
+**ID**: `1e2e0d6ae7af`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of nodes]
+  &#123;
+    8 & 1 & 6 \\
+    3 & 5 & \node[red]&#123;7&#125;; \draw(0,0) circle(10pt);\\
+    4 & 9 & 2 \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 355: Other
+
+**ID**: `364d585ae754`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of math nodes]
+  &#123;
+    a_8 & a_1 &         a_6 \\
+    a_3 & a_5 & |[red]| a_7 \\
+    a_4 & a_9 &         a_2 \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 356: Other
+
+**ID**: `fca68ace8e6f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of math nodes,nodes=&#123;circle,draw&#125;]
+  &#123;
+    a_8 &     & a_6 \\
+    a_3 &     & a_7 \\
+    a_4 & a_9 &     \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 357: Other
+
+**ID**: `1596f77f68e4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of math nodes,nodes=&#123;circle,draw&#125;,nodes in empty cells]
+  &#123;
+    a_8 &     & a_6 \\
+    a_3 &     & a_7 \\
+    a_4 & a_9 &     \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 358: Other
+
+**ID**: `d2c44291ec93`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\matrix [text width=5cm,matrix of nodes]
+&#123;
+  first row & upper line \\ lower line \\
+  second row & hmm \\
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 359: Other
+
+**ID**: `5a5c409675c4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of nodes,nodes=&#123;text width=16mm,draw&#125;]
+  &#123;
+    row 1 & upper line \\ lower line \\
+    row 2 & hmm \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 360: Other
+
+**ID**: `56a675df5f60`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \matrix [matrix of nodes,nodes=&#123;text width=16mm,draw&#125;]
+  &#123;
+    row 1 & &#123;upper line \\ lower line&#125; \\
+    row 2 & hmm \\
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-010) | Page 12 of 96 | [Next →](tikz-pgf-page-012)

@@ -1,0 +1,917 @@
+---
+title: "PGFPLOTS Examples - Page 20"
+description: "LaTeX examples 571-600 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 20
+
+Showing examples **571-600** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-018) | Page 20 of 44 | [Next →](pgfplots-page-020)
+
+---
+
+## Example 571: Line Chart
+
+**ID**: `273ab094e10a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    footnotesize,
+    axis x line=center,
+    axis y line=center,
+    %hide obscured x ticks=false,
+    %hide obscured y ticks=false,
+]
+    \addplot &#123;x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 572: Line Chart
+
+**ID**: `f88e6e4c44d7`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    footnotesize,
+    axis x line=center,
+    axis y line=center,
+    hide obscured x ticks=false,
+    hide obscured y ticks=false,
+]
+    \addplot &#123;x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 573: Line Chart
+
+**ID**: `4d5d3a9bd00d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepackage[pdftex]&#123;ocg&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=Dynamic PDF Layer Support (see Acrobat Layers),
+        view=&#123;110&#125;&#123;35&#125;,
+    ]
+        \addplot3+ [
+            execute at begin plot visualization=\begin&#123;ocg&#125;&#123;First Layer&#125;&#123;FirstLayer&#125;&#123;0&#125;,
+            execute at end plot visualization=\end&#123;ocg&#125;,
+        ]
+            coordinates &#123;(0,0,12) (0,1,2) (1,0,6) (0,0,12)&#125;;
+
+        \addplot3+ [
+            execute at begin plot visualization=\begin&#123;ocg&#125;&#123;Second Layer&#125;&#123;SecondLayer&#125;&#123;0&#125;,
+            execute at end plot visualization=\end&#123;ocg&#125;,
+        ]
+            coordinates &#123;(0,0,9) (0,1,8) (1,0,4) (0,0,9)&#125;;
+
+        \addplot3+ [
+            execute at begin plot visualization=\begin&#123;ocg&#125;&#123;Third Layer&#125;&#123;ThirdLayer&#125;&#123;0&#125;,
+            execute at end plot visualization=\end&#123;ocg&#125;,
+        ]
+            coordinates &#123;(0,0,1) (0,1,7) (1,0,3) (0,0,1)&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 574: Line Chart
+
+**ID**: `3e28a8f855ba`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    % some descriptions:
+    table/x=Basis,
+    table/y=&#123;L2/r&#125;,
+    xlabel=Degrees of Freedom,
+    ylabel=relative Error,
+    title=New Experiments (old in gray),
+    legend entries=&#123;$e_1$,$e_2$,$e_3$&#125;,
+]
+    \addplot [black!15,forget plot]
+        table &#123;plotdata/oldexperiment1.dat&#125;;
+    \addplot [black!15,forget plot]
+        table &#123;plotdata/oldexperiment2.dat&#125;;
+    \addplot [black!15,forget plot]
+        table &#123;plotdata/oldexperiment3.dat&#125;;
+    \addplot table &#123;plotdata/newexperiment1.dat&#125;;
+    \addplot table &#123;plotdata/newexperiment2.dat&#125;;
+    \addplot table &#123;plotdata/newexperiment3.dat&#125;;
+    \end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 575: Line Chart
+
+**ID**: `08d8094c1e3d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    forget plot style=&#123;opacity=0.2&#125;,
+    % same as above:
+    table/x=Basis,
+    table/y=&#123;L2/r&#125;,
+    xlabel=Degrees of Freedom,
+    ylabel=relative Error,
+    title=New Experiments (old in transparent),
+    legend entries=&#123;$e_1$,$e_2$,$e_3$&#125;,
+]
+    \foreach \exp in &#123;1,2,3&#125; &#123;
+      \addplot+ [forget plot]
+          table &#123;plotdata/oldexperiment\exp.dat&#125;;
+      \addplot table &#123;plotdata/newexperiment\exp.dat&#125;;
+    &#125;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 576: Line Chart
+
+**ID**: `9af8fa5c2dd6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every axis/.append style=&#123;
+        before end axis/.code=&#123;
+            \fill [red] (1,10) circle(5pt);
+            \node at (-4,10)
+                &#123;\large This text has been inserted
+                 using \texttt&#123;before end axis&#125;.&#125;;
+        &#125;,
+    &#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;
+        \addplot &#123;x^2&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 577: Line Chart
+
+**ID**: `9602c00a6cf5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every axis/.append style=&#123;
+        after end axis/.code=&#123;
+            \fill [red] (1,10) circle(5pt);
+            \node at (-4,10)
+                &#123;\large This text has been inserted using \texttt&#123;after end axis&#125;.&#125;;
+        &#125;,
+    &#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;
+        \addplot &#123;x^2&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 578: Line Chart
+
+**ID**: `f7578f676949`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis on top=true,
+    axis x line=middle,
+    axis y line=middle,
+]
+    \addplot+ [fill] &#123;x^3&#125; \closedcycle;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 579: Line Chart
+
+**ID**: `5de5cbabb9aa`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis on top=false,
+    axis x line=middle,
+    axis y line=middle,
+]
+    \addplot+ [fill] &#123;x^3&#125; \closedcycle;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 580: Scatter Plot
+
+**ID**: `06a23d19bd33`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        scatter,
+        scatter src=y,
+        samples=40,
+        visualization depends on=
+            &#123;5*cos(deg(x)) \as \perpointmarksize&#125;,
+        scatter/@pre marker code/.append style=
+            &#123;/tikz/mark size=\perpointmarksize&#125;,
+    ]
+        &#123;sin(deg(x))&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 581: Other
+
+**ID**: `4b6ab2633b1c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/pgf/fpu=false&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 582: Other
+
+**ID**: `1c6329ba0eb3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\usepgfplotslibrary&#123;clickable&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 583: Line Chart
+
+**ID**: `265d1e33907a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    clickable coords=&#123;
+        Level \thisrow&#123;level&#125; (q=\thisrow&#123;q&#125;)
+    &#125;,
+]
+    \addplot table [x=dof,y=error] &#123;
+        level  dof      error           q
+        1      4        2.50000000e-01  48
+        2      16       6.25000000e-02  25
+        3      64       1.56250000e-02  41
+        4      256      3.90625000e-03  8
+        5      1024     9.76562500e-04  22
+        6      4096     2.44140625e-04  46
+        7      16384    6.10351562e-05  40
+        8      65536    1.52587891e-05  3
+        9      262144   3.81469727e-06  1
+        10     1048576  9.53674316e-07  9
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 584: Scatter Plot
+
+**ID**: `db63d0f63f34`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    clickable coords=&#123;(xy): \thisrow&#123;label&#125;&#125;,
+    scatter/classes=&#123;
+        a=&#123;mark=square*,blue&#125;,
+        b=&#123;mark=triangle*,red&#125;,
+        c=&#123;mark=o,draw=black&#125;   % &lt;-- don't add comma
+    &#125;
+]
+    \addplot [
+        only marks,
+        scatter,
+        scatter src=explicit symbolic
+    ] table [meta=label] &#123;
+        x     y      label
+        0.1   0.15   a
+        0.45  0.27   c
+        0.02  0.17   a
+        0.06  0.1    a
+        0.9   0.5    b
+        0.5   0.3    c
+        0.85  0.52   b
+        0.12  0.05   a
+        0.73  0.45   b
+        0.53  0.25   c
+        0.76  0.5    b
+        0.55  0.32   c
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 585: Line Chart
+
+**ID**: `342bfd58bc38`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[clickable coords code=&#123;
+    \pgfmathprintnumberto[verbatim,precision=1]
+        &#123;\thisrow&#123;error&#125;&#125;
+        \error
+    \pgfmathprintnumberto[verbatim,frac]
+        &#123;\thisrow&#123;frac&#125;&#125;
+        \fraccomp
+    \edef\pgfplotsretval&#123;error \error, R=\fraccomp&#125;
+&#125;]
+    \addplot table [x=dof,y=error] &#123;
+        level  dof     error           frac
+        1      4       2.50000000e-01  0.5
+        2      16      6.25000000e-02  0.75
+        3      64      1.56250000e-02  0.1
+        4      256     3.90625000e-03  0.2
+        5      1024    9.76562500e-04  0.5
+        6      4096    2.44140625e-04  0.8
+        7      16384   6.10351562e-05  0.125
+        8      65536   1.52587891e-05  0.725
+        9      262144  3.81469727e-06  0.625
+        10     1048576 9.53674316e-07  1
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 586: Other
+
+**ID**: `06922d93c2fc`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% \maxdeadcycles=10000 % in case you get the error `Output loop---&lt;N&gt; consecutive dead cycles.'
+\usepackage[pdftex]&#123;eforms&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 587: Other
+
+**ID**: `0842cb5e91a9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/pgf/images/include external/.code=&#123;\href&#123;file:#1&#125;&#123;\pgfimage&#123;#1&#125;&#125;&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 588: Other
+
+**ID**: `f0c11f06193a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every semilogy axis/.append style=&#123;/pgfplots/annot/point format=&#123;(\%.1f,\%.1e)&#125;&#125;,
+    every semilogx axis/.append style=&#123;/pgfplots/annot/point format=&#123;(\%.1e,\%.1f)&#125;&#125;,
+    every loglog axis/.append style=&#123;/pgfplots/annot/point format=&#123;(\%.1e,\%.1e)&#125;&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 589: Line Chart
+
+**ID**: `628807cd5f9c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[legend pos=outer north east]
+        \addplot table &#123;% plot X versus Y. This is original data.
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        &#125;;
+        \addplot table [
+            y=&#123;create col/linear regression=&#123;y=Y&#125;&#125;, % compute a linear regression from the input table
+        ] &#123;
+            X Y
+            1 1
+            2 4
+            3 9
+            4 16
+            5 25
+            6 36
+        &#125;;
+        %\xdef\slope&#123;\pgfplotstableregressiona&#125; %&lt;-- might be handy occasionally
+        \addlegendentry&#123;$y(x)$&#125;
+        \addlegendentry&#123;%
+            $\pgfmathprintnumber&#123;\pgfplotstableregressiona&#125; \cdot x
+            \pgfmathprintnumber[print sign]&#123;\pgfplotstableregressionb&#125;$&#125;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 590: Line Chart
+
+**ID**: `24e91fadc9a7`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+ \addplot table [x=dof,y=error2]
+    &#123;pgfplotstable.example1.dat&#125;;
+  \addlegendentry&#123;$y(x)$&#125;
+
+ \addplot table [
+      x=dof,
+      y=&#123;create col/linear regression=&#123;y=error2&#125;&#125;,
+ ] &#123;pgfplotstable.example1.dat&#125;;
+
+  % might be handy occasionally:
+  %\xdef\slope&#123;\pgfplotstableregressiona&#125;
+ \addlegendentry&#123;slope
+   $\pgfmathprintnumber&#123;\pgfplotstableregressiona&#125;$&#125;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 591: Line Chart
+
+**ID**: `e66129fce2c6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+ \addplot table [x=dof,y=error2]
+    &#123;pgfplotstable.example1.dat&#125;;
+  \addlegendentry&#123;$y(x)$&#125;
+
+ \addplot table [
+      x=dof,
+        y=&#123;create col/linear regression=&#123;
+            y=error2,
+            variance list=&#123;1000,800,600,500,400&#125;,
+        &#125;&#125;
+ ] &#123;pgfplotstable.example1.dat&#125;;
+
+ \addlegendentry&#123;slope
+  $\pgfmathprintnumber&#123;\pgfplotstableregressiona&#125;$&#125;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 592: Other
+
+**ID**: `9ff42fbceda1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% file plotdata/approx_exp.dat
+n  eapprox
+1  97.71828182845904
+2  101.38905609893065
+3  87.08553692318768
+4  92.59815003314424
+5  194.4131591025766
+6  410.4287934927351
+7  1174.6331584284585
+8  3032.9579870417283
+9  8198.083927575384
+10 22124.465794806718
+11 59973.14171519782
+</code></pre>
+
+</details>
+
+---
+
+## Example 593: Line Chart
+
+**ID**: `d05aafe3d313`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+	\addplot table[x=n,y=eapprox]
+		&#123;plotdata/approx_exp.dat&#125;;
+	\addplot[no markers,red,thick] 
+		table [x=n,y=&#123;create col/linear regression=&#123;
+			y=eapprox,ymode=log,
+			variance format=linear&#125;&#125;]
+		&#123;plotdata/approx_exp.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 594: Line Chart
+
+**ID**: `2c1354c33d36`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+  ymode=log,
+  table/create col/linear regression/variance format=linear
+]
+	\addplot table[x=n,y=eapprox]
+		&#123;plotdata/approx_exp.dat&#125;;
+	\addplot[no markers,red,thick] 
+		table [x=n,y=&#123;create col/linear regression=&#123;
+			y=eapprox,ymode=log&#125;&#125;]
+		&#123;plotdata/approx_exp.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 595: Line Chart
+
+**ID**: `19257cf5f6c5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=&#123;\texttt&#123;patch type=quadratic spline&#125;&#125;,
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=quadratic spline,
+    ] coordinates &#123;
+        % left, right, middle-&gt; first segment
+        (0,0) (1,1) (0.5,0.5^2)
+        % left, right, middle-&gt; second segment
+        (1.2,1) (2.2,1) (1.7,2)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 596: Line Chart
+
+**ID**: `0fdb743ef7a5`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=&#123;\texttt&#123;patch type=cubic spline&#125;&#125;,
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=cubic spline,
+    ] coordinates &#123;
+        % left, right, left middle, right middle
+        (-1,-1)
+        (1,1)
+        (-1/3,&#123;(-1/3)^3&#125;)
+        (1/3,&#123;(1/3)^3&#125;)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 597: Line Chart
+
+**ID**: `e0874d243cce`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=&#123;\texttt&#123;patch type=bezier spline&#125;&#125;,
+]
+    \addplot [
+        mark=*,
+        patch,
+        patch type=bezier spline,
+    ] table &#123;
+        % left, right, first control, second control
+        0 0
+        1 1
+        0 1
+        1 0
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 598: Scatter Plot
+
+**ID**: `11abcbc5da00`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [
+        samples=5,domain=-3:3,
+        mesh,patch type=cubic spline,
+        patch type sampling,
+        % avoid individual colors per segment:
+        blue,point meta=none,
+    ]
+      &#123;exp(-x^2)&#125;;
+
+    % a second plot which shows the
+    % generated x positions:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=cubic spline,
+        patch type sampling,
+        point meta=&#123;exp(-x^2)&#125;,
+    ]
+      &#123;-0.1&#125;;
+
+    % a third plot which shows the marks
+    % without patch type sampling:
+    \addplot [
+        mark=*,only marks,scatter,
+        samples=5,domain=-3:3,
+        point meta=&#123;exp(-x^2)&#125;,
+    ]
+      &#123;-0.15&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 599: Scatter Plot
+
+**ID**: `dc7495bad4b8`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot3 [surf,shader=interp,
+        patch type=bicubic,
+        patch type sampling,
+        samples=5,domain=-3:3,
+    ] &#123;exp(-x^2-y^2)&#125;;
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=5,domain=-3:3,
+        patch type=bicubic,
+        patch type sampling,
+        point meta=&#123;exp(-x^2-y^2)&#125;,
+    ] &#123;1.1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 600: Scatter Plot
+
+**ID**: `87e086337461`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot3 [surf,shader=interp,
+        patch type=bilinear,
+        samples=13,domain=-3:3,
+    ] &#123;exp(-x^2-y^2)&#125;;
+
+    % show the generated grid on top:
+    \addplot3 [
+        mark=*,mark size=1pt,only marks,scatter,
+        samples=13,domain=-3:3,
+        point meta=&#123;exp(-x^2-y^2)&#125;,
+    ] &#123;1.1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-018) | Page 20 of 44 | [Next →](pgfplots-page-020)

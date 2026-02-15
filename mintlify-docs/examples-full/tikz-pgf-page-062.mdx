@@ -1,0 +1,645 @@
+---
+title: "TIKZ-PGF Examples - Page 63"
+description: "LaTeX examples 1861-1890 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 63
+
+Showing examples **1861-1890** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-061) | Page 63 of 96 | [Next →](tikz-pgf-page-063)
+
+---
+
+## Example 1861: Other
+
+**ID**: `2f8bcc33205d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125; [flapping seagull/.pic=&#123;
+    \draw (0,0) :path=&#123;
+      0s= &#123;"&#123;(180:3mm) to [bend left] (0,0) to [bend left] (0:3mm)&#125;"=base&#125;,
+      1s=  "&#123;(160:3mm) to [bend left] (0,0) to [bend left] (20:3mm)&#125;",
+      2s=  "&#123;(180:3mm) to [bend left] (0,0) to [bend left] (0:3mm)&#125;",
+      repeats &#125;;
+  &#125;]
+  \pic :rotate=&#123;0s="0", 20s="90"&#125; &#123;flapping seagull&#125;;
+  \pic at (1.5,1.5)               &#123;flapping seagull&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1862: Other
+
+**ID**: `296a0002982f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (3,0) coordinate (A)
+         -- (0,1) coordinate (B)
+         -- (1,2) coordinate (C)
+            pic [draw, "$\alpha$"] &#123;angle&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1863: Other
+
+**ID**: `ab3a4e9b4610`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  pics/seagull/.style =&#123;
+    % Ok, this is the key that should, when
+    % executed, set the code key:
+    code = &#123; %
+      \draw (...) ... ;
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1864: Other
+
+**ID**: `bf88b8d2ef8b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  seagull/.pic = &#123;
+    \draw (...) ... ;
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1865: Other
+
+**ID**: `14dc87ddb314`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  pics/my circle/.style = &#123;
+    background code = &#123; \fill circle [radius=#1]; &#125;
+  &#125;
+&#125;
+\tikz [fill=blue!30]
+  \draw (0,0) pic &#123;my circle=2mm&#125; -- (1,1) pic &#123;my circle=5mm&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1866: Other
+
+**ID**: `9dc042c2460f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[fixed point arithmetic=&#123;scale results=10^-6&#125;]
+\draw [help lines] grid (3,2);
+\draw (0,0) -- (2,2);
+\draw [red, line width=4pt] (*1.0e6,0) -- (*3.0e6,*2.0e6);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1867: Other
+
+**ID**: `cf11b6cc4b7b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  % from `shape` library
+  shape example/.style= &#123;color      = black!30,
+                         draw,
+                         fill       = yellow!30,
+                         line width =  .5cm,
+                         inner xsep = 2.5cm,
+                         inner ysep = 0.5cm&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1868: Node Graph
+
+**ID**: `84bb3af01a2b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,x=3cm,y=2cm,semithick,
+                    every info/.style=&#123;font=\footnotesize&#125;,
+                    small circuit symbols,
+                    set resistor graphic=var resistor IEC graphic,
+                    set diode graphic=var diode IEC graphic,
+                    set make contact graphic= var make contact IEC graphic]
+  % Let us start with some contacts:
+  \foreach \contact/\y in &#123;1/1,2/2,3/3.5,4/4.5,5/5.5&#125;
+  &#123;
+    \node [contact] (left contact \contact) at (0,\y) &#123;&#125;;
+    \node [contact] (right contact \contact) at (1,\y) &#123;&#125;;
+  &#125;
+  \draw (right contact 1) -- (right contact 2) -- (right contact 3)
+     -- (right contact 4) -- (right contact 5);
+
+  \draw (left contact 1) to [diode] ++(down:1)
+                         to [voltage source=&#123;near start,
+                                             direction info=&#123;volt=3&#125;&#125;,
+                             resistor=&#123;near end,ohm=3&#125;] ++(right:1)
+                         to (right contact 1);
+  \draw (left contact 1) to [resistor=&#123;ohm=4&#125;] (right contact 1);
+  \draw (left contact 1) to [resistor=&#123;ohm=3&#125;] (left contact 2);
+  \draw (left contact 2) to [voltage source=&#123;near start,
+                                             direction info=&#123;&lt;-,volt=8&#125;&#125;,
+                             resistor=&#123;ohm=2,near end&#125;] (right contact 2);
+  \draw (left contact 2) to [resistor=&#123;near start,ohm=1&#125;,
+                             make contact=&#123;near end,info'=&#123;[red]$S_1$&#125;&#125;]
+                         (left contact 3);
+  \draw (left contact 3) to [current direction'=&#123;near start,info=$\iota$&#125;,
+                             resistor=&#123;near end,info=&#123;$R=4\Omega$&#125;&#125;]
+                         (right contact 3);
+  \draw (left contact 4) to [voltage source=&#123;near start,
+                                             dir
+... (truncated)
+</code></pre>
+
+</details>
+
+---
+
+## Example 1869: Other
+
+**ID**: `20c6533d4f6c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\usetikzlibrary&#123;circuits.logic.US,circuits.logic.IEC&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1870: Node Graph
+
+**ID**: `eb948eeea3f0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit logic US]
+  \matrix[column sep=7mm]
+  &#123;
+    \node (i0) &#123;0&#125;; &                            & \\
+                    & \node [and gate] (a1) &#123;&#125;;  & \\
+    \node (i1) &#123;0&#125;; &                            & \node [or gate] (o) &#123;&#125;;\\
+                    & \node [nand gate] (a2) &#123;&#125;; & \\
+    \node (i2) &#123;1&#125;; &                            & \\
+  &#125;;
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1871: Node Graph
+
+**ID**: `8dbf73841b53`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit logic IEC]
+  \matrix[column sep=7mm]
+  &#123;
+    \node (i0) &#123;0&#125;; &                            & \\
+                    & \node [and gate] (a1) &#123;&#125;;  & \\
+    \node (i1) &#123;0&#125;; &                            & \node [or gate] (o) &#123;&#125;;\\
+                    & \node [nand gate] (a2) &#123;&#125;; & \\
+    \node (i2) &#123;1&#125;; &                            & \\
+  &#125;;
+  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
+  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
+  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
+  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+  \draw (o.output) -- ++(right:3mm);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1872: Other
+
+**ID**: `3481fe7d9319`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC]
+  \draw (0,0) to [diode=&#123;light emitting&#125;] (3,0)
+              to [resistor=&#123;adjustable&#125;]  (3,2);
+</code></pre>
+
+</details>
+
+---
+
+## Example 1873: Other
+
+**ID**: `49dda37ac1b0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC]
+  \draw (0,1) to [resistor] (3.5,1);
+  \draw[circuit symbol unit=14pt]
+        (0,0) to [resistor] (3.5,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1874: Other
+
+**ID**: `12531f3dd8c6`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC]
+  \draw (0,1) to [resistor] (2,1) to[inductor] (4,1);
+
+  \begin&#123;scope&#125;
+    [every resistor/.style=&#123;circuit symbol size=width 3 height 1&#125;]
+    \draw (0,0) to [resistor] (2,0) to[inductor] (4,0);
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1875: Other
+
+**ID**: `60f0773fb866`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;circuit declare symbol=foo&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1876: Other
+
+**ID**: `217b30632c6e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\node [foo]       at (1,1) &#123;&#125;;
+  \node [foo=&#123;red&#125;] at (2,1) &#123;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1877: Other
+
+**ID**: `77a2d464c806`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  [circuit declare symbol=foo,
+   set foo graphic=&#123;draw,shape=rectangle,minimum size=5mm&#125;]
+
+  \node [foo]       at (1,1) &#123;&#125;;
+  \node [foo=&#123;red&#125;] at (2,1) &#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1878: Other
+
+**ID**: `02a641b99b76`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit]
+  \draw (0,0) to [circuit handle symbol=&#123;draw,shape=rectangle,near start&#125;,
+                  circuit handle symbol=&#123;draw,shape=circle,near end&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1879: Other
+
+**ID**: `e8d819af3612`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[transform shape,circuit]
+  \draw (0,0) to [circuit handle symbol=&#123;draw,shape=rectangle,at start&#125;,
+                  circuit handle symbol=&#123;draw,shape=circle,near end&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1880: Other
+
+**ID**: `3c6c96d4ac7e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC]
+  \draw (3,0) to[inductor] (1,0) to[inductor] (0,2);
+</code></pre>
+
+</details>
+
+---
+
+## Example 1881: Other
+
+**ID**: `f04ef077dd95`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC] \node [diode,point up] &#123;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1882: Other
+
+**ID**: `a149eb5a070a`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC] \node [diode,point down] &#123;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1883: Other
+
+**ID**: `3180b12fdf3a`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC] \node [diode,point left] &#123;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1884: Other
+
+**ID**: `a7054dca12e0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [circuit ee IEC] \node [diode,point right] &#123;&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1885: Other
+
+**ID**: `fc8f777aa76e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,every info/.style=red]
+  \node [resistor,info=$3\Omega$] &#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1886: Other
+
+**ID**: `0c9db7c3c5e4`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,every info/.style=red]
+  \node [resistor,info=center:$3\Omega$] &#123;&#125;;
+  \node [resistor,point up,info=center:$R_1$] at (2,0) &#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1887: Other
+
+**ID**: `d636e1ed806d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,every info/.style=red]
+  \draw (0,0) to[resistor=&#123;info=&#123;$3\Omega$&#125;,info'=&#123;$R_1$&#125;&#125;] (3,0)
+              to[resistor=&#123;info=&#123;$4\Omega$&#125;,info'=&#123;$R_2$&#125;&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1888: Other
+
+**ID**: `e9b273770363`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,every info/.style=red]
+  \draw (0,0) to[resistor=&#123;info sloped=&#123;$3\Omega$&#125;&#125;] (3,0)
+              to[resistor=&#123;info sloped=&#123;$4\Omega$&#125;&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1889: Other
+
+**ID**: `a90828614f40`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,every info/.style=red]
+  \draw (0,0) to[resistor=&#123;info' sloped=&#123;$3\Omega$&#125;&#125;] (3,0)
+              to[resistor=&#123;info' sloped=&#123;$4\Omega$&#125;&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1890: Other
+
+**ID**: `406cb449f803`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[circuit ee IEC,circuit declare unit=&#123;my ohm&#125;&#123;O&#125;]
+  \draw (0,0) to[resistor=&#123;my ohm' sloped=3&#125;] (3,2);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-061) | Page 63 of 96 | [Next →](tikz-pgf-page-063)

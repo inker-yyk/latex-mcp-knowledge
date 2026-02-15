@@ -1,0 +1,884 @@
+---
+title: "PGFPLOTS Examples - Page 5"
+description: "LaTeX examples 121-150 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 5
+
+Showing examples **121-150** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-003) | Page 5 of 44 | [Next →](pgfplots-page-005)
+
+---
+
+## Example 121: Line Chart
+
+**ID**: `df4ecb2dc630`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=&#123;Same index of each input list, lists restarted&#125;,
+        cycle multiindex* list=&#123;
+            [3 of]mark list\nextlist
+            blue,red\nextlist
+            linestyles\nextlist
+        &#125;,
+        samples=3,
+        legend entries=&#123;0,...,20&#125;,
+        legend pos=outer north east,
+    ]
+        \addplot &#123;x&#125;;
+        \addplot &#123;x-1&#125;;
+        \addplot &#123;x-2&#125;;
+        \addplot &#123;x-3&#125;;
+        \addplot &#123;x-4&#125;;
+        \addplot &#123;x-5&#125;;
+        \addplot &#123;x-6&#125;;
+        \addplot &#123;x-7&#125;;
+        \addplot &#123;x-8&#125;;
+        \addplot &#123;x-9&#125;;
+        \addplot &#123;x-10&#125;;
+        \addplot &#123;x-11&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 122: Line Chart
+
+**ID**: `dc29474c12fc`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=&#123;Same index of each input list&#125;,
+        cycle multiindex* list=&#123;
+            red,blue,teal,brown\nextlist
+            mark=*,mark=square*,mark=triangle*\nextlist
+            dashed,every mark/.append style=&#123;
+                solid,draw=.!50!black,fill=.,&#125;\\
+            \nextlist
+        &#125;,
+        samples=3,
+        legend entries=&#123;0,...,20&#125;,
+        legend pos=outer north east,
+    ]
+        \addplot &#123;x&#125;;
+        \addplot &#123;x-1&#125;;
+        \addplot &#123;x-2&#125;;
+        \addplot &#123;x-3&#125;;
+        \addplot &#123;x-4&#125;;
+        \addplot &#123;x-5&#125;;
+        \addplot &#123;x-6&#125;;
+        \addplot &#123;x-7&#125;;
+        \addplot &#123;x-8&#125;;
+        \addplot &#123;x-9&#125;;
+        \addplot &#123;x-10&#125;;
+        \addplot &#123;x-11&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 123: 3D Plot
+
+**ID**: `25c6fd91f76c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    axis background/.style=&#123;fill=blue!10&#125;,
+]
+    \addplot3 [
+        surf,
+        y domain=0:1,
+    ]
+        &#123;sin(deg(x)) * y*(1-y)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 124: Line Chart
+
+**ID**: `da2240351051`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;semilogyaxis&#125;[
+    axis background/.style=&#123;
+        shade,top color=gray,bottom color=white,
+    &#125;,
+    legend style=&#123;fill=white&#125;,
+]
+    \addplot &#123;exp(-x)&#125;;
+    \addplot &#123;exp(-4*x)&#125;;
+
+    \legend&#123;$e^&#123;-x&#125;$,$e^&#123;-4x&#125;$&#125;
+\end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 125: 3D Plot
+
+**ID**: `43d98e6ee694`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[colorbar]
+        \addplot [mesh,point meta=y,thick] &#123;x^2&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 126: Line Chart
+
+**ID**: `3a522c670a46`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% for 'coordinates':
+% provide color data explicitly using [&lt;data&gt;]
+% behind coordinates:
+\addplot+ [point meta=explicit]
+    coordinates &#123;
+        (0,0) [1.0e10]
+        (1,2) [1.1e10]
+        (2,3) [1.2e10]
+        (3,4) [1.3e10]
+        % ...
+    &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 127: Line Chart
+
+**ID**: `44aa5801372e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% for 'table':
+% Assumes a datafile.dat like
+% xcolname  ycolname    colordata
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the file may have more columns.
+\addplot+ [point meta=explicit]
+    table [x=xcolname,y=ycolname,meta=colordata]
+        &#123;datafile.dat&#125;;
+% or, equivalently (perhaps a little bit slower):
+\addplot+ [point meta=\thisrow&#123;colordata&#125;]
+    table [x=xcolname,y=ycolname]
+        &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 128: Line Chart
+
+**ID**: `8cb6b78b6760`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% for 'file':
+% Assumes a datafile.dat like
+% 0         0           0.001
+% 1         2           0.3
+% 2         2.1         0.4
+% 3         3           0.5
+% ...
+% the first three columns will be used here as x,y and meta,
+% resp.
+\addplot+ [point meta=explicit]
+    file &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 129: Line Chart
+
+**ID**: `3c203a71020e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% 'table' using expressions which may depend on all
+% columns:
+% Assumes a datafile.dat like
+% xcolname  ycolname    anything    othercol
+% 0         0           4           15
+% 1         2           5           20
+% 2         2.1         8           30
+% 3         3           42          40
+% ...
+% the file may have more columns.
+\addplot+ [point meta=&#123;0.5*(\thisrow&#123;anything&#125; + sqrt(\thisrow&#123;othercol&#125;))&#125;]
+    table [x=xcolname,y=ycolname]
+        &#123;datafile.dat&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 130: 3D Plot
+
+**ID**: `36090f40aaa6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=Axis wide color mapping,
+        colorbar,
+        samples=50,point meta rel=axis wide,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] &#123;sin(deg(x))&#125;;
+        \addplot [mesh,thick] &#123;3*tanh(x)&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+~
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=Per Plot color mapping,
+        colorbar,
+        samples=50,
+        point meta rel=per plot,
+        point meta=y,
+    ]
+        \addplot [mesh,thick] &#123;sin(deg(x))&#125;;
+        \addplot [mesh,thick] &#123;3*tanh(x)&#125;;
+   \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 131: Line Chart
+
+**ID**: `3033aeaec55b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usetikzlibrary&#123;colorbrewer&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    colormap=&#123;brewer&#125;&#123;
+        color=(RdPu-B) color=(RdPu-E)
+        color=(RdPu-G) color=(RdPu-I)
+        color=(RdPu-K)
+    &#125;,
+    enlargelimits=false,
+    colorbar as palette,
+]
+    \addplot [
+        matrix plot,
+        nodes near coords,mark=*,
+        point meta=explicit,
+        colormap access=direct,
+    ] coordinates &#123;
+        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [NaN]
+
+        (0,1) [3] (1,1) [4] (2,1) [5] (3,1) [99]
+
+        (0,2) [3.5] (1,2) [-1] (2,2) [2.99] (3,2) [3]
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 132: Other
+
+**ID**: `ddc5b87b0dd0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colorbar as palette/.style=&#123;
+        colorbar sampled=&#123;
+            surf,
+            colormap access=direct,
+            shader=flat corner,
+            samples=\pgfplotscolormapsizeof
+            &#123;\pgfkeysvalueof&#123;/pgfplots/colormap name&#125;&#125;+1,
+        &#125;,
+        colorbar style=&#123;
+            point meta min=0,
+            point meta max=\pgfplotscolormapsizeof
+            &#123;\pgfkeysvalueof&#123;/pgfplots/colormap name&#125;&#125;,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 133: Other
+
+**ID**: `349538c36da9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+1 1 194
+1 2 194
+1 3 170
+1 4 193
+1 5 188
+1 6 188
+...
+</code></pre>
+
+</details>
+
+---
+
+## Example 134: Other
+
+**ID**: `88c7030612f6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+[Z,cm] = imread('legoplane.tiff');
+size(Z)
+[X,Y]=meshgrid(1:size(Z,2), 1:size(Z,1));
+data = [ X(:) Y(:) Z(:) ];
+fid = fopen('legoplane.dat', 'w');
+fprintf(fid, "%d %d %d\n", data');
+fclose(fid);
+fid = fopen('legoplane_cm.tex', 'w');
+fprintf(fid, "\\pgfplotsset&#123;colormap=&#123;legoplane palette&#125;&#123;\n");
+fprintf(fid, "rgb=(%f,%f,%f)\n", cm');
+fprintf(fid, "&#125;&#125;\n");
+fclose(fid);
+</code></pre>
+
+</details>
+
+---
+
+## Example 135: 3D Plot
+
+**ID**: `30264e5649df`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    % load and activate the CM:
+    \input&#123;legoplane_cm.tex&#125;
+\begin&#123;axis&#125;[view=&#123;0&#125;&#123;90&#125;,axis equal,enlargelimits=false]
+    \addplot3 [
+        matrix plot,
+        colormap access=direct,
+        mesh/rows=128,
+        mesh/ordering=colwise,
+    ] table &#123;legoplane.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 136: 3D Plot
+
+**ID**: `a1c29e158e28`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepgfplotslibrary&#123;colorbrewer&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+    ] &#123;x*y&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 137: 3D Plot
+
+**ID**: `df19270d8a02`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepgfplotslibrary&#123;colorbrewer&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    colormap access=piecewise constant,
+    colormap/RdPu-6,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] &#123;x*y&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 138: 3D Plot
+
+**ID**: `323f4aa72c56`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    colormap access=piecewise constant,
+    colormap=&#123;my sampled version of viridis&#125;&#123;
+        samples of colormap=(10 of viridis)
+    &#125;,
+    colorbar horizontal,
+]
+    \addplot3 [
+        surf,
+        shader=interp,
+    ] &#123;x*y&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 139: Line Chart
+
+**ID**: `b066429e7fa6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[grid=major]
+    \addplot+ [
+        unbounded coords=jump,
+        x filter/.expression=&#123;x+1&#125;,
+        y filter/.expression=&#123;y==3 ? nan : y&#125;,
+    ] table &#123;
+        x   y
+        1   2
+        1.5 2.5
+        2   3
+        2.5 3.5
+        3   4
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 140: Line Chart
+
+**ID**: `86afaf7f012e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+[
+        x filter/.expression=&#123;
+            \thisrow&#123;W&#125; == 42 ? 0.2 : x
+        &#125;,
+    ] table &#123;
+        x y     W
+        0 0     41
+        0.5 0.5 42
+        1 1     43
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 141: Line Chart
+
+**ID**: `4798f55db1ab`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+[
+        y filter/.append expression=&#123;
+            abs(x-1) &lt; 1e-4 ? 1.5 : \pgfmathresult
+        &#125;,
+        y filter/.append expression=&#123;
+            abs(x-3) &lt; 1e-4 ? NaN : \pgfmathresult
+        &#125;,
+    ] table &#123;
+        x y
+        0 0
+        1 1
+        2 2
+        3 3
+        4 4
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 142: Line Chart
+
+**ID**: `bd7a3b03cb77`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    % equivalent to 'x filter/.expression=&#123;x+0.5&#125;'
+    x filter/.code=&#123;
+        \pgfmathadd&#123;#1&#125;&#123;0.5&#125;,
+    &#125;,
+]
+    \addplot coordinates &#123;
+        (4,0)
+        (6,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 143: Line Chart
+
+**ID**: `b932a4378846`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    samples=20,
+    % equivalent to
+    % x filter/.expression=&#123;
+    %   \coordindex&gt;4 && \coordindex&lt;11 ? nan : x
+    % &#125;,
+    x filter/.code=&#123;
+        \ifnum\coordindex&gt;4
+            \ifnum\coordindex&lt;11
+                \def\pgfmathresult&#123;&#125;
+            \fi
+        \fi
+    &#125;,
+]
+    \addplot &#123;x^2&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 144: Line Chart
+
+**ID**: `7ec86a463f03`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;semilogyaxis&#125;
+    \addplot+ [
+        restrict expr to domain=&#123;rawy&#125;&#123;1e0:1.5e1&#125;,
+    ] &#123;exp(x)&#125;;
+\end&#123;semilogyaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 145: Line Chart
+
+**ID**: `cf80fe504c45`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    samples=20,
+    skip coords between index=&#123;5&#125;&#123;11&#125;,
+    skip coords between index=&#123;15&#125;&#123;18&#125;,
+]
+    \addplot &#123;x^2&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 146: Line Chart
+
+**ID**: `71bf66eaa6ee`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        restrict y to domain=-10:10,
+        samples=1000,
+        % some fine-tuning for the display:
+        width=10cm, height=210pt,
+        xmin=-4.7124, xmax=4.7124,
+        xtick=&#123;-4.7124,-1.5708,...,10&#125;,
+        xticklabels=&#123;$-\frac32 \pi$,$-\pi/2$,$\pi/2$,$\frac32 \pi$&#125;,
+        axis x line=center,
+        axis y line=center,
+    ]
+        \addplot [blue] gnuplot [id=tangens,domain=-1.5*pi:1.5*pi] &#123;tan(x)&#125;;
+        \legend&#123;$\tan(x)$&#125;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 147: Other
+
+**ID**: `294cd8dfcb6f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \pgfplotsset&#123;
+        every axis post/.style=&#123;
+            xmin=0,xmax=1,
+        &#125;,
+    &#125;
+    \begin&#123;axis&#125;[
+        xmin=-1,xmax=2,
+        ymin=0,ymax=1,
+    ]
+        ...
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 148: Line Chart
+
+**ID**: `355c9e2e09ff`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\pgfplotsset&#123;
+    every axis plot post/.append style=&#123;mark=none&#125;,
+&#125;
+\begin&#123;axis&#125;[
+    legend pos=north west,
+    domain=0:1,
+]
+    \addplot &#123;x^2&#125;;
+    \addplot &#123;exp(x)&#125;;
+    \legend&#123;$x^2$,$e^x$&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 149: Other
+
+**ID**: `79e101c3e45b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis title/.style=&#123;at=&#123;(0.5,1)&#125;,above,yshift=6pt&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 150: Other
+
+**ID**: `6ef654f4633b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every axis legend/.style=&#123;
+        cells=&#123;anchor=center&#125;,
+        inner xsep=3pt,inner ysep=2pt,
+        nodes=&#123;inner sep=2pt,text depth=0.15em&#125;,
+        anchor=north east,
+        shape=rectangle,
+        fill=white,draw=black,
+        at=&#123;(0.98,0.98)&#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-003) | Page 5 of 44 | [Next →](pgfplots-page-005)

@@ -1,0 +1,798 @@
+---
+title: "TIKZ-PGF Examples - Page 62"
+description: "LaTeX examples 1831-1860 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 62
+
+Showing examples **1831-1860** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-060) | Page 62 of 96 | [Next →](tikz-pgf-page-062)
+
+---
+
+## Example 1831: Other
+
+**ID**: `5aff71fb9a07`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset &#123;
+  dfa/.style        = &#123; semithick, &gt; = To [sep] &#125;,
+  nfa/.style        = &#123; semithick, &gt; = To [sep] &#125;,
+  state/.style      = &#123; circle, draw, minimum size = 1cm &#125;,
+  final/.style      = &#123; double &#125;,
+  initial/.style    = &#123; draw = red &#125;, % to keep things simple
+  transition/.style = &#123; edge label = &#123;$#1$&#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1832: Other
+
+**ID**: `0110dd054cd5`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz [dfa]
+  \graph [math nodes, grow right = 1.5cm] &#123;
+    q_0 [state, initial] -&gt; [transition = a]
+    q_1 [state]          -&gt; [transition = b, loop above]
+    q_1                  -&gt; [transition = a]
+    q_2 [state, final]
+  &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1833: Other
+
+**ID**: `24b22722b7cd`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+dfa/.style = &#123;
+  semithick, &gt; = To [sep], % as before,
+  rdf engine = &#123;
+    %
+    % Setup prefix:
+    prefix = &#123; automata: http://www.tcs.uni-luebeck.de/ontologies/automata/ &#125;,
+    %
+    % Get the curie of the automaton and store it in a macro for later use:
+    get scope curie = \mylibAutomatonCurie,
+    %
+    % Make a statement that the resource is, indeed, an automaton:
+    statement = &#123;
+      subject     = \mylibAutomatonCurie,
+      has type    = automata:types/automaton &#125;,
+    %
+    % Make a statement that the automaton is deterministic:
+    statement = &#123;
+      subject     = \mylibAutomatonCurie,
+      predicate   = automata:properties/deterministic,
+      object      = "yes" &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1834: Other
+
+**ID**: `9a2887ef035d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+state/.style = &#123;
+  circle, draw, minimum size = 1cm, % as before,
+  rdf engine = &#123;
+    get scope curie = \mylibStateCurie,
+    statement = &#123;
+      subject     = \mylibStateCurie,
+      has type    = automata:types/state &#125;,
+    statement = &#123;
+      subject     = \mylibStateCurie,
+      predicate   = rdf:value,
+      object      = scope content &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1835: Other
+
+**ID**: `c9394b89f8bc`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+statement = &#123;
+      subject     = \mylibAutomatonCurie,
+      predicate   = automata:hasAsAState,
+      object      = \mylibStateCurie &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1836: Other
+
+**ID**: `3a408c86c71e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+final/.style = &#123;
+  double, % as before,
+  rdf engine = &#123;
+    get scope curie = \mylibStateCurie,
+    statement = &#123;
+      subject     = \mylibStateCurie,
+      has type    = automata:properties/final &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1837: Other
+
+**ID**: `63b8e1559d8f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+transition/.style = &#123;
+  edge label = &#123;#1&#125;, % as before,
+  rdf engine = &#123;
+    get scope curie = \mylibTransitionCurie,
+    statement = &#123;
+      subject     = \mylibTransitionCurie,
+      has type    = automata:types/transition &#125;,
+    statement = &#123;
+      subject     = \mylibTransitionCurie,
+      predicate   = automata:properties/symbolReadFromTape,
+      object      = "#1" &#125;,
+    statement = &#123;
+      subject     = \mylibTransitionCurie,
+      predicate   = automata:relations/oldState,
+      object      = (\tikztostart) &#125;,
+    statement = &#123;
+      subject     = \mylibTransitionCurie,
+      predicate   = automata:relations/newState,
+      object      = (\tikztotarget) &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1838: Other
+
+**ID**: `3247d89c86bf`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+dfa/.style = &#123;
+  semithick, &gt; = To [sep], % as before,
+  rdf engine = &#123;
+    prefix = &#123; automata: http://www.tcs.uni-luebeck.de/ontologies/automata/ &#125;,
+    get scope curie = \mylibAutomatonCurie,
+    statement = &#123; ... as before that automaton has type automata:types/automaton ... &#125;,
+    statement = &#123; ... as before that automaton is deterministic ... &#125;,
+    get new resource curie = \mylibStateContainerCurie,
+    statement = &#123;
+      subject    = \mylibStateContainerCurie,
+      is a sequence &#125;,
+    statement = &#123;
+      subject    = \mylibAutomatonCurie,
+      predicate  = automata:relations/hasAsStateContainer,
+      object     = \mylibStateContainerCurie &#125;,
+    get new resource curie = \mylibTransitionContainerCurie,
+    statement = &#123;
+      subject    = \mylibTransitionContainerCurie,
+      is a sequence &#125;,
+    statement = &#123;
+      subject    = \mylibAutomatonCurie,
+      predicate  = automata:relations/hasAsTransitionContainer,
+      object     = \mylibTransitionContainerCurie &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1839: Other
+
+**ID**: `4ce0040c98d2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+state/.style = &#123;
+  circle, draw, minimum size = 1cm, % as before,
+  rdf engine = &#123;
+    get scope curie = \mylibStateCurie,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123;
+      subject     = \mylibStateContainerCurie,
+      has as member,
+      object      = \mylibStateCurie &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1840: Other
+
+**ID**: `694f1882eb78`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+transition/.style = &#123;
+  edge label = &#123;#1&#125;, % as before,
+  rdf engine = &#123;
+    get scope curie = \mylibTransitionCurie,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123; ... as before ... &#125;,
+    statement = &#123;
+      subject     = \mylibTransitionContainerCurie,
+      has as member,
+      object      = \mylibTransitionCurie &#125; &#125; &#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1841: Other
+
+**ID**: `aafb6393b266`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset &#123;
+  dfa/.style = &#123;
+    semithick, &gt; = To [sep], % as before,
+    rdf engine = &#123;
+      prefix = &#123; automata: http://www.tcs.uni-luebeck.de/ontologies/automata/ &#125;,
+      get scope curie = \mylibAutomatonCurie,
+      statement = &#123;
+        subject     = \mylibAutomatonCurie,
+        has type    = automata:types/automaton &#125;,
+      statement = &#123;
+        subject     = \mylibAutomatonCurie,
+        predicate   = automata:properties/deterministic,
+        object      = "yes" &#125;,
+      get new resource curie = \mylibStateContainerCurie,
+      statement = &#123;
+        subject    = \mylibStateContainerCurie,
+        is a sequence &#125;,
+      statement = &#123;
+        subject    = \mylibAutomatonCurie,
+        predicate  = automata:relations/hasAsStateContainer,
+        object     = \mylibStateContainerCurie &#125;,
+      get new resource curie = \mylibTransitionContainerCurie,
+      statement = &#123;
+        subject    = \mylibTransitionContainerCurie,
+        is a sequence &#125;,
+      statement = &#123;
+        subject    = \mylibAutomatonCurie,
+        predicate  = automata:relations/hasAsTransitionContainer,
+        object     = \mylibTransitionContainerCurie &#125; &#125; &#125;,
+  state/.style = &#123;
+    circle, draw, minimum size = 1cm, % as before,
+    rdf engine = &#123;
+      get scope curie = \mylibStateCurie,
+      statement = &#123;
+        subject     = \mylibStateCurie,
+        has type    = automata:types/state &#125;,
+      statement = &#123;
+        subject     = \mylibStateCurie,
+        predicate   = rdf:value,
+        object      = scope content &#125;,
+      statement = &#123;
+        subject     = \mylibStateContainerCurie,
+        has as member,
+        object      = \mylibStateCurie &#125; &#125; &#125;,
+  initial/.style = &#123;
+    draw = red, % as before,
+    rdf engine = &#123;
+      get scope curie = \mylibStateCurie,
+      statement = &#123;
+        subject     = \mylibStateCurie,
+   
+... (truncated)
+</code></pre>
+
+</details>
+
+---
+
+## Example 1842: Other
+
+**ID**: `3b328681ee87`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset &#123; rdf engine on &#125;
+\tikz [dfa]
+  \graph [math nodes, grow right = 1.5cm] &#123;
+    q_0 [state, initial] -&gt; [transition = a]
+    q_1 [state]          -&gt; [transition = b, loop above]
+    q_1                  -&gt; [transition = a]
+    q_2 [state, final]
+  &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1843: Other
+
+**ID**: `ef8b18adcf95`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+&lt;g id="pgf3"  prefix=" automata: http://www.tcs.uni-luebeck.de/ontologies/automata/ "&gt;
+  &lt;!-- The automaton --&gt;
+  &lt;g about="#pgf3" property="rdf:type" resource="automata:types/automaton" /&gt;
+  &lt;g about="#pgf3" property="automata:properties/deterministic" content="yes" /&gt;
+  &lt;g about="#pgf4" property="rdf:type" resource="rdf:Seq" /&gt;
+  &lt;g about="#pgf3" property="automata:relations/hasAsStateContainer" resource="#pgf4" /&gt;
+  &lt;g about="#pgf5" property="rdf:type" resource="rdf:Seq" /&gt;
+  &lt;g about="#pgf3" property="automata:relations/hasAsTransitionContainer" resource="#pgf5" /&gt;
+  &lt;g id="pgf6"  about="#pgf6" property="rdf:value"&gt;
+    &lt;!-- State $q_0$ --&gt;
+    &lt;g about="#pgf6" property="rdf:type" resource="automata:types/state" /&gt;
+    &lt;g about="#pgf4" property="rdf:_1" resource="#pgf6" /&gt;
+    &lt;g about="#pgf6" property="rdf:type" resource="automata:properties/initial" /&gt;
+    &lt;g stroke="#f00"&gt;    &lt;!-- Red Line --&gt;
+      &lt;path id="pgf6bp" d="M 14.22636 0.0 C 14.22636 7.8571 7.8571 14.22636 0.0 14.22636 ..." /&gt;
+      ...
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g id="pgf7"  about="#pgf7" property="rdf:value"&gt;
+    &lt;!-- State $q_1$ --&gt;
+    &lt;g about="#pgf7" property="rdf:type" resource="automata:types/state" /&gt;
+    &lt;g about="#pgf4" property="rdf:_2" resource="#pgf7" /&gt;
+    &lt;path id="pgf7bp" d="M 56.90549 0.0 C 56.90549 7.8571 50.53622 14.22636 42.67912 14.22636 ..." /&gt;
+    ...
+  &lt;/g&gt;
+  &lt;g id="pgf8" &gt;
+    &lt;!-- Transition from $q_0$ to $q_1$ --&gt;
+    &lt;g about="#pgf8" property="rdf:type" resource="automata:types/transition" /&gt;
+    &lt;g about="#pgf8" property="automata:properties/symbolReadFromTape" content="a" /&gt;
+    &lt;g about="#pgf8" property="automata:relations/oldState" resource="#pgf6" /&gt;
+    &lt;g about="#pgf8" property="automata:relations/newState" resource="#pgf7" /&gt;
+    &lt;g about="#pgf5" property="rdf:_1" resource="#pgf8" /&gt;
+ 
+... (truncated)
+</code></pre>
+
+</details>
+
+---
+
+## Example 1844: Other
+
+**ID**: `b8fb7a87127a`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  seagull/.pic=&#123;
+    % Code for a "seagull". Do you see it?...
+    \draw (-3mm,0) to [bend left] (0,0) to [bend left] (3mm,0);
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1845: Other
+
+**ID**: `17fe832d2b44`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz \fill [fill=blue!20]
+     (1,1)
+  -- (2,2) pic             &#123;seagull&#125;
+  -- (3,2) pic             &#123;seagull&#125;
+  -- (3,1) pic [rotate=30] &#123;seagull&#125;
+  -- (2,1) pic [red]       &#123;seagull&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1846: Other
+
+**ID**: `947a524bac7d`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz &#123;
+  \path (0,0) pic [pic type = seagull]
+        (1,0) pic                      &#123;seagull&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1847: Other
+
+**ID**: `8a3004801449`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz &#123; % different ways of placing pics
+  \draw [help lines] (0,0) grid (3,2);
+  \pic  at (1,0)     &#123;seagull&#125;;
+  \path (2,1)    pic &#123;seagull&#125;;
+  \pic  [at=&#123;(3,2)&#125;] &#123;seagull&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1848: Other
+
+**ID**: `a9eaaca6266f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz [scale=2] &#123;
+  \pic at (0,0)                   &#123;seagull&#125;;
+  \pic at (1,0) [transform shape] &#123;seagull&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1849: Other
+
+**ID**: `8f21ea470d55`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz [rotate=30] &#123;
+  \pic at (0,0)             &#123;seagull&#125;;
+  \pic at (1,0) [rotate=90] &#123;seagull&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1850: Other
+
+**ID**: `f7a1254e63f0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz \draw
+  (0,0) to [bend left]
+           pic [near start]       &#123;seagull&#125;
+           pic                    &#123;seagull&#125;
+           pic [sloped, near end] &#123;seagull&#125; (4,0);
+</code></pre>
+
+</details>
+
+---
+
+## Example 1851: Other
+
+**ID**: `51f45c103ede`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \pic [pics/code=&#123;\draw (-3mm,0) to[bend left] (0,0)
+                                      to[bend left] (3mm,0);&#125;]
+      &#123;&#125;; % no pic type specified
+</code></pre>
+
+</details>
+
+---
+
+## Example 1852: Other
+
+**ID**: `3ab61f2ef745`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) .. controls(1,0) and (2,1) .. (3,1)
+  foreach \t in &#123;0, 0.125, ..., 1&#125; &#123;
+    pic [pos=\t] &#123;code=&#123;\draw circle [radius=2pt];&#125;&#125;
+  &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1853: Other
+
+**ID**: `f2506567be93`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  my pic/.pic = &#123;
+    \path [pic actions] (0,0) circle[radius=3mm];
+    \draw (-3mm,-3mm) rectangle (3mm,3mm);
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1854: Other
+
+**ID**: `3fff4f4bda76`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) circle[radius=3mm];
+    \draw (-3mm,-3mm) rectangle (3mm,3mm);
+  &#125;
+&#125;&#125;]
+\tikz \pic                      &#123;my pic&#125;; \space
+\tikz \pic [red]                &#123;my pic&#125;; \space
+\tikz \pic [draw]               &#123;my pic&#125;; \space
+\tikz \pic [draw=red]           &#123;my pic&#125;; \space
+\tikz \pic [draw, shading=ball] &#123;my pic&#125;; \space
+\tikz \pic [fill=red!50]        &#123;my pic&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1855: Other
+
+**ID**: `64c6f3ce4e6b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz \fill [fill=blue!20]
+     (1,1)
+  -- (2,2) pic [behind path]      &#123;seagull&#125;
+  -- (3,2) pic                    &#123;seagull&#125;
+  -- (3,1) pic [rotate=30]        &#123;seagull&#125;
+  -- (2,1) pic [red, behind path] &#123;seagull&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1856: Other
+
+**ID**: `eca6ed8bd7c6`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\tikz \pic foreach \x in &#123;1,2,3&#125; at (\x,0) &#123;seagull&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1857: Other
+
+**ID**: `da46dd6fe311`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) to [bend left] (3mm,0);
+  &#125;,
+&#125;&#125;]
+\begin&#123;tikzpicture&#125;[every pic/.style=&#123;scale=2,transform shape&#125;]
+  \pic foreach \x in &#123;1,2,3&#125; at (\x,0) &#123;seagull&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1858: Other
+
+**ID**: `35ca0e9018f1`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;
+  seagull/.pic=&#123;
+    % Code for a "seagull". Do you see it?...
+    \coordinate (-left wing) at (-3mm,0);
+    \coordinate (-head)      at (0,0);
+    \coordinate (-right wing) at (3mm,0);
+
+    \draw (-left wing) to [bend left] (0,0) (-head) to [bend left] (-right wing);
+  &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1859: Other
+
+**ID**: `d084be07b405`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz &#123;
+  \pic (Emma)               &#123;seagull&#125;;
+  \pic (Alexandra) at (0,1) &#123;seagull&#125;;
+
+  \draw (Emma-left wing) -- (Alexandra-right wing);
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1860: Other
+
+**ID**: `88a36900ef33`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+(0,0) (-head) to [bend left] (-right wing);
+  &#125;
+&#125;&#125;,
+]
+\tikz &#123;
+  \pic :rotate=&#123;0s="0", 20s="90"&#125; &#123;seagull&#125;;
+  \pic at (1.5,1.5)               &#123;seagull&#125;;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-060) | Page 62 of 96 | [Next →](tikz-pgf-page-062)

@@ -1,0 +1,727 @@
+---
+title: "PGFPLOTS Examples - Page 8"
+description: "LaTeX examples 211-240 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 8
+
+Showing examples **211-240** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-006) | Page 8 of 44 | [Next →](pgfplots-page-008)
+
+---
+
+## Example 211: Other
+
+**ID**: `483dc6233104`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\empty&#123;\relax&#125;
+\ifx\empty\relax %
+This is shown if the two tokens have equal expansion.
+\else
+This is shown if the two tokens expand to something different.
+\fi
+</code></pre>
+
+</details>
+
+---
+
+## Example 212: Other
+
+**ID**: `fe196848bcef`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\choice&#123;a&#125;
+\if b\choice
+  This is shown for the `b' choice.
+\else
+  This is shown for all other choices.
+\fi
+</code></pre>
+
+</details>
+
+---
+
+## Example 213: Other
+
+**ID**: `4cd74d7f51cf`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\choice&#123;a&#125;
+\edef\temp&#123;The choice is \if a\choice `a'\else not `a'\fi&#125;
+We have now \texttt&#123;\string temp=\meaning\temp&#125;.
+</code></pre>
+
+</details>
+
+---
+
+## Example 214: Other
+
+**ID**: `b99c2fdbfa52`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\shownexttoken#1&#123;The next token is `\texttt&#123;\string#1&#125;'.&#125;
+\def\mymacro&#123;%
+ 	\ifnum1=1 %
+ 		\expandafter\shownexttoken%
+ 	\fi%
+&#125;%
+\mymacro 23
+</code></pre>
+
+</details>
+
+---
+
+## Example 215: Other
+
+**ID**: `5affe3825163`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\long\def\countingloop#1 in #2:#3#4&#123;%
+	#1=#2 %
+	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
+&#125;
+
+\long\def\loopcounter#1#2#3&#123;%
+	#3%
+	\ifnum#1=#2 %
+	\else%
+		\advance#1 by1 %
+		\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;%
+	\fi%
+&#125;
+\countingloop&#123;\count0&#125; in 0:&#123;3&#125;&#123;%
+	The current value is `\the\count0'\par
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 216: Other
+
+**ID**: `c9ac4e5e8d58`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\long\def\countingloop#1 in #2:#3#4&#123;%
+	#1=#2 %
+	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
+&#125;
+
+\long\def\loopcounter#1#2#3&#123;%
+	#3%
+	\ifnum#1=#2 %
+		\let\next=\relax%
+	\else
+		\advance#1 by1 %
+		\def\next&#123;\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;&#125;%
+	\fi
+	\next
+&#125;
+\newcount\ourcounter
+
+\countingloop&#123;\ourcounter&#125; in 0:&#123;3&#125;&#123;%
+	The current value is `\the\ourcounter'\par
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 217: Other
+
+**ID**: `8779eb7cec67`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\listingloopENDMARKER&#123;\par \listingloopENDMARKER&#125;
+\long\def\listingloop#1in#2#3&#123;%
+	\looppicker&#123;#1&#125;&#123;#3&#125;#2,\listingloopENDMARKER,%
+&#125;%
+\long\def\looppicker#1#2#3,&#123;%
+	\def\tempitem&#123;#3&#125;%
+	\ifx\tempitem\listingloopENDMARKER
+		\let\next=\relax%
+	\else
+		\def#1&#123;#3&#125;%
+		#2%
+		\def\next&#123;\looppicker&#123;#1&#125;&#123;#2&#125;&#125;%
+	\fi
+	\next
+&#125;%
+\listingloop\x in&#123;a,b,c,,d,e&#125;&#123;%
+	The current item is `\x'
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 218: Other
+
+**ID**: `7ddc57cf4eee`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+\pgfkeysgetvalue&#123;/notes/key&#125;\temp
+
+The value of key \texttt&#123;/notes/key&#125; is `\temp'.
+</code></pre>
+
+</details>
+
+---
+
+## Example 219: Other
+
+**ID**: `87e9f23f3498`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\something&#123;abc&#125;
+\pgfkeyslet&#123;/notes/key&#125;&#123;\something&#125;
+
+\pgfkeysgetvalue&#123;/notes/key&#125;\temp
+
+The value of key \texttt&#123;/notes/key&#125; is `\temp'.
+</code></pre>
+
+</details>
+
+---
+
+## Example 220: Other
+
+**ID**: `6b574db35527`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
+</code></pre>
+
+</details>
+
+---
+
+## Example 221: Other
+
+**ID**: `c1a5d188a292`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+\edef\temp&#123;--- \pgfkeysvalueof&#123;/notes/key&#125; ---&#125;
+
+The value of key \texttt&#123;/notes/key&#125; along with dashes is \temp.
+</code></pre>
+
+</details>
+
+---
+
+## Example 222: Other
+
+**ID**: `96e39948603f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeysdef&#123;/notes/code key&#125;&#123;Expansion with value #1---X.&#125;%
+
+We ``assign a value'' or ``execute the code key'' (which is equivalent):
+\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
+</code></pre>
+
+</details>
+
+---
+
+## Example 223: Other
+
+**ID**: `142fd6ce7368`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% key definition:
+\pgfkeys&#123;
+	/notes/key/.initial=abc,
+&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
+
+% key usage:
+\pgfkeys&#123;
+	/notes/key =  efg  ,
+&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
+</code></pre>
+
+</details>
+
+---
+
+## Example 224: Other
+
+**ID**: `8bdd28532078`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
+&#125;%
+
+Execute the key using the simple API:
+\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
+
+... execute the key using assignment in the standard API:
+\pgfkeys&#123;/notes/code key=abc&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 225: Other
+
+**ID**: `9858870cf0f2`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
+	/notes/code key/.code=Expansion with value #1---X.,
+&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## Example 226: Other
+
+**ID**: `b476c26809f9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+	/notes/A/.initial=,
+	/notes/B/.initial=,
+	/notes/my style/.style=&#123;
+		/notes/A=&#123;#1&#125;,
+		/notes/B=&#123;#1&#125;,
+	&#125;,
+&#125;%
+
+Definition has been done. Assigning the style:
+\pgfkeys&#123;
+	/notes/my style=42
+&#125;
+OK. Value of A=\pgfkeysvalueof&#123;/notes/A&#125;, value of B=\pgfkeysvalueof&#123;/notes/B&#125;.
+</code></pre>
+
+</details>
+
+---
+
+## Example 227: Other
+
+**ID**: `ae343d184c9c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\collectargument#1&#123;%
+	\def\collectedcontent&#123;#1&#125;%
+	\ifx\collectedcontent\empty
+		It is empty.
+	\else
+		It is not empty, executing it: #1.
+	\fi
+&#125;%
+
+\collectargument&#123;&#125;% works
+
+\collectargument&#123;something&#125;% works
+
+\collectargument&#123;% does not work!
+	\def\something#1&#123;which depends on #1&#125;
+&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## Example 228: Other
+
+**ID**: `a8db647f40a1`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\collectargument#1&#123;%
+	\toks0=&#123;#1&#125;%
+	\edef\collectedcontent&#123;\the\toks0&#125;%
+	\ifx\collectedcontent\empty
+		It is empty.
+	\else
+		It is not empty, executing it: #1.
+	\fi
+&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## Example 229: Other
+
+**ID**: `3aa62aa72627`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every linear axis/.append style=&#123;...&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 230: Other
+
+**ID**: `f6e32fe32345`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every semilogx axis/.append style=&#123;...&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 231: Other
+
+**ID**: `f06f93a81afb`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;axis&#125;[
+    xmode=log|normal,
+    ymode=log|normal]
+    ...
+\end&#123;axis&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 232: Line Chart
+
+**ID**: `70e5535f0985`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[ymin=0,ymax=1,enlargelimits=false]
+    \addplot [blue!80!black,fill=blue,fill opacity=0.5,
+    ] coordinates &#123;
+        (0,0.1)    (0.1,0.15)  (0.2,0.5)   (0.3,0.62)
+        (0.4,0.56) (0.5,0.58)  (0.6,0.65)  (0.7,0.6)
+        (0.8,0.58) (0.9,0.55)  (1,0.52)
+    &#125;
+        |- (0,0) -- cycle;
+
+    \addplot [red,fill=red!90!black,opacity=0.5,
+    ] coordinates &#123;
+        (0,0.25)   (0.1,0.27)  (0.2,0.24)  (0.3,0.24)
+        (0.4,0.26) (0.5,0.3)   (0.6,0.23)  (0.7,0.2)
+        (0.8,0.15) (0.9,0.1)   (1,0.1)
+    &#125;
+        |- (0,0) -- cycle;
+
+    \addplot [green!20!black] coordinates &#123;
+        (0,0.4) (0.2,0.75) (1,0.75)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 233: Line Chart
+
+**ID**: `5ef5687697a9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        id=parable,
+        domain=-5:5,
+    ] gnuplot &#123;4*x**2 - 5&#125;
+        node [pin=180:&#123;$4x^2-5$&#125;]&#123;&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 234: 3D Plot
+
+**ID**: `99db83a0a28c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot3 [
+        surf,
+        domain=0:360,
+        samples=40,
+    ] &#123;sin(x)*sin(y)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 235: 3D Plot
+
+**ID**: `06e184d7e705`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[colormap/redyellow,colorbar]
+    \addplot3 [
+        surf,
+        domain=0:360,
+        samples=40,
+    ] &#123;sin(x)*sin(y)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 236: 3D Plot
+
+**ID**: `7931ad523b8e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[view=&#123;60&#125;&#123;30&#125;]
+    \addplot3 [
+        surf,shader=flat,
+        samples=20,
+        domain=-1:0,y domain=0:2*pi,
+        z buffer=sort,
+    ] (
+        &#123;sqrt(1-x^2) * cos(deg(y))&#125;,
+        &#123;sqrt(1-x^2) * sin(deg(y))&#125;,
+         x
+    );
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 237: Other
+
+**ID**: `ce25645814b0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis plot/.append style=&#123;...&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 238: Other
+
+**ID**: `30ca9579ed46`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis plot no 3/.append style=&#123;...&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 239: Line Chart
+
+**ID**: `c1079b8e159e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+\addplot coordinates &#123;
+    (769,   1.6227e-04)
+    (1793,  4.4425e-05)
+    (4097,  1.2071e-05)
+    (9217,  3.2610e-06)
+    (2.2e5, 2.1E-6)
+    (1e6,   0.00003341)
+    (2.3e7, 0.00131415)
+&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 240: Line Chart
+
+**ID**: `9701fe6f2fea`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;
+        \addplot &#123;sin(deg(x))&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;
+        \addplot+ [only marks] &#123;sin(deg(x))&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-006) | Page 8 of 44 | [Next →](pgfplots-page-008)

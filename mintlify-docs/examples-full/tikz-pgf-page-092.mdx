@@ -1,0 +1,684 @@
+---
+title: "TIKZ-PGF Examples - Page 93"
+description: "LaTeX examples 2761-2790 from tikz-pgf (2872 total)"
+---
+
+# TIKZ-PGF Examples - Page 93
+
+Showing examples **2761-2790** of **2872** from the tikz-pgf package.
+
+[← Previous](tikz-pgf-page-091) | Page 93 of 96 | [Next →](tikz-pgf-page-093)
+
+---
+
+## Example 2761: Other
+
+**ID**: `a1602e5646cb`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my search path/.cd,custom/.style=&#123;variables&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2762: Other
+
+**ID**: `31259ae22d7b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my search path/.unknown/.code=
+  &#123;%
+    \let\searchname=\pgfkeyscurrentname%
+    \pgfkeysalso&#123;%
+      /a/\searchname/.try=#1,
+      /b/\searchname/.retry=#1,
+      /b/c/\searchname/.retry=#1%
+    &#125;%
+  &#125;%
+&#125;
+
+% Let's define /b/custom here:
+\pgfkeys&#123;/b/custom/.code=&#123;This is `\pgfkeyscurrentkey'. &#125;&#125;
+
+% Reconfigure treatment of key handlers:
+\pgfkeys&#123;/handler config=only existing&#125;
+
+% The search path procedure will find /b/custom
+% -&gt; leads to This is `/b/custom'
+\pgfkeys&#123;/my search path/.cd,custom&#125;
+
+% Due to the reconfiguration, this will find /b/custom instead of
+% defining /my search path/custom:
+\pgfkeys&#123;/my search path/.cd,custom/.append code=&#123;Modified. &#125;&#125;
+
+% So using the search path, we again find /b/custom which
+% leads to This is `/b/custom' Modified
+\pgfkeys&#123;/my search path/.cd,custom&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2763: Other
+
+**ID**: `510eade132ef`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/tikz/.is family&#125;
+\pgfkeys&#123;tikz,line width=1cm&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2764: Other
+
+**ID**: `625d4b4b7a0e`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my key/.code=I do not want an argument!&#125;
+\pgfkeys&#123;/my key/.value forbidden&#125;
+
+\pgfkeys&#123;/my key&#125;     % Ok
+\pgfkeys&#123;/my key=foo&#125; % Error
+</code></pre>
+
+</details>
+
+---
+
+## Example 2765: Other
+
+**ID**: `00b728493d43`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/par indent/.code=&#123;\parindent=#1&#125;,/par indent/.default=2em&#125;
+\pgfkeys&#123;/par indent=1cm&#125;
+...
+\pgfkeys&#123;/par indent&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2766: Other
+
+**ID**: `04b23ba99a54`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/page size/.code 2 args=&#123;\paperheight=#2\paperwidth=#1&#125;&#125;
+\pgfkeys&#123;/page size=&#123;30cm&#125;&#123;20cm&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2767: Other
+
+**ID**: `1302a8aa45d2`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/a key/.code n args=&#123;2&#125;&#123;First=`#1', Second=`#2'&#125;&#125;
+\pgfkeys&#123;/a key=&#123;A&#125;&#123;B&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2768: Other
+
+**ID**: `c2f10b4e10c8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/page size/.code args=&#123;#1 and #2&#125;&#123;\paperheight=#2\paperwidth=#1&#125;&#125;
+\pgfkeys&#123;/page size=30cm and 20cm&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2769: Other
+
+**ID**: `ad9227a81fd9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/par indent/.code=&#123;\parindent=#1&#125;&#125;
+\newdimen\myparindent
+\pgfkeys&#123;/par indent/.add code=&#123;&#125;&#123;\myparindent=#1&#125;&#125;
+...
+\pgfkeys&#123;/par indent=1cm&#125; % This will set both \parindent and
+                          % \myparindent to 1cm
+</code></pre>
+
+</details>
+
+---
+
+## Example 2770: Other
+
+**ID**: `be686900250c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/par indent/.code=&#123;\parindent=#1&#125;&#125;
+\pgfkeys&#123;/no indent/.style=&#123;/par indent=0pt&#125;&#125;
+\pgfkeys&#123;/normal indent/.style=&#123;/par indent=2em&#125;&#125;
+\pgfkeys&#123;/no indent&#125;
+...
+\pgfkeys&#123;/normal indent&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2771: Other
+
+**ID**: `a7827f1b44e3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[outline/.style=&#123;draw=#1,fill=#1!20&#125;]
+  \node [outline=red]            &#123;red box&#125;;
+  \node [outline=blue] at (0,-1) &#123;blue box&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2772: Other
+
+**ID**: `0d941a463fc3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/paper height/.code=&#123;\paperheight=#1&#125;,/paper width/.code=&#123;\paperwidth=#1&#125;&#125;
+\pgfkeys&#123;/page size/.style 2 args=&#123;/paper height=#1,/paper width=#2&#125;&#125;
+\pgfkeys&#123;/page size=&#123;30cm&#125;&#123;20cm&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2773: Other
+
+**ID**: `c8680196194b`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/par indent/.code=&#123;\parindent=#1&#125;&#125;
+\pgfkeys&#123;/par indent/.add style=&#123;&#125;&#123;/my key=#1&#125;&#125;
+...
+\pgfkeys&#123;/par indent=1cm&#125; % This will set \parindent and
+                          % then execute /my key=#1
+</code></pre>
+
+</details>
+
+---
+
+## Example 2774: Other
+
+**ID**: `1ce495d94b71`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my key/.initial=red&#125;
+% "/my key" now stores the value "red"
+\pgfkeys&#123;/my key=blue&#125;
+% "/my key" now stores the value "blue"
+</code></pre>
+
+</details>
+
+---
+
+## Example 2775: Other
+
+**ID**: `597ddf358e02`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my key/.initial=red&#125;
+\pgfkeys&#123;/my key/.code=#1&#125;
+% "/my key" now both stores the value "red" and executes commands
+\pgfkeys&#123;/my key=blue&#125;
+% "/my key" now still stores the value "red"
+</code></pre>
+
+</details>
+
+---
+
+## Example 2776: Other
+
+**ID**: `ae00526a35cb`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/my key/.initial=red&#125;
+\pgfkeys&#123;/my key=blue&#125;
+\pgfkeys&#123;/my key/.get=\mymacro&#125;
+\mymacro
+</code></pre>
+
+</details>
+
+---
+
+## Example 2777: Other
+
+**ID**: `168c850d1666`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/text/.store in=\mytext&#125;
+\def\a&#123;world&#125;
+\pgfkeys&#123;/text=Hello \a!&#125;
+\def\a&#123;Gruffalo&#125;
+\mytext
+</code></pre>
+
+</details>
+
+---
+
+## Example 2778: Other
+
+**ID**: `a8727eaae92c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/text/.estore in=\mytext&#125;
+\def\a&#123;world&#125;
+\pgfkeys&#123;/text=Hello \a!&#125;
+\def\a&#123;Gruffalo&#125;
+\mytext
+</code></pre>
+
+</details>
+
+---
+
+## Example 2779: Other
+
+**ID**: `f1927a0096b8`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newif\iftheworldisflat
+\pgfkeys&#123;/flat world/.is if=theworldisflat&#125;
+\pgfkeys&#123;/flat world=false&#125;
+\iftheworldisflat
+  Flat
+\else
+  Round?
+\fi
+</code></pre>
+
+</details>
+
+---
+
+## Example 2780: Other
+
+**ID**: `f9955ec4c399`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/line cap/.is choice&#125;
+\pgfkeys&#123;/line cap/round/.code=&#123;\pgfsetroundcap&#125;&#125;
+\pgfkeys&#123;/line cap/butt/.code=&#123;\pgfsetbuttcap&#125;&#125;
+\pgfkeys&#123;/line cap/rect/.code=&#123;\pgfsetrectcap&#125;&#125;
+\pgfkeys&#123;/line cap/rectangle/.style=&#123;/line cap=rect&#125;&#125;
+...
+\draw [/line cap=butt] ...
+</code></pre>
+
+</details>
+
+---
+
+## Example 2781: Other
+
+**ID**: `6d42da9d5446`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\a&#123;bottom&#125;
+\def\b&#123;\a&#125;
+\def\c&#123;\b&#125;
+
+\pgfkeys&#123;/key1/.initial=\c&#125;
+\pgfkeys&#123;/key2/.initial/.expand once=\c&#125;
+\pgfkeys&#123;/key3/.initial/.expand twice=\c&#125;
+\pgfkeys&#123;/key4/.initial/.expanded=\c&#125;
+
+\def\a&#123;&#123;\ttfamily\string\a&#125;&#125;
+\def\b&#123;&#123;\ttfamily\string\b&#125;&#125;
+\def\c&#123;&#123;\ttfamily\string\c&#125;&#125;
+
+\begin&#123;tabular&#125;&#123;ll&#125;
+Key 1:& \pgfkeys&#123;/key1&#125; \\
+Key 2:& \pgfkeys&#123;/key2&#125; \\
+Key 3:& \pgfkeys&#123;/key3&#125; \\
+Key 4:& \pgfkeys&#123;/key4&#125;
+\end&#123;tabular&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2782: Other
+
+**ID**: `8c8f5c6d5bc0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  /golden ratio/.initial/.evaluated=&#123;(1 + sqrt(5))/2&#125;,
+&#125;
+\pgfkeys&#123;/golden ratio&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2783: Other
+
+**ID**: `42e522b6cd3f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/foo/.code=(#1)&#125;
+\pgfkeys&#123;/foo/.list=&#123;a,b,0,1,...,5&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2784: Other
+
+**ID**: `af207e0ea139`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  /a/.code=(a:#1),
+  /b/.code=(b:#1),
+  /b/.forward to=/a,
+  /c/.forward to=/a
+&#125;
+\pgfkeys&#123;/b=1&#125; \pgfkeys&#123;/c=2&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2785: Other
+
+**ID**: `4d61dafd37d3`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% define a key:
+\pgfkeys&#123;/secondary path/option/.code=&#123;Invoking /secondary path/option with `#1'&#125;&#125;
+
+% set up a search path:
+\pgfkeys&#123;/main path/.search also=&#123;/secondary path&#125;&#125;
+
+% try searching for `option=value' in '/main path':
+% -&gt; this finds `/secondary path/option'!
+\pgfkeys&#123;/main path/.cd,option=value&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2786: Other
+
+**ID**: `e65e36598aaa`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% define a key:
+\pgfkeys&#123;/secondary path/option/.code=&#123;Invoking /secondary path/option with `#1'&#125;&#125;
+
+% set up a search path:
+\pgfkeys&#123;/main path/.search also=&#123;/secondary path&#125;&#125;
+
+% try searching for `option=value' in '/main path':
+% -&gt; this finds `/secondary path/option'!
+\pgfkeys&#123;/main path/.cd,option=value&#125;
+
+% negative example:
+% try searching for fully qualified key /main path/option.
+% This won't be handled by .search also.
+\pgfkeys&#123;/handlers/.unknown/.code=&#123;Found unknown option \pgfkeyscurrentkeyRAW=&#123;#1&#125;!&#125;&#125;%
+\pgfkeys&#123;/main path/.cd,/main path/option=value&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2787: Other
+
+**ID**: `7ec75af1936f`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/path/.unknown/.code=&#123;%
+        \def\pgfkeys@searchalso@temp@value&#123;#1&#125;%
+        \ifpgfkeysaddeddefaultpath
+            \expandafter\pgfkeys@firstoftwo
+        \else
+            \expandafter\pgfkeys@secondoftwo
+        \fi&#123;%
+            % only process keys for which no full path has been
+            % provided:
+            \pgfkeyssuccessfalse
+            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
+            \ifpgfkeyssuccess
+            \else
+                % search with /tikz as default path:
+                \pgfqkeys&#123;/tikz&#125;&#123;\pgfkeys@searchalso@name/.expand once=%
+                  \pgfkeys@searchalso@temp@value&#125;%
+            \fi
+        &#125;&#123;%
+            \pgfkeysgetvalue&#123;/handlers/.unknown/.@cmd&#125;&#123;\pgfkeys@code&#125;%
+            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
+        &#125;%
+    &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2788: Other
+
+**ID**: `8b6e92d5fd8c`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/path/.unknown/.code=&#123;%
+        \def\pgfkeys@searchalso@temp@value&#123;#1&#125;%
+        \ifpgfkeysaddeddefaultpath
+            \expandafter\pgfkeys@firstoftwo
+        \else
+            \expandafter\pgfkeys@secondoftwo
+        \fi&#123;%
+            \pgfkeyssuccessfalse
+            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
+            \ifpgfkeyssuccess
+            \else
+                % step 1: search in /tikz with .try:
+                \pgfqkeys&#123;/tikz&#125;&#123;\pgfkeys@searchalso@name/.try/.expand once=%
+                  \pgfkeys@searchalso@temp@value&#125;%
+            \fi
+            \ifpgfkeyssuccess
+            \else
+                % step 2: search in /pgf (without .try!):
+                \pgfqkeys&#123;/pgf&#125;&#123;\pgfkeys@searchalso@name/.expand once=\pgfkeys@searchalso@&#125;%
+            \fi
+        &#125;&#123;%
+            \pgfkeysgetvalue&#123;/handlers/.unknown/.@cmd&#125;&#123;\pgfkeys@code&#125;%
+            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
+        &#125;%
+    &#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2789: Other
+
+**ID**: `1a1ab63f89f0`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+   /main path/.search also=&#123;/secondary path&#125;,
+   /handler config=full or existing&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 2790: Other
+
+**ID**: `a96ffad450c9`
+**Package**: tikz-pgf
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;/a/.code=(a:#1)&#125;
+\pgfkeys&#123;/b/.code=(b:#1)&#125;
+\pgfkeys&#123;/x/.try=hmm,/a/.try=hallo,/b/.try=welt&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](tikz-pgf-page-091) | Page 93 of 96 | [Next →](tikz-pgf-page-093)

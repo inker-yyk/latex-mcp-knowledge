@@ -1,0 +1,775 @@
+---
+title: "PGFPLOTS Examples - Page 25"
+description: "LaTeX examples 721-750 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 25
+
+Showing examples **721-750** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-023) | Page 25 of 44 | [Next →](pgfplots-page-025)
+
+---
+
+## Example 721: Line Chart
+
+**ID**: `2bf4ba580ab7`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\setlength&#123;\fboxsep&#125;&#123;0pt&#125;%
+\fbox&#123;%
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=A title,
+        xlabel=&#123;$x$&#125;,
+        ylabel=&#123;$y$&#125;,
+        legend style=&#123;at=&#123;(0.5,0.97)&#125;,
+            anchor=north,legend columns=-1&#125;,
+        domain=-2:2,
+    ]
+        \addplot &#123;x^2&#125;;
+        \addplot &#123;x^3&#125;;
+        \addplot &#123;x^4&#125;;
+        \legend&#123;$x^2$,$x^3$,$x^4$&#125;
+    \end&#123;axis&#125;
+
+    \pgfresetboundingbox
+    \path
+              (current axis.south west)
+    rectangle (current axis.north east);
+\end&#123;tikzpicture&#125;%
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 722: Line Chart
+
+**ID**: `25a635dc39f0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\setlength&#123;\fboxsep&#125;&#123;0pt&#125;%
+\fbox&#123;%
+\begin&#123;tikzpicture&#125;
+  \begin&#123;pgfinterruptboundingbox&#125;
+    \begin&#123;axis&#125;[
+        title=A title,
+        xlabel=&#123;$x$&#125;,
+        ylabel=&#123;$y$&#125;,
+        legend style=&#123;at=&#123;(0.5,0.97)&#125;,
+            anchor=north,legend columns=-1&#125;,
+        domain=-2:2,
+    ]
+        \addplot &#123;x^2&#125;;
+        \addplot &#123;x^3&#125;;
+        \addplot &#123;x^4&#125;;
+        \legend&#123;$x^2$,$x^3$,$x^4$&#125;
+    \end&#123;axis&#125;
+  \end&#123;pgfinterruptboundingbox&#125;
+
+    \useasboundingbox
+                  (current axis.below south west)
+        rectangle (current axis.above north east);
+\end&#123;tikzpicture&#125;%
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 723: Line Chart
+
+**ID**: `787857973053`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    clip mode=individual,
+]
+    \addplot+ [samples=3] &#123;x^2&#125;;
+
+    \begin&#123;scope&#125;
+        \clip \pgfextra&#123;\pgfplotspathaxisoutline&#125;;
+        \draw (-20,15) -- (20,15);
+        \draw (-20,20) -- (20,20);
+    \end&#123;scope&#125;
+
+    \addplot+ [samples=2] &#123;x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 724: Line Chart
+
+**ID**: `cbb0f1a51327`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=plus,y explicit,
+    ] coordinates &#123;
+        (0,0)     +- (0.5,0.1)
+        (0.1,0.1) +- (0.05,0.2)
+        (0.2,0.2) +- (0,0.05)
+        (0.5,0.5) +- (0.1,0.2)
+        (1,1)     +- (0.3,0.1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 725: Line Chart
+
+**ID**: `d440a4840fa0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=both,y explicit,
+            x dir=both,x explicit,
+    ] coordinates &#123;
+        (0,0)     +- (0.5,0.1)
+        (0.1,0.1) +- (0.05,0.2)
+        (0.2,0.2) +- (0,0.05)
+        (0.5,0.5) +- (0.1,0.2)
+        (1,1)     +- (0.3,0.1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 726: Line Chart
+
+**ID**: `3e0d29025c95`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=both,y fixed=0.1,
+    ] coordinates &#123;
+        (0,0)
+        (0.1,0.1)
+        (0.2,0.2)
+        (0.5,0.5)
+        (1,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 727: Line Chart
+
+**ID**: `61c3c0815e11`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[enlargelimits=false]
+    \addplot [red,mark=*] plot [
+        error bars/.cd,
+            y dir=minus,y fixed relative=1,
+            x dir=minus,x fixed relative=1,
+            error mark=none,
+            error bar style=&#123;dotted&#125;,
+    ] coordinates &#123;
+        (0,0) (0.1,0.1) (0.2,0.2)
+        (0.5,0.5) (1,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 728: Line Chart
+
+**ID**: `3c9c4467cf81`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both,x fixed relative=0.5,
+            y dir=both,y explicit relative,
+    ] table [x=x,y=y,y error=error] &#123;
+        x       y       error
+        32      32      0
+        64      64      0
+        128     128     0.3
+        1024    1024    0.2
+        32068   32068   0.6
+        64000   64000   0.6
+        128000  128000  0.6
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 729: Line Chart
+
+**ID**: `32473e2f4c2b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \pgfmathsetseed&#123;42&#125;
+\begin&#123;axis&#125;[
+    ymajorgrids,
+]
+    \addplot+ [
+        domain=0:180,
+        samples=11,
+        error bars/.cd,
+            y dir=both, y fixed=0.1,
+            error mark=diamond*,
+    ] &#123;sin(x) + rand*0.1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 730: Other
+
+**ID**: `c7f7342c9c7f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/error bars/draw error bar/.code 2 args=&#123;
+        \pgfkeysgetvalue&#123;/pgfplots/error bars/error mark&#125;
+            &#123;\pgfplotserrorbarsmark&#125;
+        \pgfkeysgetvalue&#123;/pgfplots/error bars/error mark options&#125;
+            &#123;\pgfplotserrorbarsmarkopts&#125;
+        \draw #1 -- #2 node [pos=1,sloped,allow upside down] &#123;
+            \expandafter\tikz\expandafter[\pgfplotserrorbarsmarkopts]&#123;
+                \expandafter\pgfuseplotmark\expandafter&#123;\pgfplotserrorbarsmark&#125;
+                \pgfusepath&#123;stroke&#125;&#125;
+        &#125;;
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 731: Line Chart
+
+**ID**: `942666ee87d3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot coordinates &#123;
+    (1,2) +- (0.4,0.2)
+    (2,4) +- (1,0)
+    (3,5)
+    (4,6) +- (0.3,0.001)
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 732: Line Chart
+
+**ID**: `183f16f42a34`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] coordinates &#123;
+        (1.1,0.9) += (0.4,0.2) -= (0.1,0.1)
+        (2.7,2)   -= (1,0)
+        (3,3)
+        (3.8,4.2) +- (0.3,0.2)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 733: Line Chart
+
+**ID**: `ccc06dbe9a27`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot coordinates &#123;(0,0) [4]&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 734: Line Chart
+
+**ID**: `78d623c7b5c6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot coordinates &#123;(0,0) +- (0.1,0.2) [4]&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## Example 735: Line Chart
+
+**ID**: `1b55f8c7dcc6`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] table [y error=error] &#123;
+        x   y   error
+        1   0.9 0.4
+        2   2.1 0.2
+        3   3   0.1
+        4   4.2 0.3
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 736: Line Chart
+
+**ID**: `4bda172d898d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot table[x error index=COLINDEX,y error index=COLINDEX]
+</code></pre>
+
+</details>
+
+---
+
+## Example 737: Line Chart
+
+**ID**: `3804f513d99b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\addplot table[x error expr=\thisrow&#123;errorx&#125;^2]
+</code></pre>
+
+</details>
+
+---
+
+## Example 738: Line Chart
+
+**ID**: `f53b89bd4cc0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] table [
+        x error plus=ex+,
+        x error minus=ex-,
+        y error plus=ey+,
+        y error minus=ey-,
+    ] &#123;
+        x   y   ex+  ey+  ex-  ey-
+        1.1 0.9 0.4  0.2  0.1  0.1
+        2.7 2   0    0    1    0
+        3   3   0    0    0    0
+        3.8 4.2 0.3  0.2  0.3  0.2
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 739: Other
+
+**ID**: `773612d6f2f3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% ...
+%
+</code></pre>
+
+</details>
+
+---
+
+## Example 740: Scatter Plot
+
+**ID**: `e284953f9080`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    enlargelimits=0.01,
+    title style=&#123;yshift=5pt&#125;,
+    title=Scatter plot with $2250$ points,
+]
+    \addplot [
+        blue,
+        mark=*,
+        only marks,
+        mark options=&#123;scale=0.3&#125;,
+    ] file [skip first]
+        &#123;plotdata/pgfplots_scatterdata3.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 741: Line Chart
+
+**ID**: `ecb27eb30df4`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    enlarge x limits=0.03,
+    title=Ornstein--Uhlenbeck sample
+        ($13000$ time steps),
+    xlabel=$t$,
+]
+    \addplot [blue] file &#123;plotdata/ou.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 742: 3D Plot
+
+**ID**: `a81567561d90`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% huger graphs are possible; consider lualatex
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    title=$80 \times 80$ Smooth Surface,
+    xlabel=$x$,
+    ylabel=$y$,
+]
+  \addplot3 [surf,samples=80,shader=interp,domain=0:1]
+        &#123;sin(deg(8*pi*x))* exp(-20*(y-0.5)^2)
+        + exp(-(x-0.5)^2*30
+            - (y-0.25)^2 - (x-0.5)*(y-0.25))&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 743: Other
+
+**ID**: `5d5e77db0407`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+pdflatex
+    --stack-size=n --save-size=n
+    --main-memory=n --extra-mem-top=n --extra-mem-bot=n
+    --pool-size=n --max-strings=n
+</code></pre>
+
+</details>
+
+---
+
+## Example 744: Other
+
+**ID**: `40879a9260ce`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+initexmf --edit-config-file=pdflatex
+</code></pre>
+
+</details>
+
+---
+
+## Example 745: Other
+
+**ID**: `ada374cd2e4b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+main_memory=90000000
+save_size=80000
+</code></pre>
+
+</details>
+
+---
+
+## Example 746: Other
+
+**ID**: `a3bf5ca96397`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+export TEXMFCNF=~/texmf/mytexcnf:
+</code></pre>
+
+</details>
+
+---
+
+## Example 747: Other
+
+**ID**: `69431467a28a`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+main_memory = n
+extra_mem_top = n
+extra_mem_bot = n
+max_strings = n
+param_size = n
+save_size = n
+stack_size = n
+</code></pre>
+
+</details>
+
+---
+
+## Example 748: Other
+
+**ID**: `02d57b9ef8e0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% newly created file ~/texmf/mytexcnf/texmf.cnf:
+% If you want to change some of these sizes only for a certain TeX
+% variant, the usual dot notation works, e.g.,
+% main_memory.hugetex = 20000000
+main_memory = 230000000 % words of inimemory available; also applies to inimf&mp
+extra_mem_top = 10000000     % extra high memory for chars, tokens, etc.
+extra_mem_bot = 10000000     % extra low memory for boxes, glue, breakpoints, etc.
+save_size = 150000    % for saving values outside current group
+stack_size = 150000    % simultaneous input sources
+
+% Max number of characters in all strings, including all error messages,
+% help texts, font names, control sequences.  These values apply to TeX and MP.
+%pool_size = 1250000
+% Minimum pool space after TeX/MP's own strings; must be at least
+% 25000 less than pool_size, but doesn't need to be nearly that large.
+%string_vacancies = 90000
+% Maximum number of strings.
+%max_strings = 100000
+% min pool space left after loading .fmt
+%pool_free = 47500
+</code></pre>
+
+</details>
+
+---
+
+## Example 749: Other
+
+**ID**: `01628fbfe447`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+export TEXMFCNF=~/texmf/mytexcnf:
+</code></pre>
+
+</details>
+
+---
+
+## Example 750: Line Chart
+
+**ID**: `cdb34d0c0998`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    small,
+    title=Do,
+    samples=2,
+]
+    \addplot+ [
+        declare function=&#123;C=4;&#125;
+    ] &#123;C*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-023) | Page 25 of 44 | [Next →](pgfplots-page-025)

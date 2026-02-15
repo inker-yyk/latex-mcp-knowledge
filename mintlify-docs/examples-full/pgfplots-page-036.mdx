@@ -1,0 +1,873 @@
+---
+title: "PGFPLOTS Examples - Page 37"
+description: "LaTeX examples 1081-1110 from pgfplots (1294 total)"
+---
+
+# PGFPLOTS Examples - Page 37
+
+Showing examples **1081-1110** of **1294** from the pgfplots package.
+
+[← Previous](pgfplots-page-035) | Page 37 of 44 | [Next →](pgfplots-page-037)
+
+---
+
+## Example 1081: Line Chart
+
+**ID**: `6f209d175bf9`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[axis equal]
+    % FokkerDrI_layer_0.patches.dat contains:
+    % # each row is one vertex; three consecutive
+    % # vertices make one triangle (patch)
+    % 105.577    -19.7332    2.85249
+    % 88.9233    -21.1254    13.0359
+    % 89.2104    -22.1547    1.46467
+    % # end of facet 0
+    % 105.577    -19.7332    2.85249
+    % 105.577    -17.2161    12.146
+    % 88.9233    -21.1254    13.0359
+    % # end of facet 1
+    \addplot3 [patch] file
+        &#123;plotdata/FokkerDrI_layer_0.patches.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1082: Line Chart
+
+**ID**: `12b81338e514`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    % FokkerDrI_layer_0.facetIdx.dat contains:
+    % # each row makes up one facet; it
+    % # consists of 0-based indices into
+    % # the vertex array
+    % 0    1    2 % triangle of vertices #0,#1 and #2
+    % 0    3    1 % triangle of vertices #0,#3 and #1
+    % 3    4    1
+    % 5    6    7
+    % 6    8    7
+    % 8    9    7
+    % 8    10   9
+    % ...
+    % while FokkerDrI_layer_0.vertices.dat contains
+    % 105.577    -19.7332    2.85249    % vertex #0
+    % 88.9233    -21.1254    13.0359    % vertex #1
+    % 89.2104    -22.1547    1.46467    % vertex #2
+    % 105.577    -17.2161    12.146
+    % 105.577    -10.6054    18.7567
+    % 105.577    7.98161     18.7567
+    % 105.577    14.5923     12.146
+    % ...
+    \addplot3 [patch,shader=interp,
+        patch table=
+            &#123;plotdata/FokkerDrI_layer_0.facetIdx.dat&#125;]
+        file
+            &#123;plotdata/FokkerDrI_layer_0.vertices.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1083: 3D Plot
+
+**ID**: `07965fc9712e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[view/h=70]
+    % FokkerDrI_layer_0.patches.dat contains:
+    % # each row is one vertex; three consecutive
+    % # vertices make one triangle (patch)
+    % 105.577    -19.7332    2.85249
+    % 88.9233    -21.1254    13.0359
+    % 89.2104    -22.1547    1.46467
+    % # end of facet 0
+    % 105.577    -19.7332    2.85249
+    % 105.577    -17.2161    12.146
+    % 88.9233    -21.1254    13.0359
+    % # end of facet 1
+    \addplot3 [patch,mesh] file
+        &#123;plotdata/FokkerDrI_layer_0.patches.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1084: 3D Plot
+
+**ID**: `141b48647d45`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=Rectangle from matrix input,
+]
+    % note that surf implies 'patch type=rectangle'
+    \addplot [
+        surf,
+        mesh/rows=2,
+        patch type=rectangle,
+    ] coordinates &#123;
+        (0,0) (1,0)
+        (0,1) (1,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1085: Line Chart
+
+**ID**: `ee476448655b`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=Rectangle from patch input,
+]
+    \addplot [
+        patch,
+        patch type=rectangle,
+    ] coordinates &#123;
+        (0,0) (1,0) (1,1) (0,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1086: Line Chart
+
+**ID**: `8d65f14860d0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    nodes near coords=&#123;(\coordindex)&#125;,
+]
+    \addplot [
+        patch,
+        patch type=triangle,
+    ] coordinates &#123;
+        (0,0) (1,0) (0,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1087: Other
+
+**ID**: `01f78ce6f50c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every patch/.style=&#123;miter limit=1&#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1088: Line Chart
+
+**ID**: `90eeef9300ec`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    title=Impedance Smith Chart,
+]
+    \addplot coordinates &#123;
+        (0.5,0.2) (1,0.8) (2,2)
+    &#125;;
+\end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1089: Line Chart
+
+**ID**: `f0fa73077841`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    smithchart mirrored,
+    title=Admittance Smith Chart,
+]
+    \addplot coordinates &#123;
+        (0.5,0.2) (1,0.8) (2,2)
+    &#125;;
+\end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1090: Line Chart
+
+**ID**: `7b55e0459f89`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    % First, the Admittance chart:
+    \begin&#123;smithchart&#125;[
+        title=Impedance and Admittance Smith Chart,
+        smithchart mirrored,
+        xticklabel shift=-19pt,
+        grid style=&#123;blue&#125;,
+        ticklabel style=&#123;blue&#125;,
+        yticklabel around circle,
+    ]
+    \end&#123;smithchart&#125;
+
+    % Second, overlay the impedance chart:
+    \begin&#123;smithchart&#125;[
+        show origin,
+        grid style=&#123;red&#125;,
+        ticklabel style=&#123;red&#125;,
+        yticklabel around circle*,
+    ]
+        \addplot+ [black,mark=o,only marks,point meta=explicit symbolic,nodes near coords]
+            coordinates &#123;
+                (0.2,0.2) [(2)]
+                (1,0.2) [(1)]
+        &#125;;
+
+        \addplot+ [black,no markers,domain=0.2:1] &#123;0.2&#125;;
+
+        \addplot+ [black,mark=o,only marks,point meta=explicit symbolic,nodes near coords]
+            coordinates&#123;
+                (0.2,0.5) [(3)]
+        &#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1091: Other
+
+**ID**: `4f8f6af9b06f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    few smithchart ticks/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;0.2,0.5,1,2,5&#125;,
+        &#125;,
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                 0.2, 0.5, 1, 2, 5,%
+                -0.2,-0.5,-1,-2,-5&#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;2&#125;,
+            ygrid each nth passes x=&#123;2&#125;,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1092: Line Chart
+
+**ID**: `b5d7f2712621`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        title=Medium-Sized Smith Chart,
+        width=14cm,
+    ]
+        \addplot coordinates &#123;(0.5,0.2) (1,0.8) (2,2)&#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1093: Other
+
+**ID**: `67ca1e47e7ff`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    many smithchart ticks*/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;
+                0.1,0.2,0.3,0.4,0.5,1,1.5,2,3,4,5,10,20%
+            &#125;,
+            minor xtick=&#123;0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,
+              2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50&#125;,
+        &#125;,
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                0.1,0.2,...,1,1.5,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.5,-2,-3,-4,-5,-10,-20%
+            &#125;,
+            minor ytick=&#123;%
+                1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,
+                  4.5,6,7,8,9,50,%
+                -1.1,-1.2,-1.3,-1.4,-1.6,-1.7,-1.8,-1.9,-2.2,-2.4,-2.6,-2.8,
+                  -3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,-9,-50%
+            &#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;1,2,4,5,10,20&#125;,
+            ygrid each nth passes x=&#123;1,2,3,5,10:3,20:3&#125;,
+        &#125;,
+    &#125;,
+    /pgfplots/many smithchart ticks/.style=&#123;
+        many smithchart ticks*,
+        yticklabel in circle,
+        show origin=true,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1094: Line Chart
+
+**ID**: `e8c2a36862e3`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.75]
+    \begin&#123;smithchart&#125;[
+        title=Huge Smith Chart (rescaled),
+        width=20cm,
+    ]
+        \addplot coordinates &#123;(0.5,0.2) (1,0.8) (2,2)&#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1095: Other
+
+**ID**: `e75fd7488499`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    dense smithchart ticks*/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;
+                0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20%
+            &#125;,
+            minor xtick=&#123;%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.52,% This is sub-optimal and will (hopefully) be improved in the future.
+                0.55,0.65,0.75,0.85,0.95,%
+                %0.6,0.7,0.8,0.9,%
+                1.1,1.3,1.5,1.7,1.9,%
+                2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50&#125;,
+        &#125;,
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                0.1,0.2,...,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.2,-1.4,-1.6,-1.8,-2,-3,-4,-5,-10,-20%
+            &#125;,
+            minor ytick=&#123;%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.55,0.65,0.75,0.85,0.95,%
+                1.1,1.3,1.5,1.7,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50,%
+                -0.01,-0.02,-0.03,-0.04,-0.05,-0.06,-0.07,-0.08,-0.09,-0.11,-0.12,-0.13,-0.14,
+                -0.15,-0.16,-0.17,-0.18,-0.19,-0.22,-0.24,-0.26,-0.28,-0.32,-0.34,-0.36,-0.38,
+                -0.42,-0.44,-0.46,-0.48,-0.55,-0.65,-0.75,-0.85,-0.95,%
+                -1.1,-1.3,-1.5,-1.7,-1.9,-2.2,-2.4,-2.6,-2.8,-3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,
+                -9,-50%
+            &#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;0.2 if &lt; 0.2001,0.5 if &lt; 0.50001,1 if &lt; 1.001,2,4,5,10,20&#125;,
+            ygrid each nth passes x=&#123;0.2 if &lt; 0.2001,0.52 if &lt; 0.
+... (truncated)
+</code></pre>
+
+</details>
+
+---
+
+## Example 1096: Line Chart
+
+**ID**: `18fccd3cbcc0`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;
+    % smithchart_data.dat contains
+    % 0.78395 -0.40845
+    % 0.78165 -0.41147
+    % 0.77934 -0.41466
+    % 0.77774 -0.41869
+    % ...
+    \addplot [
+        blue,
+        is smithchart cs,
+    ] file &#123;plotdata/smithchart_data.dat&#125;;
+\end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1097: Other
+
+**ID**: `d5c485989809`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        show origin,
+    ]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1098: Other
+
+**ID**: `07d972657911`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    show origin code/.code=&#123;%
+        \path[draw=black,fill=white] (0pt,0pt) circle (2.5pt);
+        \path[fill=black] (0pt,0pt) circle (0.5pt);
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1099: Other
+
+**ID**: `71bc0d0bec02`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    yticklabel in circle/.style=&#123;
+        ytick align=inside,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=north east&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=south west,
+            %font=\tiny,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1100: Other
+
+**ID**: `830f7754433c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        yticklabel around circle,
+    ]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1101: Other
+
+**ID**: `deb167857b2c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    yticklabel around circle/.style=&#123;
+        ytick align=center,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=south west&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=south east,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1102: Other
+
+**ID**: `0ee4c13c701d`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        yticklabel around circle*,
+    ]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1103: Other
+
+**ID**: `bdfeecbc1379`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    yticklabel around circle*/.style=&#123;
+        ytick align=center,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=north west&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=north east,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1104: Other
+
+**ID**: `725006ddeecf`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every smithchart axis/.style=&#123;
+        grid=both,
+        xmin=0,
+        scaled ticks=false, % never draw the \cdot 10^4 labels
+        major tick style=&#123;draw=black&#125;,
+        xtick align=center,
+        ytick align=center,
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1105: Other
+
+**ID**: `ec54cc759587`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    xtick=&#123;0.2,0.5,1,2,5&#125;,
+    ytick=&#123;
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
+    &#125;,
+    xgrid each nth passes y=&#123;1,2&#125;,
+]
+\end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1106: Other
+
+**ID**: `89ccb2c34013`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    xtick=&#123;0.2,0.5,1,2,5&#125;,
+    ytick=&#123;
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
+    &#125;,
+    ygrid each nth passes x=&#123;0.2,1:2&#125;,
+]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1107: Other
+
+**ID**: `328f4b46cfe2`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    ygrid stop at x=&#123;0.5:0.5,-0.2:0.2&#125;
+]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1108: Other
+
+**ID**: `d193cb3fc03f`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    xlabel=&#123;\textsc&#123;Dof&#125;&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+    grid=major,
+]
+    % see above for this macro:
+    \plotcoords
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1109: Line Chart
+
+**ID**: `4613fa19280c`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    grid=both,
+    tick align=outside,
+    tickpos=left,
+]
+    \addplot coordinates &#123;
+        (100,1e-4) (500,1e-5) (1000,3e-6)
+    &#125;;
+    \addplot coordinates &#123;
+        (100,1e-5) (500,4e-6) (1000,2e-6)
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 1110: Other
+
+**ID**: `0830c825878e`
+**Package**: pgfplots
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;grid style=&#123;help lines&#125;&#125; % modifies the style `every axis grid'
+\pgfplotsset&#123;minor grid style=&#123;color=blue&#125;&#125; % modifies the style `every minor grid'
+\pgfplotsset&#123;major grid style=&#123;thick&#125;&#125; %modifies the style `every major grid'
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](pgfplots-page-035) | Page 37 of 44 | [Next →](pgfplots-page-037)

@@ -1,0 +1,752 @@
+---
+title: "CIRCUITIKZ Examples - Page 6"
+description: "LaTeX examples 151-180 from circuitikz (501 total)"
+---
+
+# CIRCUITIKZ Examples - Page 6
+
+Showing examples **151-180** of **501** from the circuitikz package.
+
+[← Previous](circuitikz-page-004) | Page 6 of 17 | [Next →](circuitikz-page-006)
+
+---
+
+## Example 151: Circuit
+
+**ID**: `17465ff61745`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125; \draw
+  (0,0) node[mixer, box only, anchor=east](m)&#123;&#125;
+    to[amp, boxed, &gt;, -o] ++(2.5,0)
+  (m.west) node[inputarrow]&#123;&#125; to[short,-o] ++(-0.8,0)
+  (m.south) node[inputarrow,rotate=90]&#123;&#125; --
+    ++(0,-0.7) node[oscillator, box, anchor=north]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 152: Circuit
+
+**ID**: `0df2e174a067`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\draw (0,1.5) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0);
+\draw[dashed] (2.5,1.5) to[lowpass,l=opt.] ++(2.5,0);
+% or just the block
+\draw (0,0) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0)
+     to[lowpass,l=opt., dashed] ++(2.5,0);
+% or everything
+\ctikzset&#123;inner blocks dashed,
+    dashed blocks pattern=&#123;&#123;1.5pt&#125;&#123;1pt&#125;&#125;,
+&#125;
+\draw (0,-1.5) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0)
+     to[lowpass,l=opt., dashed] ++(2.5,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 153: Circuit
+
+**ID**: `2ff05428adf7`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.9]
+    \ctikzset&#123;blocks dc segments=3&#125;
+    \draw (0,2) to[sacdc] ++(2,0) to[sdcdc]
+        ++(2,0) to[sdcac] ++(2,0);
+    \ctikzset&#123;blocks dc segments=1&#125;
+    \draw (0,0) to[sacdc, blocks dc out segments=2]
+        ++(2,0) to[sdcdc, blocks dc in segments=2]
+        ++(2,0) to[sdcac] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 154: Circuit
+
+**ID**: `2d21f7aa2972`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[european, scale=0.7, transform shape,
+    circuitikz/resistors/scale=0.7]
+    \draw (0,0) to[C, o-*] ++(1,0) coordinate(in)
+    to[R, -*] ++(0,-3) coordinate(GND)
+    ++(1,0) to[C, *-] ++(0,4) -- ++(1,0) coordinate(div)
+    to[R, *-*] ++(0,2) coordinate(vdd)
+    (div) to[R, -*] (div|-GND)
+    (in) -- ++(2.5,0) node[nigfetd, doublegate, anchor=G1](Q)&#123;Q&#125;
+    (Q.G2) to[short, -*] (Q.G2-|div)
+    (Q.D) to[R, -*] (Q.D|-vdd)
+    (Q.D) to[C, *-o] ++(2,0) coordinate(out)
+    (Q.S) to[R, *-*] (Q.S|-GND) (Q.S) -- ++(1,0) coordinate(Sd)
+    (Sd) to[C, -*] (Sd |- GND);
+    \draw (0,0|-GND) -- (out|-GND) (0,0|-vdd) -- (out|-vdd);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 155: Circuit
+
+**ID**: `f6f269aaae4f`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
+    \draw (0,0) node [npn]&#123;T1&#125;
+    ++(1.2,0) node [npn, xscale=-1]&#123;\ctikzflipx&#123;T1&#125;&#125;
+    ++(2,0) node [npn, yscale=-1]&#123;\ctikzflipy&#123;T1&#125;&#125;
+    ++(1.2,0) node [npn, scale=-1]&#123;\ctikzflipxy&#123;T1&#125;&#125;;
+    \ctikzset&#123;legacy transistors text&#125;
+    \draw (0,-2) node [npn]&#123;T1&#125;
+    ++(1.2,0) node [npn, xscale=-1]&#123;\ctikzflipx&#123;T1&#125;&#125;
+    ++(2,0) node [npn, yscale=-1]&#123;\ctikzflipy&#123;T1&#125;&#125;
+    ++(1.2,0) node [npn, scale=-1]&#123;\ctikzflipxy&#123;T1&#125;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 156: Circuit
+
+**ID**: `5ace7f7922e2`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
+    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125; (T1.S) node[ground]&#123;&#125;
+        (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;;
+    \draw (2,0) node [nigfetebulk, legacy transistors text](T2)&#123;T2&#125;
+        (T2.S) node[ground]&#123;&#125;
+        (T2.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 157: Circuit
+
+**ID**: `bc5cf378a28b`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
+    \ctikzset&#123;legacy transistors text, tr circle&#125;
+    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125; (T1.S) node[ground]&#123;&#125;
+    (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;
+    (0,-3) node [pigfetebulk](P1)&#123;P1&#125; (P1.D) node[ground]&#123;&#125;;
+    \ctikzset&#123;transistor circle/scale circle radius=1.3&#125;
+    \draw (2,0) node [nigfetebulk](T2)&#123;T2&#125;
+    (2,-3) node [pigfetebulk](P2)&#123;P2&#125; (P2.D) node[ground]&#123;&#125;
+    (T2.S) node[ground]&#123;&#125;
+    (T2.bulk) -- ++(0.8, 0) node[vee]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 158: Circuit
+
+**ID**: `b2d00941d8b2`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;component text=up, tr circle&#125;
+    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125;
+    (T1.S) node[ground]&#123;&#125;
+    (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;
+    (0,-3) node [pigfetebulk, component text=down](P1)&#123;P1&#125;
+    (P1.D) node[ground]&#123;&#125;;
+    \ctikzset&#123;transistor circle/scale circle radius=1.6&#125;
+    \draw (2,0) node [nigfetebulk](T2)&#123;T2&#125;
+    (2,-3) node [pigfetebulk, component text=down](P2)&#123;P2&#125;
+    (P2.D) node[ground]&#123;&#125;
+    (T2.S) node[ground]&#123;&#125;
+    (T2.bulk) -- ++(1.2, 0) node[vee]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 159: Circuit
+
+**ID**: `0c1e597a6443`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\draw (0,0) node[bjtnpn, emitters=2,
+    component text=up](B)&#123;pB&#125; ++(2,0)
+    node[bjtnpn](C)&#123;pC&#125; (B.nobase) -- (C.base)
+    ++(2,1); %adjust bounding box
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 160: Circuit
+
+**ID**: `08b65d31a345`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \ctikzset&#123;tripoles/mos style=arrows&#125;
+   \ctikzset&#123;transistors/arrow pos=end&#125;
+   \draw (0,0) node[npn, ](npn)&#123;&#125;;
+   \draw (2,0) node[pnp, ](npn)&#123;&#125;;
+   \draw (0,-2) node[nmos, ](npn)&#123;&#125;;
+   \draw (2,-2) node[pmos, ](npn)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 161: Circuit
+
+**ID**: `17227da1f0e8`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[
+    info/.style=&#123;left=1cm, blue, text width=5em, align=right&#125;,]
+    \draw (0,1) node&#123;pmos&#125; (2,1) node&#123;nmos&#125;;
+    \draw (0,0) node[info]&#123;default&#125; node[pmos]&#123;&#125; (2,0) node[nmos]&#123;&#125;;
+    \ctikzset&#123;tripoles/mos style/arrows&#125;
+    \draw (0,-2) node[info]&#123;arrows&#125; node[pmos]&#123;&#125; (2,-2) node[nmos]&#123;&#125;;
+    \ctikzset&#123;tripoles/pmos style/emptycircle&#125;
+    \draw (0,-4) node[info]&#123;emptycircle&#125; node[pmos]&#123;&#125; (2,-4) node[nmos]&#123;&#125;;
+    \ctikzset&#123;tripoles/pmos style/nocircle&#125;
+    \draw (0,-6) node[info]&#123;nocircle&#125; node[pmos]&#123;&#125; (2,-6) node[nmos]&#123;&#125;;
+    \ctikzset&#123;tripoles/mos style/no arrows&#125;
+    \draw (0,-8) node[info, red]&#123;no circle, no arrows, DON'T do it&#125;
+          node[pmos]&#123;&#125; (2,-8) node[nmos]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 162: Circuit
+
+**ID**: `f09f1145af26`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \draw (0,2) node[npn, photo]&#123;&#125; ++(2,0) node[pnp, photo]&#123;&#125;;
+    \ctikzset&#123;opto end arrow=&#123;Triangle[angle'=60]&#125;&#125;
+    \ctikzset&#123;opto arrows/.cd, color=red, dash=&#123;&#123;1pt&#125;&#123;1pt&#125;&#125;&#125;
+    \draw (0,0) node[npn, photo]&#123;&#125; ++(2,0) node[pnp, photo]&#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 163: Circuit
+
+**ID**: `805badcf29b9`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \draw (0,2) node[npn]&#123;&#125; (2,2) node[npn, tr circle](Q)&#123;&#125;;
+    % collector connected to housing
+    \node [circ] at (Q.circle C)&#123;&#125;;
+    \ctikzset&#123;tr circle=true&#125; % or \ctikzset&#123;tr circle&#125; alone
+    \draw (0,0) node[nigfete]&#123;&#125;
+        (2,0) node[nigfete, tr circle=false]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 164: Circuit
+
+**ID**: `953f06764029`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) node[npn,bodydiode](npn)&#123;1&#125;
+       ++(2,0)node[pnp,bodydiode](npn)&#123;&#125;;
+   \draw (0,-2) node[nigbt,bodydiode](npn)&#123;2&#125;
+       ++(2,0)node[pigbt,bodydiode](npn)&#123;&#125;;
+   \draw (0,-4) node[nfet,bodydiode](npn)&#123;3&#125;
+       ++(2,0)node[pfet,bodydiode](npn)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 165: Circuit
+
+**ID**: `cc7272f1c158`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\snubb#1#2&#123;% add a snubber to a transistor
+    \draw (#1.body C #2) to[short, *-, nodes width=0.02]
+    ++(0.3,0) coordinate(tmp) to [R, resistors/scale=0.3]
+    % 2/3 space for R, 1/3 for C
+    ($(tmp)!0.66!(tmp|-#1.body E #2)$)
+    to [C, capacitors/scale=0.3] (tmp|-#1.body E #2)
+    to [short, -*, nodes width=0.02] (#1.body E #2);
+&#125;
+\begin&#123;circuitikz&#125;
+    \node[npn](Q1) at(0,0) &#123;&#125;;
+    \node[pnp](Q2) at(2,0) &#123;&#125;;
+    \node[pnp, bodydiode](Q3) at(0,-3) &#123;&#125;;
+    \node[npn, bodydiode](Q4) at(2,-3) &#123;&#125;;
+    \snubb&#123;Q1&#125;&#123;in&#125; \snubb&#123;Q2&#125;&#123;in&#125;
+    \snubb&#123;Q3&#125;&#123;out&#125; \snubb&#123;Q4&#125;&#123;out&#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 166: Circuit
+
+**ID**: `fb62abdbefbb`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \path (-1,-1) rectangle (3,3);% bounding box
+    \node  [hemt] at (0,2) &#123;A&#125;;
+    \node  [hemt,
+        circuitikz/tripoles/hemt/split gate=true
+        ] at (2,2) &#123;B&#125;;
+    \node  [GaN hemt]  at (0,0) &#123;C&#125;;
+    \node  [GaN hemt,
+        circuitikz/tripoles/hemt/split gate=false
+        ]  at (2,0) &#123;D&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 167: Circuit
+
+**ID**: `48691afb39e3`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \draw (0,4) node[npn]&#123;&#125;
+            ++(2,0) node[npn, schottky base]&#123;&#125;;
+        \draw (1,2) node[bjtnpn, collectors=2, emitters=3,
+            schottky base, rotate=90]&#123;&#125;;
+        \tikzset&#123;schottky base&#125;
+        \ctikzset&#123;tripoles/schottky base size=0.1&#125;
+        \draw (0,0) node[pnp]&#123;&#125;
+            ++(2,0) node[npn, no schottky base]&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 168: Circuit
+
+**ID**: `d66967e46a13`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \draw (0,2) node[nmos]&#123;&#125;
+            ++(2,0) node[nmos, ferroel gate]&#123;&#125;;
+        \ctikzset&#123;ferroel gate&#125; % by default from now on
+        \ctikzset&#123;transistors/.cd, % class properties
+            thickness=1, modifier thickness=3&#125;
+        \draw (0,0) node[pfet]&#123;&#125;
+            ++(2,0) node[pfet, no ferroel gate]&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 169: Circuit
+
+**ID**: `d01351f33468`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0)
+    -- ++(1,0) node[nigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[pigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[Lnigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[Lpigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    ;
+    \ctikzset&#123;tripoles/igbt/outer base height=0.3&#125;
+    \ctikzset&#123;tripoles/igbt/outer base thickness=1.5&#125;
+    \draw (6,0)
+    -- ++(1,0) node[nigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[pigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[Lnigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    -- ++(1,0) node[Lpigbt, anchor=B](B)&#123;&#125; (B.nobase)
+    ;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 170: Circuit
+
+**ID**: `fbb7e543365a`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.8]
+    \draw (0,5) node[nujt]&#123;&#125; ++(2,0) node[pujt]&#123;&#125;
+    ++(2,0) node[nujt, tr circle]&#123;&#125; ++(2,0)
+    node[pujt, tr circle]&#123;&#125;;
+    \ctikzset&#123;transistors/arrow pos=end&#125;
+    \draw (0,2.5) node[nujt](A)&#123;&#125; ++(2,0) node[pujt]&#123;&#125;
+    ++(2,0) node[nujt, tr circle]&#123;&#125; ++(2,0)
+    node[pujt, tr circle](C)&#123;&#125;;
+    \draw (0,0) node[nujt, nobase](B)&#123;&#125; ++(2,0)
+    node[pujt, nobase]&#123;&#125; ++(2,0)
+    node[nujt, tr circle, nobase]&#123;&#125; ++(2,0)
+    node[pujt, tr circle, nobase](D)&#123;&#125;;
+    % "E" anchor follows the nobase option:
+    \draw[red] (A.E) |- (B.E) (C.E) |- (D.E);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 171: Circuit
+
+**ID**: `439239538bb6`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (2,0) node[npn,nobase](npn)&#123;&#125;;
+   \draw (npn.E) node[below]&#123;E&#125;;
+   \draw (npn.C) node[above]&#123;C&#125;;
+   \draw (npn.B) node[circ]&#123;&#125; node[left]&#123;B&#125;;
+   \draw[dashed,red,-latex] (1,0.5)--(npn.nobase);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 172: Circuit
+
+**ID**: `ba254bbd92e9`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    \draw (0,0) to[short,*-] ++(.1,0)
+        node[nigfete, solderdot, anchor=G]&#123;&#125;;
+    \ctikzset&#123;transistor solderdot scale=1&#125;
+    \draw (2,0) to[short,*-] ++(.1,0)
+        node[nigfete, solderdot, anchor=G]&#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 173: Circuit
+
+**ID**: `2286c8b28210`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[ ]
+    \draw (0,2) to[R] ++(2,0) node[nmosd, anchor=G]&#123;&#125;;
+    \draw[color=red] (0,0) to[R] ++(2,0) node[pmosd, anchor=G]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 174: Circuit
+
+**ID**: `401b19efdbc3`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[ ]
+    \ctikzset&#123;tripoles/nmosd/depletion color=gray&#125;
+    \draw (0,2) to[R] ++(2,0) node[nmosd, anchor=G]&#123;&#125;;
+    \ctikzset&#123;tripoles/pmosd/depletion color=none&#125;
+    \draw[color=red] (0,0) to[R] ++(2,0)
+        node[pmosd, anchor=G]&#123;&#125;;
+    \ctikzset&#123;tripoles/pmosd/depletion color=
+        &#123;cyan!50!white&#125;&#125;
+    \draw[color=blue] (0,-2) to[R] ++(2,0)
+        node[pmosd, anchor=G, bulk]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 175: Circuit
+
+**ID**: `e3a8cd72ecff`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[ ]
+    \draw (0,0) to[Tnmosd] ++(2,0)
+    to[Tpmosd, invert] ++(0,-2)
+    ;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 176: Circuit
+
+**ID**: `c14f2bd286a7`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+        \node[nigfete, tr gap fill=green] at(0,0)&#123;&#125;;
+        \node[nigfete, tr gap fill=red, tr circle,
+            fill=cyan!30] at(1.5,0)&#123;&#125;;
+        \node[nmos, tr gap fill=cyan, ferroel gate](A)
+            at(3,0)&#123;&#125;;
+    \end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 177: Circuit
+
+**ID**: `6209d1555677`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=1.5, transform shape]
+    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
+    \node [circ] at (Q1.circle C)&#123;&#125;;
+    \ctikzset&#123;transistor circle/scale circle radius=1.2&#125;
+    \draw[color=red] (0,0) node[npn, tr circle](Q2)&#123;&#125;;
+    \node [circ, color=red] at (Q2.circle C)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 178: Circuit
+
+**ID**: `14aada4d399e`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \draw (0,2) node[npn, tr circle](Q1)&#123;&#125;;
+    \ctikzset&#123;transistor circle/relative thickness=2&#125;
+    \draw (2,2) node[npn, tr circle](Q1)&#123;&#125;;
+    \ctikzset&#123;transistor circle/color=red&#125;
+    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
+    \ctikzset&#123;transistor circle/color=default&#125;
+    \ctikzset&#123;transistor circle/dash=&#123;&#123;4pt&#125;&#123;4pt&#125;&#123;1pt&#125;&#123;4pt&#125;&#125;&#125;
+    \draw[color=blue] (2,0) node[npn, tr circle](Q1)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 179: Circuit
+
+**ID**: `1e85f02d9ab6`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \ctikzset&#123;transistors/thickness=4, transistors/fill=cyan!30,
+        transistor circle/relative thickness=0.25,&#125;
+    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
+    \ctikzset&#123;transistor circle/dash=&#123;&#123;2pt&#125;&#123;2pt&#125;&#125;&#125;
+    \draw (1.5,0) node[npn, tr circle, xscale=-1](Q2)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## Example 180: Circuit
+
+**ID**: `c70239257b3d`
+**Package**: circuitikz
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[]
+    \ctikzset&#123;transistors/thickness=4, transistors/fill=cyan!30,
+        transistor circle/relative thickness=0.25,
+        transistor circle/partial borders=2211&#125;
+    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
+    \ctikzset&#123;transistor circle/dash=&#123;&#123;2pt&#125;&#123;2pt&#125;&#125;&#125;
+    \draw (1.5,0) node[npn, tr circle, xscale=-1](Q2)&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](circuitikz-page-004) | Page 6 of 17 | [Next →](circuitikz-page-006)
