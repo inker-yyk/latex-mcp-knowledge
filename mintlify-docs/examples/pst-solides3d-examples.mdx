@@ -1,0 +1,2208 @@
+---
+title: "PST-SOLIDES3D Code Examples"
+description: "Executable LaTeX examples from pst-solides3d package"
+---
+
+# PST-SOLIDES3D Code Examples
+
+This page contains 100 executable examples from the pst-solides3d package.
+
+## Example 1: Other
+
+**ID**: `7e57f851c356`
+
+<pre><code class="language-latex">
+\defFunction[algebraic]&#123;helice&#125;(t)&#123;3*cos(4*t)&#125;&#123;3*sin(4*t)&#125;&#123;t&#125;
+</code></pre>
+
+---
+
+## Example 2: Other
+
+**ID**: `697e2744b6e9`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-6,-3)(6,8)
+\psframe*[linecolor=blue!50](-6,-3)(6,8)
+\psSolid[object=grille,base=-4 4 -4 4,linecolor=red,linewidth=0.5\pslinewidth]%
+\axesIIID(0,0,0)(4,4,7)
+\defFunction[algebraic]&#123;helice&#125;(t)&#123;3*cos(4*t)&#125;&#123;3*sin(4*t)&#125;&#123;t&#125;
+\psSolid[object=courbe,
+        r=0,
+        range=0 6,
+        linecolor=blue,linewidth=0.1,
+        resolution=360,
+        function=helice]%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 3: Other
+
+**ID**: `a1e580e74141`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-6,-3)(6,8)
+\psframe*[linecolor=blue!50](-6,-3)(6,8)
+\psset&#123;lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50&#125;
+\psSolid[object=grille,base=-4 4 -4 4,linecolor=red,linewidth=0.5\pslinewidth]%
+\axesIIID(0,0,0)(4,4,7)
+\psset&#123;range=-4 4&#125;
+\defFunction&#123;cosRad&#125;(t)&#123; t 2 mul Cos 4 mul &#125;&#123; t &#125;&#123; 0 &#125;
+\psSolid[object=courbe,linewidth=0.1,
+  r=0,linecolor=red,
+  resolution=360,
+  function=cosRad]
+\psSolid[object=grille,base=-4 4 -4 4,linecolor=blue,linewidth=0.5\pslinewidth](0,0,3)
+\psPoint(0,0,3)&#123;O1&#125;\psPoint(0,0,7)&#123;Z1&#125;\psline(O1)(Z1)\psline[linestyle=dashed](O1)(O)
+\pstVerb&#123;/tmin -4 def /tmax 4 def&#125;%
+\defFunction&#123;sinRad&#125;(t)&#123; t &#125;&#123; t Sin 3 mul &#125;&#123; 3 &#125;
+\psSolid[object=courbe,linewidth=0.1,
+  r=0,linecolor=blue,
+  resolution=30,
+  function=sinRad]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 4: Other
+
+**ID**: `4b71ea35c0c9`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-6.5,-3)(7,11)
+\psset&#123;lightsrc=10 -20 50,viewpoint=50 -20 20 rtp2xyz,Decran=50&#125;
+\psSolid[object=grille,base=-4 4 -4 4,
+  linecolor=lightgray,linewidth=0.5\pslinewidth]%
+\psSolid[object=grille,base=-4 4 0 8,
+  linecolor=lightgray,RotX=90,
+  linewidth=0.5\pslinewidth](0,4,0)
+\psSolid[object=grille,base=-4 4 -4 4,
+  linecolor=lightgray,RotY=90,
+  linewidth=0.5\pslinewidth](-4,0,4)
+\defFunction[algebraic]&#123;helice&#125;(t)%
+  &#123;1.3*(1-cos(2.5*t))*cos(6*t)&#125;
+  &#123;1.3*(1-cos(2.5*t))*sin(6*t)&#125;&#123;t&#125;
+\defFunction[algebraic]&#123;helice_xy&#125;(t)%
+  &#123;1.3*(1-cos(2.5*t))*cos(6*t)&#125;
+  &#123;1.3*(1-cos(2.5*t))*sin(6*t)&#125;&#123;0&#125;
+\defFunction[algebraic]&#123;helice_xz&#125;%
+  (t)&#123;1.3*(1-cos(2.5*t))*cos(6*t)&#125;&#123;4&#125;&#123;t&#125;
+\defFunction[algebraic]&#123;helice_yz&#125;%
+  (t)&#123;-4&#125;&#123;1.3*(1-cos(2.5*t))*sin(6*t)&#125;&#123;t&#125;
+\psset&#123;range=0 8&#125;
+\psSolid[object=courbe,r=0,linecolor=blue,
+  linewidth=0.05,resolution=360,
+  normal=0 0 1,function=helice_xy]
+\psSolid[object=courbe,r=0,
+  linecolor=green,linewidth=0.05,
+  resolution=360,normal=0 0 1,
+  function=helice_xz]
+\psSolid[object=courbe,r=0,
+  linewidth=0.05,resolution=360,
+  normal=0 0 1,function=helice_yz]
+\psSolid[object=courbe,r=0,
+  linecolor=red,linewidth=0.1,
+  resolution=360,function=helice]
+ \end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 5: Other
+
+**ID**: `ccaf2262c37c`
+
+<pre><code class="language-latex">
+\defFunction&#123;shell&#125;(u,v)&#123;1.2 v exp u Sin dup mul v Cos mul mul&#125;% x(u,v)
+                        &#123;1.2 v exp u Sin dup mul v Sin mul mul&#125;% y(u,v)
+                        &#123;1.2 v exp u Sin u Cos mul mul&#125;        % z(u,v)
+</code></pre>
+
+---
+
+## Example 6: Other
+
+**ID**: `9b20d0b619d2`
+
+<pre><code class="language-latex">
+\defFunction[algebraic]&#123;shell&#125;(u,v)&#123;1.2^v*(sin(u)^2*cos(v))&#125;% x(u,v)
+                                   &#123;1.2^v*(sin(u)^2*sin(v))&#125;% y(u,v)
+                                   &#123;1.2^v*(sin(u)*cos(u))&#125;  % z(u,v)
+</code></pre>
+
+---
+
+## Example 7: Other
+
+**ID**: `0116eb4e45bc`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.75&#125;
+\begin&#123;pspicture&#125;(-5.5,-6)(4.5,4)
+\psframe*(-5.5,-6)(4.5,4)
+\psset[pst-solides3d]&#123;viewpoint=20 120 30 rtp2xyz,
+  Decran=15,lightsrc=-10 15 10&#125;
+% Parametric Surfaces
+\psSolid[object=grille,base=-4 4 -4 4,
+  action=draw*,linecolor=&#123;[cmyk]&#123;1,0,1,0.5&#125;&#125;]
+  (0,0,-3)
+\defFunction&#123;shell&#125;(u,v)
+  &#123;1.2 v exp u Sin dup mul v Cos mul mul&#125;
+  &#123;1.2 v exp u Sin dup mul v Sin mul mul&#125;
+  &#123;1.2 v exp u Sin u Cos mul mul&#125;
+\psSolid[object=surfaceparametree,
+  linecolor=&#123;[cmyk]&#123;1,0,1,0.5&#125;&#125;,
+  base=0 pi pi 4 div neg 5 pi mul 2 div,
+  fillcolor=yellow!50,incolor=green!50,
+  function=shell,linewidth=0.5\pslinewidth,ngrid=25]%
+\psSolid[object=parallelepiped,a=8,b=8,c=6,
+  action=draw,linecolor=&#123;[cmyk]&#123;1,0,1,0.5&#125;&#125;]%
+\quadrillage
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 8: Other
+
+**ID**: `db9ddeaaba93`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.75&#125;
+\begin&#123;pspicture&#125;(-5,-4)(5,6)
+\psframe*(-5,-4)(5,6)
+\psset[pst-solides3d]&#123;viewpoint=20 20 -10 rtp2xyz,
+  Decran=15,lightsrc=5 10 2&#125;
+% Parametric Surfaces
+\psSolid[object=grille,base=-4 4 -4 4,
+  action=draw*,linecolor=red](0,0,-3)
+\defFunction[algebraic]&#123;shell&#125;(u,v)
+  &#123;1.21^v*(sin(u)*cos(u))&#125;
+  &#123;1.21^v*(sin(u)^2*sin(v))&#125;
+  &#123;1.21^v*(sin(u)^2*cos(v))&#125;
+%% \defFunction&#123;shell&#125;(u,v)
+%%    &#123;1.2 v exp u Sin u Cos mul mul&#125;
+%%    &#123;1.2 v exp u Sin dup mul v Sin mul mul&#125;
+%%    &#123;1.2 v exp u Sin dup mul v Cos mul mul&#125;
+\psSolid[object=surfaceparametree,
+   linecolor=&#123;[cmyk]&#123;1,0,1,0.5&#125;&#125;,
+   base=0 pi pi 4 div neg 5 pi mul 2 div,
+   fillcolor=green!50,incolor=yellow!50,
+   function=shell,linewidth=0.5\pslinewidth,
+   ngrid=25]%
+\white%
+\gridIIID[Zmin=-3,Zmax=4,linecolor=white,
+  QZ=0.5](-4,4)(-4,4)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 9: Other
+
+**ID**: `9af66992df20`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.75&#125;
+\begin&#123;pspicture&#125;(-3,-4)(3,6)
+\psset[pst-solides3d]&#123;viewpoint=20 10 2,Decran=20,
+  lightsrc=20 10 10&#125;
+% Parametric Surfaces
+\defFunction&#123;helix&#125;(u,v)
+  &#123;1 .4 v Cos mul sub u Cos mul 2 mul&#125;
+  &#123;1 .4 v Cos mul sub u Sin mul 2 mul&#125;
+  &#123;.4 v Sin mul u .3 mul add&#125;
+\psSolid[object=surfaceparametree,linewidth=0.5\pslinewidth,
+  base=-10 10 0 6.28,fillcolor=yellow!50,incolor=green!50,
+  function=helix,
+  ngrid=60 0.4]%
+\gridIIID[Zmin=-3,Zmax=3](-2,2)(-2,2)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 10: Other
+
+**ID**: `ce6071bca7f0`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-9,-7)(10,12)
+\psframe*(-9,-7)(10,12)
+\psset[pst-solides3d]&#123;
+  viewpoint=20 5 10,
+  Decran=50,lightsrc=20 10 5&#125;
+\psSolid[
+  object=grille,base=-2 2 -2 2,
+  linecolor=white](0,0,-2)
+% Parametric Surfaces
+\defFunction&#123;cone&#125;(u,v)
+  &#123;u v Cos mul&#125;&#123;u v Sin mul&#125;&#123;u&#125;
+\psSolid[object=surfaceparametree,
+   base=-2 2 0 2 pi mul,
+   fillcolor=yellow!50,
+   incolor=green!50,function=cone,
+   linewidth=0.5\pslinewidth,
+   ngrid=25 40]%
+\psset&#123;linecolor=white&#125;\white
+\gridIIID[Zmin=-2,Zmax=2]
+  (-2,2)(-2,2)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 11: Other
+
+**ID**: `9ceff8faf8fc`
+
+<pre><code class="language-latex">
+\psSolid[object=cube,a=4,action=draw*,linecolor=red]%
+</code></pre>
+
+---
+
+## Example 12: Other
+
+**ID**: `ec0dfd88c4d7`
+
+<pre><code class="language-latex">
+\psSolid[object=cube,a=4,action=draw*,RotX=-30,RotY=60,RotZ=-60](7.5,11.25,10)%
+</code></pre>
+
+---
+
+## Example 13: Other
+
+**ID**: `ab308e2f95e0`
+
+<pre><code class="language-latex">
+\psTransformPoint[RotX=-30,RotY=60,RotZ=-60](2 2 2)(7.5,11.25,10)&#123;A'&#125;
+</code></pre>
+
+---
+
+## Example 14: Other
+
+**ID**: `a6504f44db48`
+
+<pre><code class="language-latex">
+\psSurface[options](xmin,ymin)(xmax,ymax)&#123;equation of the surface z=f(x,y)&#125;
+\psSurface*[options,r=...,xytranslate](xmin,ymin)(xmax,ymax)&#123;equation of the surface z=f(x,y)&#125;
+</code></pre>
+
+---
+
+## Example 15: Other
+
+**ID**: `0647364f322a`
+
+<pre><code class="language-latex">
+\psSolid[object=parallelepiped,a=8,b=8,c=8,action=draw](0,0,0)
+\multido&#123;\ix=-4+1&#125;&#123;9&#125;&#123;%
+    \psPoint(\ix\space,4,-4)&#123;X1&#125;
+    \psPoint(\ix\space,4.2,-4)&#123;X2&#125;
+    \psline(X1)(X2)\uput[dr](X1)&#123;\ix&#125;&#125;
+\multido&#123;\iy=-4+1&#125;&#123;9&#125;&#123;%
+    \psPoint(4,\iy\space,-4)&#123;Y1&#125;
+    \psPoint(4.2,\iy\space,-4)&#123;Y2&#125;
+    \psline(Y1)(Y2)\uput[dl](Y1)&#123;\iy&#125;&#125;
+\multido&#123;\iz=-4+1&#125;&#123;9&#125;&#123;%
+    \psPoint(4,-4,\iz\space)&#123;Z1&#125;
+    \psPoint(4,-4.2,\iz\space)&#123;Z2&#125;
+    \psline(Z1)(Z2)\uput[l](Z1)&#123;\iz&#125;&#125;
+</code></pre>
+
+---
+
+## Example 16: Other
+
+**ID**: `0e9a008dd6e8`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=50 20 20 rtp2xyz,Decran=100,lightsrc=viewpoint&#125;
+\begin&#123;pspicture&#125;(-5,-4)(6,6)
+\psSolid[object=grille,base=-2 2 -2 2,action=draw]%
+\axesIIID(0,0,0)(2,2,1)
+\psSurface*[
+fillcolor=cyan,r=1,
+ngrid=.25 .25,incolor=yellow,grid,
+algebraic](-1,-1)(1,1)&#123; e^(x*y) &#125;
+\psSolid[object=cylindre,r=1,h=2,action=draw,ngrid=1 18]
+\psPoint(0,0,1)&#123;O&#125;
+\psPoint(0,0,3)&#123;Z&#125;
+\psline&#123;->&#125;(O)(Z)
+\uput[r](Z)&#123;$z$&#125;
+\psPoint(0.5,0.5,0)&#123;C&#125;
+\psdot[linecolor=red,dotstyle=x,dotscale=2](C)
+\end&#123;pspicture&#125;
+
+\begin&#123;pspicture&#125;(-5,-4)(6,10)
+\psSolid[object=grille,base=-2 2 -2 2,action=draw]%
+\axesIIID(0,0,0)(2,2,1)
+\psSurface*[
+fillcolor=cyan,r=1,xytranslate=0.5 0.5,
+ngrid=.25 .25,incolor=yellow,grid,
+algebraic](-1,-1)(1,1)&#123; e^(x*y) &#125;
+\psSolid[object=cylindre,r=1,h=4,action=draw,ngrid=1 18](0.5,0.5,0)
+\psPoint(0,0,1)&#123;O&#125;
+\psPoint(0,0,5)&#123;Z&#125;
+\psline&#123;->&#125;(O)(Z)
+\uput[r](Z)&#123;$z$&#125;
+\psPoint(0.5,0.5,0)&#123;C&#125;
+\psdot[linecolor=red,dotstyle=x,dotscale=2](C)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 17: Other
+
+**ID**: `2d375ab4c1f7`
+
+<pre><code class="language-latex">
+\defFunction&#123;F&#125;(t)&#123;t&#125;&#123;4 t div 4 min&#125;&#123;4&#125;
+\psSolid[object=courbe,range=1 4,
+   linecolor=red,linewidth=2\pslinewidth,
+   function=F]
+</code></pre>
+
+---
+
+## Example 18: Other
+
+**ID**: `78d88c774c3f`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.45&#125;
+\psset&#123;viewpoint=50 40 30 rtp2xyz,Decran=50&#125;
+\psset&#123;lightsrc=viewpoint&#125;
+\begin&#123;pspicture&#125;(-7,-8)(7,8)
+\psSurface[ngrid=.25 .25,incolor=yellow,
+   linewidth=0.5\pslinewidth,axesboxed,
+   algebraic,hue=0 1](-4,-4)(4,4)&#123;%
+   ((y^2)-(x^2))/4 &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 19: Other
+
+**ID**: `74daefe18bf6`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\psset&#123;lightsrc=30 30 25&#125;
+\psset&#123;viewpoint=50 40 30 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-7,-8)(7,8)
+\psSurface[fillcolor=red!50,ngrid=.25 .25,
+   incolor=yellow,linewidth=0.5\pslinewidth,
+   grid,axesboxed](-4,-4)(4,4)&#123;%
+   y dup mul x dup mul sub 4 div &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 20: Other
+
+**ID**: `d8a70796f19a`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\psset&#123;lightsrc=30 -10 10,linewidth=0.5\pslinewidth&#125;
+\psset&#123;viewpoint=50 40 30 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-7,-4)(7,12)
+\psSolid[object=grille,base=-4 4 -4 4,action=draw]%
+\psSurface[
+   fillcolor=cyan!50,
+   intersectionplan=&#123;[0 0 1 -5]&#125;,
+   intersectioncolor=(bleu),
+   intersectionlinewidth=3,
+    intersectiontype=0,
+     ngrid=.25 .25,incolor=yellow,
+   axesboxed,Zmin=0,Zmax=8,QZ=4](-4,-4)(4,4)&#123;%
+   y dup mul x dup mul add 4 div &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 21: Other
+
+**ID**: `4c6cbaf720b9`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.35&#125;
+\psset&#123;lightsrc=30 -10 10&#125;
+\psset&#123;viewpoint=50 20 30 rtp2xyz,Decran=70&#125;
+\begin&#123;pspicture&#125;(-11,-8)(7,8)
+\psSurface[ngrid=.2 .2,algebraic,Zmin=-1,Zmax=1,
+           linewidth=0.5\pslinewidth,spotX=r,spotY=d,spotZ=l,
+           hue=0 1](-5,-5)(5,5)&#123;%
+   sin((x^2+y^2)/3) &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 22: Other
+
+**ID**: `3721189b4ac0`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.25&#125;
+\psset&#123;lightsrc=30 -10 10&#125;
+\psset&#123;viewpoint=100 20 20 rtp2xyz,Decran=80&#125;
+\begin&#123;pspicture&#125;(-15,-10)(7,12)
+\psSurface[ngrid=0.4 0.4,algebraic,Zmin=-2,Zmax=10,QZ=4,
+           linewidth=0.25\pslinewidth,
+           fcol=0 1 4225
+           &#123;/iF ED iF [iF 4225 div 0.75 1] (sethsbcolor) astr2str&#125; for
+          ](-13,-13)(13,13)&#123;%
+   10*sin(sqrt((x^2+y^2)))/(sqrt(x^2+y^2)) &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 23: Other
+
+**ID**: `172b3a62bd83`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\psset&#123;viewpoint=50 20 30 rtp2xyz,Decran=50&#125;
+\psset&#123;lightsrc=viewpoint,linewidth=0.5\pslinewidth&#125;
+\begin&#123;pspicture&#125;(-7,-8)(7,8)
+\psSolid[object=datfile,filename=data/paraboloid,hue=0 1 0.5 1,incolor=yellow]
+\gridIIID[Zmin=-4,Zmax=4,spotX=r](-4,4)(-4,4)
+\defFunction&#123;F&#125;(t)&#123;t&#125;&#123;4 t div 4 min&#125;&#123;4&#125;
+\psSolid[object=courbe,range=1 4,r=0,
+   linecolor=red,linewidth=2\pslinewidth,
+   function=F]
+\defFunction&#123;G&#125;(t)&#123;t&#125;&#123;4 t div -4 max&#125;&#123;4&#125;
+\psSolid[object=courbe,range=-1 -4,r=0,
+   linecolor=red,linewidth=2\pslinewidth,
+   function=G]
+\defFunction&#123;H&#125;(t)&#123;t neg&#125;&#123;4 t div -4 max&#125;&#123;-4&#125;
+\psSolid[object=courbe,range=-1 -4,r=0,
+   linecolor=red,linewidth=2\pslinewidth,
+   function=H]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 24: Other
+
+**ID**: `ea33dee506d1`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.35&#125;
+\psset&#123;lightsrc=10 12 20,linewidth=0.5\pslinewidth&#125;
+\psset&#123;viewpoint=30 50 60 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-10,-10)(12,10)
+\psSurface[
+   fillcolor=cyan!50,algebraic,
+   ngrid=.25 .25,incolor=yellow,hue=0 1,
+   Zmin=-3,Zmax=3](-3,-3)(3,3)&#123;%
+   x*y*(x^2-y^2)*0.1&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 25: Other
+
+**ID**: `6160278c0f29`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5cm,viewpoint=50 60 30 rtp2xyz,Decran=50&#125;
+\psset&#123;lightsrc=viewpoint&#125;
+\begin&#123;pspicture&#125;(-4,-5)(6,8)
+  \psSurface[ngrid=.25 .25,incolor=yellow,linewidth=0.5\pslinewidth,
+    base= -2 2 -2 2, axesboxed, Zmin=-5,Zmax=2,hue=0 1](-5,-5)(5,5)&#123;%
+    1 0.5 x dup mul y dup mul add mul sub dup -5 lt &#123; pop -5 &#125;if &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 26: Other
+
+**ID**: `62e005e008a1`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5cm,viewpoint=50 60 30 rtp2xyz,Decran=50,
+  lightsrc=viewpoint&#125;
+\begin&#123;pspicture&#125;(-4,-5)(6,8)
+  \psSurface*[ngrid=.25 .25,incolor=yellow,
+    linewidth=0.5\pslinewidth,
+    r = 3 sqrt 2 mul, axesboxed, Zmin=-5,Zmax=2,hue=0 1](-5,-5)(5,5)&#123;%
+    1 0.5 x dup mul y dup mul add mul sub dup -5 lt &#123; pop -5 &#125;if &#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 27: Other
+
+**ID**: `955f0b7a1fe4`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-3)(4,3.5)%
+\psframe*[linecolor=blue!50](-3,-3)(4,3.5)
+\psset&#123;viewpoint=50 30 15,Decran=60&#125;
+\psset&#123;solidmemory&#125;
+%% definition du plan de projection
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[1 0 0 0] 90&#125;,
+   planmarks,name=monplan]
+\psset&#123;plan=monplan&#125;
+%% definition du point A
+\psProjection[object=point,
+   name=A,text=A,
+   pos=ur](-2,1.25)
+\psProjection[object=point,
+   name=B,text=B,
+   pos=ur](1,.75)
+\psProjection[object=droite,
+   linecolor=blue,
+   args=0 0 1 .5]
+\psProjection[object=droite,
+   linecolor=orange,
+   args=A B]
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 28: Other
+
+**ID**: `8379f5739ce5`
+
+<pre><code class="language-latex">
+\pstVerb&#123;/Facteur &#123;.5 mulv3d&#125; def&#125;%
+</code></pre>
+
+---
+
+## Example 29: Other
+
+**ID**: `d36be0150f24`
+
+<pre><code class="language-latex">
+\psSolid[object=cube,a=2,ngrid=3,
+         transform=Facteur](2,0,1)%
+</code></pre>
+
+---
+
+## Example 30: Other
+
+**ID**: `3147111dceb9`
+
+<pre><code class="language-latex">
+\psSolid[object=cube,a=2,ngrid=3,
+         transform=&#123;.5 mulv3d&#125;](2,0,1)%
+</code></pre>
+
+---
+
+## Example 31: Other
+
+**ID**: `05d1c246e570`
+
+<pre><code class="language-latex">
+\defFunction[algebraic]&#123;matransformation&#125;(x,y,z)
+   &#123;.5*x&#125;
+   &#123;.5*y&#125;
+   &#123;.5*z&#125;
+</code></pre>
+
+---
+
+## Example 32: Other
+
+**ID**: `df69134e9b10`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=20 60 20 rtp2xyz,lightsrc=viewpoint,Decran=20&#125;
+\begin&#123;pspicture&#125;(-5,-3)(6,5)
+\psSolid[object=grille,base=-4 4 -4 4,fillcolor=red!50]%
+\axesIIID(0,0,0)(4,4,4)%
+\psSolid[object=cube,fillcolor=yellow!50,
+      a=2,ngrid=3](-2,0,1)
+\psSolid[object=cube,fillcolor=green!50,
+      a=2,transform=&#123;.5 mulv3d&#125;,
+      ngrid=3](2,0,1)
+\psSolid[object=cube,
+      action=draw,
+      a=2,ngrid=3](2,0,1)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 33: Other
+
+**ID**: `2eae169733dc`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=20 60 20 rtp2xyz,lightsrc=viewpoint,Decran=20&#125;
+\begin&#123;pspicture&#125;(-5,-3)(6,5)
+\psSolid[object=grille,base=-4 4 -4 4,fillcolor=red!50]%
+\axesIIID(0,0,0)(4,4,4)%
+\psSolid[object=cube,fillcolor=yellow!50,
+      a=2,ngrid=3](-2,0,1)
+\psSolid[object=cube,fillcolor=green!50,
+      a=2,transform=&#123;.75 4 .5 scaleOpoint3d&#125;,
+      ngrid=3](2,0,1)
+\psSolid[object=cube,
+      action=draw,
+      a=2,ngrid=3](2,0,1)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 34: Other
+
+**ID**: `ea10e0d6d648`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-4)(4,3)
+\psset&#123;viewpoint=20 60 20 rtp2xyz,lightsrc=10 15 7,Decran=20&#125;
+\pstVerb&#123;
+/gro &#123;
+4 dict begin
+   /M defpoint3d
+   /a .5 def
+   /b 1 a 3 sqrt mul sub def
+   /k M norme3d a mul b add def
+   M k mulv3d
+end
+&#125; def&#125;%
+\psset&#123;linewidth=.02,linecolor=gray&#125;
+\psSolid[object=cube,a=3,ngrid=9,
+      transform=gro]%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 35: Other
+
+**ID**: `8955374d4d0c`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=100 50 20 rtp2xyz,lightsrc=viewpoint,Decran=100,unit=0.65&#125;
+\begin&#123;pspicture&#125;(-3,-1)(3.5,11)
+\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%
+\psSolid[object=prisme,h=10,ngrid=20 2,
+        base=0.5 0 0.5 0.5 0 0.5 -0.5 0.5 -0.5 0 -0.5 -0.5 0 -0.5 0.5 -0.5]%
+\end&#123;pspicture&#125;
+\begin&#123;pspicture&#125;(-3,-1)(3.5,11)
+\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%
+\pstVerb&#123;
+/torsion &#123;% on tourne de 10 degr\'&#123;e&#125;s suivant l'axe Oz \`&#123;a&#125; chaque niveau
+2 dict begin
+   /M defpoint3d % on r\'&#123;e&#125;cup\`&#123;e&#125;re les coordonn\'&#123;e&#125;es
+   M /z exch def pop pop
+    M 0 0 z 20 mul rotateOpoint3d
+end&#125; def&#125;%
+\psSolid[object=prisme,h=10,ngrid=20 2,
+        base=0.5 0 0.5 0.5 0 0.5 -0.5 0.5 -0.5 0 -0.5 -0.5 0 -0.5 0.5 -0.5,
+        transform=torsion]%
+\psTransformPoint[RotZ=20](2 0 10)(0,0,0)&#123;A&#125;
+\psTransformPoint[RotZ=20](2 1 10)(0,0,0)&#123;A'&#125;
+\psTransformPoint[RotZ=20](-2 0 10)(0,0,0)&#123;B&#125;
+\psTransformPoint[RotZ=20](-2 -1 10)(0,0,0)&#123;B'&#125;
+\psline[linecolor=red]&#123;v-v&#125;(A')(A)(B)(B')
+\end&#123;pspicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-1)(3,11)
+\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%
+\pstVerb&#123;%  id\'&#123;e&#125;e de Christophe Poulain
+/flexion &#123;% on tourne de 2 degr\'&#123;e&#125;s suivant l'axe Oy \`&#123;a&#125; chaque niveau
+2 dict begin
+   /M defpoint3d % on r\'&#123;e&#125;cup\`&#123;e&#125;re les coordonn\'&#123;e&#
+... (truncated)
+</code></pre>
+
+---
+
+## Example 36: Other
+
+**ID**: `8c5e855dcc3d`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.75&#125;
+\begin&#123;pspicture*&#125;(-4,-4)(5,4)
+\psset&#123;solidmemory&#125;
+\psSolid[object=cube,
+      linecolor=blue,
+      a=4,fillcolor=red!50,
+      ngrid=3,
+      action=none,
+      name=A,
+      ](0,0,0)
+\psSolid[object=load,
+   deactivatecolor,
+   load=A]
+\composeSolid
+\end&#123;pspicture*&#125;
+</code></pre>
+
+---
+
+## Example 37: Other
+
+**ID**: `4ef3e29cae28`
+
+<pre><code class="language-latex">
+\newcommand\Section&#123;%
+% y z
+  R h 2 div neg % sommet 1
+  % S1 (R,-h/2)
+  R h 2 div     % sommet 2
+  % S2 (r,h/2)
+  r h 2 div     % sommet 3
+  % S3 (r,h/2)
+  r h 2 div neg % sommet 4
+  % S4 (r,-h/2)
+            &#125;
+</code></pre>
+
+---
+
+## Example 38: Other
+
+**ID**: `4c089e08f7c0`
+
+<pre><code class="language-latex">
+\newcommand\SectionTriangulaire&#123;
+% y <----z---->
+  R h 2 div neg
+  % S1 (R,-h/2)
+  R r add 2 div h 2 div
+  % S2 ((R+r)/2,h/2)
+  r h 2 div neg
+  % S3 (r,-h/2)
+&#125;
+</code></pre>
+
+---
+
+## Example 39: Other
+
+**ID**: `61ceedbd01e6`
+
+<pre><code class="language-latex">
+\psSolid[object=anneau,section=\SectionTriangulaire,%
+         fillcolor=cyan,h=3,R=8,r=4,RotX=10](0,0,0)
+\psSolid[object=anneau,section=\SectionTriangulaire,%
+         fillcolor=yellow,h=3,R=8,r=4,RotX=-90,RotZ=10](0,0,0)
+</code></pre>
+
+---
+
+## Example 40: Other
+
+**ID**: `84b231fba292`
+
+<pre><code class="language-latex">
+\renewcommand\SectionPneu&#123;
+   /m &#123;90 4 div&#125; bind def
+   /Scos &#123;m cos 2 m mul cos add 3 m mul cos add&#125; bind def
+   /Z0 &#123;h 4 div&#125; bind def
+   /c &#123;Z0 Scos div&#125; bind def
+   /Z1 &#123;Z0 c m cos mul add&#125; bind def
+   /Z2 &#123;Z1 c m 2 mul cos mul add&#125; bind def
+   /R1 &#123;R c m sin mul sub&#125; bind def
+   /R2 &#123;R1 c m 2 mul sin mul sub&#125; bind def
+   /R3 &#123;R2 c m 3 mul sin mul sub&#125; bind def
+   R h 4 div neg % 1
+   R h 4 div % 2
+   R1 Z1 % 3
+   R2 Z2 % 4
+   R3 h 2 div % 5
+   r h 2 div  % 6
+   r h 2 div neg  % 7
+   R3 h 2 div neg % 8
+   R2 Z2 neg % 9
+   R1 Z1 neg % 10
+   &#125;
+</code></pre>
+
+---
+
+## Example 41: Other
+
+**ID**: `37ac241686da`
+
+<pre><code class="language-latex">
+\psSolid[object=anneau,section=\SectionPneu,%
+         fillcolor=cyan,h=3,R=8,r=4,RotX=10](0,0,0)
+\psSolid[object=anneau,section=\SectionPneu,%
+         fillcolor=yellow,h=3,R=8,r=4,RotX=-90,RotZ=10]%
+</code></pre>
+
+---
+
+## Example 42: Other
+
+**ID**: `945d1ee989bd`
+
+<pre><code class="language-latex">
+\newcommand\SectionBobine&#123;
+   r h 2 div % 1
+   r h 2 div neg % 2
+   R h 2 div neg % 3
+   R h 3 div neg % 4
+   R h 4 div sub h 3 div neg % 5
+   R h 4 div sub h 3 div % 6
+   R h 3 div % 7
+   R h 2 div % 8
+   &#125;
+</code></pre>
+
+---
+
+## Example 43: Other
+
+**ID**: `1b13267035bf`
+
+<pre><code class="language-latex">
+\psSolid[object=grille,base=-15 15 -15 15,fillcolor=yellow!30](0,0,-8)
+\psSolid[object=anneau,section=\SectionBobine,%
+         fillcolor=gray!50,h=6,R=8,r=4,RotX=90,linecolor=gray]%
+</code></pre>
+
+---
+
+## Example 44: Other
+
+**ID**: `556d2d45de08`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-5,-4)(5,4)
+\psset[pst-solides3d]&#123;viewpoint=50 20 40 rtp2xyz,
+  Decran=25,lightsrc=10 20 20&#125;
+\psSolid[object=anneau,fillcolor=cyan,
+  h=3,R=8,r=6,ngrid=4,RotX=10](0,0,0)
+\end&#123;pspicture&#125;\\
+\begin&#123;pspicture&#125;(-5,-4)(5,4)
+\psset[pst-solides3d]&#123;viewpoint=50 -20 -40 rtp2xyz,
+  Decran=25,lightsrc=-10 -20 -20&#125;
+\psSolid[object=anneau,
+fillcolor=yellow,h=3,R=8,r=6,
+RotX=90,RotZ=10](0,0,0)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 45: Other
+
+**ID**: `068f7e758d1e`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-5,-6)(5,6)
+\psset[pst-solides3d]&#123;viewpoint=50 20 40 rtp2xyz,Decran=25,
+   lightsrc=10 20 20&#125;
+\psSolid[object=anneau,
+   section=6 -2 10 0 6 2,
+   fillcolor=cyan,RotX=10]%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 46: Other
+
+**ID**: `bcd3276e6cdb`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-2.5)(7,2.5)
+\psset&#123;viewpoint=50 20 20 rtp2xyz,Decran=40&#125;
+\psSolid[
+   action=draw,
+   object=cube,
+   RotZ=30,
+   show=all,
+   num=all
+    ]%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 47: Other
+
+**ID**: `97ab18666490`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-2.5)(7,2.5)
+\psset&#123;viewpoint=50 20 20 rtp2xyz,Decran=40&#125;
+\psSolid[action=draw,
+   object=cube,
+   RotZ=30,
+   show=0 1 2 3,
+   num=0 1 2 3
+    ]%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 48: Other
+
+**ID**: `be3883ab8fee`
+
+<pre><code class="language-latex">
+\defFunction[algebraic]&#123;nom_fonction&#125;(x)&#123;x*sin(x)&#125;&#123;&#125;&#123;&#125;
+</code></pre>
+
+---
+
+## Example 49: Other
+
+**ID**: `74ce925cefac`
+
+<pre><code class="language-latex">
+\defFunction&#123;nom_fonction&#125;(x)&#123;x dup sin mul&#125;&#123;&#125;&#123;&#125;
+</code></pre>
+
+---
+
+## Example 50: Other
+
+**ID**: `58df01e88e80`
+
+<pre><code class="language-latex">
+\defFunction[algebraic]&#123;cercle&#125;(t)&#123;3*cos(t)&#125;&#123;3*sin(t)&#125;&#123;&#125;
+</code></pre>
+
+---
+
+## Example 51: Other
+
+**ID**: `fae0ebff63be`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-3)(4,3.5)%
+\psframe*[linecolor=blue!50](-3,-3)(4,3.5)
+\psset&#123;lightsrc=50 20 20,viewpoint=50 30 15,Decran=60&#125;
+\psset&#123;solidmemory&#125;
+\defFunction[algebraic]&#123;1_sin&#125;(x)&#123;2*sin(1/x)&#125;&#123;&#125;&#123;&#125;
+\psSolid[object=grille,
+   base=-3 0 -3 3,
+   linewidth=0.5\pslinewidth,linecolor=gray,]
+%% definition du plan de projection
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[1 0 0 0] 90&#125;,
+   base=-3.2 3.2 -2.2 2.2,
+   planmarks,
+   showBase,
+   name=monplan]
+\psset&#123;plan=monplan&#125;
+\psSolid[object=plan,
+   args=monplan,
+   linecolor=gray!40,
+   plangrid,
+   action=none]
+\psProjection[object=courbe,
+   linecolor=red,
+   range=-3 3,resolution=720,
+   function=1_sin]
+\composeSolid
+\axesIIID(4,2,2)(5,4,3)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 52: Other
+
+**ID**: `cd8539613303`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-3)(4,3.5)%
+\psframe*[linecolor=blue!50](-3,-3)(4,3.5)
+\psset&#123;lightsrc=50 20 20,viewpoint=50 30 15,Decran=60&#125;
+\psset&#123;solidmemory&#125;
+\defFunction[algebraic]&#123;F&#125;(t)&#123;2*sin(0.57735*t)&#125;&#123;2*sin(0.707*t)&#125;&#123;&#125;
+\psSolid[object=grille,
+   base=-3 0 -3 3,
+   linewidth=0.5\pslinewidth,linecolor=gray,]
+%% definition du plan de projection
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[1 0 0 0] 90&#125;,
+   base=-3.2 3.2 -2.2 2.2,
+   name=monplan,
+   planmarks,
+   showBase]
+\psset&#123;plan=monplan&#125;
+\psSolid[object=plan,
+   args=monplan,
+   linecolor=gray!40,
+   plangrid,
+   action=none]
+\psProjection[object=courbeR2,
+   range=-25.12 25.12,resolution=720,
+   normal=1 1 2,linecolor=red,
+   function=F]
+\composeSolid
+\axesIIID(4,2,2)(5,4,3)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 53: Other
+
+**ID**: `5214d987d1d4`
+
+<pre><code class="language-latex">
+\psset&#123;lightsrc=50 -50 50,viewpoint=50 20 50 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-6,-2)(6,8)
+\psframe(-6,-2)(6,8)
+\codejps&#123;
+% solide 1
+    /tour&#123;
+      -6 1.5 6 [4 16] newcylindre
+      dup (jaune) outputcolors
+    &#125; def
+% solide 2
+    /anneau&#123;
+      [4 -1 4 1 3 1 3 -1] 24 newanneau
+      &#123;0 0 -1 translatepoint3d&#125; solidtransform
+      dup (orange) outputcolors
+    &#125; def
+% fusion
+    tour anneau solidfuz
+    drawsolid**&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 54: Other
+
+**ID**: `501d46449000`
+
+<pre><code class="language-latex">
+\codejps&#123;
+/Soufre1 &#123;3.56  [20 16] newsphere
+ dup (Yellow) outputcolors&#125; def
+/Soufre2 &#123;3.56  [20 16] newsphere
+ &#123;0 0.000 20.10 translatepoint3d&#125; solidtransform
+ dup (Yellow) outputcolors&#125; def
+</code></pre>
+
+---
+
+## Example 55: Other
+
+**ID**: `a7d2dd5af4dd`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-4)(3,4)
+\psset&#123;lightsrc=100 -50 -10,lightintensity=3,viewpoint=200 20 10 rtp2xyz,Decran=20&#125;
+&#123;\psset&#123;linewidth=0.5\pslinewidth&#125;
+\codejps&#123;/Cl &#123;9.02  [18 16] newsphere
+&#123;-90 0 0 rotateOpoint3d&#125; solidtransform
+ dup (Green) outputcolors&#125; def
+/Cl1 &#123; Cl &#123;10.25 10.25 10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl2 &#123; Cl &#123;10.25 -10.25 10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl3 &#123; Cl &#123;-10.25 -10.25 10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl4 &#123; Cl &#123;-10.25 10.25 10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl5 &#123; Cl &#123;10.25 10.25 -10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl6 &#123; Cl &#123;10.25 -10.25 -10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl7 &#123; Cl &#123;-10.25 -10.25 -10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cl8 &#123; Cl &#123;-10.25 10.25 -10.25 translatepoint3d&#125; solidtransform &#125; def
+/Cs &#123;8.38  [18 16] newsphere
+ dup (White) outputcolors&#125; def
+/Cl12&#123; Cl1 Cl2 solidfuz&#125; def
+/Cl123&#123; Cl12 Cl3 solidfuz&#125; def
+/Cl1234&#123; Cl123 Cl4 solidfuz&#125; def
+/Cl12345&#123; Cl1234 Cl5 solidfuz&#125; def
+/Cl123456&#123; Cl12345 Cl6 solidfuz&#125; def
+/Cl1234567&#123; Cl123456 Cl7 solidfuz&#125; def
+/Cl12345678&#123; Cl1234567 Cl8 solidfuz&#125; def
+/C_Cs &#123; Cl12345678 Cs solidfuz&#125; def
+C_Cs  drawsolid**&#125;&#125;%
+\psP
+... (truncated)
+</code></pre>
+
+---
+
+## Example 56: Other
+
+**ID**: `bdea7646b03a`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-4,-3)(6,3)
+\psset&#123;lightsrc=50 -50 50,viewpoint=100 -30
+40,Decran=100,linewidth=0.5\pslinewidth, unit=0.5&#125;
+\codejps&#123;
+ /cylindre1 &#123;
+     -6 2 6 [36 36] newcylindrecreux %newcylindre
+     &#123;90 0 0 rotateOpoint3d&#125; solidtransform
+      dup (Yellow) (White) inoutputcolors
+   &#125; def
+ /cylindre2 &#123;
+     -6 2 6 [36 36] newcylindrecreux %newcylindre
+     &#123;90 0 90 rotateOpoint3d&#125; solidtransform
+      dup (Yellow) (White) inoutputcolors
+   &#125; def
+ /UnionCylindres &#123;cylindre1 cylindre2 solidfuz&#125; def
+  UnionCylindres  drawsolid**&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 57: Other
+
+**ID**: `2d2212fbd4ec`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5,lightsrc=50 -50 50,viewpoint=100 0 0 rtp2xyz,Decran=110,linewidth=0.5\pslinewidth&#125;
+\begin&#123;pspicture&#125;(-7,-6)(5,6)
+\defFunction&#123;F&#125;(t)&#123;t cos dup mul 5 mul&#125;&#123;t cos t sin mul 5 mul&#125;&#123;t sin 5 mul&#125;
+\codejps&#123;%
+   /cylindre1 &#123;
+       -5 2.5 5 [36 36] newcylindre
+       &#123;2.5 0 0 translatepoint3d&#125; solidtransform
+        dup (White) outputcolors
+   &#125; def
+   /sphere1 &#123;
+        5 [36 72] newsphere
+        dup (White) outputcolors
+   &#125; def
+   /CS &#123;cylindre1 sphere1 solidfuz&#125; def
+   CS drawsolid**&#125;
+\psPoint(0,0,0)&#123;O&#125;
+\psSolid[object=courbe,r=0,
+   function=F,
+   range=0 360,
+   linecolor=red,linewidth=4\pslinewidth]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 58: Other
+
+**ID**: `37506f2f8912`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-5,-4)(3,3)
+\psset&#123;lightsrc=50 50 50,viewpoint=40 50 60,Decran=30,unit=0.85&#125;
+\codejps&#123;
+ /anneau1 &#123;1 7 [12 36] newtore
+ &#123;0 0 0 translatepoint3d&#125; solidtransform
+ dup (Yellow) outputcolors&#125; def
+ /anneau2 &#123;1 7 [12 36] newtore
+ &#123;90 0 0 rotateOpoint3d&#125; solidtransform
+ &#123;7 0 0 translatepoint3d&#125; solidtransform
+ dup (White) outputcolors&#125; def
+ /collier &#123;anneau1 anneau2 solidfuz&#125; def
+  collier  drawsolid**&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 59: Other
+
+**ID**: `78267e0315f8`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-4.5,-4)(3.2,5)
+\psset&#123;lightsrc=50 50 10,lightintensity=2,viewpoint=100 50 20 rtp2xyz,
+Decran=30&#125;
+\psset&#123;linecolor=&#123;[cmyk]&#123;0,0.72,1,0.45&#125;&#125;,linewidth=0.5\pslinewidth,
+  unit=1&#125;
+%\psframe[fillstyle=solid,fillcolor=green!20](-4,-4)(3.2,5)
+\pstVerb&#123;/hetre &#123;0.764 0.6 0.204 setrgbcolor&#125; def
+         /chene &#123;0.568 0.427 0.086 setrgbcolor&#125; def
+         /bois &#123;0.956 0.921 0.65 setrgbcolor&#125; def
+         &#125;%
+\codejps&#123;
+ /H1 &#123;
+ 2  [18 16] newsphere
+ &#123;-90 0 0 rotateOpoint3d&#125; solidtransform
+ &#123;0 10.93 0 translatepoint3d&#125; solidtransform
+ dup (hetre) outputcolors&#125; def
+  /L1 &#123;
+     0 0.25 10  [12 10] newcylindre
+     &#123;-90 0 0 rotateOpoint3d&#125; solidtransform
+      dup (bois) outputcolors
+   &#125; def
+/HL1&#123; H1 L1  solidfuz&#125; def
+/HL2 &#123; HL1 &#123;0 0 -109.5 rotateOpoint3d&#125; solidtransform &#125; def
+/HL3 &#123; HL2 &#123;0 -120 0 rotateOpoint3d&#125; solidtransform &#125; def
+/HL4 &#123; HL2 &#123;0 120 0 rotateOpoint3d&#125; solidtransform &#125; def
+ /C &#123;3  [18 16] newsphere
+  &#123;90 0 0 rotateOpoint3d&#125; solidtransform
+   dup (chene) outputcolors&#125; def
+/HL12 &#123; HL1 HL2 solidfuz&#125; def
+/HL123 &#123; HL12 HL3 solidfuz&#125; def
+/HL1234 &#123; HL123 HL4 solidfuz&#125; def
+/methane &#123; HL1234 C solidfuz&#125; def
+  methane  drawsolid**&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 60: Other
+
+**ID**: `2227e51b56ca`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-2,-2)(3,3)
+\psset&#123;viewpoint=100 30 20,Decran=100&#125;
+\psSolid[object=cube,a=2,
+        action=draw*,
+        fillcolor=magenta!20]
+\axesIIID[showOrigin=false](1,1,1)(3,2,2.5)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 61: Other
+
+**ID**: `9d26d808684a`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-2,-1)(3,4)
+\psset&#123;viewpoint=100 45 20,Decran=100&#125;
+\psSolid[object=cylindre,h=2,r=1,
+        action=draw*,mode=4,
+        fillcolor=green!20]
+\axesIIID[linewidth=1pt,linecolor=red,arrowsize=5pt,
+          arrowinset=0,axisnames=&#123;a,b,c&#125;,
+          axisemph=&#123;\boldmath\Large\color&#123;red&#125;&#125;,
+          labelsep=10pt]
+         (1,1,2)(2,2,3)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 62: Other
+
+**ID**: `05f9e8bda907`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-7,-2)(7,4)
+\psset&#123;lightsrc=80 30 30&#125;
+\psset&#123;viewpoint=1000 60 20 rtp2xyz,Decran=1000&#125;
+\psframe(-7,-2)(7,4)
+\psset&#123;solidmemory&#125;
+\codejps&#123;/a 2 def /b 2 def&#125;%
+\defFunction[algebraic]&#123;F3&#125;(t)
+   &#123;a*(1+cos(t))&#125;
+   &#123;b*tan(t/2)&#125;
+   &#123;a*sin(t)&#125;
+\defFunction[algebraic]&#123;F3'&#125;(t)
+   &#123;-a*sin(t)&#125;
+   &#123;b*(1+tan(1/2*t)^2)&#125;
+   &#123;a*cos(t)&#125;
+\psSolid[object=courbe,
+   range=-2.7468 2.7468,
+   ngrid=72 12,
+   function=F3,hue=0 1 0.7 1,
+   action=none,name=H1,
+   r=1]%
+\psSolid[object=cylindrecreux,
+         h=20,r=1,RotX=90,
+         incolor=green!30,action=none,
+         name=C1,
+         ngrid=36 36](2,10,0)
+\psSolid[object=fusion,
+   base=H1 C1]
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 63: Other
+
+**ID**: `7e0acc6731e2`
+
+<pre><code class="language-latex">
+\psSolid[object=fusion,
+         base=H1 C1,
+         filename=horoptere,
+         action=writesolid]
+</code></pre>
+
+---
+
+## Example 64: Other
+
+**ID**: `ca2942671c14`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-4)(4,4)
+\psset&#123;lightsrc=80 30 30,viewpoint=100 45 30 rtp2xyz,Decran=110,linewidth=0.2pt&#125;
+\defFunction[algebraic]&#123;Func&#125;(t)&#123;2.5*cos(t)&#125;&#123;2.5*sin(t)&#125;&#123;2*cos(5*t)&#125;
+\defFunction[algebraic]&#123;Func'&#125;(t)&#123;-2.5*sin(t)&#125;&#123;2.5*cos(t)&#125;&#123;-10*sin(5*t)&#125;
+\psSolid[object=courbe,range=0 6.28,hue=0 1 0.7 1,
+   ngrid=360 8,function=Func,r=0.15]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 65: Other
+
+**ID**: `000d0ed673f9`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-4)(4,4)
+\psset&#123;lightsrc=80 30 30,viewpoint=100 45 30 rtp2xyz,Decran=110&#125;
+\defFunction[algebraic]&#123;FI&#125;(t)&#123;2.5*cos(t)&#125;&#123;2.5*sin(t)&#125;&#123;2*cos(5*t)&#125;
+\psSolid[object=courbe,range=0 6.28,linewidth=2pt,linecolor=blue,function=FI,r=0]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 66: Other
+
+**ID**: `40040a50f13a`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-3.5)(4,3.5)
+\psset&#123;lightsrc=80 30 30,viewpoint=100 45 90 rtp2xyz,Decran=100,linewidth=0.2pt&#125;
+\codejps&#123;
+/rpn &#123;tx@AlgToPs begin AlgToPs end cvx exec&#125; def
+/xc &#123;((2+1*cos(2.75*t))*cos(t)) rpn &#125; def
+/yc &#123;((2+1*cos(2.75*t))*sin(t)) rpn &#125; def
+/zc &#123;(1*sin(2.75*t)) rpn &#125; def
+/xc' &#123;(-2.75*sin(2.75*t)*cos(t)-(2+cos(2.75*t))*sin(t)) rpn &#125; def
+/yc' &#123;(-2.75*sin(2.75*t)*sin(t)+(2+cos(2.75*t))*cos(t)) rpn &#125; def
+/zc' &#123;(2.75*cos(2.75*t)) rpn &#125; def
+/g &#123; 3 dict begin /t exch def xc yc zc end &#125; def
+/g' &#123; % first derivative
+3 dict begin /t exch def xc' yc' zc' end &#125; def
+/solenoide&#123;
+% t_min t_max (name_function) radius_tube [resolution]
+   0 25.2 (g) 0.1 [360 8] newtube dup [0 1] solidputhuecolors&#125; def
+solenoide
+drawsolid**
+&#125;%
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 67: Other
+
+**ID**: `150928d19fcc`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-5,-3.5)(4,3)
+\psset&#123;lightsrc=80 30 30&#125;
+\psset&#123;viewpoint=100 60 20 rtp2xyz,
+       Decran=75&#125;
+\psframe*[linecolor=cyan!30](-4.5,-3)(3.5,3)
+\psSolid[object=datfile,filename=data/horoptere]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 68: Other
+
+**ID**: `dfee8d241d6a`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-2)(3.5,2)
+\psset&#123;viewpoint=100 -20 20 rtp2xyz,
+       Decran=75,unit=0.8&#125;
+\psSolid[object=grille,base=-4 4 -4 4]%
+\defFunction[algebraic]&#123;FIV&#125;(t)&#123;t&#125;&#123;t&#125;&#123;0.5&#125;
+\defFunction[algebraic]&#123;FIV'&#125;(t)&#123;1&#125;&#123;1&#125;&#123;0&#125;
+\psSolid[object=courbe,
+   range=-4 4, ngrid=16 16,
+   function=FIV, r=0.5]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 69: Other
+
+**ID**: `bf4f7650331c`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-3)(3.5,3)
+\psset&#123;viewpoint=100 20 45 rtp2xyz,
+       Decran=75,unit=0.7&#125;
+\psSolid[object=grille,base=-5 5 -5 5]%
+\defFunction[algebraic]&#123;FII&#125;(t)
+   &#123;4*cos(t)+cos(4*t)/2&#125;
+   &#123;4*sin(t)-sin(4*t)/2&#125;
+   &#123;1&#125;
+\defFunction[algebraic]&#123;FII'&#125;(t)
+   &#123;-4*sin(t)-2*sin(4*t)&#125;
+   &#123;4*cos(t)-2*cos(4*t)&#125;
+   &#123;0&#125;
+\psSolid[object=courbe,
+   range=0 6.28,ngrid=90 16,
+   function=FII,r=1]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 70: Other
+
+**ID**: `b0b73514cd9c`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-4)(3.5,4.5)
+\psset&#123;lightsrc=80 30 30,
+  viewpoint=100 20 20 rtp2xyz,Decran=50&#125;
+\defFunction[algebraic]&#123;FIII&#125;(t)
+  &#123;(t^2+3)*sin(15*t)&#125;
+  &#123;(t^2+3)*cos(15*t)&#125;&#123;2*t&#125;
+\defFunction[algebraic]&#123;FIII'&#125;(t)
+  &#123;2*t*sin(15*t)+15*(t^2+3)*cos(15*t)&#125;
+  &#123;2*t*cos(15*t)-15*(t^2+3)*sin(15*t)&#125;&#123;2&#125;
+\psSolid[object=courbe,
+  range=-2 2,ngrid=360 6,
+  function=FIII,hue=0.2 0.3,
+  linewidth=0.1pt,r=0.2]
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 71: Other
+
+**ID**: `2d97f7c60e43`
+
+<pre><code class="language-latex">
+\psPoint(x,y,z)&#123;name&#125;
+</code></pre>
+
+---
+
+## Example 72: Other
+
+**ID**: `3236a5d5f74f`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-4,-4)(4,5)
+\psset&#123;viewpoint=100 50 20 rtp2xyz,Decran=20&#125;
+\axesIIID(3,3,3)(20,20,20)
+\psPoint(-4.79,2.06,0)&#123;C1&#125;
+\psPoint(-4.79,15.76,0)&#123;Ox&#125;
+\psPoint(8.43,5.57,0)&#123;C2&#125;
+\psPoint(-14.14,3.34,0)&#123;H3&#125;
+\psPoint(14.14,-2.94,8.90)&#123;H6&#125;
+\psPoint(14.14,-2.94,-8.90)&#123;H7&#125;
+\psPoint(6.43,-16.29,0)&#123;H8&#125;
+\psline(C1)(H3)\psline(C2)(H7)
+\psline(C2)(H8)\psline(C1)(C2)
+\psline[doubleline=true](C1)(Ox)
+\psline(C2)(H6)
+\uput[r](H3)&#123;$\mathrm&#123;H_1&#125;$&#125;
+\uput[l](H6)&#123;$\mathrm&#123;H_2&#125;$&#125;
+\uput[l](H7)&#123;$\mathrm&#123;H_3&#125;$&#125;
+\uput[l](H8)&#123;$\mathrm&#123;H_4&#125;$&#125;
+\uput&#123;0.25&#125;[u](C1)&#123;$\mathrm&#123;C_1&#125;$&#125;
+\uput&#123;0.25&#125;[d](C2)&#123;$\mathrm&#123;C_2&#125;$&#125;
+\uput&#123;0.25&#125;[r](Ox)&#123;$\red\mathrm&#123;O&#125;$&#125;
+\psdots[dotstyle=o,dotsize=0.3](H3)(H6)(H7)(H8)
+\psdots[dotsize=0.4](C1)(C2)
+\psdot[linecolor=red,dotsize=0.4](Ox)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 73: Other
+
+**ID**: `64c0c8dd61fb`
+
+<pre><code class="language-latex">
+\psset&#123;solidmemory&#125;
+\psSolid[object=cylindre,
+   r=2,h=6
+   ngrid=6 24,
+   plansepare=&#123;[0.707 0 0.707 0]&#125;,
+   name=partiescylindre,
+   action=none](0,0,-3)
+</code></pre>
+
+---
+
+## Example 74: Other
+
+**ID**: `a9e97d74f50a`
+
+<pre><code class="language-latex">
+\psSolid[object=load,
+   load=partiescylindre1,
+   fillcolor=&#123;[rgb]&#123;0.7 1 0.7 &#125;&#125;,
+   fcol=0 (1 1 0.7 setrgbcolor)]
+\psSolid[object=load,
+   load=partiescylindre0,RotZ=60,
+   fillcolor=&#123;[rgb]&#123;0.7 1 0.7 &#125;&#125;,
+   fcol=0 (1 1 0.7 setrgbcolor)](0,4,0)
+</code></pre>
+
+---
+
+## Example 75: Other
+
+**ID**: `2d9c07195a37`
+
+<pre><code class="language-latex">
+\psSolid[object=new,
+   sommets=
+      0 -2 0 %% 0
+      -2 0 0 %% 1
+      0 4 0  %% 2
+      4 0 0  %% 3
+      0 0 5, %% 4
+  faces=&#123;
+     [3 2 1 0]
+     [4 0 3]
+     [4 3 2]
+     [4 2 1]
+     [4 1 0]&#125;,
+   plansepare=&#123;[0 0 1 -2]&#125;,
+   name=firstSlice,
+   action=none]
+\psSolid[object=load,action=draw*,
+        load=firstSlice1]
+\psSolid[object=plan,
+       definition=equation,
+       args=&#123;[0 0 1 -2]&#125;,
+       base=-3 5 -3 5,action=draw]
+</code></pre>
+
+---
+
+## Example 76: Other
+
+**ID**: `c00905bb234c`
+
+<pre><code class="language-latex">
+\psSolid[object=new,
+   sommets=
+      0 -2 0 %% 0
+      -2 0 0 %% 1
+      0 4 0  %% 2
+      4 0 0  %% 3
+      0 0 5, %% 4
+  faces=&#123;
+     [3 2 1 0]
+     [4 0 3]
+     [4 3 2]
+     [4 2 1]
+     [4 1 0]
+&#125;,filename=data/Pyramid,fillcolor=yellow!50,
+  action=writesolid]
+</code></pre>
+
+---
+
+## Example 77: Other
+
+**ID**: `d138ec73e5be`
+
+<pre><code class="language-latex">
+\psSolid[object=datfile,
+         filename=data/Pyramid]
+</code></pre>
+
+---
+
+## Example 78: Other
+
+**ID**: `e92140886ca2`
+
+<pre><code class="language-latex">
+\psset&#123;solidmemory&#125;
+\psSolid[object=datfile,
+         filename=data/Pyramid,
+   plansepare=&#123;[0 0 1 -2]&#125;,
+   name=firstSlice,
+   action=none]
+\psSolid[object=load,
+        load=firstSlice1,
+        action=none,
+        plansepare=&#123;[0 0 1 -1]&#125;,
+        name=secondSlice]
+\psSolid[object=load,action=draw*,
+        load=secondSlice0]
+\psSolid[object=load,
+       load=secondSlice0,
+       filename=data/slicePyramid,
+      action=writesolid]
+\psSolid[object=datfile,fillcolor=yellow!50,
+         filename=data/slicePyramid]
+</code></pre>
+
+---
+
+## Example 79: Other
+
+**ID**: `34c06be21d2a`
+
+<pre><code class="language-latex">
+\psSolid[object=load,
+   load=my_octahedron,
+   plansepare=P,
+   name=part]
+</code></pre>
+
+---
+
+## Example 80: Other
+
+**ID**: `0eef983adaa1`
+
+<pre><code class="language-latex">
+\psSolid[object=load,
+         fcol=0 (YellowOrange),
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+        load=part1]
+\psSolid[object=load,
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+        load=part0](H 2 mulv3d,,)
+\composeSolid
+</code></pre>
+
+---
+
+## Example 81: Other
+
+**ID**: `8361fd2b5ffa`
+
+<pre><code class="language-latex">
+\psset&#123;solidmemory&#125;
+\psSolid[object=datfile,
+         fcol=0 (Dandelion),
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+         name=C1,
+         action=none,
+         filename=data/cubeHexagone]
+</code></pre>
+
+---
+
+## Example 82: Other
+
+**ID**: `59f50abd2c19`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3,-2)(3,7.5)
+\psset&#123;viewpoint=50 20 20 rtp2xyz,Decran=50&#125;
+\psset&#123;lightsrc=viewpoint&#125; 
+\psSolid[object=cylindre,
+   ngrid=1 24,
+   r=2,
+   fillcolor=yellow!25,
+   intersectiontype=0,
+   intersectionplan=&#123;
+      [0 0 1 -1]
+      [0 0 1 -2]
+      [0 0 1 -3]
+      [0.894 0 0.447 -1.8]&#125;,
+   intersectioncolor=(bleu) (rouge) (vert) (rose),
+   intersectionlinewidth=1 1.5 1.8 2.2]
+\axesIIID(2,2,6)(3,3,7)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 83: Other
+
+**ID**: `b79e94d31dc6`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-3)(4.5,5)
+\psset&#123;viewpoint=100 5 10 rtp2xyz,Decran=80,
+   lightsrc=viewpoint,solidmemory,action=none&#125;
+\psSolid[object=octahedron,
+   a=4,name=my_octahedron,]
+\psSolid[object=point,
+   definition=solidcentreface,
+   args=my_octahedron 1,
+   name=G,]
+\psSolid[object=point,
+   definition=mulv3d,
+   args=G .8,
+   name=H,]
+\psSolid[object=plan,
+   definition=solidface,
+   args=my_octahedron 1,
+   base=-4 4 -4 4,
+   name=P,](H,,)
+\psSolid[object=load,
+   load=my_octahedron,
+   plansepare=P,
+   name=part]
+\psSolid[object=load,load=part1,
+         rm=0,hollow,action=draw**,
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+         incolor=&#123;[rgb]&#123;1 1 0.7&#125;&#125;,]
+\psSolid[object=plan,args=P,
+       action=draw,showBase]
+\psSolid[object=line,
+   args=0 0 0 H,
+   linestyle=dashed,]
+\psProjection[object=point,plan=P,args=0 0,
+    fontsize=20,pos=cl,text=H,phi=90,]
+\axesIIID[linecolor=blue,linewidth=0.4pt](0,0,0)(4,4,4)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 84: Other
+
+**ID**: `ab0e91a29818`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-3)(4.5,5)
+\psset&#123;viewpoint=100 5 10 rtp2xyz,Decran=80,
+   lightsrc=viewpoint,solidmemory,action=none&#125;
+\psSolid[object=octahedron,
+   a=4,name=my_octahedron,]
+\psSolid[object=point,
+   definition=solidcentreface,
+   args=my_octahedron 1,
+   name=G,]
+\psSolid[object=point,
+   definition=mulv3d,
+   args=G .8,
+   name=H,]
+\psSolid[object=plan,
+   definition=solidface,
+   args=my_octahedron 1,
+   base=-4 4 -4 4,
+   name=P,](H,,)
+\psSolid[object=load,
+   load=my_octahedron,
+   plansepare=P,
+   name=part]
+\psSolid[object=load,
+   load=part1,
+   fcol=0 (YellowOrange),
+   action=draw**,
+   fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,]
+\psSolid[object=plan,args=P,
+       action=draw,showBase]
+\psSolid[object=line,
+   args=0 0 0 H,
+   linestyle=dashed,]
+\psProjection[object=point,plan=P,args=0 0,
+    fontsize=20,pos=cl,text=H,phi=90,]
+\axesIIID[linecolor=blue,linewidth=0.4pt](0,0,0)(4,4,4)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 85: Other
+
+**ID**: `f95de6dd9f49`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-3)(4.5,5)
+\psset&#123;viewpoint=100 5 20 rtp2xyz,Decran=150,
+   lightsrc=viewpoint,solidmemory,action=none&#125;
+\psSolid[object=octahedron,
+   a=2,name=my_octahedron,]
+\psSolid[object=point,
+   definition=solidcentreface,
+   args=my_octahedron 1,
+   name=G,]
+\psSolid[object=point,
+   definition=mulv3d,
+   args=G .7,
+   name=H,]
+\psSolid[object=plan,
+   definition=solidface,
+   args=my_octahedron 1,
+   base=-4 4 -4 4,
+   name=P,](H,,)
+\psSolid[object=load,
+   load=my_octahedron,
+   plansepare=P,
+   name=part]
+\psset&#123;action=draw**&#125;
+\psSolid[object=load,
+   load=part1,
+   fcol=0 (YellowOrange),
+   fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,]
+\psSolid[object=load,
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+        load=part0](H 2 mulv3d,,)
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 86: Other
+
+**ID**: `70880c2e0be2`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=100 30 20 rtp2xyz,Decran=150&#125;
+\begin&#123;pspicture&#125;(-4,-3)(4,5)
+\psset&#123;solidmemory&#125;
+\psSolid[object=plan,definition=normalpoint,
+   args=&#123;1 1 1 [1 1 1]&#125;,action=none,name=P]
+\psSolid[object=cube,a=2,action=draw,
+   intersectiontype=0,
+   intersectionplan=P,
+   intersectionlinewidth=2,
+   intersectioncolor=(rouge),
+](1,1,1)
+\psProjection[object=point,
+   args=0 0,fontsize=10,pos=dc,
+   text=H,phi=-30,plan=P,
+]
+\psSolid[object=line,
+   linestyle=dashed,
+   args=0 0 0 1 1 1]
+\psSolid[object=vecteur,
+   linecolor=red,
+   args=1 1 1 .7 mulv3d](1,1,1)
+\axesIIID[linecolor=blue](2,2,2)(2.5,2.5,2.5)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 87: Other
+
+**ID**: `afaebc6ee145`
+
+<pre><code class="language-latex">
+\psset&#123;viewpoint=100 30 20 rtp2xyz,Decran=150&#125;
+\begin&#123;pspicture&#125;(-4,-3)(4,5)
+\psset&#123;solidmemory&#125;
+\psSolid[object=plan,action=none,definition=normalpoint,
+   args=&#123;1 1 1 [1 1 1]&#125;,name=P]
+\psSolid[object=cube,a=2,
+   plansepare=P,
+   action=none,
+   name=parts_cube,
+](1,1,1)
+\psSolid[object=load,
+         load=parts_cube1,
+         fcol=0 (Dandelion),
+         fillcolor=&#123;[rgb]&#123;0.7 1 0.7&#125;&#125;,
+]
+\psProjection[object=point,
+   args=0 0,fontsize=10,pos=dc,
+   text=H,phi=-30,plan=P,
+]
+\psSolid[object=vecteur,
+   linecolor=red,
+   args=1 1 1 .7 mulv3d](1,1,1)
+\axesIIID[linecolor=blue](2,2,2)(2.5,2.5,2.5)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 88: Other
+
+**ID**: `c1704b3ccd5a`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-4,-4)(4,4)
+\psset&#123;viewpoint=100 20 20 rtp2xyz,Decran=75&#125;
+\psset&#123;solidmemory,lightsrc=viewpoint&#125;
+\codejps&#123;
+   /coeff 0.75 def /rO 4 def /OH coeff rO mul neg def&#125;%
+\psSolid[object=sphere,
+   r=rO,ngrid=9 18,
+   plansepare=&#123;[1 0 0 OH]&#125;,
+   name=part,
+   action=none]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[-1 0 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 1 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 -1 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 0 1 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 0 -1 OH]&#125;,action=none,name=part]
+\psSolid[object=load,hue=.1 .8 0.5 1,
+   load=part1](0,0,0)
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 89: Other
+
+**ID**: `c2801ad846f0`
+
+<pre><code class="language-latex">
+\begin&#123;pspicture&#125;(-3.5,-4)(3.5,4)
+\psset&#123;viewpoint=100 -20 10 rtp2xyz,Decran=100&#125;
+%\lightsource
+\psset&#123;lightsrc=viewpoint&#125;
+\codejps&#123;
+4 4 6 newparallelepiped
+45 90 360 &#123;
+/iAngle exch def
+  /n_x iAngle cos 35.2644 cos mul def
+  /n_y iAngle sin 35.2644 cos mul def
+  /n_z 35.2644 sin def
+  /distance 2 3 add 3 sqrt div neg def
+[ n_x n_y n_z distance]
+solidplansepare
+&#125; for
+45 90 360 &#123;
+/iAngle exch def
+  /n_x iAngle cos 35.2644 cos mul def
+  /n_y iAngle sin 35.2644 cos mul def
+  /n_z 35.2644 sin neg def
+  /distance 2 3 add 3 sqrt div neg def
+[ n_x n_y n_z distance]
+solidplansepare
+&#125; for
+45 90 360 &#123;
+/iAngle exch def
+% plan : ax+by+cz-d=0
+[ iAngle cos % a
+  iAngle sin % b
+  0 % c
+  -2.5 % -d
+] solidplansepare
+&#125; for
+dup [.5 .2] solidputhuecolors
+solidlightOn
+drawsolid*&#125;
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 90: Other
+
+**ID**: `c39f7cabe9c6`
+
+<pre><code class="language-latex">
+\psSolid[object=face,base=x1 y1 x2 y2 x3 y3 ...xn yn](0,0,0)%
+</code></pre>
+
+---
+
+## Example 91: Other
+
+**ID**: `9e0e60d31b54`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.4&#125;
+\psset&#123;viewpoint=50 -20 30 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-5.5,-4.5)(7,3.5)
+\psSolid[object=grille,base=-4 6 -4 4,action=draw,linecolor=gray](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,base=0 0 3 0 1.5 3,
+  num=all,show=all](0,1,0)
+\psSolid[object=face,fillcolor=yellow,
+  action=draw*,incolor=blue,
+  base=0 0 3 0 1.5 3,num=all,
+  show=all,biface,RotX=180](0,-1,0)
+\axesIIID(0,0,0)(6,6,3)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 92: Other
+
+**ID**: `281c7c55fd93`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.45&#125;
+\psset&#123;viewpoint=50 -20 30 rtp2xyz,Decran=50&#125;
+\def\BASE&#123;0 10 360&#123;/Angle ED 5 Angle cos dup mul mul % x
+ 3 Angle cos 3 exp Angle sin mul mul &#125; for&#125;% y
+\begin&#123;pspicture&#125;(-7,-5.5)(9,6)
+\defFunction[algebraic]&#123;F&#125;(t)&#123;5*(cos(t))^2&#125;
+   &#123;3*(sin(t))*(cos(t))^3&#125;&#123;&#125;
+\psSolid[object=grille,base=-6 6 -6 6,action=draw,linecolor=gray](0,0,0)
+\psSolid[object=face,fillcolor=magenta,action=draw*,
+  incolor=blue,biface,RotZ=90,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,RotY=180,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=red,biface,RotY=180,RotZ=90,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\axesIIID(0,0,0)(6,6,5)
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 93: Other
+
+**ID**: `9cd566e013a2`
+
+<pre><code class="language-latex">
+\psset&#123;unit=.6&#125;
+\begin&#123;pspicture&#125;(-6,-5)(6,7)
+\psset&#123;solidmemory&#125;
+\psSolid[object=cylindre,h=6,fillcolor=blue,
+      r=1.5,
+      ngrid=4 16,
+      action=none,
+      name=A1,
+      ](0,0,-4)
+\psSolid[object=anneau,h=6,fillcolor=red!50,
+      R=4,r=3,h=1,
+      action=none,
+      name=B1,
+      ](0,0,-1)
+\psSolid[object=fusion,
+      action=draw**,
+      base=A1 B1,
+      ](0,0,0)
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 94: Other
+
+**ID**: `108b26485a49`
+
+<pre><code class="language-latex">
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-6,-5)(6,5)
+\psset&#123;solidmemory&#125;
+\psset&#123;lightsrc=50 -50 50,viewpoint=100 -30 40,
+   Decran=100,linewidth=0.5\pslinewidth,
+   ngrid=18 18,fillcolor=white,
+   h=12,r=2,RotX=90&#125;
+\psframe*[linecolor=black](-6,-5)(6,5)
+\psSolid[object=cylindrecreux,
+   action=none,
+   name=cylindre1](0, 6, 0)
+\psSolid[object=cylindrecreux,
+   RotZ=90,
+   action=none,
+   name=cylindre2](-6, 0, 0)
+\psSolid[object=fusion,
+   base=cylindre1 cylindre2,RotX=0]
+\composeSolid
+\end&#123;pspicture&#125;
+</code></pre>
+
+---
+
+## Example 95: Other
+
+**ID**: `096bc4c7c952`
+
+<pre><code class="language-latex">
+\psSolid[object=tore,
+   filename=montore,
+   action=writesolid]
+</code></pre>
+
+---
+
+## Example 96: Other
+
+**ID**: `2a30cc7413bf`
+
+<pre><code class="language-latex">
+\psSolid[object=datfile, filename=montore]
+</code></pre>
+
+---
+
+## Example 97: Other
+
+**ID**: `8876a87fe26c`
+
+<pre><code class="language-latex">
+\psSolid[object=tore,
+   filename=montore,
+   action=writeobj]
+</code></pre>
+
+---
+
+## Example 98: Other
+
+**ID**: `e77370e5dd38`
+
+<pre><code class="language-latex">
+\psSolid[object=objfile, filename=montore]
+</code></pre>
+
+---
+
+## Example 99: Other
+
+**ID**: `576d1e0a052d`
+
+<pre><code class="language-latex">
+\psSolid[object=tore,
+   filename=montore,
+   action=writeoff]
+</code></pre>
+
+---
+
+## Example 100: Other
+
+**ID**: `0132c660fed1`
+
+<pre><code class="language-latex">
+\psSolid[object=offfile, filename=montore]
+</code></pre>
+
+---
+

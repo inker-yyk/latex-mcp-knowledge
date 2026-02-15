@@ -1,954 +1,900 @@
 ---
 title: "Executable Examples - Page 28"
-description: "Items 1351-1400 of 5325 executable examples"
+description: "Items 1351-1400 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 28
 
-Showing items **1351-1400** of **5325**
+Showing items **1351-1400** of **5999**
 
-[← Previous](executable_example-page-026) | Page 28 of 107 | [Next →](executable_example-page-028)
+[← Previous](executable_example-page-026) | Page 28 of 120 | [Next →](executable_example-page-028)
 
 ---
 
 ## 1351. Other
 
-**ID**: `2ecebda2aed1`  
+**ID**: `af915019959e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\theimportantmacro#1&#123;I got the pre-assembled argument `#1' here.&#125;
-\def\temp&#123;xyz&#125;
-\expandafter\theimportantmacro\expandafter&#123;\temp&#125;
+% requires \usepackage&#123;array&#125;
+\pgfplotstableset&#123;% could be used in preamble
+    create on use/quot1/.style=
+        &#123;create col/quotient=&#123;error1&#125;&#125;&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;error1,quot1&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill&#125;,
+    columns/quot1/.style=&#123;dec sep align&#125;]
+&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1352. Other
 
-**ID**: `77cfa2d605b2`  
+**ID**: `9b79c8c36031`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macroone&#123;This is macro one \macrotwo&#125;
-\def\macrotwo&#123;--2--&#125;
-\def\macrothree#1&#123;\def\macrofour&#123;4[#1]&#125;&#125;
-\expandafter\macrothree\expandafter&#123;\macroone&#125;%
-So far, nothing has been typeset. But now: \macrofour.
-\message&#123;We have macrofour = \meaning\macrofour&#125;%
+\pgfplotstableset&#123;
+    create on use/my new col/.style=&#123;create col/set=&#123;--empty--&#125;&#125;,
+    columns/my new col/.style=&#123;string type&#125;
+&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,my new col&#125;,
+]&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1353. Other
 
-**ID**: `35281255f619`  
+**ID**: `50213f7fdb56`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\a&#123;3&#125;
-\def\b&#123;2\a&#125;
-\def\c&#123;1\b&#125;
-\def\d&#123;value=\c&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
-\edef\d&#123;value=\c&#125;
-\message&#123;Macro `d' is e-defined to be `\meaning\d'&#125;
-\expandafter\def\expandafter\d\expandafter&#123;\c&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d' using expandafter&#125;
+\pgfplotstableset&#123;
+    create on use/my new col/.style=&#123;
+        create col/set list=&#123;A,B,C,4,50,55,...,100&#125;&#125;,
+    columns/my new col/.style=&#123;string type&#125;
+&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,my new col&#125;,
+]&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1354. Other
 
-**ID**: `ce00e6e812a1`  
+**ID**: `db07f801ae73`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\edef\d&#123;\count0=42&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
-\def\a&#123;1234&#125;
-\edef\d&#123;\advance\count0 by\a&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\pgfplotstableset&#123;
+    create on use/new/.style=&#123;create col/copy=&#123;level&#125;&#125;
+&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,new&#125;,
+    columns/new/.style=&#123;column name=Copy of level&#125;
+]&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1355. Other
 
-**ID**: `280059b2114d`  
+**ID**: `8dd562b30c9e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\edef\d&#123;Invoke \noexpand\a another macro&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\pgfkeys&#123;/pgf/fpu=true&#125;
 </code></pre>
 
 ---
 
 ## 1356. Other
 
-**ID**: `3e7df2735d1d`  
+**ID**: `46de9600e7d9`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\toks0=&#123;A \token list \a \b \count0=42 will never be expanded&#125;
-\edef\d&#123;\the\toks0 &#125;% the space token is important!
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\pgfplotstableset&#123;
+    create on use/new/.style=&#123;
+        create col/expr=&#123;\thisrow&#123;level&#125;*2&#125;&#125;
+&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,new&#125;,
+    columns/new/.style=&#123;column name=$2\cdot $level&#125;
+]&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
-## 1357. Pie Chart
+## 1357. Other
 
-**ID**: `05ed179b901d`  
+**ID**: `2d4ef658a52c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\piecea&#123;\a&#123;xyz&#125;&#125;
-\def\pieceb&#123;\count0=42 &#125;
-\def\piecec&#123;string \b&#125;
-\toks0=\expandafter&#123;\piecea&#125;
-\toks1=\expandafter&#123;\pieceb&#125;
-\toks2=\expandafter&#123;\piecec&#125;
-\edef\d&#123;I have \the\toks0 and \the\toks1 and \the\toks2&#125;
-\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\pgfplotstableset&#123;
+    create on use/new/.style=&#123;
+        create col/expr=&#123;\pgfmathaccuma + \thisrow&#123;level&#125;&#125;&#125;,
+    create on use/new2/.style=&#123;
+        create col/expr accum=&#123;\pgfmathaccuma * \thisrow&#123;level&#125;&#125;&#123;1&#125;%&lt;- start with `1'
+    &#125;
+&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,new,new2&#125;,
+    columns/new/.style=&#123;column name=$\sum$level&#125;,
+    columns/new2/.style=&#123;column name=$\prod$level&#125;
+]&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1358. Other
 
-**ID**: `00cd7903d9f7`  
+**ID**: `da83b6b915a0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro&#123;Content&#125;
-This here is normal usage: `\macro'.
-This here uses csname: `\csname macro\endcsname'.
+% requires \usepackage&#123;array&#125;
+\pgfplotstableset&#123;% configuration, for example, in preamble:
+    create on use/quot1/.style=&#123;create col/quotient=error1&#125;,
+    create on use/quot2/.style=&#123;create col/quotient=error2&#125;,
+    columns=&#123;error1,error2,quot1,quot2&#125;,
+    %
+    % display styles:
+    columns/error1/.style=&#123;sci,sci zerofill&#125;,
+    columns/error2/.style=&#123;sci,sci zerofill&#125;,
+    columns/quot1/.style=&#123;dec sep align&#125;,
+    columns/quot2/.style=&#123;dec sep align&#125;
+&#125;
+
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1359. Other
 
-**ID**: `d60dff8b612c`  
+**ID**: `ebf6f1c9491a`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\expandafter\def\csname a01macro with.strange.chars\endcsname&#123;Content&#125;
-I use a strange macro. Here is it: `\csname a01macro with.strange.chars\endcsname'.
+% requires \usepackage&#123;array&#125;
+\pgfplotstabletypeset[% here, configuration options apply only to this single statement:
+    create on use/rate1/.style=&#123;create col/dyadic refinement rate=&#123;error1&#125;&#125;,
+    create on use/rate2/.style=&#123;create col/dyadic refinement rate=&#123;error2&#125;&#125;,
+    columns=&#123;error1,error2,rate1,rate2&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill&#125;,
+    columns/error2/.style=&#123;sci,sci zerofill&#125;,
+    columns/rate1/.style=&#123;dec sep align&#125;,
+    columns/rate2/.style=&#123;dec sep align&#125;]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1360. Other
 
-**ID**: `52dbcdc3b254`  
+**ID**: `0abcbeed357a`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro&#123;onetwothree&#125;
-\expandafter\def\csname macro\macro\endcsname&#123;Content&#125;
-I have just defined \expandafter\string\csname macro\macro\endcsname
-with replacement text `\csname macro\macro\endcsname'.
+% requires \usepackage&#123;array&#125;
+\pgfplotstableset&#123;% configuration, for example in preamble:
+    create on use/slopes1/.style=&#123;create col/gradient loglog=&#123;dof&#125;&#123;error1&#125;&#125;,
+    create on use/slopes2/.style=&#123;create col/gradient loglog=&#123;dof&#125;&#123;error2&#125;&#125;,
+    columns=&#123;dof,error1,error2,slopes1,slopes2&#125;,
+    % display styles:
+    columns/dof/.style=&#123;int detect&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill&#125;,
+    columns/error2/.style=&#123;sci,sci zerofill&#125;,
+    columns/slopes1/.style=&#123;dec sep align&#125;,
+    columns/slopes2/.style=&#123;dec sep align&#125;
+&#125;
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1361. Other
 
-**ID**: `85f886d96824`  
+**ID**: `130d861f04be`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro&#123;Content&#125;
-I have just defined `\string\macro' using `\string\def'.
+% requires \usepackage&#123;array&#125;
+\pgfplotstableset&#123;% configuration, for example in preamble:
+    create on use/slopes1/.style=&#123;create col/gradient semilogy=&#123;level&#125;&#123;error1&#125;&#125;,
+    columns=&#123;level,error1,slopes1&#125;,
+    % display styles:
+    columns/level/.style=&#123;int detect&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill,sci subscript&#125;,
+    columns/slopes1/.style=&#123;dec sep align&#125;
+&#125;
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1362. Other
 
-**ID**: `5d735aec09f0`  
+**ID**: `cfba7f8b316b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-int i = 42;
+% load table from somewhere:
+\pgfplotstableread&#123;
+    x y
+    1 1
+    2 4
+    3 9
+    4 16
+    5 25
+    6 36
+&#125;\loadedtbl
 
-&#123;
-	++i;
-	int i = 5;
-&#125;
+% create the `regression' column:
+\pgfplotstablecreatecol[linear regression]
+    &#123;regression&#125;
+    &#123;\loadedtbl&#125;
+% store slope
+\xdef\slope&#123;\pgfplotstableregressiona&#125;
+
+\pgfplotstabletypeset\loadedtbl\\
+
+The slope is `\slope'.
 </code></pre>
 
 ---
 
-## 1363. Other
+## 1363. Line Chart
 
-**ID**: `f2321944408f`  
+**ID**: `8d110d3f3d1e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\i&#123;42&#125;
-&#123;
-	\def\i&#123;43&#125;
-	\def\b&#123;2&#125;
-&#125;
-The value of \textbackslash i is now \i.
-</code></pre>
+\pgfplotstablenew[
+    create on use/cut/.style=&#123;create col/function graph cut y=
+        &#123;2.5e-4&#125; % search for fixed L2 = 2.5e-4
+        &#123;x=Basis,y=L2,ymode=log,xmode=log&#125; % double log, each function is L2(Basis)
+        % now, provide each single function f_i(Basis):
+        &#123;&#123;table=plotdata/newexperiment1.dat&#125;,&#123;table=plotdata/newexperiment2.dat&#125;&#125;
+    &#125;,
+    columns=&#123;cut&#125;]
+    &#123;2&#125;
+    \loadedtable
+
+% Show the data:
+\pgfplotstabletypeset&#123;\loadedtable&#125;
 
----
-
-## 1364. Other
-
-**ID**: `6c580dcdb4c9`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-&#123;
-	\global\def\a&#123;123&#125;
-	\global\advance\count0 by3
-	\global\toks0=&#123;34&#125;
-&#125;
-</code></pre>
-
----
-
-## 1365. Other
-
-**ID**: `c07c4e41de92`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\initialvalue&#123;0&#125;
-&#123;
-	% do something:
-	\def\initialvalue&#123;42&#125;
-	\global\let\myglobaltemporary=\initialvalue
-&#125;
-\let\initialvalue=\myglobaltemporary
-</code></pre>
-
----
-
-## 1366. Other
-
-**ID**: `c08670d096ad`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\smuggle#1\endgroup&#123;%
-	\expandafter\endgroup\expandafter\def\expandafter#1\expandafter&#123;#1&#125;%
-&#125;
-
-\begingroup
-	\def\variable&#123;12&#125;
-	\edef\variable&#123;\variable34&#125;
-	\edef\variable&#123;\variable56&#125;
-	\smuggle\variable
-\endgroup
-</code></pre>
-
----
-
-## 1367. Other
-
-**ID**: `8024af8784eb`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\ifnum1=2 % this space is important.
-This is shown if above were true.
-\else
-This is shown if above results to false.
-\fi
-</code></pre>
-
----
-
-## 1368. Other
-
-**ID**: `904175727c93`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\ifdim1pt=2pt % this space is important.
-This is shown if above were true.
-\else
-This is shown if above results to false.
-\fi
-</code></pre>
-
----
-
-## 1369. Other
-
-**ID**: `43b67fe27fa1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\empty&#123;\empty&#125;
-\ifx\empty\empty %
-This is shown if the two tokens have equal expansion.
-\else
-This is shown if the two tokens expand to something different.
-\fi
-</code></pre>
-
----
-
-## 1370. Other
-
-**ID**: `483dc6233104`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\empty&#123;\relax&#125;
-\ifx\empty\relax %
-This is shown if the two tokens have equal expansion.
-\else
-This is shown if the two tokens expand to something different.
-\fi
-</code></pre>
-
----
-
-## 1371. Other
-
-**ID**: `fe196848bcef`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\choice&#123;a&#125;
-\if b\choice
-  This is shown for the `b' choice.
-\else
-  This is shown for all other choices.
-\fi
-</code></pre>
-
----
-
-## 1372. Other
-
-**ID**: `4cd74d7f51cf`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\choice&#123;a&#125;
-\edef\temp&#123;The choice is \if a\choice `a'\else not `a'\fi&#125;
-We have now \texttt&#123;\string temp=\meaning\temp&#125;.
-</code></pre>
-
----
-
-## 1373. Other
-
-**ID**: `b99c2fdbfa52`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\shownexttoken#1&#123;The next token is `\texttt&#123;\string#1&#125;'.&#125;
-\def\mymacro&#123;%
- 	\ifnum1=1 %
- 		\expandafter\shownexttoken%
- 	\fi%
-&#125;%
-\mymacro 23
-</code></pre>
-
----
-
-## 1374. Other
-
-**ID**: `5affe3825163`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\long\def\countingloop#1 in #2:#3#4&#123;%
-	#1=#2 %
-	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
-&#125;
-
-\long\def\loopcounter#1#2#3&#123;%
-	#3%
-	\ifnum#1=#2 %
-	\else%
-		\advance#1 by1 %
-		\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;%
-	\fi%
-&#125;
-\countingloop&#123;\count0&#125; in 0:&#123;3&#125;&#123;%
-	The current value is `\the\count0'\par
-&#125;
-</code></pre>
-
----
-
-## 1375. Other
-
-**ID**: `c9ac4e5e8d58`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\long\def\countingloop#1 in #2:#3#4&#123;%
-	#1=#2 %
-	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
-&#125;
-
-\long\def\loopcounter#1#2#3&#123;%
-	#3%
-	\ifnum#1=#2 %
-		\let\next=\relax%
-	\else
-		\advance#1 by1 %
-		\def\next&#123;\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;&#125;%
-	\fi
-	\next
-&#125;
-\newcount\ourcounter
-
-\countingloop&#123;\ourcounter&#125; in 0:&#123;3&#125;&#123;%
-	The current value is `\the\ourcounter'\par
-&#125;
-</code></pre>
-
----
-
-## 1376. Other
-
-**ID**: `8779eb7cec67`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\listingloopENDMARKER&#123;\par \listingloopENDMARKER&#125;
-\long\def\listingloop#1in#2#3&#123;%
-	\looppicker&#123;#1&#125;&#123;#3&#125;#2,\listingloopENDMARKER,%
-&#125;%
-\long\def\looppicker#1#2#3,&#123;%
-	\def\tempitem&#123;#3&#125;%
-	\ifx\tempitem\listingloopENDMARKER
-		\let\next=\relax%
-	\else
-		\def#1&#123;#3&#125;%
-		#2%
-		\def\next&#123;\looppicker&#123;#1&#125;&#123;#2&#125;&#125;%
-	\fi
-	\next
-&#125;%
-\listingloop\x in&#123;a,b,c,,d,e&#125;&#123;%
-	The current item is `\x'
-&#125;
-</code></pre>
-
----
-
-## 1377. Other
-
-**ID**: `7ddc57cf4eee`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
-
-\pgfkeysgetvalue&#123;/notes/key&#125;\temp
-
-The value of key \texttt&#123;/notes/key&#125; is `\temp'.
-</code></pre>
-
----
-
-## 1378. Other
-
-**ID**: `87e9f23f3498`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\something&#123;abc&#125;
-\pgfkeyslet&#123;/notes/key&#125;&#123;\something&#125;
-
-\pgfkeysgetvalue&#123;/notes/key&#125;\temp
-
-The value of key \texttt&#123;/notes/key&#125; is `\temp'.
-</code></pre>
-
----
-
-## 1379. Other
-
-**ID**: `6b574db35527`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
-
-The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
-</code></pre>
-
----
-
-## 1380. Other
-
-**ID**: `c1a5d188a292`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
-
-\edef\temp&#123;--- \pgfkeysvalueof&#123;/notes/key&#125; ---&#125;
-
-The value of key \texttt&#123;/notes/key&#125; along with dashes is \temp.
-</code></pre>
-
----
-
-## 1381. Other
-
-**ID**: `96e39948603f`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeysdef&#123;/notes/code key&#125;&#123;Expansion with value #1---X.&#125;%
-
-We ``assign a value'' or ``execute the code key'' (which is equivalent):
-\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
-</code></pre>
-
----
-
-## 1382. Other
-
-**ID**: `142fd6ce7368`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-% key definition:
-\pgfkeys&#123;
-	/notes/key/.initial=abc,
-&#125;
-
-The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
-
-% key usage:
-\pgfkeys&#123;
-	/notes/key =  efg  ,
-&#125;
-
-The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
-</code></pre>
-
----
-
-## 1383. Other
-
-**ID**: `8bdd28532078`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeys&#123;
-	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
-&#125;%
-
-Execute the key using the simple API:
-\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
-
-... execute the key using assignment in the standard API:
-\pgfkeys&#123;/notes/code key=abc&#125;
-</code></pre>
-
----
-
-## 1384. Other
-
-**ID**: `9858870cf0f2`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeys&#123;
-	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
-	/notes/code key/.code=Expansion with value #1---X.,
-&#125;%
-</code></pre>
-
----
-
-## 1385. Other
-
-**ID**: `b476c26809f9`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfkeys&#123;
-	/notes/A/.initial=,
-	/notes/B/.initial=,
-	/notes/my style/.style=&#123;
-		/notes/A=&#123;#1&#125;,
-		/notes/B=&#123;#1&#125;,
-	&#125;,
-&#125;%
-
-Definition has been done. Assigning the style:
-\pgfkeys&#123;
-	/notes/my style=42
-&#125;
-OK. Value of A=\pgfkeysvalueof&#123;/notes/A&#125;, value of B=\pgfkeysvalueof&#123;/notes/B&#125;.
-</code></pre>
-
----
-
-## 1386. Other
-
-**ID**: `ae343d184c9c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\collectargument#1&#123;%
-	\def\collectedcontent&#123;#1&#125;%
-	\ifx\collectedcontent\empty
-		It is empty.
-	\else
-		It is not empty, executing it: #1.
-	\fi
-&#125;%
-
-\collectargument&#123;&#125;% works
-
-\collectargument&#123;something&#125;% works
-
-\collectargument&#123;% does not work!
-	\def\something#1&#123;which depends on #1&#125;
-&#125;%
-</code></pre>
-
----
-
-## 1387. Other
-
-**ID**: `a8db647f40a1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\def\collectargument#1&#123;%
-	\toks0=&#123;#1&#125;%
-	\edef\collectedcontent&#123;\the\toks0&#125;%
-	\ifx\collectedcontent\empty
-		It is empty.
-	\else
-		It is not empty, executing it: #1.
-	\fi
-&#125;%
-</code></pre>
-
----
-
-## 1388. Other
-
-**ID**: `3aa62aa72627`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;every linear axis/.append style=&#123;...&#125;&#125;
-</code></pre>
-
----
-
-## 1389. Other
-
-**ID**: `f6e32fe32345`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;every semilogx axis/.append style=&#123;...&#125;&#125;
-</code></pre>
-
----
-
-## 1390. Other
-
-**ID**: `f06f93a81afb`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;axis&#125;[
-    xmode=log|normal,
-    ymode=log|normal]
-    ...
-\end&#123;axis&#125;
-</code></pre>
-
----
-
-## 1391. Line Chart
-
-**ID**: `70e5535f0985`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[ymin=0,ymax=1,enlargelimits=false]
-    \addplot [blue!80!black,fill=blue,fill opacity=0.5,
-    ] coordinates &#123;
-        (0,0.1)    (0.1,0.15)  (0.2,0.5)   (0.3,0.62)
-        (0.4,0.56) (0.5,0.58)  (0.6,0.65)  (0.7,0.6)
-        (0.8,0.58) (0.9,0.55)  (1,0.52)
-    &#125;
-        |- (0,0) -- cycle;
-
-    \addplot [red,fill=red!90!black,opacity=0.5,
-    ] coordinates &#123;
-        (0,0.25)   (0.1,0.27)  (0.2,0.24)  (0.3,0.24)
-        (0.4,0.26) (0.5,0.3)   (0.6,0.23)  (0.7,0.2)
-        (0.8,0.15) (0.9,0.1)   (1,0.1)
-    &#125;
-        |- (0,0) -- cycle;
-
-    \addplot [green!20!black] coordinates &#123;
-        (0,0.4) (0.2,0.75) (1,0.75)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1392. Line Chart
-
-**ID**: `5ef5687697a9`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [
-        id=parable,
-        domain=-5:5,
-    ] gnuplot &#123;4*x**2 - 5&#125;
-        node [pin=180:&#123;$4x^2-5$&#125;]&#123;&#125;
-    ;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1393. 3D Plot
-
-**ID**: `99db83a0a28c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot3 [
-        surf,
-        domain=0:360,
-        samples=40,
-    ] &#123;sin(x)*sin(y)&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1394. 3D Plot
-
-**ID**: `06e184d7e705`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[colormap/redyellow,colorbar]
-    \addplot3 [
-        surf,
-        domain=0:360,
-        samples=40,
-    ] &#123;sin(x)*sin(y)&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1395. 3D Plot
-
-**ID**: `7931ad523b8e`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[view=&#123;60&#125;&#123;30&#125;]
-    \addplot3 [
-        surf,shader=flat,
-        samples=20,
-        domain=-1:0,y domain=0:2*pi,
-        z buffer=sort,
-    ] (
-        &#123;sqrt(1-x^2) * cos(deg(y))&#125;,
-        &#123;sqrt(1-x^2) * sin(deg(y))&#125;,
-         x
-    );
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1396. Other
-
-**ID**: `ce25645814b0`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;every axis plot/.append style=&#123;...&#125;&#125;
-</code></pre>
-
----
-
-## 1397. Other
-
-**ID**: `30ca9579ed46`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;every axis plot no 3/.append style=&#123;...&#125;&#125;
-</code></pre>
-
----
-
-## 1398. Line Chart
-
-**ID**: `c1079b8e159e`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;loglogaxis&#125;
-\addplot coordinates &#123;
-    (769,   1.6227e-04)
-    (1793,  4.4425e-05)
-    (4097,  1.2071e-05)
-    (9217,  3.2610e-06)
-    (2.2e5, 2.1E-6)
-    (1e6,   0.00003341)
-    (2.3e7, 0.00131415)
-&#125;;
+    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment1.dat&#125;;
+    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment2.dat&#125;;
+    \draw[blue!30!white] (1,2.5e-4) -- (1e5,2.5e-4);
+    \node[pin=-90:&#123;$x=53.66$&#125;] at (53.66,2.5e-4) &#123;&#125;;
+    \node[pin=45:&#123;$x=601.83$&#125;] at (601.83,2.5e-4) &#123;&#125;;
 \end&#123;loglogaxis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1399. Line Chart
+## 1364. Other
 
-**ID**: `9701fe6f2fea`  
+**ID**: `9e15d978086d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;
-        \addplot &#123;sin(deg(x))&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;
-        \addplot+ [only marks] &#123;sin(deg(x))&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfplotstablenew[
+    % same as above...
+    create on use/cut/.style=&#123;create col/function graph cut y=
+        &#123;2.5e-4&#125;% search for fixed L2 = 2.5e-4
+        &#123;x=Basis,y=L2,ymode=log,xmode=log,
+         foreach=&#123;\i in &#123;1,2&#125;&#125;&#123;plotdata/newexperiment\i.dat&#125;&#125;%
+        &#123;&#125;% just leave this empty.
+    &#125;,
+    columns=&#123;cut&#125;]
+    &#123;2&#125;
+    \loadedtable
+% Show the data:
+\pgfplotstabletypeset&#123;\loadedtable&#125;
 </code></pre>
 
 ---
 
-## 1400. Line Chart
+## 1365. Other
 
-**ID**: `d188639021fd`  
+**ID**: `28a24eb4bfd5`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[tiny,
-        title=&#123;Ignored: compat=1.3&#125;,
-        compat=1.3,
-    ]
-        \addplot table &#123;
-            A B
-            0 0
-            1 1
+\pgfplotstablesave[
+    create on use/postproc1/.style=&#123;create col/dyadic refinement rate=error1&#125;,
+    columns=&#123;dof,error1,postproc1&#125;
+]
+    &#123;pgfplotstable.example1.dat&#125;
+    &#123;pgfplotstable.example1.out.dat&#125;
+</code></pre>
 
-            1 2
-            2 2
-        &#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[tiny,
-        title=&#123;Jump: compat=1.4&#125;,
-        compat=1.4,
-    ]
-        \addplot table &#123;
-            A B
-            0 0
-            1 1
+---
 
-            1 2
-            2 2
-        &#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+## 1366. Other
+
+**ID**: `d5624f918e00`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstableset&#123;columns=&#123;a column&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
+\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,another&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
+\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,and one more&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;'.
+</code></pre>
+
+---
+
+## 1367. Other
+
+**ID**: `a7015f8036c1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    My Code/.code=&#123;This is a pgfkeys feature. Argument=`#1'&#125;&#125;
+\pgfplotsset&#123;My Code=&#123;is here&#125;&#125;
+</code></pre>
+
+---
+
+## 1368. Other
+
+**ID**: `72a02927cf3d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstableforeachcolumn\loadedtable\as\col&#123;%
+    column name is `\col'; index is \pgfplotstablecol;\par
+&#125;
+\end&#123;minipage&#125;
+</code></pre>
+
+---
+
+## 1369. Other
+
+**ID**: `55a362cacdc2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstableforeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
+    I have now cell element `\cell' at row index `\pgfplotstablerow';\par
+&#125;
+\end&#123;minipage&#125;
+</code></pre>
+
+---
+
+## 1370. Other
+
+**ID**: `d0f04cbb690e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstablemodifyeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
+    \edef\cell&#123;\#\pgfplotstablerow: \cell&#125;%
+&#125;
+\pgfplotstabletypeset[columns=error1,string type]&#123;\loadedtable&#125;
+</code></pre>
+
+---
+
+## 1371. Other
+
+**ID**: `db62f3f379f2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
+\pgfplotstablegetelem&#123;4&#125;&#123;error1&#125;\of&#123;\loadedtable&#125;
+The value (4,error1) is `\pgfplotsretval'.
+
+\pgfplotstablegetelem&#123;2&#125;&#123;[index]0&#125;\of&#123;\loadedtable&#125;
+The value (2,0) is `\pgfplotsretval'.
+</code></pre>
+
+---
+
+## 1372. Other
+
+**ID**: `60daf4043b41`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
+\pgfplotstablegetcolumnnamebyindex&#123;4&#125;\of&#123;\loadedtable&#125;\to\pgfplotsretval
+The name of column 4 `\pgfplotsretval'.
+</code></pre>
+
+---
+
+## 1373. Other
+
+**ID**: `2c5077af7334`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletypeset[string type]&#123;pgfplotstable.example3.dat&#125;
+</code></pre>
+
+---
+
+## 1374. Other
+
+**ID**: `79ba4413191d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+---
+
+## 1375. Other
+
+**ID**: `d4d36baacab8`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[colnames from=c]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+---
+
+## 1376. Other
+
+**ID**: `837cdf4ca3a1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[input colnames to=Input]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+---
+
+## 1377. Other
+
+**ID**: `36a657d31279`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[input colnames to=]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+---
+
+## 1378. Other
+
+**ID**: `a4631d98e6fc`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[columns=&#123;a,b&#125;]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+---
+
+## 1379. Other
+
+**ID**: `a81927da7d05`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstablesort\result&#123;%
+    a      b  c
+    19     2 [a]
+    -6   -14 [b]
+     4   -14 [c]
+   -11    -9 [d]
+    11    14 [e]
+    -9    -9 [f]
+     1    13 [g]
+     8   -10 [h]
+    16    18 [i]
+    19    -6 [j]
+&#125;
+\pgfplotstabletypeset[columns/c/.style=&#123;string type&#125;]&#123;\result&#125;%
+</code></pre>
+
+---
+
+## 1380. Other
+
+**ID**: `80df3ef56d02`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotstablesort[sort cmp=string &lt;]\result&#123;% 'Header' is the column name:
+    Header
+    the
+    quick
+    brown
+    fox
+    jumps
+    over
+    the
+    lazy
+    dog
+&#125;
+\pgfplotstabletypeset[string type]&#123;\result&#125;%
+</code></pre>
+
+---
+
+## 1381. Other
+
+**ID**: `677886551603`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\makeatletter
+\pgfplotsset&#123;
+    string &lt;/.style=&#123;%
+        iflessthan/.code args=&#123;##1##2##3##4&#125;&#123;%
+            \t@pgfplots@toka=\expandafter&#123;##1&#125;%
+            \t@pgfplots@tokb=\expandafter&#123;##2&#125;%
+            \edef\pgfplots@loc@TMPa&#123;&#123;\the\t@pgfplots@toka&#125;&#123;\the\t@pgfplots@tokb&#125;&#125;%
+            \expandafter\pgfplotsutilstrcmp\pgfplots@loc@TMPa
+            \if1\pgfplotsretval ##3\else ##4\fi
+        &#125;%
+    &#125;,%
+&#125;
+</code></pre>
+
+---
+
+## 1382. Other
+
+**ID**: `0f1fb00f6c8a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    sort cmp=&#123;
+        iflessthan/.code args=&#123;#1#2#3#4&#125;&#123;%
+            % here comes your code
+        &#125;%
+    &#125;,
+&#125;
+</code></pre>
+
+---
+
+## 1383. Other
+
+**ID**: `01fbb1462d58`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\foreach \x in &#123;1,2,...,4&#125; &#123;Iterating \x. &#125;%
+</code></pre>
+
+---
+
+## 1384. Line Chart
+
+**ID**: `f4ba9e3362c2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\foreach \i in &#123;1,2,...,10&#125; &#123;\addplot table &#123;datafile\i&#125;; &#125;%
+</code></pre>
+
+---
+
+## 1385. Other
+
+**ID**: `7d8ee86708b2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\def\allcollected&#123;&#125;
+\pgfplotsforeachungrouped \x in &#123;1,2,...,4&#125; &#123;Iterating \x. \edef\allcollected&#123;\allcollected, \x&#125;&#125;%
+All collected = \allcollected.
+</code></pre>
+
+---
+
+## 1386. Other
+
+**ID**: `b9c065150d1e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsforeachungrouped \i in &#123;1,2,...,10&#125; &#123;%
+    \pgfplotstablevertcat&#123;\output&#125;&#123;datafile\i&#125; % appends `datafile\i' -&gt; `\output'
+&#125;%
+% since it was ungrouped, \output is still defined (would not work
+% with \foreach)
+</code></pre>
+
+---
+
+## 1387. Other
+
+**ID**: `6901b800d402`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  otherstyle a/.code=&#123;[a]&#125;,
+  otherstyle b/.code=&#123;[b]&#125;,
+  otherstyle c/.code=&#123;[c]&#125;,
+  otherstyle d/.code=&#123;[d]&#125;&#125;
+\pgfplotsinvokeforeach&#123;a,b,c,d&#125;
+    &#123;\pgfkeys&#123;key #1/.style=&#123;otherstyle #1&#125;&#125;&#125;
+Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+</code></pre>
+
+---
+
+## 1388. Other
+
+**ID**: `0fbe6336e336`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  otherstyle a/.code=&#123;[a]&#125;,
+  otherstyle b/.code=&#123;[b]&#125;,
+  otherstyle c/.code=&#123;[c]&#125;,
+  otherstyle d/.code=&#123;[d]&#125;&#125;
+\pgfplotsforeachungrouped \x in &#123;a,b,c,d&#125;
+    &#123;\pgfkeys&#123;key \x/.style=&#123;otherstyle \x&#125;&#125;&#125;
+Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+</code></pre>
+
+---
+
+## 1389. Other
+
+**ID**: `33a8df01a7b5`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;autumn&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1390. Other
+
+**ID**: `fb461fb77047`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bled&#125;&#123;rgb255=(0,0,0) rgb255=(43,43,0) rgb255=(0,85,0)
+        rgb255=(0,128,128) rgb255=(0,0,170) rgb255=(213,0,213) rgb255=(255,0,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1391. Other
+
+**ID**: `36b81fe0c326`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bright&#125;&#123;rgb255=(0,0,0) rgb255=(78,3,100) rgb255=(2,74,255)
+        rgb255=(255,21,181) rgb255=(255,113,26) rgb255=(147,213,114) rgb255=(230,255,0)
+        rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1392. Other
+
+**ID**: `6c4d7d5b8d6d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bone&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(84,84,116)
+        rgb255(6cm)=(167,199,199) rgb255(8cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1393. Other
+
+**ID**: `8ec6753cee11`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;cold&#125;&#123;rgb255=(0,0,0) rgb255=(0,0,255) rgb255=(0,255,255)
+        rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1394. Other
+
+**ID**: `91b77d670630`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;copper&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(4cm)=(255,159,101)
+        rgb255(5cm)=(255,199,127)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1395. Other
+
+**ID**: `3066a9fc0e95`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;copper2&#125;&#123;rgb255=(0,0,0) rgb255=(68,62,63) rgb255=(170,112,95)
+        rgb255=(207,194,138) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1396. Other
+
+**ID**: `f795b00fb32d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;earth&#125;&#123;rgb255=(0,0,0) rgb255=(0,28,15) rgb255=(42,39,6)
+        rgb255=(28,73,33) rgb255=(67,85,24) rgb255=(68,112,46) rgb255=(81,129,83)
+        rgb255=(124,137,87) rgb255=(153,147,122) rgb255=(145,173,164) rgb255=(144,202,180)
+        rgb255=(171,220,177) rgb255=(218,229,168) rgb255=(255,235,199) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1397. Other
+
+**ID**: `3a7830afebaf`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;gray&#125;&#123;rgb255=(0,0,0) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1398. Other
+
+**ID**: `1e61cf3d1d5f`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hot2&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
+        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1399. Other
+
+**ID**: `71ecf76b4851`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hsv&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0) rgb255=(0,255,0)
+        rgb255=(0,255,255) rgb255=(0,0,255) rgb255=(255,0,255) rgb255=(255,0,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## 1400. Other
+
+**ID**: `169c4892801a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hsv2&#125;&#123;rgb255=(0,0,0) rgb255=(128,0,128) rgb255=(0,0,230)
+        rgb255=(0,255,255) rgb255=(0,255,0) rgb255=(255,255,0) rgb255=(255,0,0)&#125;
+&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-026) | Page 28 of 107 | [Next →](executable_example-page-028)
+[← Previous](executable_example-page-026) | Page 28 of 120 | [Next →](executable_example-page-028)

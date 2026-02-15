@@ -1,98 +1,106 @@
 ---
 title: "Executable Examples - Page 41"
-description: "Items 2001-2050 of 5325 executable examples"
+description: "Items 2001-2050 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 41
 
-Showing items **2001-2050** of **5325**
+Showing items **2001-2050** of **5999**
 
-[← Previous](executable_example-page-039) | Page 41 of 107 | [Next →](executable_example-page-041)
+[← Previous](executable_example-page-039) | Page 41 of 120 | [Next →](executable_example-page-041)
 
 ---
 
 ## 2001. Line Chart
 
-**ID**: `edc771621f3d`  
+**ID**: `12b81338e514`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% \usepackage&#123;textcomp&#125;
 \begin&#123;tikzpicture&#125;
-    % let both axes use the same layers
-    \pgfplotsset&#123;set layers&#125;
-\begin&#123;axis&#125;[
-    scale only axis,
-    xmin=-5,xmax=5,
-    axis y line*=left,  %'*' avoids arrow heads
-    xlabel=$x$,
-    ylabel=Absolute,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\begin&#123;axis&#125;[
-    scale only axis,
-    xmin=-5,xmax=5,
-    ymin=0,ymax=1000,
-    yticklabel=&#123;
-        $\pgfmathprintnumber&#123;\tick&#125;$\textperthousand
-    &#125;,
-    axis y line*=right,
-    axis x line=none,
-    ylabel=per thousand,
-]
+\begin&#123;axis&#125;
+    % FokkerDrI_layer_0.facetIdx.dat contains:
+    % # each row makes up one facet; it
+    % # consists of 0-based indices into
+    % # the vertex array
+    % 0    1    2 % triangle of vertices #0,#1 and #2
+    % 0    3    1 % triangle of vertices #0,#3 and #1
+    % 3    4    1
+    % 5    6    7
+    % 6    8    7
+    % 8    9    7
+    % 8    10   9
+    % ...
+    % while FokkerDrI_layer_0.vertices.dat contains
+    % 105.577    -19.7332    2.85249    % vertex #0
+    % 88.9233    -21.1254    13.0359    % vertex #1
+    % 89.2104    -22.1547    1.46467    % vertex #2
+    % 105.577    -17.2161    12.146
+    % 105.577    -10.6054    18.7567
+    % 105.577    7.98161     18.7567
+    % 105.577    14.5923     12.146
+    % ...
+    \addplot3 [patch,shader=interp,
+        patch table=
+            &#123;plotdata/FokkerDrI_layer_0.facetIdx.dat&#125;]
+        file
+            &#123;plotdata/FokkerDrI_layer_0.vertices.dat&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2002. Line Chart
+## 2002. 3D Plot
 
-**ID**: `e03146719b4d`  
+**ID**: `07965fc9712e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[view/h=70]
+    % FokkerDrI_layer_0.patches.dat contains:
+    % # each row is one vertex; three consecutive
+    % # vertices make one triangle (patch)
+    % 105.577    -19.7332    2.85249
+    % 88.9233    -21.1254    13.0359
+    % 89.2104    -22.1547    1.46467
+    % # end of facet 0
+    % 105.577    -19.7332    2.85249
+    % 105.577    -17.2161    12.146
+    % 88.9233    -21.1254    13.0359
+    % # end of facet 1
+    \addplot3 [patch,mesh] file
+        &#123;plotdata/FokkerDrI_layer_0.patches.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2003. 3D Plot
+
+**ID**: `141b48647d45`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    axis x line=bottom,
-    axis x discontinuity=parallel,
-    axis y line=left,
-    xmin=360, xmax=600,
-    ymin=0,   ymax=7,
-    enlargelimits=false,
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=Rectangle from matrix input,
 ]
-    \addplot coordinates &#123;
-        (420,2)
-        (500,6)
-        (590,4)
+    % note that surf implies 'patch type=rectangle'
+    \addplot [
+        surf,
+        mesh/rows=2,
+        patch type=rectangle,
+    ] coordinates &#123;
+        (0,0) (1,0)
+        (0,1) (1,1)
     &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2003. Line Chart
-
-**ID**: `f47271b453ed`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    axis x line=bottom,
-    axis y line=center,
-    tick align=outside,
-    axis y discontinuity=crunch,
-    ymin=95, enlargelimits=false,
-]
-    \addplot [blue,mark=none,
-         domain=-4:4,samples=20,
-    ] &#123;x*x+x+104&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
@@ -101,24 +109,22 @@ Showing items **2001-2050** of **5325**
 
 ## 2004. Line Chart
 
-**ID**: `40dd52ea90ec`  
+**ID**: `ee476448655b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    axis x line=bottom,
-    axis y line=center,
-    tick align=outside,
-    axis y discontinuity=crunch,
-    xtickmax=3,
-    ytickmin=110,
-    ymin=95, enlargelimits=false,
+    nodes near coords=&#123;(\coordindex)&#125;,
+    title=Rectangle from patch input,
 ]
-    \addplot [blue,mark=none,
-         domain=-4:4,samples=20,
-    ] &#123;x*x+x+104&#125;;
+    \addplot [
+        patch,
+        patch type=rectangle,
+    ] coordinates &#123;
+        (0,0) (1,0) (1,1) (0,1)
+    &#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
@@ -127,192 +133,147 @@ Showing items **2001-2050** of **5325**
 
 ## 2005. Line Chart
 
-**ID**: `56e6e97ac312`  
+**ID**: `8d65f14860d0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    hide x axis,
-    hide y axis,
-    title=&#123;$x^2\cos(x)$&#125;,
+    nodes near coords=&#123;(\coordindex)&#125;,
 ]
-    \addplot &#123;cos(x)*x^2&#125;;
+    \addplot [
+        patch,
+        patch type=triangle,
+    ] coordinates &#123;
+        (0,0) (1,0) (0,1)
+    &#125;;
 \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;% &lt;- eliminate space.
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2006. Line Chart
+## 2006. Other
 
-**ID**: `94810efd9898`  
+**ID**: `01f78ce6f50c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    hide x axis,
-    axis y line=left,
-    title=&#123;$x^2\cos(x)$&#125;,
-]
-    \addplot &#123;cos(x)*x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;% &lt;- eliminate space
+\pgfplotsset&#123;
+    every patch/.style=&#123;miter limit=1&#125;,
+&#125;
 </code></pre>
 
 ---
 
 ## 2007. Line Chart
 
-**ID**: `87ff40f54a21`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-% requires \usepgfplotslibrary&#123;patchplots&#125;
-% and compat=1.8 or newer
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[hide axis]
-    \addplot3 [
-        patch,
-        patch type=biquadratic,
-        shader=interp,
-    ] coordinates &#123;
-        (0,0,1) (6,1,0) (5,5,0) (-1,5,0)
-        (3,1,0) (6,3,0) (2,6,0) (0,3,0)
-        (3,3.75,0)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;% &lt;- eliminate space
-</code></pre>
-
----
-
-## 2008. 3D Plot
-
-**ID**: `2907496d7d07`  
+**ID**: `90eeef9300ec`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar]
-        \addplot [mesh,ultra thick] &#123;x&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2009. 3D Plot
-
-**ID**: `3a0135b12c98`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar,colormap/greenyellow]
-        \addplot [mesh,ultra thick] &#123;x&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2010. 3D Plot
-
-**ID**: `0112ce9b932c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[colorbar horizontal]
-    \addplot [mesh,ultra thick] &#123;x&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2011. Line Chart
-
-**ID**: `208d73c26d61`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\axis [
-    every colorbar,
-    colorbar shift,
-    colorbar=false,
+\begin&#123;smithchart&#125;[
+    title=Impedance Smith Chart,
 ]
-    \addplot graphics &#123;&#125;;
-\endaxis
-</code></pre>
-
----
-
-## 2012. 3D Plot
-
-**ID**: `244d7d1ac062`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar right]
-        \addplot [mesh,thick,samples=150,domain=0.1:3] &#123;1/x&#125;;
-    \end&#123;axis&#125;
+    \addplot coordinates &#123;
+        (0.5,0.2) (1,0.8) (2,2)
+    &#125;;
+\end&#123;smithchart&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2013. Other
+## 2008. Line Chart
 
-**ID**: `4c5838bb59f6`  
+**ID**: `f0fa73077841`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    smithchart mirrored,
+    title=Admittance Smith Chart,
+]
+    \addplot coordinates &#123;
+        (0.5,0.2) (1,0.8) (2,2)
+    &#125;;
+\end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2009. Line Chart
+
+**ID**: `7b55e0459f89`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    % First, the Admittance chart:
+    \begin&#123;smithchart&#125;[
+        title=Impedance and Admittance Smith Chart,
+        smithchart mirrored,
+        xticklabel shift=-19pt,
+        grid style=&#123;blue&#125;,
+        ticklabel style=&#123;blue&#125;,
+        yticklabel around circle,
+    ]
+    \end&#123;smithchart&#125;
+
+    % Second, overlay the impedance chart:
+    \begin&#123;smithchart&#125;[
+        show origin,
+        grid style=&#123;red&#125;,
+        ticklabel style=&#123;red&#125;,
+        yticklabel around circle*,
+    ]
+        \addplot+ [black,mark=o,only marks,point meta=explicit symbolic,nodes near coords]
+            coordinates &#123;
+                (0.2,0.2) [(2)]
+                (1,0.2) [(1)]
+        &#125;;
+
+        \addplot+ [black,no markers,domain=0.2:1] &#123;0.2&#125;;
+
+        \addplot+ [black,mark=o,only marks,point meta=explicit symbolic,nodes near coords]
+            coordinates&#123;
+                (0.2,0.5) [(3)]
+        &#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2010. Other
+
+**ID**: `4f8f6af9b06f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    colorbar right/.style=&#123;
-        /pgfplots/colorbar=true,
-        /pgfplots/colorbar shift/.style=&#123;xshift=0.3cm&#125;,
-        /pgfplots/every colorbar/.style=&#123;
-            title=,
-            xlabel=,
-            ylabel=,
-            zlabel=,
-            legend entries=,
-            axis on top,
-            at=&#123;(parent axis.right of north east)&#125;,
-            anchor=north west,
-            xmin=0,
-            xmax=1,
-            ymin=\pgfkeysvalueof&#123;/pgfplots/point meta min&#125;,
-            ymax=\pgfkeysvalueof&#123;/pgfplots/point meta max&#125;,
-            plot graphics/xmin=0,
-            plot graphics/xmax=1,
-            plot graphics/ymin=\pgfkeysvalueof&#123;/pgfplots/point meta min&#125;,
-            plot graphics/ymax=\pgfkeysvalueof&#123;/pgfplots/point meta max&#125;,
-            enlargelimits=false,
-            scale only axis,
-            height=\pgfkeysvalueof&#123;/pgfplots/parent axis height&#125;,
-            x=\pgfkeysvalueof&#123;/pgfplots/colorbar/width&#125;,
-            yticklabel pos=upper,
-            xtick=\empty,
-            colorbar vertical/lowlevel,
+    few smithchart ticks/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;0.2,0.5,1,2,5&#125;,
         &#125;,
-    &#125;,
-    /pgfplots/colorbar vertical/lowlevel/.style=&#123;
-        plot graphics/lowlevel draw/.code 2 args=&#123;
-            \pgfuseshading&#123;...&#125; % some advanced basic level shading operations
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                 0.2, 0.5, 1, 2, 5,%
+                -0.2,-0.5,-1,-2,-5&#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;2&#125;,
+            ygrid each nth passes x=&#123;2&#125;,
         &#125;,
     &#125;,
 &#125;
@@ -320,33 +281,156 @@ Showing items **2001-2050** of **5325**
 
 ---
 
-## 2014. Other
+## 2011. Line Chart
 
-**ID**: `c18135d14779`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-% correct:
-\begin&#123;axis&#125;[colorbar right, colorbar style=&#123;&lt;some customization&gt;&#125;]
-% wrong, colorbar right resets the customization:
-\begin&#123;axis&#125;[colorbar style=&#123;&lt;some customization&gt;&#125;, colorbar right]
-</code></pre>
-
----
-
-## 2015. 3D Plot
-
-**ID**: `e9ee652bfe69`  
+**ID**: `b5d7f2712621`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar left]
-        \addplot [mesh,thick,samples=150]
-            &#123;x*sin(deg(4*x))&#125;;
-    \end&#123;axis&#125;
+    \begin&#123;smithchart&#125;[
+        title=Medium-Sized Smith Chart,
+        width=14cm,
+    ]
+        \addplot coordinates &#123;(0.5,0.2) (1,0.8) (2,2)&#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2012. Other
+
+**ID**: `67ca1e47e7ff`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    many smithchart ticks*/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;
+                0.1,0.2,0.3,0.4,0.5,1,1.5,2,3,4,5,10,20%
+            &#125;,
+            minor xtick=&#123;0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,
+              2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50&#125;,
+        &#125;,
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                0.1,0.2,...,1,1.5,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.5,-2,-3,-4,-5,-10,-20%
+            &#125;,
+            minor ytick=&#123;%
+                1.1,1.2,1.3,1.4,1.6,1.7,1.8,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,
+                  4.5,6,7,8,9,50,%
+                -1.1,-1.2,-1.3,-1.4,-1.6,-1.7,-1.8,-1.9,-2.2,-2.4,-2.6,-2.8,
+                  -3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,-9,-50%
+            &#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;1,2,4,5,10,20&#125;,
+            ygrid each nth passes x=&#123;1,2,3,5,10:3,20:3&#125;,
+        &#125;,
+    &#125;,
+    /pgfplots/many smithchart ticks/.style=&#123;
+        many smithchart ticks*,
+        yticklabel in circle,
+        show origin=true,
+    &#125;,
+&#125;
+</code></pre>
+
+---
+
+## 2013. Line Chart
+
+**ID**: `e8c2a36862e3`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.75]
+    \begin&#123;smithchart&#125;[
+        title=Huge Smith Chart (rescaled),
+        width=20cm,
+    ]
+        \addplot coordinates &#123;(0.5,0.2) (1,0.8) (2,2)&#125;;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2014. Other
+
+**ID**: `e75fd7488499`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    dense smithchart ticks*/.style=&#123;
+        default smithchart xtick/.style=&#123;
+            xtick=&#123;
+                0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20%
+            &#125;,
+            minor xtick=&#123;%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.52,% This is sub-optimal and will (hopefully) be improved in the future.
+                0.55,0.65,0.75,0.85,0.95,%
+                %0.6,0.7,0.8,0.9,%
+                1.1,1.3,1.5,1.7,1.9,%
+                2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50&#125;,
+        &#125;,
+        default smithchart ytick/.style=&#123;
+            ytick=&#123;%
+                0,%
+                0.1,0.2,...,1,1.2,1.4,1.6,1.8,2,3,4,5,10,20,%
+                -0.1,-0.2,...,-1,-1.2,-1.4,-1.6,-1.8,-2,-3,-4,-5,-10,-20%
+            &#125;,
+            minor ytick=&#123;%
+                0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.11,0.12,0.13,0.14,0.15,0.16,0.17,
+                0.18,0.19,0.22,0.24,0.26,0.28,0.32,0.34,0.36,0.38,0.42,0.44,0.46,0.48,%
+                0.55,0.65,0.75,0.85,0.95,%
+                1.1,1.3,1.5,1.7,1.9,2.2,2.4,2.6,2.8,3.2,3.4,3.6,3.8,4.5,6,7,8,9,50,%
+                -0.01,-0.02,-0.03,-0.04,-0.05,-0.06,-0.07,-0.08,-0.09,-0.11,-0.12,-0.13,-0.14,
+                -0.15,-0.16,-0.17,-0.18,-0.19,-0.22,-0.24,-0.26,-0.28,-0.32,-0.34,-0.36,-0.38,
+                -0.42,-0.44,-0.46,-0.48,-0.55,-0.65,-0.75,-0.85,-0.95,%
+                -1.1,-1.3,-1.5,-1.7,-1.9,-2.2,-2.4,-2.6,-2.8,-3.2,-3.4,-3.6,-3.8,-4.5,-6,-7,-8,
+                -9,-50%
+            &#125;,
+        &#125;,
+        default smithchart xytick/.style=&#123;
+            xgrid each nth passes y=&#123;0.2 if &lt; 0.2001,0.5 if &lt; 0.50001,1 if &lt; 1.001,2,4,5,10,20&#125;,
+            ygrid each nth passes x=&#123;0.2 if &lt; 0.2001,0.52 if &lt; 0.
+... (truncated)
+</code></pre>
+
+---
+
+## 2015. Line Chart
+
+**ID**: `18fccd3cbcc0`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;
+    % smithchart_data.dat contains
+    % 0.78395 -0.40845
+    % 0.78165 -0.41147
+    % 0.77934 -0.41466
+    % 0.77774 -0.41869
+    % ...
+    \addplot [
+        blue,
+        is smithchart cs,
+    ] file &#123;plotdata/smithchart_data.dat&#125;;
+\end&#123;smithchart&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -354,89 +438,56 @@ Showing items **2001-2050** of **5325**
 
 ## 2016. Other
 
-**ID**: `140ae564a86e`  
+**ID**: `d5c485989809`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        show origin,
+    ]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2017. Other
+
+**ID**: `07d972657911`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    colorbar left/.style=&#123;
-        /pgfplots/colorbar right,
-        /pgfplots/colorbar shift/.style=&#123;xshift=-0.3cm&#125;,
-        /pgfplots/every colorbar/.append style=&#123;
-            at=&#123;(parent axis.left of north west)&#125;,
-            anchor=north east,
-            yticklabel pos=lower,
-        &#125;,
+    show origin code/.code=&#123;%
+        \path[draw=black,fill=white] (0pt,0pt) circle (2.5pt);
+        \path[fill=black] (0pt,0pt) circle (0.5pt);
     &#125;,
 &#125;
 </code></pre>
 
 ---
 
-## 2017. Scatter Plot
-
-**ID**: `2fde3c69e088`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[colorbar horizontal]
-    \addplot [
-        only marks,
-        scatter,
-        scatter src=&#123;
-            mod(\coordindex,15)
-        &#125;,
-        samples=150,
-    ] &#123;rand&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
 ## 2018. Other
 
-**ID**: `57ffa75df6de`  
+**ID**: `71bc0d0bec02`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    colorbar horizontal/.style=&#123;
-        /pgfplots/colorbar=true,
-        /pgfplots/colorbar shift/.style=&#123;yshift=-0.3cm&#125;,
-        /pgfplots/every colorbar/.style=&#123;
-            title=,
-            xlabel=,
-            ylabel=,
-            zlabel=,
-            legend entries=,
-            axis on top,
-            at=&#123;(parent axis.below south west)&#125;,
-            anchor=north west,
-            ymin=0,
-            ymax=1,
-            xmin=\pgfkeysvalueof&#123;/pgfplots/point meta min&#125;,
-            xmax=\pgfkeysvalueof&#123;/pgfplots/point meta max&#125;,
-            plot graphics/ymin=0,
-            plot graphics/ymax=1,
-            plot graphics/xmin=\pgfkeysvalueof&#123;/pgfplots/point meta min&#125;,
-            plot graphics/xmax=\pgfkeysvalueof&#123;/pgfplots/point meta max&#125;,
-            enlargelimits=false,
-            scale only axis,
-            width=\pgfkeysvalueof&#123;/pgfplots/parent axis width&#125;,
-            y=\pgfkeysvalueof&#123;/pgfplots/colorbar/width&#125;,
-            xticklabel pos=lower,
-            ytick=\empty,
-            colorbar horizontal/lowlevel,
-        &#125;,
-    &#125;,
-    /pgfplots/colorbar horizontal/lowlevel/.style=&#123;
-        plot graphics/lowlevel draw/.code 2 args=&#123;
-            \pgfuseshading&#123;...&#125; % some advanced basic level shading operations
+    yticklabel in circle/.style=&#123;
+        ytick align=inside,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=north east&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=south west,
+            %font=\tiny,
         &#125;,
     &#125;,
 &#125;
@@ -446,129 +497,125 @@ Showing items **2001-2050** of **5325**
 
 ## 2019. Other
 
-**ID**: `78a04345cf30`  
+**ID**: `830f7754433c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% correct:
-\begin&#123;axis&#125;[colorbar horizontal, colorbar style=&#123;&lt;some customization&gt;&#125;]
-% wrong, colorbar horizontal resets the customization:
-\begin&#123;axis&#125;[colorbar style=&#123;&lt;some customization&gt;&#125;, colorbar horizontal]
+\begin&#123;tikzpicture&#125;
+    \begin&#123;smithchart&#125;[
+        yticklabel around circle,
+    ]
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2020. Other
 
-**ID**: `69825dc1af33`  
+**ID**: `deb167857b2c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    colorbar style=&#123;
-        at=&#123;(parent axis.right of north east)&#125;,
-        anchor=north west,
+    yticklabel around circle/.style=&#123;
+        ytick align=center,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=south west&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=south east,
+        &#125;,
     &#125;,
-    colorbar shift/.style=&#123;xshift=0.3cm&#125;,
 &#125;
 </code></pre>
 
 ---
 
-## 2021. Line Chart
+## 2021. Other
 
-**ID**: `2ea7fdd58112`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\addplot [...,colorbar source] ...
-% or
-\addplot+ [colorbar source] ...
-</code></pre>
-
----
-
-## 2022. 3D Plot
-
-**ID**: `85b2a14706da`  
+**ID**: `0ee4c13c701d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    colorbar horizontal,
-    colorbar style=&#123;
-        at=&#123;(0.5,1.03)&#125;,
-        anchor=south,
-        xticklabel pos=upper,
-    &#125;,
-    title style=&#123;yshift=1cm&#125;,
-    title=Customization: ``colorbar top'',
-]
-
-    \addplot [
-        mesh,
-        thick,
-        samples=150,
-        domain=0.1:3,
-    ] &#123;x&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2023. 3D Plot
-
-**ID**: `97ed4e984875`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    colorbar horizontal,
-    colorbar style=&#123;
-      at=&#123;(1,1.03)&#125;,anchor=south east,
-      width=0.5*
-        \pgfkeysvalueof&#123;/pgfplots/parent axis width&#125;,
-      xticklabel pos=upper,
-    &#125;,
-    title style=&#123;yshift=1cm&#125;,
-    title=More Customization: ``colorbar top'',
-]
-    \addplot [
-        mesh,
-        thick,
-        samples=150,
-        domain=0.1:3,
-    ] &#123;x&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 2024. 3D Plot
-
-**ID**: `70de569cfae3`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        view/az=45,
-        colorbar,
-        colorbar/width=2cm,
-        colormap/blackwhite,
+    \begin&#123;smithchart&#125;[
+        yticklabel around circle*,
     ]
-        \addplot3 [surf,domain=0:1,y domain=-3:3] &#123;x*(1-x)*tanh(y)&#125;;
-    \end&#123;axis&#125;
+    \end&#123;smithchart&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2022. Other
+
+**ID**: `bdfeecbc1379`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    yticklabel around circle*/.style=&#123;
+        ytick align=center,
+        yticklabel style=&#123;
+            rotate=90,
+            sloped like y axis=&#123;
+                execute for upside down=&#123;\tikzset&#123;anchor=north west&#125;&#125;,
+                %allow upside down,
+                reset nontranslations=false&#125;,
+            anchor=north east,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+---
+
+## 2023. Other
+
+**ID**: `725006ddeecf`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every smithchart axis/.style=&#123;
+        grid=both,
+        xmin=0,
+        scaled ticks=false, % never draw the \cdot 10^4 labels
+        major tick style=&#123;draw=black&#125;,
+        xtick align=center,
+        ytick align=center,
+    &#125;,
+&#125;
+</code></pre>
+
+---
+
+## 2024. Other
+
+**ID**: `ec54cc759587`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    xtick=&#123;0.2,0.5,1,2,5&#125;,
+    ytick=&#123;
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
+    &#125;,
+    xgrid each nth passes y=&#123;1,2&#125;,
+]
+\end&#123;smithchart&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -576,551 +623,686 @@ Showing items **2001-2050** of **5325**
 
 ## 2025. Other
 
-**ID**: `036eac38edf6`  
+**ID**: `89ccb2c34013`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    colorbar shift/.style=&#123;xshift=1cm&#125;,
-&#125;
-</code></pre>
-
----
-
-## 2026. Line Chart
-
-**ID**: `450a66ac1ff5`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    colorbar/draw/.code=&#123;
-        \axis [every colorbar,colorbar shift,colorbar=false]
-            \addplot graphics &#123;&#125;;
-        \endaxis
+\begin&#123;tikzpicture&#125;
+\begin&#123;smithchart&#125;[
+    xtick=&#123;0.2,0.5,1,2,5&#125;,
+    ytick=&#123;
+        0,
+         0.2, 0.5, 1, 2, 5,
+        -0.2,-0.5,-1,-2,-5
     &#125;,
-&#125;
-</code></pre>
-
----
-
-## 2027. 3D Plot
-
-**ID**: `1c3b0a04abe2`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar sampled]
-        \addplot [mesh,samples=40] &#123;sin(deg(x))&#125;;
-    \end&#123;axis&#125;
+    ygrid each nth passes x=&#123;0.2,1:2&#125;,
+]
+    \end&#123;smithchart&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2028. 3D Plot
+## 2026. Other
 
-**ID**: `d7e668e1bab0`  
+**ID**: `328f4b46cfe2`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar sampled,colorbar style=&#123;samples=8&#125;]
-        \addplot [mesh,samples=40] &#123;sin(deg(x))&#125;;
-    \end&#123;axis&#125;
+\begin&#123;smithchart&#125;[
+    ygrid stop at x=&#123;0.5:0.5,-0.2:0.2&#125;
+]
+    \end&#123;smithchart&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2029. Scatter Plot
+## 2027. Other
 
-**ID**: `4838d406cd2f`  
+**ID**: `d193cb3fc03f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[colorbar sampled line]
-        \addplot+ [scatter] &#123;sin(deg(x))&#125;;
-    \end&#123;axis&#125;
+\begin&#123;loglogaxis&#125;[
+    xlabel=&#123;\textsc&#123;Dof&#125;&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+    grid=major,
+]
+    % see above for this macro:
+    \plotcoords
+\end&#123;loglogaxis&#125;
 \end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2028. Line Chart
+
+**ID**: `4613fa19280c`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    grid=both,
+    tick align=outside,
+    tickpos=left,
+]
+    \addplot coordinates &#123;
+        (100,1e-4) (500,1e-5) (1000,3e-6)
+    &#125;;
+    \addplot coordinates &#123;
+        (100,1e-5) (500,4e-6) (1000,2e-6)
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2029. Other
+
+**ID**: `0830c825878e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;grid style=&#123;help lines&#125;&#125; % modifies the style `every axis grid'
+\pgfplotsset&#123;minor grid style=&#123;color=blue&#125;&#125; % modifies the style `every minor grid'
+\pgfplotsset&#123;major grid style=&#123;thick&#125;&#125; %modifies the style `every major grid'
 </code></pre>
 
 ---
 
 ## 2030. Other
 
-**ID**: `10503a5442ff`  
+**ID**: `f4cb839b615f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotscolorbardrawstandalone[
-    colorbar style=&#123;
-        ticklabel style=&#123;font=\tiny&#125;,
-    &#125;,
-    colormap access=const,
-    colormap=&#123;CM&#125;&#123;
-        of colormap=&#123;
-            viridis,
-            target pos=&#123;
-                0,200,300,350,375,
-                400,700,800,850,1000
-            &#125;,
-            sample for=const,
-        &#125;,
-    &#125;,
+\draw
+       (axis cs:18943,2.873391e-05)
+    |- (axis cs:47103,8.437499e-06);
+</code></pre>
+
+---
+
+## 2031. Line Chart
+
+**ID**: `1819b569977e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\tikzstyle&#123;every pin&#125;=[
+    fill=white,
+    draw=black,
+    font=\footnotesize,
 ]
-</code></pre>
-
----
-
-## 2031. Other
-
-**ID**: `918ef0d832b1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotscolorbardrawstandalone[
-    colorbar as legend,
-    colorbar style=&#123;
-        ticklabel style=&#123;font=\tiny&#125;,
-    &#125;,
-    colormap access=const,
-    colormap=&#123;CM&#125;&#123;
-        of colormap=&#123;
-            viridis,
-            target pos=&#123;
-                0,200,300,350,375,
-                400,700,800,850,1000
-            &#125;,
-            sample for=const,
-        &#125;,
-    &#125;,
-]
-</code></pre>
-
----
-
-## 2032. Other
-
-**ID**: `e941fd4e7af1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colorbar style=&#123;
-        ticklabel style=&#123;
-            /pgf/number format/precision=3,
-            /pgf/number format/relative*=3,
-        &#125;,
-    &#125;,
-&#125;
-</code></pre>
-
----
-
-## 2033. Scatter Plot
-
-**ID**: `88c1e161dfcb`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;footnotesize,samples=10, domain=0:1,point meta min=0, point meta max=1&#125;
-\begin&#123;center&#125;% note that \centering uses less vspace...
-    \begin&#123;tikzpicture&#125;
-        \begin&#123;axis&#125;[colorbar,colorbar horizontal,colorbar to name=&#123;storedcolorbar&#125;]
-            \addplot [scatter,only marks,mark=*] &#123;rnd&#125;;
-        \end&#123;axis&#125;
-    \end&#123;tikzpicture&#125;
-    %
-    \begin&#123;tikzpicture&#125;
-        \begin&#123;axis&#125;
-            \addplot+ [domain=0:1,mark=none,mesh] &#123;x^2&#125;;
-        \end&#123;axis&#125;
-    \end&#123;tikzpicture&#125;
-    %
-    \begin&#123;tikzpicture&#125;
-        \begin&#123;axis&#125;[view=&#123;0&#125;&#123;90&#125;]
-            \addplot3 [surf] &#123;x*y&#125;;
-        \end&#123;axis&#125;
-    \end&#123;tikzpicture&#125;
-    \\
-
-    \ref&#123;storedcolorbar&#125;
-\end&#123;center&#125;
-</code></pre>
-
----
-
-## 2034. Line Chart
-
-**ID**: `4f1a7ff61473`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-% requires \usepgfplotslibrary&#123;polar&#125;
 \begin&#123;tikzpicture&#125;
-\begin&#123;polaraxis&#125;
-    \addplot coordinates &#123;(90,1) (180,1)&#125;;
-    \addplot+ [data cs=cart] coordinates &#123;
-        (1,0)
-        (0.5,0.5)
+\begin&#123;loglogaxis&#125;[
+    xlabel=&#123;\textsc&#123;Dof&#125;&#125;,
+    ylabel=&#123;$L_2$ Error&#125;,
+]
+    \addplot coordinates &#123;
+        (11,     6.887e-02)
+        (71,     3.177e-02)
+        (351,    1.341e-02)
+        (1471,   5.334e-03)
+        (5503,   2.027e-03)
+        (18943,  7.415e-04)
+        (61183,  2.628e-04)
+        (187903, 9.063e-05)
+        (553983, 3.053e-05)
     &#125;;
-\end&#123;polaraxis&#125;
+
+    \node [coordinate,pin=above:&#123;Bad!&#125;]
+        at (axis cs:5503,2.027e-03)   &#123;&#125;;
+    \node [coordinate,pin=left:&#123;Good!&#125;]
+        at (axis cs:187903,9.063e-05) &#123;&#125;;
+    \end&#123;loglogaxis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2035. Line Chart
+## 2032. Line Chart
 
-**ID**: `35141579b1a6`  
+**ID**: `bf6e37d55c67`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    xlabel=\textsc&#123;Dof&#125;,
+    ylabel=$L_2$ Error,
+]
+    \draw
+            (1793,4.442e-05)
+        |-  (4097,1.207e-05)
+            node [near start,left]
+                &#123;$\frac&#123;dy&#125;&#123;dx&#125; = -1.58$&#125;;
+
+    \addplot coordinates &#123;
+        (5,    8.312e-02)
+        (17,   2.547e-02)
+        (49,   7.407e-03)
+        (129,  2.102e-03)
+        (321,  5.874e-04)
+        (769,  1.623e-04)
+        (1793, 4.442e-05)
+        (4097, 1.207e-05)
+        (9217, 3.261e-06)
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2033. Line Chart
+
+**ID**: `3ef8a210460f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;
-    \addplot+ [data cs=polar,domain=0:360] (\x,1);
+    \draw [red,-stealth]
+        (1000,0)
+        --  % = line-to
+        ++ % = calculate a vector sum
+        (axis direction cs:1000,0);
+
+    \addplot [only marks,mark=*]
+        coordinates &#123; (1000,0) (2000,1) &#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2036. Line Chart
+## 2034. Other
 
-**ID**: `f4a0707c1c21`  
+**ID**: `2af0c7bc4745`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+% requires \pgfplotsset&#123;compat=1.5.1&#125; !
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xmin=-2.5,   xmax=2.5,
+    ymin=-2.5,   ymax=2.5,
+    xtick=&#123;-2,-1,0,1,2&#125;,
+    ytick=&#123;-2,-1,0,1,2&#125;,
+    grid=major,
+]
+    % standard tikz syntax:
+    \draw [black] (0,0) ellipse [
+        x radius=1,
+        y radius=2,
+    ];
+    \draw [red]   (0,0) ellipse [
+        rotate=90,
+        x radius=1,
+        y radius=2,
+    ];
+    % see \pgfplotspointaxisdirectionxy
+    % for arbitrary ellipses
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2035. Other
+
+**ID**: `b4e13e339048`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+% requires \pgfplotsset&#123;compat=1.5.1&#125; !
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[tiny,enlargelimits,
+    xmin=-1,xmax=1,
+    ymin=-1,ymax=1,
+    xtick=&#123;-1,0,1&#125;,
+    ytick=&#123;-1,0,1&#125;,
+    grid=major,
+]
+    \draw [blue] (0,0) circle [radius=1];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2036. Other
+
+**ID**: `a377b5bfe511`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[tiny,enlargelimits,
+    axis equal,
+    xmin=-1,xmax=1,
+    ymin=-1,ymax=1,
+    xtick=&#123;-1,0,1&#125;,
+    ytick=&#123;-1,0,1&#125;,
+    grid=major,
+]
+    \draw [blue] (0,0) circle [radius=1];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2037. 3D Plot
+
+**ID**: `b51fbdfa4ac5`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;
-    \addplot+ [data cs=polarrad,domain=0:2*pi] (\x,1);
+    \addplot3 [surf] &#123;x^2 - y^2&#125;;
+    \draw  (rel axis cs:0,0,1)
+        -- (rel axis cs:1,1,1);
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2037. Line Chart
+## 2038. 3D Plot
 
-**ID**: `9bf75e091c50`  
+**ID**: `177c2ea711a6`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    axis equal,
-    minor tick num=1,
+    xlabel=$x$,
+    ylabel=$y$,
+    zlabel=$z$,
+    every axis x label/.style=&#123;
+        at=&#123;(rel axis cs:0.5,-0.15,-0.15)&#125;&#125;,
+    every axis y label/.style=&#123;
+        at=&#123;(rel axis cs:1.15,0.5,-0.15)&#125;&#125;,
+    every axis z label/.style=&#123;
+        at=&#123;(rel axis cs:-0.15,-0.15,0.5)&#125;&#125;,
 ]
-    \def\FREQUENCY&#123;3&#125;
-\addplot [red,domain=0:360,samples=200,
-    smooth,data cs=polar]
-        (x,&#123;30-8*sin(\FREQUENCY*x)&#125;);
-
-\addplot [samples=40,domain=0:2*pi,dashed,
-    data cs=polar] (deg(x),30);
-
-\addplot [mark=oplus,only marks] coordinates &#123;(0,0)&#125;;
- \end&#123;axis&#125;
+    \addplot3 [surf] &#123;x*(1-x)*y&#125;;
+\end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2038. Line Chart
+## 2039. Scatter Plot
 
-**ID**: `d6f82f4b36bf`  
+**ID**: `ed2e615806e7`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\documentclass&#123;article&#125;
-\usepackage&#123;pgfplots&#125;
-    \usepgfplotslibrary&#123;external&#125;
-    \tikzexternalize% activate externalization!
-\begin&#123;document&#125;
-    \begin&#123;figure&#125;
-        \begin&#123;tikzpicture&#125;
-            \begin&#123;axis&#125;
-                \addplot &#123;x^2&#125;;
-            \end&#123;axis&#125;
-        \end&#123;tikzpicture&#125;
-        \caption&#123;Our first external graphics example&#125;
-    \end&#123;figure&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[axis equal]
+  \addplot[
+    scatter,
+    only marks,
+    samples=50,
+    point meta=100-sqrt(x^2+y^2),
+    coordinate style/.condition=
+        &#123;sqrt(x^2+y^2) &lt; 0.5&#125;&#123;scale=2&#125;,
+    coordinate style/.condition=&#123;\coordindex == 25&#125;&#123;
+      /pgfplots/scatter/@post marker code/.add code=&#123;
+        \node [pin=45:Point no 25] &#123;&#125;;
+      &#125;&#123;&#125;,
+    &#125;,
+  ] (rand,rand);
 
-    \begin&#123;figure&#125;
-        \begin&#123;tikzpicture&#125;
-            \begin&#123;axis&#125;
-                \addplot &#123;x^3&#125;;
-            \end&#123;axis&#125;
-        \end&#123;tikzpicture&#125;
-        \caption&#123;A second graphics&#125;
-    \end&#123;figure&#125;
-\end&#123;document&#125;
-</code></pre>
-
----
-
-## 2039. Other
-
-**ID**: `e82b116e410f`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-pdflatex -shell-escape test
-</code></pre>
-
----
-
-## 2040. Other
-
-**ID**: `5f5721b7ea8c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikzsetexternalprefix&#123;figures/&#125;
-</code></pre>
-
----
-
-## 2041. Line Chart
-
-**ID**: `3d03935c3ab8`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\documentclass&#123;article&#125;
-% main document, called main.tex
-\usepackage&#123;tikz&#125;
-    \usepgfplotslibrary&#123;external&#125;
-    \tikzexternalize[prefix=figures/]% activate with a name prefix
-\begin&#123;document&#125;
-\tikzsetnextfilename&#123;firstplot&#125;
-\begin&#123;tikzpicture&#125; % will be written to 'figures/firstplot.pdf'
-    \begin&#123;axis&#125;
-        \addplot &#123;x&#125;;
-    \end&#123;axis&#125;
+  \draw (0,0) circle (0.5);
+\end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
-
-\begin&#123;tikzpicture&#125; % will be written to 'figures/main-figure0.pdf'
-   \draw [help lines] (0,0) grid (5,5);
-\end&#123;tikzpicture&#125;
-\end&#123;document&#125;
 </code></pre>
 
 ---
 
-## 2042. Other
+## 2040. Line Chart
 
-**ID**: `e187a2f8be78`  
+**ID**: `5cc55e86bc74`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-pdflatex -shell-escape main
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,domain=0:360] &#123;sin(x)&#125;
+        [yshift=8pt]
+            node [pos=0]    &#123;$0$&#125;
+            node [pos=0.25] &#123;$\pi/2$&#125;
+            node [pos=0.5]  &#123;$\pi$&#125;
+            node [pos=0.75] &#123;$3/2\pi$&#125;
+            node [pos=1]    &#123;$2\pi$&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2041. Scatter Plot
+
+**ID**: `8992da9756d9`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[title=Snap to nearest for scatter plots]
+    \addplot+ [only marks]
+        coordinates &#123; (0,0) (1,1) (2,2) (3,3) &#125;
+            node [pos=0,   pin=0  :0   ] &#123;&#125;
+            node [pos=0.1, pin=90 :0.1 ] &#123;&#125;
+            node [pos=0.2, pin=200:0.2 ] &#123;&#125;
+            node [pos=0.3, pin=135:0.3 ] &#123;&#125;
+            node [pos=0.4, pin=0  :0.4 ] &#123;&#125;
+            node [pos=0.5, pin=60 :0.5 ] &#123;&#125;
+            node [pos=0.75,pin=180:0.75] &#123;&#125;
+            node [pos=1,   pin=90 :1   ] &#123;&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 2042. Line Chart
+
+**ID**: `eb16889bb482`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,domain=0:360,samples=31] &#123;sin(x)&#125;
+        [every node/.style=&#123;yshift=8pt&#125;,sloped]
+            node [pos=0]    &#123;$0$&#125;
+            node [pos=0.25] &#123;$\pi/2$&#125;
+            node [pos=0.5]  &#123;$\pi$&#125;
+            node [pos=0.75] &#123;$3/2\pi$&#125;
+            node [pos=1]    &#123;$2\pi$&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2043. Line Chart
 
-**ID**: `047cca9e1500`  
+**ID**: `4e31fb0cd03f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\documentclass&#123;article&#125;
-% main document, called main.tex
-\usepackage&#123;tikz&#125;
-    \usepgfplotslibrary&#123;external&#125;
-    \tikzexternalize% activate externalization!
-\begin&#123;document&#125;
-% will be written to 'main-figure0.pdf'
+% same as above with different number of samples
 \begin&#123;tikzpicture&#125;
-    \begin&#123;semilogyaxis&#125;
-        \addplot &#123;exp(x)&#125;;
-    \end&#123;semilogyaxis&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,domain=0:360,samples=25] &#123;sin(x)&#125;
+        [every node/.style=&#123;yshift=8pt&#125;,sloped]
+            node [pos=0]    &#123;$0$&#125;
+            node [pos=0.25] &#123;$\pi/2$&#125;
+            node [pos=0.5]  &#123;$\pi$&#125;
+            node [pos=0.75] &#123;$3/2\pi$&#125;
+            node [pos=1]    &#123;$2\pi$&#125;
+    ;
+\end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
-
-&#123;
-    \tikzset&#123;external/figure name=&#123;subset_&#125;&#125;
-    A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'subset_0.pdf'
-
-    \begin&#123;tikzpicture&#125; % will be written to 'subset_1.pdf'
-        \begin&#123;axis&#125;
-            \addplot &#123;x^2&#125;;
-        \end&#123;axis&#125;
-    \end&#123;tikzpicture&#125;
-&#125;% here, the old file name will be restored:
-
-\begin&#123;tikzpicture&#125; % will be written to 'main-figure1.pdf'
-    \begin&#123;axis&#125;
-        \addplot[domain=1e-3:100] &#123;1/x&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-\end&#123;document&#125;
 </code></pre>
 
 ---
 
-## 2044. Other
+## 2044. Line Chart
 
-**ID**: `f5405c0f2c8c`  
+**ID**: `89c0f9ab3536`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;external/figure name=main&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[tiny]
+    \addplot coordinates &#123;
+        (0,0) (1,0)
 
-% uses main_0.pdf, main_1.pdf, ...
-
-\chapter&#123;The first section&#125;
-&#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;_firstsection&#125;&#125;
-    ...
-    % uses main_firstsection_0.pdf, main_firstsection_1.pdf, ...
-&#125;
-
-\chapter&#123;The second section&#125;
-&#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;secondsection_&#125;&#125;
-    ...
-    % uses main_secondsection_0.pdf, main_secondsection_1.pdf, ...
-    \section&#123;Second subsection&#125;
-    &#123;\tikzset&#123;external/figure name/.add=&#123;&#125;&#123;sub_&#125;&#125;
-        ...
-        % uses main_secondsection_sub_0.pdf, main_secondsection_sub_1.pdf, ...
+        (1,1) (2,1)
     &#125;
-    % uses main_secondsection_2.pdf, main_secondsection_3.pdf, ...
-&#125;
+        [pos segment=0,yshift=7pt,font=\footnotesize]
+            node [pos=0] &#123;0&#125;
+            node [pos=0.5] &#123;0.5&#125;
+            node [pos=1] &#123;1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2045. Other
+## 2045. Line Chart
 
-**ID**: `6dbea34c6c4f`  
+**ID**: `ef4bb7bd9b5c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;external/system call=&#123;pdflatex \tikzexternalcheckshellescape -halt-on-error
-    -interaction=batchmode -jobname "\image" "\texsource"&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot3 [contour lua,domain=0:1] &#123;x*y&#125;
+        [sloped,
+         allow upside down,
+         pos segment=2,
+         every node/.style=&#123;yshift=7pt&#125;,
+        ]
+            node [pos=0]   &#123;0&#125;
+            node [pos=0.5] &#123;0.5&#125;
+            node [pos=1]   &#123;1&#125;
+        ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2046. Other
+## 2046. Line Chart
 
-**ID**: `57eeb60c56b0`  
+**ID**: `7fd7126034cc`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;external/system call=&#123;latex \tikzexternalcheckshellescape -halt-on-error
-    -interaction=batchmode -jobname "\image" "\texsource" &&
-    dvips -o "\image".ps "\image".dvi&#125;&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot &#123;x&#125;
+      [left,/pgf/number format/relative=0]
+        node [pos=0.5] &#123;
+            \pgfplotspointplotattime
+            $(\pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/x&#125;&#125;,
+              \pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/y&#125;&#125;)$
+        &#125;
+        node [pos=0.25] &#123;
+            \pgfplotspointplotattime
+            $(\pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/x&#125;&#125;,
+              \pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/y&#125;&#125;)$
+        &#125;
+        node [pos=0.7,pin=180:&#123;
+            \pgfplotspointplotattime&#123;0.7&#125;
+            $(\pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/x&#125;&#125;,
+              \pgfmathprintnumber
+                  &#123;\pgfkeysvalueof&#123;/data point/y&#125;&#125;)$
+        &#125;] &#123;&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2047. Other
+## 2047. Line Chart
 
-**ID**: `7cb159384e3a`  
+**ID**: `0e7304a1f726`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% \usepackage&#123;tikz&#125;
-% \usepackage&#123;pgfplots&#125;
-\usepackage&#123;tikzexternal&#125;
-    \tikzexternalize% activate externalization
-\begin&#123;document&#125;
-    \begin&#123;tikzpicture&#125;
-        ...
-    \end&#123;tikzpicture&#125;
-...
-\end&#123;document&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[symbolic x coords=&#123;A,B,C,D&#125;]
+    \addplot coordinates &#123;(A,0) (B,1) (C,1) (D,2)&#125;
+        [left]
+            node [pos=0.3] &#123;
+                \pgfplotspointplotattime
+                $(\pgfkeysvalueof&#123;/data point/x&#125;,
+                  \pgfmathprintnumber
+                    &#123;\pgfkeysvalueof&#123;/data point/y&#125;&#125;)$
+            &#125;
+            node [pos=0.7,pin=180:&#123;
+                \pgfplotspointplotattime&#123;0.7&#125;
+                $(\pgfkeysvalueof&#123;/data point/x&#125;,
+                  \pgfmathprintnumber
+                    &#123;\pgfkeysvalueof&#123;/data point/y&#125;&#125;)$
+            &#125;] &#123;&#125;
+    ;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2048. Other
+## 2048. Line Chart
 
-**ID**: `33f9fedce15c`  
+**ID**: `1b7018478383`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-latex/pgf/utilities/tikzexternal.sty
+\begin&#123;tikzpicture&#125;[]
+% An undecorated graphics with a lot of
+% pretty-printing styles:
+\begin&#123;axis&#125;[
+    axis lines=middle,
+    title=Undecorated Graphics,
+    xmin=-2, xmax=2, ymin=-2, ymax=2,
+    xtick=&#123;-1,1&#125;, ytick=&#123;-1,1&#125;,
+    % this disables the standard
+    % tick label *text* (but not the line)
+    yticklabel=\ ,
+    extra description/.code=&#123;
+        % this generates custom y labels to implement
+        % individual styles for every tick:
+        \node [below left] at (axis cs:0,-1) &#123;$-1$&#125;;
+        \node [above left] at (axis cs:0,1) &#123;$1$&#125;;
+    &#125;,
+    axis line style=&#123;-&gt;&#125;,
+]
+    \addplot [blue,samples=100,domain=0:2*pi]
+        (&#123;sin(deg(2*x))&#125;, &#123;sin(deg(x))&#125;);
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 2049. Other
+## 2049. Line Chart
 
-**ID**: `1935dc18a078`  
+**ID**: `335ef11b615b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_tikzexternal.sty
+% requires \usetikzlibrary&#123;decorations.markings&#125;
+\begin&#123;tikzpicture&#125;[]
+% Same as in previous example, but with decorations:
+\begin&#123;axis&#125;[
+    axis lines=middle,
+    title=Decorated Graphics,
+    xmin=-2, xmax=2, ymin=-2, ymax=2,
+    xtick=&#123;-1,1&#125;, ytick=&#123;-1,1&#125;,
+    % this disables the standard
+    % tick label *text* (but not the line)
+    yticklabel=\ ,
+    extra description/.code=&#123;
+        % this generates custom y labels to implement
+        % individual styles for every tick:
+        \node [below left] at (axis cs:0,-1) &#123;$-1$&#125;;
+        \node [above left] at (axis cs:0,1) &#123;$1$&#125;;
+    &#125;,
+    axis line style=&#123;-&gt;&#125;,
+]
+    \addplot[blue,samples=100,domain=0:2*pi,
+      postaction=&#123;decorate&#125;,% ------
+      decoration=&#123;markings, % ------
+         mark=at position 0.25 with &#123;\arrow&#123;stealth&#125;&#125;,
+         mark=at position 0.5  with &#123;\arrow&#123;stealth&#125;&#125;,
+         mark=at position 0.75 with &#123;\arrow&#123;stealth&#125;&#125;&#125;
+    ] (&#123;sin(deg(2*x))&#125;, &#123;sin(deg(x))&#125;);
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2050. Line Chart
 
-**ID**: `40ac680bb289`  
+**ID**: `fbe207c1878d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\documentclass&#123;article&#125;
-\usepackage&#123;pgfplots&#125;
-    \pgfrealjobname&#123;test&#125;
-\begin&#123;document&#125;
-    \begin&#123;figure&#125;
-        \beginpgfgraphicnamed&#123;testfigure&#125;
-            \begin&#123;tikzpicture&#125;
-                \begin&#123;axis&#125;
-                    \addplot &#123;x^2&#125;;
-                \end&#123;axis&#125;
-            \end&#123;tikzpicture&#125;
-        \endpgfgraphicnamed
-        \caption&#123;Our first external graphics example&#125;
-    \end&#123;figure&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;ternaryaxis&#125;
+    \addplot3 coordinates &#123;
+        (0.81,    0.19,    0.00)
+        (0.76,    0.17,    0.07)
+        (0.66,    0.16,    0.16)
+        (0.76,    0.07,    0.17)
+        (0.81,    0.00,    0.19)
+    &#125;;
 
-    \begin&#123;figure&#125;
-        \beginpgfgraphicnamed&#123;testfigure2&#125;
-            \begin&#123;tikzpicture&#125;
-                \begin&#123;axis&#125;
-                    \addplot &#123;x^3&#125;;
-                \end&#123;axis&#125;
-            \end&#123;tikzpicture&#125;
-        \endpgfgraphicnamed
-        \caption&#123;A second graphics&#125;
-    \end&#123;figure&#125;
-\end&#123;document&#125;
+    \addplot3 coordinates &#123;
+        (0.85,    0.15,    0.00)
+        (0.82,    0.13,    0.05)
+        (0.73,    0.14,    0.13)
+        (0.82,    0.06,    0.13)
+        (0.84,    0.00,    0.16)
+    &#125;;
+    \legend&#123;$10$\textdegree, $20$\textdegree&#125;
+\end&#123;ternaryaxis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-039) | Page 41 of 107 | [Next →](executable_example-page-041)
+[← Previous](executable_example-page-039) | Page 41 of 120 | [Next →](executable_example-page-041)

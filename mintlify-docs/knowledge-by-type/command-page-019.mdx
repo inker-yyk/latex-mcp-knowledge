@@ -11,493 +11,538 @@ Showing items **951-1000** of **1103**
 
 ---
 
-## 951. Command: `\pgfsys@animation@base`
+## 951. Command: `\savedanchor\marg{command`
 
-**ID**: `ff03018ee57c`  
+**ID**: `cc9b062a70e6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command can be used in any place where |@animation@time| is usually used. The effect is that the next value does not become part of the timeline, but will become the value used for the attribute when no animation is active. (Normally, when the animation is not active, no value is set at all and the value is inherited from the surrounding scope.)
+**Description**: code&#125; This command declares a saved anchor. The argument command should be a \ macro name like ||. The code will be executed each time || (or ||) is called to create a node of the shape shape name. When the code is executed, the -boxes of the node parts will contain the text labels of the node. Possibly, these box are void. For example, if there is just a |text| part, the node || will be set up when the code is executed. The code can use the width, height, and depth of the box(es) to compute the
 
 ---
 
-## 952. Command: `\pgfsysanimvalcurrent`
+## 952. Command: `\saveddimen\marg{command`
 
-**ID**: `d62d50f34ee2`  
+**ID**: `a974b53eeb58`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
+
+**Description**: code&#125; This command is similar to ||, only instead of setting command to ||$x$|&#123;|$y$|&#125;|, the command is set just to (the value of) $x$. In the |simple rectangle| shape we might use a saved dimension to store the depth of the shape box. codeexample[code only] &#123; @x= &#125; codeexample
 
 ---
 
-## 953. Command: `\pgfsys@animation@val@current`
+## 953. Command: `\savedmacro\marg{command`
 
-**ID**: `494fe193200f`  
+**ID**: `20877c4f57a7`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Creates a time--value pairs where the value is the current value that the attribute has. This command can only be used in conjunction with ``real'' animations, when you use it with a snapshot an error is raised.
+**Description**: code&#125; This command is similar to ||, only at some point in code, command should be defined appropriately, (this could be a value, or some text). In the |regular polygon| shape, a saved macro is used to store the number of sides of the polygon. codeexample[code only] &#123;&#125; codeexample
 
 ---
 
-## 954. Command: `\pgfsysanimvaltext\marg{text`
+## 954. Command: `\anchor\marg{name`
 
-**ID**: `e2c509ea12b2`  
+**ID**: `1cb579ab0801`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: code&#125; This command declares an anchor named name. Unlike for saved anchors, the code will not be executed each time a node is declared. Rather, the code is only executed when the anchor is specifically requested; either for anchoring the node during its creation or as a position in the shape referenced later on. The name is a quite arbitrary string that is not ``passed down'' to the system level. Thus, names like |south| or |1| or |::| would all be fine. A saved anchor is not automatically also 
 
 ---
 
-## 955. Command: `\pgfsys@animation@val@text\marg{text`
+## 955. Command: `\deferredanchor\marg{name`
 
-**ID**: `df8c9014b8e9`  
+**ID**: `de2db4ffbffd`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Creates a time--value pairs where the value is some text. Which texts are permissible depends on the to-be-animated attribute.
+**Description**: code&#125; This command declares an anchor named name. It works like ||. However, unlike for anchors declared by ||, name will not be expanded during the shape declaration (i.e.\ not during ||). Rather, the name is expanded when the node is actually used (with || or more likely with ||). This may be useful if the anchor name is context dependent (depending, for example, on the value of a key). codeexample[code only] simple shape&#123; &#123; &#125; center&#123;&#125; &#123; @x=1cm @y=0cm&#125; anchor &#123;&#125;&#125; tikzpicture [simple shape] (Te
 
 ---
 
-## 956. Command: `\pgfsysanimvalscalar\marg{number`
+## 956. Command: `\anchorborder\marg{code`
 
-**ID**: `ccfe6b099828`  
+**ID**: `77d9eed40ac3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: &#125; A border anchor is an anchor point on the border of the shape. What exactly is considered as the ``border'' of the shape depends on the shape. When the user requests a point on the border of the shape using the || command, the code will be executed to discern this point. When the execution of the code starts, the dimensions |@x| and |@y| will have been set to a location $p$ in the shape's coordinate system, and relative to the anchor |center|. Note that || will produce an error if the shape do
 
 ---
 
-## 957. Command: `\pgfsys@animation@val@scalar\marg{number`
+## 957. Command: `\backgroundpath\marg{code`
 
-**ID**: `e6cb0ad3de09`  
+**ID**: `1813648c583b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Creates a time--value pairs where the value is a number like |0.5| or |-2.25|.
+**Description**: &#125; This command specifies the path that ``makes up'' the background of the shape. Note that the shape cannot prescribe what is going to happen with the path: It might be drawn, shaded, filled, or even thrown away. If you want to specify that something should ``always'' happen when this shape is drawn (for example, if the shape is a stop-sign, we always want it to be filled with a red color), you can use commands like ||, explained below. When the code is executed, all saved anchors will be in eff
 
 ---
 
-## 958. Command: `\pgfsysanimvaldimension\marg{dimension`
+## 958. Command: `\foregroundpath\marg{code`
 
-**ID**: `6b671d01dbc3`  
+**ID**: `48d8c761d9dc`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: &#125; This command works like ||, only it is invoked after the text labels have been drawn. This means that this path can possibly obscure (part of) the text labels.
 
 ---
 
-## 959. Command: `\pgfsys@animation@val@dimension\marg{dimension`
+## 959. Command: `\behindbackgroundpath\marg{code`
 
-**ID**: `82e35a2591cb`  
+**ID**: `a9842a9f4116`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Creates a time--value pairs where the value is a \ dimension like |0.5pt| or |-2in|.
+**Description**: &#125; Unlike the previous two commands, code should not only construct a path, it should also use this path in whatever way is appropriate. For example, the code might fill some area with a uniform color. Whatever the code does, it does it first. This means that any drawing done by code will be even behind the background path. Note that the code is protected with a |&#123;pgfscope&#125;|.
 
 ---
 
-## 960. Command: `\pgfsysanimvalcolorrgb\marg{red`
+## 960. Command: `\beforebackgroundpath\marg{code`
 
-**ID**: `f862bc232778`  
+**ID**: `877af75bdd93`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: greenblue&#125;
+**Description**: &#125; This command works like ||, only the code is executed after the background path has been used, but before the texts label are drawn.
 
 ---
 
-## 961. Command: `\pgfsys@animation@val@color@rgb\marg{red`
+## 961. Command: `\behindforegroundpath\marg{code`
 
-**ID**: `84e0c14627a4`  
+**ID**: `88b741ec576b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: greenblue&#125; Creates a time--value pairs where the value is color specified by three fractional values between 0 and 1 for the red, the green, and the blue part.
+**Description**: &#125; The code is executed after the text labels have been drawn, but before the foreground path is used.
 
 ---
 
-## 962. Command: `\pgfsysanimvalcolorcmyk\marg{cyan`
+## 962. Command: `\beforeforegroundpath\marg{code`
 
-**ID**: `f665fd5bd7e7`  
+**ID**: `1154f305b37b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: magentayellowblack&#125;
+**Description**: &#125; This code is executed at the very end.
 
 ---
 
-## 963. Command: `\pgfsys@animation@val@color@cmyk\marg{cyan`
+## 963. Command: `\inheritsavedanchors|[from=|\marg{another shape name`
 
-**ID**: `4d0f46e5c261`  
+**ID**: `7bc778ff7276`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: magentayellowblack&#125; Creates a time--value pairs where the value is color specified by four fractional values between 0 and 1 for the cyan, magenta, yellow, and black part.
+**Description**: |]|&#125; This command allows you to inherit the code for saved anchors from another shape name. The idea is that if you wish to create a new shape that is just a small modification of a another shape, you can recycle the code used for another shape name. The effect of this command is the same as if you had called || and || for each saved anchor or saved dimension declared in another shape name. Thus, it is not possible to ``selectively'' inherit only some saved anchors, you always have to inherit al
 
 ---
 
-## 964. Command: `\pgfsysanimvalcolorcmy\marg{cyan`
+## 964. Command: `\inheritbehindbackgroundpath|[from=|\marg{another shape name`
 
-**ID**: `441beb669714`  
+**ID**: `9bf207cb18eb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: magentayellow&#125;
+**Description**: |]|&#125; This command can be used to inherit the code used for the drawings behind the background path from another shape name.
 
 ---
 
-## 965. Command: `\pgfsys@animation@val@color@cmy\marg{cyan`
+## 965. Command: `\inheritbackgroundpath|[from=|\marg{another shape name`
 
-**ID**: `2248465d8c1e`  
+**ID**: `f119f3d2fabc`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: magentayellow&#125; Like the || only without the black part.
+**Description**: |]|&#125; Inherits the background path code from another shape name.
 
 ---
 
-## 966. Command: `\pgfsysanimvalcolorgray\marg{gray value`
+## 966. Command: `\inheritbeforebackgroundpath|[from=|\marg{another shape name`
 
-**ID**: `ad869ec0063f`  
+**ID**: `58bae0944136`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: |]|&#125; Inherits the before background path code from another shape name.
 
 ---
 
-## 967. Command: `\pgfsys@animation@val@color@gray\marg{gray value`
+## 967. Command: `\inheritbehindforegroundpath|[from=|\marg{another shape name`
 
-**ID**: `da2bbbf3f41d`  
+**ID**: `1e77556bf777`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Creates a time--value pairs where the value is gray value (a fraction between 0 and 1).
+**Description**: |]|&#125; Inherits the behind foreground path code from another shape name.
 
 ---
 
-## 968. Command: `\pgfsysanimvalpath\marg{low-level path construction commands`
+## 968. Command: `\inheritforegroundpath|[from=|\marg{another shape name`
 
-**ID**: `a68f4c14cfb6`  
+**ID**: `5d2dedbac40e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: |]|&#125; Inherits the foreground path code from another shape name.
 
 ---
 
-## 969. Command: `\pgfsys@animation@val@path\marg{low-level path construction command`
+## 969. Command: `\inheritbeforeforegroundpath|[from=|\marg{another shape name`
 
-**ID**: `609f4549107b`  
+**ID**: `1807652ae77c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Creates a time--value pairs where the value is path. The low-level commands must consist of a sequence of path construction commands like |@lineto| or |@linetotoken| (more precisely, the commands must form a list of \ tokens and dimensions surrounded by braces). For each call of this command, the sequence of tokens and numbers must be the some. During the animation, only and exactly the numbers will be interpolated.
+**Description**: |]|&#125; Inherits the before foreground path code from another shape name.
 
 ---
 
-## 970. Command: `\pgfsysanimvaltranslate\marg{x dimension`
+## 970. Command: `\inheritanchor|[from=|\marg{another shape name`
 
-**ID**: `2c2b440632de`  
+**ID**: `9ca54adfbc88`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y dimension&#125;
+**Description**: |]|name&#125; Inherits the code of one specific anchor named name from another shape name. Thus, unlike saved anchors, which must be inherited collectively, normal anchors can and must be inherited individually.
 
 ---
 
-## 971. Command: `\pgfsys@animation@val@translate\marg{x dimension`
+## 971. Command: `\inheritanchorborder|[from=|\marg{another shape name`
 
-**ID**: `f5d9dfd080f3`  
+**ID**: `350b7511624a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y dimension&#125; Creates a time--value pairs where the value is a coordinate. The dimensions must be \ dimensions.
+**Description**: |]|&#125; Inherits the border anchor code from another shape name.
 
 ---
 
-## 972. Command: `\pgfsysanimvalscale\marg{x scale`
+## 972. Command: `\pgfusepath\marg{actions`
 
-**ID**: `bcd684e4dc3c`  
+**ID**: `35709a5926dc`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y scale&#125;
+**Description**: &#125; Applies the given actions to the current path. Afterwards, the current path is (globally) empty. The following actions are possible: itemize |fill| fills the path. See Section~section-fill for further details. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;0cm&#125;&#125; fill pgfpicture codeexample |stroke| strokes the path. See Section~section-stroke for further details. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;0cm&#125;&#125; stroke pgfpicture codeexample |draw| has the same effect as |stroke|. |clip| clips all subs
 
 ---
 
-## 973. Command: `\pgfsys@animation@val@scale\marg{x scale`
+## 973. Command: `\pgfsetlinewidth\marg{line width`
 
-**ID**: `a549327ac685`  
+**ID**: `cd20414b3d83`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y scale&#125; Creates a time--value pairs where the value is pair of scalar values.
+**Description**: &#125; This command sets the line width for subsequent strokes (in the current |pgfscope|). The line width is given as a normal \ dimension like |0.4pt| or |1mm|. codeexample[] pgfpicture 1mm &#123;0mm&#123;0mm&#125;&#125; &#123;2cm&#123;0mm&#125;&#125; stroke 2 &#123;0mm&#123;5mm&#125;&#125; &#123;2cm&#123;5mm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 974. Command: `\pgfsysanimvalviewbox\marg{$x_1$`
+## 974. Command: `\pgfsetbuttcap`
 
-**ID**: `686c44aaa1f4`  
+**ID**: `b416ac6a0595`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: $y_1$$x_2$$y_2$&#125;
+**Description**: Sets the line cap to a butt cap. See Section~section-cap-joins for an explanation of what this is.
 
 ---
 
-## 975. Command: `\pgfsys@animation@val@viewbox\marg{$x_1$`
+## 975. Command: `\pgfsetroundcap`
 
-**ID**: `bf03560af0f9`  
+**ID**: `b94810e6d0ec`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: $y_1$$x_2$$y_2$&#125; Creates a time--value pairs where the value is view box. The lower left corner is given by $(x_1,y_1)$, consisting of two \ dimensions, and the upper right corner is $(x_2,y_2)$.
+**Description**: Sets the line cap to a round cap. See again Section~section-cap-joins.
 
 ---
 
-## 976. Command: `\pgfsysanimvaldash\marg{pattern`
+## 976. Command: `\pgfsetrectcap`
 
-**ID**: `abdc376e937b`  
+**ID**: `47f16744fc6e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: phase&#125;
+**Description**: Sets the line cap to a square cap. See again Section~section-cap-joins.
 
 ---
 
-## 977. Command: `\pgfsys@animation@val@dash\marg{pattern`
+## 977. Command: `\pgfsetroundjoin`
 
-**ID**: `565825494fea`  
+**ID**: `96bea1a72620`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: phase&#125; Creates a time--value pairs where the value is dash pattern and phase with the same syntax as |@setdash|.
+**Description**: Sets the line join to a round join. See again Section~section-cap-joins.
 
 ---
 
-## 978. Command: `\pgfsysanimkeyrepeat{number of times`
+## 978. Command: `\pgfsetbeveljoin`
 
-**ID**: `ff7a78b3c685`  
+**ID**: `66ff7fe49270`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: Sets the line join to a bevel join. See again Section~section-cap-joins.
 
 ---
 
-## 979. Command: `\pgfsys@animation@repeat\marg{number of times`
+## 979. Command: `\pgfsetmiterjoin`
 
-**ID**: `77b055f327f9`  
+**ID**: `72b18c1dcc21`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Specifies that the animation should repeat the specified number of times, which may be a fractional number. codeexample[ width=6cm, preamble=&#123;animations&#125;, animation list=&#123;1,2,3,4,5,6,7,8&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; 2.5 translate &#125; codeexample
+**Description**: Sets the line join to a miter join. See again Section~section-cap-joins.
 
 ---
 
-## 980. Command: `\pgfsysanimkeyrepeatindefinite`
+## 980. Command: `\pgfsetmiterlimit\marg{miter limit factor`
 
-**ID**: `9daae2af59f1`  
+**ID**: `43ea2440a746`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
+
+**Description**: &#125; Sets the miter limit to miter limit factor. See again Section~section-cap-joins.
 
 ---
 
-## 981. Command: `\pgfsys@animation@repeat@indefinite`
+## 981. Command: `\pgfsetdash\marg{list of even length of dimensions`
 
-**ID**: `cea21090fc7c`  
+**ID**: `c6246063bbb3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Specifies that the animation should repeat indefinitely. codeexample[ width=6cm, preamble=&#123;animations&#125;, animation list=&#123;1,2,3,4,5,6,7,8&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; translate &#125; codeexample
+**Description**: phase&#125; Sets the dashing of a line. The first entry in the list specifies the length of the first solid part of the list. The second entry specifies the length of the following gap. Then comes the length of the second solid part, following by the length of the second gap, and so on. The phase specifies where the first solid part starts relative to the beginning of the line. codeexample[] pgfpicture &#123;0.5cm&#123;0.5cm&#125;&#123;0.1cm&#125;&#123;0.2cm&#125;&#125;&#123;0cm&#125; &#123;0mm&#123;0mm&#125;&#125; &#123;2cm&#123;0mm&#125;&#125; stroke &#123;0.5cm&#123;0.5cm&#125;&#123;0.1cm&#125;&#123;0.2cm&#125;&#125;&#123;0.1cm&#125; 
 
 ---
 
-## 982. Command: `\pgfsysanimkeyrepeatdur\meta{seconds`
+## 982. Command: `\pgfsetstrokecolor\marg{color`
 
-**ID**: `f1613317ebf0`  
+**ID**: `bf097a1a7026`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: &#125; Sets the color used for stroking lines to color, where color is a \ color like |red| or |black!20!red|. Unlike the || command, the effect of this command lasts till the end of the current |&#123;pgfscope&#125;| and not till the end of the current \ group. The color used for stroking may be different from the color used for filling. However, a || command will always ``immediately override'' any special settings for the stroke and fill colors. In plain , this command will also work, but the problem of def
 
 ---
 
-## 983. Command: `\pgfsys@animation@repeat@dur\meta{seconds`
+## 983. Command: `\pgfsetcolor\marg{color`
 
-**ID**: `370f3b3761dd`  
+**ID**: `11f32e87a7ad`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Specifies that the animation should repeat until seconds have elapsed. codeexample[ width=6cm, preamble=&#123;animations&#125;, animation list=&#123;1,2,3,4,5,6,7,8&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; 5 translate &#125; codeexample
+**Description**: &#125; Sets both the stroke and fill color. The difference to the normal || command is that the effect lasts till the end of the current |&#123;pgfscope&#125;|, not only till the end of the current \ group.
 
 ---
 
-## 984. Command: `\pgfsysanimkeyoffset\marg{time offset`
+## 984. Command: `\pgfsetinnerlinewidth\marg{dimension`
 
-**ID**: `8fae2b87792f`  
+**ID**: `b06266606a7f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: begin or end&#125;
+**Description**: &#125; This command sets the width of the inner line. Whenever a path is stroked (and only then), it will be stroked normally and, afterward, it is stroked once more with the color set to the inner line color and the line width set to dimension. In case arrow tips are added to a path, the path is first stroked normally, then the inner line is stroked, and then the arrow tip is added. In case the main path is shortened because of the added arrow tip, this shortened path is double stroked, not the orig
 
 ---
 
-## 985. Command: `\pgfsys@animation@offset\marg{time offset`
+## 985. Command: `\pgfsetinnerstrokecolor\marg{color`
 
-**ID**: `a6e487eb958c`  
+**ID**: `9a7076562d17`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: begin or end&#125; Specifies that (in addition to any other beginnings or endings) the animation's timeline should begin (or end) time offset many seconds after the graphic is shown. For instance, in the next example the animation will start automatically after 5\,s or when then button is pressed. codeexample[ width=6cm, preamble=&#123;animations&#125;, animation list=&#123;1,2,3,4,5,6,7,8&#125;, render instead=&#123; node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; 5&#123;begin&#125; 5 translate &#125; &#125;] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0
+**Description**: &#125; This command sets the color that is to be used when the inner line is stroked. The effect of this command is also local to the current \ group. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;0cm&#125;&#125; 2pt 1pt red!50 stroke pgfpicture codeexample
 
 ---
 
-## 986. Command: `\pgfsysanimkeysyncbegin\marg{sync base id`
+## 986. Command: `\pgfsetarrowsstart\marg{start arrow tip specification`
 
-**ID**: `3553891deb9a`  
+**ID**: `a294ab038147`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typetime offsetbegin or end&#125;
+**Description**: &#125; Sets the arrow tip kind used at the start of a (possibly curved) path. The syntax of the start arrow specification is detailed in Section~section-arrow-spec. To ``clear'' the start arrow, say ||. codeexample[preamble=&#123;arrows.meta&#125;] pgfpicture Latex[length=10pt] &#123;1cm&#123;0cm&#125;&#125; stroke Computer Modern Rightarrow &#123;0cm&#123;2mm&#125;&#125; &#123;1cm&#123;2mm&#125;&#125; stroke pgfpicture codeexample The effect of this command persists only till the end of the current \ scope.
 
 ---
 
-## 987. Command: `\pgfsys@animation@syncbegin\marg{sync base id`
+## 987. Command: `\pgfsetarrowsend\marg{end arrow tip specification`
 
-**ID**: `3475aeb490c9`  
+**ID**: `0a9d0211b842`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typetime offsetbegin or end&#125; Specifies that the animation should begin time offset many seconds after the sync base id with the given type has begun. Here, the sync base id must have been obtained using |@new@id|. The idea behind a sync base is that you setup an animation and name it, other animations can start alongside this animation. An animation whose sole purpose is to orchestrate other animations in this way is called a sync base.
+**Description**: &#125; Sets the arrow tip kind used at the end of a path. codeexample[preamble=&#123;arrows.meta&#125;] pgfpicture Latex[length=10pt] Computer Modern Rightarrow &#123;1cm&#123;0cm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 988. Command: `\pgfsysanimkeysyncend\marg{sync base id`
+## 988. Command: `\pgfsetarrows\marg{argument`
 
-**ID**: `9fade72ec573`  
+**ID**: `9b4e40c65a61`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typetime offsetbegin or end&#125;
+**Description**: &#125; The argument can be of the form start arrow tip specification|-|end arrow tip specification. In this case, both the start and the end arrow specification are set: codeexample[preamble=&#123;arrows.meta&#125;] pgfpicture Latex[length=10pt]-&gt;&gt; &#123;1cm&#123;0cm&#125;&#125; stroke pgfpicture codeexample Alternatively, argument can be of the form |[|arrow keys|]|. In this case, the arrow keys will be set for all arrow tips in the current scope, see Section~section-arrow-scopes.
 
 ---
 
-## 989. Command: `\pgfsys@animation@syncend\marg{sync base id`
+## 989. Command: `\pgfsetshortenstart\marg{dimension`
 
-**ID**: `8d30637a834f`  
+**ID**: `eae315166d80`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typetime offsetbegin or end&#125; Works like || only the animation begin (or ends) when the sync base ends.
+**Description**: &#125; This command will shortened the start of every stroked path by the given dimension. This shortening is done in addition to automatic shortening done by a start arrow, but it can be used even if no start arrow is given. It is usually better to use the |sep| key with arrow tips. This command is useful if you wish arrows or lines to ``stop shortly before'' a given point. codeexample[preamble=&#123;arrows.meta&#125;] pgfpicture &#123;5mm&#125; stroke Latex- 4pt &#123;5mm&#123;0cm&#125;&#125; &#123;2cm&#123;0cm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 990. Command: `\pgfsysanimkeyevent\marg{id`
+## 990. Command: `\pgfsetshortenend\marg{dimension`
 
-**ID**: `18e8366b64c0`  
+**ID**: `92d4d1336396`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typeevent nametime offsetbegin or end&#125;
+**Description**: &#125; Works like ||.
 
 ---
 
-## 991. Command: `\pgfsys@animation@event\marg{id`
+## 991. Command: `\pgfseteorule`
 
-**ID**: `1c89b733d3bb`  
+**ID**: `2bbcc1687040`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typeevent nametime offsetbegin or end&#125; Specifies that the animation should begin (or end) time offset many seconds after a certain event has occurred. Which events are possible depends on the specific output language, here are the events currently supported in svg: itemize |click| occurs when the object with the given id and type has been clicked. |focusin| and |focusout| occur when the focus enters or leaves the object. |mouseup|, |mousedown|, |mouseover|, |mousemove|, and |mouseout| occur when
+**Description**: Dictates that the even-odd rule is used in subsequent fillings in the current \ scope. Thus, for once, the effect of this command does not persist past the current \ scope. codeexample[] pgfpicture &#123;0mm&#123;0cm&#125;&#125;&#123;7mm&#125; &#123;5mm&#123;0cm&#125;&#125;&#123;7mm&#125; fill pgfpicture codeexample
 
 ---
 
-## 992. Command: `\pgfsysanimkeyrepeatevent\marg{id`
+## 992. Command: `\pgfsetnonzerorule`
 
-**ID**: `f847d408a121`  
+**ID**: `a5a8f0e25571`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typerepeat counttime offsetbegin or end&#125;
+**Description**: Dictates that the nonzero winding number rule is used in subsequent fillings in the current \ scope. This is the default. codeexample[] pgfpicture &#123;0mm&#123;0cm&#125;&#125;&#123;7mm&#125; &#123;5mm&#123;0cm&#125;&#125;&#123;7mm&#125; fill pgfpicture codeexample
 
 ---
 
-## 993. Command: `\pgfsys@animation@repeat@event\marg{id`
+## 993. Command: `\pgfsetfillcolor\marg{color`
 
-**ID**: `2c87241259bb`  
+**ID**: `318ace7bb02d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: typerepeat counttime offsetbegin or end&#125; The animation begins (or end) with a certain offset when another animation has reached a certain repeat count. codeexample[ width=6cm, preamble=&#123;animations&#125;, animation list=&#123;1,2,3,4,5,6,7,8&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-5mm&#125; 5 @new@id&#123;&#125; @use@id&#123;&#125; translate &#125; &#123; &#123;other&#125; &#123;&#125;&#123;2&#125;&#123;0&#125;&#123;begin&#125; 4 &#123;&#125; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-5mm&#125; translate [fill=red, text=white, circle] (other) &#123;Other&#125;; &#125; codeexample
+**Description**: &#125; Sets the color used for filling paths to color. Like the stroke color, the effect lasts only till the next use of ||.
 
 ---
 
-## 994. Command: `\pgfsysanimkeyaccesskey\marg{character`
+## 994. Command: `tkzDefSquare`
 
-**ID**: `083fafc8bc08`  
-**Package**: tikz-pgf  
+**ID**: `7b9836560d2a`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
 
-**Description**: time offsetbegin or end&#125;
+**Description**: Geometry command: tkzDefSquare
+
+**Syntax**:
+```latex
+\parg{pt1,pt2
+```
 
 ---
 
-## 995. Command: `\pgfsys@animation@accesskey\marg{character`
+## 995. Command: `tkzDefRectangle`
 
-**ID**: `227925c451ba`  
-**Package**: tikz-pgf  
+**ID**: `2b8d2da1c509`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
 
-**Description**: time offsetbegin or end&#125; Begin or end the animation when a certain key is pressed. Note that this event may not be supported by some browsers for security reasons (prevent key loggers). codeexample[ width=2cm, preamble=&#123;animations&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; s&#123;&#125;&#123;begin&#125; translate &#125; codeexample
+**Description**: Geometry command: tkzDefRectangle
+
+**Syntax**:
+```latex
+\parg{pt1,pt2
+```
 
 ---
 
-## 996. Command: `\pgfsysanimkeyrestartalways`
+## 996. Command: `tkzDefParallelogram`
 
-**ID**: `2397f2e2fdd5`  
-**Package**: tikz-pgf  
+**ID**: `39e39dcdf366`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
+
+**Description**: Geometry command: tkzDefParallelogram
+
+**Syntax**:
+```latex
+\parg{pt1,pt2,pt3
+```
 
 ---
 
-## 997. Command: `\pgfsys@animation@restart@always`
+## 997. Command: `tkzDefGoldenRectangle`
 
-**ID**: `182c62a1a095`  
-**Package**: tikz-pgf  
+**ID**: `3ea9bed01b46`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
 
-**Description**: Defines that the animation can be restarted at any time. This is the default. codeexample[ width=2cm, preamble=&#123;animations&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; translate &#125; codeexample
+**Description**: Geometry command: tkzDefGoldenRectangle
+
+**Syntax**:
+```latex
+\parg{point,point
+```
 
 ---
 
-## 998. Command: `\pgfsysanimkeyrestartnever`
+## 998. Command: `tkzDefRegPolygon`
 
-**ID**: `ea2ab0856a07`  
-**Package**: tikz-pgf  
+**ID**: `528a10faa349`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
+
+**Description**: Geometry command: tkzDefRegPolygon
+
+**Syntax**:
+```latex
+\oarg{local options
+```
 
 ---
 
-## 999. Command: `\pgfsys@animation@restart@never`
+## 999. Command: `tkzSetUpPoint`
 
-**ID**: `872dcfad71fa`  
-**Package**: tikz-pgf  
+**ID**: `e87420f24a7d`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
 
-**Description**: Defines that the animation cannot be restarted once it has run. codeexample[ width=2cm, preamble=&#123;animations&#125;, ] node&#123;&#125;&#123; 0&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;0cm&#125; 2&#123;1&#125;&#123;1&#125;&#123;0&#125;&#123;0&#125; 0cm&#123;-1cm&#125; translate &#125; codeexample
+**Description**: Geometry command: tkzSetUpPoint
+
+**Syntax**:
+```latex
+\oarg{local options
+```
 
 ---
 
-## 1000. Command: `\pgfsysanimkeyrestartwhennotactive`
+## 1000. Command: `tkzSetUpLine`
 
-**ID**: `f5635f85ee71`  
-**Package**: tikz-pgf  
+**ID**: `87d300a767a0`  
+**Package**: tkz-euclide  
 **Type**: Command Specification  
+
+**Description**: Geometry command: tkzSetUpLine
+
+**Syntax**:
+```latex
+\oarg{local options
+```
 
 ---
 

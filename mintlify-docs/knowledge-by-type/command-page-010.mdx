@@ -11,503 +11,503 @@ Showing items **501-550** of **1103**
 
 ---
 
-## 501. Command: `\pgfdeclareradialshading\oarg{color list`
+## 501. Command: `\pgfplothandlergaplineto`
 
-**ID**: `c1facfaff85e`  
+**ID**: `43dda86778d1`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: shading namecenter pointcolor specification&#125; Declares a radial shading. A radial shading is a circle whose inner color changes as specified by the color specification. Assuming that the center of the shading is at the origin, the color of the center will be the color specified for 0cm and the color of the border of the circle will be the color for the maximum dimension given in the color specified. This maximum will also be the radius of the circle. If the center point is not at the origin, the 
+**Description**: This handler will connect the points of the plots by straight line segments. However, at the start and the end of the lines there will be a small gap, given by the following key: key&#123;/pgf/gap around stream point=dimension (initially 1.5pt)&#125; The dimension by which the lines between consecutive stream points are shortened at the beginning and end. key codeexample[] tikzpicture &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 502. Command: `\pgfdeclarefunctionalshading\oarg{color list`
+## 502. Command: `\pgfplothandlergapcycle`
 
-**ID**: `8a5150056363`  
+**ID**: `15ec49a2894a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: shading namelower left cornerupper right corner\\ init codetype 4 function &#125; Warning: These shadings are the least portable of all and they put the heaviest burden of the renderer. They are slow and, possibly, will not print correctly! This command creates a functional shading. For such a shading, the color of each point is calculated by calling a function that takes the coordinates of the point as input and yields the color as an output. Note that the function is evaluated by the renderer, not 
+**Description**: Works like ||, but the last point is connected to the first in the same fashion: codeexample[] tikzpicture &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 503. Command: `\pgfshadecolortocmyk\marg{color name`
+## 503. Command: `\pgfplothandlermark\marg{mark code`
 
-**ID**: `d65a03155c5a`  
+**ID**: `4f4ce1481085`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macro&#125; This command takes color name as input, converts it to cmyk and stores the color's cyan/magenta/yellow/black components real numbers between 0.0 and 1.0 separated by spaces. In addition, four macros suffixed with |cyan|, |magenta|, |yellow| and |black| are defined, which store the individual components of color name.
+**Description**: &#125; This command will execute the mark code for some points of the plot, but each time the coordinate transformation matrix will be set up such that the origin is at the position of the point to be plotted. This way, if the mark code draws a little circle around the origin, little circles will be drawn at some point of the plot. By default, a mark is drawn at all points of the plot. However, two parameters $r$ and $p$ influence this. First, only every $r$th mark is drawn. Second, the first mark dr
 
 ---
 
-## 504. Command: `\pgfshadecolortogray\marg{color name`
+## 504. Command: `\pgfsetplotmarkrepeat\marg{repeat`
 
-**ID**: `38eae889f332`  
+**ID**: `ff805c70ca55`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macro&#125; This command takes color name as input converts it to grayscale and stores the color's value as a real number between 0.0 and 1.0. Although it's not needed, for consistency a second macro suffixed with |gray| is also defined.
+**Description**: &#125; Sets the $r$ parameter to repeat, that is, only every $r$th mark will be drawn.
 
 ---
 
-## 505. Command: `\pgffuncshadingrgbtocmyk`
+## 505. Command: `\pgfsetplotmarkphase\marg{phase`
 
-**ID**: `b070d80ee08c`  
+**ID**: `f26828e8eab3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top 3 elements on the stack from rgb to cmyk. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: &#125; Sets the $p$ parameter to phase, that is, the first mark to be drawn is the $p$th, followed by the $(p+r)$th, then the $(p+2r)$th, and so on.
 
 ---
 
-## 506. Command: `\pgffuncshadingrgbtogray`
+## 506. Command: `\pgfplothandlermarklisted\marg{mark code`
 
-**ID**: `cc712b924e44`  
+**ID**: `9a250fe9db8c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top 3 elements on the stack from rgb to grayscale. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: index list&#125; This command works similar to the previous one. However, marks will only be placed at those indices in the given index list. The syntax for the list is the same as for the || statement. For example, if you provide the list |1,3,...,25|, a mark will be placed only at every second point. Similarly, |1,2,4,8,16,32| yields marks only at those points that are powers of two. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;&#123;4pt&#125;stroke&#125; &#123;1,3&#125; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;
 
 ---
 
-## 507. Command: `\pgffuncshadingcmyktorgb`
+## 507. Command: `\pgfuseplotmark\marg{plot mark name`
 
-**ID**: `a909cfe2520c`  
+**ID**: `851285311952`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top 4 elements on the stack from cmyk to rgb. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: &#125; Draws the given plot mark name at the origin. The plot mark name must have been previously declared using ||. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;pentagon&#125; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 508. Command: `\pgffuncshadingcmyktogray`
+## 508. Command: `\pgfdeclareplotmark\marg{plot mark name`
 
-**ID**: `f40b4e6ec6c9`  
+**ID**: `516c6eb65212`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top 4 elements on the stack from cmyk to grayscale. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: code&#125; Declares a plot mark for later used with the || command. codeexample[] my plot mark &#123;&#123;0cm&#123;1ex&#125;&#125;&#123;1ex&#125;&#125; tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;my plot mark&#125; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 509. Command: `\pgffuncshadinggraytorgb`
+## 509. Command: `\pgfsetplotmarksize\marg{dimension`
 
-**ID**: `128463b4e07f`  
+**ID**: `fdf1684a15b1`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top element on the stack from grayscale to rgb. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: &#125; This command sets the \ dimension || to dimension. This dimension is a ``recommendation'' for plot mark code at which size the plot mark should be drawn; plot mark code may choose to ignore this dimension altogether. For circles, dimension should be the radius, for other shapes it should be about half the width/height. The predefined plot marks all take this dimension into account. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; 1ex &#123;*&#125; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2c
 
 ---
 
-## 510. Command: `\pgffuncshadinggraytocmyk`
+## 510. Command: `\beginpgfgraphicnamed\marg{file name prefix`
 
-**ID**: `af376ad2f075`  
+**ID**: `5a9272891227`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to convert the top element on the stack from grayscale to cmyk. In combination with the || conditional this macro can be used to make functional shading declarations more portable across color models.
+**Description**: &#125; This command indicates that everything up to the next call of || is part of a graphic that should be placed in a file named file name prefix|.|suffix, where the suffix depends on your backend driver. Typically, suffix will be |dvi| or |pdf|. Here is a typical example of how this command is used: codeexample[code only] ... As we see in Figure~fig1, the world is flat. figure graphic-of-flat-world tikzpicture (0,0) circle (1cm); tikzpicture The flat world. fig1 figure codeexample Each graphic to 
 
 ---
 
-## 511. Command: `\ifpgfshadingmodelrgb`
+## 511. Command: `\endpgfgraphicnamed`
 
-**ID**: `2de76ea6f590`  
+**ID**: `dd96e1a4a8bf`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |rgb| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
+**Description**: This command just marks the end of the graphic that should be externalized.
 
 ---
 
-## 512. Command: `\ifpgfshadingmodelcmyk`
+## 512. Command: `\pgfrealjobname\marg{name`
 
-**ID**: `b061f4aa721a`  
+**ID**: `f297a87c104d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |cmyk| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
+**Description**: &#125; Tells \ the real name of your job. For instance, if you have a file called |survey.tex| that contains two graphics that you wish to be called |survey-graphic1| and |survey-graphic2|, then you should write the following. codeexample[code only] article ... tikz survey codeexample
 
 ---
 
-## 513. Command: `\ifpgfshadingmodelgray`
+## 513. Command: `\pgfsyssoftpath@getcurrentpath\marg{macro name`
 
-**ID**: `95b6e75683f6`  
+**ID**: `cfb07b8c1eed`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Within the type 4 function argument of ||, this command can be used to test if the |xcolor| color model is |gray| at the time the shading is created. This can be used to ensure that the data output in the type 4 function correctly matches the active color model.
+**Description**: &#125; This command will store the current soft path in macro name.
 
 ---
 
-## 514. Command: `\pgfuseshading\marg{shading name`
+## 514. Command: `\pgfsyssoftpath@setcurrentpath\marg{macro name`
 
-**ID**: `514af72abff5`  
+**ID**: `8a0cc738e518`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Inserts a previously declared shading into the text. If you wish to use it in a |pgfpicture| environment, you should put a || around it. codeexample[] pgfpicture myshadingD &#123;20pt&#125;&#123;color(0pt)=(red); color(20pt)=(blue)&#125; [at=1cm&#123;0cm&#125;] &#123;myshadingD&#125; [at=2cm&#123;0.5cm&#125;]&#123;myshadingD&#125; pgfpicture codeexample
+**Description**: &#125; This command will set the current soft path to be the path stored in macro name. This macro should store a path that has previously been extracted using the |@getcurrentpath| command and has possibly been modified subsequently.
 
 ---
 
-## 515. Command: `\pgfshadepath\marg{shading name`
+## 515. Command: `\pgfsyssoftpath@invokecurrentpath`
 
-**ID**: `b80f3ec85330`  
+**ID**: `bd49c5520404`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: angle&#125; This command must be used inside a |&#123;pgfpicture&#125;| environment. The effect is a bit complex, so let us go over it step by step. First, \ will set up a local scope. Second, it uses the current path to clip everything inside this scope. However, the current path is once more available after the scope, so it can be used, for example, to stroke it. Now, the shading name should be a shading whose width and height are 100\,bp, that is, 100 big points. \ has a look at the bounding box of the curr
+**Description**: This command will turn the current soft path in a ``hard'' path. To do so, it iterates over the soft path and calls an appropriate |@xxxx| command for each element of the path. Note that the current soft path is not changed by this command. Thus, in order to start a new soft path after the old one has been invoked and is no longer needed, you need to set the current soft path to be empty. This may seem strange, but it is often useful to immediately use the last soft path again.
 
 ---
 
-## 516. Command: `\pgfsetadditionalshadetransform\marg{transformation`
+## 516. Command: `\pgfsyssoftpath@flushcurrentpath`
 
-**ID**: `9f5b88d422f8`  
+**ID**: `7eeb6dacadf0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command allows you to specify an additional transformation that should be applied to shadings when the || command is used. The transformation should be transformation code like |20|.
+**Description**: This command will invoke the current soft path and then set it to be empty.
 
 ---
 
-## 517. Command: `\pgfmathprintnumber\marg{x`
+## 517. Command: `\pgfsyssoftpath@moveto\marg{x`
 
-**ID**: `f79e46058586`  
+**ID**: `fdaabb77a8e6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Generates pretty-printed output for the (real) number x. The input number x is parsed using || which allows arbitrary precision. Numbers are typeset in math mode using the current set of number printing options, see below. Optional arguments can also be provided using |[|options|]|x.
+**Description**: y&#125; This command appends a ``move-to'' segment to the current soft path. The coordinates x and y are given as normal \ dimensions. One way to draw a line: codeexample[code only] @moveto&#123;0pt&#125;&#123;0pt&#125; @lineto&#123;10pt&#125;&#123;10pt&#125; @flushcurrentpath @stroke codeexample
 
 ---
 
-## 518. Command: `\pgfmathprintnumberto\marg{x`
+## 518. Command: `\pgfsyssoftpath@lineto\marg{x`
 
-**ID**: `5ddd9d3fe72a`  
+**ID**: `2718e7e464a3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macro&#125; Returns the resulting number into macro instead of typesetting it directly.
+**Description**: y&#125; Appends a ``line-to'' segment to the current soft path.
 
 ---
 
-## 519. Command: `\pgfmathifisint\marg{number constant`
+## 519. Command: `\pgfsyssoftpath@curveto\marg{a`
 
-**ID**: `9cab5d7649ee`  
+**ID**: `f68e900e07ca`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: true codefalse code&#125; A command which does the same check as |int detect|, but it invokes true code if the number constant actually is an integer and the false code if not. As a side-effect, || will contain the parsed number, either in integer format or as parsed floating point number. The argument number constant will be parsed with ||. codeexample[] 15 15&#123;is an int: .&#125;&#123;is no int&#125;1em 15.5 15.5&#123;is an int: .&#125;&#123;is no int&#125; codeexample
+**Description**: bcdxy&#125; Appends a ``curve-to'' segment to the current soft path with controls $(a,b)$ and $(c,d)$.
 
 ---
 
-## 520. Command: `\tikzexternalize\oarg{optional arguments`
+## 520. Command: `\pgfsyssoftpath@rect\marg{lower left x`
 
-**ID**: `eb5da9892d44`  
+**ID**: `83deb58d4787`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command activates the externalization. It installs commands to replace every -picture. It needs to be called before |document| because it may need to install its separate shipout routine. The optional arguments can be any of the keys described below. Note that the generation/modification of auxiliary files like |.aux|, |.toc| etc.\ is usually suppressed while a single image is externalized (details for || support follow). It is also possible to write ||main job name if the argument is del
+**Description**: lower left ywidthheight&#125; Appends a rectangle segment to the current soft path.
 
 ---
 
-## 521. Command: `\pgfactualjobname`
+## 521. Command: `\pgfsyssoftpath@closepath`
 
-**ID**: `f791360cd070`  
+**ID**: `9aefa3af0b66`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Once || has been called, || contains the name of the currently generated output file (which may be |main| or |main-figure0| or |main-figure1| in our example above).
+**Description**: Appends a ``close-path'' segment to the current soft path.
 
 ---
 
-## 522. Command: `\jobname`
+## 522. Command: `\pgfqpoint\marg{x`
 
-**ID**: `21597997de40`  
+**ID**: `b7a5a44ac488`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: The value of || is one of || or ||, depending on the configuration. In short: if auxiliary file support (|| and ||) is activated, |=| (since that's the base file name of auxiliary files).
+**Description**: y&#125; This command does the same as ||, but x and y must be simple dimensions like |1pt| or |1cm|. Things like |2ex| or |2cm+1pt| are not allowed.
 
 ---
 
-## 523. Command: `\tikzsetexternalprefix\marg{file name prefix`
+## 523. Command: `\pgfqpointxy\marg{$s_x$`
 
-**ID**: `64427da3daba`  
+**ID**: `45a7dad1513a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Assigns a common prefix used by all file names. For example, codeexample[code only] figures/ codeexample will prepend |figures/| to every external graphics file name. Please note that || is the only way to assign a prefix in case you want to prepare your document for environments where \ is not installed (see section~section-libs-external-nopgf).
+**Description**: $s_y$&#125; This command does the same as ||, but $s_x$ and $s_y$ must be simple numbers without unit, like |1.234| or |5.0|. Mathematical expressions or units are not allowed.
 
 ---
 
-## 524. Command: `\tikzsetnextfilename\marg{file name`
+## 524. Command: `\pgfqpointxyz\marg{$s_x$`
 
-**ID**: `7e88a0d01307`  
+**ID**: `c914b457e4ec`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Sets the file name for the next \ picture or || short command. It will only be used for the next picture. Pictures for which no explicit file name has been set (or the next file name is empty) will get automatically generated file names. Please note that |prefix| will still be prepended to file name. codeexample[code only] article tikz external [prefix=figures/] document trees tikzpicture &#123;root&#125; child &#123;node &#123;left&#125;&#125; child &#123;node &#123;right&#125; child &#123;node &#123;child&#125;&#125; child &#123;node &#123;child&#125;&#125; &#125;; tikzpicture si
+**Description**: $s_y$$s_z$&#125; As ||, but for three-dimensional coordinates. Any argument needs to be a number without unit.
 
 ---
 
-## 525. Command: `\tikzsetfigurename\marg{name`
+## 525. Command: `\pgfqpointscale\marg{factor`
 
-**ID**: `2f7fd0931900`  
+**ID**: `546c410d6ed0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Changes the names of all following figures. It is possible to change |figure name| during the document either using |external/figure name|=&#123;name|&#125;| or with this command. A unique counter will be used for each different name, and each counter will start at $0$. The value of |prefix| will be applied after |figure name| has been evaluated. codeexample[code only] article tikz external document tikzpicture &#123;root&#125; child &#123;node &#123;left&#125;&#125; child &#123;node &#123;right&#125; child &#123;node &#123;child&#125;&#125; child &#123;node &#123;child&#125;&#125; &#125;; t
+**Description**: coordinate&#125; As ||, but factor must be a simple number without unit, as for the other ``quick'' commands.
 
 ---
 
-## 526. Command: `\tikzappendtofigurename\marg{suffix`
+## 526. Command: `\pgfpathqmoveto\marg{x dimension`
 
-**ID**: `ca902187ca86`  
+**ID**: `e0e0e6b11021`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Appends suffix to the actual value of |figure name|. It is a shortcut for |external/figure name/.add=&#123;|suffix|&#125;| (a shortcut which is also supported if \ is not installed, see below).
+**Description**: y dimension&#125; Either starts a path or starts a new part of a path at the coordinate $(x dimension,y dimension)$. The coordinate is not transformed by the current coordinate transformation matrix. However, any low-level transformations apply. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1cm 0pt&#123;0pt&#125; 1cm&#123;1cm&#125; &#123;2cm&#123;0cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 527. Command: `\tikzpicturedependsonfile\marg{file name`
+## 527. Command: `\pgfpathqlineto\marg{x dimension`
 
-**ID**: `49556493c936`  
+**ID**: `1a35e5a4a180`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Adds a dependency for the next picture which is about to be externalized. If the command is invoked within a picture environment, it adds a dependency for the surrounding picture. Dependencies are written into target file|.dep| in the format target file|.: |file name. The effect is that if file name changes, the external graphics associated with the picture shall be remade. This command uses the contents of to check for graphics. If you encounter difficulties with image extensions, consider re
+**Description**: y dimension&#125; The quick version of the line-to operation.
 
 ---
 
-## 528. Command: `\tikzexternalfiledependsonfile\marg{external graphics`
+## 528. Command: `\pgfpathqcurveto\marg{$s^1_x$`
 
-**ID**: `d34247eefe67`  
+**ID**: `9e219ff1eacf`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: file name&#125; A variant of || which adds a dependency for an external graphics. The argument external graphics must be the path as it would have been generated by the |external| library, i.e.\ without file extension but including any prefixes.
+**Description**: $s^1_y$$s^2_x$$s^2_y$$t_x$$t_y$&#125; The quick version of the curve-to operation. The first support point is $(s^1_x,s^1_y)$, the second support point is $(s^2_x,s^2_y)$, and the target is $(t_x,t_y)$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 0pt&#123;0pt&#125; 1cm&#123;1cm&#125;&#123;2cm&#125;&#123;1cm&#125;&#123;3cm&#125;&#123;0cm&#125; stroke tikzpicture codeexample
 
 ---
 
-## 529. Command: `\tikzexternaldisable`
+## 529. Command: `\pgfpathqcircle\marg{radius`
 
-**ID**: `08dac8fef488`  
+**ID**: `12f8f6b1c359`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Allows to disable the complete externalization. While |export next| will still collect the contents of picture environments, this command uninstalls the hooks for the |external| library completely. Thus, nested picture environments or environments where |tikzpicture| is not directly reachable won't produce compilation failures -- although it is not possible to externalize them automatically. The externalization remains disabled until the end of the next \ group (or environment) or until the next
+**Description**: &#125; Adds a radius around the origin of the given radius. This command is orders of magnitude faster than |&#123;|radius|&#125;|. codeexample[] examplefill&#123;yellow!80!black&#125; tikzpicture [help lines] (0,0) grid (1,1); 10pt examplefill stroke,fill tikzpicture codeexample
 
 ---
 
-## 530. Command: `\tikzexternalenable`
+## 530. Command: `\pgfusepathqstroke`
 
-**ID**: `d8ed481bd28a`  
+**ID**: `d6eaa641a53e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Re-enables a previously running externalization after ||.
+**Description**: Strokes the path without further ado. No arrows are drawn, no corners are arced. codeexample[] pgfpicture 5pt pgfpicture codeexample
 
 ---
 
-## 531. Command: `\tikzifexternalizing\marg{true code`
+## 531. Command: `\pgfusepathqfill`
 
-**ID**: `f8cbe479ecd1`  
+**ID**: `ef0db196e2b0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: false code&#125; This command can be used to check whether an image is currently written to its separate graphics file (if the ``grab'' procedure is running). If so, the true code will be executed. If not, that means if the main document is being typeset normally, the false code will be invoked. This command must be used after ||.
+**Description**: Fills the path without further ado.
 
 ---
 
-## 532. Command: `\tikzifexternalizingnext\marg{true code`
+## 532. Command: `\pgfusepathqfillstroke`
 
-**ID**: `07a37a5f9a92`  
+**ID**: `108318209c5f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: false code&#125; Like ||, but this variant also checks if the next following figure is the one which is about to be written to its separate graphics file.
+**Description**: Fills and then strokes the path without further ado.
 
 ---
 
-## 533. Command: `\node`
+## 533. Command: `\pgfusepathqclip`
 
-**ID**: `e137589f1724`  
+**ID**: `963e50479d61`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Inside |&#123;tikzpicture&#125;| this is an abbreviation for | node|.
+**Description**: Clips all subsequent drawings against the current path. The path is not processed.
 
 ---
 
-## 534. Command: `\coordinate`
+## 534. Command: `\pgfqbox\marg{box number`
 
-**ID**: `637637211310`  
+**ID**: `61f70db02883`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Inside |&#123;tikzpicture&#125;| this is an abbreviation for | coordinate|.
+**Description**: &#125; This command inserts a \ box into a |&#123;pgfpicture&#125;| by ``escaping'' to , inserting the box number box number at the origin, and then returning to the typesetting the picture.
 
 ---
 
-## 535. Command: `\nodepart\opt{|[|\meta{options`
+## 535. Command: `\pgfqboxsynced\marg{box number`
 
-**ID**: `5fa6c087ef65`  
+**ID**: `4a8d18f8bd9f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: |]|&#125;part name&#125; This command can only be used inside the text argument of a |node| path operation. It works a little bit like a || command in . It will stop the typesetting of whatever node part was typeset until now and then start putting all following text into the node part named part name -- until another || is encountered or until the node text ends. The options will be local to this part. codeexample[preamble=&#123;shapes.multipart&#125;] tikzpicture [circle split,draw,double,fill=red!20] &#123; $q_1$ low
+**Description**: &#125; This command works similarly to the || command. However, before inserting the text in box number, the current coordinate transformation matrix is applied to the current canvas transformation matrix (is it ``synced'' with this matrix, hence the name). Thus, this command basically has the same effect as if you first called || followed by ||. However, this command will use || and || commands for the ``translational part'' of the coordinate transformation matrix, instead of adding the translationa
 
 ---
 
-## 536. Command: `\tikzlastnode`
+## 536. Command: `\pgfpagesuselayout\marg{layout`
 
-**ID**: `2b0bf01810d2`  
+**ID**: `412440f9c3e1`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Expands to the last node on the path.
+**Description**: options&#125; Installs the specified layout with the given options. The predefined layouts and their permissible options are explained below. If this function is called multiple times, only the last call ``wins''. You can thereby overwrite any previous settings. In particular, layouts do not accumulate. |resize to[a4paper]|
 
 ---
 
-## 537. Command: `\tikzmath\texttt{\{`
+## 537. Command: `\pgfpagesdeclarelayout\marg{layout`
 
-**ID**: `b67e34154e0d`  
+**ID**: `1fea1002213b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: statements\&#125;&#125; This command process a series of statements which can represent assignments, function definitions, conditional evaluation, and iterations. It provides, in effect, a miniature mathematical language to perform basic mathematical operations. Perhaps the most important thing to remember is that every statement should end with a semi-colon. This is likely to be the most common reason why the || command fails. codeexample[preamble=&#123;math&#125;] function fibonacci() &#123; if == 0 then &#123; return 0; e
+**Description**: before actionsafter actions&#125; This command predefines a layout that can later be installed using the || command. When ||layoutoptions is called, the following happens: First, the before actions are executed. They can be used, for example, to set up default values for keys. Next, |pgfpagesuselayoutoption|options is executed. Finally, the after actions are executed. Here is an example: codeexample[code only] resize to &#123; 0pt &#125; &#123; &#123; logical pages=1, physical height=, physical width= &#125; 1 &#123; resized widt
 
 ---
 
-## 538. Command: `\pgfdeclareimage\oarg{options`
+## 538. Command: `\pgfpagesphysicalpageoptions\marg{options`
 
-**ID**: `da997da4b274`  
+**ID**: `ed3fa04b0ac6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: image namefilename&#125; Declares an image, but does not paint anything. To draw the image, use ||&#123;image name|&#125;|. The filename may not have an extension. For pdf, the extensions |.pdf|, |.jpg|, and |.png| will automatically tried. For PostScript, the extensions |.eps|, |.epsi|, and |.ps| will be tried. The following options are possible: itemize |height=|&#123;dimension&#125; sets the height of the image. If the width is not specified simultaneously, the aspect ratio of the image is kept. |width=|&#123;dimension&#125; s
+**Description**: &#125; This command sets the characteristics of the ``physical'' page. For example, it is used to specify how many logical pages there are and how many logical pages must be accumulated before a physical page is shipped out. How each individual logical page is typeset is specified using the command ||, described later. A layout for putting two portrait pages on a single landscape page: codeexample[code only] &#123; logical pages=2, physical height=, physical width=, &#125; 1 &#123; resized width=.5, resized height=
 
 ---
 
-## 539. Command: `\pgfaliasimage\marg{new image name`
+## 539. Command: `\pgfpageslogicalpageoptions\marg{logical page number`
 
-**ID**: `5ece92dd9536`  
+**ID**: `a057bb8b44e2`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: existing image name&#125; The existing image name is ``cloned'' and the new image name can now be used whenever the original image is used. This command is useful for creating aliases for alternate extensions and for accessing the last image inserted using ||. |image.!30!white&#123;image.!25!white&#125;|
+**Description**: options&#125; This command is used to specify where the logical page number logical page number will be placed on the physical page. In addition, this command can be used to install additional ``code'' to be executed when this page is put on the physical page. The number logical page number should be between 1 and logical pages, which has previously been installed using the || command. The following options may be given: itemize |center=|&#123;pgf point&#125; specifies the center of the logical page inside the
 
 ---
 
-## 540. Command: `\pgfuseimage\marg{image name`
+## 540. Command: `\pgfpagesshipoutlogicalpage\marg{number`
 
-**ID**: `addea812f4c9`  
+**ID**: `0e4e56630d0d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Inserts a previously declared image into the normal text. If you wish to use it in a |&#123;pgfpicture&#125;| environment, you must put a || around it. If the macro || expands to some nonempty alternate extension, \ will first try to use the image named image name|.|alternate extension. If this image is not defined, \ will next check whether alternate extension contains a |!| character. If so, everything up to this exclamation mark and including it is deleted from alternate extension and the \ again tri
+**Description**: box&#125; This command sets to logical page number to box. The box should be the code of a \ box command. This command does not influence the counter current logical page and does not cause a physical shipout. codeexample[code only] 0Hi! codeexample This command can be used to set the contents of logical pages that are normally not filled.
 
 ---
 
-## 541. Command: `\pgfalternateextension`
+## 541. Command: `\pgfpagescurrentpagewillbelogicalpage\marg{number`
 
-**ID**: `ef66e60bf5ab`  
+**ID**: `22c0e538c203`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: You should redefine this command to install a different alternate extension. |!25!white|
+**Description**: &#125; When the current \ page has been typeset, it will be become the given logical page number. This command ``interrupts'' the normal order of logical pages, that is, it behaves like the previous command and does not update the current logical page counter. codeexample[code only] two screens with optional second ... Text for main page. 2 Text that goes to second page Text for main page. codeexample
 
 ---
 
-## 542. Command: `\pgfimage\oarg{options`
+## 542. Command: `\usegdlibrary\marg{list of libraries`
 
-**ID**: `e73c9e8643d9`  
+**ID**: `6b38a634f7ae`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: filename&#125; Declares the image under the name |pgflastimage| and immediately uses it. You can ``save'' the image for later usage by invoking || on |pgflastimage|. codeexample[preamble=&#123;xxcolor&#125;] colormixin&#123;25!white&#125; pgfpicture [at=1cm&#123;5cm&#125;,left,base] &#123;[interpolate=true,width=1cm,height=1cm]&#123;brave-gnu-world-logo&#125;&#125; [at=1cm&#123;3cm&#125;,left,base] &#123;[interpolate=true,width=1cm]&#123;brave-gnu-world-logo&#125;&#125; [at=1cm&#123;1cm&#125;,left,base] &#123;[interpolate=true,height=1cm]&#123;brave-gnu-world-logo&#125;&#125; &#123;1cm&#123;5cm&#125;&#125;&#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;3cm&#125;&#125;&#123;
+**Description**: &#125; This command is used to load the special graph drawing libraries (the |gd| in the name of the command stands for ``graph drawing''). The list of libraries is a comma-separated list of library written in the Lua programming language (which is why a special command is needed). In detail, this command does the following. For each name in the list of libraries we do: enumerate Check whether Lua\ can call |require| on the library file |pgf.gd.|name|.library|. Lua's usual file search mechanism will 
 
 ---
 
-## 543. Command: `\pgfdeclaremask\oarg{options`
+## 543. Command: `\pgfsetstrokeopacity\marg{value`
 
-**ID**: `59aafbf90330`  
+**ID**: `92b4e170bea6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: mask namefilename&#125; Declares a transparency mask named mask name (called a soft mask in the pdf specification). This mask is read from the file filename. This file should contain a grayscale image that is as large as the actual image. A white pixel in the mask will correspond to ``transparent'', a black pixel to ``solid'', and gray values correspond to intermediate values. The mask must have a single ``color channel''. This means that the mask must be a ``real'' grayscale image, not an rgb-image 
+**Description**: &#125; Sets the opacity of stroking operations. The value should be a number between |0| and |1|, where |1| means ``fully opaque'' and |0| means ``fully transparent''. A value like |0.5| will cause paths to be stroked in a semitransparent way. codeexample[] pgfpicture 5mm red &#123;0cm&#123;0cm&#125;&#125;&#123;10mm&#125; stroke black 0.5 &#123;1cm&#123;0cm&#125;&#125;&#123;10mm&#125; stroke pgfpicture codeexample
 
 ---
 
-## 544. Command: `\pgftransformshift\marg{point`
+## 544. Command: `\pgfsetfillopacity\marg{value`
 
-**ID**: `6882e9ac9700`  
+**ID**: `26619cd7b6ef`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Shifts coordinates by point. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); &#123;1cm&#123;1cm&#125;&#125; [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: &#125; Sets the opacity of filling operations. As for stroking, the value should be a number between |0| and~|1|. The ``filling transparency'' will also be used for text and images. codeexample[] tikzpicture 0.5 [red] (90:1cm) circle (11mm); [green] (210:1cm) circle (11mm); [blue] (-30:1cm) circle (11mm); tikzpicture codeexample
 
 ---
 
-## 545. Command: `\pgftransformxshift\marg{dimensions`
+## 545. Command: `\pgfsetblendmode\marg{mode`
 
-**ID**: `4de8419b7d93`  
+**ID**: `d852de44482c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Shifts coordinates by dimension along the $x$-axis. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .5cm [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: &#125; Sets the blend mode to one of the values described in Section~section-blend-modes. As described there, blend modes are an advanced feature of pdf and not always rendered correctly. codeexample[] [transparency group] &#123; screen [red!90!black] ( 90:.6) circle (1); [green!80!black] (210:.6) circle (1); [blue!90!black] (330:.6) circle (1); &#125; codeexample
 
 ---
 
-## 546. Command: `\pgftransformyshift\marg{dimensions`
+## 546. Command: `\pgfdeclarefading\marg{name`
 
-**ID**: `10eec774684c`  
+**ID**: `bcbd4343a2ad`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Like ||, only for the $y$-axis.
+**Description**: contents&#125; This command declares a fading named name for later use. The ``picture'' on which the fading is based is given by the contents. The contents are normally typeset in a \ box. The resulting box is then used as the ``picture''. In particular, inside the contents you must explicitly open a |&#123;pgfpicture&#125;| environment if you wish to use \ commands. Let's start with an easy example. Our first fading picture is just some text: codeexample[] fading1&#123;white&#123;TikZ&#125;&#125; tikzpicture [black!20] (0,0) rec
 
 ---
 
-## 547. Command: `\pgftransformscale\marg{factor`
+## 547. Command: `\pgfsetfading\marg{name`
 
-**ID**: `7a9ef873a60e`  
+**ID**: `7bfff4e0041c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Scales coordinates by factor. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .75 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: transformations&#125; This command sets the graphic state parameter ``fading'' to a previously defined fading name. This graphic state works like other graphic states, that is, is persists till the end of the current scope or until a different transparency setting is chosen. When the fading is installed, it will be centered on the origin with its natural size. Anything outside the fading picture's original bounding box will be transparent and, thus, the fading effectively clips against this bounding 
 
 ---
 
-## 548. Command: `\pgftransformxscale\marg{factor`
+## 548. Command: `\pgfsetfadingforcurrentpath\marg{name`
 
-**ID**: `690a7c17295f`  
+**ID**: `8c232d7a89d3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Scales coordinates by factor in the $x$-direction. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .75 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: transformations&#125; This command works like ||, but the fading is scaled and transformed according to the following rules: enumerate If the current path is empty, the command has the same effect as ||. Otherwise it is assumed that the fading has a size of 100bp times 100bp. The fading is resized and shifted (using appropriate transformations) such that the position $(25bp,25bp)$ lies at the lower-left corner of the current path and the position $(75bp,75bp)$ lies at the upper-right corner of the cu
 
 ---
 
-## 549. Command: `\pgftransformyscale\marg{factor`
+## 549. Command: `\pgfsetfadingforcurrentpathstroked\marg{name`
 
-**ID**: `c4a6e17130d2`  
+**ID**: `f9308dc1789d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Like ||, only for the $y$-axis.
+**Description**: transformations&#125; This command works like ||, only the current path is enlarged by the line width in both $x$- and $y$-direction. This is exactly the enlargement necessary to compensate for the fact that if the current path will be stroked, this much needs to be added around the path's bounding box to actually contain the path. codeexample[preamble=&#123;shading&#123;100bp&#125; &#123; color(0pt)=(transparent!0); color(25bp)=(transparent!0); color(75bp)=(transparent!100); color(100bp)=(transparent!100)&#125; fading&#123;shadi
 
 ---
 
-## 550. Command: `\pgftransformxslant\marg{factor`
+## 550. Command: `\pgfsys@beginpicture`
 
-**ID**: `627a11946ec9`  
+**ID**: `b86551b80b0b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Slants coordinates by factor in the $x$-direction. Here, a factor of |1| means $45^$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); .5 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: Called at the beginning of a |&#123;pgfpicture&#125;|. This command should ``set up things''. Most drivers will need to implement this command.
 
 ---
 

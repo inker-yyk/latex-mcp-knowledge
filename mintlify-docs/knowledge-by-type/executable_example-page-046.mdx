@@ -1,1183 +1,1112 @@
 ---
 title: "Executable Examples - Page 47"
-description: "Items 2301-2350 of 5325 executable examples"
+description: "Items 2301-2350 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 47
 
-Showing items **2301-2350** of **5325**
+Showing items **2301-2350** of **5999**
 
-[← Previous](executable_example-page-045) | Page 47 of 107 | [Next →](executable_example-page-047)
+[← Previous](executable_example-page-045) | Page 47 of 120 | [Next →](executable_example-page-047)
 
 ---
 
-## 2301. Line Chart
+## 2301. Other
 
-**ID**: `caa9bc01c390`  
-**Package**: pgfplots  
+**ID**: `c1704b3ccd5a`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;ternaryaxis&#125;[
-    xlabel=x (IPA),
-    ylabel=y (water),
-    zlabel=z (propene),
-    axis on top,
-]
-    % plotdata/ternary_data.txt is a table of the form
-    %A_propene A_water A_IPA  B_propene B_water B_IPA
-    % 0.0009   0.9990  0      0.9333    0.0667  0
-    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
-    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
-    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
-    %...
-    \addplot3 [tieline,fill=blue!10]
-        table [x=A_IPA,y=A_water,z=A_propene]
-            &#123;plotdata/ternary_data.txt&#125;;
-\end&#123;ternaryaxis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-4,-4)(4,4)
+\psset&#123;viewpoint=100 20 20 rtp2xyz,Decran=75&#125;
+\psset&#123;solidmemory,lightsrc=viewpoint&#125;
+\codejps&#123;
+   /coeff 0.75 def /rO 4 def /OH coeff rO mul neg def&#125;%
+\psSolid[object=sphere,
+   r=rO,ngrid=9 18,
+   plansepare=&#123;[1 0 0 OH]&#125;,
+   name=part,
+   action=none]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[-1 0 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 1 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 -1 0 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 0 1 OH]&#125;,action=none,name=part]
+\psSolid[object=load,
+   load=part1,plansepare=&#123;[0 0 -1 OH]&#125;,action=none,name=part]
+\psSolid[object=load,hue=.1 .8 0.5 1,
+   load=part1](0,0,0)
+\composeSolid
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2302. Line Chart
+## 2302. Other
 
-**ID**: `d04168847db0`  
-**Package**: pgfplots  
+**ID**: `c2801ad846f0`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;ternaryaxis&#125;[
-    xlabel=x (IPA),
-    ylabel=y (water),
-    zlabel=z (propene),
-    axis on top,
-]
-    % plotdata/ternary_data.txt is a table of the form
-    %A_propene A_water A_IPA  B_propene B_water B_IPA
-    % 0.0009   0.9990  0      0.9333    0.0667  0
-    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
-    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
-    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
-    %...
-    \addplot3 [
-        tieline=&#123;each nth tie=5&#125;,
-        fill=blue!10,
-    ] table [x=A_IPA,y=A_water,z=A_propene]
-        &#123;plotdata/ternary_data.txt&#125;;
-\end&#123;ternaryaxis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-4)(3.5,4)
+\psset&#123;viewpoint=100 -20 10 rtp2xyz,Decran=100&#125;
+%\lightsource
+\psset&#123;lightsrc=viewpoint&#125;
+\codejps&#123;
+4 4 6 newparallelepiped
+45 90 360 &#123;
+/iAngle exch def
+  /n_x iAngle cos 35.2644 cos mul def
+  /n_y iAngle sin 35.2644 cos mul def
+  /n_z 35.2644 sin def
+  /distance 2 3 add 3 sqrt div neg def
+[ n_x n_y n_z distance]
+solidplansepare
+&#125; for
+45 90 360 &#123;
+/iAngle exch def
+  /n_x iAngle cos 35.2644 cos mul def
+  /n_y iAngle sin 35.2644 cos mul def
+  /n_z 35.2644 sin neg def
+  /distance 2 3 add 3 sqrt div neg def
+[ n_x n_y n_z distance]
+solidplansepare
+&#125; for
+45 90 360 &#123;
+/iAngle exch def
+% plan : ax+by+cz-d=0
+[ iAngle cos % a
+  iAngle sin % b
+  0 % c
+  -2.5 % -d
+] solidplansepare
+&#125; for
+dup [.5 .2] solidputhuecolors
+solidlightOn
+drawsolid*&#125;
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2303. Line Chart
+## 2303. Other
 
-**ID**: `c7ab24bf6e67`  
-**Package**: pgfplots  
+**ID**: `c39f7cabe9c6`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;ternaryaxis&#125;[
-    xlabel=x (IPA),
-    ylabel=y (water),
-    zlabel=z (propene),
-    axis on top,
-]
-    % plotdata/ternary_data.txt is a table of the form
-    %A_propene A_water A_IPA  B_propene B_water B_IPA
-    % 0.0009   0.9990  0      0.9333    0.0667  0
-    % 0.0009   0.9988  0.0002 0.9303    0.0665  0.0032
-    % 0.0011   0.9975  0.0013 0.9135    0.0673  0.0191
-    % 0.0013   0.9962  0.0024 0.8956    0.0693  0.0351
-    %...
-    \addplot3 [
-        point meta=rand,
-        tieline=&#123;
-            each nth tie=8,
-            tieline style=&#123;contour prepared&#125;,
-        &#125;,
-        fill=blue!10,
-    ] table [x=A_IPA,y=A_water,z=A_propene]
-        &#123;plotdata/ternary_data.txt&#125;;
-\end&#123;ternaryaxis&#125;
-\end&#123;tikzpicture&#125;
+\psSolid[object=face,base=x1 y1 x2 y2 x3 y3 ...xn yn](0,0,0)%
 </code></pre>
 
 ---
 
-## 2304. Line Chart
+## 2304. Other
 
-**ID**: `1ab13f52d992`  
-**Package**: pgfplots  
+**ID**: `9e0e60d31b54`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [only marks] table
-        &#123;concat_VV_together_grid.dat&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;unit=0.4&#125;
+\psset&#123;viewpoint=50 -20 30 rtp2xyz,Decran=50&#125;
+\begin&#123;pspicture&#125;(-5.5,-4.5)(7,3.5)
+\psSolid[object=grille,base=-4 6 -4 4,action=draw,linecolor=gray](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,base=0 0 3 0 1.5 3,
+  num=all,show=all](0,1,0)
+\psSolid[object=face,fillcolor=yellow,
+  action=draw*,incolor=blue,
+  base=0 0 3 0 1.5 3,num=all,
+  show=all,biface,RotX=180](0,-1,0)
+\axesIIID(0,0,0)(6,6,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2305. Line Chart
+## 2305. Other
 
-**ID**: `22b0fa90ae50`  
-**Package**: pgfplots  
+**ID**: `281c7c55fd93`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    enlargelimits=false,
-]
-    \addplot+ [only marks,mark size=0.6pt]
-        table &#123;concat_VV_together_grid.dat&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;unit=0.45&#125;
+\psset&#123;viewpoint=50 -20 30 rtp2xyz,Decran=50&#125;
+\def\BASE&#123;0 10 360&#123;/Angle ED 5 Angle cos dup mul mul % x
+ 3 Angle cos 3 exp Angle sin mul mul &#125; for&#125;% y
+\begin&#123;pspicture&#125;(-7,-5.5)(9,6)
+\defFunction[algebraic]&#123;F&#125;(t)&#123;5*(cos(t))^2&#125;
+   &#123;3*(sin(t))*(cos(t))^3&#125;&#123;&#125;
+\psSolid[object=grille,base=-6 6 -6 6,action=draw,linecolor=gray](0,0,0)
+\psSolid[object=face,fillcolor=magenta,action=draw*,
+  incolor=blue,biface,RotZ=90,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=blue,biface,RotY=180,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\psSolid[object=face,fillcolor=yellow,action=draw*,
+  incolor=red,biface,RotY=180,RotZ=90,
+  base=0 2 pi mul &#123;F&#125; CourbeR2+](0,0,0)
+\axesIIID(0,0,0)(6,6,5)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2306. Scatter Plot
+## 2306. Other
 
-**ID**: `cd43ca6e3e6b`  
-**Package**: pgfplots  
+**ID**: `9cd566e013a2`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        enlargelimits=false,
-        colorbar,
-    ]
-        \addplot+ [
-            only marks,
-            scatter,
-            point meta=&#123;
-                ln(1e-6+abs(\thisrow&#123;f(x)&#125;))/ln(10)
-            &#125;,
-            mark size=0.6pt,
-        ] table &#123;concat_VV_together_grid.dat&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;unit=.6&#125;
+\begin&#123;pspicture&#125;(-6,-5)(6,7)
+\psset&#123;solidmemory&#125;
+\psSolid[object=cylindre,h=6,fillcolor=blue,
+      r=1.5,
+      ngrid=4 16,
+      action=none,
+      name=A1,
+      ](0,0,-4)
+\psSolid[object=anneau,h=6,fillcolor=red!50,
+      R=4,r=3,h=1,
+      action=none,
+      name=B1,
+      ](0,0,-1)
+\psSolid[object=fusion,
+      action=draw**,
+      base=A1 B1,
+      ](0,0,0)
+\composeSolid
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2307. Scatter Plot
+## 2307. Other
 
-**ID**: `76e94cd5ac8f`  
-**Package**: pgfplots  
+**ID**: `108b26485a49`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot [
-        scatter,
-        only marks,
-        point meta=explicit symbolic,
-        scatter/classes=&#123;
-            a=&#123;mark=square*,blue&#125;,
-            b=&#123;mark=triangle*,red&#125;,
-            c=&#123;mark=o,draw=black&#125;% &lt;-- don't add comma
-        &#125;,
-    ] table [meta=label] &#123;
-        x      y        label
-        0.1    0.15     a
-        0.45   0.27     c
-        0.02   0.17     a
-        0.06   0.1      a
-        0.9    0.5      b
-        0.5    0.3      c
-        0.85   0.52     b
-        0.12   0.05     a
-        0.73   0.45     b
-        0.53   0.25     c
-        0.76   0.5      b
-        0.55   0.32     c
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;unit=0.5&#125;
+\begin&#123;pspicture&#125;(-6,-5)(6,5)
+\psset&#123;solidmemory&#125;
+\psset&#123;lightsrc=50 -50 50,viewpoint=100 -30 40,
+   Decran=100,linewidth=0.5\pslinewidth,
+   ngrid=18 18,fillcolor=white,
+   h=12,r=2,RotX=90&#125;
+\psframe*[linecolor=black](-6,-5)(6,5)
+\psSolid[object=cylindrecreux,
+   action=none,
+   name=cylindre1](0, 6, 0)
+\psSolid[object=cylindrecreux,
+   RotZ=90,
+   action=none,
+   name=cylindre2](-6, 0, 0)
+\psSolid[object=fusion,
+   base=cylindre1 cylindre2,RotX=0]
+\composeSolid
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2308. Line Chart
+## 2308. Other
 
-**ID**: `ea552cbd3c19`  
-**Package**: pgfplots  
+**ID**: `096bc4c7c952`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    enlargelimits=0.2,
-]
-    \addplot+ [nodes near coords,only marks,
-       point meta=explicit symbolic]
-    table [meta=label] &#123;
-        x    y   label
-        0.5  0.2 1
-        0.2  0.1 t2
-        0.7  0.6 3
-        0.35 0.4 Y4
-        0.65 0.1 5
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psSolid[object=tore,
+   filename=montore,
+   action=writesolid]
 </code></pre>
 
 ---
 
 ## 2309. Other
 
-**ID**: `8bb5e1008864`  
-**Package**: pgfplots  
+**ID**: `2a30cc7413bf`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-dof        l2_err     level
-5          8.312e-02  2
-17         2.547e-02  3
-49         7.407e-03  4
-129        2.102e-03  5
-321        5.874e-04  6
-769        1.623e-04  7
-1793       4.442e-05  8
-4097       1.207e-05  9
-9217       3.261e-06  10
+\psSolid[object=datfile, filename=montore]
 </code></pre>
 
 ---
 
 ## 2310. Other
 
-**ID**: `cc9809001f23`  
-**Package**: pgfplots  
+**ID**: `8876a87fe26c`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-dof        l2_err     level
-7          8.472e-02  2
-31         3.044e-02  3
-111        1.022e-02  4
-351        3.303e-03  5
-1023       1.039e-03  6
-2815       3.196e-04  7
-7423       9.658e-05  8
-18943      2.873e-05  9
-47103      8.437e-06  10
+\psSolid[object=tore,
+   filename=montore,
+   action=writeobj]
 </code></pre>
 
 ---
 
 ## 2311. Other
 
-**ID**: `246d0b7c5f3b`  
-**Package**: pgfplots  
+**ID**: `e77370e5dd38`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-dof        l2_err     level
-9          7.881e-02  2
-49         3.243e-02  3
-209        1.232e-02  4
-769        4.454e-03  5
-2561       1.551e-03  6
-7937       5.236e-04  7
-23297      1.723e-04  8
-65537      5.545e-05  9
-178177     1.751e-05  10
+\psSolid[object=objfile, filename=montore]
 </code></pre>
 
 ---
 
-## 2312. Line Chart
+## 2312. Other
 
-**ID**: `b26634d2b2c4`  
-**Package**: pgfplots  
+**ID**: `576d1e0a052d`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-%\documentclass&#123;article&#125;
-%\usepackage&#123;pgfplots&#125;
-%\pgfplotsset&#123;compat=1.5&#125;
-
-%\begin&#123;document&#125;
-
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    title=Convergence Plot,
-    xlabel=&#123;Degrees of freedom&#125;,
-    ylabel=&#123;$L_2$ Error&#125;,
-]
-    \addplot table &#123;data_d2.dat&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
-
-%\end&#123;document&#125;
+\psSolid[object=tore,
+   filename=montore,
+   action=writeoff]
 </code></pre>
 
 ---
 
-## 2313. Line Chart
+## 2313. Other
 
-**ID**: `4e6bca6f06ed`  
-**Package**: pgfplots  
+**ID**: `0132c660fed1`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    title=Convergence Plot,
-    xlabel=&#123;Degrees of freedom&#125;,
-    ylabel=&#123;$L_2$ Error&#125;,
-]
-    \addplot table &#123;data_d2.dat&#125;;
-    \addplot table &#123;data_d3.dat&#125;;
-    \addplot table &#123;data_d4.dat&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\psSolid[object=offfile, filename=montore]
 </code></pre>
 
 ---
 
-## 2314. Line Chart
+## 2314. Other
 
-**ID**: `c4809a8bec78`  
-**Package**: pgfplots  
+**ID**: `b1a51a73d5e8`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    title=Convergence Plot,
-    xlabel=&#123;Degrees of freedom&#125;,
-    ylabel=&#123;$L_2$ Error&#125;,
-    grid=major,
-    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
-]
-    \addplot table &#123;data_d2.dat&#125;;
-    \addplot table &#123;data_d3.dat&#125;;
-    \addplot table &#123;data_d4.dat&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=20 15 10 rtp2xyz,Decran=20&#125;
+\begin&#123;pspicture&#125;(-3,-4)(3,3)
+\psframe*[linecolor=cyan!50](-3,-4)(1,3)
+\psSolid[object=objfile,
+         unit=20,RotX=60,
+         filename=data/rocket]%
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2315. Line Chart
+## 2315. Other
 
-**ID**: `fdf44594b1d3`  
-**Package**: pgfplots  
+**ID**: `5d1a0af2fce6`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-%\usepackage&#123;pgfplotstable&#125;
-%...
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    title=Convergence Plot,
-    xlabel=&#123;Degrees of freedom&#125;,
-    ylabel=&#123;$L_2$ Error&#125;,
-    grid=major,
-    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
-]
-    \addplot table &#123;data_d2.dat&#125;;
-    \addplot table &#123;data_d3.dat&#125;;
-    \addplot table &#123;data_d4.dat&#125;;
-    \addplot table [
-      x=dof,
-      y=&#123;create col/linear regression=&#123;y=l2_err,
-       variance list=&#123;1000,800,600,500,400,200,100&#125;&#125;&#125;]
-        &#123;data_d4.dat&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;fillcolor=yellow,mode=3&#125;
+\psSolid[object=cube](0.5,0.5,0.5)
+\psSolid[object=cube](4.5,0.5,0.5)
+\psSolid[object=cube](0.5,4.5,0.5)
+\psSolid[object=cube](0.5,0.5,4.5)
+\psSolid[object=cube](4.5,4.5,4.5)
+\psSolid[object=cube](4.5,0.5,4.5)
+\psSolid[object=cube](4.5,4.5,0.5)
+\psSolid[object=cube](0.5,4.5,4.5)
 </code></pre>
 
 ---
 
-## 2316. Line Chart
+## 2316. Other
 
-**ID**: `999492356323`  
-**Package**: pgfplots  
+**ID**: `a7f8fc27b976`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-%\usepackage&#123;pgfplotstable&#125;
-%...
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    title=Convergence Plot,
-    xlabel=&#123;Degrees of freedom&#125;,
-    ylabel=&#123;$L_2$ Error&#125;,
-    grid=major,
-    legend entries=&#123;$d=2$,$d=3$,$d=4$&#125;,
-]
-    \addplot table &#123;data_d2.dat&#125;;
-    \addplot table &#123;data_d3.dat&#125;;
-    \addplot table &#123;data_d4.dat&#125;;
-    \addplot table [
-      x=dof,
-      y=&#123;create col/linear regression=&#123;y=l2_err,
-       variance list=&#123;1000,800,600,500,400,200,100&#125;&#125;&#125;]
-        &#123;data_d4.dat&#125;
-            % save two points on the regression line
-            % for drawing the slope triangle
-            coordinate [pos=0.25] (A)
-            coordinate [pos=0.4]  (B)
-   ;
-    % save the slope parameter:
-    \xdef\slope&#123;\pgfplotstableregressiona&#125;
-
-    % draw the opposite and adjacent sides
-    % of the triangle
-    \draw (A) -| (B)
-         node [pos=0.75,anchor=west]
-         &#123;\pgfmathprintnumber&#123;\slope&#125;&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\defFunction[algebraic]&#123;G1&#125;(t)&#123;t&#125;&#123;2*sin(t)&#125;&#123;-2&#125;
 </code></pre>
 
 ---
 
-## 2317. Line Chart
+## 2317. Other
 
-**ID**: `083e060b6ad7`  
-**Package**: pgfplots  
+**ID**: `3658e4c054eb`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;
-    \addplot table &#123;data_d2.dat&#125;
-       coordinate [pos=0.25] (A)
-       coordinate [pos=0.4]  (B)
-    ;
-
-    \draw [-stealth] (A) -| (B);
-
-    \node [pin=0:Special.] at (769,1.623e-04) &#123;&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\psSolid[object=cylindre,
+   h=4,function=G1,
+   range=-3 3,
+   ngrid=3 16,
+   axe=0 1 1,
+   incolor=green!50,
+   fillcolor=yellow!50]
 </code></pre>
 
 ---
 
-## 2318. Line Chart
+## 2318. Other
 
-**ID**: `41afdd84a33f`  
-**Package**: pgfplots  
+**ID**: `8df2804c0c4e`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    tiny,
-]
-    \addplot table &#123;data_d2.dat&#125;
-        node [pos=1,pin=0:Special.] &#123;&#125;
-    ;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\pstVerb&#123;/ladistance 2 sqrt 2 mul def&#125;
 </code></pre>
 
 ---
 
-## 2319. Line Chart
+## 2319. Other
 
-**ID**: `7659b983b590`  
-**Package**: pgfplots  
+**ID**: `996b5b6c3126`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    tiny,
-    clip=false,
-]
-    \addplot table &#123;data_d2.dat&#125;
-        node [pos=1,pin=0:Special.] &#123;&#125;
-    ;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-1.5,-3)(6.5,6)
+\psSolid[object=grille,base=-3 3 -1 8,action=draw]
+\pstVerb&#123;/ladistance 2 sqrt 2 mul def&#125;
+\defFunction[algebraic]&#123;G3&#125;(t)&#123;6*(cos(t))^3*sin(t)&#125;&#123;4*(cos(t))^2&#125;&#123;0&#125;
+\defFunction[algebraic]&#123;G4&#125;(t)&#123;6*(cos(t))^3*sin(t)&#125;&#123;4*(cos(t))^2+ladistance&#125;&#123;ladistance&#125;
+\psSolid[object=courbe,function=G3,range=0 6.28,r=0,linecolor=blue,linewidth=2pt]
+\psSolid[object=cylindre,range=0 -6.28,h=4,function=G3,axe=0 1 1,ngrid=3 36,
+   fillcolor=green!50,incolor=yellow!50]
+\psSolid[object=courbe,function=G4,range=0 6.28,r=0,linecolor=blue,linewidth=2pt]
+\psSolid[object=vecteur,linecolor=red,args=0 ladistance dup]
+\psSolid[object=plan,action=draw,definition=equation,args=&#123;[0 0 1 ladistance neg] 90&#125;,
+   base=-1 8 -3 3,planmarks,showBase]
+\axesIIID(0,4.5,0)(4,8,5)
+\rput(0,-3)&#123;\texttt&#123;axe=0 1 1&#125;&#125;
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2320. Other
 
-**ID**: `f98c270e8a35`  
-**Package**: pgfplots  
+**ID**: `4793dd59f7cb`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    x coord trafo/.code=&#123;&#125;,
-    x coord inv trafo/.code=&#123;&#125;,
-&#125;
+\psset&#123;unit=0.75,lightsrc=viewpoint,
+  viewpoint=100 -10 20 rtp2xyz,Decran=100&#125;
+\begin&#123;pspicture&#125;(-1.5,-3)(6.5,6)
+\psSolid[object=grille,base=-3 3 -1 6,action=draw]
+\defFunction[algebraic]&#123;G5&#125;(t)
+  &#123;t&#125;&#123;0.5*t^2&#125;&#123;0&#125;
+\defFunction[algebraic]&#123;G6&#125;(t)
+  &#123;t&#125;&#123;0.5*t^2&#125;&#123;4&#125;
+\psSolid[object=courbe,function=G5,
+  range=-3 2,r=0,linecolor=blue,
+  linewidth=2pt]
+\psSolid[object=cylindre,
+  range=-3 2,h=4,
+  function=G5,
+  axe=0 0 1, %% valeur par d\'&#123;e&#125;faut
+  incolor=green!50,
+  fillcolor=yellow!50,
+  ngrid=3 8]
+\psSolid[object=courbe,function=G6,
+  range=-3 2,r=0,linecolor=blue,
+  linewidth=2pt]
+\axesIIID(0,4.5,0)(4,6,5)
+\psSolid[object=vecteur,
+  linecolor=red,args=0 0 4]
+\psSolid[object=plan,action=draw,
+  definition=equation,
+  args=&#123;[0 0 1 -4] 90&#125;,
+  base=-1 6 -3 3,planmarks,showBase]
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2321. Other
 
-**ID**: `ff80d91359b5`  
-**Package**: pgfplots  
+**ID**: `5a0e9a55e336`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    xticklabel=&#123;\tick&#125;,
-    scaled x ticks=false,
-    plot coordinates/math parser=false,
-&#125;
+\psset&#123;unit=0.75,lightsrc=viewpoint,
+  viewpoint=100 -10 20 rtp2xyz,Decran=100&#125;
+\begin&#123;pspicture&#125;(-3.5,-3)(6.5,6)
+\psset&#123;lightsrc=viewpoint,viewpoint=100 45 45,Decran=100&#125;
+\psSolid[object=grille,base=-3 3 -2 7,fillcolor=gray!30]
+\defFunction[algebraic]&#123;G7&#125;(t)
+   &#123;2*cos(t)&#125;&#123;2*sin(t)&#125;&#123;0&#125;
+\defFunction[algebraic]&#123;G8&#125;(t)
+    &#123;2*cos(t)&#125;&#123;2*sin(t)+4&#125;&#123;4&#125;
+\psSolid[object=courbe,function=G7,
+  range=0 6.28,r=0,
+  linecolor=blue,linewidth=2pt]
+\psSolid[object=cylindre,
+  range=0 6.28,h=5.65685,
+  function=G7,axe=0 1 1,
+  incolor=green!20,
+  fillcolor=yellow!50,
+  ngrid=3 36]
+\psSolid[object=courbe,function=G8,
+  range=0 6.28,r=0,linecolor=blue,
+  linewidth=2pt]
+\axesIIID(2,4.5,2)(4,8,5)
+\psSolid[object=vecteur,
+  linecolor=red,args=0 1 1](0,4,4)
+\psSolid[object=plan,action=draw,
+  definition=equation,
+  args=&#123;[0 0 1 -4] 90&#125;,
+  base=-2 7 -3 3,planmarks,showBase]
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2322. Line Chart
+## 2322. Other
 
-**ID**: `0d409eb45f03`  
-**Package**: pgfplots  
+**ID**: `a4179d962306`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    symbolic x coords=&#123;a,b,c,d,e,f,g,h,i&#125;,
-]
-    \addplot+ [smooth] coordinates &#123;
-        (a,42)
-        (b,50)
-        (c,80)
-        (f,60)
-        (g,62)
-        (i,90)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-2)(4,5)
+\psset&#123;unit=0.75,lightsrc=viewpoint,viewpoint=100 -5 10 rtp2xyz,Decran=100&#125;
+\psSolid[object=grille,base=-4 4 -4 4,ngrid=8. 8.](0,0,-1)
+\defFunction[algebraic]&#123;G9&#125;(t)
+  &#123;3*cos(t)&#125;&#123;3*sin(t)&#125;&#123;1*cos(5*t)&#125;
+\psSolid[object=cylindre,
+  range=0 6.28,h=5,function=G9,
+  axe=0 0 1,incolor=green!50,
+  fillcolor=yellow!50,
+  ngrid=4 72,grid]
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2323. Line Chart
+## 2323. Other
 
-**ID**: `93ab5e11dbbe`  
-**Package**: pgfplots  
+**ID**: `5c3f3bae4908`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    xtick=&#123;0,1,2,...,20&#125;,
-    xticklabels=&#123;a,b,c,d,e,f,g,h,i&#125;,
-    xticklabel style=&#123;
-        anchor=base,
-        yshift=-\baselineskip,
-    &#125;,
-]
-    \addplot+ [smooth] coordinates &#123;
-        (0,42)
-        (1,50)
-        (2,80)
-        (5,60)
-        (6,62)
-        (8,90)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3,-4)(4.5,6)
+\psset&#123;unit=0.75,lightsrc=viewpoint,viewpoint=100 10 10 rtp2xyz,Decran=100&#125;
+\psSolid[object=grille,base=-4 4 -3 3,action=draw](0,0,-2)
+\defFunction[algebraic]&#123;G1&#125;(t)&#123;t&#125;&#123;0.25*t^2&#125;&#123;-2&#125;
+\defFunction[algebraic]&#123;G2&#125;(t)&#123;-t&#125;&#123;-0.25*t^2&#125;&#123;2&#125;
+\psSolid[object=courbe,function=G1,
+  range=-3.46 3,r=0,
+  linecolor=blue,linewidth=2pt]
+\psSolid[object=cone,function=G1,
+  range=-3.46 3,ngrid=3 16,
+  incolor=green!50,
+  fillcolor=yellow!50,
+  origine=0 0 0]
+\psSolid[object=courbe,
+  function=G2,range=-3.46 3,
+   r=0,linecolor=blue,
+   linewidth=2pt]
+\psPoint(0,0,0)&#123;I&#125;
+\uput[l](I)&#123;\red$(0,0,0)$&#125;
+\psdot[linecolor=red](I)
+\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-3,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2324. Line Chart
+## 2324. Other
 
-**ID**: `e4f8e7fa8278`  
-**Package**: pgfplots  
+**ID**: `6b22b168c1d1`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    symbolic x coords=&#123;a,$1 \pm 2$,c,d,1\&1,f,g,h,i&#125;,
-    xtick=data,
-]
-    \addplot+ [smooth] coordinates &#123;
-        (a,42)
-        ($1 \pm 2$,50)
-        (c,80)
-        (1\&1,60)
-        (g,62)
-        (i,90)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3,-4)(4.5,6)
+\psset&#123;unit=0.7,lightsrc=viewpoint,viewpoint=100 -10 20 rtp2xyz,Decran=100&#125;
+\psSolid[object=grille,base=-4 4 -3 3,
+  linecolor=&#123;[rgb]&#123;0.72 0.72 0.5&#125;&#125;,action=draw](0,0,-2)
+\defFunction[algebraic]&#123;G1&#125;(t)&#123;t&#125;&#123;2*sin(t)&#125;&#123;-2&#125;
+\defFunction[algebraic]&#123;G2&#125;(t)&#123;-t&#125;&#123;-2*sin(t)&#125;&#123;2&#125;
+\psSolid[object=courbe,function=G1,
+   range=-3.14 3.14,r=0,
+   linecolor=blue,
+   linewidth=2pt]
+\psSolid[object=cone,function=G1,
+   range=-3.14 3.14,ngrid=3 16,
+   incolor=green!50,
+   fillcolor=yellow!50,
+   origine=0 0 0]
+\psSolid[object=courbe,
+   function=G2,range=-3.14 3.14,
+   r=0,linecolor=blue,
+   linewidth=2pt]
+\psPoint(0,0,0)&#123;I&#125; \uput[l](I)&#123;\red$(0,0,0)$&#125;
+\psdot[linecolor=red](I)
+\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-3,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2325. Line Chart
+## 2325. Other
 
-**ID**: `b80747c51deb`  
-**Package**: pgfplots  
+**ID**: `7335515f7054`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    symbolic x coords=&#123;a,b,c,d,e,f,g,h,i&#125;,
-    xmin=&#123;[normalized]-1.7&#125;,
-    minor tick num=1,
-]
-    \addplot+ [smooth] coordinates &#123;
-        (a,42)
-        (b,50)
-        (c,80)
-        (f,60)
-        (g,62)
-        (i,90)&#125;;
-
-    \fill (axis cs:&#123;[normalized]1.5&#125;,60)
-        circle (2pt) coordinate [pin=&#123;$1.5$&#125;];
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3,-4)(4.5,6)
+\psset&#123;unit=0.7,lightsrc=viewpoint,viewpoint=100 -10 20 rtp2xyz,Decran=100&#125;
+\psSolid[object=grille,base=-4 4 -4 4,linecolor=&#123;[rgb]&#123;0.72 0.72 0.5&#125;&#125;,action=draw](0,0,-2)
+\defFunction[algebraic]&#123;G1&#125;(t)&#123;t&#125;&#123;2*sin(t)&#125;&#123;-2&#125;
+\defFunction[algebraic]&#123;G2&#125;(t)&#123;-t&#125;&#123;-2*sin(t)-2&#125;&#123;2&#125;
+\psSolid[object=courbe,function=G1,
+   range=-3.14 3.14,r=0,
+   linecolor=blue,
+   linewidth=2pt]
+\psSolid[object=cone,
+   function=G1,range=-3.14 3.14,
+   ngrid=3 16,incolor=green!50,
+   fillcolor=yellow!50,
+   origine=0 -1 0]
+\psSolid[object=courbe,
+   function=G2,range=-3.14 3.14,
+   r=0,linecolor=blue,
+   linewidth=2pt]
+\psPoint(0,-1,0)&#123;I&#125;\uput[l](I)&#123;\red$(0,-1,0)$&#125;
+\psdot[linecolor=red](I)
+\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-4,4)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2326. Line Chart
+## 2326. Other
 
-**ID**: `0896c081b3e9`  
-**Package**: pgfplots  
+**ID**: `6d406dd0915d`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% requires \usepgfplotslibrary&#123;dateplot&#125; !
-
-\pgfplotstabletypeset[string type]&#123;plotdata/accounts.dat&#125;
-
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        date coordinates in=x,
-        xticklabel=&#123;\day.\month.&#125;,
-        xlabel=&#123;2008&#125;,
-        stack plots=y,
-        yticklabel=&#123;\pgfmathprintnumber&#123;\tick&#125;\EUR&#123;&#125;&#125;, % &lt;- requires \usepackage&#123;eurosym&#125;
-        ylabel=Total credit,
-        ylabel style=&#123;yshift=10pt&#125;,
-        legend style=&#123;
-            at=&#123;(0.5,-0.3)&#125;,anchor=north,legend columns=-1,
-        &#125;,
-    ]
-        \addplot table [x=date,y=account1] &#123;plotdata/accounts.dat&#125;;
-        \addplot table [x=date,y=account2] &#123;plotdata/accounts.dat&#125;;
-        \addplot table [x=date,y=account3] &#123;plotdata/accounts.dat&#125;;
-        \legend&#123;Giro,Tagesgeld,Sparbuch&#125;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-1.5)(3.5,2.5)
+\psSolid[object=grille,
+   base=0 4 -3 3,
+   linecolor=gray](0,0,0)
+\axesIIID(0,0,0)(4,3,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2327. Line Chart
+## 2327. Other
 
-**ID**: `4d92833928ce`  
-**Package**: pgfplots  
+**ID**: `57478c1ba16d`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% requires \usepgfplotslibrary&#123;dateplot&#125; !
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    date coordinates in=x,
-    xtick=data,
-    xticklabel style=
-        &#123;rotate=90,anchor=near xticklabel&#125;,
-    xticklabel=\day. \hour:\minute,
-]
-    \addplot coordinates &#123;
-        (2009-08-18 09:00,  050)
-        (2009-08-18 12:00,  100)
-        (2009-08-18 15:00,  100)
-        (2009-08-18 18:35,  100)
-        (2009-08-18 21:30,  040)
-        (2009-08-19,        020)
-        (2009-08-19 3:00,   000)
-        (2009-08-19 6:0,    035)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-1.5)(3.5,2.5)
+\psSolid[object=grille,
+   ngrid=1,
+   base=0 4 -3 3,
+   linecolor=gray](0,0,0)
+\axesIIID(0,0,0)(3,3,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2328. Other
 
-**ID**: `b75f4ec775f9`  
-**Package**: pgfplots  
+**ID**: `dab9d659e522`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-        \pgfplotsset&#123;set layers&#125;
-    \begin&#123;axis&#125;
-        ...
-    \end&#123;axis&#125;
-
-    % perhaps a second axis which should use the same layers?
-    \begin&#123;axis&#125;
-        ...
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3.5,-1.5)(3.5,2.5)
+\psSolid[object=grille,
+   ngrid=1. 1,
+   base=0 4 -3 3,
+   linecolor=gray](0,0,0)
+\axesIIID(0,0,0)(3,3,3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2329. Other
 
-**ID**: `63a635eb6860`  
-**Package**: pgfplots  
+**ID**: `5cabb7e6c83b`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-        \pgfplotsset&#123;set layers=default&#125;
-    \begin&#123;axis&#125;
-        ...
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pstheader&#123;myObj.pro&#125;
 </code></pre>
 
 ---
 
 ## 2330. Other
 
-**ID**: `691bf0ee8a50`  
-**Package**: pgfplots  
+**ID**: `10de44776aa1`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[set layers]
-        ...
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\addtosolideslistobject&#123;myObj&#125;
 </code></pre>
 
 ---
 
 ## 2331. Other
 
-**ID**: `c5488d970f1f`  
-**Package**: pgfplots  
+**ID**: `fb51b01479b4`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    &#123;% FORBIDDEN! Consider using case (1) above!
-        \begin&#123;axis&#125;[set layers]
-            ...
-        \end&#123;axis&#125;
-    &#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,Decran=10,
+  fontsize=10,unit=0.65&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[0 0 1 0]&#125;,
+   fillcolor=Aquamarine,
+   planmarks,
+   base=-2.2 2.2 -3.2 3.2,
+   showbase]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2332. Other
 
-**ID**: `27bfd0e27fc0`  
-**Package**: pgfplots  
+**ID**: `1744433609b7`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;scope&#125; % FORBIDDEN! Consider using case (1) above!
-        \begin&#123;axis&#125;[set layers]
-            ...
-        \end&#123;axis&#125;
-    \end&#123;scope&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,Decran=10,
+  fontsize=10,unit=0.65cm&#125;
+\begin&#123;pspicture*&#125;(-4,-5.5)(6,4)
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[0 0 1 0]&#125;,
+   fillcolor=Aquamarine,
+   origine=1 2 0,
+   base=-2.2 2.2 -3.2 3.2,
+   planmarks]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2333. Other
 
-**ID**: `7f1125fbdc5f`  
-**Package**: pgfplots  
+**ID**: `f218a5c0dd02`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;set layers=default&#125;
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;
-        ...
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,
+  Decran=10,fontsize=10,unit=0.65cm&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[0 0 1 0] 90&#125;,
+   fillcolor=Aquamarine,
+   base=-2.2 2.2 -3.2 3.2,
+   planmarks]
+\axesIIID(0,0,0)(3.2,2.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2334. Other
 
-**ID**: `aee6b2f5822f`  
-**Package**: pgfplots  
+**ID**: `220169f004e7`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    layers/standard/.define layer set=&#123;
-        axis background,axis grid,axis ticks,axis lines,axis tick labels,
-        pre main,main,axis descriptions,axis foreground
-    &#125;&#123;
-        grid style=         &#123;/pgfplots/on layer=axis grid&#125;,
-        tick style=         &#123;/pgfplots/on layer=axis ticks&#125;,
-        axis line style=    &#123;/pgfplots/on layer=axis lines&#125;,
-        label style=        &#123;/pgfplots/on layer=axis descriptions&#125;,
-        legend style=       &#123;/pgfplots/on layer=axis descriptions&#125;,
-        title style=        &#123;/pgfplots/on layer=axis descriptions&#125;,
-        colorbar style=     &#123;/pgfplots/on layer=axis descriptions&#125;,
-        ticklabel style=    &#123;/pgfplots/on layer=axis tick labels&#125;,
-        axis background@ style=&#123;/pgfplots/on layer=axis background&#125;,
-        3d box foreground style=&#123;/pgfplots/on layer=axis foreground&#125;,
-    &#125;,
-&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,
+  Decran=10,fontsize=10,unit=0.65cm&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=normalpoint,
+   args=&#123;0 0 0 [0 0 1]&#125;,
+   fillcolor=Aquamarine,
+   planmarks,
+   base=-2.2 2.2 -3.2 3.2,
+   showbase]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2335. Other
 
-**ID**: `558081d2f3a0`  
-**Package**: pgfplots  
+**ID**: `877758f01b23`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/layers/axis on top/.define layer set=&#123;
-        axis background,pre main,main,axis grid,axis ticks,axis lines,
-        axis tick labels,axis descriptions,axis foreground
-    &#125;&#123;/pgfplots/layers/standard&#125;,
-&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,
+  Decran=10,fontsize=10,unit=0.65&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=normalpoint,
+   args=&#123;0 0 0 [0 0 1 45]&#125;,
+   fillcolor=Aquamarine,
+   planmarks,
+   base=-2.2 2.2 -3.2 3.2,
+   showbase]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2336. Other
 
-**ID**: `723a76b1ae3e`  
-**Package**: pgfplots  
+**ID**: `e27ccb05a844`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-...
-\begin&#123;axis&#125;[set layers,grid style=&#123;/pgfplots/on layer=axis foreground&#125;]
-...
+\psset&#123;viewpoint=10 18 60 rtp2xyz,
+  Decran=10,fontsize=10,unit=0.65cm&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=normalpoint,
+   args=&#123;0 0 0 [1 1 0 0 0 1]&#125;,
+   fillcolor=Aquamarine,
+   planmarks,
+   base=-2.2 2.2 -3.2 3.2,
+   showbase,
+]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2337. Other
 
-**ID**: `1a263b2392c6`  
-**Package**: pgfplots  
+**ID**: `1269d1c017ec`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-...
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=10 18 60 rtp2xyz,
+  Decran=10,fontsize=10,unit=0.65cm&#125;
+\begin&#123;pspicture*&#125;(-5,-4)(5,4)
+\psSolid[object=plan,
+   definition=normalpoint,
+   args=&#123;0 0 0 [1 1 0 0 0 1 45]&#125;,
+   fillcolor=Aquamarine,
+   planmarks,
+   base=-2.2 2.2 -3.2 3.2,
+   showbase]
+\axesIIID(0,0,0)(2.2,3.2,4)
+\end&#123;pspicture*&#125;
 </code></pre>
 
 ---
 
 ## 2338. Other
 
-**ID**: `c523d9cc5cb2`  
-**Package**: pgfplots  
+**ID**: `a0dcc8a6d32f`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;semilogxaxis&#125;
-...
-\end&#123;semilogxaxis&#125;
-\end&#123;tikzpicture&#125;
+\psset&#123;viewpoint=10 18 20 rtp2xyz,Decran=8&#125;
+\begin&#123;pspicture&#125;(-3.5,-2)(3,2.5)
+\psset&#123;solidmemory&#125;
+\psSolid[object=cube,a=2,fontsize=20,numfaces=all,name=A]
+\psSolid[object=plan,
+   definition=solidface,
+   args=A 0,
+   showBase]
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2339. Other
 
-**ID**: `cecc81992c22`  
-**Package**: pgfplots  
+**ID**: `7a54b79c7cf0`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\starttikzpicture
-\startaxis
-...
-\stopaxis
-\stoptikzpicture
+\psset&#123;viewpoint=10 18 20 rtp2xyz,Decran=8&#125;
+\begin&#123;pspicture&#125;(-3.5,-1.5)(3,3)
+\psset&#123;solidmemory&#125;
+\psSolid[object=cube,a=2,fontsize=20,numfaces=all,name=A]
+\psSolid[object=plan,
+   definition=solidface,
+   args=A 0,
+   showBase](0,0,2)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2340. Other
 
-**ID**: `901af3cab7c1`  
-**Package**: pgfplots  
+**ID**: `9f69849a0657`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\starttikzpicture
-\startsemilogxaxis
-...
-\stopsemilogxaxis
-\stoptikzpicture
+\begin&#123;pspicture&#125;(-3,-3)(4,3.5)%
+\psframe*[linecolor=blue!50](-3,-3)(4,3.5)
+\psset&#123;viewpoint=50 30 15,Decran=60&#125;
+\psset&#123;solidmemory&#125;
+%% definition du plan de projection
+\psSolid[object=plan,
+   definition=equation,
+   args=&#123;[1 0 0 0] 90&#125;,
+   planmarks,
+   name=monplan]
+\psset&#123;plan=monplan&#125;
+%% definition du point A
+\psProjection[object=point,
+   name=A,
+   text=A,
+   pos=ur](-2,1.25)
+\psProjection[object=cercle,
+   args=A 1,
+   range=0 360]
+\psProjection[object=cercle,
+   args=1 1 .5,linecolor=blue,
+   range=0 180]
+\composeSolid
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2341. Other
 
-**ID**: `ed02fb38407f`  
-**Package**: pgfplots  
+**ID**: `7d776475379b`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-doc/context/pgfplots/pgfplotsexample.tex.
+\psset&#123;Decran=12,grid=true,viewpoint=15 10 15&#125;
+\begin&#123;pspicture&#125;(-2.5,-2.5)(2.5,2.5)
+\psSolid[object=cylindrecreux,
+    ngrid=2 6,
+    h=6,r=2,
+    fillcolor=green!60,
+    incolor=yellow!50,
+    RotZ=-60,
+    rm=1 3 6,](0,0,-3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2342. Other
 
-**ID**: `86b064774f36`  
-**Package**: pgfplots  
+**ID**: `8d08666b7a64`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzpicture
-\axis
-...
-\endaxis
-\endtikzpicture
+\psset&#123;Decran=12,grid=true,viewpoint=15 10 15&#125;
+\begin&#123;pspicture&#125;(-2.5,-2.5)(2.5,2.5)
+\psSolid[object=troncconecreux,
+    rm=1 12 13 14,
+    r0=3,r1=1,h=6,
+    fillcolor=green!60,
+    incolor=yellow,
+    mode=3](0,0,-3)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 ## 2343. Other
 
-**ID**: `7faab46f16cd`  
-**Package**: pgfplots  
+**ID**: `a999b3d75ac4`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzpicture
-\semilogxaxis
-...
-\endsemilogxaxis
-\endtikzpicture
+\psSolid[a=8,object=cube,ngrid=4,fillcolor=yellow]%
 </code></pre>
 
 ---
 
 ## 2344. Other
 
-**ID**: `26b8d846769f`  
-**Package**: pgfplots  
+**ID**: `6eb6a0a1040f`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-doc/plain/pgfplots/pgfplotsexample.tex.
+\newarray\colors
+\readarray&#123;colors&#125;&#123;%
+    Apricot&Aquamarine%
+    etc.&#125;
 </code></pre>
 
 ---
 
-## 2345. Line Chart
+## 2345. Other
 
-**ID**: `d1e5e7fa32d7`  
-**Package**: pgfplots  
+**ID**: `c51b163b64e4`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\documentclass[a4paper]&#123;article&#125;
-
-% for dvipdfm:
-%\def\pgfsysdriver&#123;pgfsys-dvipdfm.def&#125;
-\usepackage&#123;pgfplots&#125;
-\pgfplotsset&#123;compat=1.6&#125;% &lt;-- moves axis labels near ticklabels (respects tick label widths)
-
-\begin&#123;document&#125;
-\begin&#123;figure&#125;
-    \centering
-    \begin&#123;tikzpicture&#125;
-        \begin&#123;loglogaxis&#125;[xlabel=Cost,ylabel=Error]
-            \addplot coordinates &#123;
-                (5,     8.31160034e-02)
-                (17,    2.54685628e-02)
-                (49,    7.40715288e-03)
-                (129,   2.10192154e-03)
-                (321,   5.87352989e-04)
-                (769,   1.62269942e-04)
-                (1793,  4.44248889e-05)
-                (4097,  1.20714122e-05)
-                (9217,  3.26101452e-06)
-            &#125;;
-            \addplot coordinates &#123;
-                (7,     8.47178381e-02)
-                (31,    3.04409349e-02)
-                (111,   1.02214539e-02)
-                (351,   3.30346265e-03)
-                (1023,  1.03886535e-03)
-                (2815,  3.19646457e-04)
-                (7423,  9.65789766e-05)
-                (18943, 2.87339125e-05)
-                (47103, 8.43749881e-06)
-            &#125;;
-            \legend&#123;Case 1,Case 2&#125;
-        \end&#123;loglogaxis&#125;
-    \end&#123;tikzpicture&#125;
-    \caption&#123;A larger example&#125;
-\end&#123;figure&#125;
-\end&#123;document&#125;
+\edef\colorfaces&#123;&#125;%
+\multido&#123;\i=0+1&#125;&#123;67&#125;&#123;%
+    \checkcolors(\i)
+    \xdef\colorfaces&#123;%
+    \colorfaces\i\space(\cachedata)\space&#125;
+     &#125;
 </code></pre>
 
 ---
 
 ## 2346. Other
 
-**ID**: `69bbcfb44aba`  
-**Package**: pgfplots  
+**ID**: `89b707e02f41`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-x_0	f(x)
-# some comment line
-3.16693000e-05	-4.00001451e+00
-1.00816962e-03	-3.08781504e+00
-1.98466995e-03	-2.88058811e+00
-2.96117027e-03	-2.75205040e+00
-3.93767059e-03	-2.65736805e+00
-4.91417091e-03	-2.58181091e+00
-5.89067124e-03	-2.51862689e+00
-...
-9.89226496e-01	2.29825980e+00
-9.90202997e-01	2.33403276e+00
-9.91179497e-01	2.37306821e+00
-9.92155997e-01	2.41609413e+00
-9.93132498e-01	2.46412019e+00
-9.94108998e-01	2.51860712e+00
-9.95085498e-01	2.58178769e+00
-9.96061999e-01	2.65733975e+00
-9.97038499e-01	2.75201383e+00
-9.98014999e-01	2.88053559e+00
-9.98991500e-01	3.08771757e+00
-9.99968000e-01	3.99755546e+00
+\psSolid[a=8,object=cube,ngrid=3,%
+        fcol=\colorfaces,
+        RotY=45,RotX=30,RotZ=20]%
 </code></pre>
 
 ---
 
-## 2347. Line Chart
+## 2347. Other
 
-**ID**: `1e1e36d53812`  
-**Package**: pgfplots  
+**ID**: `1e466f9a8e84`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-%\documentclass&#123;article&#125;
-%\usepackage&#123;pgfplots&#125;
-%\pgfplotsset&#123;compat=1.5&#125;
-
-%\begin&#123;document&#125;
-
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    title=Inv. cum. normal,
-    xlabel=&#123;$x$&#125;,
-    ylabel=&#123;$y$&#125;,
-]
-    \addplot [blue] table &#123;invcum.dat&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-%\end&#123;document&#125;
+\begin&#123;pspicture&#125;(-3,-3)(3,3)
+\psset&#123;viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint&#125;
+\psset&#123;color1=cyan,color2=red&#125;
+\psSolid[
+   fcol=251 (OliveGreen) 232 (color1) 214 (color2),
+   object=sphere,
+   ngrid=16 18,
+   RotX=180,RotZ=30]%
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2348. Line Chart
+## 2348. Other
 
-**ID**: `3d0b37c25dd6`  
-**Package**: pgfplots  
+**ID**: `3b347c1d5ff2`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\addplot[
-    blue,
-    mark=*,
-]
-table &#123;invcum.dat&#125;;
+\begin&#123;pspicture&#125;(-3,-3)(3,3)
+\psset&#123;viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint&#125;
+\psset&#123;color1=cyan,color2=red&#125;
+\psSolid[
+   action=draw*,
+   fcol=0 (OliveGreen) 2 (color1) 3 (color2),
+   object=sphere,
+   ngrid=4 4,
+   RotX=180,RotZ=30]%
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2349. Line Chart
+## 2349. Other
 
-**ID**: `d546e3790425`  
-**Package**: pgfplots  
+**ID**: `ed7a953e8236`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    title=Inv. cum. normal,
-    xlabel=&#123;$x$&#125;,
-    ylabel=&#123;$y$&#125;,
-    ymin=-3, ymax=3,
-    minor y tick num=1,
-]
-    \addplot [blue] table &#123;invcum.dat&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3,-4)(3,4)
+\psset&#123;viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint&#125;
+\psset&#123;color1=cyan,color2=red&#125;
+\psSolid[
+   fcol=0 (OliveGreen) 2 (color1) 3 (color2),
+   h=5,r=2,
+   object=cylindrecreux,
+   ngrid=4 30,
+   RotZ=30
+](0,0,-2.5)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
-## 2350. Line Chart
+## 2350. Other
 
-**ID**: `bb5b0756eef9`  
-**Package**: pgfplots  
+**ID**: `005c697470e6`  
+**Package**: pst-solides3d  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-]
-    % density of Normal distribution:
-    \addplot [
-        red,
-        domain=-3e-3:3e-3,
-        samples=201,
-    ]
-        &#123;exp(-x^2 / (2e-3^2)) / (1e-3 * sqrt(2*pi))&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;pspicture&#125;(-3,-4)(4,4)
+\psset&#123;viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint&#125;
+\psset&#123;color1=cyan,color2=red&#125;
+\psSolid[
+   action=draw*,
+   fcol=0 (OliveGreen) 2 (color1) 3 (color2),
+   h=5,r=2,
+   object=cylindre,
+   ngrid=2 12,
+   RotY=-20
+](0,0,-2.5)
+\end&#123;pspicture&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-045) | Page 47 of 107 | [Next →](executable_example-page-047)
+[← Previous](executable_example-page-045) | Page 47 of 120 | [Next →](executable_example-page-047)

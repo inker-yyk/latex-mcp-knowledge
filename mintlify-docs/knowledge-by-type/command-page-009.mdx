@@ -11,503 +11,503 @@ Showing items **451-500** of **1103**
 
 ---
 
-## 451. Command: `\pgfgdevent\marg{kind`
+## 451. Command: `\pgftransforminvert`
 
-**ID**: `bfe83b1a8fde`  
+**ID**: `f91f83e7aae9`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: parameter&#125; Calls |createEvent| of the graph drawing system's interface class. This creates a new |Event| object on the Lua layer whose |kind| field is set to kind and the |parameters| field to parameter. You must be inside a graph drawing scope to use this command.
+**Description**: Replaces the coordinate transformation matrix by a coordinate transformation matrix that ``exactly undoes the original transformation''. For example, if the original transformation was ``scale by 2 and then shift right by 1cm'' the new one is ``shift left by 1cm and then scale by $1/2$''. This command will produce an error if the determinant of the matrix is too small, that is, if the matrix is near-singular. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 30 (0,0) -- (2,1) -- (1,0); [r
 
 ---
 
-## 452. Command: `\pgfgdbegineventgroup\marg{parameter`
+## 452. Command: `\pgfgettransform\marg{macro`
 
-**ID**: `4a2fb527e220`  
+**ID**: `1d582c713ffb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Starts an event group. This just means that an |Event| of kind |begin| is created with the given parameter.
+**Description**: &#125; This command will (locally) define macro to a representation of the current coordinate transformation matrix. This matrix can later on be reinstalled using ||.
 
 ---
 
-## 453. Command: `\pgfgdendeventgroup`
+## 453. Command: `\pgfsettransform\marg{macro`
 
-**ID**: `7281661fa600`  
+**ID**: `471f53419c81`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Ends an event group. This is done by adding an event of kind |end| without any parameters to the event string.
+**Description**: &#125; Reinstalls a coordinate transformation matrix that was previously saved using ||.
 
 ---
 
-## 454. Command: `\pgfgdeventgroup\marg{parameters`
+## 454. Command: `\pgfgettransformentries\marg{macro for a`
 
-**ID**: `6d86401476a9`  
+**ID**: `06c438c0c789`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Starts an event group just like ||, but adds a corresponding closing |end| event at the end of the current \ group (using ||).
+**Description**: macro for bmacro for cmacro for dmacro for shift xmacro for shift y &#125; This command is similar to || except that it stores the current coordinate transformation matrix in a set of six macros. The matrix can later on be reinstalled using ||. Furthermore, all these macros (or just a few of them) can be used as arguments for ||.
 
 ---
 
-## 455. Command: `\pgfgdsubgraphnode\marg{name`
+## 455. Command: `\pgfsettransformentries\marg{a`
 
-**ID**: `0dac6d0d5ad6`  
+**ID**: `a3a1d58e974d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: node optionsnode text&#125; A subgraph node is a node that ``surrounds'' the nodes of a subgraph. The special property of a subgraph node opposed to a normal node is that it is created only after the subgraph has been laid out. However, the difference to a collection like |hyper| is that the node is available immediately as a normal node in the sense that you can connect edges to it. What happens internally is that subgraph nodes get ``registered'' immediately both on the \ level and on the Lua level
+**Description**: bcdshiftxshifty&#125; Reinstalls a coordinate transformation matrix that was previously saved using the storage command ||. This command can also be used to replace any previously existing coordinate transformation matrix (it is thus equivalent to || followed by ||).
 
 ---
 
-## 456. Command: `\pgfmathreciprocal\marg{x`
+## 456. Command: `\pgfpointtransformed\marg{point`
 
-**ID**: `f09ef3cdcc96`  
+**ID**: `30a7922e1f05`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Defines || as $1$. This provides greatest accuracy when x is small.
+**Description**: &#125; Applies current transformation matrix to point $(x,y)$ and returns a transformed point $(ax+cy+s,bx+dy+t)$. Normally, this is done automatically by commands like || or ||, but sometimes you may wish to access a transformed point yourself.
 
 ---
 
-## 457. Command: `\pgfmathapproxequalto\marg{x`
+## 457. Command: `\pgftransformationadjustments`
 
-**ID**: `531ff955045e`  
+**ID**: `f96c712a2052`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y&#125; Defines || 1.0 if $ x - y &lt; 0.0001$, but 0.0 otherwise. As a side-effect, the global boolean || will be set accordingly.
+**Description**: This command computes ``adjustments'' for the current transformation matrix so that even when you install a transformation matrix that scales everything by a certain factor, you can still draw something of ``an absolute size''. Suppose for instance that you install a transformation matrix that scales everything by a factor of 4 and you now wish to draw a horizontal line of length 1cm. Then, if you do not reset the transformation matrix, you can draw a line of logical length 2.5mm, which will the
 
 ---
 
-## 458. Command: `\pgfmathgeneratepseudorandomnumber`
+## 458. Command: `\pgfverticaltransformationadjustment`
 
-**ID**: `d5ceceaee0ea`  
+**ID**: `50f771da557c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Defines || as a pseudo-random integer between 1 and $2^&#123;31&#125;-1$. This uses a linear congruency generator, based on ideas of Erich Janka.
+**Description**: $1/\|transform(0,1)\|_2$.
 
 ---
 
-## 459. Command: `\pgfmathrandominteger\marg{macro`
+## 459. Command: `\pgflowlevelsynccm`
 
-**ID**: `671522197f00`  
+**ID**: `2e38a7017ceb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: minimummaximum&#125; This defines macro as a pseudo-randomly generated integer from the range minimum to maximum (inclusive). codeexample[] pgfpicture in &#123;1,...,50&#125;&#123; &#123;1&#125;&#123;50&#125; &#123;1&#125;&#123;50&#125; &#123;+ pt&#123;+ pt&#125;&#125;&#123;+2pt&#125; blue!40!white blue!80!black stroke, fill &#125; pgfpicture codeexample
+**Description**: This command concatenates the canvas transformation matrix with the current coordinate transformation matrix. Afterward, the coordinate transformation matrix is reset. The effect of this command is to ``synchronize'' the coordinate transformation matrix and the canvas transformation matrix. All transformations that were previously applied by the coordinate transformations matrix are now applied by the canvas transformation matrix. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt 5 (0
 
 ---
 
-## 460. Command: `\pgfmathdeclarerandomlist\marg{list name`
+## 460. Command: `\pgflowlevel\marg{transformation code`
 
-**ID**: `8d519e2a6b18`  
+**ID**: `322dd8a01c92`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#123;\&#123;&#125;item-1item-2...&#123;\&#125;&#125;&#125; This creates a list of items with the name list name.
+**Description**: &#125; This command concatenates the canvas transformation matrix with the coordinate transformation specified by transformation code. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt &#123;5&#125; (0,0) -- (0.4,.2); tikzpicture codeexample
 
 ---
 
-## 461. Command: `\pgfmathrandomitem\marg{macro`
+## 461. Command: `\pgflowlevelobj\marg{transformation code`
 
-**ID**: `849c9294b4af`  
+**ID**: `fe75ae76002e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: list name&#125; Select an item from a random list list name. The selected item is placed in macro.
+**Description**: code&#125; This command creates a local |&#123;pgfscope&#125;|. Inside this scope, || is first called with the argument transformation code, then the code is inserted. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt &#123;5&#125; &#123; (0,0) -- (0.4,.2);&#125; &#123;-1cm&#125;&#123; (0,0) -- (0.4,.2);&#125; tikzpicture codeexample
 
 ---
 
-## 462. Command: `\pgfmathsetseed\marg{integer`
+## 462. Command: `\pgftransformnonlinear\marg{transformation code`
 
-**ID**: `06ba33beed51`  
+**ID**: `7e9d4234e20b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Explicitly sets the seed for the pseudo-random number generator. By default it is set to the value of ||$$||.
+**Description**: &#125; This command adds the transformation code to the list of non-linear transformations currently in force. Thus, similar to linear coordinate transformations, each additional call to this function adds another transformation to the current \ scope and the effect ends at the end of the current scope. In practice, however, you typically will not have more than one active nonlinear transformation. The job of the transformation code is to map a point~$p$ given in the registers |@x| and |@y| to a new 
 
 ---
 
-## 463. Command: `\pgfmathbasetodec\marg{macro`
+## 463. Command: `\pgfpointtransformednonlinear\marg{point`
 
-**ID**: `0824ffb5bc4d`  
+**ID**: `632f9a4aa963`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: numberbase&#125; Defines macro as the result of converting number from base base to base 10. Alphabetic digits can be upper or lower case. &#123; codeexample[] 107f&#123;16&#125; codeexample Note that, as usual in , the braces around an argument can be omitted if the argument is just a single token (a macro name is a single token). codeexample[] 33FC&#123;20&#125; codeexample &#125;
+**Description**: &#125; Works like ||, but also applies the current nonlinear transformation; that is, it first applies the current linear transformation and then the current nonlinear transformations. Note that, just like ||, you normally do not call this function directly since it is called internally by the path drawing commands.
 
 ---
 
-## 464. Command: `\pgfmathdectobase\marg{macro`
+## 464. Command: `\pgfsettransformnonlinearflatness\marg{dimension`
 
-**ID**: `8a8babee9595`  
+**ID**: `91b5dd4c5fa8`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: numberbase&#125; Defines macro as the result of converting number from base 10 to base base. Any resulting alphabetic digits are in lower case. codeexample[] 65535&#123;16&#125; codeexample
+**Description**: (initially 5pt)&#125; Whenever in a to-be-drawn curve the $L^$-distance (maximum of the distances in $x$- and $y$-directions) between the start of a curve and its first control point or between the first and second control points or between the second control point and the end is more than distance, the curve gets split in the middle (more precisely, at time $t= 0.5$) and we draw the two parts individually (for them, splitting may occur again, if the curve is still too long). codeexample[preamble=&#123;no
 
 ---
 
-## 465. Command: `\pgfmathdectoBase\marg{macro`
+## 465. Command: `\pgfapproximatenonlineartransformation`
 
-**ID**: `9ac3638c50e9`  
+**ID**: `a38d7c799204`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: numberbase&#125; Defines macro as the result of converting number from base 10 to base base. Any resulting alphabetic digits are in upper case. codeexample[] 65535&#123;16&#125; codeexample
+**Description**: This command will do two things: enumerate It clears the nonlinear transformations for the rest of the current \ scope, so only linear transformations apply. However, before removing the nonlinear transformations, the linear transformation matrix is modified so that it mimics the effect the nonlinear transformation had at the origin. That is, after you call this command, drawing something near the origin will look almost the same as if you had not called it. enumerate codeexample[preamble=&#123;nonli
 
 ---
 
-## 466. Command: `\pgfmathbasetobase\marg{macro`
+## 466. Command: `\pgfapproximatenonlineartranslation`
 
-**ID**: `42048cae919f`  
+**ID**: `1006b4d46cae`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: numberbase-1base-2&#125; Defines macro as the result of converting number from base base-1 to base base-2. Alphabetic digits in number can be upper or lower case, but any resulting alphabetic digits are in lower case. codeexample[] 11011011&#123;2&#125;&#123;16&#125; codeexample
+**Description**: This command works like the normal approximation command, but it will only approximate how the origin gets translated, it will not approximate the rotation, skewing, or scaling that is involved. This is useful for drawing text at the right position, but without ``mutilating'' the text. codeexample[preamble=&#123;nonlineartransformations&#125;] tikzpicture [help lines] (0,0) grid (3,2); (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm); scope[shift=&#123;(45pt,20mm)&#125;] [red] (-10pt,-10pt) -- (10pt,10pt); [red]
 
 ---
 
-## 467. Command: `\pgfmathbasetoBase\marg{macro`
+## 467. Command: `\pgfsetcurvilinearbeziercurve\marg{start`
 
-**ID**: `fa485d9a2531`  
+**ID**: `ca72293e6ad7`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: numberbase-1base-2&#125; Defines macro as the result of converting number from base base-1 to base base-2. Alphabetic digits in number can be upper or lower case, but any resulting alphabetic digits are in upper case. codeexample[] 121212&#123;3&#125;&#123;12&#125; codeexample
+**Description**: first supportsecond supportend&#125; Prior to using any other command from this library, you first call this function to ``install'' a Bézier curve to which the commands will refer. This curve will be local to the current \ scope and you can install only one curve at a time. The main job of this command is to store the passed points internally and to build a lookup table for distance-to-time conversions, see the next command. codeexample[code only] &#123;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; codeexample
 
 ---
 
-## 468. Command: `\pgfmathsetbasenumberlength\marg{integer`
+## 468. Command: `\pgfcurvilineardistancetotime\marg{distance`
 
-**ID**: `6a0b4242e5f1`  
+**ID**: `25305537ccd9`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Sets the number of digits in the result of a base conversion to integer. If the result of a conversion has less digits than this number, it is prefixed with zeros. codeexample[] 8 15&#123;2&#125; codeexample
+**Description**: &#125; This command does a ``distance-to-time-conversion'': It tries to compute a time $t$, returned in |@x|, that corresponds to travelling distance along the curve that has last been installed using the command ||. The distance-to-time-conversion uses the precomputations done by that command. Note that several compromises had to be made between speed and accuracy: itemize The conversion will be best near the start of the curve. The more ``degenerate'' the curve, the worse the results. itemize
 
 ---
 
-## 469. Command: `\pgfmathtodigitlist\marg{macro`
+## 469. Command: `\pgfpointcurvilinearbezierorthogonal\marg{distance`
 
-**ID**: `e41ee24b5579`  
+**ID**: `842e21571d64`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: number&#125; This command converts number into a comma-separated list of digits and stores the result in macro. The number is not parsed before processing. codeexample[] 8 tikzpicture[x=0.25cm, y=0.25cm] [count=] in &#123;0, 60, 102, 102, 126, 102, 102, 102, 0&#125;&#123; &#123;&#125;&#123;2&#125; &#123;&#125; [count=, evaluate=&#123;=*50+15;&#125;] in [fill=black!] (, -) rectangle ++(1,1); &#125; tikzpicture codeexample
+**Description**: offset&#125; This command computes the following point: Consider the curve last installed using the command ||. We travel along this curve by distance, arriving at a point $p$. Then, we turn by $90^$ and travel by offset units ``always from the curve'', arriving at a point $q$. This point $q$ will now be returned in |@x| and |@y|; furthermore, the transformed local coordinate system at point $q$ will also be returned |@xa| and the other registers, see || for details. codeexample[ preamble=&#123;nonlineart
 
 ---
 
-## 470. Command: `\pgfmathanglebetweenpoints\marg{p`
+## 470. Command: `\pgfpointcurvilinearbezierpolar\marg{x`
 
-**ID**: `17404b965ff3`  
+**ID**: `b9daf4af7f11`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: q&#125; Returns the angle of a line from p to q relative to a line going straight right from p. codeexample[] &#123;1cm&#123;3cm&#125;&#125;&#123;2cm&#123;4cm&#125;&#125; codeexample
+**Description**: y&#125; This command is similar to the previous version, but the transformation is different: The idea is that a line form $(0,0)$ to $(x,0)$ gets transformed to the curve from the start of the curve to a point at distance $x$ along the curve. This is identical to what the ``orthogonal'' transformation above also does. The difference is that a line from $(0,0)$ to $(0,y)$ gets still transformed to an initial segment of the curve of a length of $y$, but now rotated by $90^$. In general, the point $p =
 
 ---
 
-## 471. Command: `\pgfmathanglebetweenlines\marg{$p_1$`
+## 471. Command: `\pgfprofilenew\marg{name`
 
-**ID**: `21d933639de1`  
+**ID**: `8b876c8e3dfd`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: $q_1$$p_2$$q_2$&#125; Returns the clockwise angle between a line going through $p_1$ and $q_1$ and a line going through $p_2$ and $q_2$. codeexample[] &#123;1cm&#123;3cm&#125;&#125;&#123;2cm&#123;4cm&#125;&#125; &#123;0cm&#123;1cm&#125;&#125;&#123;1cm&#123;0cm&#125;&#125; codeexample
+**Description**: &#125; Defines a new profiler entry named name. This updates a set of internal registers used to track the profiler entry. The name can be arbitrary, it doesn't need to be related to any \ macro. The actual job of counting seconds is accomplished using ||name followed eventually by the command ||name. It doesn't hurt if || is called multiple times with the same name.
 
 ---
 
-## 472. Command: `\pgfmathdeclarefunction\opt{|*|`
+## 472. Command: `\pgfprofilenewforcommand\oarg{profiler entry name`
 
-**ID**: `779d17e56a2a`  
+**ID**: `482b096cfe55`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: function namenumber of argumentscode&#125; This will set up the parser to recognize a function called name. The name of the function can consist of, uppercase or lowercase letters, numbers or the underscore |_|. In line with many programming languages, a function name cannot begin with a number or contain any spaces. The function may not have been declared earlier, unless the optional star (|*|) is provided, which forces an ``overwriting'' of the function by the new function. Note that you should nev
+**Description**: macroarguments&#125; Defines a new profiler entry which will measure the time spent in macro. This calls || and replaces the current definition of macro with a new one. If profiler entry name has been provided, this defines the argument for ||. It is allowed to use the same name for multiple commands; in this case, they are treated as if it where the same command. If the optional argument is not used, the profiler entry will be called `' (macro without backslash) where || is predefined to be |&lt;CS&gt;|. 
 
 ---
 
-## 473. Command: `\pgfmathredeclarefunction\marg{function name`
+## 473. Command: `\pgfprofilenewforcommandpattern\oarg{profiler entry name`
 
-**ID**: `a92a36133aa0`  
+**ID**: `c8329b2093f7`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: code&#125; This command redefines the ||function name|@| macro with the new code. See the description of the || for details. You cannot change the number of arguments for an existing function. codeexample[] foo&#123;1&#125;&#123; @x=#1pt @x by2 @x &#125; foo(42) foo&#123; @x=#1pt @x by3 @x &#125; foo(42) codeexample
+**Description**: macroargument patterninvocation pattern&#125; A variant of || which can be used with arbitrary argument patterns. Example: codeexample[code only] #1#2#3&#123; ... &#125; &#123;#1#2#3&#125;&#123;&#123;#1&#125;#2#3&#125; codeexample Note that || is a special case of ||: codeexample[code only] #1#2&#123; ... &#125; 2 &#123;#1#2&#125;&#123;&#123;#1&#125;&#123;#2&#125;&#125; codeexample Thus, argument pattern is a copy-paste from the definition of your command. The invocation pattern is used by the |profiler| library to invoke the original command, so it is closely related to argument pattern,
 
 ---
 
-## 474. Command: `\pgfcalendardatetojulian\marg{date`
+## 474. Command: `\pgfprofileshowinvocationsfor\marg{profiler entry name`
 
-**ID**: `c7126b2f06be`  
+**ID**: `716c3c94c7e7`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: counter&#125; This macro converts a date in a format to be described in a moment to the Julian day number in the Gregorian calendar. The date should expand to a string of the following form: enumerate calendar-date-format It should start with a number representing the year. Use || for the current year, that is, the year the file is being typeset. The year must be followed by a hyphen. Next should come a number representing the month. Use || for the current month. You can, but need not, use leading ze
+**Description**: &#125; Enables verbose output for every invocation of profiler entry name. This is only available for profiler entries for commands (those created by || for example). It will also show all given arguments.
 
 ---
 
-## 475. Command: `\pgfcalendarjuliantodate\marg{Julian day`
+## 475. Command: `\pgfprofileshowinvocationsexpandedfor\marg{profiler entry name`
 
-**ID**: `5a7aa6619fcf`  
+**ID**: `cda0d206f0cb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: year macromonth macroday macro&#125; This command converts a Julian day number to an ISO-date. The Julian day must be a number or \ counter, the year macro, month macro and day macro must be \ macro names. They will be set to numbers representing the year, month, and day of the given Julian day in the Gregorian calendar. The year macro will be assigned the year without leading zeros. Note that this macro will produce year 0 (as opposed to other calendars, where year 0 does not exist). However, if you
+**Description**: &#125; A variant of || which will expand all arguments for profiler entry name before showing them. The invocation as such is not affected by this expansion. This expansion (with ||) might yield unrecoverable errors for some commands. Handle with care.
 
 ---
 
-## 476. Command: `\pgfcalendarjuliantoweekday\marg{Julian day`
+## 476. Command: `\pgfprofilenewforenvironment\oarg{profiler entry name`
 
-**ID**: `2068e4b086a5`  
+**ID**: `07e6c3339e9b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: week day counter&#125; This command converts a Julian day to a week day by computing the day modulo 7. The week day counter must be a \ counter. It will be set to 0 for a Monday, to 1 for a Tuesday, and so on. |2454115&#123;&#125;| sets || to 2454115&#123;&#125;\ (it was a Sunday).
+**Description**: environment name&#125; Defines a new profiler entry which measures time spent in the environment environment name. This calls || and handles the begin/end of the environment automatically. The argument for || is profiler entry name, or, if this optional argument is not used, it is ` name' where || is predefined as |&lt;ENV&gt;|. Again, it is permitted to use the same profiler entry name multiple times to merge different commands into one output section.
 
 ---
 
-## 477. Command: `\pgfcalendareastersunday\marg{year`
+## 477. Command: `\pgfprofilestart\marg{profiler entry name`
 
-**ID**: `ca604c055dc8`  
+**ID**: `0a3d36afbff8`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: counter&#125; This command computes the date of Easter Sunday as a Julian date and stores it in counter. |2019&#123;&#125;| sets || to 2019&#123;&#125;, which corresponds to &#123;&#125;&#123;&#125;&#123;&#125; --.
+**Description**: &#125; Starts (or resumes) timing of profiler entry name. The argument must have been declared in the preamble using ||. Nested calls of || with the same argument will be ignored. The invocation of this command doesn't change the environment: it doesn't introduce any \ groups nor does it modify the token list.
 
 ---
 
-## 478. Command: `\pgfcalendarifdate\marg{date`
+## 478. Command: `\pgfprofileend\marg{profiler entry name`
 
-**ID**: `f06ac94ac946`  
+**ID**: `84b850ab22ae`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: testscodeelse code&#125; pgfcalendarifdate This command is used to execute code based on properties of date. The date must be a date in ISO-format. For this date, the tests are checked (to be detailed later) and if one of the tests succeeds, the code is executed. If none of the tests succeeds, the else code is executed. |2007-02-07&#123;Wednesday&#125;&#123;Is a Wednesday&#125;&#123;Is not a Wednesday&#125;| yields &#123;2007-02-07&#123;Wednesday&#125;&#123;Is a Wednesday&#125;&#123;Is not a Wednesday&#125;&#125;. The tests is a comma-separated list of key--value pairs
+**Description**: &#125; Stops (or interrupts) timing of profiler entry name. This command finishes a preceding call to ||.
 
 ---
 
-## 479. Command: `\pgfcalendarweekdayname\marg{week day number`
+## 479. Command: `\pgfprofilepostprocess`
 
-**ID**: `acb0604280e1`  
+**ID**: `b1485c70c34b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command expands to a textual representation of the day of week, given by the week day number. Thus, |0| expands to |Monday| if the current language is English and to |Montag| if the current language is German, and so on. See Section~section-calendar-locale for more details on translations. |2| yields &#123;2&#125;.
+**Description**: For , this command is installed automatically in |document|. It stops all running timings, evaluates them and returns the result into the logfile. Furthermore, it generates a text table called |.profiler.|YYYY|-|MM|-|DD|_|HH|h_|MM|m.dat| with the same information. Note that the |profiler| library predefines two profiler entries, namely |main job| which counts time from the beginning of the document until || and |preamble| which counts time from the beginning of the document until |document|.
 
 ---
 
-## 480. Command: `\pgfcalendarweekdayshortname\marg{week day number`
+## 480. Command: `\pgfprofilesetrel\marg{profiler entry name`
 
-**ID**: `da72447b5f2d`  
+**ID**: `5acd9c473ab4`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command works similarly to the previous command, only an abbreviated version of the week day is produced. |2| yields &#123;2&#125;.
+**Description**: (initially main job)&#125; Sets the profiler entry whose total time will be used to compute all other relative times. Thus, profiler entry name will use $100\ total time per definition, all other relative times are relative to this one.
 
 ---
 
-## 481. Command: `\pgfcalendarmonthname\marg{month number`
+## 481. Command: `\pgfprofileifisrunning\marg{profiler entry name`
 
-**ID**: `48f1cdfc9bc7`  
+**ID**: `9202b6e51bdf`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command expands to a textual representation of the month, which is given by the month number. |12| yields &#123;12&#125;.
+**Description**: true codefalse code&#125; Invokes true code if profiler entry name is currently running and false code otherwise.
 
 ---
 
-## 482. Command: `\pgfcalendarmonthshortname\marg{month number`
+## 482. Command: `\pgfplothandlercurveto`
 
-**ID**: `c48066cb4f6e`  
+**ID**: `f369813f70ca`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; As above, only an abbreviated version is produced. |12| yields &#123;12&#125;.
+**Description**: This handler will issue a || command for each point of the plot, except possibly for the first. As for the line-to handler, what happens with the first point can be specified using || or ||. Obviously, the || command needs, in addition to the points on the path, some control points. These are generated automatically using a somewhat ``dumb'' algorithm: Suppose you have three points $x$, $y$, and $z$ on the curve such that $y$ is between $x$ and $z$: codeexample[] tikzpicture [gray] (0,0) node &#123;x
 
 ---
 
-## 483. Command: `\pgfcalendar\marg{prefix`
+## 483. Command: `\pgfsetplottension\marg{value`
 
-**ID**: `ac33dc72fb2c`  
+**ID**: `4b291303c9bb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: start dateend daterendering code&#125; This command can be used to typeset a calendar. It is a very general command, the actual work has to be done by giving clever implementations of rendering code. Note that this macro need not be called inside a |&#123;pgfpicture&#125;| environment (even though it typically will be) and you can use it to typeset calendars in normal \ or using packages other than . Basic typesetting process. A calendar is typeset as follows: The start date and end date specify a range of dat
+**Description**: &#125; Sets the factor used by the curve plot handlers to determine the distance of the control points from the points they control. The higher the curvature of the curve points, the higher this value should be. A value of $1$ will cause four points at quarter positions of a circle to be connected using a circle. The default is $0.5$. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; 0.75 &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 484. Command: `\pgfcalendarshorthand\marg{kind`
+## 484. Command: `\pgfplothandlerclosedcurve`
 
-**ID**: `8cfe02f97891`  
+**ID**: `3d14d1efa7ed`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: representation&#125; pgfcalendarshorthand This command can be used inside a ||, where it will expand to a representation of the current day, month, year or day of week, depending on whether kind is |d|, |m|, |y| or |w|. The representation can be one of the following: |-|, |=|, |0|, |.|, and |t|. They have the following meanings: itemize The minus sign selects the shortest numerical representation possible (no leading zeros). The equal sign also selects the shortest numerical representation, but a spa
+**Description**: This handler works like the curve-to plot handler, only it will add a new part to the current path that is a closed curve through the plot points. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 485. Command: `\pgfcalendarsuggestedname`
+## 485. Command: `\pgfplothandlerconstantlineto`
 
-**ID**: `10a9b692677b`  
+**ID**: `de0512210e46`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This macro expands to a suggested name for nodes representing days in a calendar. If the prefix is empty, it expands to the empty string, otherwise it expands to the prefix of the calendar, followed by a hyphen, followed by the ISO format version of the date. Thus, when the date |2007-01-01| is typeset in a calendar for the prefix |mycal|, the macro expands to |mycal-2007-01-01|.
+**Description**: This handler works like the line-to plot handler, only it will produce a connected, piecewise constant path to connect the points. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 486. Command: `\pgfdeclarelayer\marg{name`
+## 486. Command: `\pgfplothandlerconstantlinetomarkright`
 
-**ID**: `e741345944c8`  
+**ID**: `5eb5f9ccff21`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command declares a layer named name for later use. Mainly, this will set up some internal bookkeeping.
+**Description**: A variant of || which places its mark on the right line ends. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 487. Command: `\pgfsetlayers\marg{layer list`
+## 487. Command: `\pgfplothandlerconstantlinetomarkmid`
 
-**ID**: `00ebc126f63b`  
+**ID**: `2374902d05c6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command tells \ which layers will be used in pictures. They are stacked on top of each other in the order given. The layer |main| should always be part of the list. Here is an example: codeexample[code only] background foreground background,main,foreground codeexample This command should be given either outside of any picture or ``directly inside'' of a picture. Here, the ``directly inside'' means that there should be no further level of \ grouping between || and the matching |pgfpicture|
+**Description**: A variant of || which places its mark on the center of the line. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample The plot handler always connects two data points by a horizontal line starting from the previous data points, followed by a vertical line in the middle between the two data points, followed by a horizontal line between the middle and the current data point. This results in a symmetric con
 
 ---
 
-## 488. Command: `\pgfparserparse\marg{parser name`
+## 488. Command: `\pgfplothandlerjumpmarkleft`
 
-**ID**: `e81866983da5`  
+**ID**: `a21976a9a113`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: text&#125; This command is used to parse the text using the (previously defined) parser named parser name. The text is not contained in curly braces, rather it is all the text that follows. The end of the text is determined implicitly, namely when the final state of the parser has been reached. If you defined a final action for the parser using || it is executed now. The parser works as follows: At any moment, it is in a certain state, initially this state is called |initial|. Then, the first letter 
+**Description**: This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the left open pieces. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 489. Command: `\pgfparserdefunknown\marg{parser name`
+## 489. Command: `\pgfplothandlerjumpmarkright`
 
-**ID**: `32982c5373fd`  
+**ID**: `cd9965e550be`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: stateaction&#125; With this macro you can define an action for the parser name parser in state if no action was defined for the letter which was encountered.
+**Description**: This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the right open pieces. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 490. Command: `\pgfparserdeffinal\marg{parser name`
+## 490. Command: `\pgfplothandlerjumpmarkmid`
 
-**ID**: `8aca347e5c4e`  
+**ID**: `b57ab126777c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: action&#125; Every parser can call a final action after the state was switched to |final|. This action is executed after everything else, so you can use something that grabs more arguments if you want to.
+**Description**: This handler works like the ||, but it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed in the center of the horizontal line segment.. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample See || for details.
 
 ---
 
-## 491. Command: `\pgfparserswitch\marg{state`
+## 491. Command: `\pgfplothandlerxcomb`
 
-**ID**: `87b9294c83e0`  
+**ID**: `627b9b8ec0ed`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command can be called inside the action code of a parser to cause a state switch to state.
+**Description**: This handler converts each point in the plot stream into a line from the $y$-axis to the point's coordinate, resulting in a ``horizontal comb''. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 492. Command: `\pgfparserifmark\marg{arg`
+## 492. Command: `\pgfplothandlerycomb`
 
-**ID**: `e404398108aa`  
+**ID**: `ec164cba4b0e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: truefalse&#125; Remember that some of the optional argument types set special marks? With || you can test whether arg is such a mark. So if there was no optional argument for the argument types |o| and |d| the true branch will be executed, else the false branch. For the |t| type argument the true branch is executed if the token was encountered.
+**Description**: This handler converts each point in the plot stream into a line from the $x$-axis to the point's coordinate, resulting in a ``vertical comb''. This handler is useful for creating ``bar diagrams''. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 493. Command: `\pgfparserreinsert`
+## 493. Command: `\pgfplothandlerpolarcomb`
 
-**ID**: `bf2ca3b6201a`  
+**ID**: `49c72454b217`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: You can use this as the final macro in an action of || or ||. This has the effect that the contents of || will be parsed next. Without any redefinition the result will be that the last token will be parsed again. You can change the definition of || just before || as well to parse some specific tokens next.
+**Description**: This handler converts each point in the plot stream into a line from the origin to the point's coordinate. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 494. Command: `\pgfparserstate`
+## 494. Command: `\pgfplotxzerolevelstreamconstant\marg{dimension`
 
-**ID**: `91b8e50286da`  
+**ID**: `72dcb5f6f8f3`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Expands to the current state of the parser.
+**Description**: &#125; This zero level stream always returns dimension instead of $x=0$pt. It is used for |xcomb| and |xbar|.
 
 ---
 
-## 495. Command: `\pgfparsertoken`
+## 495. Command: `\pgfplotyzerolevelstreamconstant\marg{dimension`
 
-**ID**: `105368e3520e`  
+**ID**: `baadc219fb3f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This is the macro which is let to the following token with ||. You can use it inside an action code.
+**Description**: &#125; This zero level stream always returns dimension instead of $y=0$pt. It is used for |ycomb| and |ybar|.
 
 ---
 
-## 496. Command: `\pgfparserletter`
+## 496. Command: `\pgfplothandlerybar`
 
-**ID**: `30b9df9f7867`  
+**ID**: `43dc14108154`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This macro stores the letter to which || was let. So if you'd use |fooa| this macro would be defined with ||. This definition is done before any action code is executed. There are four special cases: If the next token is of category code 1, 2, 6, or 10, so with standard category codes the tokens |&#123;|, |&#125;|, |#|, and \ (a space), it would be treated differently. In those cases this macro expands to ||, ||, |##|, and \ for the categories 1, 2, 6, and 10, respectively.
+**Description**: This handler converts each point in the plot stream into a rectangle from the $x$-axis to the point's coordinate. The rectangle is placed centered at the $x$-axis. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 497. Command: `\pgfparserset\marg{key list`
+## 497. Command: `\pgfplothandlerxbar`
 
-**ID**: `fe61d55ac81c`  
+**ID**: `b4cd5b5d3bb8`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; The |pgfparser| module has a few keys you can access through this macro. It is just a shortcut for |/pgfparser/.cd,#1|. The available keys are listed in subsection~sec:parser:keys.
+**Description**: This handler converts each point in the plot stream into a rectangle from the $y$-axis to the point's coordinate. The rectangle is placed centered at the $y$-axis. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
 
 ---
 
-## 498. Command: `\pgfsysdriver`
+## 498. Command: `\pgfplotbarwidth`
 
-**ID**: `5ab49fb5f793`  
+**ID**: `fb8d536b1f92`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This macro should expand to the name of the driver to be used by |pgfsys|. The default from |pgf.cfg| is |pgfsys-@driver|. This is very likely to be correct if you are using . For plain , the macro will be set to |pgfsys-pdftex.def| if |pdftex| is used and to |pgfsys-dvips.def| otherwise.
+**Description**: Expands to the value of |/pgf/bar width|.
 
 ---
 
-## 499. Command: `\pgfdeclarehorizontalshading\oarg{color list`
+## 499. Command: `\pgfplothandlerybarinterval`
 
-**ID**: `acb07b602795`  
+**ID**: `f2fc8b8c0d67`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: shading nameshading heightcolor specification&#125; Declares a horizontal shading named shading name of the specified height with the specified colors. The width of the bar is deduced automatically from the maximum dimension in the specification. codeexample[] myshadingA &#123;1cm&#125;&#123;rgb(0cm)=(1,0,0); color(2cm)=(green); color(4cm)=(blue)&#125; myshadingA codeexample The effect of the color list, which is a comma-separated list of colors, is the following: Normally, when this list is empty, once a shading has be
+**Description**: This handler is a variant of || which works with intervals instead of points. Bars are drawn between successive input coordinates and the width is determined relatively to the interval length. codeexample[] tikzpicture [gray] (0,2) node &#123;$x_1$&#125; (1,1) node &#123;$x_2$&#125; (2,.5) node &#123;$x_3$&#125; (4,0.7) node &#123;$x_4$&#125;; &#123;0cm&#123;2cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; &#123;4cm&#123;0.7cm&#125;&#125; stroke tikzpicture codeexample In more detail, if $(x_i,y_i)$ and $(x_&#123;i+1&#125;,y_&#123;i+1&#125;)$ denote successive input coordinates, the bar will be placed 
 
 ---
 
-## 500. Command: `\pgfdeclareverticalshading\oarg{color list`
+## 500. Command: `\pgfplothandlerxbarinterval`
 
-**ID**: `e6da8548d109`  
+**ID**: `15c4db7eaf5b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: shading nameshading widthcolor specification&#125; Declares a vertical shading named shading name of the specified width. The height of the bar is deduced automatically. The effect of color list is the same as for horizontal shadings. codeexample[] myshadingC &#123;4cm&#125;&#123;rgb(0cm)=(1,0,0); rgb(1.5cm)=(0,1,0); rgb(2cm)=(0,0,1)&#125; myshadingC codeexample
+**Description**: As ||, this handler provides bar plots with relative bar sizes and offsets, one bar for each $y$~coordinate interval.
 
 ---
 

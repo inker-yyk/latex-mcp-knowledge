@@ -1,632 +1,1057 @@
 ---
 title: "Executable Examples - Page 33"
-description: "Items 1601-1650 of 5325 executable examples"
+description: "Items 1601-1650 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 33
 
-Showing items **1601-1650** of **5325**
+Showing items **1601-1650** of **5999**
 
-[← Previous](executable_example-page-031) | Page 33 of 107 | [Next →](executable_example-page-033)
+[← Previous](executable_example-page-031) | Page 33 of 120 | [Next →](executable_example-page-033)
 
 ---
 
-## 1601. Other
+## 1601. Line Chart
 
-**ID**: `130d861f04be`  
+**ID**: `f72f229a38fc`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% requires \usepackage&#123;array&#125;
-\pgfplotstableset&#123;% configuration, for example in preamble:
-    create on use/slopes1/.style=&#123;create col/gradient semilogy=&#123;level&#125;&#123;error1&#125;&#125;,
-    columns=&#123;level,error1,slopes1&#125;,
-    % display styles:
-    columns/level/.style=&#123;int detect&#125;,
-    columns/error1/.style=&#123;sci,sci zerofill,sci subscript&#125;,
-    columns/slopes1/.style=&#123;dec sep align&#125;
-&#125;
-\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,name path=A,domain=0:1] &#123;sqrt(x)&#125;;
+
+    \addplot [red, name path=B,domain=0:1] &#123;sqrt(x/2)&#125;;
+
+    \addplot [gray] fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1602. Other
+## 1602. Line Chart
 
-**ID**: `cfba7f8b316b`  
+**ID**: `a84e8176e5a9`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% load table from somewhere:
-\pgfplotstableread&#123;
-    x y
-    1 1
-    2 4
-    3 9
-    4 16
-    5 25
-    6 36
-&#125;\loadedtbl
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,name path=A,domain=0:1]
+        &#123;sin(360*x)&#125;;
 
-% create the `regression' column:
-\pgfplotstablecreatecol[linear regression]
-    &#123;regression&#125;
-    &#123;\loadedtbl&#125;
-% store slope
-\xdef\slope&#123;\pgfplotstableregressiona&#125;
+    \addplot [red, name path=B,domain=0:1,samples=2]
+        &#123;0.5&#125;;
 
-\pgfplotstabletypeset\loadedtbl\\
-
-The slope is `\slope'.
+    \addplot [orange] fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1603. Line Chart
 
-**ID**: `8d110d3f3d1e`  
+**ID**: `0775f6719a68`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstablenew[
-    create on use/cut/.style=&#123;create col/function graph cut y=
-        &#123;2.5e-4&#125; % search for fixed L2 = 2.5e-4
-        &#123;x=Basis,y=L2,ymode=log,xmode=log&#125; % double log, each function is L2(Basis)
-        % now, provide each single function f_i(Basis):
-        &#123;&#123;table=plotdata/newexperiment1.dat&#125;,&#123;table=plotdata/newexperiment2.dat&#125;&#125;
-    &#125;,
-    columns=&#123;cut&#125;]
-    &#123;2&#125;
-    \loadedtable
-
-% Show the data:
-\pgfplotstabletypeset&#123;\loadedtable&#125;
-
 \begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;
-    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment1.dat&#125;;
-    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment2.dat&#125;;
-    \draw[blue!30!white] (1,2.5e-4) -- (1e5,2.5e-4);
-    \node[pin=-90:&#123;$x=53.66$&#125;] at (53.66,2.5e-4) &#123;&#125;;
-    \node[pin=45:&#123;$x=601.83$&#125;] at (601.83,2.5e-4) &#123;&#125;;
-\end&#123;loglogaxis&#125;
+\begin&#123;axis&#125;
+  \addplot+ [name path=A,samples=7,smooth,domain=0:1]
+        &#123;sin(360*x)&#125;;
+
+  \addplot+ [name path=B,samples=15,domain=0:1]
+        &#123;cos(360*x)&#125;;
+
+  \addplot [orange] fill between [of=A and B];
+\end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1604. Other
+## 1604. Line Chart
 
-**ID**: `9e15d978086d`  
+**ID**: `cdfe18168813`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstablenew[
-    % same as above...
-    create on use/cut/.style=&#123;create col/function graph cut y=
-        &#123;2.5e-4&#125;% search for fixed L2 = 2.5e-4
-        &#123;x=Basis,y=L2,ymode=log,xmode=log,
-         foreach=&#123;\i in &#123;1,2&#125;&#125;&#123;plotdata/newexperiment\i.dat&#125;&#125;%
-        &#123;&#125;% just leave this empty.
-    &#125;,
-    columns=&#123;cut&#125;]
-    &#123;2&#125;
-    \loadedtable
-% Show the data:
-\pgfplotstabletypeset&#123;\loadedtable&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[ymin=-0.2,enlargelimits]
+    \addplot+ [name path=A,smooth]
+        coordinates &#123;(0,0) (1,1) (2,0)&#125;;
+
+    \path [name path=B]
+        (0.5,-0.2) -- (1.8,-0.2);
+
+    \addplot [orange] fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1605. Other
+## 1605. Line Chart
 
-**ID**: `28a24eb4bfd5`  
+**ID**: `82cc769a2adc`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstablesave[
-    create on use/postproc1/.style=&#123;create col/dyadic refinement rate=error1&#125;,
-    columns=&#123;dof,error1,postproc1&#125;
-]
-    &#123;pgfplotstable.example1.dat&#125;
-    &#123;pgfplotstable.example1.out.dat&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,samples=15,domain=0:1]
+        &#123;cos(360*x)&#125;
+            coordinate [pos=0.25] (nodeA0) &#123;&#125;
+            coordinate [pos=0.75] (nodeA1) &#123;&#125;;
+
+    \draw [name path=B]
+        (nodeA0) -- (nodeA1);
+
+    \addplot [orange] fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1606. Other
+## 1606. Line Chart
 
-**ID**: `d5624f918e00`  
+**ID**: `4a4494efe864`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstableset&#123;columns=&#123;a column&#125;&#125;
-`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
-\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,another&#125;&#125;
-`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
-\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,and one more&#125;&#125;
-`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;'.
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,samples=7,smooth,domain=0:1]
+        &#123;sin(360*x)&#125;;
+
+    \addplot+ [name path=B,samples=15,domain=0:1]
+        &#123;cos(360*x)&#125;;
+
+    \addplot [orange] fill between [of=A and B,
+        split,
+        every odd segment/.style=&#123;yellow&#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1607. Other
+## 1607. Line Chart
 
-**ID**: `a7015f8036c1`  
+**ID**: `c1b3e286d24d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    My Code/.code=&#123;This is a pgfkeys feature. Argument=`#1'&#125;&#125;
-\pgfplotsset&#123;My Code=&#123;is here&#125;&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,samples=15,
+        smooth,domain=0:1] &#123;sin(720*x)&#125;;
+
+    \path [name path=B]
+            (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0)
+        --  (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0)
+    ;
+
+    \addplot fill between [of=A and B,
+        split,
+        every segment no 0/.style=
+          &#123;orange&#125;,
+        every segment no 1/.style=
+          &#123;pattern=north east lines&#125;,
+        every segment no 2/.style=
+          &#123;pattern=north west lines&#125;,
+        every segment no 3/.style=
+          &#123;top color=orange, bottom color=blue&#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1608. Other
+## 1608. Line Chart
 
-**ID**: `72a02927cf3d`  
+**ID**: `a709d48fb5a9`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
-\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
-\pgfplotstableforeachcolumn\loadedtable\as\col&#123;%
-    column name is `\col'; index is \pgfplotstablecol;\par
-&#125;
-\end&#123;minipage&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,samples=15,domain=0:1]
+        &#123;cos(360*x)&#125;
+            coordinate[pos=0.25] (nodeA0)
+            coordinate[pos=0.75] (nodeA1)
+    ;
+
+    \draw [name path=B] (nodeA0) -- (nodeA1);
+
+    \addplot [fill=none] % default: fill none
+        fill between [of=A and B,
+            split,
+            % draw only selected ones:
+            % every segment no 0/.style: invisible
+            every segment no 1/.style=&#123;fill,orange&#125;,
+            % every segment no 2/.style: invisible
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1609. Other
+## 1609. Line Chart
 
-**ID**: `55a362cacdc2`  
+**ID**: `94b1d1aa341e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
-\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
-\pgfplotstableforeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
-    I have now cell element `\cell' at row index `\pgfplotstablerow';\par
-&#125;
-\end&#123;minipage&#125;
+% requires
+% \usetikzlibrary&#123;decorations.markings,shapes.arrows&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,domain=0:1,samples=2] &#123;x&#125;;
+
+    \addplot+ [name path=B] table &#123;
+        x y
+        0 2
+        0.5 -1
+        1 3
+    &#125;;
+
+    \addplot fill between [of=A and B,
+        split,
+        every even segment/.style=&#123;
+            postaction=&#123;decorate&#125;,
+            decoration=&#123;
+                markings,
+                mark=between positions 0 and 1
+                  step 1cm with &#123;
+                    \node [single arrow,fill=orange,
+                        single arrow head extend=3pt,
+                        transform shape]
+                    &#123;&#125;;
+                &#125;,
+            &#125;,
+        &#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1610. Other
+## 1610. Line Chart
 
-**ID**: `d0f04cbb690e`  
+**ID**: `f93133ba8079`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
-\pgfplotstablemodifyeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
-    \edef\cell&#123;\#\pgfplotstablerow: \cell&#125;%
-&#125;
-\pgfplotstabletypeset[columns=error1,string type]&#123;\loadedtable&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,domain=0:5] &#123;x^2&#125;;
+
+    \path [name path=B]
+        (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0) --
+        (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0);
+
+    \addplot [orange] fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1611. Other
+## 1611. Line Chart
 
-**ID**: `db62f3f379f2`  
+**ID**: `8c1c8c391af2`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
-\pgfplotstablegetelem&#123;4&#125;&#123;error1&#125;\of&#123;\loadedtable&#125;
-The value (4,error1) is `\pgfplotsretval'.
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,domain=0:5] &#123;x^2&#125;;
 
-\pgfplotstablegetelem&#123;2&#125;&#123;[index]0&#125;\of&#123;\loadedtable&#125;
-The value (2,0) is `\pgfplotsretval'.
+    \path [name path=B]
+        (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0) --
+        (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0);
+
+    \addplot [orange] fill between [
+        of=A and B,
+        soft clip=&#123;domain=3:5&#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1612. Other
+## 1612. Line Chart
 
-**ID**: `60daf4043b41`  
+**ID**: `980f284b06ff`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
-\pgfplotstablegetcolumnnamebyindex&#123;4&#125;\of&#123;\loadedtable&#125;\to\pgfplotsretval
-The name of column 4 `\pgfplotsretval'.
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,domain=0:5] &#123;x^2&#125;;
+
+    \path [name path=B]
+        (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0) --
+        (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0);
+
+    \addplot[
+        orange,
+        decorate,decoration=&#123;
+            footprints,
+            foot of=bird,
+            stride length=15pt,
+            foot sep=2pt,
+            foot length=6pt,
+        &#125;,
+    ]
+    fill between [
+        of=A and B,
+        soft clip=&#123;domain=3:5&#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1613. Other
+## 1613. Line Chart
 
-**ID**: `2c5077af7334`  
+**ID**: `dc66098659d0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstabletypeset[string type]&#123;pgfplotstable.example3.dat&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \draw [help lines,name path=clippath]
+        (0,-5) -- (-5,0) --
+        (2,4) -- (4,-4) --cycle;
+
+    \addplot+ [name path=A] &#123;x&#125;;
+
+    \draw [red,name path=B]
+        (0,\pgfkeysvalueof&#123;/pgfplots/ymin&#125;) --
+        (0,\pgfkeysvalueof&#123;/pgfplots/ymax&#125;);
+
+    \addplot[gray!50] fill between [
+        of=A and B,
+        soft clip=&#123;clippath&#125;
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1614. Other
+## 1614. Line Chart
 
-**ID**: `79ba4413191d`  
+**ID**: `bc563b6bc333`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstabletranspose\loadedtable&#123;pgfplotstable.example3.dat&#125;
-\pgfplotstabletypeset[string type]\loadedtable
+% requires \usepgfplotslibrary&#123;fillbetween&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [name path=A,domain=0:5] &#123;x^2&#125;;
+
+    \path [name path=B]
+        (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0) --
+        (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0);
+
+    \addplot [gray] fill between [
+        of=A and B,
+        soft clip=&#123;
+            (3,-1) rectangle (4,100)
+        &#125;,
+    ];
+    \addplot [gray!30] fill between [
+        of=A and B,
+        soft clip=&#123;
+            (2,-1) rectangle (3,100)
+        &#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1615. Other
+## 1615. Line Chart
 
-**ID**: `d4d36baacab8`  
+**ID**: `4d3785d907fd`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstabletranspose[colnames from=c]\loadedtable&#123;pgfplotstable.example3.dat&#125;
-\pgfplotstabletypeset[string type]\loadedtable
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [name path=A,domain=0:5,
+        postaction=&#123;decorate,red,thick&#125;,
+        decoration=&#123;
+            soft clip,
+            soft clip path=&#123;domain=3:5&#125;,
+        &#125;,
+    ] &#123;x^2&#125;;
+
+    \path [name path=B]
+        (\pgfkeysvalueof&#123;/pgfplots/xmin&#125;,0) --
+        (\pgfkeysvalueof&#123;/pgfplots/xmax&#125;,0);
+
+    \addplot [orange] fill between [
+        of=A and B,
+        soft clip=&#123;
+            (3,-1) rectangle (5,100)
+        &#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1616. Other
 
-**ID**: `837cdf4ca3a1`  
+**ID**: `1014278d6fe3`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstabletranspose[input colnames to=Input]\loadedtable&#123;pgfplotstable.example3.dat&#125;
-\pgfplotstabletypeset[string type]\loadedtable
-</code></pre>
-
----
-
-## 1617. Other
-
-**ID**: `36a657d31279`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotstabletranspose[input colnames to=]\loadedtable&#123;pgfplotstable.example3.dat&#125;
-\pgfplotstabletypeset[string type]\loadedtable
-</code></pre>
-
----
-
-## 1618. Other
-
-**ID**: `a4631d98e6fc`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotstabletranspose[columns=&#123;a,b&#125;]\loadedtable&#123;pgfplotstable.example3.dat&#125;
-\pgfplotstabletypeset[string type]\loadedtable
-</code></pre>
-
----
-
-## 1619. Other
-
-**ID**: `a81927da7d05`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotstablesort\result&#123;%
-    a      b  c
-    19     2 [a]
-    -6   -14 [b]
-     4   -14 [c]
-   -11    -9 [d]
-    11    14 [e]
-    -9    -9 [f]
-     1    13 [g]
-     8   -10 [h]
-    16    18 [i]
-    19    -6 [j]
+\pgfkeys&#123;
+    /pgfplots/every fill between plot/.style=&#123;
+        /pgfplots/area legend,/tikz/fill&#125;,
 &#125;
-\pgfplotstabletypeset[columns/c/.style=&#123;string type&#125;]&#123;\result&#125;%
 </code></pre>
 
 ---
 
-## 1620. Other
+## 1617. Line Chart
 
-**ID**: `80df3ef56d02`  
+**ID**: `e4ac77c5d0c1`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotstablesort[sort cmp=string &lt;]\result&#123;% 'Header' is the column name:
-    Header
-    the
-    quick
-    brown
-    fox
-    jumps
-    over
-    the
-    lazy
-    dog
-&#125;
-\pgfplotstabletypeset[string type]&#123;\result&#125;%
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,-stealth,name path=A] &#123;x&#125;;
+
+    \draw [-stealth,name path=B]
+        (0,-5) -- (0,5);
+
+    \addplot [gray!50]
+        fill between [of=A and B,reverse=true];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1618. Line Chart
+
+**ID**: `8bf6ec756460`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[set layers]
+    \addplot [blue,-stealth,name path=A] &#123;x&#125;;
+
+    \draw [-stealth,name path=B]
+        (0,-5) -- (0,5);
+
+    \pgfonlayer&#123;pre main&#125;
+        \fill [
+            gray!50,
+            intersection segments=&#123;
+                of=A and B,
+                sequence=&#123;A* -- B*[reverse]&#125;,
+            &#125;,
+        ];
+    \endpgfonlayer
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1619. Line Chart
+
+**ID**: `c81234091de5`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot [blue,-stealth,name path=A] &#123;x&#125;;
+
+    \draw [-stealth,name path=B]
+        (0,-5) -- (0,5);
+
+    \addplot [gray!50] fill between [
+        of=A and B,
+        reverse=false,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1620. Line Chart
+
+**ID**: `9e5c32bde91e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[set layers]
+    \addplot [blue,-stealth,name path=A] &#123;x&#125;;
+
+    \draw [-stealth,name path=B]
+        (0,-5) -- (0,5);
+
+    \pgfonlayer&#123;pre main&#125;
+        \fill [
+            gray!50,
+            intersection segments=&#123;
+                of=A and B,
+                sequence=&#123;A* -- B*&#125;,
+            &#125;,
+        ];
+    \endpgfonlayer
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1621. Other
 
-**ID**: `677886551603`  
+**ID**: `e6e2c2346c7b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\makeatletter
-\pgfplotsset&#123;
-    string &lt;/.style=&#123;%
-        iflessthan/.code args=&#123;##1##2##3##4&#125;&#123;%
-            \t@pgfplots@toka=\expandafter&#123;##1&#125;%
-            \t@pgfplots@tokb=\expandafter&#123;##2&#125;%
-            \edef\pgfplots@loc@TMPa&#123;&#123;\the\t@pgfplots@toka&#125;&#123;\the\t@pgfplots@tokb&#125;&#125;%
-            \expandafter\pgfplotsutilstrcmp\pgfplots@loc@TMPa
-            \if1\pgfplotsretval ##3\else ##4\fi
-        &#125;%
-    &#125;,%
+\pgfplotsextra&#123;
+    \pgfonlayer&#123;pre main&#125;
+    \pgfplotspathaxisoutline
+    \pgfusepath&#123;clip&#125;
+    \endpgfonlayer
 &#125;
 </code></pre>
 
 ---
 
-## 1622. Other
+## 1622. Line Chart
 
-**ID**: `0f1fb00f6c8a`  
+**ID**: `615f505de5b5`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    sort cmp=&#123;
-        iflessthan/.code args=&#123;#1#2#3#4&#125;&#123;%
-            % here comes your code
-        &#125;%
-    &#125;,
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+
+    \addplot [blue,ultra thick,name path=A,
+        jump mark left] &#123;x&#125;;
+
+    \path [name path=B]
+        (-5,0) -- (5,0);
+
+    \addplot [top color=red, bottom color=white]
+        fill between [of=A and B];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1623. Other
+## 1623. Line Chart
 
-**ID**: `01fbb1462d58`  
+**ID**: `185d1128e5f0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\foreach \x in &#123;1,2,...,4&#125; &#123;Iterating \x. &#125;%
+\begin&#123;tikzpicture&#125;
+
+        \def\verticalbar&#123;2&#125;
+    \begin&#123;axis&#125;[domain=-5:8,samples=25,smooth,width=12cm,height=7cm]
+        % Draw curves
+        \addplot [name path=g0,thin] &#123;exp(-x^2/4)&#125;;
+            \addlegendentry&#123;$\mathcal&#123;N&#125;(0)$&#125;
+        \addplot [name path=g2.5,thin] &#123;exp(-(x-2.5)^2/4)&#125;;
+            \addlegendentry&#123;$\mathcal&#123;N&#125;(\frac52)$&#125;
+
+        % Draw vertical bar:
+        \draw [name path=red,red,thick]
+            (\verticalbar,-1) -- (\verticalbar,2);
+
+        \path [name path=axis] (-10,0) -- (16,0);
+
+        \addplot [black!10] fill between [
+            of=g0 and g2.5,
+            soft clip=&#123;domain=-6:\verticalbar&#125;,
+            split,
+            every segment no 0/.style=&#123;left color=blue,right color=white&#125;,
+            every segment no 1/.style=&#123;pattern=grid,pattern color=gray&#125;,
+        ];
+            \addlegendentry&#123;fill&#125;
+
+        % compute + label the lower segment (but do not draw it):
+        \path [name path=lower,
+            %draw=red,ultra thick,
+            intersection segments=&#123;of=g0 and g2.5,sequence=R1 -- L2&#125;
+        ];
+
+        \addplot [pattern=north west lines, pattern color=orange]
+            fill between [
+                of=axis and lower,
+                soft clip=&#123;domain=-6:\verticalbar&#125;,
+        ];
+            \addlegendentry&#123;lower&#125;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1624. Line Chart
 
-**ID**: `f4ba9e3362c2`  
+**ID**: `6e1cab8e742b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\foreach \i in &#123;1,2,...,10&#125; &#123;\addplot table &#123;datafile\i&#125;; &#125;%
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[domain=0:10]
+    \addplot [name path=first,blue]
+        &#123;sin(deg(x)) + 2/5*x&#125;;
+
+    \addplot [name path=second,red,samples=16,smooth]
+        &#123;cos(deg(1.2*x)) + 2/5*x&#125;;
+
+    \draw [
+        black,-stealth,
+        decorate,decoration=&#123;
+            saw,
+            post=lineto,
+            post length=10pt,
+        &#125;,
+        intersection segments=&#123;
+            of=first and second,
+            sequence=&#123;
+                L1 -- R2 -- R3 -- R4 -- L4[reverse]
+            &#125;,
+        &#125;,
+    ];
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1625. Other
 
-**ID**: `7d8ee86708b2`  
+**ID**: `f31c0b7c03fa`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\allcollected&#123;&#125;
-\pgfplotsforeachungrouped \x in &#123;1,2,...,4&#125; &#123;Iterating \x. \edef\allcollected&#123;\allcollected, \x&#125;&#125;%
-All collected = \allcollected.
+\pgfdeclarelayer&#123;pre main&#125;
+\begin&#123;tikzpicture&#125;
+        \pgfsetlayers&#123;pre main,main&#125;
+    \draw [-stealth,thick,name path=A,red]
+        (0,0) -- (1,1);
+    \draw [-stealth,thick,name path=B,blue]
+        (0,-1) -- (1,0);
+
+    \pgfonlayer&#123;pre main&#125;
+        \fill [
+            orange,
+            intersection segments=&#123;
+                of=A and B,
+                sequence=&#123;L* -- R*[reverse]&#125;,
+            &#125;,
+        ];
+    \endpgfonlayer
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1626. Other
 
-**ID**: `b9c065150d1e`  
+**ID**: `0dfa399d4703`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsforeachungrouped \i in &#123;1,2,...,10&#125; &#123;%
-    \pgfplotstablevertcat&#123;\output&#125;&#123;datafile\i&#125; % appends `datafile\i' -&gt; `\output'
-&#125;%
-% since it was ungrouped, \output is still defined (would not work
-% with \foreach)
+\pgfdeclarelayer&#123;pre main&#125;
+\begin&#123;tikzpicture&#125;
+        \pgfsetlayers&#123;pre main,main&#125;
+    \draw [-stealth,thick,name path=A,red]
+        (0,0) -- (1,1);
+    \draw [-stealth,thick,name path=B,blue]
+        (0,1) -- (1,0);
+
+    \pgfonlayer&#123;pre main&#125;
+    \draw [
+        green,
+        line width=2pt,
+        intersection segments=&#123;
+            of=A and B,
+            sequence=&#123;L-1&#125;,
+        &#125;,
+    ];
+    \endpgfonlayer
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1627. Other
+## 1627. Line Chart
 
-**ID**: `6901b800d402`  
+**ID**: `ca538ba86614`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;
-  otherstyle a/.code=&#123;[a]&#125;,
-  otherstyle b/.code=&#123;[b]&#125;,
-  otherstyle c/.code=&#123;[c]&#125;,
-  otherstyle d/.code=&#123;[d]&#125;&#125;
-\pgfplotsinvokeforeach&#123;a,b,c,d&#125;
-    &#123;\pgfkeys&#123;key #1/.style=&#123;otherstyle #1&#125;&#125;&#125;
-Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[xmin=0,xmax=5,ymin=0,ymax=5]
+    \addplot [name path=f,domain=0:5,samples=100]
+        &#123;(x - 2)^2/(7*x) + 1&#125;;
+
+    \addplot [name path=border,
+            color=blue, ultra thick, dashed]
+        coordinates &#123;(2,0) (2,5) &#125; ;
+
+    \fill [
+        intersection segments=&#123;
+            of=f and border,
+            sequence=&#123;L1 -- R2&#125;&#125;,
+        pattern=north east lines,
+    ]
+    -- cycle;
+
+    \fill [
+        intersection segments=&#123;
+            of=f and border,
+            sequence=&#123;R2[reverse] -- L2&#125;&#125;,
+        pattern=north west lines,
+    ]
+    -- (rel axis cs:1,1) -- cycle;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1628. Other
 
-**ID**: `0fbe6336e336`  
+**ID**: `a9d9db78caba`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;
-  otherstyle a/.code=&#123;[a]&#125;,
-  otherstyle b/.code=&#123;[b]&#125;,
-  otherstyle c/.code=&#123;[c]&#125;,
-  otherstyle d/.code=&#123;[d]&#125;&#125;
-\pgfplotsforeachungrouped \x in &#123;a,b,c,d&#125;
-    &#123;\pgfkeys&#123;key \x/.style=&#123;otherstyle \x&#125;&#125;&#125;
-Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+\begin&#123;tikzpicture&#125;
+    \draw [name path=first] (0,0) -- (1,1) -- (2,0);
+
+    \draw [name path=second] (0,0.5) -- (2,0.5);
+
+    \tikzfillbetween [of=first and second,
+        split,
+        every even segment/.style=&#123;orange&#125;
+    ] &#123;red&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1629. Other
 
-**ID**: `33a8df01a7b5`  
+**ID**: `5711ea942db6`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;autumn&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+    \draw [red] (0,0) -- (1,1) -- (2,0);
+    \draw [blue] (0,0.5) -- (2,0.5);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1630. Other
 
-**ID**: `fb461fb77047`  
+**ID**: `f646e7ac45fe`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;bled&#125;&#123;rgb255=(0,0,0) rgb255=(43,43,0) rgb255=(0,85,0)
-        rgb255=(0,128,128) rgb255=(0,0,170) rgb255=(213,0,213) rgb255=(255,0,0)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+    % this is our goal -- but computed automatically.
+    \draw [black] (0,0) -- (0.5,0.5) --
+      (1.5,0.5) -- (2,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1631. Other
 
-**ID**: `36b81fe0c326`  
+**ID**: `e0844825e31f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;bright&#125;&#123;rgb255=(0,0,0) rgb255=(78,3,100) rgb255=(2,74,255)
-        rgb255=(255,21,181) rgb255=(255,113,26) rgb255=(147,213,114) rgb255=(230,255,0)
-        rgb255=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;[line join=round,x=3cm,y=3cm]
+    \draw [name path=first,red]   (0,0) -- (1,1) -- (2,0);
+    \draw [name path=second,blue] (0,0.5) -- (2,0.5);
+
+    % from 'name path' to softpaths...
+    \tikzgetnamedpath&#123;first&#125;
+    \let\A=\pgfretval
+    \tikzgetnamedpath&#123;second&#125;
+    \let\B=\pgfretval
+
+    % compute intersections using the PGF intersection lib...
+    \pgfintersectionofpaths&#123;\pgfsetpath\A&#125;&#123;\pgfsetpath\B&#125;%
+
+    % ... and compute the intersection *segments* for both input
+    % paths...
+    \pgfcomputeintersectionsegments1
+    \pgfcomputeintersectionsegments2
+
+    % ... recombine the intersection segment paths!
+    \pgfgetintersectionsegmentpath&#123;1&#125;&#123;0&#125;% path 1, segment 0
+    \pgfsetpathandBB\pgfretval% this starts a new path
+    \pgfgetintersectionsegmentpath&#123;2&#125;&#123;1&#125;% path 2, segment 1
+    % connect, not move. Try to eliminate this line to see the effect
+    \pgfpathreplacefirstmoveto\pgfretval%
+    \pgfaddpathandBB\pgfretval% append
+    \pgfgetintersectionsegmentpath&#123;1&#125;&#123;2&#125;%
+    \pgfpathreplacefirstmoveto\pgfretval
+    \pgfaddpathandBB\pgfretval
+    \pgfsetlinewidth&#123;3&#125;
+    \pgfsetcolor&#123;black&#125;
+    \pgfusepath&#123;stroke&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1632. Other
 
-**ID**: `6c4d7d5b8d6d`  
+**ID**: `3c5883de7b3e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;bone&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(84,84,116)
-        rgb255(6cm)=(167,199,199) rgb255(8cm)=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;[line join=round,x=3cm,y=3cm]
+    \draw [name path=first,red]   (0,0) -- (1,1) -- (2,0);
+    \draw [name path=second,blue] (0,0.5) -- (2,0.5);
+
+    \draw [
+        orange,
+        decorate,decoration=&#123;
+            footprints,
+            foot of=bird,
+            stride length=15pt,
+            foot sep=2pt,
+            foot length=6pt&#125;,
+    ]
+    \pgfextra
+        % from 'name path' to softpaths...
+        \tikzgetnamedpath&#123;first&#125;
+        \let\A=\pgfretval
+        \tikzgetnamedpath&#123;second&#125;
+        \let\B=\pgfretval
+        %
+        % compute intersections using the PGF intersection lib...
+        \pgfintersectionofpaths&#123;\pgfsetpath\A&#125;&#123;\pgfsetpath\B&#125;%
+        %
+        % ... and compute the intersection *segments* for both input
+        % paths...
+        \pgfcomputeintersectionsegments1
+        \pgfcomputeintersectionsegments2
+        %
+        % ... recombine the intersection segment paths!
+        \pgfgetintersectionsegmentpath&#123;1&#125;&#123;0&#125;% path 1, segment 0
+        \pgfsetpathandBB\pgfretval% this starts a new path
+        \pgfgetintersectionsegmentpath&#123;2&#125;&#123;1&#125;% path 2, segment 1
+        \pgfpathreplacefirstmoveto\pgfretval% connect, not move
+        \pgfaddpathandBB\pgfretval% append
+        \pgfgetintersectionsegmentpath&#123;1&#125;&#123;2&#125;%
+        \pgfpathreplacefirstmoveto\pgfretval
+        \pgfaddpathandBB\pgfretval
+    \endpgfextra
+    ;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1633. Other
 
-**ID**: `8ec6753cee11`  
+**ID**: `ead471c47ecf`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;cold&#125;&#123;rgb255=(0,0,0) rgb255=(0,0,255) rgb255=(0,255,255)
-        rgb255=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+    \coordinate (Point) at (1,2);
+
+    \draw [gray] (-1,-1) grid (3,3);
+    \draw [blue,fill] (Point) circle (2pt)
+        node [right] &#123;(1,2)&#125;
+    ;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1634. Other
 
-**ID**: `91b77d670630`  
+**ID**: `f820fd37b53c`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;copper&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(4cm)=(255,159,101)
-        rgb255(5cm)=(255,199,127)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+    \coordinate (Point) at (1,2);
+\begin&#123;axis&#125;[
+    % tell pgfplots to "grab" the axis at its
+    % internal (0,0) coord:
+    anchor=origin,
+    % tell pgfplots to place its anchor at (0,0):
+    % (This is actually the default and can
+    % be omitted)
+    at=&#123;(0pt,0pt)&#125;,
+    % tell pgfplots to use the "natural" dimensions:
+    disabledatascaling,
+    % tell pgfplots to use the same unit vectors
+    % as tikz:
+    x=1cm,y=1cm,
+    %
+    % this is just as usual in pgfplots. I guess
+    % it is only useful if (0,0) is part of the
+    % range... try it out.
+    xmin=-1,xmax=3, ymin=-1,ymax=3,grid=both,
+]
+    % this uses the point defined OUTSIDE of the axis
+    \draw [blue,fill] (Point) circle (2pt)
+        node [right] &#123;(1,2)&#125;;
+
+    % this uses a TIKZ coordinate (2,0) in the axis:
+    \draw [blue,fill] (2,0) circle (2pt)
+        node [right] &#123;(2,0)&#125;;
+
+    % this here will always work inside of an axis:
+    \draw [blue,fill] (-1,0) circle (2pt)
+        node [right] &#123;(-1,0)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1635. Other
+## 1635. Line Chart
 
-**ID**: `3066a9fc0e95`  
+**ID**: `9b62ea854952`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;copper2&#125;&#123;rgb255=(0,0,0) rgb255=(68,62,63) rgb255=(170,112,95)
-        rgb255=(207,194,138) rgb255=(255,255,255)&#125;
-&#125;
+% requires \usepgfplotslibrary&#123;patchplots&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        % tell pgfplots to "grab" the axis at its internal (0,0) coord:
+        anchor=origin,
+        % tell pgfplots to place its anchor at (0,0):
+        % (This is actually the default and can be omitted)
+        at=&#123;(0pt,0pt)&#125;,
+        % tell pgfplots to use the "natural" dimensions:
+        disabledatascaling,
+        % tell pgfplots to use the same unit vectors as tikz:
+        x=1cm,y=1cm,
+        %
+        hide axis,
+    ]
+        \addplot [patch,patch type=coons,
+            shader=interp,point meta=explicit]
+        coordinates &#123;
+            (0,0)      [0] % first corner
+            (1,-1)     [0] % bezier control point between (0) and (3)
+            (4,0.7)    [0] % bezier control point between (0) and (3)
+            %
+            (3,2)      [1] % second corner
+            (4,3.5)    [1] % bezier control point between (3) and (6)
+            (7,2)      [1] % bezier control point between (3) and (6)
+            %
+            (7,1)      [2] % third corner
+            (6,0.6)    [2] % bezier control point between (6) and (9)
+            (4.5,-0.5) [2] % bezier control point between (6) and (9)
+            %
+            (5,-2)     [3] % fourth corner
+            (4,-2.5)   [3] % bezier control point between (9) and (0)
+            (-1,-2)    [3] % bezier control point between (9) and (0)
+        &#125;;
+    \end&#123;axis&#125;
+
+    % this requires pgf 2.10
+    \begin&#123;scope&#125;[every node/.style=&#123;circle,inner sep=2pt,fill=black&#125;]
+        \node [pin=140:first] at (0,0) &#123;&#125;;
+        \node [pin=second]    at (3,2) &#123;&#125;;
+        \node [pin=45:third]  at (7,1) &#123;&#125;;
+        \node [pin=0:fourth]  at (5,-2) &#123;&#125;;
+    \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1636. Other
 
-**ID**: `f795b00fb32d`  
+**ID**: `3a87bae8ce46`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    /pgfplots/colormap=&#123;earth&#125;&#123;rgb255=(0,0,0) rgb255=(0,28,15) rgb255=(42,39,6)
-        rgb255=(28,73,33) rgb255=(67,85,24) rgb255=(68,112,46) rgb255=(81,129,83)
-        rgb255=(124,137,87) rgb255=(153,147,122) rgb255=(145,173,164) rgb255=(144,202,180)
-        rgb255=(171,220,177) rgb255=(218,229,168) rgb255=(255,235,199) rgb255=(255,255,255)&#125;
+    % initialize Set1-5:
+    cycle list/Set1-5,
+    % combine it with 'mark list*':
+    cycle multiindex* list=&#123;
+        mark list*\nextlist
+        Set1-5\nextlist
+    &#125;,
 &#125;
 </code></pre>
 
@@ -634,215 +1059,360 @@ Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;k
 
 ## 1637. Other
 
-**ID**: `3a7830afebaf`  
+**ID**: `125b5037d6a7`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;gray&#125;&#123;rgb255=(0,0,0) rgb255=(255,255,255)&#125;
+sudo tlmgr install pgfplots
+</code></pre>
+
+---
+
+## 1638. Line Chart
+
+**ID**: `62e94d37fbfd`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    title=A title,
+    ylabel style=&#123;overlay&#125;,
+    yticklabel style=&#123;overlay&#125;,
+    xlabel=&#123;$x$&#125;,
+    ylabel=&#123;$y$&#125;,
+    legend style=&#123;at=&#123;(0.5,0.97)&#125;,
+        anchor=north,legend columns=-1&#125;,
+    domain=-2:2,
+]
+    \addplot &#123;x^2&#125;;
+    \addplot &#123;x^3&#125;;
+    \addplot &#123;x^4&#125;;
+    \legend&#123;$x^2$,$x^3$,$x^4$&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1639. Line Chart
+
+**ID**: `8725dee0b314`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    domain=0:6.2832,samples=200,
+    legend style=&#123;
+        overlay,
+        at=&#123;(-0.5,0.5)&#125;,
+        anchor=center&#125;,
+    every axis plot post/.append style=&#123;mark=none&#125;,
+    enlargelimits=false,
+]
+    \addplot &#123;sin(deg(x)+3) + rand*0.05&#125;;
+    \addplot &#123;cos(deg(x)+2) + rand*0.05&#125;;
+    \legend&#123;Signal 1,Signal 2&#125;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1640. Line Chart
+
+**ID**: `2bf4ba580ab7`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\setlength&#123;\fboxsep&#125;&#123;0pt&#125;%
+\fbox&#123;%
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        title=A title,
+        xlabel=&#123;$x$&#125;,
+        ylabel=&#123;$y$&#125;,
+        legend style=&#123;at=&#123;(0.5,0.97)&#125;,
+            anchor=north,legend columns=-1&#125;,
+        domain=-2:2,
+    ]
+        \addplot &#123;x^2&#125;;
+        \addplot &#123;x^3&#125;;
+        \addplot &#123;x^4&#125;;
+        \legend&#123;$x^2$,$x^3$,$x^4$&#125;
+    \end&#123;axis&#125;
+
+    \pgfresetboundingbox
+    \path
+              (current axis.south west)
+    rectangle (current axis.north east);
+\end&#123;tikzpicture&#125;%
 &#125;
 </code></pre>
 
 ---
 
-## 1638. Other
+## 1641. Line Chart
 
-**ID**: `1e61cf3d1d5f`  
+**ID**: `25a635dc39f0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;hot2&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
-        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)&#125;
+\setlength&#123;\fboxsep&#125;&#123;0pt&#125;%
+\fbox&#123;%
+\begin&#123;tikzpicture&#125;
+  \begin&#123;pgfinterruptboundingbox&#125;
+    \begin&#123;axis&#125;[
+        title=A title,
+        xlabel=&#123;$x$&#125;,
+        ylabel=&#123;$y$&#125;,
+        legend style=&#123;at=&#123;(0.5,0.97)&#125;,
+            anchor=north,legend columns=-1&#125;,
+        domain=-2:2,
+    ]
+        \addplot &#123;x^2&#125;;
+        \addplot &#123;x^3&#125;;
+        \addplot &#123;x^4&#125;;
+        \legend&#123;$x^2$,$x^3$,$x^4$&#125;
+    \end&#123;axis&#125;
+  \end&#123;pgfinterruptboundingbox&#125;
+
+    \useasboundingbox
+                  (current axis.below south west)
+        rectangle (current axis.above north east);
+\end&#123;tikzpicture&#125;%
 &#125;
 </code></pre>
 
 ---
 
-## 1639. Other
+## 1642. Line Chart
 
-**ID**: `71ecf76b4851`  
+**ID**: `787857973053`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;hsv&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0) rgb255=(0,255,0)
-        rgb255=(0,255,255) rgb255=(0,0,255) rgb255=(255,0,255) rgb255=(255,0,0)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    clip mode=individual,
+]
+    \addplot+ [samples=3] &#123;x^2&#125;;
+
+    \begin&#123;scope&#125;
+        \clip \pgfextra&#123;\pgfplotspathaxisoutline&#125;;
+        \draw (-20,15) -- (20,15);
+        \draw (-20,20) -- (20,20);
+    \end&#123;scope&#125;
+
+    \addplot+ [samples=2] &#123;x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1640. Other
+## 1643. Line Chart
 
-**ID**: `169c4892801a`  
+**ID**: `cbb0f1a51327`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;hsv2&#125;&#123;rgb255=(0,0,0) rgb255=(128,0,128) rgb255=(0,0,230)
-        rgb255=(0,255,255) rgb255=(0,255,0) rgb255=(255,255,0) rgb255=(255,0,0)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=plus,y explicit,
+    ] coordinates &#123;
+        (0,0)     +- (0.5,0.1)
+        (0.1,0.1) +- (0.05,0.2)
+        (0.2,0.2) +- (0,0.05)
+        (0.5,0.5) +- (0.1,0.2)
+        (1,1)     +- (0.3,0.1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1641. Other
+## 1644. Line Chart
 
-**ID**: `ee445e71a9a4`  
+**ID**: `d440a4840fa0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;jet&#125;&#123;rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
-        rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0)
-        rgb255(8cm)=(128,0,0)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=both,y explicit,
+            x dir=both,x explicit,
+    ] coordinates &#123;
+        (0,0)     +- (0.5,0.1)
+        (0.1,0.1) +- (0.05,0.2)
+        (0.2,0.2) +- (0,0.05)
+        (0.5,0.5) +- (0.1,0.2)
+        (1,1)     +- (0.3,0.1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1642. Other
+## 1645. Line Chart
 
-**ID**: `c744da80dc93`  
+**ID**: `3e0d29025c95`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;pastel&#125;&#123;rgb255=(0,0,0) rgb255=(120,0,5) rgb255=(0,91,172)
-        rgb255=(215,35,217) rgb255=(120,172,78) rgb255=(255,176,24) rgb255=(230,255,0)
-        rgb255=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            y dir=both,y fixed=0.1,
+    ] coordinates &#123;
+        (0,0)
+        (0.1,0.1)
+        (0.2,0.2)
+        (0.5,0.5)
+        (1,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1643. Other
+## 1646. Line Chart
 
-**ID**: `2eaef43d128b`  
+**ID**: `61c3c0815e11`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;pink&#125;&#123;rgb255=(0,0,0) rgb255=(12,16,46) rgb255=(62,22,43)
-        rgb255=(53,53,65) rgb255=(79,72,58) rgb255=(122,80,67) rgb255=(147,91,102)
-        rgb255=(147,115,140) rgb255=(144,145,154) rgb255=(173,163,146) rgb255=(216,171,149)
-        rgb255=(250,179,179) rgb255=(255,198,227) rgb255=(246,229,255) rgb255=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[enlargelimits=false]
+    \addplot [red,mark=*] plot [
+        error bars/.cd,
+            y dir=minus,y fixed relative=1,
+            x dir=minus,x fixed relative=1,
+            error mark=none,
+            error bar style=&#123;dotted&#125;,
+    ] coordinates &#123;
+        (0,0) (0.1,0.1) (0.2,0.2)
+        (0.5,0.5) (1,1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1644. Other
+## 1647. Line Chart
 
-**ID**: `b4c5de40997d`  
+**ID**: `3c9c4467cf81`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;sepia&#125;&#123;rgb255(0cm)=(0,0,0) rgb255(1cm)=(26,13,0)
-        rgb255(18cm)=(255,230,204) rgb255(20cm)=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both,x fixed relative=0.5,
+            y dir=both,y explicit relative,
+    ] table [x=x,y=y,y error=error] &#123;
+        x       y       error
+        32      32      0
+        64      64      0
+        128     128     0.3
+        1024    1024    0.2
+        32068   32068   0.6
+        64000   64000   0.6
+        128000  128000  0.6
+    &#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1645. Other
+## 1648. Line Chart
 
-**ID**: `53263b943506`  
+**ID**: `32473e2f4c2b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;spring&#125;&#123;rgb255=(255,0,255) rgb255=(255,255,0)&#125;
-&#125;
-</code></pre>
-
----
-
-## 1646. Other
-
-**ID**: `48b8e53fcee1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;summer&#125;&#123;rgb255=(0,128,102) rgb255=(255,255,102)&#125;
-&#125;
-</code></pre>
-
----
-
-## 1647. Other
-
-**ID**: `9bf013ce4ab1`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;temp&#125;&#123;rgb255=(36,0,217) rgb255=(25,29,247) rgb255=(41,87,255)
-        rgb255=(61,135,255) rgb255=(87,176,255) rgb255=(117,211,255) rgb255=(153,235,255)
-        rgb255=(189,249,255) rgb255=(235,255,255) rgb255=(255,255,235) rgb255=(255,242,189)
-        rgb255=(255,214,153) rgb255=(255,172,117) rgb255=(255,120,87) rgb255=(255,61,61)
-        rgb255=(247,40,54) rgb255=(217,22,48) rgb255=(166,0,33)&#125;
-&#125;
-</code></pre>
-
----
-
-## 1648. Other
-
-**ID**: `62fb0a146c58`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    /pgfplots/colormap=&#123;thermal&#125;&#123;rgb255=(0,0,0) rgb255=(77,0,179) rgb255=(255,51,0)
-        rgb255=(255,255,0) rgb255=(255,255,255)&#125;
-&#125;
+\begin&#123;tikzpicture&#125;
+    \pgfmathsetseed&#123;42&#125;
+\begin&#123;axis&#125;[
+    ymajorgrids,
+]
+    \addplot+ [
+        domain=0:180,
+        samples=11,
+        error bars/.cd,
+            y dir=both, y fixed=0.1,
+            error mark=diamond*,
+    ] &#123;sin(x) + rand*0.1&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 1649. Other
 
-**ID**: `fd80a5741ffc`  
+**ID**: `c7f7342c9c7f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \pgfplotsset&#123;
-    /pgfplots/colormap=&#123;winter&#125;&#123;rgb255=(0,0,255) rgb255=(0,255,128)&#125;
+    /pgfplots/error bars/draw error bar/.code 2 args=&#123;
+        \pgfkeysgetvalue&#123;/pgfplots/error bars/error mark&#125;
+            &#123;\pgfplotserrorbarsmark&#125;
+        \pgfkeysgetvalue&#123;/pgfplots/error bars/error mark options&#125;
+            &#123;\pgfplotserrorbarsmarkopts&#125;
+        \draw #1 -- #2 node [pos=1,sloped,allow upside down] &#123;
+            \expandafter\tikz\expandafter[\pgfplotserrorbarsmarkopts]&#123;
+                \expandafter\pgfuseplotmark\expandafter&#123;\pgfplotserrorbarsmark&#125;
+                \pgfusepath&#123;stroke&#125;&#125;
+        &#125;;
+    &#125;,
 &#125;
 </code></pre>
 
 ---
 
-## 1650. Other
+## 1650. Line Chart
 
-**ID**: `efafd4103be4`  
+**ID**: `942666ee87d3`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    colormap name=viridis,
+\addplot coordinates &#123;
+    (1,2) +- (0.4,0.2)
+    (2,4) +- (1,0)
+    (3,5)
+    (4,6) +- (0.3,0.001)
 &#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-031) | Page 33 of 107 | [Next →](executable_example-page-033)
+[← Previous](executable_example-page-031) | Page 33 of 120 | [Next →](executable_example-page-033)

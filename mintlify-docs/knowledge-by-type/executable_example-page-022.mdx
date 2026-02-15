@@ -1,1224 +1,861 @@
 ---
 title: "Executable Examples - Page 23"
-description: "Items 1101-1150 of 5325 executable examples"
+description: "Items 1101-1150 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 23
 
-Showing items **1101-1150** of **5325**
+Showing items **1101-1150** of **5999**
 
-[← Previous](executable_example-page-021) | Page 23 of 107 | [Next →](executable_example-page-023)
+[← Previous](executable_example-page-021) | Page 23 of 120 | [Next →](executable_example-page-023)
 
 ---
 
-## 1101. Geometry
+## 1101. Other
 
-**ID**: `af137db4d1a4`  
-**Package**: tkz-euclide  
+**ID**: `ea822b0b4c5c`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoint(1,5)&#123;A&#125; \tkzDefPoint(5,2)&#123;B&#125;  
- \tkzFindSlopeAngle(A,B)\tkzGetAngle&#123;tkzang&#125;
- \tkzDefPointBy[rotation= center A angle \tkzang ](B)
- \tkzGetPoint&#123;C&#125;
- \tkzDefPointBy[rotation= center A angle -\tkzang ](B) 
- \tkzGetPoint&#123;D&#125;
- \tkzDrawSegment(A,B)
- \tkzDrawSegments[new](A,C A,D)
- \tkzDrawPoints(A,B,C,D)
- \tkzCompass[length=1](A,C)
- \tkzCompass[delta=10,brown](B,C)  
- \tkzLabelPoints(B,C,D)  
- \tkzLabelPoints[above left](A)
-\end&#123;tikzpicture&#125;
+\dimen0=10pt
+\divide\dimen0 by 20
+The value is now \the\dimen0.
 </code></pre>
 
 ---
 
-## 1102. Geometry
+## 1102. Other
 
-**ID**: `100a4ca3ed81`  
-**Package**: tkz-euclide  
+**ID**: `af414a147938`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzInit
- \tkzDefPoint(0,0)&#123;A&#125;        \tkzDefPoint(3,2)&#123;B&#125;
- \tkzDefLine[mediator](A,B)  \tkzGetPoints&#123;I&#125;&#123;J&#125;
- \tkzCalcLength(A,B)         \tkzGetLength&#123;dAB&#125;
- \tkzFindSlopeAngle(A,B)     \tkzGetAngle&#123;tkzangle&#125;
- \begin&#123;scope&#125;[rotate=\tkzangle]
-   \tkzSetUpArc[color=gray,line width=0.2pt,%
-     /tkzcompass/delta=10]
-   \tkzDrawArc[R,arc](B,3/4*\dAB)(120,240)
-   \tkzDrawArc[R,arc](A,3/4*\dAB)(-45,60)
-   \tkzDrawLine(I,J)         \tkzDrawSegment(A,B)
-  \end&#123;scope&#125;
-  \tkzDrawPoints(A,B,I,J)    \tkzLabelPoints(A,B)
-   \tkzLabelPoints[right](I,J)
-\end&#123;tikzpicture&#125;
+\dimen1=50pt
+\dimen0=0.6\dimen1
+The value is now \the\dimen0.
 </code></pre>
 
 ---
 
-## 1103. Geometry
+## 1103. Other
 
-**ID**: `525ea6d9c35b`  
-**Package**: tkz-euclide  
+**ID**: `72a9cda54b12`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.5]
-  \tkzDefPoint(1,2)&#123;A&#125;    \tkzDefPoint(3,4)&#123;B&#125;
-  \tkzDefPoint(3,2)&#123;C&#125;    \tkzDefPoint(3,1)&#123;D&#125;
-  \tkzDrawSegments(A,B A,C A,D)
-  \tkzDrawPoints[color=red](A,B,C,D)  
-  \tkzLabelPoints(A,B,C,D)
-  \tkzFindSlopeAngle(A,B)\tkzGetAngle&#123;SAB&#125; 
-  \tkzFindSlopeAngle(A,C)\tkzGetAngle&#123;SAC&#125;
-  \tkzFindSlopeAngle(A,D)\tkzGetAngle&#123;SAD&#125;
-  \pgfkeys&#123;/pgf/number format/.cd,fixed,precision=2&#125;
-  \tkzText(1,5)&#123;The slope of (AB) is : 
-     $\pgfmathprintnumber&#123;\SAB&#125;^\circ$&#125;     
-  \tkzText(1,4.5)&#123;The slope of (AC) is : 
-     $\pgfmathprintnumber&#123;\SAC&#125;^\circ$&#125;    
-  \tkzText(1,4)&#123;The slope of (AD) is : 
-     $\pgfmathprintnumber&#123;\SAD&#125;^\circ$&#125;
-\end&#123;tikzpicture&#125;
+\def\macro&#123;This here is actually the replacement text.&#125;
+Executing it: `\macro'.
 </code></pre>
 
 ---
 
-## 1104. Geometry
+## 1104. Other
 
-**ID**: `05f6082eccf2`  
-**Package**: tkz-euclide  
+**ID**: `ba3d059e696f`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.25]
-  \tkzDefPoints&#123;0/0/A,12/0/B,6/12*sind(60)/C&#125;
-  \foreach \density in &#123;20,30,...,240&#125;&#123;%
-    \tkzDrawPolygon[fill=teal!\density](A,B,C)
-    \pgfnodealias&#123;X&#125;&#123;A&#125;
-    \tkzDefPointWith[linear,K=.15](A,B) \tkzGetPoint&#123;A&#125;
-    \tkzDefPointWith[linear,K=.15](B,C) \tkzGetPoint&#123;B&#125;
-    \tkzDefPointWith[linear,K=.15](C,X) \tkzGetPoint&#123;C&#125;&#125;
-  \end&#123;tikzpicture&#125;
+\def\macro#1&#123;replacement with first argument=#1&#125;
+Invoking it: \macro&#123;hello!&#125;.
 </code></pre>
 
 ---
 
-## 1105. Geometry
+## 1105. Other
 
-**ID**: `4c1048f09754`  
-**Package**: tkz-euclide  
+**ID**: `bc4a07b9367d`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\colorlet&#123;input&#125;&#123;red!80!black&#125; 
-  \colorlet&#123;output&#125;&#123;red!70!black&#125;
-  \colorlet&#123;triangle&#125;&#123;green!50!black!40&#125;
-  \begin&#123;tikzpicture&#125;[scale=1.25,thick,help lines/.style=&#123;thin,draw=black!50&#125;]
-  \tkzDefPoint(0,0)&#123;A&#125;     
-  \tkzDefPoint(1.25+rand(),0.25+rand())&#123;B&#125;      
-  \tkzInterCC(A,B)(B,A) \tkzGetPoints&#123;C&#125;&#123;X&#125;
-
-  \tkzFillPolygon[triangle,opacity=.5](A,B,C)
-  \tkzDrawSegment[input](A,B) 
-  \tkzDrawSegments[red](A,C B,C)  
-  \tkzDrawCircles[help lines](A,B B,A)
-  \tkzDrawPoints[fill=gray,opacity=.5](A,B,C)
-  
-  \tkzLabelPoints(A,B)
-  \tkzLabelCircle[below=12pt](A,B)(180)&#123;$\mathcal&#123;D&#125;$&#125;
-  \tkzLabelCircle[above=12pt](B,A)(180)&#123;$\mathcal&#123;E&#125;$&#125;
-  \tkzLabelPoint[above,red](C)&#123;$C$&#125;
-      
-  \end&#123;tikzpicture&#125;
+\def\macro#1-#2.&#123;replacement with arguments: `#1' and `#2'.&#125;
+Invoking it: \macro a-sign.
 </code></pre>
 
 ---
 
-## 1106. Geometry
+## 1106. Other
 
-**ID**: `136005a17c8b`  
-**Package**: tkz-euclide  
+**ID**: `cd39865dfced`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.5]
-\tkzDefPoint(0,0)&#123;A&#125;
-\tkzDefPoint(0.75,0.25)&#123;B&#125;  
-\tkzDefPoint(1,1.5)&#123;C&#125; 
-\tkzDefTriangle[equilateral](A,B)\tkzGetPoint&#123;D&#125;
-\tkzInterLC[near](D,B)(B,C)      \tkzGetSecondPoint&#123;G&#125;
-\tkzInterLC[near](A,D)(D,G)      \tkzGetFirstPoint&#123;L&#125;
-\tkzDrawCircles(B,C D,G)
-\tkzDrawLines[add=0 and 2](D,A D,B)
-\tkzDrawSegment(A,B) 
-\tkzDrawSegments[red](A,L B,C) 
-\tkzDrawPoints[red](D,L,G)
-\tkzDrawPoints[fill=gray](A,B,C)
-\tkzLabelPoints[left,red](A)
-\tkzLabelPoints[below right,red](L)
-\tkzLabelCircle[above](B,C)(20)&#123;$\mathcal&#123;(H)&#125;$&#125;
-\tkzLabelPoints[above left](D)
-\tkzLabelPoints[above](G)
-\tkzLabelPoints[above,red](C)
-\tkzLabelPoints[right,red](B)
-\tkzLabelCircle[below](D,G)(-90)&#123;$\mathcal&#123;(K)&#125;$&#125;
-\end&#123;tikzpicture&#125;
+\def\macro(#1,#2,#3)&#123;I found arguments `#1', `#2' and `#3'.&#125;
+\macro(42,43,44)
 </code></pre>
 
 ---
 
-## 1107. Geometry
+## 1107. Other
 
-**ID**: `68edb26e311d`  
-**Package**: tkz-euclide  
+**ID**: `9721670797f6`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-   % fixed points
-  \tkzDefPoint(0,0)&#123;A&#125;
-  \tkzDefPoint(5,2)&#123;B&#125;
-  % calculus
-  \tkzInterCC(A,B)(B,A)
-  \tkzGetPoints&#123;C&#125;&#123;D&#125;
-  % drawings
-  \tkzDrawCircles(A,B B,A)
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,...,D)
-  % marking
-  \tkzMarkSegments[mark=s||](A,B B,C C,A)
-  % labelling
-  \tkzLabelSegments[swap](A,B)&#123;$c$&#125;
-  \tkzLabelPoints(A,B,D)
-  \tkzLabelPoints[above](C)
-\end&#123;tikzpicture&#125;
+\def\macro&#123;Replacement \textmacro text  \count0=42 \the\count0.&#125;
+\message&#123;Debug message: '\meaning\macro'&#125;
 </code></pre>
 
 ---
 
-## 1108. Geometry
+## 1108. Other
 
-**ID**: `896bada8ccd2`  
-**Package**: tkz-euclide  
+**ID**: `990e03d2a7d6`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoint(0,0)&#123;C&#125;
-  \tkzDefPoint(4,0)&#123;D&#125;
-  \tkzDefSquare(C,D)                     
-  \tkzGetPoints&#123;e&#125;&#123;f&#125;
-  \tkzDefMidPoint(C,f)                   
-  \tkzGetPoint&#123;m&#125;
-  \tkzInterLC(C,f)(m,e)                  
-  \tkzGetSecondPoint&#123;n&#125;
-  \tkzInterCC[with nodes](C,C,n)(D,C,n) 
-  \tkzGetFirstPoint&#123;B&#125;
-  \tkzDrawSegment[brown,dashed](f,n)
-  \pgfinterruptboundingbox% from tikz
-  \tkzDrawPolygon[brown,dashed](C,D,e,f)
-  \tkzDrawArc[brown,dashed](m,e)(n)
-  \tkzCompass[brown,dashed,delta=20](C,B)
-  \tkzCompass[brown,dashed,delta=20](D,B)
-  \endpgfinterruptboundingbox 
-  \tkzDrawPolygon(B,...,D)
-  \tkzDrawPoints(B,C,D,e,f,m,n)
-  \tkzLabelPoints[above](B)
-  \tkzLabelPoints[left](f,m,n)
-  \tkzLabelPoints(C,D)
-  \tkzLabelPoints[right](e)
-\end&#123;tikzpicture&#125;
+\def\macroone&#123;This is macro one&#125;
+\def\macrotwo&#123;Macro two contains \macroone.&#125;
+Now, I execute it: \macrotwo.
+\def\macroone&#123;Redefined macroone&#125;
+Now, I execute the second macro again: \macrotwo.
 </code></pre>
 
 ---
 
-## 1109. Geometry
+## 1109. Other
 
-**ID**: `269bafebaf04`  
-**Package**: tkz-euclide  
+**ID**: `0f927268d8e1`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-        \tkzDefPoint(0,0)&#123;C&#125;
-        \tkzDefPoint(4,0)&#123;D&#125;
-        \tkzDefTriangle[golden](C,D)
-        \tkzGetPoint&#123;B&#125;
-        \tkzDefTriangle[golden](B,C)
-        \tkzGetPoint&#123;A&#125;
-        \tkzInterLC[near](A,B)(B,D) \tkzGetFirstPoint&#123;E&#125;
-        \tkzInterLL(B,D)(C,E) \tkzGetPoint&#123;F&#125;
-        \tkzDrawPoints(C,D,B)
-        \tkzDrawPolygon(B,...,D)  
-        \tkzDrawPolygon(B,C,D)
-        \tkzDrawSegments(D,A A,B C,E)
-        \tkzDrawArc[delta=10](B,C)(E)
-        \tkzDrawPoints(A,...,F) 
-        \tkzMarkRightAngle(B,F,C)  
-        \tkzMarkAngles(C,B,D E,A,D)
-        \tkzLabelAngles[pos=1.5](C,B,D E,A,D)&#123;$\alpha$&#125; 
-        \tkzLabelPoints[below](A,C,D,E)
-        \tkzLabelPoints[above right](B,F)
-      \end&#123;tikzpicture&#125;
+\def\macroone abc&#123;\macrotwo&#125;
+\def\macrotwo def&#123;\macrothree&#125;
+\def\macrothree#1&#123;Got `#1'&#125;
+\macroone abcdefg
 </code></pre>
 
 ---
 
-## 1110. Geometry
+## 1110. Other
 
-**ID**: `1a069d2e55ab`  
-**Package**: tkz-euclide  
+**ID**: `493be9672211`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125; 
-  \tkzDefPoint(0,0)&#123;C&#125; % possible 
-  % \tkzDefPoint[label=below:$C$](0,0)&#123;C&#125; 
-  % but don't do this
-  \tkzDefPoint(2,6)&#123;B&#125;
-  % We get D and E with a rotation
-  \tkzDefPointBy[rotation= center B angle 36](C) \tkzGetPoint&#123;D&#125; 
-  \tkzDefPointBy[rotation= center B angle 72](C) \tkzGetPoint&#123;E&#125; 
-  % To get A we use an intersection of lines
-  \tkzInterLL(B,E)(C,D) \tkzGetPoint&#123;A&#125;
-  \tkzInterLL(C,E)(B,D) \tkzGetPoint&#123;H&#125;
-  % drawing
-  \tkzDrawArc[delta=10](B,C)(E)
-  \tkzDrawPolygon(C,B,D)
-  \tkzDrawSegments(D,A B,A C,E)
-  % angles 
-  \tkzMarkAngles(C,B,D E,A,D) %this is to draw the arcs
-  \tkzLabelAngles[pos=1.5](C,B,D E,A,D)&#123;$\alpha$&#125;
-  \tkzMarkRightAngle(B,H,C)
-  \tkzDrawPoints(A,...,E)
-  % Label only now
-  \tkzLabelPoints[below left](C,A)
-  \tkzLabelPoints[below right](D)
-  \tkzLabelPoints[above](B,E)
-  \end&#123;tikzpicture&#125;
+\def\point(#1,#2)&#123;we do something with #1 and #2&#125;
+\def\temp&#123;(42,1234)&#125;
+\expandafter\point\temp
 </code></pre>
 
 ---
 
-## 1111. Geometry
+## 1111. Other
 
-**ID**: `d1922baf8665`  
-**Package**: tkz-euclide  
+**ID**: `2ecebda2aed1`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1,ra/.style=&#123;fill=gray!20&#125;]
-   % fixed points
-   \tkzDefPoint(0,0)&#123;A&#125;
-   \tkzDefPoint(1,0)&#123;I&#125;
-   % calculation
-   \tkzDefPointBy[homothety=center A ratio  10 ](I) \tkzGetPoint&#123;B&#125;  
-   \tkzDefMidPoint(A,B)              \tkzGetPoint&#123;M&#125;
-   \tkzDefPointWith[orthogonal](I,M) \tkzGetPoint&#123;H&#125;
-   \tkzInterLC(I,H)(M,B)             \tkzGetFirstPoint&#123;C&#125;
-   \tkzDrawSegment[style=purple](I,C)
-   \tkzDrawArc(M,B)(A)
-   \tkzDrawSegment[dim=&#123;$1$,-16pt,&#125;](A,I)
-   \tkzDrawSegment[dim=&#123;$(a-1)/2$,-10pt,&#125;](I,M)
-   \tkzDrawSegment[dim=&#123;$(a+1)/2$,-16pt,&#125;](M,B)   
-   \tkzMarkRightAngle[ra](A,I,C)
-   \tkzDrawPoints(I,A,B,C,M)  
-   \tkzLabelPoint[left](A)&#123;$A(0,0)$&#125; 
-   \tkzLabelPoints[above right](I,M)
-   \tkzLabelPoints[above left](C)
-   \tkzLabelPoint[right](B)&#123;$B(10,0)$&#125;
-   \tkzLabelSegment[right=4pt](I,C)&#123;$\sqrt&#123;a^2&#125;=a \ (a&gt;0)$&#125;
-\end&#123;tikzpicture&#125;
+\def\theimportantmacro#1&#123;I got the pre-assembled argument `#1' here.&#125;
+\def\temp&#123;xyz&#125;
+\expandafter\theimportantmacro\expandafter&#123;\temp&#125;
 </code></pre>
 
 ---
 
-## 1112. Geometry
+## 1112. Other
 
-**ID**: `bb67d49fa1fd`  
-**Package**: tkz-euclide  
+**ID**: `77cfa2d605b2`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-\tkzDefPoint(2,0)&#123;A&#125;\tkzDefPoint(0,0)&#123;O&#125;
-\tkzDefShiftPoint[A](31:5)&#123;B&#125;
-\tkzDefShiftPoint[A](158:5)&#123;C&#125;
-\tkzDrawPoints(A,B,C)
-\tkzDrawSegments[color = red,
-    line width = 1pt](A,B A,C)
-  \tkzProtractor[scale = 1](A,B) 
-\end&#123;tikzpicture&#125;
+\def\macroone&#123;This is macro one \macrotwo&#125;
+\def\macrotwo&#123;--2--&#125;
+\def\macrothree#1&#123;\def\macrofour&#123;4[#1]&#125;&#125;
+\expandafter\macrothree\expandafter&#123;\macroone&#125;%
+So far, nothing has been typeset. But now: \macrofour.
+\message&#123;We have macrofour = \meaning\macrofour&#125;%
 </code></pre>
 
 ---
 
-## 1113. Geometry
+## 1113. Other
 
-**ID**: `0512c7fc650f`  
-**Package**: tkz-euclide  
+**ID**: `35281255f619`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-  \tkzDefPoint(2,3)&#123;A&#125;
-  \tkzDefShiftPoint[A](31:5)&#123;B&#125;  
-   \tkzDefShiftPoint[A](158:5)&#123;C&#125;   
-  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
-  \tkzProtractor[return](A,C) 
-\end&#123;tikzpicture&#125;
+\def\a&#123;3&#125;
+\def\b&#123;2\a&#125;
+\def\c&#123;1\b&#125;
+\def\d&#123;value=\c&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\edef\d&#123;value=\c&#125;
+\message&#123;Macro `d' is e-defined to be `\meaning\d'&#125;
+\expandafter\def\expandafter\d\expandafter&#123;\c&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d' using expandafter&#125;
 </code></pre>
 
 ---
 
-## 1114. Geometry
+## 1114. Other
 
-**ID**: `ef4f17171121`  
-**Package**: tkz-euclide  
+**ID**: `ce00e6e812a1`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1] 
-  \tkzInit[xmax=5,ymax=5]
-  % necessary to limit
-  % the size of the axes
-  \tkzDrawX[&gt;=latex]
-  \tkzDrawY[&gt;=latex]
-  \tkzDefPoints&#123;0/0/O,1/0/I,0/1/J&#125;
-  \tkzDefPoint(3,4)&#123;A&#125; 
-  \tkzDrawPoints(O,A) 
-  \tkzLabelPoint[above](A)&#123;$A_1(x_1,y_1)$&#125; 
-  \tkzShowPointCoord[xlabel=$x_1$,
-                     ylabel=$y_1$](A) 
-  \tkzLabelPoints(O,I)
-  \tkzLabelPoints[left](J)
-  \tkzDrawPoints[shape=cross](I,J) 
-\end&#123;tikzpicture&#125;
+\edef\d&#123;\count0=42&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
+\def\a&#123;1234&#125;
+\edef\d&#123;\advance\count0 by\a&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
 </code></pre>
 
 ---
 
-## 1115. Geometry
+## 1115. Other
 
-**ID**: `a7e6a24cd21d`  
-**Package**: tkz-euclide  
+**ID**: `280059b2114d`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-  \tkzInit[xmax=5,ymax=5]
-  \tkzDrawX[&gt;=latex]
-  \tkzDrawY[&gt;=latex]  
-  \tkzDefPoints&#123;0/0/O,1/0/I,0/1/J&#125;
-  \tkzDefPoint(40:4)&#123;P&#125; 
-  \tkzDrawSegment[dim=&#123;$d$,
-                 16pt,above=6pt&#125;](O,P)
-  \tkzDrawPoints(O,P) 
-  \tkzMarkAngle[mark=none,-&gt;](I,O,P) 
-  \tkzFillAngle[opacity=.5](I,O,P) 
-  \tkzLabelAngle[pos=1.25](I,O,P)&#123;%
-                              $\alpha$&#125;  
-  \tkzLabelPoint[right](P)&#123;$P(\alpha:d)$&#125; 
-  \tkzDrawPoints[shape=cross](I,J) 
-  \tkzLabelPoints(O,I)
-  \tkzLabelPoints[left](J) 
-\end&#123;tikzpicture&#125;
+\edef\d&#123;Invoke \noexpand\a another macro&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
 </code></pre>
 
 ---
 
-## 1116. Geometry
+## 1116. Other
 
-**ID**: `0a33aec0d159`  
-**Package**: tkz-euclide  
+**ID**: `3e7df2735d1d`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzInit[xmax=5,ymax=5] % limits the size of the axes
-  \tkzDrawX[&gt;=latex]
-  \tkzDrawY[&gt;=latex]  
-  \tkzDefPoint(0,0)&#123;A&#125;
-  \tkzDefPoint(4,0)&#123;B&#125;
-  \tkzDefPoint(0,3)&#123;C&#125; 
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
-  \end&#123;tikzpicture&#125;
+\toks0=&#123;A \token list \a \b \count0=42 will never be expanded&#125;
+\edef\d&#123;\the\toks0 &#125;% the space token is important!
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
 </code></pre>
 
 ---
 
-## 1117. Geometry
+## 1117. Pie Chart
 
-**ID**: `e69c9968c2cc`  
-**Package**: tkz-euclide  
+**ID**: `05ed179b901d`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-  \tkzInit[xmax=4,ymax=4]
-  \tkzDrawX\tkzDrawY
-  \tkzDefPoint(-1+2,sqrt(4))&#123;O&#125;
-  \tkzDefPoint(&#123;3*ln(exp(1))&#125;,&#123;exp(1)&#125;)&#123;A&#125;
-  \tkzDefPoint(&#123;4*sin(pi/6)&#125;,&#123;4*cos(pi/6)&#125;)&#123;B&#125;
-  \tkzDrawPoints(O,B,A)
-\end&#123;tikzpicture&#125;
+\def\piecea&#123;\a&#123;xyz&#125;&#125;
+\def\pieceb&#123;\count0=42 &#125;
+\def\piecec&#123;string \b&#125;
+\toks0=\expandafter&#123;\piecea&#125;
+\toks1=\expandafter&#123;\pieceb&#125;
+\toks2=\expandafter&#123;\piecec&#125;
+\edef\d&#123;I have \the\toks0 and \the\toks1 and \the\toks2&#125;
+\message&#123;Macro `d' is defined to be `\meaning\d'&#125;
 </code></pre>
 
 ---
 
-## 1118. Geometry
+## 1118. Other
 
-**ID**: `a1618114d07d`  
-**Package**: tkz-euclide  
+**ID**: `00cd7903d9f7`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \foreach \an [count=\i] in &#123;0,60,...,300&#125;
-   &#123; \tkzDefPoint(\an:3)&#123;A_\i&#125;&#125;
-  \tkzDrawPolygon(A_1,A_...,A_6)
-  \tkzDrawPoints(A_1,A_...,A_6)
-  \end&#123;tikzpicture&#125;
+\def\macro&#123;Content&#125;
+This here is normal usage: `\macro'.
+This here uses csname: `\csname macro\endcsname'.
 </code></pre>
 
 ---
 
-## 1119. Geometry
+## 1119. Other
 
-**ID**: `64610a849733`  
-**Package**: tkz-euclide  
+**ID**: `d60dff8b612c`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
- \begin&#123;scope&#125;[rotate=30]
-  \tkzDefPoint(2,3)&#123;A&#125;
-  \begin&#123;scope&#125;[shift=(A)]
-     \tkzDefPoint(90:5)&#123;B&#125;
-     \tkzDefPoint(30:5)&#123;C&#125;
-  \end&#123;scope&#125;
- \end&#123;scope&#125;
- \tkzDrawPolygon(A,B,C)
-\tkzLabelPoints[above](B,C)
-\tkzLabelPoints[below](A)
-\tkzDrawPoints(A,B,C)
-\end&#123;tikzpicture&#125;
+\expandafter\def\csname a01macro with.strange.chars\endcsname&#123;Content&#125;
+I use a strange macro. Here is it: `\csname a01macro with.strange.chars\endcsname'.
 </code></pre>
 
 ---
 
-## 1120. Geometry
+## 1120. Other
 
-**ID**: `bf29101f7907`  
-**Package**: tkz-euclide  
+**ID**: `52dbcdc3b254`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[rotate=-30]
- \tkzDefPoint(2,3)&#123;A&#125;
- \tkzDefShiftPoint[A](0:4)&#123;B&#125;
- \tkzDefShiftPoint[A](30:4)&#123;C&#125;
- \tkzDrawSegments(A,B B,C C,A)
- \tkzMarkSegments[mark=|](A,B A,C)
- \tkzDrawPoints(A,B,C)
- \tkzLabelPoints[right](B,C)
- \tkzLabelPoints[above left](A)
-\end&#123;tikzpicture&#125;
+\def\macro&#123;onetwothree&#125;
+\expandafter\def\csname macro\macro\endcsname&#123;Content&#125;
+I have just defined \expandafter\string\csname macro\macro\endcsname
+with replacement text `\csname macro\macro\endcsname'.
 </code></pre>
 
 ---
 
-## 1121. Geometry
+## 1121. Other
 
-**ID**: `c432dfa53dec`  
-**Package**: tkz-euclide  
+**ID**: `85f886d96824`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
- \tkzDefPoint(2,3)&#123;A&#125;
- \tkzDefShiftPoint[A](30:3)&#123;B&#125;
- \tkzDefShiftPoint[A](-30:3)&#123;C&#125;
- \tkzDrawPolygon(A,B,C)
- \tkzDrawPoints(A,B,C)
- \tkzLabelPoints[right](B,C)
- \tkzLabelPoints[above left](A)
- \tkzMarkSegments[mark=|](A,B A,C B,C)
-\end&#123;tikzpicture&#125;
+\def\macro&#123;Content&#125;
+I have just defined `\string\macro' using `\string\def'.
 </code></pre>
 
 ---
 
-## 1122. Geometry
+## 1122. Other
 
-**ID**: `e033ceddf271`  
-**Package**: tkz-euclide  
+**ID**: `5d735aec09f0`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoint(0,0)&#123;A&#125;
- \tkzDefPoint(30:3)&#123;B&#125;
- \tkzDefShiftPointCoord[B](10:2)&#123;C&#125;
- \tkzDefShiftPointCoord[A](10:2)&#123;D&#125;
- \tkzDrawPolygon(A,...,D)
- \tkzDrawPoints(A,...,D)
-\end&#123;tikzpicture&#125;
+int i = 42;
+
+&#123;
+	++i;
+	int i = 5;
+&#125;
 </code></pre>
 
 ---
 
-## 1123. Geometry
+## 1123. Other
 
-**ID**: `0abdc9bb94fa`  
-**Package**: tkz-euclide  
+**ID**: `f2321944408f`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
- \tkzDefPoints&#123;0/0/A,4/0/B,4/3/C&#125;
- \tkzDrawPolygon(A,B,C)
- \tkzDrawPoints(A,B,C)
-\end&#123;tikzpicture&#125;
+\def\i&#123;42&#125;
+&#123;
+	\def\i&#123;43&#125;
+	\def\b&#123;2&#125;
+&#125;
+The value of \textbackslash i is now \i.
 </code></pre>
 
 ---
 
-## 1124. Geometry
+## 1124. Other
 
-**ID**: `08c5399cc69e`  
-**Package**: tkz-euclide  
+**ID**: `6c580dcdb4c9`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
- \tkzDefPoints&#123;0/0/A,2/0/B,2/2/C,0/2/D&#125;
- \tkzDrawPolygon(A,...,D)
- \tkzDrawPoints(A,...,D)
-\end&#123;tikzpicture&#125;
+&#123;
+	\global\def\a&#123;123&#125;
+	\global\advance\count0 by3
+	\global\toks0=&#123;34&#125;
+&#125;
 </code></pre>
 
 ---
 
-## 1125. Geometry
+## 1125. Other
 
-**ID**: `0f3ada69a179`  
-**Package**: tkz-euclide  
+**ID**: `c07c4e41de92`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoint(1,1)&#123;A&#125;
-  \tkzDefPoint(6,1)&#123;B&#125;
-  \tkzInterCC[R](A,4)(B,3)
-  \tkzGetPoints&#123;C&#125;&#123;D&#125;
-  \tkzDrawPoint(C)
-  \tkzCompass[length=1.5](A,C)
-  \tkzCompass(B,C)
-  \tkzDrawSegments(A,B A,C B,C)
-\end&#123;tikzpicture&#125;
+\def\initialvalue&#123;0&#125;
+&#123;
+	% do something:
+	\def\initialvalue&#123;42&#125;
+	\global\let\myglobaltemporary=\initialvalue
+&#125;
+\let\initialvalue=\myglobaltemporary
 </code></pre>
 
 ---
 
-## 1126. Geometry
+## 1126. Other
 
-**ID**: `8e30e3e99faf`  
-**Package**: tkz-euclide  
+**ID**: `c08670d096ad`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125; 
-  \tkzDefPoint(0,0)&#123;A&#125; 
-  \tkzDefPoint(5,0)&#123;B&#125;
-  \tkzInterCC[R](A,4)(B,3)
-  \tkzGetPoints&#123;C&#125;&#123;D&#125;
-  \tkzDrawPoints(A,B,C) 
-  \tkzCompass[delta=20](A,C)
-  \tkzCompass[delta=20](B,C) 
-  \tkzDrawPolygon(A,B,C)  
-  \tkzMarkAngle(A,C,B)
-\end&#123;tikzpicture&#125;
+\def\smuggle#1\endgroup&#123;%
+	\expandafter\endgroup\expandafter\def\expandafter#1\expandafter&#123;#1&#125;%
+&#125;
+
+\begingroup
+	\def\variable&#123;12&#125;
+	\edef\variable&#123;\variable34&#125;
+	\edef\variable&#123;\variable56&#125;
+	\smuggle\variable
+\endgroup
 </code></pre>
 
 ---
 
-## 1127. Geometry
+## 1127. Other
 
-**ID**: `ded8efd7749f`  
-**Package**: tkz-euclide  
+**ID**: `8024af8784eb`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.6]
- \tkzDefPoint(2,2)&#123;A&#125;  \tkzDefPoint(5,-2)&#123;B&#125;
- \tkzDefPoint(3,4)&#123;C&#125;  \tkzDrawPoints(A,B) 
- \tkzDrawPoint[shape=cross out](C)    
- \tkzCompasss[new](A,B A,C B,C C,B) 
- \tkzShowLine[mediator,new,dashed,length = 2](A,B)
- \tkzShowLine[parallel = through C,
-                     color=purple,length=2](A,B)
- \tkzDefLine[mediator](A,B)  
-  \tkzGetPoints&#123;i&#125;&#123;j&#125;
- \tkzDefLine[parallel=through C](A,B) 
-   \tkzGetPoint&#123;D&#125;
- \tkzDrawLines[add=.6 and .6](C,D A,C B,D)
- \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)  
- \tkzLabelPoints(A,B,C,i,j,D)
-\end&#123;tikzpicture&#125;
+\ifnum1=2 % this space is important.
+This is shown if above were true.
+\else
+This is shown if above results to false.
+\fi
 </code></pre>
 
 ---
 
-## 1128. Geometry
+## 1128. Other
 
-**ID**: `116deec0564a`  
-**Package**: tkz-euclide  
+**ID**: `904175727c93`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2,
-   vect/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoint(2,3)&#123;A&#125;   \tkzDefPoint(4,2)&#123;B&#125;
-  \tkzDefPoint(0,1)&#123;C&#125;
-  \tkzDefPointWith[colinear=at C](A,B)
-  \tkzGetPoint&#123;D&#125;
-  \tkzDrawPoints[new](A,B,C,D)
-  \tkzLabelPoints[above right=3pt](A,B,C,D)
-  \tkzDrawSegments[vect](A,B C,D)
-\end&#123;tikzpicture&#125;
+\ifdim1pt=2pt % this space is important.
+This is shown if above were true.
+\else
+This is shown if above results to false.
+\fi
 </code></pre>
 
 ---
 
-## 1129. Geometry
+## 1129. Other
 
-**ID**: `d6d0d8eca51a`  
-**Package**: tkz-euclide  
+**ID**: `43b67fe27fa1`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-\tkzDefPoints&#123;0/0/B,3.6/0/C,1.5/4/A&#125;
-\tkzDefSpcTriangle[ortho](A,B,C)&#123;Ha,Hb,Hc&#125;
-\tkzDefTriangleCenter[ortho](A,B,C) \tkzGetPoint&#123;H&#125;
-\tkzDefSquare(A,C) \tkzGetPoints&#123;R&#125;&#123;S&#125;
-\tkzDefSquare(B,A) \tkzGetPoints&#123;M&#125;&#123;N&#125;
-\tkzDefSquare(C,B) \tkzGetPoints&#123;P&#125;&#123;Q&#125;
-\tkzDefPointWith[colinear= at M](A,S) \tkzGetPoint&#123;A'&#125;
-\tkzDefPointWith[colinear= at P](B,N) \tkzGetPoint&#123;B'&#125;
-\tkzDefPointWith[colinear= at Q](C,R) \tkzGetPoint&#123;C'&#125;
-\tkzDefPointBy[projection=onto P--Q](Ha) \tkzGetPoint&#123;Pa&#125;
-\tkzDrawPolygon[teal,thick](A,C,R,S)\tkzDrawPolygon[teal,thick](A,B,N,M)
-\tkzDrawPolygon[teal,thick](C,B,P,Q)
-\tkzDrawPoints[teal,size=2](A,B,C,Ha,Hb,Hc,A',B',C')
-\tkzDrawSegments[ultra thin,red](M,A' A',S P,B' B',N Q,C' C',R B,S C,M C,N B,R A,P A,Q)
-\tkzDrawSegments[ultra thin,teal, dashed](A,Ha B,Hb C,Hc)
-\tkzDefPointBy[rotation=center A angle 90](S) \tkzGetPoint&#123;S'&#125;
-\tkzDrawSegments[ultra thin,teal,dashed](B,S' A,S' A,A' M,S' B',Q P,C' M,S Ha,Pa)
-\tkzDrawArc(A,S)(S')
-\end&#123;tikzpicture&#125;
+\def\empty&#123;\empty&#125;
+\ifx\empty\empty %
+This is shown if the two tokens have equal expansion.
+\else
+This is shown if the two tokens expand to something different.
+\fi
 </code></pre>
 
 ---
 
-## 1130. Geometry
+## 1130. Other
 
-**ID**: `13f7e84ad349`  
-**Package**: tkz-euclide  
+**ID**: `483dc6233104`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[vect/.style=&#123;-&gt;,
-               shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoints&#123;0/0/A,5/0/B,1/2/C&#125;
-  \tkzDefPointWith[colinear=at C](A,B)
-  \tkzGetPoint&#123;G&#125;
-  \tkzDefPointWith[colinear=at C, K=0.5](A,B)
-  \tkzGetPoint&#123;H&#125;
-  \tkzLabelPoints(A,B,C,G,H)
-  \tkzDrawPoints(A,B,C,G,H)
-  \tkzDrawSegments[vect](A,B C,H)
-\end&#123;tikzpicture&#125;
+\def\empty&#123;\relax&#125;
+\ifx\empty\relax %
+This is shown if the two tokens have equal expansion.
+\else
+This is shown if the two tokens expand to something different.
+\fi
 </code></pre>
 
 ---
 
-## 1131. Geometry
+## 1131. Other
 
-**ID**: `15d1d4c80a2d`  
-**Package**: tkz-euclide  
+**ID**: `fe196848bcef`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[vect/.style=&#123;-&gt;,
-            shorten &gt;=1pt,&gt;=latex'&#125;]
- \tkzDefPoints&#123;1/1/A,4/2/B,2/2/C&#125;
- \tkzDefPointWith[colinear=at C,K=sqrt(2)/2](A,B)
- \tkzGetPoint&#123;D&#125;
- \tkzDrawPoints[color=red](A,B,C,D)
- \tkzDrawSegments[vect](A,B C,D)
-\end&#123;tikzpicture&#125;
+\def\choice&#123;a&#125;
+\if b\choice
+  This is shown for the `b' choice.
+\else
+  This is shown for all other choices.
+\fi
 </code></pre>
 
 ---
 
-## 1132. Geometry
+## 1132. Other
 
-**ID**: `607af6deb96f`  
-**Package**: tkz-euclide  
+**ID**: `4cd74d7f51cf`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2,
-  vect/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoints&#123;2/3/A,4/2/B&#125;
-   \tkzDefPointWith[orthogonal,K=1](A,B)
-     \tkzGetPoint&#123;C&#125;
-   \tkzDrawPoints[color=red](A,B,C)
-   \tkzLabelPoints[right=3pt](B,C)
-   \tkzLabelPoints[below=3pt](A)
-   \tkzDrawSegments[vect](A,B A,C)
-   \tkzMarkRightAngle(B,A,C)
-\end&#123;tikzpicture&#125;
+\def\choice&#123;a&#125;
+\edef\temp&#123;The choice is \if a\choice `a'\else not `a'\fi&#125;
+We have now \texttt&#123;\string temp=\meaning\temp&#125;.
 </code></pre>
 
 ---
 
-## 1133. Geometry
+## 1133. Other
 
-**ID**: `864fdbcaf4fc`  
-**Package**: tkz-euclide  
+**ID**: `b99c2fdbfa52`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-  \tkzDefPoints&#123;1/2/O,2/5/I&#125;
-  \tkzDefPointWith[orthogonal](O,I)
-  \tkzGetPoint&#123;J&#125;
-  \tkzDefPointWith[orthogonal,K=-1](O,I)
-  \tkzGetPoint&#123;K&#125;
-  \tkzDrawSegment(O,I)
-  \tkzDrawSegments[-&gt;](O,J O,K)
-  \tkzMarkRightAngles(I,O,J I,O,K)
-  \tkzDrawPoints(O,I,J,K)
-  \tkzLabelPoints(O,I,J,K)
-\end&#123;tikzpicture&#125;
+\def\shownexttoken#1&#123;The next token is `\texttt&#123;\string#1&#125;'.&#125;
+\def\mymacro&#123;%
+ 	\ifnum1=1 %
+ 		\expandafter\shownexttoken%
+ 	\fi%
+&#125;%
+\mymacro 23
 </code></pre>
 
 ---
 
-## 1134. Geometry
+## 1134. Other
 
-**ID**: `0dc431e70e6f`  
-**Package**: tkz-euclide  
+**ID**: `5affe3825163`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-  \tkzDefPoints&#123;0/0/A,6/0/B&#125;
-  \tkzDefMidPoint(A,B)
-    \tkzGetPoint&#123;I&#125;
-  \tkzDefPointWith[orthogonal,K=-.75](B,A)
-  \tkzGetPoint&#123;C&#125;
-  \tkzInterLC(B,C)(B,I)
-     \tkzGetPoints&#123;D&#125;&#123;F&#125;
-  \tkzDuplicateSegment(B,F)(A,F)
-  \tkzGetPoint&#123;E&#125;
-  \tkzDrawArc[delta=10](F,E)(B)
-  \tkzInterLC(A,B)(A,E)
-    \tkzGetPoints&#123;N&#125;&#123;M&#125;
-  \tkzDrawArc[delta=10](A,M)(E)
-  \tkzDrawLines(A,B B,C A,F)
-  \tkzCompass(B,F)
-  \tkzDrawPoints(A,B,C,F,M,E)
-  \tkzLabelPoints(A,B,C,F,M)
-  \tkzLabelPoints[above](E)
-\end&#123;tikzpicture&#125;
+\long\def\countingloop#1 in #2:#3#4&#123;%
+	#1=#2 %
+	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
+&#125;
+
+\long\def\loopcounter#1#2#3&#123;%
+	#3%
+	\ifnum#1=#2 %
+	\else%
+		\advance#1 by1 %
+		\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;%
+	\fi%
+&#125;
+\countingloop&#123;\count0&#125; in 0:&#123;3&#125;&#123;%
+	The current value is `\the\count0'\par
+&#125;
 </code></pre>
 
 ---
 
-## 1135. Geometry
+## 1135. Other
 
-**ID**: `4af75da8f486`  
-**Package**: tkz-euclide  
+**ID**: `c9ac4e5e8d58`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2,
-  vect/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoints&#123;2/1/A,6/2/B&#125;
-  \tkzDefPointWith[orthogonal,K=.5](A,B)
-  \tkzGetPoint&#123;C&#125;
-  \tkzDefPointWith[colinear=at C,K=.5](A,B)
-  \tkzGetPoint&#123;D&#125;
-  \tkzMarkRightAngle[fill=gray!20](B,A,C)
-  \tkzDrawSegments[vect](A,B A,C C,D)
-  \tkzDrawPoints(A,...,D)
-\end&#123;tikzpicture&#125;
+\long\def\countingloop#1 in #2:#3#4&#123;%
+	#1=#2 %
+	\loopcounter&#123;#1&#125;&#123;#3&#125;&#123;#4&#125;%
+&#125;
+
+\long\def\loopcounter#1#2#3&#123;%
+	#3%
+	\ifnum#1=#2 %
+		\let\next=\relax%
+	\else
+		\advance#1 by1 %
+		\def\next&#123;\loopcounter&#123;#1&#125;&#123;#2&#125;&#123;#3&#125;&#125;%
+	\fi
+	\next
+&#125;
+\newcount\ourcounter
+
+\countingloop&#123;\ourcounter&#125; in 0:&#123;3&#125;&#123;%
+	The current value is `\the\ourcounter'\par
+&#125;
 </code></pre>
 
 ---
 
-## 1136. Geometry
+## 1136. Other
 
-**ID**: `dc3b6bc56e56`  
-**Package**: tkz-euclide  
+**ID**: `8779eb7cec67`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2,
-  vect/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoints&#123;2/3/A,4/2/B&#125;
-  \tkzDefPointWith[orthogonal normed](A,B)
-  \tkzGetPoint&#123;C&#125;
-  \tkzDrawPoints[color=red](A,B,C)
-  \tkzDrawSegments[vect](A,B A,C)
-  \tkzMarkRightAngle[fill=gray!20](B,A,C)
-\end&#123;tikzpicture&#125;
+\def\listingloopENDMARKER&#123;\par \listingloopENDMARKER&#125;
+\long\def\listingloop#1in#2#3&#123;%
+	\looppicker&#123;#1&#125;&#123;#3&#125;#2,\listingloopENDMARKER,%
+&#125;%
+\long\def\looppicker#1#2#3,&#123;%
+	\def\tempitem&#123;#3&#125;%
+	\ifx\tempitem\listingloopENDMARKER
+		\let\next=\relax%
+	\else
+		\def#1&#123;#3&#125;%
+		#2%
+		\def\next&#123;\looppicker&#123;#1&#125;&#123;#2&#125;&#125;%
+	\fi
+	\next
+&#125;%
+\listingloop\x in&#123;a,b,c,,d,e&#125;&#123;%
+	The current item is `\x'
+&#125;
 </code></pre>
 
 ---
 
-## 1137. Geometry
+## 1137. Other
 
-**ID**: `790d5dddfcbf`  
-**Package**: tkz-euclide  
+**ID**: `7ddc57cf4eee`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2,
-   vect/.style=&#123;-&gt;,shorten &gt;=1pt,&gt;=latex'&#125;]
-  \tkzDefPoints&#123;2/3/A,5/1/B&#125;
-  \tkzDefPointWith[orthogonal normed,K=2](A,B)
-  \tkzGetPoint&#123;C&#125;
-  \tkzDrawPoints[color=red](A,B,C)
-  \tkzDefCircle[R](A,2) \tkzGetPoint&#123;a&#125;
-  \tkzDrawCircle(A,a)
-  \tkzDrawSegments[vect](A,B A,C)
-  \tkzMarkRightAngle[fill=gray!20](B,A,C)
-  \tkzLabelPoints[above=3pt](A,B,C)
-\end&#123;tikzpicture&#125;
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+\pgfkeysgetvalue&#123;/notes/key&#125;\temp
+
+The value of key \texttt&#123;/notes/key&#125; is `\temp'.
 </code></pre>
 
 ---
 
-## 1138. Geometry
+## 1138. Other
 
-**ID**: `5f5479f29193`  
-**Package**: tkz-euclide  
+**ID**: `87e9f23f3498`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2]
-  \tkzDefPoints&#123;1/3/A,4/2/B&#125;
-  \tkzDefPointWith[linear,K=0.5](A,B)
-  \tkzGetPoint&#123;C&#125;
-  \tkzDrawPoints[color=red](A,B,C)
-  \tkzDrawSegment(A,B)
-  \tkzLabelPoints[above right=3pt](A,B,C)
-\end&#123;tikzpicture&#125;
+\def\something&#123;abc&#125;
+\pgfkeyslet&#123;/notes/key&#125;&#123;\something&#125;
+
+\pgfkeysgetvalue&#123;/notes/key&#125;\temp
+
+The value of key \texttt&#123;/notes/key&#125; is `\temp'.
 </code></pre>
 
 ---
 
-## 1139. Geometry
+## 1139. Other
 
-**ID**: `9a3c6f1728da`  
-**Package**: tkz-euclide  
+**ID**: `6b574db35527`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.2]
- \tkzDefPoints&#123;1/3/A,4/2/B&#125;
- \tkzDefPointWith[linear normed](A,B)
- \tkzGetPoint&#123;C&#125;
- \tkzDrawPoints[color=red](A,B,C)
- \tkzDrawSegment(A,B)
- \tkzLabelSegment(A,C)&#123;$1$&#125;
- \tkzLabelPoints[above right=3pt](A,B,C)
-\end&#123;tikzpicture&#125;
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
 </code></pre>
 
 ---
 
-## 1140. Geometry
+## 1140. Other
 
-**ID**: `ae51a4bd27fe`  
-**Package**: tkz-euclide  
+**ID**: `c1a5d188a292`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/O,1/1/A,4/2/B&#125;
- \tkzGetVectxy(A,B)&#123;v&#125;
- \tkzDefPoint(\vx,\vy)&#123;V&#125;
- \tkzDrawSegment[-&gt;,color=red](O,V)
- \tkzDrawSegment[-&gt;,color=blue](A,B)
- \tkzDrawPoints(A,B,O)
- \tkzLabelPoints(A,B,O,V)
-\end&#123;tikzpicture&#125;
+\pgfkeyssetvalue&#123;/notes/key&#125;&#123;abc&#125;
+
+\edef\temp&#123;--- \pgfkeysvalueof&#123;/notes/key&#125; ---&#125;
+
+The value of key \texttt&#123;/notes/key&#125; along with dashes is \temp.
 </code></pre>
 
 ---
 
-## 1141. Geometry
+## 1141. Other
 
-**ID**: `a6e123117a05`  
-**Package**: tkz-euclide  
+**ID**: `96e39948603f`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[&gt;=latex] 
- \tkzDefPoints&#123;0/0/A,3/1/B,3/0/C&#125;
- \tkzDefPointBy[translation= from B to A](C) 
- \tkzGetPoint&#123;D&#125; 
- \tkzDrawPoints[teal](A,B,C,D)
- \tkzLabelPoints[color=teal](A,B,C,D) 
- \tkzDrawSegments[orange,-&gt;](A,B D,C) 
-\end&#123;tikzpicture&#125;
+\pgfkeysdef&#123;/notes/code key&#125;&#123;Expansion with value #1---X.&#125;%
+
+We ``assign a value'' or ``execute the code key'' (which is equivalent):
+\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
 </code></pre>
 
 ---
 
-## 1142. Geometry
+## 1142. Other
 
-**ID**: `11b3c18769cc`  
-**Package**: tkz-euclide  
+**ID**: `142fd6ce7368`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
- \tkzDefPoints&#123;-2/-2/A,-1/-1/C,-4/2/D,-4/0/O&#125;    
- \tkzDrawCircle(O,A)
- \tkzDefPointBy[reflection = over C--D](A)
- \tkzGetPoint&#123;A'&#125;
- \tkzDefPointBy[reflection = over C--D](O)
- \tkzGetPoint&#123;O'&#125;
- \tkzDrawCircle(O',A')
- \tkzDrawLine[add= .5 and .5](C,D)
- \tkzDrawPoints(C,D,O,O')
-\end&#123;tikzpicture&#125;
+% key definition:
+\pgfkeys&#123;
+	/notes/key/.initial=abc,
+&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
+
+% key usage:
+\pgfkeys&#123;
+	/notes/key =  efg  ,
+&#125;
+
+The value of key \texttt&#123;/notes/key&#125; is `\pgfkeysvalueof&#123;/notes/key&#125;'.
 </code></pre>
 
 ---
 
-## 1143. Geometry
+## 1143. Other
 
-**ID**: `3be8d95756bb`  
-**Package**: tkz-euclide  
+**ID**: `8bdd28532078`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/1/A,5/3/B,3/4/C&#125;
-  \tkzDefLine[bisector](B,A,C) \tkzGetPoint&#123;a&#125; 
-  \tkzDrawLine[add=0 and 0,color=magenta!50 ](A,a) 
-  \tkzDefPointBy[homothety=center A ratio .5](a)   
-  \tkzGetPoint&#123;a'&#125; 
-  \tkzDefPointBy[projection = onto A--B](a') 
-  \tkzGetPoint&#123;k'&#125;  
-  \tkzDefPointBy[projection = onto A--B](a) 
-  \tkzGetPoint&#123;k&#125; 
-  \tkzDrawLines[add= 0 and .3](A,k A,C)   
-  \tkzDrawSegments[blue](a',k' a,k) 
-  \tkzDrawPoints(a,a',k,k',A)
-  \tkzDrawCircles(a',k' a,k)   
-  \tkzLabelPoints(a,a',k,A)
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;
+	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
+&#125;%
+
+Execute the key using the simple API:
+\pgfkeysvalueof&#123;/notes/code key/.@cmd&#125;abc\pgfeov
+
+... execute the key using assignment in the standard API:
+\pgfkeys&#123;/notes/code key=abc&#125;
 </code></pre>
 
 ---
 
-## 1144. Geometry
+## 1144. Other
 
-**ID**: `697e9abc4431`  
-**Package**: tkz-euclide  
+**ID**: `9858870cf0f2`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1.25]  
- \tkzDefPoints&#123;0/0/A,0/4/B&#125;
- \tkzDefTriangle[pythagore](B,A) \tkzGetPoint&#123;C&#125;
- \tkzDefLine[bisector](B,C,A) \tkzGetPoint&#123;c&#125;
- \tkzInterLL(C,c)(A,B)  \tkzGetPoint&#123;D&#125;
- \tkzDefPointBy[projection=onto B--C](D) 
- \tkzGetPoint&#123;G&#125;
- \tkzInterLC(C,D)(D,A) \tkzGetPoints&#123;E&#125;&#123;F&#125;
- \tkzDrawPolygon(A,B,C)
- \tkzDrawSegment(C,D)
- \tkzDrawCircle(D,A)
- \tkzDrawSegment[new](D,G)
- \tkzMarkRightAngle[fill=orange!10](D,G,B)
- \tkzDrawPoints(A,C,F) \tkzLabelPoints(A,C,F)
- \tkzDrawPoints(B,D,E,G)   
- \tkzLabelPoints[above right](B,D,E)
-  \tkzLabelPoints[above](G)
- \end&#123;tikzpicture&#125;
+\pgfkeys&#123;
+	/notes/code key/.code=&#123;Expansion with value #1---X.&#125;,
+	/notes/code key/.code=Expansion with value #1---X.,
+&#125;%
 </code></pre>
 
 ---
 
-## 1145. Geometry
+## 1145. Other
 
-**ID**: `5908c4abf078`  
-**Package**: tkz-euclide  
+**ID**: `b476c26809f9`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-  \tkzDefPoints&#123;2/-1/A,2/2/B,0/0/O&#125;
-  \tkzDefPointsBy[symmetry=center O](B,A)&#123;&#125;
-  \tkzDrawLine(A,A')
-  \tkzDrawLine(B,B')
-  \tkzMarkAngle[mark=s,arc=lll,
-      size=1.5,mkcolor=red](A,O,B) 
-  \tkzLabelAngle[pos=2,circle,draw,
-    fill=blue!10,font=\scriptsize](A,O,B)&#123;$60^&#123;\circ&#125;$&#125;
-  \tkzDrawPoints(A,B,O,A',B') 
-  \tkzLabelPoints(B,B')
-  \tkzLabelPoints[below](A,O,A')  
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;
+	/notes/A/.initial=,
+	/notes/B/.initial=,
+	/notes/my style/.style=&#123;
+		/notes/A=&#123;#1&#125;,
+		/notes/B=&#123;#1&#125;,
+	&#125;,
+&#125;%
+
+Definition has been done. Assigning the style:
+\pgfkeys&#123;
+	/notes/my style=42
+&#125;
+OK. Value of A=\pgfkeysvalueof&#123;/notes/A&#125;, value of B=\pgfkeysvalueof&#123;/notes/B&#125;.
 </code></pre>
 
 ---
 
-## 1146. Geometry
+## 1146. Other
 
-**ID**: `bdf4d9f53f0b`  
-**Package**: tkz-euclide  
+**ID**: `ae343d184c9c`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=0.75] 
- \tkzDefPoints&#123;0/0/A,5/0/B&#125;
- \tkzDrawSegment(A,B)
- \tkzDefPointBy[rotation=center A angle 60](B) 
- \tkzGetPoint&#123;C&#125; 
- \tkzDefPointBy[symmetry=center C](A) 
- \tkzGetPoint&#123;D&#125; 
- \tkzDrawSegment(A,tkzPointResult) 
- \tkzDrawLine(B,D)
- \tkzDrawArc(A,B)(C) \tkzDrawArc(B,C)(A)
- \tkzDrawArc(C,D)(D)  
- \tkzMarkRightAngle(D,B,A) 
- \tkzDrawPoints(A,B) 
- \tkzLabelPoints(A,B)
- \tkzLabelPoints[above](C)
- \tkzLabelPoints[right](D)
-\end&#123;tikzpicture&#125;
+\def\collectargument#1&#123;%
+	\def\collectedcontent&#123;#1&#125;%
+	\ifx\collectedcontent\empty
+		It is empty.
+	\else
+		It is not empty, executing it: #1.
+	\fi
+&#125;%
+
+\collectargument&#123;&#125;% works
+
+\collectargument&#123;something&#125;% works
+
+\collectargument&#123;% does not work!
+	\def\something#1&#123;which depends on #1&#125;
+&#125;%
 </code></pre>
 
 ---
 
-## 1147. Geometry
+## 1147. Other
 
-**ID**: `db43d70b6c92`  
-**Package**: tkz-euclide  
+**ID**: `a8db647f40a1`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoint["$A$" left](1,5)&#123;A&#125;
-  \tkzDefPoint["$B$" right](4,3)&#123;B&#125;
-  \tkzDefPointBy[rotation in rad= center A angle pi/3](B)
-  \tkzGetPoint&#123;C&#125;  
-  \tkzDrawSegment(A,B)
-  \tkzDrawPoints(A,B,C) 
-  \tkzCompass(A,C)
-  \tkzCompass(B,C) 
-  \tkzLabelPoints(C)
-\end&#123;tikzpicture&#125;
+\def\collectargument#1&#123;%
+	\toks0=&#123;#1&#125;%
+	\edef\collectedcontent&#123;\the\toks0&#125;%
+	\ifx\collectedcontent\empty
+		It is empty.
+	\else
+		It is not empty, executing it: #1.
+	\fi
+&#125;%
 </code></pre>
 
 ---
 
-## 1148. Geometry
+## 1148. Other
 
-**ID**: `0e75211cee5f`  
-**Package**: tkz-euclide  
+**ID**: `3aa62aa72627`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoint(0,0)&#123;O&#125;    
- \tkzDefPoint(0:2)&#123;A&#125; 
- \tkzDefPoint(40:2)&#123;B&#125;  
- \tkzDefPoint(20:4)&#123;C&#125;
- \tkzDrawLine(O,A)
- \tkzDefPointBy[rotation with nodes%
-             =center O from A to B](C)  
- \tkzGetPoint&#123;D&#125;
-\tkzDrawPoints(A,B,C,D)
-\tkzDrawCircle(O,A)
-\tkzLabelPoints(A,C,D)
-\tkzLabelPoints[above](B)
-\end&#123;tikzpicture&#125;
+\pgfplotsset&#123;every linear axis/.append style=&#123;...&#125;&#125;
 </code></pre>
 
 ---
 
-## 1149. Geometry
+## 1149. Other
 
-**ID**: `da2c5059d1e7`  
-**Package**: tkz-euclide  
+**ID**: `f6e32fe32345`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-  \tkzDefPoints&#123;4/0/A,6/0/P,0/0/O&#125;
-  \tkzDefPointBy[inversion = center O through A](P)
-  \tkzGetPoint&#123;P'&#125;
-  \tkzDrawSegments(O,P)
-  \tkzDrawCircle(O,A)
-  \tkzLabelPoints[above right,font=\scriptsize](O,A,P,P')
-  \tkzDrawPoints(O,A,P,P')
-\end&#123;tikzpicture&#125;
+\pgfplotsset&#123;every semilogx axis/.append style=&#123;...&#125;&#125;
 </code></pre>
 
 ---
 
-## 1150. Geometry
+## 1150. Other
 
-**ID**: `ece7eaa80c3e`  
-**Package**: tkz-euclide  
+**ID**: `f06f93a81afb`  
+**Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-  \tkzDefPoints&#123;4/0/A,6/0/P,0/0/O&#125;
-  \tkzDefLine[orthogonal=through P](O,P)
-  \tkzGetPoint&#123;L&#125;
-  \tkzDefLine[tangent from = P](O,A) \tkzGetPoints&#123;R&#125;&#123;Q&#125;
-  \tkzDefPointBy[projection=onto O--A](Q) \tkzGetPoint&#123;P'&#125;
-  \tkzDrawSegments(O,P O,A)
-  \tkzDrawSegments[new](O,P O,Q P,Q Q,P')
-  \tkzDrawCircle(O,A)
-  \tkzDrawLines[add=1 and 0](P,L)
-  \tkzLabelPoints[below,font=\scriptsize](O,P')
-  \tkzLabelPoints[above right,font=\scriptsize](P,Q)
-  \tkzDrawPoints(O,P) \tkzDrawPoints[new](Q,P')
-  \tkzLabelSegment[above](O,Q)&#123;$k$&#125;
-  \tkzMarkRightAngles(A,P',Q P,Q,O)
-  \tkzLabelCircle[above=.5cm,
-      font=\scriptsize](O,A)(100)&#123;inversion circle&#125;
-  \tkzLabelPoint[left,font=\scriptsize](O)&#123;inversion center&#125;
-  \tkzLabelPoint[left,font=\scriptsize](L)&#123;polar&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    xmode=log|normal,
+    ymode=log|normal]
+    ...
+\end&#123;axis&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-021) | Page 23 of 107 | [Next →](executable_example-page-023)
+[← Previous](executable_example-page-021) | Page 23 of 120 | [Next →](executable_example-page-023)

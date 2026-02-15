@@ -1,248 +1,197 @@
 ---
 title: "Executable Examples - Page 88"
-description: "Items 4351-4400 of 5325 executable examples"
+description: "Items 4351-4400 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 88
 
-Showing items **4351-4400** of **5325**
+Showing items **4351-4400** of **5999**
 
-[← Previous](executable_example-page-086) | Page 88 of 107 | [Next →](executable_example-page-088)
+[← Previous](executable_example-page-086) | Page 88 of 120 | [Next →](executable_example-page-088)
 
 ---
 
 ## 4351. Other
 
-**ID**: `be620561f5f0`  
+**ID**: `012b0e694e26`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC,circuit symbol lines/.style=&#123;draw,very thick&#125;]
-  \draw (0,0) to [capacitor=&#123;near start&#125;,
-                  make contact=&#123;near end&#125;] (3,0);
+\newdimen\mydim
+\begin&#123;tikzpicture&#125;
+  \mydim=1cm
+  \draw (0pt,\mydim)
+    \pgfextra \mydim=2cm \endpgfextra -- (0pt,\mydim);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4352. Other
 
-**ID**: `83a92ae1a323`  
+**ID**: `b862ff5aff94`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC,circuit symbol wires/.style=&#123;draw,very thick&#125;]
-  \draw (0,0) to [capacitor=&#123;near start&#125;,
-                  make contact=&#123;near end&#125;] (3,0);
+\begin&#123;tikzpicture&#125;
+  \path[save path=\pathA,name path=A] (0,1) to [bend left] (1,0);
+  \path[save path=\pathB,name path=B]
+    (0,0) .. controls (.33,.1) and (.66,.9) .. (1,1);
+
+  \fill[name intersections=&#123;of=A and B&#125;] (intersection-1) circle (1pt);
+
+  \draw[blue][use path=\pathA];
+  \draw[red] [use path=\pathB];
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4353. Other
 
-**ID**: `193933278a68`  
+**ID**: `1bf34f442644`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-set and gate graphic = and gate IEC graphic,
+\begin&#123;tikzpicture&#125;[line width=1ex]
+  \draw (0,0) -- (3,1);
+  \filldraw [fill=yellow!80!black,draw opacity=0.5] (1,0) rectangle (2,1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4354. Other
 
-**ID**: `1d9e946d1c7a`  
+**ID**: `65798a957fb5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;and gate IEC graphic/.style=
-  &#123;
-    circuit symbol open,
-    circuit symbol size=width 2.5 height 4,
-    shape=and gate IEC,
-    inner sep=.5ex
-  &#125;
-&#125;
+\tikz&#123;\fill[red]             (0,0)   rectangle (1,0.5);
+      \fill[transparent,red] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
 ## 4355. Other
 
-**ID**: `805e046a1944`  
+**ID**: `61bbfc5968f7`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[circuit ee IEC]
-  % Standard resistor
-  \draw (0,2) to [resistor] (3,2);
-
-  % Var resistor
-  \begin&#123;scope&#125;[set resistor graphic=var resistor IEC graphic]
-    \draw (0,1) to [resistor] (3,1);
-
-    % Back to original
-    \draw [set resistor graphic=resistor IEC graphic]
-      (0,0) to [resistor] (3,0);
-  \end&#123;scope&#125;
-\end&#123;tikzpicture&#125;
+\tikz&#123;\fill[red]                      (0,0)   rectangle (1,0.5);
+      \fill[ultra nearly transparent] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
-## 4356. Node Graph
+## 4356. Other
 
-**ID**: `646eeca3e08f`  
+**ID**: `84a186039a67`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[circuit logic IEC,
-                    every circuit symbol/.style=&#123;
-                      logic gate IEC symbol color=black,
-                      fill=blue!20,draw=blue,very thick&#125;]
-  \matrix[column sep=7mm]
-  &#123;
-    \node (i0) &#123;0&#125;; &                            & \\
-                    & \node [and gate] (a1) &#123;&#125;;  & \\
-    \node (i1) &#123;0&#125;; &                            & \node [or gate] (o) &#123;&#125;;\\
-                    & \node [nand gate] (a2) &#123;&#125;; & \\
-    \node (i2) &#123;1&#125;; &                            & \\
-  &#125;;
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end&#123;tikzpicture&#125;
+\tikz&#123;\fill[red]                     (0,0)   rectangle (1,0.5);
+      \fill[very nearly transparent] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
 ## 4357. Other
 
-**ID**: `6092e98d14f9`  
+**ID**: `e6d2e24a2063`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-set and gate graphic = and gate US graphic
+\tikz&#123;\fill[red]                (0,0)   rectangle (1,0.5);
+      \fill[nearly transparent] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
-## 4358. Node Graph
+## 4358. Other
 
-**ID**: `552a8939dc13`  
+**ID**: `ef1b5d7c4762`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[circuit logic CDH,
-                    tiny circuit symbols,
-                    every circuit symbol/.style=&#123;
-                      fill=white,draw&#125;]
-  \matrix[column sep=7mm]
-  &#123;
-    \node (i0) &#123;0&#125;; &                            & \\
-                    & \node [and gate] (a1) &#123;&#125;;  & \\
-    \node (i1) &#123;0&#125;; &                            & \node [or gate] (o) &#123;&#125;;\\
-                    & \node [nand gate] (a2) &#123;&#125;; & \\
-    \node (i2) &#123;1&#125;; &                            & \\
-  &#125;;
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end&#123;tikzpicture&#125;
+\tikz&#123;\fill[red]             (0,0)   rectangle (1,0.5);
+      \fill[semitransparent] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
 ## 4359. Other
 
-**ID**: `54b7bf49cb4b`  
+**ID**: `173164033109`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit logic IEC] \node [and gate] &#123;$A$&#125;;
+\tikz&#123;\fill[red]           (0,0)   rectangle (1,0.5);
+      \fill[nearly opaque] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
 ## 4360. Other
 
-**ID**: `b28897214bb4`  
+**ID**: `4d209448666a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit logic US]
-&#123;
-  \node [and gate,point down] &#123;$A$&#125;;
-  \node [and gate,point down,info=center:$A$] at (1,0) &#123;&#125;;
-&#125;
+\tikz&#123;\fill[red]                (0,0)   rectangle (1,0.5);
+      \fill[very nearly opaque] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
-## 4361. Node Graph
+## 4361. Other
 
-**ID**: `5507b76fcdbe`  
+**ID**: `39e8d8993b4d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[circuit logic IEC]
-  \node[and gate,inputs=&#123;inini&#125;] (A) &#123;&#125;;
-  \foreach \a in &#123;1,...,5&#125;
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ++(right:5mm);
-\end&#123;tikzpicture&#125;
+\tikz&#123;\fill[red]                 (0,0)   rectangle (1,0.5);
+      \fill[ultra nearly opaque] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
-## 4362. Node Graph
+## 4362. Other
 
-**ID**: `cfbfa8f31d04`  
+**ID**: `b713364472bd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum height=0.75cm]
-  \node[and gate IEC, draw, logic gate inputs=&#123;inverted, normal, inverted&#125;]
-    (A) &#123;&#125;;
-  \foreach \a in &#123;1,...,3&#125;
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ([xshift=0.5cm]A.output);
-\end&#123;tikzpicture&#125;
+\tikz&#123;\fill[red]    (0,0)   rectangle (1,0.5);
+      \fill[opaque] (0.5,0) rectangle (1.5,0.25); &#125;
 </code></pre>
 
 ---
 
-## 4363. Node Graph
+## 4363. Other
 
-**ID**: `3d33be83dea0`  
+**ID**: `80a4e5e19bb3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum height=0.75cm]
-  \node[or gate US, draw,logic gate inputs=inini] (A) &#123;&#125;;
-  \foreach \a in &#123;1,...,5&#125;
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ([xshift=0.5cm]A.output);
+\begin&#123;tikzpicture&#125;[thick,fill opacity=0.5]
+  \filldraw[fill=red]   (0:1cm)    circle (12mm);
+  \filldraw[fill=green] (120:1cm)  circle (12mm);
+  \filldraw[fill=blue]  (-120:1cm) circle (12mm);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -250,15 +199,16 @@ set and gate graphic = and gate US graphic
 
 ## 4364. Other
 
-**ID**: `e7800cd0d9c8`  
+**ID**: `99f5b59c0cd1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum height=0.75cm]
-  \tikzset&#123;every node/.style=&#123;shape=nand gate CDH, draw, logic gate inputs=ii&#125;&#125;
-  \node[logic gate inverted radius=2pt] &#123;A&#125;;
-  \node[logic gate inverted radius=4pt] at (0,-1) &#123;B&#125;;
+\begin&#123;tikzpicture&#125;
+  \fill[red] (0,0) rectangle (3,2);
+
+  \node                   at (0,0) &#123;\huge A&#125;;
+  \node[fill opacity=0.5] at (3,2) &#123;\huge B&#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -266,113 +216,94 @@ set and gate graphic = and gate US graphic
 
 ## 4365. Node Graph
 
-**ID**: `9905550d9c04`  
+**ID**: `792dd353d473`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum size=0.75cm]
-  \draw [help lines] grid (3,2);
-  \tikzset&#123;every node/.style=&#123;shape=and gate IEC, draw, logic gate inputs=ini&#125;&#125;
-  \node[logic gate input sep=0.33333cm] at (1,1)(A) &#123;A&#125;;
-  \node[logic gate input sep=0.5cm]     at (3,1) (B) &#123;B&#125;;
-  \foreach \a in &#123;1,...,3&#125;
-    \draw (A.input \a -| 0,0) -- (A.input \a)
-          (B.input \a -| 2,0) -- (B.input \a);
+\begin&#123;tikzpicture&#125;[every node/.style=&#123;fill,draw&#125;]
+  \draw[line width=2mm,blue!50,line cap=round] (0,0) grid (3,2);
+
+  \node[opacity=0.5] at (1.5,2) &#123;Upper node&#125;;
+  \node[draw opacity=0.8,fill opacity=0.2,text opacity=1]
+    at (1.5,0) &#123;Lower node&#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4366. Node Graph
+## 4366. Other
 
-**ID**: `d61b1944c3e4`  
+**ID**: `6b405af02f92`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum height=1.5cm]
-  \node[xnor gate US, draw, gray!50,line width=2pt] (A) &#123;&#125;;
-  \foreach \x/\y/\z in &#123;false/blue/1pt, true/red/2pt&#125;
-    \foreach \a in &#123;north, south, east, west, north east,
-      south east, north west, south west&#125;
-      \draw[logic gate anchors use bounding box=\x, color=\y]
-        (A.\a) circle(\z);
+\begin&#123;tikzpicture&#125;[fill opacity=0.5]
+  \fill[red] (0,0) circle (1);
+  \fill[red] (1,0) circle (1);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4367. Node Graph
+## 4367. Other
 
-**ID**: `b32be18730e6`  
+**ID**: `f0ae104da2cd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\Huge
+\tikz &#123;
+  \begin&#123;scope&#125;[transparency group]
+    \begin&#123;scope&#125;[blend mode=screen]
+      \fill[red!90!black]   ( 90:.6) circle (1);
+      \fill[green!80!black] (210:.6) circle (1);
+      \fill[blue!90!black]  (330:.6) circle (1);
+    \end&#123;scope&#125;
+  \end&#123;scope&#125;
+&#125;
+</code></pre>
+
+---
+
+## 4368. Other
+
+**ID**: `1ccf71024f44`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\tikz [blend group=screen] &#123;
+  \fill[red!90!black]   ( 90:.6) circle (1);
+  \fill[green!80!black] (210:.6) circle (1);
+  \fill[blue!90!black]  (330:.6) circle (1);
+&#125;
+</code></pre>
+
+---
+
+## 4369. Other
+
+**ID**: `2e4fff7b5abe`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzfadingfrompicture&#125;[name=fade right with circle]
+  \shade[left color=transparent!0,
+         right color=transparent!100] (0,0) rectangle (2,2);
+  \fill[transparent!50] (1,1) circle (0.7);
+\end&#123;tikzfadingfrompicture&#125;
+
+% Now we use the fading in another picture:
 \begin&#123;tikzpicture&#125;
-  \node[name=s,shape=nand gate US,shape example, inner sep=0cm,
-  logic gate inputs=&#123;in&#125;,
-  logic gate inverted radius=.5cm] &#123;Nand Gate\vrule width1pt height2cm&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, text/above, 30/above right,
-     mid/right, mid east/left, mid west/above,
-     base/below, base east/below, base west/left,
-     north/above, south/below, east/above, west/above,
-     north east/above, south east/below, south west/below, north west/above,
-     output/right, input 1/above, input 2/below&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
-\end&#123;tikzpicture&#125;
-</code></pre>
+  % Background
+  \fill [black!20] (-1.2,-1.2) rectangle (1.2,1.2);
+  \pattern [pattern=checkerboard,pattern color=black!30]
+                   (-1.2,-1.2) rectangle (1.2,1.2);
 
----
-
-## 4368. Node Graph
-
-**ID**: `0c6f0354a586`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[minimum size=1cm, use IEC style logic gates]
-    \tikzset&#123;every node/.style=&#123;nor gate, draw&#125;&#125;
-  \node (A) at (0,1.5) &#123;&#125;;
-  \node [logic gate symbol align=&#123;bottom, right&#125;] (B) at (0,0) &#123;&#125;;
-  \foreach \g in &#123;A, B&#125;&#123;
-    \foreach \i in &#123;1,2&#125;
-      \draw ([xshift=-0.5cm]\g.input \i) -- (\g.input \i);
-    \draw (\g.output) -- ([xshift=0.5cm]\g.output);
-  &#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 4369. Node Graph
-
-**ID**: `5fb509147ff2`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\Huge
-\begin&#123;tikzpicture&#125;
-  \node[name=s,shape=nand gate IEC ,shape example, inner xsep=1cm, inner ysep=1cm,
-    minimum height=6cm, nand gate IEC symbol=\color&#123;black!30&#125;\char`\&,
-    logic gate inputs=&#123;in&#125;,
-    logic gate inverted radius=0.65cm]
-  &#123;Nand Gate\vrule width1pt height2cm&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, text/above, 30/above right,
-     mid/right, mid east/left, mid west/above,
-     base/below, base east/below, base west/left,
-     north/above, south/below, east/above, west/above,
-     north east/above, south east/below, south west/below, north west/above,
-     output/right, input 1/above, input 2/below&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+  \fill [path fading=fade right with circle,red] (-1,-1) rectangle (1,1);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -380,187 +311,282 @@ set and gate graphic = and gate US graphic
 
 ## 4370. Other
 
-**ID**: `036274119459`  
+**ID**: `0419919b5e21`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-  \node [resistor] &#123;&#125;;
+\begin&#123;tikzfadingfrompicture&#125;[name=tikz]
+  \node [text=transparent!20,
+         font=\fontencoding&#123;T1&#125;\fontfamily&#123;ptm&#125;\fontsize&#123;45&#125;&#123;45&#125;\bfseries]
+    &#123;Ti\emph&#123;k&#125;Z&#125;;
+\end&#123;tikzfadingfrompicture&#125;
+
+% Now we use the fading in another picture:
+\begin&#123;tikzpicture&#125;
+  \fill [black!20] (-2,-1) rectangle (2,1);
+  \pattern [pattern=checkerboard,pattern color=black!30]
+                   (-2,-1) rectangle (2,1);
+
+  \shade[path fading=tikz,fit fading=false,
+         left color=blue,right color=black]
+    (-2,-1) rectangle (2,1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4371. Other
 
-**ID**: `dee72623d352`  
+**ID**: `a590c1f02e91`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-  \node [resistor,ohm=5] &#123;&#125;;
+\tikzfading[name=fade right,
+            left color=transparent!0,
+            right color=transparent!100]
+
+% Now we use the fading in another picture:
+\begin&#123;tikzpicture&#125;
+  % Background
+  \fill [black!20] (-1.2,-1.2) rectangle (1.2,1.2);
+  \path [pattern=checkerboard,pattern color=black!30]
+                   (-1.2,-1.2) rectangle (1.2,1.2);
+
+  \fill [red,path fading=fade right] (-1,-1) rectangle (1,1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4372. Other
 
-**ID**: `8a7c7543263d`  
+**ID**: `3d2f0daf28b3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-  \node [resistor=&#123;ohm=5&#125;] &#123;&#125;;
+\tikzfading[name=fade out,
+            inner color=transparent!0,
+            outer color=transparent!100]
+
+% Now we use the fading in another picture:
+\begin&#123;tikzpicture&#125;
+  % Background
+  \fill [black!20] (-1.2,-1.2) rectangle (1.2,1.2);
+  \path [pattern=checkerboard,pattern color=black!30]
+                   (-1.2,-1.2) rectangle (1.2,1.2);
+
+  \fill [blue,path fading=fade out] (-1,-1) rectangle (1,1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4373. Node Graph
+## 4373. Other
 
-**ID**: `c32087952d54`  
+**ID**: `0e9c8b2c250c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC] &#123;
-  \node (R1) [resistor,point up,ohm=5] at (3,1) &#123;&#125;;
-  \node (R2) [resistor,ohm=10k]        at (0,0) &#123;&#125;;
-  \draw (R2) -| (R1);
-&#125;
+\begin&#123;tikzpicture&#125;[path fading=south]
+  % Checker board
+  \fill [black!20] (0,0) rectangle (4,3);
+  \pattern [pattern=checkerboard,pattern color=black!30]
+                   (0,0) rectangle (4,3);
+
+  \fill [color=blue]                   (0.5,1.5) rectangle +(1,1);
+  \fill [color=blue,path fading=north] (2.5,1.5) rectangle +(1,1);
+
+  \fill [color=red,path fading]        (1,0.75) ellipse (.75 and .5);
+  \fill [color=red]                    (3,0.75) ellipse (.75 and .5);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4374. Other
 
-**ID**: `f1646cd06612`  
+**ID**: `f607ca84d555`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-  \draw (0,0) to [resistor=red]        (3,0)
-              to [resistor=&#123;ohm=2\mu&#125;] (3,2);
+\begin&#123;tikzpicture&#125;[path fading=fade down]
+  % Checker board
+  \fill [black!20] (0,0) rectangle (4,1.5);
+  \path [pattern=checkerboard,pattern color=black!30] (0,0) rectangle (4,1.5);
+
+  \fill [red,path fading,fading transform=&#123;rotate=90&#125;]
+    (1,0.75) ellipse (.75 and .5);
+  \fill [red,path fading,fading transform=&#123;rotate=30&#125;]
+    (3,0.75) ellipse (.75 and .5);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4375. Other
 
-**ID**: `0363d55f479d`  
+**ID**: `2b7d89bd6607`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC] \draw (0,0) to [resistor=&#123;ohm=5M&#125;] (0,2);
+\begin&#123;tikzpicture&#125;
+  % Checker board
+  \fill [black!20] (0,0) rectangle (4,4);
+  \path [pattern=checkerboard,pattern color=black!30] (0,0) rectangle (4,4);
+
+  \shade [ball color=blue,path fading=south] (2,2) circle (1.8);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4376. Other
 
-**ID**: `48382643a10e`  
+**ID**: `cbc87b09067f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC] \draw (0,0) to [resistor=&#123;ohm'=5M&#125;] (0,2);
+\tikzfading[name=fade inside,
+            inner color=transparent!80,
+            outer color=transparent!30]
+\begin&#123;tikzpicture&#125;
+  % Checker board
+  \fill [black!20] (0,0) rectangle (4,4);
+  \path [pattern=checkerboard,pattern color=black!30] (0,0) rectangle (4,4);
+
+  \shade [ball color=red] (3,3) circle (0.8);
+  \shade [ball color=white,path fading=fade inside] (2,2) circle (1.8);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4377. Other
 
-**ID**: `546138b5b27b`  
+**ID**: `254e7c47b446`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-  \draw (0,0) to [resistor=&#123;ohm sloped=5M&#125;] (0,2)
-        (2,0) to [resistor=&#123;ohm' sloped=6f&#125;]  (2,2);
+\tikzfading[name=middle,
+            top color=transparent!50,
+            bottom color=transparent!50,
+            middle color=transparent!20]
+\begin&#123;tikzpicture&#125;
+  \node      [circle,circular drop shadow,
+              pattern=horizontal lines dark blue,
+              path fading=south,
+              minimum size=3.6cm] &#123;&#125;;
+  \pattern   [path fading=north,
+              pattern=horizontal lines dark gray]
+    (0,0) circle (1.8cm);
+  \pattern   [path fading=middle,
+              pattern=crosshatch dots light steel blue]
+    (0,0) circle (1.8cm);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4378. Other
 
-**ID**: `2e89a5a68fbe`  
+**ID**: `8e8c3a88f448`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC] \draw (0,0) to [diode=light emitting] (2,0);
+\begin&#123;tikzpicture&#125;
+  \fill [black!20] (-2,-2) rectangle (2,2);
+  \pattern [pattern=checkerboard,pattern color=black!30]
+                   (-2,-2) rectangle (2,2);
+
+  % The bounding box of the shading:
+  \draw [red] (-50bp,-50bp) rectangle (50bp,50bp);
+
+  \path [scope fading=south,fit fading=false] (0,0);
+  % fading is centered at its natural size
+
+  \fill[red]   ( 90:1) circle (1);
+  \fill[green] (210:1) circle (1);
+  \fill[blue]  (330:1) circle (1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4379. Other
 
-**ID**: `b1a3584dd424`  
+**ID**: `aa5ecfd23704`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [circuit ee IEC]
-&#123;
-  \draw (0,2) to [diode=&#123;light emitting,info=not good&#125;] (2,2);
-  \draw (0,0) to [diode=&#123;light emitting=&#123;info=better&#125;,
-                         info'=also good&#125;]  (2,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \fill [black!20] (-2,-2) rectangle (2,2);
+  \pattern [pattern=checkerboard,pattern color=black!30]
+                   (-2,-2) rectangle (2,2);
+
+  \path [scope fading=south] (-2,-2) rectangle (2,2);
+
+  \fill[red]   ( 90:1) circle (1);
+  \fill[green] (210:1) circle (1);
+  \fill[blue]  (330:1) circle (1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4380. Other
 
-**ID**: `3be0622f0701`  
+**ID**: `654575bc2cbe`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\draw (0,0)  to [resistor=light emitting] (2,0)  to [diode=light emitting'] (4,0);
+\tikz \node [scope fading=south,fading angle=45,text width=3.5cm]
+&#123;
+  This is some text that will fade out as we go right
+  and down. It is pretty hard to achieve this effect in
+  other ways.
+&#125;;
 </code></pre>
 
 ---
 
-## 4381. Node Graph
+## 4381. Other
 
-**ID**: `89a932760a53`  
+**ID**: `5549387aba40`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \pgfsetarrowoptions&#123;direction ee&#125;&#123;6cm&#125;
-  \node[name=s,shape=direction ee,shape example,minimum height=0.7654*6cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\begin&#123;tikzpicture&#125;[opacity=.5]
+  \draw [line width=5mm] (0,0) -- (2,2);
+  \draw [line width=5mm] (2,0) -- (0,2);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4382. Node Graph
+## 4382. Other
 
-**ID**: `3d8e9d63d732`  
+**ID**: `3703b0e90812`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[direction ee arrow=angle 45]
-  \node[name=s,shape=direction ee,shape example,minimum height=1.75cm] &#123;&#125;;
-  \foreach \anchor/\placement in &#123;north/above, south/below,
-                                  output/right, input/left&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\begin&#123;tikzpicture&#125;
+  \node at (0,0) [forbidden sign,line width=2ex,draw=red,fill=white] &#123;Smoking&#125;;
+
+  \node [opacity=.5]
+        at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white] &#123;Smoking&#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -568,40 +594,35 @@ set and gate graphic = and gate US graphic
 
 ## 4383. Other
 
-**ID**: `f46d6be5148d`  
+**ID**: `193cb5e9f095`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node [generic circle IEC,
-             /pgf/generic circle IEC/before background=&#123;
-               \pgfpathmoveto&#123;\pgfpointorigin&#125;
-               \pgfpathlineto&#123;\pgfpoint&#123;1pt&#125;&#123;0pt&#125;&#125;
-               \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;1pt&#125;&#125;
-               \pgfpathlineto&#123;\pgfpoint&#123;-0.5pt&#125;&#123;-0.5pt&#125;&#125;
-               \pgfusepathqstroke
-             &#125;,
-             draw] &#123;Hello world&#125;;
+\begin&#123;tikzpicture&#125;[opacity=.5]
+  \begin&#123;scope&#125;[transparency group]
+    \draw [line width=5mm] (0,0) -- (2,2);
+    \draw [line width=5mm] (2,0) -- (0,2);
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4384. Node Graph
+## 4384. Other
 
-**ID**: `466e0067b550`  
+**ID**: `dc692fdfdd4e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  \node[name=s,shape=generic diode IEC,shape example,minimum size=6cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+  \node at (0,0) [forbidden sign,line width=2ex,draw=red,fill=white] &#123;Smoking&#125;;
+
+  \begin&#123;scope&#125;[opacity=.5,transparency group]
+    \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
+      &#123;Smoking&#125;;
+  \end&#123;scope&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -609,106 +630,113 @@ set and gate graphic = and gate US graphic
 
 ## 4385. Other
 
-**ID**: `e0435187784c`  
+**ID**: `5c56653f53e5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node [minimum size=1cm,generic diode IEC,
-             /pgf/generic diode IEC/before background=&#123;
-               \pgfpathmoveto&#123;\pgfqpoint&#123;-.5pt&#125;&#123;-1pt&#125;&#125;
-               \pgfpathlineto&#123;\pgfqpoint&#123;.5pt&#125;&#123;-1pt&#125;&#125;
-               \pgfpathmoveto&#123;\pgfqpoint&#123;0pt&#125;&#123;-1pt&#125;&#125;
-               \pgfpathlineto&#123;\pgfqpoint&#123;0pt&#125;&#123;1pt&#125;&#125;
-               \pgfpathmoveto&#123;\pgfqpoint&#123;-.5pt&#125;&#123;1pt&#125;&#125;
-               \pgfpathlineto&#123;\pgfqpoint&#123;.5pt&#125;&#123;1pt&#125;&#125;
-               \pgfusepathqstroke
-             &#125;,
-             draw] &#123;&#125;;
+\begin&#123;tikzpicture&#125;
+  \pattern[pattern=checkerboard,pattern color=black!15](-1,-1) rectangle (3,1);
+  \node at (0,0) [forbidden sign,line width=2ex,draw=red,fill=white] &#123;Smoking&#125;;
+
+  \begin&#123;scope&#125;[transparency group,opacity=.5]
+    \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
+      &#123;Smoking&#125;;
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4386. Node Graph
 
-**ID**: `b29e6a4049dd`  
+**ID**: `f10fd283eb5f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  \node[name=s,shape=breakdown diode IEC,shape example,minimum width=6cm,minimum height=4cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+  \pattern[pattern=checkerboard,pattern color=black!15](-1,-1) rectangle (3,1);
+  \node at (0,0) [forbidden sign,line width=2ex,draw=red,fill=white] &#123;Smoking&#125;;
+
+  \begin&#123;scope&#125;[transparency group,opacity=.5]
+    \node (s) at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
+    &#123;Smoking&#125;;
+
+    \draw [opacity=.5, line width=2ex, blue] (1.2,0) -- (2.8,0);
+  \end&#123;scope&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4387. Node Graph
+## 4387. Other
 
-**ID**: `21c51f13fad7`  
+**ID**: `6f0a53889e31`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  \node[name=s,shape=var resistor IEC,shape example,minimum width=7cm,minimum height=1cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+  \shade [left color=red,right color=blue] (-2,-1) rectangle (2,1);
+  \begin&#123;scope&#125;[transparency group=knockout]
+    \fill [white] (-1.9,-.9) rectangle (1.9,.9);
+    \node [opacity=0,
+           font=\fontencoding&#123;T1&#125;\fontfamily&#123;ptm&#125;\fontsize&#123;45&#125;&#123;45&#125;\bfseries]
+      &#123;Ti\emph&#123;k&#125;Z&#125;;
+  \end&#123;scope&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4388. Node Graph
+## 4388. Other
 
-**ID**: `15aaf7c0a664`  
+**ID**: `886919348ea8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node[name=s,shape=inductor IEC,shape example,minimum width=7cm,minimum height=1cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
-\end&#123;tikzpicture&#125;
+\tikz \draw[thick,rounded corners=8pt]
+  (0,0) -- (0,2) -- (1,3.25) -- (2,2) -- (2,0) -- (0,2) -- (2,2) -- (0,0) -- (2,0);
 </code></pre>
 
 ---
 
-## 4389. Node Graph
+## 4389. Other
 
-**ID**: `6310308ecdc6`  
+**ID**: `d9c51d93bbf5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node[name=s,shape=capacitor IEC,shape example,
-        minimum width=2cm,minimum height=3cm,inner sep=0pt] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\begin&#123;tikzpicture&#125;[-&gt;,&gt;=&#123;Stealth[round]&#125;,shorten &gt;=1pt,auto,node distance=2.8cm,on grid,semithick,
+                    every state/.style=&#123;fill=red,draw=none,circular drop shadow,text=white&#125;]
+
+  \node[initial,state] (A)                    &#123;$q_a$&#125;;
+  \node[state]         (B) [above right=of A] &#123;$q_b$&#125;;
+  \node[state]         (D) [below right=of A] &#123;$q_d$&#125;;
+  \node[state]         (C) [below right=of B] &#123;$q_c$&#125;;
+  \node[state]         (E) [below=of D]       &#123;$q_e$&#125;;
+
+  \path (A) edge              node &#123;0,1,L&#125; (B)
+            edge              node &#123;1,1,R&#125; (C)
+        (B) edge [loop above] node &#123;1,1,L&#125; (B)
+            edge              node &#123;0,1,L&#125; (C)
+        (C) edge              node &#123;0,1,L&#125; (D)
+            edge [bend left]  node &#123;1,0,R&#125; (E)
+        (D) edge [loop below] node &#123;1,1,R&#125; (D)
+            edge              node &#123;0,1,R&#125; (A)
+        (E) edge [bend left]  node &#123;1,0,R&#125; (A);
+
+   \node [right=1cm,text width=8cm] at (C)
+   &#123;
+     The current candidate for the busy beaver for five states. It is
+     presumed that this Turing machine writes a maximum number of
+     $1$'s before halting among all Turing machines with five states
+     and the tape alphabet $\&#123;0, 1\&#125;$. Proving this conjecture is an
+     open research problem.
+   &#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -716,230 +744,344 @@ set and gate graphic = and gate US graphic
 
 ## 4390. Other
 
-**ID**: `83c77387d288`  
+**ID**: `3e3d976972e8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node[shape=battery IEC,shape example,minimum size=2cm,
-            inner sep=0pt] &#123;&#125;;
+\begin&#123;tikzpicture&#125;[angle radius=.75cm]
+
+  \node (A) at (-2,0)     [red,left]   &#123;$A$&#125;;
+  \node (B) at ( 3,.5)    [red,right]  &#123;$B$&#125;;
+  \node (C) at (-2,2)     [blue,left]  &#123;$C$&#125;;
+  \node (D) at ( 3,2.5)   [blue,right] &#123;$D$&#125;;
+  \node (E) at (60:-5mm)  [below]      &#123;$E$&#125;;
+  \node (F) at (60:3.5cm) [above]      &#123;$F$&#125;;
+
+  \coordinate (X) at (intersection cs:first line=&#123;(A)--(B)&#125;, second line=&#123;(E)--(F)&#125;);
+  \coordinate (Y) at (intersection cs:first line=&#123;(C)--(D)&#125;, second line=&#123;(E)--(F)&#125;);
+
+  \path
+    (A) edge [red, thick]  (B)
+    (C) edge [blue, thick] (D)
+    (E) edge [thick]       (F)
+      pic ["$\alpha$", draw, fill=yellow]   &#123;angle = F--X--A&#125;
+      pic ["$\beta$",  draw, fill=green!30] &#123;angle = B--X--F&#125;
+      pic ["$\gamma$", draw, fill=yellow]   &#123;angle = E--Y--D&#125;
+      pic ["$\delta$", draw, fill=green!30] &#123;angle = C--Y--E&#125;;
+
+  \node at ($ (D)!.5!(B) $) [right=1cm,text width=6cm,rounded corners,fill=red!20,inner sep=1ex]
+    &#123;
+      When we assume that $\color&#123;red&#125;AB$ and $\color&#123;blue&#125;CD$ are
+      parallel, i.\,e., $&#123;\color&#123;red&#125;AB&#125; \mathbin&#123;\|&#125; \color&#123;blue&#125;CD$,
+      then $\alpha = \gamma$ and $\beta = \delta$.
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4391. Other
 
-**ID**: `0e6d3847c99e`  
+**ID**: `d224090f0f8b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node[shape=ground IEC,shape example,minimum size=2cm,
-            inner sep=0pt] &#123;&#125;;
+\tikz [nodes=&#123;text height=.7em, text depth=.2em,
+              draw=black!20, thick, fill=white, font=\footnotesize&#125;,
+       &gt;=&#123;Stealth[round,sep]&#125;, rounded corners, semithick]
+  \graph [layered layout, level distance=1cm, sibling sep=.5em, sibling distance=1cm] &#123;
+    "5th Edition" -&gt; &#123; "6th Edition", "PWB 1.0" &#125;;
+    "6th Edition" -&gt; &#123; "LSX" [&gt;child anchor=45],  "1 BSD", "Mini Unix", "Wollongong", "Interdata" &#125;;
+    "Interdata" -&gt; &#123; "Unix/TS 3.0", "PWB 2.0", "7th Edition" &#125;;
+    "7th Edition" -&gt; &#123; "8th Edition", "32V", "V7M", "Ultrix-11", "Xenix", "UniPlus+" &#125;;
+    "V7M" -&gt; "Ultrix-11";
+    "8th Edition" -&gt; "9th Edition";
+    "1 BSD" -&gt; "2 BSD" -&gt; "2.8 BSD" -&gt; &#123; "Ultrix-11", "2.9 BSD" &#125;;
+    "32V" -&gt; "3 BSD" -&gt; "4 BSD" -&gt; "4.1 BSD" -&gt; &#123; "4.2 BSD", "2.8 BSD", "8th Edition" &#125;;
+    "4.2 BSD" -&gt; &#123; "4.3 BSD", "Ultrix-32" &#125;;
+    "PWB 1.0" -&gt; &#123; "PWB 1.2" -&gt; "PWB 2.0", "USG 1.0" -&gt; &#123; "CB Unix 1", "USG 2.0" &#125;&#125;;
+    "CB Unix 1" -&gt; "CB Unix 2" -&gt; "CB Unix 3" -&gt; &#123; "Unix/TS++", "PDP-11 Sys V" &#125;;
+    &#123; "USG 2.0" -&gt; "USG 3.0", "PWB 2.0", "Unix/TS 1.0" &#125; -&gt; "Unix/TS 3.0";
+    &#123; "Unix/TS++", "CB Unix 3", "Unix/TS 3.0" &#125; -&gt; "TS 4.0" -&gt; "System V.0" -&gt; "System V.2" -&gt; "System V.3";
+  &#125;;
 </code></pre>
 
 ---
 
 ## 4392. Node Graph
 
-**ID**: `f2c3d35f84b3`  
+**ID**: `5dbbde82f7be`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node[name=s,shape=make contact IEC,shape example,minimum width=3cm,minimum height=1cm] &#123;&#125;;
-  \foreach \anchor/\placement in
-    &#123;center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right&#125;
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
-       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
-\end&#123;tikzpicture&#125;
+\tikzset&#123;
+  ld/.style=&#123;level distance=#1&#125;,lw/.style=&#123;line width=#1&#125;,
+  level 1/.style=&#123;ld=4.5mm, trunk,          lw=1ex ,sibling angle=60&#125;,
+  level 2/.style=&#123;ld=3.5mm, trunk!80!leaf a,lw=.8ex,sibling angle=56&#125;,
+  level 3/.style=&#123;ld=2.75mm,trunk!60!leaf a,lw=.6ex,sibling angle=52&#125;,
+  level 4/.style=&#123;ld=2mm,   trunk!40!leaf a,lw=.4ex,sibling angle=48&#125;,
+  level 5/.style=&#123;ld=1mm,   trunk!20!leaf a,lw=.3ex,sibling angle=44&#125;,
+  level 6/.style=&#123;ld=1.75mm,leaf a,         lw=.2ex,sibling angle=40&#125;,
+&#125;
+\pgfarrowsdeclare&#123;leaf&#125;&#123;leaf&#125;
+  &#123;\pgfarrowsleftextend&#123;-2pt&#125; \pgfarrowsrightextend&#123;1pt&#125;&#125;
+&#123;
+  \pgfpathmoveto&#123;\pgfpoint&#123;-2pt&#125;&#123;0pt&#125;&#125;
+  \pgfpatharc&#123;150&#125;&#123;30&#125;&#123;1.8pt&#125;
+  \pgfpatharc&#123;-30&#125;&#123;-150&#125;&#123;1.8pt&#125;
+  \pgfusepathqfill
+&#125;
+
+\newcommand&#123;\logo&#125;[5]
+&#123;
+  \colorlet&#123;border&#125;&#123;#1&#125;
+  \colorlet&#123;trunk&#125;&#123;#2&#125;
+  \colorlet&#123;leaf a&#125;&#123;#3&#125;
+  \colorlet&#123;leaf b&#125;&#123;#4&#125;
+  \begin&#123;tikzpicture&#125;
+    \scriptsize\scshape
+    \draw[border,line width=1ex,yshift=.3cm,
+          yscale=1.45,xscale=1.05,looseness=1.42]
+      (1,0) to [out=90, in=0]    (0,1)  to [out=180,in=90]  (-1,0)
+            to [out=-90,in=-180] (0,-1) to [out=0,  in=-90] (1,0) -- cycle;
+
+    \coordinate (root) [grow cyclic,rotate=90]
+    child &#123;
+      child [line cap=round] foreach \a in &#123;0,1&#125; &#123;
+        child foreach \b in &#123;0,1&#125; &#123;
+          child foreach \c in &#123;0,1&#125; &#123;
+            child foreach \d in &#123;0,1&#125; &#123;
+              child foreach \leafcolor in &#123;leaf a,leaf b&#125;
+                &#123; edge from parent [color=\leafcolor,-#5] &#125;
+        &#125; &#125; &#125;
+      &#125; edge from parent [shorten &gt;=-1pt,serif cm-,line cap=butt]
+    &#125;;
+... (truncated)
 </code></pre>
 
 ---
 
 ## 4393. Other
 
-**ID**: `d0d7f06e8b7b`  
+**ID**: `3c205f9dc6ac`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node[shape=var make contact IEC,shape example,
-            minimum height=1cm,minimum width=3cm,inner sep=0pt] &#123;&#125;;
+\tikz \datavisualization [scientific axes=clean]
+[
+  visualize as smooth line=Gaussian,
+  Gaussian=&#123;pin in data=&#123;text=&#123;$e^&#123;-x^2&#125;$&#125;,when=x is 1&#125;&#125;
+]
+data [format=function] &#123;
+  var x : interval [-7:7] samples 51;
+  func y = exp(-\value x*\value x);
+&#125;
+[
+  visualize as scatter,
+  legend=&#123;south east outside&#125;,
+  scatter=&#123;
+    style=&#123;mark=*,mark size=1.4pt&#125;,
+    label in legend=&#123;text=&#123;
+        $\sum_&#123;i=1&#125;^&#123;10&#125; x_i$, where $x_i \sim U(-1,1) $&#125;&#125;&#125;
+]
+data [format=function] &#123;
+  var i : interval [0:1] samples 20;
+  func y = 0;
+  func x = (rand + rand + rand + rand + rand +
+            rand + rand + rand + rand + rand);
+&#125;;
 </code></pre>
 
 ---
 
 ## 4394. Other
 
-**ID**: `38bb17b226a0`  
+**ID**: `3f2bd62cb2f3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node[shape=break contact IEC,shape example,
-            minimum height=1cm,minimum width=3cm,inner sep=0pt] &#123;&#125;;
+\begin&#123;tikzpicture&#125;[scale=2]
+  \shade[top color=blue,bottom color=gray!50] (0,0) parabola (1.5,2.25) |- (0,0);
+  \draw (1.05cm,2pt) node[above] &#123;$\displaystyle\int_0^&#123;3/2&#125; \!\!x^2\mathrm&#123;d&#125;x$&#125;;
+
+  \draw[help lines] (0,0) grid (3.9,3.9)
+       [step=0.25cm]      (1,2) grid +(1,1);
+
+  \draw[-&gt;] (-0.2,0) -- (4,0) node[right] &#123;$x$&#125;;
+  \draw[-&gt;] (0,-0.2) -- (0,4) node[above] &#123;$f(x)$&#125;;
+
+  \foreach \x/\xtext in &#123;1/1, 1.5/1\frac&#123;1&#125;&#123;2&#125;, 2/2, 3/3&#125;
+    \draw[shift=&#123;(\x,0)&#125;] (0pt,2pt) -- (0pt,-2pt) node[below] &#123;$\xtext$&#125;;
+
+  \foreach \y/\ytext in &#123;1/1, 2/2, 2.25/2\frac&#123;1&#125;&#123;4&#125;, 3/3&#125;
+    \draw[shift=&#123;(0,\y)&#125;] (2pt,0pt) -- (-2pt,0pt) node[left] &#123;$\ytext$&#125;;
+
+  \draw (-.5,.25) parabola bend (0,0) (2,4) node[below right] &#123;$x^2$&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4395. Other
 
-**ID**: `2af539f9c665`  
+**ID**: `e2d35e9759e5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw decorate[decoration=zigzag] &#123;(0,0) -- (3,0)&#125;;
+\pgfmathsetseed&#123;1&#125;
+\foreach \col in &#123;black,red,green,blue&#125;
+&#123;
+  \begin&#123;tikzpicture&#125;[x=10pt,y=10pt,ultra thick,baseline,line cap=round]
+    \coordinate (current point) at (0,0);
+    \coordinate (old velocity) at (0,0);
+    \coordinate (new velocity) at (rand,rand);
+
+    \foreach \i in &#123;0,1,...,100&#125;
+    &#123;
+      \draw[\col!\i] (current point)
+      .. controls ++([scale=-1]old velocity) and
+                  ++(new velocity) .. ++(rand,rand)
+         coordinate (current point);
+      \coordinate (old velocity) at (new velocity);
+      \coordinate (new velocity) at (rand,rand);
+    &#125;
+  \end&#123;tikzpicture&#125;
+&#125;
 </code></pre>
 
 ---
 
 ## 4396. Other
 
-**ID**: `90789791f28c`  
+**ID**: `70e27fa58c2e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \path decorate [decoration=&#123;text along path,
-     text=&#123;Some text along a path&#125;&#125;]
-   &#123; (0,2) .. controls (2,2) and (1,0) .. (3,0) &#125;;
+\begin&#123;tikzpicture&#125;
+  \draw[gray,very thin] (-1.9,-1.9) grid (2.9,3.9)
+          [step=0.25cm] (-1,-1) grid (1,1);
+  \draw[blue] (1,-2.1) -- (1,4.1); % asymptote
+
+  \draw[-&gt;] (-2,0) -- (3,0) node[right] &#123;$x(t)$&#125;;
+  \draw[-&gt;] (0,-2) -- (0,4) node[above] &#123;$y(t)$&#125;;
+
+  \foreach \pos in &#123;-1,2&#125;
+    \draw[shift=&#123;(\pos,0)&#125;] (0pt,2pt) -- (0pt,-2pt) node[below] &#123;$\pos$&#125;;
+
+  \foreach \pos in &#123;-1,1,2,3&#125;
+    \draw[shift=&#123;(0,\pos)&#125;] (2pt,0pt) -- (-2pt,0pt) node[left] &#123;$\pos$&#125;;
+
+  \fill (0,0) circle (0.064cm);
+  \draw[thick,parametric,domain=0.4:1.5,samples=200]
+    % The plot is reparameterised such that there are more samples
+    % near the center.
+    plot[id=asymptotic-example] function&#123;(t*t*t)*sin(1/(t*t*t)),(t*t*t)*cos(1/(t*t*t))&#125;
+    node[right] &#123;$\bigl(x(t),y(t)\bigr) = (t\sin \frac&#123;1&#125;&#123;t&#125;, t\cos \frac&#123;1&#125;&#123;t&#125;)$&#125;;
+
+  \fill[red] (0.63662,0) circle (2pt)
+    node [below right,fill=white,yshift=-4pt] &#123;$(\frac&#123;2&#125;&#123;\pi&#125;,0)$&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4397. Other
+## 4397. Node Graph
 
-**ID**: `bd70b4e162a7`  
+**ID**: `f4539b5f241a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;5pt&#125;&#125;
-\pgfpathlineto&#123;\pgfpoint&#123;15pt&#125;&#123;-5pt&#125;&#125;
-\pgfpathlineto&#123;\pgfpoint&#123;20pt&#125;&#123;0pt&#125;&#125;
+\begin&#123;tikzpicture&#125;
+  [shorten &gt;=1pt,-&gt;,
+   vertex/.style=&#123;circle,fill=black!25,minimum size=17pt,inner sep=0pt&#125;]
+
+  \foreach \name/\x in &#123;s/1, 2/2, 3/3, 4/4, 15/11, 16/12, 17/13, 18/14, 19/15, t/16&#125;
+    \node[vertex] (G-\name) at (\x,0) &#123;$\name$&#125;;
+
+  \foreach \name/\angle/\text in &#123;P-1/234/5, P-2/162/6, P-3/90/7, P-4/18/8, P-5/-54/9&#125;
+    \node[vertex,xshift=6cm,yshift=.5cm] (\name) at (\angle:1cm) &#123;$\text$&#125;;
+
+  \foreach \name/\angle/\text in &#123;Q-1/234/10, Q-2/162/11, Q-3/90/12, Q-4/18/13, Q-5/-54/14&#125;
+    \node[vertex,xshift=9cm,yshift=.5cm] (\name) at (\angle:1cm) &#123;$\text$&#125;;
+
+  \foreach \from/\to in &#123;s/2,2/3,3/4,3/4,15/16,16/17,17/18,18/19,19/t&#125;
+    \draw (G-\from) -- (G-\to);
+
+  \foreach \from/\to in &#123;1/2,2/3,3/4,4/5,5/1,1/3,2/4,3/5,4/1,5/2&#125;
+    &#123; \draw (P-\from) -- (P-\to); \draw (Q-\from) -- (Q-\to); &#125;
+
+  \draw (G-3) .. controls +(-30:2cm) and +(-150:1cm) .. (Q-1);
+  \draw (Q-5) -- (G-15);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4398. Other
 
-**ID**: `412326b5990a`  
+**ID**: `a09407bb84be`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfdeclaredecoration&#123;example&#125;&#123;initial&#125;
-&#123;
-  \state&#123;initial&#125;[width=10pt]
-  &#123;
-    \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;5pt&#125;&#125;
-    \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;5pt&#125;&#125;
-    \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;-5pt&#125;&#125;
-    \pgfpathlineto&#123;\pgfpoint&#123;10pt&#125;&#123;-5pt&#125;&#125;
-    \pgfpathlineto&#123;\pgfpoint&#123;10pt&#125;&#123;0pt&#125;&#125;
-  &#125;
-  \state&#123;final&#125;
-  &#123;
-    \pgfpathlineto&#123;\pgfpointdecoratedpathlast&#125;
-  &#125;
-&#125;
-\tikz[decoration=example]
-&#123;
-  \draw [decorate]     (0,0) -- (3,0);
-  \draw [red,decorate] (0,0) to [out=45,in=135] (3,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw[line width=0.3cm,color=red!30,line cap=round,line join=round] (0,0)--(2,0)--(2,5);
+  \draw[help lines] (-2.5,-2.5) grid (5.5,7.5);
+  \draw[very thick] (1,-1)--(-1,-1)--(-1,1)--(0,1)--(0,0)--
+    (1,0)--(1,-1)--(3,-1)--(3,2)--(2,2)--(2,3)--(3,3)--
+    (3,5)--(1,5)--(1,4)--(0,4)--(0,6)--(1,6)--(1,5)
+    (3,3)--(4,3)--(4,5)--(3,5)--(3,6)
+    (3,-1)--(4,-1);
+  \draw[below left] (0,0) node(s)&#123;$s$&#125;;
+  \draw[below left] (2,5) node(t)&#123;$t$&#125;;
+  \fill (0,0) circle (0.06cm) (2,5) circle (0.06cm);
+  \draw[-&gt;,rounded corners=0.2cm,shorten &gt;=2pt]
+    (1.5,0.5)-- ++(0,-1)-- ++(1,0)-- ++(0,2)-- ++(-1,0)-- ++(0,2)-- ++(1,0)--
+    ++(0,1)-- ++(-1,0)-- ++(0,-1)-- ++(-2,0)-- ++(0,3)-- ++(2,0)-- ++(0,-1)--
+    ++(1,0)-- ++(0,1)-- ++(1,0)-- ++(0,-1)-- ++(1,0)-- ++(0,-3)-- ++(-2,0)--
+    ++(1,0)-- ++(0,-3)-- ++(1,0)-- ++(0,-1)-- ++(-6,0)-- ++(0,3)-- ++(2,0)--
+    ++(0,-1)-- ++(1,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4399. Other
 
-**ID**: `b65b49db0021`  
+**ID**: `51e3ece76010`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfdeclaredecoration&#123;stars&#125;&#123;initial&#125;&#123;
-  \state&#123;initial&#125;[width=15pt]
-  &#123;
-    \pgfmathparse&#123;round(rnd*100)&#125;
-    \pgfsetfillcolor&#123;yellow!\pgfmathresult!orange&#125;
-    \pgfsetstrokecolor&#123;yellow!\pgfmathresult!red&#125;
-    \pgfnode&#123;star&#125;&#123;center&#125;&#123;&#125;&#123;&#125;&#123;\pgfusepath&#123;stroke,fill&#125;&#125;
-  &#125;
-  \state&#123;final&#125;
-  &#123;
-    \pgfpathmoveto&#123;\pgfpointdecoratedpathlast&#125;
-  &#125;
-&#125;
-\tikz\path[decorate, decoration=stars, star point ratio=2, star points=5,
-           inner sep=0, minimum size=rnd*10pt+2pt]
-  (0,0) .. controls (0,2)  and (3,2)  .. (3,0)
-        .. controls (3,-3) and (0,0)  .. (0,-3)
-        .. controls (0,-5) and (3,-5) .. (3,-3);
+\tikz[automaton] \graph &#123; a[state, initial] -&gt;[transition] b [state] -&gt;[transition] c[state, final] &#125;;
 </code></pre>
 
 ---
 
 ## 4400. Other
 
-**ID**: `b7ac2f743450`  
+**ID**: `eb123fec3f54`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfdeclaredecoration&#123;complicated example decoration&#125;&#123;initial&#125;
-&#123;
-  \state&#123;initial&#125;[width=5pt,next state=up]
-  &#123; \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;0pt&#125;&#125; &#125;
-
-  \state&#123;up&#125;[width=5pt,next state=down]
-  &#123;
-    \ifdim\pgfdecoratedremainingdistance&gt;\pgfdecoratedcompleteddistance
-      % Growing
-      \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;\pgfdecoratedcompleteddistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;\pgfdecoratedcompleteddistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;0pt&#125;&#125;
-    \else
-      % Shrinking
-      \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;\pgfdecoratedremainingdistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;\pgfdecoratedremainingdistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;0pt&#125;&#125;
-    \fi%
-  &#125;
-  \state&#123;down&#125;[width=5pt,next state=up]
-  &#123;
-    \ifdim\pgfdecoratedremainingdistance&gt;\pgfdecoratedcompleteddistance
-      % Growing
-      \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;-\pgfdecoratedcompleteddistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;-\pgfdecoratedcompleteddistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;0pt&#125;&#125;
-    \else
-      % Shrinking
-      \pgfpathlineto&#123;\pgfpoint&#123;0pt&#125;&#123;-\pgfdecoratedremainingdistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;-\pgfdecoratedremainingdistance&#125;&#125;
-      \pgfpathlineto&#123;\pgfpoint&#123;5pt&#125;&#123;0pt&#125;&#125;
-    \fi%
-  &#125;
-  \state&#123;final&#125;
-  &#123;
-    \pgfpathlineto&#123;\pgfpointdecoratedpathlast&#125;
-  &#125;
-&#125;
-\begin&#123;tikzpicture&#125;[decoration=complicated example decoration]
-  \draw decorate&#123; (0,0) -- (3,0)&#125;;
-  \fill [red!50,rounded corners=2pt]
-    decorate &#123;(.5,-2) -- ++(2.
-... (truncated)
+\scoped [rdf engine = &#123;
+  prefix = &#123;rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns\tikzrdfhashmark&#125;,
+  prefix = &#123;automata: http://www.tcs.uni-luebeck.de/ontologies/2016/04/28/automata/&#125;,
+  statement = &#123; ..., predicate = rdf:type, object = automata:state &#125;,
+  statement = &#123; ..., predicate = rdf:type, object = automata:final &#125;,
+  &#125;] ...
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-086) | Page 88 of 107 | [Next →](executable_example-page-088)
+[← Previous](executable_example-page-086) | Page 88 of 120 | [Next →](executable_example-page-088)

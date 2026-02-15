@@ -1,826 +1,970 @@
 ---
 title: "Executable Examples - Page 66"
-description: "Items 3251-3300 of 5325 executable examples"
+description: "Items 3251-3300 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 66
 
-Showing items **3251-3300** of **5325**
+Showing items **3251-3300** of **5999**
 
-[← Previous](executable_example-page-064) | Page 66 of 107 | [Next →](executable_example-page-066)
+[← Previous](executable_example-page-064) | Page 66 of 120 | [Next →](executable_example-page-066)
 
 ---
 
 ## 3251. Other
 
-**ID**: `74eddb7816ba`  
+**ID**: `6aef8c99f48f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [animate = &#123;
-  id = 1, n:shift = &#123; 0s = "&#123;(0,0)&#125;", 2s = "&#123;(0,5mm)&#125;", begin on = click &#125;,
-  id = 2, n:shift = &#123; 0s = "&#123;(0,0)&#125;", 2s = "&#123;(5mm,0)&#125;", begin on = click &#125;
-&#125;]
-  \node (n) [fill = blue!20, draw=blue, very thick] &#123;The node&#125;;
+(\tikzparentnode\tikzparentanchor) -- (\tikzchildnode\tikzchildanchor)
 </code></pre>
 
 ---
 
 ## 3252. Other
 
-**ID**: `47a5201f34f3`  
+**ID**: `562f448f4517`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :fill = &#123; begin on = click,
-    0s = "white",
-    500ms later = "red",
-    500ms later = "green",  % same as 1s   = "-5mm"
-    500ms later = "blue"&#125; % same as 1.5s = "-2.5mm"
-  [fill=blue!20, draw=blue, very thick, circle] &#123;Click me&#125;;
+\begin&#123;tikzpicture&#125;[level distance=15mm, sibling distance=15mm,
+  edge from parent path=
+  &#123;(\tikzparentnode.south) .. controls +(0,-1) and +(0,1)
+                           .. (\tikzchildnode.north)&#125;]
+  \node &#123;root&#125;
+    child &#123;node &#123;left&#125;&#125;
+    child &#123;node &#123;right&#125;
+      child &#123;node &#123;child&#125;&#125;
+      child &#123;node &#123;child&#125;&#125;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3253. Other
 
-**ID**: `daea2e1a4112`  
+**ID**: `255f5a4a8606`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-time = 2s,
-time = 1s later,    % same as time = 3s
-time = 500ms later, % same as time = 3.5s
-time = 4s,
-time = 1s later,    % same as time = 5s
-scope = &#123;           % opens a local scope
-  time = 1s later,  % same as time = 6s
-  time = 10s
-  time = 1s later   % same as time = 11s
-&#125;,                  % closes the scope, most recent time is 5s once more
-time = 2s later     % same as time = 7s
+\node (root) &#123;&#125; child &#123;node (child) &#123;&#125; edge to parent node &#123;label&#125;&#125;;
 </code></pre>
 
 ---
 
 ## 3254. Other
 
-**ID**: `57c5058f034b`  
+**ID**: `b4a9da37a8ae`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [animate/highlight/.style = &#123;
-    scope = &#123; fork = #1,
-              :fill = &#123; 0s = "black", 0.1s = "white", 0.2s = "black"&#125; &#125;
-  &#125;]
-  \node [animate = &#123; myself: = &#123;
-            :fill = &#123; 0s = "black", begin on = click &#125;,
-                      highlight = 1s, highlight = 2s &#125; &#125;,
-         fill = blue, text=white, very thick, circle] &#123; Click me &#125;;
+(root) -- (child) node [pos=0.5] &#123;label&#125;
 </code></pre>
 
 ---
 
 ## 3255. Other
 
-**ID**: `9809c2e76726`  
+**ID**: `7c9e7ffa89ef`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-time = 2s,
-fork = 2s later,    % fork time is now 4s
-time = 1s,          % local time is 1s, absolute time is 5s (1s + fork time)
-time = 1s later,    % local time is 2s, absolute time is 6s (2s + fork time)
-remember = \mytime  % \mytime is now 6s
+\begin&#123;tikzpicture&#125;
+  \node &#123;root&#125;
+    child &#123;
+      node &#123;left&#125;
+      edge from parent
+        node[left] &#123;a&#125;
+        node[right] &#123;b&#125;
+    &#125;
+    child &#123;
+      node &#123;right&#125;
+        child &#123;
+          node &#123;child&#125;
+          edge from parent
+            node[left] &#123;c&#125;
+        &#125;
+        child &#123;node &#123;child&#125;&#125;
+      edge from parent
+        node[near end] &#123;x&#125;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3256. Other
 
-**ID**: `ebcc809df3d2`  
+**ID**: `d4fa46c34aef`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-fork = 4s,
-time = 1s,
-remember = \mytime  % \mytime is now 5s
-fork = 2s,          % fork time is now 2s, local time is 0s
-resume   = \mytime  % fork time is still 2s, local time is 3s
+\begin&#123;tikzpicture&#125;
+  \node &#123;root&#125;
+    [child anchor=north]
+    child &#123;node &#123;left&#125; edge from parent[dashed]&#125;
+    child &#123;node &#123;right&#125;
+      child &#123;node &#123;child&#125;&#125;
+      child &#123;node &#123;child&#125; edge from parent[draw=none]&#125;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3257. Other
 
-**ID**: `68723642240f`  
+**ID**: `03d261b44dfb`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-scope = &#123;
-  fork,
-  time = 1s later,
-  ...
-  remember = \forka
-&#125;,
-scope = &#123;
-  fork,
-  time = 5s later,
-  ...
-  remember = \forkb
-&#125;,
-scope = &#123;
-  fork,
-  time = 2s later,
-  ...
-  remember = \forkc
-&#125;,
-resume = &#123;max(\forka,\forkb,\forkc)&#125; % "join" the three forks
+\def\mymacro#1#2&#123;
+  [style=edge from parent, #1]
+  (\tikzparentnode\tikzparentanchor) -- #2 (\tikzchildnode\tikzchildanchor)
+&#125;
 </code></pre>
 
 ---
 
 ## 3258. Other
 
-**ID**: `b05c6817bf46`  
+**ID**: `64aeb6e31a81`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123; obj:color = &#123; 0s = "current value", 2s = "white" &#125; &#125;
+\tikz[turtle/distance=2mm]
+  \draw [turtle=&#123;home,forward,right,forward,left,forward,left,forward&#125;];
 </code></pre>
 
 ---
 
 ## 3259. Other
 
-**ID**: `d28e023bbc55`  
+**ID**: `940e7b239562`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node [animate = &#123; myself: = &#123; begin on = click,
-    scope = &#123; attribute = fill, repeats = 3, 0s = "red", 2s = "red!50" &#125;,
-    scope = &#123; attribute = draw,              0s = "red", 2s = "red!50" &#125;
-  &#125;&#125;,
-  fill=blue!20, draw=blue, very thick, circle] &#123;Click me&#125;;
+\tikz[turtle/distance=2mm]
+  \draw [turtle=&#123;home,fd,rt,fd,lt,fd,lt,fd&#125;];
 </code></pre>
 
 ---
 
 ## 3260. Other
 
-**ID**: `c11d56e2c5bc`  
+**ID**: `c3887fe95227`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  mynode:opacity    = &#123; 0s = "1",   5s = "0" &#125;,
-  mynode:color      = &#123; 0s = "red", 5s = "blue" &#125;,
-  othernode:opacity = &#123; 0s = "1",   5s = "0" &#125;,
-&#125;
+\tikz \draw [turtle=&#123;how/.style=&#123;bend left&#125;,home,forward,right,forward&#125;];
 </code></pre>
 
 ---
 
 ## 3261. Other
 
-**ID**: `12baeacbf2cc`  
+**ID**: `e87d8242003f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  mynode: = &#123;
-    :opacity        = &#123; 0s = "1",   5s = "0" &#125;,
-    :color          = &#123; 0s = "red", 5s = "blue" &#125;
-  &#125;,
-  othernode:opacity = &#123; 0s = "1",   5s = "0" &#125;,
-&#125;
+\tikz \filldraw [thick,blue,fill=blue!20]
+  [turtle=home]
+  \foreach \i in &#123;1,...,5&#125;
+  &#123;
+    [turtle=&#123;forward,right=144&#125;]
+  &#125;;
 </code></pre>
 
 ---
 
 ## 3262. Other
 
-**ID**: `0f1abe096360`  
+**ID**: `c6f32e7444ed`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  :opacity = &#123;
-    mynode:         = &#123; 0s = "1",   5s = "0" &#125;,
-    othernode:      = &#123; 0s = "1",   5s = "0" &#125;
-  &#125;,
-  mynode:color      = &#123; 0s = "red", 5s = "blue" &#125;
+\tikzset&#123;
+  shape example/.style= &#123;color      = black!30,
+                         draw,
+                         fill       = yellow!30,
+                         line width =  .5cm,
+                         inner xsep = 2.5cm,
+                         inner ysep = 0.5cm&#125;
 &#125;
 </code></pre>
 
 ---
 
-## 3263. Other
+## 3263. Node Graph
 
-**ID**: `a39b8666f2ce`  
+**ID**: `ed7a7efcbfed`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  &#123;mynode,othernode&#125;:opacity = &#123; 0s = "1",   5s = "0" &#125;,
-  mynode:color               = &#123; 0s = "red", 5s = "blue" &#125;
-&#125;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=circle,shape example] &#123;Circle\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3264. Other
+## 3264. Node Graph
 
-**ID**: `0c4e7c57f76f`  
+**ID**: `0fb0380dbcdb`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;scope&#125; [animate = &#123;
-                 myself: = &#123; % Animate the attribute of the scope
-                   :opacity = &#123; ... &#125;,
-                   :xshift  = &#123; ... &#125;
-                 &#125;
-               &#125;]
-  ...
-\end&#123;scope&#125;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=rectangle,shape example] &#123;Rectangle\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3265. Other
+## 3265. Node Graph
 
-**ID**: `8737609d9ecb`  
+**ID**: `8f581b38d890`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-[animate = &#123; myself: = &#123; :some attribute = &#123;...&#125; &#125; &#125; ]
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=diamond,shape example] &#123;Diamond\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid/above,
+     base/below,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3266. Other
+## 3266. Node Graph
 
-**ID**: `0042d285c28d`  
+**ID**: `59e565ff6ee3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node
-  :fill opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Here!&#125;;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=ellipse,shape example] &#123;Ellipse\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;north west/above left, north/above, north east/above right,
+     west/left, center/above, east/right,
+     mid west/right, mid/above, mid east/left,
+     base west/left, base/below, base east/right,
+     south west/below left, south/below, south east/below right,
+     text/left, 10/right, 130/above&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3267. Other
 
-**ID**: `e36564c1e446`  
+**ID**: `7c2bc2744be5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node
-  :fill opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-  :rotate = &#123; 0s="0", 2s="90", begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Here!&#125;;
+\begin&#123;tikzpicture&#125;[every node/.style=&#123;trapezium, draw&#125;]
+   \node at (0,2) &#123;A&#125;;
+   \node[trapezium left angle=75, trapezium right angle=45]
+         at (0,1) &#123;B&#125;;
+   \node[trapezium left angle=120, trapezium right angle=60]
+         at (0,0) &#123;C&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3268. Other
+## 3268. Node Graph
 
-**ID**: `e8eebb622968`  
+**ID**: `d1dcc76bccb1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node
-  :fill opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle]
-  :rotate = &#123; 0s="0", 2s="90", begin on=click &#125; &#123;Here!&#125;;
+\begin&#123;tikzpicture&#125;[&gt;=stealth, every node/.style=&#123;text=black&#125;,
+    shape border uses incircle, shape border rotate=60]
+  \node [trapezium, fill=gray!25, minimum width=2cm] (t) &#123;&#125;;
+  \draw [red, &lt;-&gt;] (t.bottom left corner) -- (t.bottom right corner)
+    node [midway, below right] &#123;width&#125;;
+  \draw [red, &lt;-&gt;] (t.top side) -- (t.bottom side)
+    node [at start, above] &#123;height&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3269. Other
+## 3269. Node Graph
 
-**ID**: `5e36c60944eb`  
+**ID**: `9cd061085559`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz  :fill opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-       :rotate = &#123; 0s="0", 2s="90", begin on=click &#125;
-       [ultra thick]
-  \node [fill = blue!20, draw = blue, circle] &#123;Here!&#125;;
+\tikzset&#123;my node/.style=&#123;trapezium, fill=#1!20, draw=#1!75, text=black&#125;&#125;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                                      &#123;A&#125;;
+  \node [my node=green, minimum height=1.5cm] at (1, 1.25) &#123;B&#125;;
+  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    &#123;C&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3270. Other
+## 3270. Node Graph
 
-**ID**: `5e7e49c950d3`  
+**ID**: `18a9468ce54a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-sync = &#123; time = 1s, sync = &#123; value = red, entry &#125;, entry &#125;
+\tikzset&#123;my node/.style=&#123;trapezium, fill=#1!20, draw=#1!75, text=black&#125;&#125;
+\begin&#123;tikzpicture&#125;
+\tikzset&#123;trapezium stretches=true&#125;
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                                      &#123;A&#125;;
+  \node [my node=green, minimum height=1.5cm] at (1, 1.25) &#123;B&#125;;
+  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    &#123;C&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3271. Other
+## 3271. Node Graph
 
-**ID**: `05feededaad6`  
+**ID**: `90b4d9ff4e27`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  obj:color = &#123;
-    0s = "red",
-    2s = "blue",
-    1s later = "green",
-    1s later = "green!50!black",
-    10s = "black"
+\tikzset&#123;my node/.style=&#123;trapezium, fill=#1!20, draw=#1!75, text=black&#125;&#125;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] grid (3,2);
+  \node [my node=red]                      at (1.5,.25)  &#123;A&#125;;
+  \node [my node=green, minimum width=3cm, trapezium stretches]
+    at (1.5,1)    &#123;B&#125;;
+  \node [my node=blue,  minimum width=3cm, trapezium stretches body]
+    at (1.5,1.75) &#123;C&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3272. Node Graph
+
+**ID**: `8dc17aa85cc8`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=trapezium, shape example, inner sep=1cm]
+    &#123;Trapezium\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;bottom left corner/below, top right corner/right,
+     top left corner/left,     bottom right corner/below,
+     bottom side/below,        left side/left,
+     right side/right,         top side/above,
+     center/above,   text/below,      mid/right,       base/below,
+     mid west/right, base west/below, mid east/left,   base east/below,
+     west/above,     east/above,      north/below,     south/above,
+     north west/above, north east/above,
+     south west/below, south east/below, 160/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3273. Node Graph
+
+**ID**: `28d4df747d8c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=semicircle,shape border rotate=0,shape example, inner sep=1cm]
+    &#123;Semicircle\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;apex/above,      arc start/below, arc end/below,  chord center/below,
+     center/above,    base/below,      mid/right,      text/left,
+     base west/below, base east/below, mid west/left, mid east/right,
+     north/below,     south/above,     east/above,     west/above,
+     north west/above left, north east/above right,
+     south west/below,      south east/below, 30/right&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3274. Node Graph
+
+**ID**: `e83212f00c2c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \foreach \a in &#123;3,...,7&#125;&#123;
+    \draw[red, dashed] (\a*2,0)  circle(0.5cm);
+    \node[regular polygon, regular polygon sides=\a, draw,
+     inner sep=0.3535cm] at (\a*2,0) &#123;&#125;;
+   &#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3275. Node Graph
+
+**ID**: `5f9fe4faba32`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \foreach \a in &#123;3,...,7&#125;&#123;
+    \draw[blue, dashed] (\a*2,0)  circle(0.5cm);
+    \node[regular polygon, regular polygon sides=\a, minimum size=1cm, draw] at (\a*2,0) &#123;&#125;;
+   &#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3276. Node Graph
+
+**ID**: `455d65bf4a85`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=regular polygon, shape example, inner sep=.5cm]
+    &#123;Regular Polygon\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;corner 1/above, corner 2/above, corner 3/left, corner 4/right, corner 5/above,
+     side 1/above,   side 2/left,    side 3/below,  side 4/right,   side 5/above,
+     center/above, text/left,  mid/right,   base/below, 75/above,
+     west/above,   east/above, north/below, south/above,
+     north east/below, south east/above, north west/below, south west/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3277. Node Graph
+
+**ID**: `0cf650049cd6`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+   \draw [help lines]   (0,0) grid (2,2);
+   \draw [blue, dashed]  (1,1) circle(1cm);
+   \draw [red, dashed] (1,1) circle(.5cm);
+   \node [star, star point height=.5cm, minimum size=2cm, draw]
+       at (1,1) &#123;S&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3278. Node Graph
+
+**ID**: `0d32e644ee70`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=star, star points=5, star point ratio=1.65, shape example, inner sep=1.5cm]
+    &#123;Star\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+     &#123;inner point 1/above, inner point 2/above, inner point 3/below, inner point 4/right,
+      inner point 5/above, outer point 1/above, outer point 2/above, outer point 3/left,
+      outer point 4/right, outer point 5/above,
+      center/above, text/left,  mid/right,   base/below, 75/above,
+         west/above,   east/above, north/below, south/above,
+         north east/below, south east/above, north west/below, south west/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3279. Node Graph
+
+**ID**: `4770a88e3b86`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[&gt;=stealth, every node/.style=&#123;text=black&#125;,
+    shape border uses incircle, shape border rotate=-30]
+  \node [isosceles triangle, fill=gray!25, minimum width=1.5cm] (t) &#123;&#125;;
+  \draw [red, &lt;-&gt;] (t.left corner) -- (t.right corner)
+    node [midway, above left] &#123;width&#125;;
+  \draw [red, &lt;-&gt;] (t.apex) -- (t.lower side)
+    node [midway, above right] &#123;height&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 3280. Node Graph
+
+**ID**: `c1e9e7d3fb4f`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[paint/.style=&#123;draw=#1!75, fill=#1!20&#125;]
+  \tikzset&#123;every node/.style=&#123;isosceles triangle, draw, inner sep=0pt,
+    anchor=left corner, shape border rotate=90&#125;&#125;
+  \draw[help lines] grid(4,2);
+  \foreach \a/\c in &#123;1.5/blue, 1/green, 0.5/red&#125;&#123;
+    \node[paint=\c, minimum height=\a cm] at (0,0) &#123;&#125;;
+    \node[paint=\c, minimum width=\a cm] at (2,0) &#123;&#125;;
   &#125;
-&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3272. Other
+## 3281. Node Graph
 
-**ID**: `a302c12dd306`  
+**ID**: `55bc290101d1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  obj: = &#123;
-    :color = &#123; 0s = "red", 2s = "green" &#125;,
-    :opacity = &#123; 0s = "1", 2s = "0" &#125;
+\begin&#123;tikzpicture&#125;[paint/.style=&#123;draw=#1!75, fill=#1!20&#125;]
+  \tikzset&#123;every node/.style=&#123;isosceles triangle, draw, inner sep=0pt,
+     anchor=south, shape border rotate=90, isosceles triangle stretches&#125;&#125;
+  \draw[help lines] grid(4,2);
+  \foreach \a/\c in &#123;1.5/blue, 1/green, 0.5/red&#125;&#123;
+    \node[paint=\c, minimum height=\a cm, minimum width=1.5cm] at (0.75,0) &#123;&#125;;
+    \node[paint=\c, minimum width=\a cm, minimum height=1.5cm] at (3,0)    &#123;&#125;;
   &#125;
-&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3273. Other
+## 3282. Node Graph
 
-**ID**: `d0cf1beef2ca`  
+**ID**: `d9d84ebcaee1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-animate = &#123;
-  0s = &#123;
-    obj:color = "red",
-    obj:opacity = "1"
-  &#125;,
-  2s = &#123;
-    obj:color = "green",
-    obj:opacity = "0"
-  &#125;
-&#125;
-</code></pre>
-
----
-
-## 3274. Other
-
-**ID**: `bd23a9488996`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-animate = &#123;
-  obj: = &#123;
-    0s = &#123;
-      :color = "red",
-      :opacity = "1"
-    &#125;,
-    2s = &#123;
-      :color = "green",
-      :opacity = "0"
-    &#125;
-  &#125;
-&#125;
-</code></pre>
-
----
-
-## 3275. Other
-
-**ID**: `f07d9624f348`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-animate = &#123;
-  0s = &#123;
-    obj: = &#123;
-      :color = "red",
-      :opacity = "1"
-    &#125;,
-    main node: = &#123;
-      :color = "black"
-    &#125;
-  &#125;,
-  2s = &#123;
-    obj: = &#123;
-      :color = "green",
-      :opacity = "0"
-    &#125;,
-    main node: = &#123;
-      :color = "white"
-    &#125;
-  &#125;
-&#125;
-</code></pre>
-
----
-
-## 3276. Other
-
-**ID**: `a2e1dd7c78e6`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz :fill = &#123;0s = "red", 2s = "blue", begin on = click&#125;
-      [text = white, fill = orange ] &#123;
-  \node [fill]                   at (0mm,0) &#123;A&#125;;
-  \node [fill]                   at (5mm,0) &#123;B&#125;;
-  \node [fill = green!50!black ] at (1cm,0) &#123;C&#125;;
-&#125;
-</code></pre>
-
----
-
-## 3277. Other
-
-**ID**: `18ca65620190`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz [my anim/.style=&#123; animate = &#123;
-           myself:text = &#123;0s = "red", 2s = "blue", begin on = click&#125;&#125;&#125;,
-       text = white, fill = orange ] &#123;
-  \node [fill, my anim] at (0,0) &#123;A&#125;;
-  \node [fill, my anim] at (1,0) &#123;B&#125;;
-&#125;
-</code></pre>
-
----
-
-## 3278. Other
-
-**ID**: `d8cc9ba5a58b`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz [animate = &#123;myself:text = &#123;0s = "red", 2s = "blue",
-                                 begin on = click&#125;&#125;,
-       text = white, fill = orange ] &#123;
-  \node [fill] at (0,0) &#123;A&#125;;
-  \node [fill] at (1,0) &#123;B&#125;;
-&#125;
-</code></pre>
-
----
-
-## 3279. Other
-
-**ID**: `fef58ac2f5d7`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz \node :fill opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
-</code></pre>
-
----
-
-## 3280. Other
-
-**ID**: `80401fa9896f`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz \node :opacity = &#123; 0s="1", 2s="0", begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
-</code></pre>
-
----
-
-## 3281. Other
-
-**ID**: `8995cb98562d`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz :visible = &#123;begin on=click, 0s="false", 2s="false"&#125;
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
-</code></pre>
-
----
-
-## 3282. Other
-
-**ID**: `b4d051ea2716`  
-**Package**: tikz-pgf  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\tikz [animate = &#123;example:stage = &#123;
-                   begin on = &#123;click, of next=node&#125;,
-                   0s="true", 2s="true" &#125;&#125;] &#123;
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
-  \node at (2,0) (example) [fill = blue!20, circle] &#123;Effect&#125;;
-&#125;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=isosceles triangle, shape example, inner xsep=1cm]
+    &#123;Isosceles Triangle\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;apex/above,      left corner/right, right corner/right,
+     left side/above, right side/below,  lower side/right,
+     center/above,    text/right,        150/above,
+     mid/right,       mid west/above,    mid east/right,
+     base/below,      base west/below,   base east/below,
+     west/above, east/below, north/below, south/above,
+     north west/below, north east/below,
+     south west/above, south east/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3283. Other
 
-**ID**: `ca398901a8d8`  
+**ID**: `e8b14e0b3a51`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :line width = &#123; 0s="1pt", 2s="5mm", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;[every node/.style=&#123;kite, draw&#125;]
+  \node[kite upper vertex angle=135, kite lower vertex angle=70] at (0,0) &#123;A&#125;;
+  \node[kite vertex angles=90 and 45] at (1,0) &#123;B&#125;;
+  \node[kite vertex angles=60]        at (2,0) &#123;C&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3284. Other
+## 3284. Node Graph
 
-**ID**: `aa1e2b093bef`  
+**ID**: `5db3fee1fb1d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :dash = &#123; 0s="on 10pt off 1pt  phase 0pt",
-                      2s="on 1pt  off 10pt phase 0pt", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=kite, shape example, inner sep=1.5cm]
+    &#123;Kite\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;upper vertex/above, left vertex/above,    lower vertex/below,
+     right vertex/above, upper left side/above, upper right side/above,
+     lower left side/below, lower right side/below,
+     center/above,   text/left,       mid/right,        base/below,
+     mid west/left,  base west/below, mid east/right,   base east/below,
+     west/above,     east/above,      north/below,     south/above,
+     north west/left, north east/right,
+     south west/above, south east/above, 110/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3285. Other
+## 3285. Node Graph
 
-**ID**: `99f7a2f95dfe`  
+**ID**: `40e1c66cfd3c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :dash = &#123; 0s="on 1cm off 1pt phase 0pt",
-                      2s="on 1cm off 1pt phase 1cm", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;
+   \node[dart, draw, gray, shape border uses incircle, shape border rotate=45]
+       (d) &#123;dart&#125;;
+   \draw [&lt;-&gt;] (d.tip)++(202.5:.5cm) arc(202.5:247.5:.5cm);
+   \node [left=.5cm] at (d.tip) &#123;tip angle&#125;;
+   \draw [&lt;-&gt;] (d.tail center)++(157.5:.5cm) arc(157.5:292.5:.5cm);
+   \node [right] at (d.tail center) &#123;tail angle&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3286. Other
+## 3286. Node Graph
 
-**ID**: `a479ded22d15`  
+**ID**: `eddce9628dc3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :dash phase = &#123; 0s="0pt", 2s="1cm", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle, dashed] &#123;Click me!&#125;;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=dart, shape border rotate=90, shape example, inner sep=1.25cm]
+    &#123;Dart\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;tip/above,       tail center/below, right tail/below,
+     left tail/below, right tail/below,  left side/left,   right side/right,
+     center/above,    text/left,         mid/right,        base/below,
+     mid west/left,   base west/below,   mid east/right,   base east/below,
+     west/above,      east/above,        north/below,      south/above,
+     north west/left, north east/right,  south west/above, south east/above,
+     110/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3287. Other
 
-**ID**: `34a39414f80b`  
+**ID**: `8e20daf48e25`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :path = &#123;
-        0s = "&#123;(0,-1) .. controls (0,0) and (0,0)   .. (0,1) -- (1,1)&#125;",
-        2s = "&#123;(0,-1) .. controls (-1,0) and (-1,0) .. (-1,1) -- (.5,-1)&#125;",
-        begin on=click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;[
+   every node/.style=&#123;circular sector, shape border uses incircle, draw&#125;,
+]
+   \node at (0,0) &#123;A&#125;;
+   \node [shape border rotate=30] at (1.5,0) &#123;A&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3288. Other
+## 3288. Node Graph
 
-**ID**: `56a36227b8c7`  
+**ID**: `38e749317c27`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :path = &#123;
-        0s = "&#123;(0,0) circle [radius=1cm]&#125;",
-        2s = "&#123;(0,0)
-               (1,0) .. controls +(0,0) and +(0,0) .. (0,1)
-                     .. controls +(0,0) and +(0,0) .. (-1,0)
-                     .. controls +(0,0) and +(0,0) .. (0,-1)
-                     .. controls +(0,0) and +(0,0) .. (1,0)
-                     -- cycle (0,0)&#125;",
-        begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s,shape=circular sector,  style=shape example, inner sep=1cm]
+      &#123;Circular Sector\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+   &#123;sector center/above, arc start/below, arc end/below, arc center/below,
+    center/above,        base/below,      mid/right,     text/below,
+    north/below,         south/above,     east/below,    west/above,
+    north west/above left, north east/above right,
+    south west/below,      south east/below, 30/right&#125;
+     \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+       node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3289. Other
 
-**ID**: `9eb3384cb15a`  
+**ID**: `481c1b773d78`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\draw :path = &#123; 1s = "&#123;(0,0) -- (1,0)&#125;", 2s = "&#123;(0,1) -- (1,0)&#125;" &#125;
-  [-&gt;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \node[cylinder, draw, shape aspect=.5] &#123;ABC&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3290. Other
+## 3290. Node Graph
 
-**ID**: `c99c07e72fbb`  
+**ID**: `d7599857f349`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\draw :path = &#123; 1s = "&#123;(0,0) -- (1,0)&#125;", 2s = "&#123;(0,1) -- (1,0)&#125;", arrows = -&gt; &#125;
-  (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;[&gt;=stealth]
+  \node [cylinder, gray!50, rotate=30, draw,
+    minimum height=2cm, minimum width=1cm] (c) &#123;Cylinder&#125;;
+  \draw[red, &lt;-&gt;] (c.top)   -- (c.bottom)
+    node [at end, below, black]   &#123;height&#125;;
+  \draw[red, &lt;-&gt;] (c.north) -- (c.south)
+    node [at start, above, black] &#123;width&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3291. Other
 
-**ID**: `367843f862ec`  
+**ID**: `9500850d1cdd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\draw :path = &#123; 1s = "&#123;(0,0) -- (1,0)&#125;" base, 2s = "&#123;(0,1) -- (1,0)&#125;", arrows = -&gt; &#125;;
+\begin&#123;tikzpicture&#125;[shape aspect=.5]
+  \tikzset&#123;every node/.style=&#123;cylinder, shape border rotate=90, draw&#125;&#125;
+  \node [minimum height=1.5cm]            &#123;A&#125;;
+  \node [minimum width=1.5cm]  at (1.5,0) &#123;B&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3292. Node Graph
+## 3292. Other
 
-**ID**: `9e660ffcb810`  
+**ID**: `1a8a41641788`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz [very thick] &#123;
-  \node (node) at (-2,0)
-    [fill = blue!20, draw = blue, very thick, circle] &#123;Click me!&#125;;
-  \draw :path = &#123;
-    0s = "&#123;(0,0) to[out=90, in=180] (.5,1) to[out=0, in=90] (.5,.5)&#125;" base,
-    2s = "&#123;(1,0) to[out=180, in=180] (.25,.5) to[out=0, in=180] (1,.5)&#125;",
-    arrows = &lt;.&lt;-&gt;, begin on = &#123;click, of=node&#125; &#125;; &#125;
+\begin&#123;tikzpicture&#125;[]
+  \tikzset&#123;every node/.style=&#123;cylinder, shape border rotate=90, draw&#125;&#125;
+  \node [aspect=1.0]           &#123;A&#125;;
+  \node [aspect=0.5]  at (1,0) &#123;B&#125;;
+  \node [aspect=0.25] at (2,0) &#123;C&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3293. Other
 
-**ID**: `eb2ba6fb81f5`  
+**ID**: `60739bfff6b4`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :scale = &#123; 0s="1", 2s="0.2", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;[aspect=0.5]
+  \node [cylinder, cylinder uses custom fill, cylinder end fill=red!50,
+         cylinder body fill=red!25] &#123;Cylinder&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 3294. Other
+## 3294. Node Graph
 
-**ID**: `b0f6dbd35057`  
+**ID**: `0e0daefdbf34`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :rotate = &#123; 0s="45", 2s="90", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\Huge
+\begin&#123;tikzpicture&#125;
+  \node[name=s, shape=cylinder, shape example, aspect=.5, inner xsep=3cm,
+        inner ysep=1cm] &#123;Cylinder\vrule width 1pt height 2cm&#125;;
+  \foreach \anchor/\placement in
+    &#123;before top/above,    top/above,       after top/below,
+     before bottom/below, bottom/above,    after bottom/above,
+     mid/right,           mid west/right,  mid east/left,
+     base/below,          base west/below, base east/below,
+     center/above,        text/above,      shape center/right,
+     west/right, east/left, north/above, south/below,
+     north west/below, north east/above,
+     south west/above, south east/below, 160/above&#125;
+  \draw[shift=(s.\anchor)] plot[mark=x] coordinates&#123;(0,0)&#125;
+    node[\placement] &#123;\scriptsize\texttt&#123;(s.\anchor)&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3295. Other
 
-**ID**: `9ff3504c34a4`  
+**ID**: `ac86b0161105`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :xskew = &#123; 0s="0", 2s="45", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;
+  \node [correct forbidden sign,line width=1ex,draw=red,fill=white] &#123;Smoking&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3296. Other
 
-**ID**: `6ccfe017d9c2`  
+**ID**: `0efe32332284`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :xslant = &#123; 0s="-1", 2s="1", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;
+  \node [forbidden sign,line width=1ex,draw=red,fill=white] &#123;Smoking&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3297. Other
 
-**ID**: `d988311b1f5b`  
+**ID**: `7548d347f3d9`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :shift = &#123; 0s="&#123;(0,0)&#125;", 2s="&#123;(5mm,-5mm)&#125;",
-                       begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;
+  \node [magnifying glass,line width=1ex,draw] &#123;huge&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3298. Other
 
-**ID**: `66a73c128476`  
+**ID**: `d38534c15b5a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :xshift = &#123; 0s="0pt", 2s="5mm", begin on=click&#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;
+  \node[cloud, draw, fill=gray!20, aspect=2] &#123;ABC&#125;;
+  \node[cloud, draw, fill=gray!20] at (1.5,0) &#123;D&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3299. Other
 
-**ID**: `5072efdc6b57`  
+**ID**: `1bbdcdbd912e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \node :shift = &#123; 0s = "&#123;(0,0)&#125;", 2s = "&#123;(5mm,-5mm)&#125;",
-                       begin on = click &#125;
-  [fill = blue!20, draw = blue, ultra thick, circle] &#123;Click me!&#125;;
+\begin&#123;tikzpicture&#125;[aspect=1, every node/.style=&#123;cloud, cloud puffs=11, draw&#125;]
+  \node [fill=gray!20]                                &#123;rain&#125;;
+  \node [cloud ignores aspect, fill=white] at (1.5,0) &#123;snow&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 3300. Node Graph
 
-**ID**: `81b369ff8475`  
+**ID**: `84815f5202d0`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz &#123;
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,.5) circle [radius=1mm];
-  \node :shift = &#123;
-            along = &#123;(0,0) circle[radius=5mm]&#125; upright,
-            0s="0", 2s=".25", begin on=click &#125;
-    at (1,.5) [fill = blue, opacity=.5, circle] &#123;Click&#125;;
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] grid (3,2);
+  \draw [blue, dashed] (1.5, 1) ellipse (1.5cm and 1cm);
+  \node [cloud, cloud puffs=9, draw, minimum width=3cm, minimum height=2cm]
+    at (1.5, 1) &#123;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-064) | Page 66 of 107 | [Next →](executable_example-page-066)
+[← Previous](executable_example-page-064) | Page 66 of 120 | [Next →](executable_example-page-066)

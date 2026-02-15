@@ -1,90 +1,89 @@
 ---
 title: "Executable Examples - Page 55"
-description: "Items 2701-2750 of 5325 executable examples"
+description: "Items 2701-2750 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 55
 
-Showing items **2701-2750** of **5325**
+Showing items **2701-2750** of **5999**
 
-[← Previous](executable_example-page-053) | Page 55 of 107 | [Next →](executable_example-page-055)
+[← Previous](executable_example-page-053) | Page 55 of 120 | [Next →](executable_example-page-055)
 
 ---
 
 ## 2701. Other
 
-**ID**: `0bd5cbe4bc6f`  
+**ID**: `b95ca8878e98`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-local algorithm = io.read():match("%s*graph%s*%[(.-)%]")
-
-InterfaceToDisplay.pushPhase(algorithm, "main", 1)
-InterfaceToDisplay.pushOption("level distance", 6, 2)
-InterfaceToDisplay.pushOption("sibling distance", 8, 3)
-InterfaceToDisplay.beginGraphDrawingScope(3)
-InterfaceToDisplay.pushLayout(4)
+\tikz[mindmap,concept color=blue!80]
+  \node [concept] &#123;Root concept&#125;
+    child[concept color=red,grow=30] &#123;node[concept] &#123;Child concept&#125;&#125;
+    child[concept color=orange,grow=0]  &#123;node[concept] &#123;Child concept&#125;&#125;;
 </code></pre>
 
 ---
 
 ## 2702. Other
 
-**ID**: `6f9609a0e725`  
+**ID**: `7aee5ff7b7b1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-for line in io.lines() do
-  if line:match("&#125;") then
-    break
-  elseif line:find("-") then
-    local n1, dir, n2 = string.match(line, "^%s*(.-)%s*(-.)%s*(.-)%s*;")
-    InterfaceToDisplay.createEdge(n1, n2, dir, 4)
-  else
-    local n1 = string.match(line, "^%s*(.-)%s*;")
-    InterfaceToDisplay.createVertex(n1, "rectangle", nil, 4)
-  end
-end
+\tikz[mindmap,text=white,
+      root concept/.style=&#123;concept color=blue&#125;,
+      level 1 concept/.append style=
+        &#123;every child/.style=&#123;concept color=blue!50&#125;&#125;]
+  \node [concept] &#123;Root concept&#125;
+    child[grow=30] &#123;node[concept] &#123;child&#125;&#125;
+    child[grow=0 ] &#123;node[concept] &#123;child&#125;&#125;;
 </code></pre>
 
 ---
 
-## 2703. Other
+## 2703. Node Graph
 
-**ID**: `97bb0b87a90f`  
+**ID**: `f894587932f5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-InterfaceToDisplay.runGraphDrawingAlgorithm()
-InterfaceToDisplay.renderGraph()
-InterfaceToDisplay.endGraphDrawingScope()
+\begin&#123;tikzpicture&#125;
+  [root concept/.append style=&#123;concept color=blue!20,minimum size=2cm&#125;,
+   level 1 concept/.append style=&#123;sibling angle=45&#125;,
+   mindmap]
+  \node [concept] &#123;Root concept&#125;
+    [clockwise from=45]
+    child &#123; node[concept] (c1) &#123;child&#125;&#125;
+    child &#123; node[concept] (c2) &#123;child&#125;&#125;
+    child &#123; node[concept] (c3) &#123;child&#125;&#125;;
+  \begin&#123;pgfonlayer&#125;&#123;background&#125;
+    \draw [concept connection]  (c1) edge (c2)
+                                     edge (c3)
+                                (c2) edge (c3);
+  \end&#123;pgfonlayer&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2704. Other
 
-**ID**: `38c4d47b07d0`  
+**ID**: `3aedc2dd61f3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  [spy using outlines=&#123;circle, magnification=4, size=2cm, connect spies&#125;]
+    [decoration=&#123;start radius=1cm,end radius=.5cm,amplitude=2mm,angle=30&#125;]
+  \fill[blue!20] (0,0)   circle (1cm);
+  \fill[red!20]  (2.5,0) circle (.5cm);
 
-  \draw [help lines] (0,0) grid (3,2);
-
-  \draw [decoration=Koch curve type 1]
-    decorate &#123; decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;&#125;;
-
-  \spy [red] on (1.6,0.3)
-             in node [left] at (3.5,-1.25);
-
-  \spy [blue, size=1cm] on (1,1)
-              in node [right] at (0,-1.25);
+  \filldraw [draw=red,fill=black,
+             decorate,decoration=circle connection bar] (1,0) -- (2,0);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -92,18 +91,18 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2705. Other
 
-**ID**: `d06aeec81ba2`  
+**ID**: `5f63804af136`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[spy using overlays=&#123;size=12mm&#125;]
-  \draw [decoration=Koch snowflake]
-    decorate &#123; decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;&#125;;
+\begin&#123;tikzpicture&#125;
+  [blue!50,decoration=&#123;start radius=1cm,
+                       end radius=.5cm,amplitude=2mm,angle=30&#125;]
+  \fill (0,0)   circle (1cm);
+  \fill (2.5,0) circle (.5cm);
 
-  \spy [green,magnification=3] on (0.6,0.1) in node at (-0.3,-1);
-  \spy [blue,magnification=5]  on (1,0.5)   in node at (1,-1);
-  \spy [red,magnification=10]  on (1.6,0.1) in node at (2.3,-1);
+  \fill [decorate,decoration=circle connection bar] (1,0) -- (2,0);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -111,27 +110,18 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2706. Other
 
-**ID**: `27d0738ac0e5`  
+**ID**: `c148b207ce0a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  [spy using outlines=&#123;rectangle, red, magnification=5,
-                       size=1.5cm, connect spies&#125;]
+  [blue!50,decoration=&#123;start radius=1cm,
+                       end radius=.5cm,amplitude=2mm,angle=30&#125;]
+  \fill (0,0)   circle (1cm+1pt);
+  \fill (2.4,0) circle (.5cm+1pt);
 
-  \begin&#123;scope&#125;
-    [spy using outlines=&#123;circle, blue,
-                         magnification=3, size=1.5cm, connect spies&#125;]
-    \draw [help lines] (0,0) grid (3,2);
-
-    \draw [decoration=Koch curve type 1]
-      decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-    \spy on (1.6,0.3) in node (zoom) [left] at (3.5,-1.25);
-  \end&#123;scope&#125;
-
-  \spy on (zoom.north west) in node [right] at (0,-1.25);
+  \fill [decorate,decoration=circle connection bar] (1,0) -- (1.9,0);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -139,19 +129,16 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2707. Other
 
-**ID**: `93c3c160b517`  
+**ID**: `08ddea6144f1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [spy using outlines=&#123;circle, magnification=3, size=1cm&#125;]
+\begin&#123;tikzpicture&#125;[concept color=blue!50,blue!50,outer sep=0pt]
+  \node (n1) at (0,0)   [circle,minimum size=2cm,fill,draw,thick] &#123;&#125;;
+  \node (n2) at (2.5,0) [circle,minimum size=1cm,fill,draw,thick] &#123;&#125;;
 
-  \draw [decoration=Koch curve type 1]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [red]  on (1.6,0.3) in node;
-  \spy [blue] on (1,1)     in node at (1,-1);
+  \path (n1) to[circle connection bar] (n2);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -159,23 +146,16 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2708. Other
 
-**ID**: `36f2b7678274`  
+**ID**: `148963fefdfd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \begin&#123;scope&#125;
-    [spy using outlines=&#123;circle, magnification=3, size=2cm, connect spies&#125;]
+\begin&#123;tikzpicture&#125;[outer sep=0pt]
+  \node (n1) at (0,0)    [circle,minimum size=2cm,fill,draw,thick,red] &#123;&#125;;
+  \node (n2) at (30:2.5) [circle,minimum size=1cm,fill,draw,thick,blue] &#123;&#125;;
 
-    \draw [decoration=Koch curve type 1]
-      decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-    \spy [red] on (1.6,0.3) in node (a) [left] at (3.5,-1.25);
-
-    \spy [blue, size=1cm] on (1,1) in node (b) [right] at (0,-1.25);
-  \end&#123;scope&#125;
-  \draw [ultra thick, green!50!black] (b) -- (a.north west);
+  \path (n1) to[circle connection bar switch color=from (red) to (blue)] (n2);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -183,30 +163,53 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2709. Other
 
-**ID**: `e0ef49e8c71c`  
+**ID**: `391ce3aded10`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\draw[thin] (tikzspyonnode) -- (tikzspyinnode);
+\begin&#123;tikzpicture&#125;
+  \path[mindmap,concept color=black,text=white]
+    node[concept] &#123;Computer Science&#125;
+    [clockwise from=0]
+    % note that `sibling angle' can only be defined in
+    % `level 1 concept/.append style=&#123;&#125;'
+    child[concept color=green!50!black] &#123;
+      node[concept] &#123;practical&#125;
+      [clockwise from=90]
+      child &#123; node[concept] &#123;algorithms&#125; &#125;
+      child &#123; node[concept] &#123;data structures&#125; &#125;
+      child &#123; node[concept] &#123;pro\-gramming languages&#125; &#125;
+      child &#123; node[concept] &#123;software engineer\-ing&#125; &#125;
+    &#125;
+    % note that the `concept color' is passed to the `child'(!)
+    child[concept color=blue] &#123;
+      node[concept] &#123;applied&#125;
+      [clockwise from=-30]
+      child &#123; node[concept] &#123;databases&#125; &#125;
+      child &#123; node[concept] &#123;WWW&#125; &#125;
+    &#125;
+    child[concept color=red] &#123; node[concept] &#123;technical&#125; &#125;
+    child[concept color=orange] &#123; node[concept] &#123;theoretical&#125; &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2710. Other
 
-**ID**: `e4d5ef7fd06e`  
+**ID**: `ac03bab63200`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  [spy using outlines=&#123;lens=&#123;scale=3,rotate=20&#125;, size=2cm, connect spies&#125;]
+  [mindmap,concept color=blue!80,
+  every annotation/.style=&#123;fill=red!20&#125;]
+  \node [concept] (root)  &#123;Root concept&#125;;
 
-  \draw [decoration=Koch curve type 1]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [red] on (1.6,0.3) in node at (2.5,-1.25);
+  \node [annotation,right] at (root.east)
+  &#123;The root concept is, in general, the most important concept.&#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -214,454 +217,309 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2711. Other
 
-**ID**: `b0ebed26c91e`  
+**ID**: `975c05833503`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [spy using outlines=&#123;circle, magnification=3, size=1cm, connect spies&#125;]
-
-  \draw [decoration=Koch curve type 1]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [red] on (1.6,0.3) in node at (3,1);
-\end&#123;tikzpicture&#125;
+\pgfarrowssettipend&#123;1cm&#125;
 </code></pre>
 
 ---
 
 ## 2712. Other
 
-**ID**: `f7469f647ae6`  
+**ID**: `7736ac102c05`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [spy using overlays=&#123;circle, magnification=3, size=1cm, connect spies&#125;]
-
-  \draw [decoration=Koch curve type 1]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [green] on (1.6,0.3) in node at (3,1);
-\end&#123;tikzpicture&#125;
+\pgfarrowssettipend&#123;1cm\advance\pgf@x by-.5\pgflinewidth&#125;
 </code></pre>
 
 ---
 
 ## 2713. Other
 
-**ID**: `0b3c6c2bb1aa`  
+**ID**: `505c51683649`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [spy using overlays=&#123;circle, magnification=3, size=1cm&#125;]
-
-  \draw [decoration=Koch curve type 2]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [green] on (1.6,0.1) in node at (3,1);
-  \spy [red,connect spies] on (0.5,0.4) in node at (1,1.5);
-\end&#123;tikzpicture&#125;
+\pgfarrowssettipend&#123;-3cm&#125;
 </code></pre>
 
 ---
 
 ## 2714. Other
 
-**ID**: `4b19cb80736d`  
+**ID**: `11d4eff55fdf`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;spy using mag glass/.style=&#123;
-    spy scope=&#123;
-      every spy on node/.style=&#123;
-        circle,
-        fill, fill opacity=0.2, text opacity=1&#125;,
-      every spy in node/.style=&#123;
-        magnifying glass, circular drop shadow,
-        fill=white, draw, ultra thick, cap=round&#125;,
-      #1
-    &#125;&#125;&#125;
-\begin&#123;tikzpicture&#125;[spy using mag glass=&#123;magnification=3, size=1cm&#125;]
-  \draw [decoration=Koch curve type 2]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy [green!50!black] on (1.6,0.1) in node at (2.5,-0.5);
-\end&#123;tikzpicture&#125;
+\pgfarrowshullpoint&#123;1cm&#125;&#123;0pt&#125;
+\pgfarrowshullpoint&#123;-3cm&#125;&#123;2cm&#125;
+\pgfarrowshullpoint&#123;-3cm&#125;&#123;-2cm&#125;
 </code></pre>
 
 ---
 
 ## 2715. Other
 
-**ID**: `bf08446d1bbf`  
+**ID**: `a1c564f07088`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [spy scope=&#123;magnification=4, size=1cm&#125;,
-   every spy in node/.style=&#123;
-     magnifying glass, circular drop shadow,
-     fill=white, draw, ultra thick, cap=round&#125;]
-
-  \draw [decoration=Koch curve type 2]
-    decorate&#123; decorate&#123; decorate&#123; (0,0) -- (2,0) &#125;&#125;&#125;;
-
-  \spy on (1.6,0.1) in node;
-\end&#123;tikzpicture&#125;
+\pgfarrowshullpoint&#123;1cm&#125;&#123;0pt&#125;
+\pgfarrowsupperhullpoint&#123;-3cm&#125;&#123;2cm&#125;
 </code></pre>
 
 ---
 
 ## 2716. Other
 
-**ID**: `ff7efd2e0567`  
+**ID**: `be50c2c495a1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=2]
-  \draw[thick,red]
-       (0,0) coordinate (a)
-    -- coordinate (ab) (1,.5) coordinate (b)
-    .. coordinate (bc) controls +(up:1cm) and +(left:1cm) .. (3,1)  coordinate (c)
-       (0,1) -- (2,1) -- coordinate (x) (1,2) -- cycle;
-
-  \draw (a)  node[below] &#123;start part 1&#125;
-        (ab) node[below right] &#123;straight segment&#125;
-        (b)  node[right] &#123;end first segment&#125;
-        (c)  node[right] &#123;end part 1&#125;
-        (x)  node[above right]  &#123;part 2 (closed)&#125;;
-\end&#123;tikzpicture&#125;
+\pgfarrowssavethe&#123;\pgfarrowlength&#125;
+\pgfarrowssavethe&#123;\pgfarrowwidth&#125;
 </code></pre>
 
 ---
 
 ## 2717. Other
 
-**ID**: `b464d9d11518`  
+**ID**: `1c2d55fa925b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0.5cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+\pgfdeclarearrow&#123;
+  name = foo,
+  parameters = &#123; \the\pgfarrowlength &#125;,
+  setup code = &#123;
+    % The different end values:
+    \pgfarrowssettipend&#123;.25\pgfarrowlength&#125;
+    \pgfarrowssetlineend&#123;-.25\pgfarrowlength&#125;
+    \pgfarrowssetvisualbackend&#123;-.5\pgfarrowlength&#125;
+    \pgfarrowssetbackend&#123;-.75\pgfarrowlength&#125;
+    % The hull
+    \pgfarrowshullpoint&#123;.25\pgfarrowlength&#125;&#123;0pt&#125;
+    \pgfarrowshullpoint&#123;-.75\pgfarrowlength&#125;&#123;.5\pgfarrowlength&#125;
+    \pgfarrowshullpoint&#123;-.75\pgfarrowlength&#125;&#123;-.5\pgfarrowlength&#125;
+    % Saves: Only the length:
+    \pgfarrowssavethe\pgfarrowlength
+  &#125;,
+  drawing code = &#123;
+    \pgfpathmoveto&#123;\pgfqpoint&#123;.25\pgfarrowlength&#125;&#123;0pt&#125;&#125;
+    \pgfpathlineto&#123;\pgfqpoint&#123;-.75\pgfarrowlength&#125;&#123;.5\pgfarrowlength&#125;&#125;
+    \pgfpathlineto&#123;\pgfqpoint&#123;-.5\pgfarrowlength&#125;&#123;0pt&#125;&#125;
+    \pgfpathlineto&#123;\pgfqpoint&#123;-.75\pgfarrowlength&#125;&#123;-.5\pgfarrowlength&#125;&#125;
+    \pgfpathclose
+    \pgfusepathqfill
+  &#125;,
+  defaults = &#123; length = 4cm &#125;
+&#125;
 </code></pre>
 
 ---
 
 ## 2718. Other
 
-**ID**: `3cecf76a78aa`  
+**ID**: `b3c3b7b4fc8f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathmoveto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125; % New part
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0.5cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+\tikz \draw [-foo] (0,0) -- (8,0);
 </code></pre>
 
 ---
 
 ## 2719. Other
 
-**ID**: `7237df86ca78`  
+**ID**: `6fcd3eeb1fe7`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+\tikz \draw [-&#123;foo[length=2cm,bend]&#125;] (0,0) to [bend left] (3,0);
 </code></pre>
 
 ---
 
 ## 2720. Other
 
-**ID**: `d65ecdfdb28f`  
+**ID**: `d1307331edf7`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathcurveto
-    &#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+\pgfdeclarearrow&#123; name=foo, means = bar[length=2cm+\mydimen] &#125;
 </code></pre>
 
 ---
 
 ## 2721. Other
 
-**ID**: `1177cef22433`  
+**ID**: `ea083ee546f4`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathquadraticcurveto
-    &#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;0cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+parameters = &#123; \the\pgfarrowlength,...,
+                 \ifpgfarrowharpoon h\fi\
+                 \ifpgfarrowroundjoin j\fi&#125;
 </code></pre>
 
 ---
 
 ## 2722. Other
 
-**ID**: `459238ca6870`  
+**ID**: `23b71f2c402d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2);
-  \pgfpathcurvebetweentime&#123;0.25&#125;&#123;0.9&#125;&#123;\pgfpointxy&#123;0&#125;&#123;0&#125;&#125;&#123;\pgfpointxy&#123;0&#125;&#123;2&#125;&#125;
-    &#123;\pgfpointxy&#123;3&#125;&#123;0&#125;&#125;&#123;\pgfpointxy&#123;3&#125;&#123;2&#125;&#125;
-  \pgfsetstrokecolor&#123;red&#125;
-  \pgfsetstrokeopacity&#123;0.5&#125;
-  \pgfsetlinewidth&#123;2pt&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;tikzpicture&#125;
+\newdimen\pgfarrowdepth
 </code></pre>
 
 ---
 
 ## 2723. Other
 
-**ID**: `fab39a5335a9`  
+**ID**: `d85c8334c872`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfsetlinewidth&#123;5pt&#125;
-  \pgfpathmoveto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;0cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathclose
-  \pgfpathmoveto&#123;\pgfpoint&#123;2.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;1.5cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;2.5cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;2.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth/.code = \pgfmathsetlength&#123;\pgfarrowdepth&#125;&#123;#1&#125;&#125;
 </code></pre>
 
 ---
 
 ## 2724. Other
 
-**ID**: `ff581a0d88ff`  
+**ID**: `9028a7f2f51e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;0cm&#125;&#123;1cm&#125;&#125;
-  \pgfpatharc&#123;180&#125;&#123;90&#125;&#123;.5cm&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;1.5cm&#125;&#125;
-  \pgfpatharc&#123;90&#125;&#123;-45&#125;&#123;.5cm&#125;
-  \pgfusepath&#123;fill&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth/.code=
+  \pgfarrowsaddtooptions&#123;\pgfmathsetlength&#123;\pgfarrowdepth&#125;&#123;#1&#125;&#125;
 </code></pre>
 
 ---
 
 ## 2725. Other
 
-**ID**: `be6ecbc4efed`  
+**ID**: `ca07e9cdc158`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharc&#123;180&#125;&#123;45&#125;&#123;2cm and 1cm&#125;
-  \pgfusepath&#123;draw&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth/.code=
+  \pgfmathsetlength&#123;\somedimen&#125;&#123;#1&#125;
+  \pgfarrowsaddtooptions&#123;\pgfarrowdepth=\somedimen&#125; % buggy
 </code></pre>
 
 ---
 
 ## 2726. Other
 
-**ID**: `7be4f6890978`  
+**ID**: `64e8e4010d6d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgftransformrotate&#123;30&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharc&#123;180&#125;&#123;45&#125;&#123;2cm and 1cm&#125;
-  \pgfusepath&#123;draw&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth/.code=
+  \pgfmathsetlength&#123;\somedimen&#125;&#123;#1&#125;
+  \expandafter\pgfarrowsaddtooptions\expandafter&#123;\expandafter\pgfarrowdepth\expandafter=\the\somedimen&#125;
 </code></pre>
 
 ---
 
 ## 2727. Other
 
-**ID**: `87d8023f6c77`  
+**ID**: `0e165c554e73`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \draw (0,0) -- (2cm,5mm) (0,0) -- (0cm,1cm);
-
-  \pgfpathmoveto&#123;\pgfpoint&#123;2cm&#125;&#123;5mm&#125;&#125;
-  \pgfpatharcaxes&#123;0&#125;&#123;90&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;5mm&#125;&#125;&#123;\pgfpoint&#123;0cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
-\end&#123;tikzpicture&#125;
+\makeatletter
+    \def\showvalueofmacro#1&#123;%
+        \texttt&#123;\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\pgfutil@gobble\expandafter\expandafter\expandafter\string\expandafter\csname#1\endcsname&#125;
+    &#125;%
 </code></pre>
 
 ---
 
 ## 2728. Other
 
-**ID**: `58c7d019ff3f`  
+**ID**: `050bd4a10f75`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-
-  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;20mm&#125;&#125;
-  \pgfpatharcto&#123;3cm&#125;&#123;1cm&#125;&#123;0&#125;&#123;0&#125;&#123;0&#125;&#123;\pgfpoint&#123;3cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
-\end&#123;tikzpicture&#125;
+\pgfarrowsthreeparameters&#123;2pt 1&#125;
+\showvalueofmacro\pgfarrowstheparameters
 </code></pre>
 
 ---
 
 ## 2729. Other
 
-**ID**: `3114b5aaa6f5`  
+**ID**: `d16947c31f2f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \pgfsetlinewidth&#123;2pt&#125;
-  % Flags 0 0: red
-  \pgfsetstrokecolor&#123;red&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharcto&#123;20pt&#125;&#123;10pt&#125;&#123;0&#125;&#123;0&#125;&#123;0&#125;&#123;\pgfpoint&#123;20pt&#125;&#123;10pt&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  % Flags 0 1: blue
-  \pgfsetstrokecolor&#123;blue&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharcto&#123;20pt&#125;&#123;10pt&#125;&#123;0&#125;&#123;0&#125;&#123;1&#125;&#123;\pgfpoint&#123;20pt&#125;&#123;10pt&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  % Flags 1 0: orange
-  \pgfsetstrokecolor&#123;orange&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharcto&#123;20pt&#125;&#123;10pt&#125;&#123;0&#125;&#123;1&#125;&#123;0&#125;&#123;\pgfpoint&#123;20pt&#125;&#123;10pt&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  % Flags 1 1: black
-  \pgfsetstrokecolor&#123;black&#125;
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpatharcto&#123;20pt&#125;&#123;10pt&#125;&#123;0&#125;&#123;1&#125;&#123;1&#125;&#123;\pgfpoint&#123;20pt&#125;&#123;10pt&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth/.code=&#123;%
+  \pgfarrowsthreeparameters&#123;#1&#125;%
+  \expandafter\pgfarrowsaddtolateoptions\expandafter&#123;%
+    \expandafter\pgfarrowslinewidthdependent\pgfarrowstheparameters% compute...
+    \pgfarrowdepth\pgf@x% ... and store.
+  &#125;%
+&#125;
 </code></pre>
 
 ---
 
 ## 2730. Other
 
-**ID**: `d29fe0abe10a`  
+**ID**: `42bdeab850bc`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-
-  \def\cx&#123;1.5cm&#125;% center x
-  \def\cy&#123;1cm&#125;% center y
-  \def\startangle&#123;0&#125;%
-  \def\endangle&#123;270&#125;%
-  \def\a&#123;1.5cm&#125;% xradius
-  \def\b&#123;0.5cm&#125;% yradius
-  \pgfmathparse&#123;\a/\b&#125;\let\abratio=\pgfmathresult
-  \pgfmathparse&#123;\b/\a&#125;\let\baratio=\pgfmathresult
-  %
-  % start point:
-  \pgfpathmoveto&#123;\pgfpoint&#123;\cx+\a*cos(\startangle)&#125;&#123;\cy+\b*sin(\startangle)&#125;&#125;%
-  \pgfpatharctoprecomputed
-    &#123;\pgfpoint&#123;\cx&#125;&#123;\cy&#125;&#125;
-    &#123;\startangle&#125;
-    &#123;\endangle&#125;
-    &#123;\pgfpoint&#123;\cx+\a*cos(\endangle)&#125;&#123;\cy+\b*sin(\endangle)&#125;&#125;% end point
-    &#123;\a&#125;
-    &#123;\b&#125;
-    &#123;\abratio&#125;
-    &#123;\baratio&#125;
-  \pgfusepath&#123;draw&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/arrow keys/depth'/.code=&#123;%
+  \pgfarrowsthreeparameters&#123;#1&#125;%
+  \expandafter\pgfarrowsaddtolateoptions\expandafter&#123;%
+    \expandafter\pgfarrowslengthdependent\pgfarrowstheparameters% compute...
+    \pgfarrowdepth\pgf@x% ... and store.
+  &#125;%
+&#125;
 </code></pre>
 
 ---
 
 ## 2731. Other
 
-**ID**: `9c2bb726dcd2`  
+**ID**: `949ab65a39b2`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathellipse&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
-                 &#123;\pgfpoint&#123;1.5cm&#125;&#123;0cm&#125;&#125;
-                 &#123;\pgfpoint&#123;0cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
-  \color&#123;red&#125;
-  \pgfpathellipse&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
-                 &#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-                 &#123;\pgfpoint&#123;-0.5cm&#125;&#123;0.5cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
+\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
+    one child at (0,1) and two children at (-.5,1) and (.5,1)&#125;]
+  \node at (0,0) &#123;one&#125; child;
+  \node at (0,-1.5) &#123;two&#125; child child;
+  \node at (0,-3) &#123;three&#125; child child child;
+  \node at (0,-4.5) &#123;four&#125; child child child child;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -669,17 +527,17 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2732. Other
 
-**ID**: `cc4dec9d43e4`  
+**ID**: `dea820ad8abc`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathrectangle&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;&#123;\pgfpoint&#123;1.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathrectangle&#123;\pgfpoint&#123;1.5cm&#125;&#123;0.25cm&#125;&#125;&#123;\pgfpoint&#123;1.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathrectangle&#123;\pgfpoint&#123;2cm&#125;&#123;0.5cm&#125;&#125;&#123;\pgfpoint&#123;1.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
+\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
+    one child at (0,1) and two children at (0,1) and (1,1)&#125;]
+  \node at (0,0) &#123;one&#125; child;
+  \node at (0,-1.5) &#123;two&#125; child child;
+  \node at (0,-3) &#123;three&#125; child child child;
+  \node at (0,-4.5) &#123;four&#125; child child child child;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -687,15 +545,17 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2733. Other
 
-**ID**: `8d7b2f278a3b`  
+**ID**: `062990fa6188`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathrectanglecorners&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;&#123;\pgfpoint&#123;1.5cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;draw&#125;
+\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
+    one child at (-1,-.5) and two children at (-1,-.5) and (0,-.75)&#125;]
+  \node at (0,0) &#123;one&#125; child;
+  \node at (0,-1.5) &#123;two&#125; child child;
+  \node at (0,-3) &#123;three&#125; child child child;
+  \node at (0,-4.5) &#123;four&#125; child child child child;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -703,88 +563,79 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2734. Other
 
-**ID**: `5cfd9b004a80`  
+**ID**: `c0e1c5b72915`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfsetlinewidth&#123;0.8pt&#125;
-  \pgfpathgrid[step=&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;]
-    &#123;\pgfpoint&#123;-3mm&#125;&#123;-3mm&#125;&#125;&#123;\pgfpoint&#123;33mm&#125;&#123;23mm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  \pgfsetlinewidth&#123;0.4pt&#125;
-  \pgfpathgrid[stepx=1mm,stepy=1mm]
-    &#123;\pgfpoint&#123;-1.5mm&#125;&#123;-1.5mm&#125;&#125;&#123;\pgfpoint&#123;31.5mm&#125;&#123;21.5mm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;
+\begin&#123;tikzpicture&#125;
+  [grow cyclic,
+   level 1/.style=&#123;level distance=8mm,sibling angle=60&#125;,
+   level 2/.style=&#123;level distance=4mm,sibling angle=45&#125;,
+   level 3/.style=&#123;level distance=2mm,sibling angle=30&#125;]
+  \coordinate [rotate=-90] % going down
+    child foreach \x in &#123;1,2,3&#125;
+      &#123;child foreach \x in &#123;1,2,3&#125;
+        &#123;child foreach \x in &#123;1,2,3&#125;&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2735. Other
 
-**ID**: `2d9d467e60b5`  
+**ID**: `980a2ce4d25d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgftransformrotate&#123;10&#125;
-  \pgfpathgrid[stepx=1mm,stepy=2mm]&#123;\pgfpoint&#123;0mm&#125;&#123;0mm&#125;&#125;&#123;\pgfpoint&#123;30mm&#125;&#123;30mm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;
+\begin&#123;tikzpicture&#125;
+  \node &#123;root&#125;
+  [clockwise from=30,sibling angle=30]
+  child &#123;node &#123;$30$&#125;&#125;
+  child &#123;node &#123;$0$&#125;&#125;
+  child &#123;node &#123;$-30$&#125;&#125;
+  child &#123;node &#123;$-60$&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2736. Other
 
-**ID**: `d673daa2f763`  
+**ID**: `c46505964f58`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  % Half-parabola going ``up and right''
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathparabola&#123;\pgfpointorigin&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;4cm&#125;&#125;
-  \color&#123;red&#125;
-  \pgfusepath&#123;stroke&#125;
-
-  % Half-parabola going ``down and right''
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathparabola&#123;\pgfpoint&#123;-2cm&#125;&#123;4cm&#125;&#125;&#123;\pgfpointorigin&#125;
-  \color&#123;blue&#125;
-  \pgfusepath&#123;stroke&#125;
-
-  % Full parabola
-  \pgfpathmoveto&#123;\pgfpoint&#123;-2cm&#125;&#123;2cm&#125;&#125;
-  \pgfpathparabola&#123;\pgfpoint&#123;1cm&#125;&#123;-1cm&#125;&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;4cm&#125;&#125;
-  \color&#123;orange&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;
+\begin&#123;tikzpicture&#125;
+  \node &#123;root&#125;
+    [edge from parent fork down]
+    child &#123;node &#123;left&#125;&#125;
+    child &#123;node &#123;right&#125;
+      child[child anchor=north east] &#123;node &#123;child&#125;&#125;
+      child &#123;node &#123;child&#125;&#125;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2737. Other
 
-**ID**: `94b5d49e1952`  
+**ID**: `ac261e7456cb`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,1);
-  \pgfpathmoveto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
-  \pgfpathsine&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-
-  \color&#123;red&#125;
-  \pgfpathmoveto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
-  \pgfpathsine&#123;\pgfpoint&#123;-2cm&#125;&#123;-2cm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
+  \node &#123;root&#125;
+    [edge from parent fork right,grow=right]
+    child &#123;node &#123;left&#125;&#125;
+    child &#123;node &#123;right&#125;
+      child &#123;node &#123;child&#125;&#125;
+      child &#123;node &#123;child&#125;&#125;
+    &#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -792,290 +643,182 @@ InterfaceToDisplay.endGraphDrawingScope()
 
 ## 2738. Other
 
-**ID**: `abcb36a85191`  
+**ID**: `20d0436edca3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfpathmoveto&#123;\pgfpoint&#123;0cm&#125;&#123;0cm&#125;&#125;
-  \pgfpathsine&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfpathcosine&#123;\pgfpoint&#123;1cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathsine&#123;\pgfpoint&#123;1cm&#125;&#123;-1cm&#125;&#125;
-  \pgfpathcosine&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
-  \pgfsetfillcolor&#123;yellow!80!black&#125;
-  \pgfusepath&#123;fill,stroke&#125;
-\end&#123;pgfpicture&#125;
+\pgfmathsetlength\mydimen&#123;1cm&#125;  % parsed     : slower.
+\pgfmathsetlength\mydimen&#123;+1cm&#125; % not parsed : much faster.
 </code></pre>
 
 ---
 
 ## 2739. Other
 
-**ID**: `ce0ecd98dd15`  
+**ID**: `686d527f9ab9`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-
-  \pgfsetcornersarced&#123;\pgfpoint&#123;5mm&#125;&#123;5mm&#125;&#125;
-  \pgfpathrectanglecorners&#123;\pgfpointorigin&#125;&#123;\pgfpoint&#123;3cm&#125;&#123;2cm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/fpu&#125;
+\pgfmathparse&#123;1+1&#125;\pgfmathresult
 </code></pre>
 
 ---
 
 ## 2740. Other
 
-**ID**: `b4e5e1791371`  
+**ID**: `d57b731d3bff`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[help lines] (0,0) grid (3,2);
-
-  \pgfsetcornersarced&#123;\pgfpoint&#123;10mm&#125;&#123;5mm&#125;&#125;
-  % 10mm entering,
-  % 5mm leaving.
-  \pgfpathmoveto&#123;\pgfpointorigin&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;0cm&#125;&#123;2cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpoint&#123;3cm&#125;&#123;2cm&#125;&#125;
-  \pgfpathcurveto
-    &#123;\pgfpoint&#123;3cm&#125;&#123;0cm&#125;&#125;
-    &#123;\pgfpoint&#123;2cm&#125;&#123;0cm&#125;&#125;
-    &#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;tikzpicture&#125;
+% \begin&#123;tikzpicture&#125;
+%     \fill[red,fpu,/pgf/fpu/scale results=1e-10] (*1.234e10,*1e10) -- (*2e10,*2e10);
+% \end&#123;tikzpicture&#125;
+%
 </code></pre>
 
 ---
 
 ## 2741. Other
 
-**ID**: `f9633ac1a571`  
+**ID**: `b53972edb4dd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;pgfpicture&#125;
-  \pgfsetcornersarced&#123;\pgfpoint&#123;4pt&#125;&#123;4pt&#125;&#125;
-  \pgfpathmoveto&#123;\pgfpointpolar&#123;0&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpointpolar&#123;72&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpointpolar&#123;144&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpointpolar&#123;216&#125;&#123;1cm&#125;&#125;
-  \pgfpathlineto&#123;\pgfpointpolar&#123;288&#125;&#123;1cm&#125;&#125;
-  \pgfpathclose
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;
+\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=float&#125;
+\pgfmathparse&#123;exp(50)*42&#125;\pgfmathresult
 </code></pre>
 
 ---
 
-## 2742. Node Graph
+## 2742. Other
 
-**ID**: `68f76a5d0732`  
+**ID**: `dd975c3d860c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[inner sep=0pt,thick,
-                    dot/.style=&#123;fill=blue,circle,minimum size=3pt&#125;]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) &#123;&#125;;
-  \node[dot] (b) at (2,2) &#123;&#125;;
-  \node[dot] (c) at (1,2) &#123;&#125;;
-  \node[dot] (d) at (1.25,0.25) &#123;&#125;;
-  \node[dot] (e) at (1.75,1.5) &#123;&#125;;
-
-  \node[draw=red,   fit=(a) (b) (c) (d) (e)] &#123;box&#125;;
-  \node[draw,circle,fit=(a) (b) (c) (d) (e)] &#123;&#125;;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=sci&#125;
+\pgfmathparse&#123;4.22e-8^-2&#125;\pgfmathresult
 </code></pre>
 
 ---
 
-## 2743. Node Graph
+## 2743. Other
 
-**ID**: `1560b7fa226f`  
+**ID**: `764adb422a16`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[inner sep=0pt,thick,
-                    dot/.style=&#123;fill=blue,circle,minimum size=3pt&#125;]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) &#123;&#125;;
-  \node[dot] (b) at (2,2) &#123;&#125;;
-  \node[dot] (c) at (1,2) &#123;&#125;;
-  \node[dot] (d) at (1.25,0.25) &#123;&#125;;
-  \node[dot] (e) at (1.75,1.5) &#123;&#125;;
-
-  \node[draw=red,fit=(a) (b) (c) (d) (e)] (fit) &#123;&#125;;
-  \node[below] at (fit.north) &#123;box&#125;;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=fixed&#125;
+\pgfmathparse&#123;sqrt(1e-12)&#125;\pgfmathresult
 </code></pre>
 
 ---
 
 ## 2744. Other
 
-**ID**: `0ab9cb39bf93`  
+**ID**: `afdb34e78215`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [vertex/.style=&#123;minimum size=2pt,fill,draw,circle&#125;,
-   open/.style=&#123;fill=none&#125;,
-   sibling distance=1.5cm,level distance=.75cm,
-   every fit/.style=&#123;ellipse,draw,inner sep=-2pt&#125;,
-   leaf/.style=&#123;label=&#123;[name=#1]below:$#1$&#125;&#125;,auto]
-
-  \node [vertex] (root) &#123;&#125;
-  child &#123; node [vertex,open] &#123;&#125;
-    child &#123; node [vertex,open] &#123;&#125;
-      child &#123; node [vertex] (b's parent) &#123;&#125;
-        child &#123; node [vertex] &#123;&#125;
-          child &#123; node [vertex,leaf=d] &#123;&#125; &#125;
-          child &#123; node [vertex,leaf=e] &#123;&#125; &#125; &#125;
-        child &#123; node [vertex,leaf=b] &#123;&#125; &#125; &#125;
-      child &#123; node [vertex,leaf=a] &#123;&#125; &#125; &#125;
-    child &#123; node [coordinate] &#123;&#125;
-      child[missing]
-      child &#123; node [vertex] (f's parent) &#123;&#125;
-        child &#123; node [vertex,leaf=c] &#123;&#125; &#125;
-        child &#123; node [vertex,leaf=f] &#123;&#125; &#125; &#125; &#125;
-    edge from parent node &#123;$\rho$&#125; &#125;;
-
-  \node [fit=(d) (e) (b) (b's parent),label=above left:$F^&#123;(b,R)&#125;$] &#123;&#125;;
-  \node [fit=(c) (f) (f's parent),label=above right:$F^&#123;(c,R)&#125;$]    &#123;&#125;;
-\end&#123;tikzpicture&#125;
+\begingroup
+\pgfkeys&#123;/pgf/fpu/install only=&#123;divide&#125;&#125;
+\pgfmathparse&#123;12.34/0.001234&#125;\pgfmathresult (good)
+\pgfmathparse&#123;12/4&#125;\pgfmathresult (bad)
+\endgroup
 </code></pre>
 
 ---
 
-## 2745. Node Graph
+## 2745. Other
 
-**ID**: `75fd04b48e84`  
+**ID**: `7b113e3fab34`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[inner sep=0pt,thick,
-  dot/.style=&#123;fill=blue,circle,minimum size=3pt&#125;]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) &#123;&#125;;
-  \node[dot] (b) at (2,2) &#123;&#125;;
-  \node[dot] (c) at (1,2) &#123;&#125;;
-  \node[dot] (d) at (1.25,0.25) &#123;&#125;;
-  \node[dot] (e) at (1.75,1.5) &#123;&#125;;
-  \node[draw, fit=(a) (b) (c) (d) (e)] &#123;&#125;;
-  \node[draw=red, rotate fit=30, fit=(a) (b) (c) (d) (e)] &#123;&#125;;
-\end&#123;tikzpicture&#125;
+\pgfmathfloatparsenumber&#123;2&#125;
+\pgfmathresult
 </code></pre>
 
 ---
 
 ## 2746. Other
 
-**ID**: `53ecaa48e626`  
+**ID**: `2f17e87c3a6f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-Hello \begin&#123;pgfpicture&#125;
-  \pgfpathrectangle&#123;\pgfpointorigin&#125;&#123;\pgfpoint&#123;2ex&#125;&#123;1ex&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125; World!
+\pgfmathfloatparsenumber&#123;0&#125;
+\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
+Flags: \F; Mantissa \M; Exponent \E.
 </code></pre>
 
 ---
 
 ## 2747. Other
 
-**ID**: `a57d6e252d9b`  
+**ID**: `9373eec126aa`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-Rectangles \begin&#123;pgfpicture&#125;
-  \pgfpathrectangle&#123;\pgfpointorigin&#125;&#123;\pgfpoint&#123;2ex&#125;&#123;1ex&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125; and \begin&#123;pgfpicture&#125;
-  \pgfpathrectangle&#123;\pgfpoint&#123;0ex&#125;&#123;1ex&#125;&#125;&#123;\pgfpoint&#123;2ex&#125;&#123;1ex&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;.
+\pgfmathfloatparsenumber&#123;0.2&#125;
+\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
+Flags: \F; Mantissa \M; Exponent \E.
 </code></pre>
 
 ---
 
 ## 2748. Other
 
-**ID**: `2496f2ff62a9`  
+**ID**: `4aaaf2ee4de6`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-Rectangles \begin&#123;pgfpicture&#125;
-  \pgfpathrectangle&#123;\pgfpointorigin&#125;&#123;\pgfpoint&#123;2ex&#125;&#123;1ex&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  \pgfsetbaseline&#123;0pt&#125;
-\end&#123;pgfpicture&#125; and \begin&#123;pgfpicture&#125;
-  \pgfpathrectangle&#123;\pgfpoint&#123;0ex&#125;&#123;1ex&#125;&#125;&#123;\pgfpoint&#123;2ex&#125;&#123;1ex&#125;&#125;
-  \pgfusepath&#123;stroke&#125;
-  \pgfsetbaseline&#123;0pt&#125;
-\end&#123;pgfpicture&#125;.
+\pgfmathfloatparsenumber&#123;42&#125;
+\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
+Flags: \F; Mantissa \M; Exponent \E.
 </code></pre>
 
 ---
 
 ## 2749. Other
 
-**ID**: `72923c14395c`  
+**ID**: `f588ce0af10a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-Text
-\begin&#123;pgfpicture&#125;
-  \pgfpathcircle&#123;\pgfpointorigin&#125;&#123;1ex&#125;\pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;,
-\begin&#123;pgfpicture&#125;
-  \pgfsetbaseline&#123;0pt&#125;
-  \pgfpathcircle&#123;\pgfpointorigin&#125;&#123;1ex&#125;\pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;,
-\begin&#123;pgfpicture&#125;
-  \pgfsetbaseline&#123;.5ex&#125;
-  \pgfpathcircle&#123;\pgfpointorigin&#125;&#123;1ex&#125;\pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;,
-\begin&#123;pgfpicture&#125;
-  \pgfsetbaseline&#123;-1ex&#125;
-  \pgfpathcircle&#123;\pgfpointorigin&#125;&#123;1ex&#125;\pgfusepath&#123;stroke&#125;
-\end&#123;pgfpicture&#125;.
+\pgfmathfloatparsenumber&#123;20.5E+2&#125;
+\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
+Flags: \F; Mantissa \M; Exponent \E.
 </code></pre>
 
 ---
 
 ## 2750. Other
 
-**ID**: `85cf019c165c`  
+**ID**: `3f7a9cb902b8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-Hello
-\begin&#123;pgfpicture&#125;
-  \pgfsetbaselinepointlater&#123;\pgfpointanchor&#123;X&#125;&#123;base&#125;&#125;
-  % Note: no shape X, yet
-  \pgfnode&#123;cross out&#125;&#123;center&#125;&#123;world.&#125;&#123;X&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
-\end&#123;pgfpicture&#125;
+\pgfmathfloatparsenumber&#123;1e6&#125;
+\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
+Flags: \F; Mantissa \M; Exponent \E.
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-053) | Page 55 of 107 | [Next →](executable_example-page-055)
+[← Previous](executable_example-page-053) | Page 55 of 120 | [Next →](executable_example-page-055)

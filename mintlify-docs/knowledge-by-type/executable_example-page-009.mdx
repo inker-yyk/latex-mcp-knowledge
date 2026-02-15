@@ -1,70 +1,63 @@
 ---
 title: "Executable Examples - Page 10"
-description: "Items 451-500 of 5325 executable examples"
+description: "Items 451-500 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 10
 
-Showing items **451-500** of **5325**
+Showing items **451-500** of **5999**
 
-[← Previous](executable_example-page-008) | Page 10 of 107 | [Next →](executable_example-page-010)
+[← Previous](executable_example-page-008) | Page 10 of 120 | [Next →](executable_example-page-010)
 
 ---
 
 ## 451. Circuit
 
-**ID**: `96f736fee8c8`  
+**ID**: `63644bd4cdf9`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125; \draw
-  (0,0) to[qgenerator, t=G,*-] ++(2,0)
-  to[vallpass,&gt;] ++(2,0)
-  to[ngenerator, t=FM,&gt;] ++(2,0)
-  to[short,-o] ++(0.3,0);
-\end&#123;circuitikz&#125;
+  (0,0) to[Tr, n=TRI] (2,0)
+        to[pR, n=POT] (4,0);
+  \draw[dashed] (TRI.G) -| (POT.wiper)
+;\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 452. Circuit
 
-**ID**: `17465ff61745`  
+**ID**: `da5266769407`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[mixer, box only, anchor=east](m)&#123;&#125;
-    to[amp, boxed, &gt;, -o] ++(2.5,0)
-  (m.west) node[inputarrow]&#123;&#125; to[short,-o] ++(-0.8,0)
-  (m.south) node[inputarrow,rotate=90]&#123;&#125; --
-    ++(0,-0.7) node[oscillator, box, anchor=north]&#123;&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[]
+        \ctikzset&#123;thyristor style=compact&#125;
+        \draw (0,0) to[GTO=$G_1$] ++(0,-3);
+        \ctikzset&#123;gto gate end arrow=latexslim&#125;
+        \draw (2,0) to[GTO*=$G_2$, mirror] ++(0,-3);
+        \draw (4,0) to[GTOb-=$G_2$, mirror] ++(0,-3);
+    \end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 453. Circuit
 
-**ID**: `0df2e174a067`  
+**ID**: `54115c6419af`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-\draw (0,1.5) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0);
-\draw[dashed] (2.5,1.5) to[lowpass,l=opt.] ++(2.5,0);
-% or just the block
-\draw (0,0) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0)
-     to[lowpass,l=opt., dashed] ++(2.5,0);
-% or everything
-\ctikzset&#123;inner blocks dashed,
-    dashed blocks pattern=&#123;&#123;1.5pt&#125;&#123;1pt&#125;&#125;,
-&#125;
-\draw (0,-1.5) to[amp,l=\SI&#123;10&#125;&#123;dB&#125;] ++(2.5,0)
-     to[lowpass,l=opt., dashed] ++(2.5,0);
+   \draw (0,1) to[D, l=$D$] ++(2,0)
+      node[npn, anchor=B]&#123;&#125;;
+   \ctikzset&#123;diodes/scale=0.6&#125;
+   \draw (0,-1) to[D, l=$D$] ++(2,0)
+      node[npn, anchor=B]&#123;&#125;;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -72,85 +65,99 @@ Showing items **451-500** of **5325**
 
 ## 454. Circuit
 
-**ID**: `2ff05428adf7`  
+**ID**: `ad4ac98dd939`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=0.9]
-    \ctikzset&#123;blocks dc segments=3&#125;
-    \draw (0,2) to[sacdc] ++(2,0) to[sdcdc]
-        ++(2,0) to[sdcac] ++(2,0);
-    \ctikzset&#123;blocks dc segments=1&#125;
-    \draw (0,0) to[sacdc, blocks dc out segments=2]
-        ++(2,0) to[sdcdc, blocks dc in segments=2]
-        ++(2,0) to[sdcac] ++(2,0);
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+        \ctikzset&#123;led arrows from anode&#125; % default
+        \ctikzset&#123;pd arrows to anode&#125;    % default
+        \ctikzset&#123;full diodes&#125;
+        \draw (0,0) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+        \ctikzset&#123;stroke diodes&#125;
+        \draw (0,-1) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+        \ctikzset&#123;empty diodes&#125;
+        \draw (0,-2) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+
+        \ctikzset&#123;led arrows from cathode&#125;
+        \ctikzset&#123;pd arrows to cathode&#125;
+        \ctikzset&#123;full diodes&#125;
+        \draw (0,-4) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+        \ctikzset&#123;stroke diodes&#125;
+        \draw (0,-5) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+        \ctikzset&#123;empty diodes&#125;
+        \draw (0,-6) to[leD] ++(1.5,0) to[pD] ++(1.5,0);
+    \end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 455. Circuit
 
-**ID**: `2d21f7aa2972`  
+**ID**: `6570629ea014`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[european, scale=0.7, transform shape,
-    circuitikz/resistors/scale=0.7]
-    \draw (0,0) to[C, o-*] ++(1,0) coordinate(in)
-    to[R, -*] ++(0,-3) coordinate(GND)
-    ++(1,0) to[C, *-] ++(0,4) -- ++(1,0) coordinate(div)
-    to[R, *-*] ++(0,2) coordinate(vdd)
-    (div) to[R, -*] (div|-GND)
-    (in) -- ++(2.5,0) node[nigfetd, doublegate, anchor=G1](Q)&#123;Q&#125;
-    (Q.G2) to[short, -*] (Q.G2-|div)
-    (Q.D) to[R, -*] (Q.D|-vdd)
-    (Q.D) to[C, *-o] ++(2,0) coordinate(out)
-    (Q.S) to[R, *-*] (Q.S|-GND) (Q.S) -- ++(1,0) coordinate(Sd)
-    (Sd) to[C, -*] (Sd |- GND);
-    \draw (0,0|-GND) -- (out|-GND) (0,0|-vdd) -- (out|-vdd);
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;
+\newcommand&#123;\optos&#125;&#123;%
+    to[leD] ++(1.5,0) to[pD*] ++(1.5,0)
+    to[lasD] ++(1.5,0)&#125;
+\begin&#123;scope&#125;
+    \draw (0,2) \optos;
+    \ctikzset&#123;led arrows from cathode&#125;
+    \ctikzset&#123;pd arrows to cathode&#125;
+    \ctikzset&#123;opto arrows/.cd, color=red,
+        dash=&#123;&#123;1pt&#125;&#123;1pt&#125;&#125;&#125;
+    \draw (0,0) \optos;
+\end&#123;scope&#125;
+\begin&#123;scope&#125;[color=blue, yshift=-6cm]
+    \ctikzset&#123;opto end arrow=&#123;Triangle[angle'=45]&#125;&#125;
+    \ctikzset&#123;opto start arrow=&#123;Hooks[red]&#125;&#125;
+    \draw (0,4) \optos;
+    \ctikzset&#123;opto arrows/color=black&#125;
+    \ctikzset&#123;opto arrows/relative thickness=2&#125;
+    \draw (0,2) \optos;
+    \ctikzset&#123;led arrows from cathode&#125;
+    \ctikzset&#123;pd arrows to cathode&#125;
+    \draw (0,0) \optos;
+\end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 456. Circuit
 
-**ID**: `f6f269aaae4f`  
+**ID**: `3a42b18e9535`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
-    \draw (0,0) node [npn]&#123;T1&#125;
-    ++(1.2,0) node [npn, xscale=-1]&#123;\ctikzflipx&#123;T1&#125;&#125;
-    ++(2,0) node [npn, yscale=-1]&#123;\ctikzflipy&#123;T1&#125;&#125;
-    ++(1.2,0) node [npn, scale=-1]&#123;\ctikzflipxy&#123;T1&#125;&#125;;
-    \ctikzset&#123;legacy transistors text&#125;
-    \draw (0,-2) node [npn]&#123;T1&#125;
-    ++(1.2,0) node [npn, xscale=-1]&#123;\ctikzflipx&#123;T1&#125;&#125;
-    ++(2,0) node [npn, yscale=-1]&#123;\ctikzflipy&#123;T1&#125;&#125;
-    ++(1.2,0) node [npn, scale=-1]&#123;\ctikzflipxy&#123;T1&#125;&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;
+    \draw (0,1) to [zzDo] ++(1,0) to[zzD-] ++(1,0)
+        to[zzD*] ++(1,0) to[tvsD-] ++(2,0);
+    \ctikzset&#123;diode straight whiskers&#125;
+    \draw (0,0) to [zzDo] ++(1,0) to[zzD-] ++(1,0)
+        to[zzD*] ++(1,0) to[tvsD-] ++(2,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 457. Circuit
 
-**ID**: `5ace7f7922e2`  
+**ID**: `94cf7aa666f2`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
-    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125; (T1.S) node[ground]&#123;&#125;
-        (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;;
-    \draw (2,0) node [nigfetebulk, legacy transistors text](T2)&#123;T2&#125;
-        (T2.S) node[ground]&#123;&#125;
-        (T2.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;;
+\begin&#123;circuitikz&#125;[american]
+   \draw (0,2) to[sV=$V$] ++(3,0);
+   \draw (0,1) to[sI=$I$] ++(3,0);
+   \ctikzset&#123;bipoles/isourcesin/angle=80&#125;
+   \draw (0,0) to[sI] ++(3,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -158,21 +165,18 @@ Showing items **451-500** of **5325**
 
 ## 458. Circuit
 
-**ID**: `bc5cf378a28b`  
+**ID**: `a6e333ea7b51`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
-    \ctikzset&#123;legacy transistors text, tr circle&#125;
-    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125; (T1.S) node[ground]&#123;&#125;
-    (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;
-    (0,-3) node [pigfetebulk](P1)&#123;P1&#125; (P1.D) node[ground]&#123;&#125;;
-    \ctikzset&#123;transistor circle/scale circle radius=1.3&#125;
-    \draw (2,0) node [nigfetebulk](T2)&#123;T2&#125;
-    (2,-3) node [pigfetebulk](P2)&#123;P2&#125; (P2.D) node[ground]&#123;&#125;
-    (T2.S) node[ground]&#123;&#125;
-    (T2.bulk) -- ++(0.8, 0) node[vee]&#123;&#125;;
+\begin&#123;circuitikz&#125;
+    \draw(0,0) to [nV, l=$e_n$] ++(2,0);
+    \draw(0,-2) to [nI, l=$i_n$] ++(2,0);
+    \begin&#123;scope&#125;[circuitikz/bipoles/noise sources/fillcolor=red!50]
+        \draw(3,0) to [nV, l=$e_n$] ++(2,0);
+        \draw(3,-2) to [nI, l=$i_n$] ++(2,0);
+    \end&#123;scope&#125;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -180,24 +184,18 @@ Showing items **451-500** of **5325**
 
 ## 459. Circuit
 
-**ID**: `b2d00941d8b2`  
+**ID**: `d38a39a824bb`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-    \ctikzset&#123;component text=up, tr circle&#125;
-    \draw (0,0) node [nigfetebulk](T1)&#123;T1&#125;
-    (T1.S) node[ground]&#123;&#125;
-    (T1.bulk) -- ++(0.5, 0) node[vee]&#123;&#125;
-    (0,-3) node [pigfetebulk, component text=down](P1)&#123;P1&#125;
-    (P1.D) node[ground]&#123;&#125;;
-    \ctikzset&#123;transistor circle/scale circle radius=1.6&#125;
-    \draw (2,0) node [nigfetebulk](T2)&#123;T2&#125;
-    (2,-3) node [pigfetebulk, component text=down](P2)&#123;P2&#125;
-    (P2.D) node[ground]&#123;&#125;
-    (T2.S) node[ground]&#123;&#125;
-    (T2.bulk) -- ++(1.2, 0) node[vee]&#123;&#125;;
+    \draw(0,0) to [nV, l=$e_n$] ++(2,0);
+    \draw(0,-2) to [nI, l=$i_n$] ++(2,0);
+    \begin&#123;scope&#125;[circuitikz/bipoles/noise sources/fillcolor=dashed]
+        \draw(3,0) to [nV, l=$e_n$] ++(2,0);
+        \draw(3,-2) to [nI, l=$i_n$] ++(2,0);
+    \end&#123;scope&#125;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -205,16 +203,19 @@ Showing items **451-500** of **5325**
 
 ## 460. Circuit
 
-**ID**: `0c1e597a6443`  
+**ID**: `e57264536145`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-\draw (0,0) node[bjtnpn, emitters=2,
-    component text=up](B)&#123;pB&#125; ++(2,0)
-    node[bjtnpn](C)&#123;pC&#125; (B.nobase) -- (C.base)
-    ++(2,1); %adjust bounding box
+    \ctikzset&#123;bipoles/noise sources/fillcolor=dashed&#125;
+    \draw(0,0) to [nV, l=$e_n$] ++(2,0);
+    \draw(0,-2) to [nI, l=$i_n$] ++(2,0);
+    \begin&#123;scope&#125;
+        \draw(3,0) to [nV, l=$e_n$, fill=yellow!50!red] ++(2,0);
+        \draw(3,-2) to [nI, l=$i_n$, fill=blue!50!white] ++(2,0);
+    \end&#123;scope&#125;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -222,18 +223,16 @@ Showing items **451-500** of **5325**
 
 ## 461. Circuit
 
-**ID**: `08b65d31a345`  
+**ID**: `ccfd12ec0292`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-   \ctikzset&#123;tripoles/mos style=arrows&#125;
-   \ctikzset&#123;transistors/arrow pos=end&#125;
-   \draw (0,0) node[npn, ](npn)&#123;&#125;;
-   \draw (2,0) node[pnp, ](npn)&#123;&#125;;
-   \draw (0,-2) node[nmos, ](npn)&#123;&#125;;
-   \draw (2,-2) node[pmos, ](npn)&#123;&#125;;
+    \draw (0,0) to[oosourcetrans, prim=zig, sec=delta, o-] ++(2,0)
+    to[oosourcetrans, prim=delta, sec=wye,-o] ++(0,-2)
+    to[ooosource, prim=eyw, sec=zig, tert=delta] (0,0)
+    to[oosourceatrans, prim=wye, -*] ++(0,-2);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -241,79 +240,80 @@ Showing items **451-500** of **5325**
 
 ## 462. Circuit
 
-**ID**: `17227da1f0e8`  
+**ID**: `06fc5d7a8761`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[
-    info/.style=&#123;left=1cm, blue, text width=5em, align=right&#125;,]
-    \draw (0,1) node&#123;pmos&#125; (2,1) node&#123;nmos&#125;;
-    \draw (0,0) node[info]&#123;default&#125; node[pmos]&#123;&#125; (2,0) node[nmos]&#123;&#125;;
-    \ctikzset&#123;tripoles/mos style/arrows&#125;
-    \draw (0,-2) node[info]&#123;arrows&#125; node[pmos]&#123;&#125; (2,-2) node[nmos]&#123;&#125;;
-    \ctikzset&#123;tripoles/pmos style/emptycircle&#125;
-    \draw (0,-4) node[info]&#123;emptycircle&#125; node[pmos]&#123;&#125; (2,-4) node[nmos]&#123;&#125;;
-    \ctikzset&#123;tripoles/pmos style/nocircle&#125;
-    \draw (0,-6) node[info]&#123;nocircle&#125; node[pmos]&#123;&#125; (2,-6) node[nmos]&#123;&#125;;
-    \ctikzset&#123;tripoles/mos style/no arrows&#125;
-    \draw (0,-8) node[info, red]&#123;no circle, no arrows, DON'T do it&#125;
-          node[pmos]&#123;&#125; (2,-8) node[nmos]&#123;&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;[european, scale=2, transform shape,
+    smalldot/.style=&#123;draw, circle,red, inner sep=0.2pt&#125;]
+    \draw (0,0) to[oosourcetrans, name=A,
+            prim=delta, sec=wye] ++(1,0)
+        to[ooosource, name=B, prim=eyw, sec=zig,
+            tert=delta] ++(1,0)
+        (A.symbolsec) -- ++(-45:0.5) node[ground]&#123;&#125;;
+    \node [smalldot] at (A.symbolprim) &#123;&#125;;
+    \node [smalldot] at (A.symbolsec) &#123;&#125;;
+    \node [smalldot] at (B.symbolprim) &#123;&#125;;
+    \node [smalldot] at (B.symbolsec) &#123;&#125;;
+    \node [smalldot] at (B.symboltert) &#123;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 463. Circuit
 
-**ID**: `f09f1145af26`  
+**ID**: `89e5bb91311d`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \draw (0,2) node[npn, photo]&#123;&#125; ++(2,0) node[pnp, photo]&#123;&#125;;
-    \ctikzset&#123;opto end arrow=&#123;Triangle[angle'=60]&#125;&#125;
-    \ctikzset&#123;opto arrows/.cd, color=red, dash=&#123;&#123;1pt&#125;&#123;1pt&#125;&#125;&#125;
-    \draw (0,0) node[npn, photo]&#123;&#125; ++(2,0) node[pnp, photo]&#123;&#125;;
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) node[ground](GND)&#123;&#125;
+        to [I,l=$i_s$,invert]
+        ++(0,2.5) -- ++(1.5,0) coordinate(up)
+        to[nullator, v=0, i=0, name=A]
+        (up|-GND) node[ground]&#123;&#125;;
+    \draw (up) to[R, *-*] ++(2,0) coordinate(out)
+        to[norator, v^=$v_o$]
+        (out|-GND) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 464. Circuit
 
-**ID**: `805badcf29b9`  
+**ID**: `bdf1239311ae`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \draw (0,2) node[npn]&#123;&#125; (2,2) node[npn, tr circle](Q)&#123;&#125;;
-    % collector connected to housing
-    \node [circ] at (Q.circle C)&#123;&#125;;
-    \ctikzset&#123;tr circle=true&#125; % or \ctikzset&#123;tr circle&#125; alone
-    \draw (0,0) node[nigfete]&#123;&#125;
-        (2,0) node[nigfete, tr circle=false]&#123;&#125;;
-\end&#123;circuitikz&#125;
+\tikzset&#123;noratorW/.style=&#123;voosource,
+		bipoles/oosource/width=0.6,
+		bipoles/oosource/height=0.3&#125;,
+	nullatorW/.style=&#123;esource, sources/scale=0.5&#125;&#125;
+\begin&#123;tikzpicture&#125;
+    \draw (0,0) to[nullatorW] ++(2,0) to[noratorW] ++(0, -2);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 465. Circuit
 
-**ID**: `953f06764029`  
+**ID**: `38d4481f2385`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-   \draw (0,0) node[npn,bodydiode](npn)&#123;1&#125;
-       ++(2,0)node[pnp,bodydiode](npn)&#123;&#125;;
-   \draw (0,-2) node[nigbt,bodydiode](npn)&#123;2&#125;
-       ++(2,0)node[pigbt,bodydiode](npn)&#123;&#125;;
-   \draw (0,-4) node[nfet,bodydiode](npn)&#123;3&#125;
-       ++(2,0)node[pfet,bodydiode](npn)&#123;&#125;;
+    \draw (0,0) to[dcvsource] ++(2,0)
+    to [dcisource, fill=yellow] ++(2,0) ;
+    \ctikzset&#123;bipoles/dcisource/angle=45&#125;
+    \draw (0,-2) to[dcvsource] ++(2,0)
+    to [dcisource, fill=yellow] ++(2,0) ;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -321,26 +321,15 @@ Showing items **451-500** of **5325**
 
 ## 466. Circuit
 
-**ID**: `cc7272f1c158`  
+**ID**: `ef506b7d3bcf`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\snubb#1#2&#123;% add a snubber to a transistor
-    \draw (#1.body C #2) to[short, *-, nodes width=0.02]
-    ++(0.3,0) coordinate(tmp) to [R, resistors/scale=0.3]
-    % 2/3 space for R, 1/3 for C
-    ($(tmp)!0.66!(tmp|-#1.body E #2)$)
-    to [C, capacitors/scale=0.3] (tmp|-#1.body E #2)
-    to [short, -*, nodes width=0.02] (#1.body E #2);
-&#125;
 \begin&#123;circuitikz&#125;
-    \node[npn](Q1) at(0,0) &#123;&#125;;
-    \node[pnp](Q2) at(2,0) &#123;&#125;;
-    \node[pnp, bodydiode](Q3) at(0,-3) &#123;&#125;;
-    \node[npn, bodydiode](Q4) at(2,-3) &#123;&#125;;
-    \snubb&#123;Q1&#125;&#123;in&#125; \snubb&#123;Q2&#125;&#123;in&#125;
-    \snubb&#123;Q3&#125;&#123;out&#125; \snubb&#123;Q4&#125;&#123;out&#125;
+    \draw[color=red] (0,0) to[esource] ++(3,0);
+    \draw (0,0) to[oosourcetrans, prim=delta, sec=wye,
+        sources/scale=1.667] ++(3,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -348,21 +337,21 @@ Showing items **451-500** of **5325**
 
 ## 467. Circuit
 
-**ID**: `fb62abdbefbb`  
+**ID**: `c2e1997c78d5`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \path (-1,-1) rectangle (3,3);% bounding box
-    \node  [hemt] at (0,2) &#123;A&#125;;
-    \node  [hemt,
-        circuitikz/tripoles/hemt/split gate=true
-        ] at (2,2) &#123;B&#125;;
-    \node  [GaN hemt]  at (0,0) &#123;C&#125;;
-    \node  [GaN hemt,
-        circuitikz/tripoles/hemt/split gate=false
-        ]  at (2,0) &#123;D&#125;;
+\begin&#123;circuitikz&#125;
+    \draw[color=red] (0,2) to[esource] ++(2,0);
+    \draw (0,2) to[oosourcetrans] ++(2,0)
+    to [oosourceatrans] ++(2,0)
+    to [ooosource] ++(2,0);
+    \ctikzset&#123;ootrans size=large&#125;
+    \draw[color=red] (0,0) to[esource] ++(2,0);
+    \draw (0,0) to[oosourcetrans] ++(2,0)
+    to [oosourceatrans] ++(2,0)
+    to [ooosource] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -370,93 +359,87 @@ Showing items **451-500** of **5325**
 
 ## 468. Circuit
 
-**ID**: `48691afb39e3`  
+**ID**: `945cf2a622dc`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;circuitikz&#125;
-        \draw (0,4) node[npn]&#123;&#125;
-            ++(2,0) node[npn, schottky base]&#123;&#125;;
-        \draw (1,2) node[bjtnpn, collectors=2, emitters=3,
-            schottky base, rotate=90]&#123;&#125;;
-        \tikzset&#123;schottky base&#125;
-        \ctikzset&#123;tripoles/schottky base size=0.1&#125;
-        \draw (0,0) node[pnp]&#123;&#125;
-            ++(2,0) node[npn, no schottky base]&#123;&#125;;
-    \end&#123;circuitikz&#125;
+    \draw (0,1) to[sqV] ++(3,0)
+        to[sqV] ++(1,-1)
+        to[sqV] ++(0,-3);
+    \ctikzset&#123;sources/symbol/rotate=auto&#125;
+    \ctikzset&#123;sources/symbol/rotate=auto, sources/symbol/thickness=3&#125;
+    \draw[color=red] (0,0) to[sqV] ++(3,0)
+        to[sqV] ++(0,-3)
+        to[sqV] (0,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 469. Circuit
 
-**ID**: `d66967e46a13`  
+**ID**: `6855e49aefd0`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-        \draw (0,2) node[nmos]&#123;&#125;
-            ++(2,0) node[nmos, ferroel gate]&#123;&#125;;
-        \ctikzset&#123;ferroel gate&#125; % by default from now on
-        \ctikzset&#123;transistors/.cd, % class properties
-            thickness=1, modifier thickness=3&#125;
-        \draw (0,0) node[pfet]&#123;&#125;
-            ++(2,0) node[pfet, no ferroel gate]&#123;&#125;;
-    \end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+   \ctikzset&#123;bipoles/vsourceam/inner plus=&#123;\tiny $+$&#125;&#125;
+   \ctikzset&#123;bipoles/vsourceam/inner minus=&#123;\tiny $-$&#125;&#125;
+   \draw (0,0) to[V, l_=$V$] ++(0,3)
+   to[R=\SI&#123;5&#125;&#123;\ohm&#125;] ++(3,0)
+   to[V, invert,
+   bipoles/vsourceam/inner plus=&#123;\color&#123;red&#125;\tiny $\oplus$&#125;,
+   bipoles/vsourceam/inner minus=&#123;\color&#123;blue&#125;\tiny $\ominus$&#125;,
+   bipoles/vsourceam/margin=0.5]
+   ++(0,-3) to[short, -*] (0,0) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 470. Circuit
 
-**ID**: `d01351f33468`  
+**ID**: `1d08a6cc2b90`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-    \draw (0,0)
-    -- ++(1,0) node[nigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[pigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[Lnigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[Lpigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    ;
-    \ctikzset&#123;tripoles/igbt/outer base height=0.3&#125;
-    \ctikzset&#123;tripoles/igbt/outer base thickness=1.5&#125;
-    \draw (6,0)
-    -- ++(1,0) node[nigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[pigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[Lnigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    -- ++(1,0) node[Lpigbt, anchor=B](B)&#123;&#125; (B.nobase)
-    ;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;[american, scale=0.6, transform shape]
+    %\ctikzset&#123;sources/symbol/sign rotation=default&#125;
+    \foreach \a in &#123;0,30,...,359&#125; \draw (0,0) -- ++(\a:1) to[V] ++(\a:2);
+    \ctikzset&#123;sources/symbol/sign rotation=0&#125;
+    \foreach \a in &#123;0,30,...,359&#125; \draw[color=red] (6,0) -- ++(\a:1)  to[V] ++(\a:2);
+    \ctikzset&#123;sources/symbol/sign rotation=auto&#125;
+    \foreach \a in &#123;0,30,...,359&#125; \draw[color=blue] (12,0) -- ++(\a:1)  to[V] ++(\a:2);
+    \ctikzset&#123;sources/symbol/sign rotation=straight&#125;
+    \foreach \a in &#123;0,30,...,359&#125; \draw (18,0) -- ++(\a:1)  to[V] ++(\a:2);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 471. Circuit
 
-**ID**: `fbb7e543365a`  
+**ID**: `525235b199b2`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[scale=0.8]
-    \draw (0,5) node[nujt]&#123;&#125; ++(2,0) node[pujt]&#123;&#125;
-    ++(2,0) node[nujt, tr circle]&#123;&#125; ++(2,0)
-    node[pujt, tr circle]&#123;&#125;;
-    \ctikzset&#123;transistors/arrow pos=end&#125;
-    \draw (0,2.5) node[nujt](A)&#123;&#125; ++(2,0) node[pujt]&#123;&#125;
-    ++(2,0) node[nujt, tr circle]&#123;&#125; ++(2,0)
-    node[pujt, tr circle](C)&#123;&#125;;
-    \draw (0,0) node[nujt, nobase](B)&#123;&#125; ++(2,0)
-    node[pujt, nobase]&#123;&#125; ++(2,0)
-    node[nujt, tr circle, nobase]&#123;&#125; ++(2,0)
-    node[pujt, tr circle, nobase](D)&#123;&#125;;
-    % "E" anchor follows the nobase option:
-    \draw[red] (A.E) |- (B.E) (C.E) |- (D.E);
+\begin&#123;circuitikz&#125;[scale=1.8, transform shape]
+    \tikzset&#123;myoosource/.style=&#123;ooosource,
+        prim=wye, sec=delta, tert=zig,
+        &#125;&#125;
+    \draw (0,2) to[myoosource] ++(2,0);
+    \ctikzset&#123;%
+        sources/symbol/thickness=0.5,
+        sources/symbol/delta scale=1.2,
+        sources/symbol/wye scale=1.4,
+        sources/symbol/zig scale=1.3,
+    &#125;
+    \draw (0,0) to[myoosource] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -464,17 +447,16 @@ Showing items **451-500** of **5325**
 
 ## 472. Circuit
 
-**ID**: `439239538bb6`  
+**ID**: `77d20e5db029`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-   \draw (2,0) node[npn,nobase](npn)&#123;&#125;;
-   \draw (npn.E) node[below]&#123;E&#125;;
-   \draw (npn.C) node[above]&#123;C&#125;;
-   \draw (npn.B) node[circ]&#123;&#125; node[left]&#123;B&#125;;
-   \draw[dashed,red,-latex] (1,0.5)--(npn.nobase);
+\begin&#123;circuitikz&#125;[scale=1.5, transform shape]
+    \draw (0,0) to[oosourcetrans, prim=delta, sec=delta,
+    sources/symbol/sec rot=180] ++(2,0);
+    \draw (0,-1) to[ooosource, prim=eyw, sec=delta,
+    tert=delta, sources/symbol/delta rot=180] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -482,17 +464,21 @@ Showing items **451-500** of **5325**
 
 ## 473. Circuit
 
-**ID**: `ba254bbd92e9`  
+**ID**: `da3d6a962452`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;[]
-    \draw (0,0) to[short,*-] ++(.1,0)
-        node[nigfete, solderdot, anchor=G]&#123;&#125;;
-    \ctikzset&#123;transistor solderdot scale=1&#125;
-    \draw (2,0) to[short,*-] ++(.1,0)
-        node[nigfete, solderdot, anchor=G]&#123;&#125;;
+    \path (0,0) to[oosourcetrans, name=T, ]++(2,0);
+    % Use partway modifiers to reach a point on the left circle
+    \draw ($(T.centerprim)!1!45:(T.left)$) -- ++(-135:0.2)
+        -- ++(0,-1) node[ground]&#123;&#125;;
+    \begin&#123;scope&#125;[font=\tiny\ttfamily, pin distance=2mm, inner sep=0pt]
+        \foreach \a in &#123;-90,-45,...,90&#125;
+            \node [circ, scale=0.5, pin=\a:\a, color=red] at
+                ($(T.centersec)!1!\a:(T.right)$)&#123;&#125;;
+    \end&#123;scope&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -500,36 +486,37 @@ Showing items **451-500** of **5325**
 
 ## 474. Circuit
 
-**ID**: `2286c8b28210`  
+**ID**: `bb33efda6a91`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[ ]
-    \draw (0,2) to[R] ++(2,0) node[nmosd, anchor=G]&#123;&#125;;
-    \draw[color=red] (0,0) to[R] ++(2,0) node[pmosd, anchor=G]&#123;&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;[american]
+        \draw (0,0) to [cvsource, name=S] ++(0,2);
+        \node [circ,red] at ($(S.e)!0.3333!(S.n)$) &#123;&#125;;
+        \node [circ,blue] at ($(S.e)!0.6666!(S.n)$) &#123;&#125;;
+    \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 475. Circuit
 
-**ID**: `401b19efdbc3`  
+**ID**: `76a55006554a`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[ ]
-    \ctikzset&#123;tripoles/nmosd/depletion color=gray&#125;
-    \draw (0,2) to[R] ++(2,0) node[nmosd, anchor=G]&#123;&#125;;
-    \ctikzset&#123;tripoles/pmosd/depletion color=none&#125;
-    \draw[color=red] (0,0) to[R] ++(2,0)
-        node[pmosd, anchor=G]&#123;&#125;;
-    \ctikzset&#123;tripoles/pmosd/depletion color=
-        &#123;cyan!50!white&#125;&#125;
-    \draw[color=blue] (0,-2) to[R] ++(2,0)
-        node[pmosd, anchor=G, bulk]&#123;&#125;;
+\begin&#123;circuitikz&#125;[scale=1.5, transform shape]
+    \draw (0,0) to[oosourcetrans, prim=delta, o-o, name=a,
+        sources/symbol/delta rot=180,
+        oo upper winding, upper=delta, sec=wye,
+        ] ++(2,0);
+    \draw (a.centerprim) -- ++(210:0.4) node[ground]&#123;&#125;;
+    \draw (a.uppertop) -- ++(90:0.1) node[vcc]&#123;&#125;;
+    \draw [red] (a.symbolupper) to[short,-o] ++(45:0.5);
+    \draw (0,-1) to[oosourcetrans, oo upper winding=1
+        ] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -537,15 +524,20 @@ Showing items **451-500** of **5325**
 
 ## 476. Circuit
 
-**ID**: `e3a8cd72ecff`  
+**ID**: `88015e258634`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[ ]
-    \draw (0,0) to[Tnmosd] ++(2,0)
-    to[Tpmosd, invert] ++(0,-2)
-    ;
+\begin&#123;circuitikz&#125;[scale=1.5, transform shape,
+    smallsquare/.style=&#123;red, draw, inner sep=1pt&#125;]
+    \draw (0,0) to[oosourcetrans, oo upper winding=0.85,
+        name=a, fill=cyan!30,upper=wye,
+        sources/symbol/upper rot=-90] ++(2,0);
+        \foreach\anc/\ang in &#123;centerupper/-45, uppertop/90,
+            topright/30, topleft/150, symbolupper/210&#125;
+        \draw[red] (a.\anc) node[smallsquare]&#123;&#125; -- ++(\ang:0.5)
+            ++(\ang:0.1) node[font=\tiny\ttfamily,]&#123;\anc&#125;;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -553,56 +545,66 @@ Showing items **451-500** of **5325**
 
 ## 477. Circuit
 
-**ID**: `c14f2bd286a7`  
+**ID**: `4f6a04e96635`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-        \node[nigfete, tr gap fill=green] at(0,0)&#123;&#125;;
-        \node[nigfete, tr gap fill=red, tr circle,
-            fill=cyan!30] at(1.5,0)&#123;&#125;;
-        \node[nmos, tr gap fill=cyan, ferroel gate](A)
-            at(3,0)&#123;&#125;;
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[scale=1.5, transform shape,
+    smallsquare/.style=&#123;red, draw, inner sep=1pt&#125;]
+    \draw (0,0) to[oosourceatrans, oo upper winding=0.75,
+        name=a, fill=cyan!30,prim=delta,upper=delta,
+        sources/symbol/upper rot=180] ++(2,0);
+        \foreach\anc/\ang in &#123;centerupper/-45, uppertop/90,
+            topright/30, topleft/150, symbolupper/210&#125;
+        \draw[red] (a.\anc) node[smallsquare]&#123;&#125; -- ++(\ang:0.5)
+            ++(\ang:0.1) node[font=\tiny\ttfamily,]&#123;\anc&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 478. Circuit
 
-**ID**: `6209d1555677`  
+**ID**: `355d33c833e8`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[scale=1.5, transform shape]
-    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
-    \node [circ] at (Q1.circle C)&#123;&#125;;
-    \ctikzset&#123;transistor circle/scale circle radius=1.2&#125;
-    \draw[color=red] (0,0) node[npn, tr circle](Q2)&#123;&#125;;
-    \node [circ, color=red] at (Q2.circle C)&#123;&#125;;
-\end&#123;circuitikz&#125;
+\tikzset&#123;vmeter/.style=&#123;rmeterwa, t=V&#125;&#125;
+\tikzset&#123;ameter/.style=&#123;rmeterwa, t=A&#125;&#125;
+\tikzset&#123;ometer/.style=&#123;rmeterwa, t=$\Omega$&#125;&#125;
+
+\begin&#123;tikzpicture&#125;
+    % Old meter style
+    \draw (0,2) to[voltmeter] ++(2,0)
+        to[ammeter] ++(2,0)
+        to[ohmmeter] ++(2,0);
+    % New meter style
+    \draw (0,0) to[vmeter] ++(2,0)
+        to[ameter] ++(2,0)
+        to[ometer] ++(2,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 479. Circuit
 
-**ID**: `14aada4d399e`  
+**ID**: `1e8eafae95a3`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \draw (0,2) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/relative thickness=2&#125;
-    \draw (2,2) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/color=red&#125;
-    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/color=default&#125;
-    \ctikzset&#123;transistor circle/dash=&#123;&#123;4pt&#125;&#123;4pt&#125;&#123;1pt&#125;&#123;4pt&#125;&#125;&#125;
-    \draw[color=blue] (2,0) node[npn, tr circle](Q1)&#123;&#125;;
+\begin&#123;circuitikz&#125;
+    \draw (0,2) to[currtap, bipoles/currtap/fill=none, *-]
+        ++(2,0) to[currtap, bipoles/currtap/.cd,
+        fill=yellow, color=red, thickness=3,
+        dash=&#123;&#123;1.14pt&#125;&#123;2pt&#125;&#125;] ++(2,0);
+    \draw (0,0) to[currtap=I, *-, name=ct] ++(2,0)
+        to[currtap, -*, name=ct2,
+        bipoles/currtap/dot size=0.3] ++(2,0);
+    \draw (ct.tap) -- ++(0,-1) (ct2.tap) -- ++(0,-1);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -610,17 +612,26 @@ Showing items **451-500** of **5325**
 
 ## 480. Circuit
 
-**ID**: `1e85f02d9ab6`  
+**ID**: `69419c89d2b6`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \ctikzset&#123;transistors/thickness=4, transistors/fill=cyan!30,
-        transistor circle/relative thickness=0.25,&#125;
-    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/dash=&#123;&#123;2pt&#125;&#123;2pt&#125;&#125;&#125;
-    \draw (1.5,0) node[npn, tr circle, xscale=-1](Q2)&#123;&#125;;
+\begin&#123;circuitikz&#125;
+  % Default
+  \foreach [count=\i] \inst in
+    &#123;smeter, qiprobe, qvprobe, qpprobe&#125; &#123;
+    \draw (&#123;1.5*\i&#125;,1.4) to[\inst]
+        (&#123;1.5*(\i+1)&#125;,1.4);
+  &#125;
+  % New indexes
+  \ctikzset&#123;bipoles/smeter/index position=50&#125;
+  \ctikzset&#123;bipoles/qmeter/index position=25&#125;
+  \foreach [count=\i] \inst in
+    &#123;smeter, qiprobe, qvprobe, qpprobe&#125; &#123;
+    \draw (&#123;1.5*\i&#125;,0) to[\inst]
+        (&#123;1.5*(\i+1)&#125;,0);
+  &#125;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -628,18 +639,22 @@ Showing items **451-500** of **5325**
 
 ## 481. Circuit
 
-**ID**: `c70239257b3d`  
+**ID**: `0d723ddadd27`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \ctikzset&#123;transistors/thickness=4, transistors/fill=cyan!30,
-        transistor circle/relative thickness=0.25,
-        transistor circle/partial borders=2211&#125;
-    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/dash=&#123;&#123;2pt&#125;&#123;2pt&#125;&#125;&#125;
-    \draw (1.5,0) node[npn, tr circle, xscale=-1](Q2)&#123;&#125;;
+\begin&#123;circuitikz&#125;
+    \foreach [count=\i] \wvf in &#123;ramps, sin, square, triangle, lissajous, zero, none&#125; &#123;
+        \ctikzset&#123;bipoles/oscope/waveform=\wvf&#125;
+        \draw (&#123;2*\i&#125;,1.4) node[oscopeshape](O)&#123;&#125;
+              (&#123;2*\i&#125;,0.65) node[anchor=base]&#123;\texttt&#123;\wvf&#125;&#125;;
+    &#125;
+    \ctikzset&#123;bipoles/oscope/width=1.0&#125;
+    \foreach [count=\i] \wvf in &#123;ramps, sin, square, triangle, lissajous, zero, none&#125; &#123;
+        \ctikzset&#123;bipoles/oscope/waveform=\wvf&#125;
+        \draw (&#123;2*\i&#125;,0) node[oscopeshape]&#123;&#125;;
+    &#125;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -647,160 +662,157 @@ Showing items **451-500** of **5325**
 
 ## 482. Circuit
 
-**ID**: `699ab95549a3`  
+**ID**: `798bfd6e3263`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[]
-    \ctikzset&#123;transistors/thickness=4, transistors/fill=cyan!30,
-        transistor circle/relative thickness=0.25,
-        transistor circle/partial borders=0011&#125;
-    \draw (0,0) node[npn, tr circle](Q1)&#123;&#125;;
-    \ctikzset&#123;transistor circle/dash=&#123;&#123;2pt&#125;&#123;2pt&#125;&#125;&#125;
-    \draw (1.5,0) node[npn, tr circle, xscale=-1](Q2)&#123;&#125;;
-    \draw[dashed] (Q1.circle top) -- (Q2.circle top);
-    \draw[dashed] (Q1.circle bottom) -- (Q2.circle bottom);
-\end&#123;circuitikz&#125;
+\ctikzset&#123;%
+    bipoles/oscope/waveform/mywave/.code=&#123;%
+        \pgfsetcolor&#123;red&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-.75cm&#125;&#123;-.5cm&#125;&#125;
+        \pgfpathlineto&#123;\pgfpoint&#123;.75cm&#125;&#123;.5cm&#125;&#125;
+        \pgfusepath&#123;draw&#125;
+        \pgfsetcolor&#123;green&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-.75cm&#125;&#123;.5cm&#125;&#125;
+        \pgfpathlineto&#123;\pgfpoint&#123;.75cm&#125;&#123;-.5cm&#125;&#125;
+        \pgfusepath&#123;draw&#125;
+    &#125;&#125;
+    \begin&#123;circuitikz&#125;
+        \ctikzset&#123;bipoles/oscope/waveform=mywave&#125;
+        \draw (0,0) node[oscopeshape]&#123;&#125;;
+    \end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 483. Circuit
 
-**ID**: `7255dec9e8ed`  
+**ID**: `07232f758fee`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[red solid thin bodydiode/.style=&#123;bodydiode,
-        circuitikz/transistor bodydiode/dash=none,
-        circuitikz/transistor bodydiode/color=red,
-        circuitikz/transistor bodydiode/relative thickness=0.3&#125;]
-    \draw (0,0) node (mosfet1) [nigfete,anchor=D,bodydiode] &#123;$Q_1$&#125;;
-    \draw[densely dashed]  (3,0) node (mosfet1) [nigfete,anchor=D,bodydiode] &#123;$Q_2$&#125;;
-    \draw (6,0) node (mosfet1) [nigfete,anchor=D,bodydiode, tr circle,
-        circuitikz/transistor bodydiode/color=gray,
-        circuitikz/transistor bodydiode/scale=0.2,
-        circuitikz/transistor bodydiode/dot scale=0] &#123;$Q_3$&#125;;
-    \draw (0,-2) node (mosfet1) [nigfete,anchor=D,bodydiode,
-        circuitikz/transistor bodydiode/dash=&#123;&#123;2pt&#125;&#123;1pt&#125;&#125;]  &#123;$Q_4$&#125;;
-    \draw[densely dashed]  (3,-2) node (mosfet1) [nigfete,anchor=D,
-        red solid thin bodydiode] &#123;$Q_5$&#125;;
-    \ctikzset&#123;transistor bodydiode/relative thickness=.5,
-        transistor bodydiode/scale=0.6&#125;% from now on, in scope
-    \draw[densely dotted] (6,-2) node (mosfet1) [nigfete,anchor=D,bodydiode,
-          circuitikz/transistor bodydiode/dash=none,
-          circuitikz/transistor bodydiode/dot scale=1] &#123;$Q_6$&#125;;
-    \path (7,0); %% adjust bounding box (node text is outside it!)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+    \foreach \a in &#123;0,45,...,350&#125; &#123;
+        \draw (0,0) to[oscope] (\a:3);
+    &#125;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 484. Circuit
 
-**ID**: `a7516eb75d2c`  
+**ID**: `56f59bd3c98c`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[nmos] (mos)  &#123;&#125;
-  (mos.gate) node[anchor=east] &#123;G&#125;
-  (mos.drain) node[anchor=south] &#123;D&#125;
-  (mos.source) node[anchor=north] &#123;S&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[scale=0.8, transform shape]
+    \ctikzset&#123;rotated instruments&#125; % new default
+    \draw (0,0) to[oscope] ++(0:3);
+    \draw (0,0) to[oscope] ++(60:3);
+    \draw (0,0) to[rmeter, t=A] ++(120:3);
+    % local override
+    \draw (0,0) to[rmeterwa, t=A, straight instruments] ++(180:3);
+    \ctikzset&#123;straight instruments&#125; % back to default
+    \draw (0,0) to[rmeterwa, t=A] ++(240:3);
+    % local override
+    \draw (0,0) to[smeter, t=A, rotated instruments] ++(300:3);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 485. Circuit
 
-**ID**: `bedad360632d`  
+**ID**: `790573a39c9d`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[pigfete] (pigfete)  &#123;&#125;
-  (pigfete.G) node[anchor=east] &#123;G&#125;
-  (pigfete.D) node[anchor=north] &#123;D&#125;
-  (pigfete.S) node[anchor=south] &#123;S&#125;
-  (pigfete.bulk) node[anchor=west] &#123;Bulk&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;
+    \draw (0,1)
+        to[oscope=$C_1$, fill=green!20!gray, name=O1] ++(2,0);
+    \path (O1.right)
+        node[ground, scale=0.5, below right=4pt]&#123;&#125;;
+    \ctikzset&#123;bipoles/oscope/width=1.0&#125;
+    \draw (1,-1)
+        node[oscopeshape, fill=yellow!20!orange](O2)&#123;$C_2$&#125;;
+    \draw (O2.in 2) to[short, *-] ++(0,-0.5) node[ground]&#123;&#125;;
+    \draw (O2.in 1) to[short, *-] ++(0,-0.5)
+           -- ++(-1,0) node[currarrow, xscale=-1]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 486. Circuit
 
-**ID**: `d01c413909c7`  
+**ID**: `75ddbe99c894`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[pjfet] (pjfet)  &#123;&#125;
-  (pjfet.G) node[anchor=east] &#123;G&#125;
-  (pjfet.D) node[anchor=north] &#123;D&#125;
-  (pjfet.S) node[anchor=south] &#123;S&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [ammeter] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[voltmeter] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 487. Circuit
 
-**ID**: `95bc20a83d2e`  
+**ID**: `edc10a3df704`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[npn] (npn)  &#123;&#125;
-  (npn.base) node[anchor=east] &#123;B&#125;
-  (npn.collector) node[anchor=south] &#123;C&#125;
-  (npn.emitter) node[anchor=north] &#123;E&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [ammeter] ++(2,0) --
+    ++(0,-1) node[ground]&#123;&#125;;
+    \draw (1,0) -- (1,1) to[voltmeter]
+    ++(2,0) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 488. Circuit
 
-**ID**: `068207b512a6`  
+**ID**: `94ea8149ed0d`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[pigbt] (pigbt)  &#123;&#125;
-  (pigbt.B) node[anchor=east] &#123;B&#125;
-  (pigbt.C) node[anchor=north] &#123;C&#125;
-  (pigbt.E) node[anchor=south] &#123;E&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeterwa, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[rmeterwa, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 489. Circuit
 
-**ID**: `d442c9135f48`  
+**ID**: `a3fafa6a5deb`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-    \node [npn](A) at(0,2) &#123;&#125;;
-    \node [pmos](B) at(0,0) &#123;&#125;;
-    \foreach \e in &#123;A, B&#125;
-        \foreach \a in &#123;inner up, inner down&#125; &#123;
-            \node[red, circle, inner sep=1pt, draw]
-            at (\e.\a) &#123;&#125;;
-            \node [right, font=\tiny, blue]
-            at (\e.\a) &#123;\a&#125;;
-        &#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeterwa, t=A, i=$i$] ++(2,0) --
+    ++(0,-1) node[ground]&#123;&#125;;
+    \draw (1,0) -- (1,1) to[rmeterwa, t=V, v^=$v$]
+    ++(2,0) node[ground]&#123;&#125;;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -808,28 +820,16 @@ Showing items **451-500** of **5325**
 
 ## 490. Circuit
 
-**ID**: `60d0686aefe4`  
+**ID**: `b5b392464bd8`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-    \ctikzset&#123;transistors/arrow pos=end&#125;
-    \draw (0,0) node[bjtpnp, xscale=-1](Q1)&#123;%
-        \scalebox&#123;-1&#125;[1]&#123;Q1&#125;&#125;;
-    \draw (Q1.B) node[bjtpnp, anchor=B, collectors=2]
-        (Q2)&#123;Q2&#125; (Q1.B) node[circ]&#123;&#125;;
-    \draw (Q1.E) node[circ]&#123;&#125; node[vcc]&#123;&#125; (Q2.E)
-        node[vcc]&#123;&#125; (Q1.E) -| (Q1.B);
-    \draw (Q1.C) to[R, l_=$R_0$, f=$I_0$] ++(0,-3.5)
-        node[ground](GND)&#123;&#125;;
-    \draw (Q2.C) -- ++(0,-0.5) coordinate(a);
-    \draw (Q2.C1) -- ++(1,0) coordinate(b) -- (b|-a);
-    \draw (a) ++(0,-0.1) node[flowarrow, rotate=-90,
-        anchor=west]&#123;\rotatebox&#123;90&#125;&#123;$I_0$&#125;&#125;;
-    \draw (b|-a) ++(0,-0.1) node[flowarrow, rotate=-90,
-        anchor=west]&#123;\rotatebox&#123;90&#125;&#123;$I_0$&#125;&#125;;
-    \path (b) ++(0.5,0); % bounding box adjust
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [rmeter, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[rmeter, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -837,119 +837,115 @@ Showing items **451-500** of **5325**
 
 ## 491. Circuit
 
-**ID**: `5a686d263153`  
+**ID**: `56e99f02acd4`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; []\draw
-  (0,0) node[pnp] (pnp2) &#123;Q2&#125;
-  (pnp2.B) node[pnp, xscale=-1, anchor=B] (pnp1) &#123;&#125;
-  (pnp1) node[left, inner sep=0pt] &#123;Q1&#125;
-  (pnp1.C) node[npn, anchor=C] (npn1) &#123;Q3&#125;
-  (pnp2.C) node[npn, xscale=-1, anchor=C] (npn2)
-    &#123;\scalebox&#123;-1&#125;[1]&#123;Q4&#125;&#125;
-  (pnp1.E) -- (pnp2.E)  (npn1.E) -- (npn2.E)
-  (pnp1.B) node[circ] &#123;&#125; |- (pnp2.C) node[circ] &#123;&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [smeter, t=A, i=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[smeter, t=V, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 492. Circuit
 
-**ID**: `35f1485e220e`  
+**ID**: `97c40514c03f`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[pigfete, yscale=-1] (pigfete)  &#123;&#125;
-  (pigfete.bulk) node[anchor=west] &#123;Bulk&#125;
-  (pigfete.G) node[anchor=east] &#123;G&#125;
-  (pigfete.D) node[anchor=south] &#123;D&#125;
-  (pigfete.S) node[anchor=north] &#123;S&#125;
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(2,0)
+    to [qiprobe, l=$i$] ++(0,-2) node[ground]&#123;&#125;;
+    \draw (1,0) to[qvprobe, l=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 493. Circuit
 
-**ID**: `a5413d5d7659`  
+**ID**: `b388a1aab84a`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-        \node [nmos](A) at (0,3) &#123;&#125;;
-        \node [nfet](B) at (0,1.5) &#123;&#125;;
-        \node [pigbt](C) at (0,0) &#123;&#125;;
-        \foreach \myn in &#123;A, B, C&#125;
-            \draw[color=red] (\myn.centergap)
-                node[ocirc]&#123;&#125; -- ++(1,0)
-                node[right, font=\tiny]&#123;centergap&#125;;
-    \end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) to[short,-*]  ++(1,0) coordinate(b)
+    to[R] ++(2,0) to [qpprobe, l=$i$, a=$v$, name=P]
+    ++(0,-2.5) node[ground](GND)&#123;&#125;;
+    \draw (P.v-) -| ++(-0.5,-1) coordinate(a)
+    to [short, -*] (a-|GND);
+    \draw (P.v+) -| (b);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 494. Circuit
 
-**ID**: `bb3798e548f4`  
+**ID**: `90d484bbdf74`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw
-  (0,0) node[njfet] &#123;1&#125;
-  (-1,2) to[Tnjfet=2] (1,2)
-    to[Tnjfet=3, mirror] (3,2)
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(3,0)
+    to [iloop, mirror, name=I] ++(0,-2)
+    node[ground] (GND)&#123;&#125;;
+    \draw (1,0) to[oscope, v=$v$] ++(0,-2)
+    node[ground]&#123;&#125;;
+    \draw (I.i) -- ++(-0.5,0) node[oscopeshape, anchor=right, name=O]&#123;&#125;;
+    \draw (O.south) -- (O.south |- GND) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 495. Circuit
 
-**ID**: `9d41b8f7454c`  
+**ID**: `3a0b865f420b`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125; \draw[yscale=1.1, xscale=.8]
-  (2,4.5) -- (0,4.5) to[Tpmos=p1, n=p1] (0,3)
-     to[Tnmos=n1, n=n1] (0,1.5)
-     to[Tnmos=n2, n=n2] (0,0) node[ground] &#123;&#125;
-  (2,4.5) to[Tpmos=p2,n=p2] (2,3) to[short, -*] (0,3)
-  (p1.G) -- (n1.G) to[short, *-o] ($(n1.G)+(3,0)$)
-  (n2.G) ++(2,0) node[circ] &#123;&#125; -| (p2.G)
-  (n2.G) to[short, -o] ($(n2.G)+(3,0)$)
-  (0,3) to[short, -o] (-1,3)
-;\end&#123;circuitikz&#125;
+\begin&#123;circuitikz&#125;[american]
+    \draw (0,0) -- ++(1,0) to[R] ++(3,0) to [iloop2, name=I] ++(0,-2)
+    node[ground] (GND)&#123;&#125;;
+    \ctikzset&#123;bipoles/oscope/width=1.6&#125;\ctikzset&#123;bipoles/oscope/height=1.2&#125;
+    \node [oscopeshape, fill=green!10](O) at (6,2)&#123;&#125;;
+    \node [bnc, xscale=-1, anchor=zero](bnc1) at (O.in 1)&#123;&#125;;
+    \node [bnc, , anchor=zero, rotate=-90](bnc2) at (O.in 2)&#123;&#125;;
+    \draw [-latexslim] (bnc1.hot) -| (1,0);
+    \draw (bnc2.hot) |- (I.i+);
+    \draw (I.i-) node[ground, scale=0.5]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 ## 496. Circuit
 
-**ID**: `6c0f3040d2f5`  
+**ID**: `5e2401ceda92`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\ctikzset&#123;tubes/width=1.4, tubes/height=1&#125;
 \begin&#123;circuitikz&#125;
-    \draw (0,2) node[triode, filament] (Tri) &#123;&#125;;
-    \draw  (Tri.east) node[right] &#123;12AX7&#125;;
-    \ctikzset&#123;tubes/filament angle=40,
-        tubes/filament distance=0.2&#125;
-    \draw (0,0) node[triode, filament] (Pent) &#123;&#125;;
-    \draw  (Pent.east) node[right] &#123;BOH&#125;;
-    \path (Tri.filament 1) node[red,ocirc]&#123;&#125;;
-    \path (Pent.filament 1) node[red,ocirc]&#123;&#125;;
-    \path (Tri.filament center) node[blue,ocirc]&#123;&#125;;
-    \draw (Pent.filament center) -- ++(0,-1) node[tlground]&#123;&#125;;
+        \draw (0,0) to[mic, name=M] ++(0,2)
+        to[amp, t=$A$] ++(2,0)
+        to[loudspeaker, name=L] ++(0,-2)
+        to[short, -*] (0,0) node[ground]&#123;&#125;;
+        \node [waves, scale=0.7, left=5pt]
+            at(M.north) &#123;&#125;;
+        \node [waves, scale=0.7, right]
+            at(L.north) &#123;&#125;;
     \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -957,21 +953,16 @@ Showing items **451-500** of **5325**
 
 ## 497. Circuit
 
-**ID**: `58935f836ab8`  
+**ID**: `c0460d062c36`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[circuitikz/tubes/fill=cyan!20,
-        circuitikz/tubes/partial borders=012012]
-        \draw (0,0) node[pentode]&#123;&#125;;
-        \draw (2,0) node[pentode,
-        circuitikz/tubes/width=1.4,
-        circuitikz/tubes/height=1]&#123;&#125;;
-        \draw (1,-2) node[triode,
-        circuitikz/tubes/height=1,
-        circuitikz/tubes/partial border dash=%
-            &#123;&#123;3pt&#125;&#123;1pt&#125;&#123;1pt&#125;&#123;1pt&#125;&#125;]&#123;&#125;;
+\begin&#123;circuitikz&#125;[]
+    \draw (0,2) to[mic, name=M] ++(2,0) to[tlmic] ++(2,0);
+    \node [color=red, tlmicshape](T) at (M.center) &#123;&#125;;
+    \ctikzset&#123;bipoles/mic/bar thickness=3&#125;
+    \draw (0,0) to[mic] ++(2,0) to[tlmic] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -979,20 +970,20 @@ Showing items **451-500** of **5325**
 
 ## 498. Circuit
 
-**ID**: `4780eed5066a`  
+**ID**: `753ec8e79613`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;vfd 10/.style=&#123;matube, filament, nocathode,
-        circuitikz/tubes/.cd,
-        width=3.6, height=1, anodes=10, anode width=0.6,
-        cathode width=0.1,
-&#125;&#125;
-\begin&#123;circuitikz&#125;[european]
-   \draw (0,0) node[vfd 10](A)&#123;&#125;;
-   \foreach \i in &#123;1,...,10&#125; \path (A.anode \i)
-        node[red, ocirc]&#123;&#125; node[above]&#123;\tiny \i&#125;;
+\begin&#123;circuitikz&#125;
+    \draw (0,3) to[wfuse, bipoles/wfuse/dots=false] ++(2,0);
+    \draw (0,2) to[wfuse, name=A] ++(2,0);
+    \ctikzset&#123;bipoles/wfuse/shape=osquarepole&#125;
+    \draw (0,1) to[wfuse, name=B] ++(2,0);
+    \draw [red, densely dashed]
+        (A-left.-135) to[bend right] (B-left.135);
+    \ctikzset&#123;bipoles/wfuse/shape=circ&#125;
+    \draw (0,0) to[wfuse, name=B] ++(2,0);
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -1000,45 +991,38 @@ Showing items **451-500** of **5325**
 
 ## 499. Circuit
 
-**ID**: `456968e2020b`  
+**ID**: `23005ff5f11d`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;nixie/.style=&#123;matube, nogrid, nixieanode,
-        anodedot, circuitikz/tubes/.cd, cathode width=0.6,
-        width=3.6, height=1, anodes=10, anode width=0.6,
-&#125;&#125;
-\begin&#123;circuitikz&#125;[european]
-\draw (0,0) node[nixie](A)&#123;&#125;;
-\foreach \i in &#123;1,...,10&#125; \path (A.nixie k\i)
-    node[red, ocirc]&#123;&#125; node[above]&#123;\tiny \i&#125;;
-    \path (A.nixie a) node[red, ocirc]&#123;&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;
+    \draw (0,0) to[neonlampcc, nodes width=0.03] ++(2,0)
+        to[neonlampac, misc/thickness=3] ++(2,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 500. Circuit
 
-**ID**: `49d703f3fbe6`  
+**ID**: `b605ad7d99d3`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;
-\draw (0,-2)node[rground](gnd)&#123;&#125; to[voltage source,v&lt;=&#123;HV&#125;]++(0,3)--++(1,0)to[V,n=DC]++(2,0);
-\draw (2,-1) node[magnetron,scale=1](magn)&#123;&#125;;
-\draw (DC.left)++(-0.2,0)to [short,*-] ++(0,-1) to [short] (magn.cathode1);
-\draw (DC.right)++(0.2,0)to [short,*-] ++(0,-1) to [short] (magn.cathode2);
-\draw (magn.anode) to [short] (magn.anode|-gnd) node[rground]&#123;&#125;;
-\draw (magn.cathode1)node[above]&#123;$1$&#125;;
-\draw (magn.cathode2)node[above]&#123;$2$&#125;;
-\draw[-&gt;](magn.east) --++(1,0)node[right]&#123;$RF_&#123;out&#125;$&#125;;
-\end&#123;circuitikz&#125;
+\begin&#123;tikzpicture&#125;
+    \draw (0,2) to[sparkgap, l=gap\textsubscript&#123;1&#125;] ++(2,0)
+         to[sparkgap, sparkgap/circle,
+            sparkgap/dot, l=S2] ++(2,0);
+     \ctikzset&#123;sparkgap end arrow=&#123;Kite[scale=1.5]&#125;&#125;
+     \draw (0,0) to[sparkgap, l=S3] ++(2,0)
+         to[sparkgap, l=S4, sparkgap/circle,
+         sparkgap/gap=0.15] ++(2,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-008) | Page 10 of 107 | [Next →](executable_example-page-010)
+[← Previous](executable_example-page-008) | Page 10 of 120 | [Next →](executable_example-page-010)

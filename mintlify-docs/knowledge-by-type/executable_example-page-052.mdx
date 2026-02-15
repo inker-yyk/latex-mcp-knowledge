@@ -1,101 +1,130 @@
 ---
 title: "Executable Examples - Page 53"
-description: "Items 2601-2650 of 5325 executable examples"
+description: "Items 2601-2650 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 53
 
-Showing items **2601-2650** of **5325**
+Showing items **2601-2650** of **5999**
 
-[← Previous](executable_example-page-051) | Page 53 of 107 | [Next →](executable_example-page-053)
+[← Previous](executable_example-page-051) | Page 53 of 120 | [Next →](executable_example-page-053)
 
 ---
 
 ## 2601. Other
 
-**ID**: `d16947c31f2f`  
+**ID**: `6f796d2ca189`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/arrow keys/depth/.code=&#123;%
-  \pgfarrowsthreeparameters&#123;#1&#125;%
-  \expandafter\pgfarrowsaddtolateoptions\expandafter&#123;%
-    \expandafter\pgfarrowslinewidthdependent\pgfarrowstheparameters% compute...
-    \pgfarrowdepth\pgf@x% ... and store.
-  &#125;%
-&#125;
+\tikz \datavisualization [scientific axes,
+                          all axes=&#123;ticks=few, unit length=1mm&#125;,
+                          visualize as line]
+    data &#123;
+      x, y
+      10, 10
+      40, 20
+      15, 30
+      13, 20
+    &#125;;
 </code></pre>
 
 ---
 
 ## 2602. Other
 
-**ID**: `42bdeab850bc`  
+**ID**: `90e3dadeca79`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/arrow keys/depth'/.code=&#123;%
-  \pgfarrowsthreeparameters&#123;#1&#125;%
-  \expandafter\pgfarrowsaddtolateoptions\expandafter&#123;%
-    \expandafter\pgfarrowslengthdependent\pgfarrowstheparameters% compute...
-    \pgfarrowdepth\pgf@x% ... and store.
-  &#125;%
-&#125;
+\tikz \datavisualization
+  [scientific axes,
+   x axis=&#123;unit length=1mm per 1000000000 units, ticks=few&#125;,
+   visualize as line]
+ data &#123;
+   x, y
+   10000000000, 10
+   40000000000, 20
+   15000000000, 30
+   13000000000, 20
+ &#125;;
 </code></pre>
 
 ---
 
 ## 2603. Other
 
-**ID**: `949ab65a39b2`  
+**ID**: `a7a802263b10`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
-    one child at (0,1) and two children at (-.5,1) and (.5,1)&#125;]
-  \node at (0,0) &#123;one&#125; child;
-  \node at (0,-1.5) &#123;two&#125; child child;
-  \node at (0,-3) &#123;three&#125; child child child;
-  \node at (0,-4.5) &#123;four&#125; child child child child;
-\end&#123;tikzpicture&#125;
+\tikz \datavisualization
+  [scientific axes,
+   y axis=&#123;logarithmic, power unit length=1mm, grid&#125;,
+   visualize as line]
+ data &#123;
+   x, y
+   0, 0.0000000001
+   1, 1
+   2, 100000
+   3, 100000000000
+   4, 10000000000000000000000000000000
+   5, 500000000
+   6, 5000000000000000000
+ &#125;;
 </code></pre>
 
 ---
 
 ## 2604. Other
 
-**ID**: `dea820ad8abc`  
+**ID**: `e2eaf2321d99`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
-    one child at (0,1) and two children at (0,1) and (1,1)&#125;]
-  \node at (0,0) &#123;one&#125; child;
-  \node at (0,-1.5) &#123;two&#125; child child;
-  \node at (0,-3) &#123;three&#125; child child child;
-  \node at (0,-4.5) &#123;four&#125; child child child child;
-\end&#123;tikzpicture&#125;
+\tikz \datavisualization [
+    scientific axes,
+    x axis = &#123;label, length=2.5cm&#125;,
+    y axis = &#123;label=&#123;[node style=&#123;fill=blue!20&#125;]&#123;$x^2$&#125;&#125;&#125;,
+    visualize as smooth line]
+ data [format=function] &#123;
+   var x : interval [-3:5];
+   func y = \value x * \value x;
+ &#125;;
 </code></pre>
 
 ---
 
 ## 2605. Other
 
-**ID**: `062990fa6188`  
+**ID**: `d900a9b93104`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[grow via three points=&#123;%
-    one child at (-1,-.5) and two children at (-1,-.5) and (0,-.75)&#125;]
-  \node at (0,0) &#123;one&#125; child;
-  \node at (0,-1.5) &#123;two&#125; child child;
-  \node at (0,-3) &#123;three&#125; child child child;
-  \node at (0,-4.5) &#123;four&#125; child child child child;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \datavisualization
+    [new Cartesian axis=x axis, x axis=&#123;attribute=x&#125;,
+     new Cartesian axis=y axis, y axis=&#123;attribute=y&#125;,
+     x axis=&#123;unit vector=(0:1pt)&#125;,
+     y axis=&#123;unit vector=(60:1pt)&#125;,
+     visualize as scatter]
+  data &#123;
+    x, y
+    0, 0
+    1, 0
+    2, 0
+    1, 1
+    2, 1
+    1, 1.5
+    2, 1.5
+  &#125;;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -103,895 +132,824 @@ Showing items **2601-2650** of **5325**
 
 ## 2606. Other
 
-**ID**: `c0e1c5b72915`  
+**ID**: `4de3147d6406`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  [grow cyclic,
-   level 1/.style=&#123;level distance=8mm,sibling angle=60&#125;,
-   level 2/.style=&#123;level distance=4mm,sibling angle=45&#125;,
-   level 3/.style=&#123;level distance=2mm,sibling angle=30&#125;]
-  \coordinate [rotate=-90] % going down
-    child foreach \x in &#123;1,2,3&#125;
-      &#123;child foreach \x in &#123;1,2,3&#125;
-        &#123;child foreach \x in &#123;1,2,3&#125;&#125;&#125;;
-\end&#123;tikzpicture&#125;
+x axis = &#123;attribute = time&#125;
 </code></pre>
 
 ---
 
 ## 2607. Other
 
-**ID**: `980a2ce4d25d`  
+**ID**: `92a56e8784de`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node &#123;root&#125;
-  [clockwise from=30,sibling angle=30]
-  child &#123;node &#123;$30$&#125;&#125;
-  child &#123;node &#123;$0$&#125;&#125;
-  child &#123;node &#123;$-30$&#125;&#125;
-  child &#123;node &#123;$-60$&#125;&#125;;
-\end&#123;tikzpicture&#125;
+all axes=&#123;grid&#125;
 </code></pre>
 
 ---
 
 ## 2608. Other
 
-**ID**: `c46505964f58`  
+**ID**: `820d193c5890`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node &#123;root&#125;
-    [edge from parent fork down]
-    child &#123;node &#123;left&#125;&#125;
-    child &#123;node &#123;right&#125;
-      child[child anchor=north east] &#123;node &#123;child&#125;&#125;
-      child &#123;node &#123;child&#125;&#125;
-    &#125;;
-\end&#123;tikzpicture&#125;
+all axes=&#123;ticks=few&#125;
 </code></pre>
 
 ---
 
 ## 2609. Other
 
-**ID**: `ac261e7456cb`  
+**ID**: `c289de74b5fb`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \node &#123;root&#125;
-    [edge from parent fork right,grow=right]
-    child &#123;node &#123;left&#125;&#125;
-    child &#123;node &#123;right&#125;
-      child &#123;node &#123;child&#125;&#125;
-      child &#123;node &#123;child&#125;&#125;
-    &#125;;
-\end&#123;tikzpicture&#125;
+x axis=&#123;ticks=&#123;tick unit=cm&#125;&#125;, y axis=&#123;ticks=&#123;tick unit=m/s^2&#125;&#125;
 </code></pre>
 
 ---
 
 ## 2610. Other
 
-**ID**: `20d0436edca3`  
+**ID**: `5f1e0902adab`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathsetlength\mydimen&#123;1cm&#125;  % parsed     : slower.
-\pgfmathsetlength\mydimen&#123;+1cm&#125; % not parsed : much faster.
+x axes=&#123;time $t$ (ms)&#125;, y axis=&#123;distance $d$ (mm)&#125;
 </code></pre>
 
 ---
 
 ## 2611. Other
 
-**ID**: `686d527f9ab9`  
+**ID**: `15f9e6283c1b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/fpu&#125;
-\pgfmathparse&#123;1+1&#125;\pgfmathresult
+\tikz \datavisualization [
+  scientific axes=clean,
+  x axis=&#123;attribute=time, ticks=&#123;tick unit=ms&#125;,
+    label=&#123;elapsed time&#125;&#125;,
+  y axis=&#123;attribute=v, ticks=&#123;tick unit=m/s&#125;,
+    label=&#123;speed of disc&#125;&#125;,
+  all axes=grid,
+  visualize as line]
+data &#123;
+  time, v
+  0, 0
+  1, 0.001
+  2, 0.002
+  3, 0.004
+  4, 0.0035
+  5, 0.0085
+  6, 0.0135
+&#125;;
 </code></pre>
 
 ---
 
 ## 2612. Other
 
-**ID**: `d57b731d3bff`  
+**ID**: `070d16e757d5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% \begin&#123;tikzpicture&#125;
-%     \fill[red,fpu,/pgf/fpu/scale results=1e-10] (*1.234e10,*1e10) -- (*2e10,*2e10);
-% \end&#123;tikzpicture&#125;
-%
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes,
+                      visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [0:100];
+      func y = sqrt(\value x);
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2613. Other
 
-**ID**: `b53972edb4dd`  
+**ID**: `aee1bfa0e6a4`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=float&#125;
-\pgfmathparse&#123;exp(50)*42&#125;\pgfmathresult
+/tikz/data visualization/scientific axes
 </code></pre>
 
 ---
 
 ## 2614. Other
 
-**ID**: `dd975c3d860c`  
+**ID**: `7a36c812d524`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=sci&#125;
-\pgfmathparse&#123;4.22e-8^-2&#125;\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [visualize as smooth line,
+                      scientific axes,
+                      all axes=&#123;unit length=1cm per 10 units, ticks=&#123;few&#125;&#125;]
+    data [format=function] &#123;
+      var x : interval [0:100];
+      func y = sqrt(\value x);
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2615. Other
 
-**ID**: `764adb422a16`  
+**ID**: `c16d44565d1c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfkeys&#123;/pgf/fpu,/pgf/fpu/output format=fixed&#125;
-\pgfmathparse&#123;sqrt(1e-12)&#125;\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes=outer ticks,
+                      visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [-12:12];
+      func y = \value x*\value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2616. Other
 
-**ID**: `afdb34e78215`  
+**ID**: `19de0b42178c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begingroup
-\pgfkeys&#123;/pgf/fpu/install only=&#123;divide&#125;&#125;
-\pgfmathparse&#123;12.34/0.001234&#125;\pgfmathresult (good)
-\pgfmathparse&#123;12/4&#125;\pgfmathresult (bad)
-\endgroup
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes=inner ticks,
+                      visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [-12:12];
+      func y = \value x*\value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2617. Other
 
-**ID**: `7b113e3fab34`  
+**ID**: `0cbf15a066e4`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;2&#125;
-\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes=&#123;inner ticks, width=3.2cm&#125;,
+                      style sheet=cross marks,
+                      visualize as scatter/.list=&#123;a,b&#125;]
+    data [set=a] &#123;
+      x, y
+      0, 0
+      1, 1
+      0.5, 0.5
+      2, 1
+    &#125;
+    data [set=b] &#123;
+      x, y
+      0.05, 0
+      1.5, 1
+      0.5, 0.75
+      2, 0.5
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2618. Other
 
-**ID**: `2f17e87c3a6f`  
+**ID**: `ca3e6faecdad`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;0&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\tikz \datavisualization [
+  scientific axes=clean,
+  visualize as smooth line]
+data [format=function] &#123;
+  var x : interval [-12:12];
+  func y = \value x*\value x*\value x;
+&#125;;
 </code></pre>
 
 ---
 
 ## 2619. Other
 
-**ID**: `9373eec126aa`  
+**ID**: `15417f1ccd0c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;0.2&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\tikz \datavisualization
+ [scientific axes=&#123;clean, standard labels&#125;,
+  visualize as smooth line,
+  x axis=&#123;label=degree $d$,
+    ticks=&#123;tick unit=&#123;&#125;^\circ&#125;&#125;,
+  y axis=&#123;label=$\sin d$&#125;]
+data [format=function] &#123;
+  var x : interval [-10:10] samples 10;
+  func y = sin(\value x);
+&#125;;
 </code></pre>
 
 ---
 
 ## 2620. Other
 
-**ID**: `4aaaf2ee4de6`  
+**ID**: `2a2beb0ff70b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;42&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\tikz \datavisualization [
+  scientific axes=&#123;clean, upright labels&#125;,
+  visualize as smooth line,
+  x axis=&#123;label=degree $d$,
+    ticks=&#123;tick unit=&#123;&#125;^\circ&#125;&#125;,
+  y axis=&#123;label=$\cos d$, include value=1,
+    ticks=&#123;style=&#123;
+        /pgf/number format/precision=4,
+        /pgf/number format/fixed zerofill&#125;&#125;&#125;]
+data [format=function] &#123;
+  var x : interval [-10:10] samples 10;
+  func y = cos(\value x);
+&#125;;
 </code></pre>
 
 ---
 
 ## 2621. Other
 
-**ID**: `f588ce0af10a`  
+**ID**: `aaf604841269`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;20.5E+2&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\tikz \datavisualization [
+  scientific axes=&#123;clean, end labels&#125;,
+  visualize as smooth line,
+  x axis=&#123;label=degree $d$,
+    ticks=&#123;tick unit=&#123;&#125;^\circ&#125;&#125;,
+  y axis=&#123;label=$\tan d$&#125;]
+data [format=function] &#123;
+  var x : interval [-80:80];
+  func y = tan(\value x);
+&#125;;
 </code></pre>
 
 ---
 
 ## 2622. Other
 
-**ID**: `3f7a9cb902b8`  
+**ID**: `5f3ff56c7c08`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;1e6&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\begin&#123;tikzpicture&#125;
+  \datavisualization [school book axes, visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [-1.3:1.3];
+      func y = \value x*\value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2623. Other
 
-**ID**: `27cfe9b99df4`  
+**ID**: `7395e6bc90e3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;5.21513e-11&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E.
+\begin&#123;tikzpicture&#125;
+  \datavisualization [school book axes=&#123;unit=10&#125;,
+                      visualize as smooth line,
+                      clean ticks,
+                      x axis=&#123;label=$x$&#125;,
+                      y axis=&#123;label=$f(x)$&#125;]
+    data [format=function] &#123;
+      var x : interval [-20:20];
+      func y = \value x*\value x/10;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2624. Other
 
-**ID**: `962761da704a`  
+**ID**: `9681836d10b4`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;0.00052&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E
-$\to$
-\pgfmathfloattofixed&#123;\pgfmathresult&#125;
-\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [school book axes=&#123;standard labels&#125;,
+                      visualize as smooth line,
+                      clean ticks,
+                      x axis=&#123;label=$x$&#125;,
+                      y axis=&#123;label=$f(x)$&#125;]
+    data [format=function] &#123;
+      var x : interval [-1:1];
+      func y = \value x*\value x + 1;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2625. Other
 
-**ID**: `a59e5d3bad39`  
+**ID**: `688f0ea66428`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;123.456e4&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E
-$\to$
-\pgfmathfloattofixed&#123;\pgfmathresult&#125;
-\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [xy Cartesian, visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [-1.25:1.25];
+      func y = \value x*\value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2626. Other
 
-**ID**: `49c5cd950729`  
+**ID**: `1519e52062ae`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;123456&#125;
-\pgfmathfloattoint&#123;\pgfmathresult&#125;
-\pgfmathresult
+\tikz \datavisualization [
+  scientific axes, visualize as line,
+  x axis=&#123;ticks=&#123;step=24, minor steps between steps=3&#125;,
+          label=hours&#125;]
+  data &#123;
+    x, y
+    0, 0
+    10, 0
+    20, 0.5
+    30, 0.75
+    40, 0.7
+    50, 0.6
+    60, 0.5
+    70, 0.45
+    80, 0.47
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2627. Other
 
-**ID**: `34c00181abf5`  
+**ID**: `041cf1e6f73d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatcreate&#123;1&#125;&#123;1.0&#125;&#123;327&#125;
-\pgfmathfloattomacro&#123;\pgfmathresult&#125;&#123;\F&#125;&#123;\M&#125;&#123;\E&#125;
-Flags: \F; Mantissa \M; Exponent \E
+\tikz \datavisualization
+  [scientific axes,
+   visualize as smooth line,
+   all axes= &#123;grid, unit length=1.25cm&#125;,
+   y axis=&#123; ticks=few &#125;,
+   x axis=&#123; ticks=many, ticks and grid=&#123; major also at=&#123;(pi/2) as $\frac&#123;\pi&#125;&#123;2&#125;$&#125;&#125;&#125;]
+  data [format=function] &#123;
+    var x : interval [-pi/2:3*pi] samples 50;
+    func y = sin(\value x r);
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2628. Other
 
-**ID**: `f37ec529600c`  
+**ID**: `27641b689d12`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;42&#125;
-\pgfmathfloatifflags&#123;\pgfmathresult&#125;&#123;0&#125;&#123;It's zero!&#125;&#123;It's not zero!&#125;
-\pgfmathfloatifflags&#123;\pgfmathresult&#125;&#123;1&#125;&#123;It's positive!&#125;&#123;It's not positive!&#125;
-\pgfmathfloatifflags&#123;\pgfmathresult&#125;&#123;2&#125;&#123;It's negative!&#125;&#123;It's not negative!&#125;
-
-% or, equivalently
-\pgfmathfloatifflags&#123;\pgfmathresult&#125;&#123;+&#125;&#123;It's positive!&#125;&#123;It's not positive!&#125;
-\pgfmathfloatifflags&#123;\pgfmathresult&#125;&#123;-&#125;&#123;It's negative!&#125;&#123;It's not negative!&#125;
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes, visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [1:11];
+      func y = \value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
+\qquad
+\begin&#123;tikzpicture&#125;
+  \datavisualization [scientific axes, visualize as smooth line,
+    y axis=&#123;exponential steps&#125;,
+    x axis=&#123;ticks=&#123;quarter about strategy&#125;&#125;,
+  ]
+    data [format=function] &#123;
+      var x : interval [1:11];
+      func y = \value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2629. Other
 
-**ID**: `7ab691b3f8a5`  
+**ID**: `8a39fcc91250`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundto&#123;1&#125;
-\pgfmathresult
+\tikz \datavisualization [
+    school book axes, visualize as smooth line,
+    y axis=&#123;ticks=&#123;step=1.25&#125;&#125;,
+  ]
+    data [format=function] &#123;
+      var x : interval [0:3];
+      func y = \value x*\value x/2;
+    &#125;;
 </code></pre>
 
 ---
 
 ## 2630. Other
 
-**ID**: `b395cc34a2fa`  
+**ID**: `7225abdf6e03`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundto&#123;4.685&#125;
-\pgfmathresult
+\begin&#123;tikzpicture&#125;
+  \datavisualization [school book axes, visualize as smooth line,
+    x axis=&#123;ticks=&#123;minor steps between steps=3&#125;&#125;,
+    y axis=&#123;ticks=&#123;minor steps between steps&#125;&#125;,
+  ]
+    data [format=function] &#123;
+      var x : interval [-1.5:1.5];
+      func y = \value x*\value x;
+    &#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 2631. Other
 
-**ID**: `57ecc5133e35`  
+**ID**: `243cdea9ee24`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundto&#123;19999.9996&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [ school book axes, visualize as smooth line,
+    x axis=&#123;ticks=&#123;major=&#123;at=&#123;1, 1.5, 2&#125;&#125;&#125;&#125;]
+  data [format=function] &#123;
+    var x : interval [-1.25:2];
+    func y = \value x * \value x / 2;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2632. Other
 
-**ID**: `4a8e88ac0e93`  
+**ID**: `4e98782afcd6`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundtozerofill&#123;1&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [ school book axes, visualize as smooth line,
+    x axis=&#123;grid=&#123;minor=&#123;at=&#123;1, 1.5, 2&#125;&#125;&#125;&#125;]
+  data [format=function] &#123;
+    var x : interval [-1.25:2];
+    func y = \value x * \value x / 2;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2633. Other
 
-**ID**: `69915f25fecd`  
+**ID**: `a3ccb7ade2eb`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundto&#123;4.685&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [ school book axes, visualize as smooth line,
+    x axis=&#123;ticks=&#123;minor steps between steps, common=&#123;low=0&#125;&#125;&#125; ]
+  data [format=function] &#123;
+    var x : interval [-1.25:2];
+    func y = \value x * \value x / 2;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2634. Other
 
-**ID**: `0dbd9e76b4ad`  
+**ID**: `c491604e1194`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathroundtozerofill&#123;19999.9996&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [ school book axes, visualize as smooth line,
+    x axis=&#123;ticks=&#123;major=&#123;at=&#123;-1,0.5,(pi/2)&#125;&#125;&#125;&#125;]
+  data [format=function] &#123;
+    var x : interval [-1.25:2];
+    func y = \value x * \value x / 2;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2635. Other
 
-**ID**: `5bd1ab70391f`  
+**ID**: `a02965ee108a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;52.5864&#125;
-\pgfmathfloatround&#123;\pgfmathresult&#125;
-\pgfmathfloattosci&#123;\pgfmathresult&#125;
-\pgfmathresult
+some axis = &#123;ticks = &#123;major = &#123;at = &#123;...&#125;&#125;&#125;&#125;
 </code></pre>
 
 ---
 
 ## 2636. Other
 
-**ID**: `2efd6375d042`  
+**ID**: `22923d553125`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;9.995&#125;
-\pgfmathfloatround&#123;\pgfmathresult&#125;
-\pgfmathfloattosci&#123;\pgfmathresult&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [ school book axes, visualize as smooth line,
+    x axis=&#123;grid, ticks and grid=&#123;major=&#123;also at=&#123;0.5&#125;&#125;&#125;&#125;]
+  data [format=function] &#123;
+    var x : interval [-1.25:2];
+    func y = \value x * \value x / 2;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2637. Other
 
-**ID**: `33d21865bb7e`  
+**ID**: `8ac4dcc8464b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;52.5864&#125;
-\pgfmathfloatroundzerofill&#123;\pgfmathresult&#125;
-\pgfmathfloattosci&#123;\pgfmathresult&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [scientific axes,
+   all axes=&#123;ticks=&#123;style=blue&#125;, length=3cm&#125;,
+   y axis=&#123;grid, grid=&#123;minor steps between steps, major=&#123;style=red&#125;&#125;&#125;,
+   visualize as line]
+  data [format=function] &#123;
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2638. Other
 
-**ID**: `c47f3eed56ef`  
+**ID**: `0be430d3de2b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathfloatparsenumber&#123;9.995&#125;
-\pgfmathfloatroundzerofill&#123;\pgfmathresult&#125;
-\pgfmathfloattosci&#123;\pgfmathresult&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [scientific axes,
+   all axes=&#123;ticks=&#123;node style=red&#125;, length=3cm&#125;,
+   visualize as line]
+  data [format=function] &#123;
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2639. Other
 
-**ID**: `8414248ee7e2`  
+**ID**: `7014c6fd0187`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathlog&#123;1.452e-7&#125;
-\pgfmathresult
+\tikz \datavisualization
+  [scientific axes,
+   all axes=&#123;
+     length=3cm,
+     grid,
+     grid=&#123;minor steps between steps&#125;
+   &#125;,
+   grid layer/.style=, % none, so on top of data (bad idea)
+   visualize as line]
+  data [format=function] &#123;
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2640. Other
 
-**ID**: `a0cdef4e75ee`  
+**ID**: `93b64249be2a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfmathlog&#123;6.426e+8&#125;
-\pgfmathresult
+low=min, high=max
 </code></pre>
 
 ---
 
 ## 2641. Other
 
-**ID**: `888ea9bb1a1d`  
+**ID**: `242a39f7cb0b`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz
-  \node &#123;Computational Complexity&#125; % root
-    child &#123; node &#123;Computational Problems&#125;
-      child &#123; node &#123;Problem Measures&#125; &#125;
-      child &#123; node &#123;Problem Aspects&#125; &#125;
-      child &#123; node &#123;Problem Domains&#125; &#125;
-      child &#123; node &#123;Key Problems&#125; &#125;
-    &#125;
-    child &#123; node &#123;Computational Models&#125;
-      child &#123; node &#123;Turing Machines&#125; &#125;
-      child &#123; node &#123;Random-Access Machines&#125; &#125;
-      child &#123; node &#123;Circuits&#125; &#125;
-      child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-      child &#123; node &#123;Oracle Machines&#125; &#125;
-      child &#123; node &#123;Programming in Logic&#125; &#125;
-    &#125;
-    child &#123; node &#123;Measuring Complexity&#125;
-      child &#123; node &#123;Complexity Measures&#125; &#125;
-      child &#123; node &#123;Classifying Complexity&#125; &#125;
-      child &#123; node &#123;Comparing Complexity&#125; &#125;
-      child &#123; node &#123;Describing Complexity&#125; &#125;
-    &#125;
-    child &#123; node &#123;Solving Problems&#125;
-      child &#123; node &#123;Exact Algorithms&#125; &#125;
-      child &#123; node &#123;Randomization&#125; &#125;
-      child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125;
-      child &#123; node &#123;Parallel Computation&#125; &#125;
-      child &#123; node &#123;Partial Solutions&#125; &#125;
-      child &#123; node &#123;Approximation&#125; &#125;
-    &#125;;
+\tikz \datavisualization
+  [scientific axes,
+   all axes=&#123;length=3cm, grid&#125;,
+   every grid/.append style=&#123;style=densely dashed&#125;,
+   visualize as line]
+  data [format=function] &#123;
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2642. Other
 
-**ID**: `70cadc15c98e`  
+**ID**: `922ec7c73f17`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\node &#123;Computational Complexity&#125; % root
-            child &#123; node &#123;Computational Problems&#125;
-              child &#123; node &#123;Problem Measures&#125; &#125;           child &#123; node &#123;Problem Aspects&#125; &#125;
-              child &#123; node &#123;Problem Domains&#125; &#125;            child &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child &#123; node &#123;Computational Models&#125;
-              child &#123; node &#123;Turing Machines&#125; &#125;            child &#123; node &#123;Random-Access Machines&#125; &#125;
-              child &#123; node &#123;Circuits&#125; &#125;                   child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child &#123; node &#123;Oracle Machines&#125; &#125;            child &#123; node &#123;Programming in Logic&#125; &#125;
-            &#125;
-            child &#123; node &#123;Measuring Complexity&#125;
-              child &#123; node &#123;Complexity Measures&#125; &#125;        child &#123; node &#123;Classifying Complexity&#125; &#125;
-              child &#123; node &#123;Comparing Complexity&#125; &#125;       child &#123; node &#123;Describing Complexity&#125; &#125;
-            &#125;
-            child &#123; node &#123;Solving Problems&#125;
-              child &#123; node &#123;Exact Algorithms&#125; &#125;           child &#123; node &#123;Randomization&#125; &#125;
-              child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125; child &#123; node &#123;Parallel Computation&#125; &#125;
-              child &#123; node &#123;Partial Solutions&#125; &#125;          child &#123; node &#123;Approximation&#125; &#125;
-            &#125;;
-    &#125;,
-]
-\tikz [font=\footnotesize,
-       grow=right, level 1/.style=&#123;sibling distance=6em&#125;,
-                   level 2/.style=&#123;sibling distance=1em&#125;, level distance=5cm]
-  \node &#123;Computational Complexity&#125; % root
-    child &#123; node &#123;Comp
-... (truncated)
+style = &#123;help lines, thin, black!25&#125;
 </code></pre>
 
 ---
 
 ## 2643. Other
 
-**ID**: `fa1812c433ec`  
+**ID**: `756e864c276e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\node[font=\bfseries] &#123;Computational Complexity&#125; % root
-            child &#123; node &#123;Computational Problems&#125;
-              child &#123; node &#123;Problem Measures&#125; &#125;           child &#123; node &#123;Problem Aspects&#125; &#125;
-              child &#123; node &#123;Problem Domains&#125; &#125;            child &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child &#123; node &#123;Computational Models&#125;
-              child &#123; node &#123;Turing Machines&#125; &#125;            child &#123; node &#123;Random-Access Machines&#125; &#125;
-              child &#123; node &#123;Circuits&#125; &#125;                   child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child &#123; node &#123;Oracle Machines&#125; &#125;            child &#123; node &#123;Programming in Logic&#125; &#125;
-            &#125;
-            child &#123; node &#123;Measuring Complexity&#125;
-              child &#123; node &#123;Complexity Measures&#125; &#125;        child &#123; node &#123;Classifying Complexity&#125; &#125;
-              child &#123; node &#123;Comparing Complexity&#125; &#125;       child &#123; node &#123;Describing Complexity&#125; &#125;
-            &#125;
-            child &#123; node &#123;Solving Problems&#125;
-              child &#123; node &#123;Exact Algorithms&#125; &#125;           child &#123; node &#123;Randomization&#125; &#125;
-              child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125; child &#123; node &#123;Parallel Computation&#125; &#125;
-              child &#123; node &#123;Partial Solutions&#125; &#125;          child &#123; node &#123;Approximation&#125; &#125;
-            &#125;;
-    &#125;,
-]
-\tikz [text width=2.7cm, align=flush center,
-       grow cyclic,
-       level 1/.style=&#123;level distance=2.5cm,sibling angle=90&#125;,
-       level 2/.style=&#123;text width=2cm, font=\footnotesize, level distance=3cm,sibling angle=30&#125;]
-  \nod
-... (truncated)
+\tikz \datavisualization
+  [scientific axes,
+   all axes=&#123;
+     length=3cm,
+     grid,
+     grid=&#123;minor steps between steps&#125;
+   &#125;,
+   every major grid/.style = &#123;style=&#123;blue, thin&#125;&#125;,
+   visualize as line]
+  data [format=function] &#123;
+    var x : interval [5:10];
+    func y = \value x * \value x;
+  &#125;;
 </code></pre>
 
 ---
 
 ## 2644. Other
 
-**ID**: `4c3e554364b7`  
+**ID**: `2fe53106e605`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\node [root concept] &#123;Computational Complexity&#125; % root
-            child &#123; node &#123;\hbox to 2cm&#123;Computational\hss&#125; Problems&#125;
-              child &#123; node &#123;Problem Measures&#125; &#125;
-              child &#123; node &#123;Problem Aspects&#125; &#125;
-              child &#123; node &#123;Problem Domains&#125; &#125;
-              child &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child &#123; node &#123;\hbox to 2cm&#123;Computational\hss&#125; Models&#125;
-              child &#123; node &#123;Turing Machines&#125; &#125;
-              child &#123; node &#123;Random-Access Machines&#125; &#125;
-              child &#123; node &#123;Circuits&#125; &#125;
-              child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child &#123; node &#123;Oracle Machines&#125; &#125;
-              child &#123; node &#123;\hbox to1.5cm&#123;Programming\hss&#125; in Logic&#125; &#125;
-            &#125;
-            child &#123; node &#123;Measuring Complexity&#125;
-              child &#123; node &#123;Complexity Measures&#125; &#125;
-              child &#123; node &#123;Classifying Complexity&#125; &#125;
-              child &#123; node &#123;Comparing Complexity&#125; &#125;
-              child &#123; node &#123;Describing Complexity&#125; &#125;
-            &#125;
-            child &#123; node &#123;Solving Problems&#125;
-              child &#123; node &#123;Exact Algorithms&#125; &#125;
-              child &#123; node &#123;\hbox to 1.5cm&#123;Randomization\hss&#125;&#125; &#125;
-              child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125;
-              child &#123; node &#123;Parallel Computation&#125; &#125;
-              child &#123; node &#123;Partial Solutions&#125; &#125;
-              child &#123; node &#123;\hbox to1.5cm&#123;Approximation\hss&#125;&#125; &#125;
-            &#125;;
-    &#125;,
-]
-\tikz [mindmap, every node/.style=concept, concept color=blac
-... (truncated)
+style = &#123;help lines, black!25&#125;
 </code></pre>
 
 ---
 
 ## 2645. Other
 
-**ID**: `7ef491493199`  
+**ID**: `59d4c1b0fdfe`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\clip (-1,2) rectangle ++ (-4,5);
-          \node [root concept] &#123;Computational Complexity&#125; % root
-            child &#123; node &#123;Computational Problems&#125;
-              child &#123; node &#123;Problem Measures&#125; &#125;
-              child &#123; node &#123;Problem Aspects&#125; &#125;
-              child &#123; node &#123;Problem Domains&#125; &#125;
-              child &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child &#123; node &#123;Computational Models&#125;
-              child &#123; node &#123;Turing Machines&#125; &#125;
-              child &#123; node &#123;Random-Access Machines&#125; &#125;
-              child &#123; node &#123;Circuits&#125; &#125;
-              child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child &#123; node &#123;Oracle Machines&#125; &#125;
-              child &#123; node &#123;Programming in Logic&#125; &#125;
-            &#125;
-            child &#123; node &#123;Measuring Complexity&#125;
-              child &#123; node &#123;Complexity Measures&#125; &#125;
-              child &#123; node &#123;Classifying Complexity&#125; &#125;
-              child &#123; node &#123;Comparing Complexity&#125; &#125;
-              child &#123; node &#123;Describing Complexity&#125; &#125;
-            &#125;
-            child &#123; node &#123;Solving Problems&#125;
-              child &#123; node &#123;Exact Algorithms&#125; &#125;
-              child &#123; node &#123;Randomization&#125; &#125;
-              child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125;
-              child &#123; node &#123;Parallel Computation&#125; &#125;
-              child &#123; node &#123;Partial Solutions&#125; &#125;
-              child &#123; node &#123;Approximation&#125; &#125;
-            &#125;;
-        \end&#123;tikzpicture&#125;
-    &#125;,
-]
-\begin&#123;tikzpicture&#125;
-  [mindmap,
-   every node/.style=&#123;concept, execute at begin node=\hskip0pt&#125;,
-   conce
-... (truncated)
+style = &#123;help lines, black!10&#125;
 </code></pre>
 
 ---
 
 ## 2646. Other
 
-**ID**: `0d2a9a1b5d89`  
+**ID**: `1ed9a19e6c39`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\clip (0,-1) rectangle ++(4,5);
-          \node [root concept] &#123;Computational Complexity&#125; % root
-            child [concept color=red] &#123; node &#123;Computational Problems&#125;
-              child &#123; node &#123;Problem Measures&#125; &#125;
-              child &#123; node &#123;Problem Aspects&#125; &#125;
-              child &#123; node &#123;Problem Domains&#125; &#125;
-              child &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child [concept color=blue] &#123; node &#123;Computational Models&#125;
-              child &#123; node &#123;Turing Machines&#125; &#125;
-              child &#123; node &#123;Random-Access Machines&#125; &#125;
-              child &#123; node &#123;Circuits&#125; &#125;
-              child &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child &#123; node &#123;Oracle Machines&#125; &#125;
-              child &#123; node &#123;Programming in Logic&#125; &#125;
-            &#125;
-            child [concept color=orange] &#123; node &#123;Measuring Complexity&#125;
-              child &#123; node &#123;Complexity Measures&#125; &#125;
-              child &#123; node &#123;Classifying Complexity&#125; &#125;
-              child &#123; node &#123;Comparing Complexity&#125; &#125;
-              child &#123; node &#123;Describing Complexity&#125; &#125;
-            &#125;
-            child [concept color=green!50!black] &#123; node &#123;Solving Problems&#125;
-              child &#123; node &#123;Exact Algorithms&#125; &#125;
-              child &#123; node &#123;Randomization&#125; &#125;
-              child &#123; node &#123;Fixed-Parameter Algorithms&#125; &#125;
-              child &#123; node &#123;Parallel Computation&#125; &#125;
-              child &#123; node &#123;Partial Solutions&#125; &#125;
-              child &#123; node &#123;Approximation&#125; &#125;
-            &#125;;
-        \end&#123;tikzpicture&#125;
-    &#125;,
-]
-\begin&#123;tikzpicture&#125;
-  
-... (truncated)
+node style=&#123;
+  font=\footnotesize,
+  inner sep=1pt,
+  outer sep=.1666em,
+  rounded corners=1.5pt
+&#125;
 </code></pre>
 
 ---
 
 ## 2647. Other
 
-**ID**: `5c2b3bd2eb35`  
+**ID**: `4b3813de6962`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;scope&#125;[
-           every node/.style=&#123;concept, circular drop shadow,execute at begin node=\hskip0pt&#125;,
-           root concept/.append style=&#123;
-             concept color=black,
-             fill=white, line width=1ex,
-             text=black, font=\large\scshape&#125;,
-           text=white,
-           computational problems/.style=&#123;concept color=red,faded/.style=&#123;concept color=red!50&#125;&#125;,
-           computational models/.style=&#123;concept color=blue,faded/.style=&#123;concept color=blue!50&#125;&#125;,
-           measuring complexity/.style=&#123;concept color=orange,faded/.style=&#123;concept color=orange!50&#125;&#125;,
-           solving problems/.style=&#123;concept color=green!50!black,faded/.style=&#123;concept color=green!50!black!50&#125;&#125;,
-           grow cyclic,
-           level 1/.append style=&#123;level distance=4.5cm,sibling angle=90,font=\scshape&#125;,
-           level 2/.append style=&#123;level distance=3cm,sibling angle=45,font=\scriptsize&#125;]
-          \node [root concept] &#123;Computational Complexity&#125; % root
-            child [computational problems] &#123; node &#123;Computational Problems&#125;
-              child         &#123; node &#123;Problem Measures&#125; &#125;
-              child         &#123; node &#123;Problem Aspects&#125; &#125;
-              child [faded] &#123; node &#123;Problem Domains&#125; &#125;
-              child         &#123; node &#123;Key Problems&#125; &#125;
-            &#125;
-            child [computational models] &#123; node &#123;Computational Models&#125;
-              child         &#123; node &#123;Turing Machines&#125; &#125;
-              child [faded] &#123; node &#123;Random-Access Machines&#125; &#125;
-              child         &#123; node &#123;Circuits&#125; &#125;
-              child [faded] &#123; node &#123;Binary Decision Diagrams&#125; &#125;
-              child         &#123; node &#123;Oracle Machines&#125; &#125;
-           
-... (truncated)
+style=&#123;line cap=round&#125;, tick length=2pt
 </code></pre>
 
 ---
 
 ## 2648. Other
 
-**ID**: `d0721c8f3df4`  
+**ID**: `b13d168a9305`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\node [root concept] (Computational Complexity) &#123;Computational Complexity&#125;
-  child [computational problems] &#123; node (Computational Problems) &#123;Computational Problems&#125;
-    child         &#123; node (Problem Measures) &#123;Problem Measures&#125; &#125;
-    child         &#123; node (Problem Aspects) &#123;Problem Aspects&#125; &#125;
-    child [faded] &#123; node (Problem Domains) &#123;Problem Domains&#125; &#125;
-    child         &#123; node (Key Problems) &#123;Key Problems&#125; &#125;
-  &#125;
-...
+style=&#123;help lines,thin, line cap=round&#125;, tick length=1.4pt
 </code></pre>
 
 ---
 
 ## 2649. Other
 
-**ID**: `9f11ad1e6cda`  
+**ID**: `112084335d53`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\clip (-5.25,-3) rectangle ++ (4,5);
-          \begin&#123;scope&#125;[
-            every node/.style=&#123;concept, circular drop shadow,execute at begin node=\hskip0pt&#125;,
-            root concept/.append style=&#123;
-              concept color=black,
-              fill=white, line width=1ex,
-              text=black, font=\large\scshape&#125;,
-            text=white,
-            computational problems/.style=&#123;concept color=red,faded/.style=&#123;concept color=red!50&#125;&#125;,
-            computational models/.style=&#123;concept color=blue,faded/.style=&#123;concept color=blue!50&#125;&#125;,
-            measuring complexity/.style=&#123;concept color=orange,faded/.style=&#123;concept color=orange!50&#125;&#125;,
-            solving problems/.style=&#123;concept color=green!50!black,faded/.style=&#123;concept color=green!50!black!50&#125;&#125;,
-            grow cyclic,
-            level 1/.append style=&#123;level distance=4.5cm,sibling angle=90,font=\scshape&#125;,
-            level 2/.append style=&#123;level distance=3cm,sibling angle=45,font=\scriptsize&#125;]
-            \node [root concept] (Computational Complexity) &#123;Computational Complexity&#125; % root
-              child [computational problems] &#123; node (Computational Problems) &#123;Computational Problems&#125;
-                child         &#123; node (Problem Measures) &#123;Problem Measures&#125; &#125;
-                child         &#123; node (Problem Aspects) &#123;Problem Aspects&#125; &#125;
-                child [faded] &#123; node (Problem Domains) &#123;Problem Domains&#125; &#125;
-                child         &#123; node (Key Problems) &#123;Key Problems&#125; &#125;
-              &#125;
-              child [computational models] &#123; node (Computational Models) &#123;Computational Models&#125;
-                child         &#123; node (Turing Machines) &#123;Turing Machines&#125; &#125;
-                child [faded] &#123; node (Random-Access Machines) &#123;Random
-... (truncated)
+style=&#123;help lines, line cap=round&#125;, tick length=0.8pt
 </code></pre>
 
 ---
 
 ## 2650. Other
 
-**ID**: `0595b717aac0`  
+**ID**: `60a8751943a8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\lecture#1#2#3#4#5#6&#123;
-  \node [annotation, #3, scale=0.65, text width=4cm, inner sep=2mm] at (#4) &#123;
-    Lecture #1: \textcolor&#123;orange&#125;&#123;\textbf&#123;#2&#125;&#125;
-    \list&#123;--&#125;&#123;\topsep=2pt\itemsep=0pt\parsep=0pt
-              \parskip=0pt\labelwidth=8pt\leftmargin=8pt
-              \itemindent=0pt\labelsep=2pt&#125;
-    #5
-    \endlist
-  &#125;;
-&#125;
+\tikz \datavisualization [
+  scientific axes,
+  visualize as smooth line,
+  x axis=&#123;ticks=&#123;major=&#123;
+    options at = 3    as [no tick text],
+    also at    = (pi) as
+      [&#123;tick text padding=1ex&#125;] $\pi$&#125;&#125;&#125;]
+data [format=function] &#123;
+  var x : interval[0:2*pi];
+  func y = sin(\value x r);
+&#125;;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-051) | Page 53 of 107 | [Next →](executable_example-page-053)
+[← Previous](executable_example-page-051) | Page 53 of 120 | [Next →](executable_example-page-053)

@@ -1,0 +1,683 @@
+---
+title: "TIKZ-3DPLOT Examples - Page 1"
+description: "LaTeX examples 1-21 from tikz-3dplot (21 total)"
+---
+
+# TIKZ-3DPLOT Examples - Page 1
+
+Showing examples **1-21** of **21** from the tikz-3dplot package.
+
+## Example 1: Other
+
+**ID**: `ed4a713df03d`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\usepackage&#123;tikz-3dplot&#125;
+</code></pre>
+
+---
+
+## Example 2: Other
+
+**ID**: `2449d529bb23`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[%
+	x=&#123;(\raarot cm,\rbarot cm)&#125;,%
+	y=&#123;(\rabrot cm, \rbbrot cm)&#125;,%
+	z=&#123;(\racrot, \rbcrot cm)&#125;]
+</code></pre>
+
+---
+
+## Example 3: Other
+
+**ID**: `ef0b0f51da19`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 4: Other
+
+**ID**: `7a6815796b88`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\tdplotsetrotatedcoords&#123;60&#125;&#123;40&#125;&#123;30&#125;
+
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(.7,0,0) node[anchor=north]&#123;$x'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(0,.7,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(0,0,.7) node[anchor=south]&#123;$z'$&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 5: Other
+
+**ID**: `299f5c452052`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\tdplotsetrotatedcoords&#123;60&#125;&#123;40&#125;&#123;30&#125;
+
+	\coordinate (Shift) at (0.5,0.5,0.5);
+	\tdplotsetrotatedcoordsorigin&#123;(Shift)&#125;
+
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(.7,0,0) node[anchor=north]&#123;$x'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(0,.7,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) --
+		(0,0,.7) node[anchor=south]&#123;$z'$&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 6: Other
+
+**ID**: `bc8b7e03cf20`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;110&#125;
+
+\begin&#123;tikzpicture&#125;[scale=3,tdplot_main_coords]
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\tdplotsetcoord&#123;P&#125;&#123;.8&#125;&#123;50&#125;&#123;70&#125;
+
+	%draw a vector from origin to point (P) 
+	\draw[-stealth,color=red] (O) -- (P);
+
+	%draw projection on xy plane, and a connecting line
+	\draw[dashed, color=red] (O) -- (Pxy);
+	\draw[dashed, color=red] (P) -- (Pxy);
+
+
+	\tdplotsetthetaplanecoords&#123;70&#125;
+
+	\draw[tdplot_rotated_coords,color=blue,thick,-&gt;] (0,0,0)
+		-- (.2,0,0) node[anchor=east]&#123;$x'$&#125;;
+	\draw[tdplot_rotated_coords,color=blue,thick,-&gt;] (0,0,0)
+		-- (0,.2,0) node[anchor=north]&#123;$y'$&#125;;
+	\draw[tdplot_rotated_coords,color=blue,thick,-&gt;] (0,0,0)
+		-- (0,0,.2) node[anchor=west]&#123;$z'$&#125;;
+
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 7: Other
+
+**ID**: `f721bb6b72d0`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[scale=3,tdplot_main_coords]
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\coordinate (Shift) at (2,2,2);
+
+	\tdplotsetrotatedcoords&#123;-20&#125;&#123;10&#125;&#123;0&#125;
+	\tdplotsetrotatedcoordsorigin&#123;(Shift)&#125;
+
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (1,0,0) node[anchor=south east]&#123;$x'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,1,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,0,1) node[anchor=south]&#123;$z'$&#125;;
+
+	\tdplotsetrotatedthetaplanecoords&#123;30&#125;
+
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (.5,0,0) node[anchor=south east]&#123;$x''$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,.5,0) node[anchor=west]&#123;$y''$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,0,.5) node[anchor=south]&#123;$z''$&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 8: Other
+
+**ID**: `14ade8d2cc36`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;60&#125;&#123;130&#125;
+\begin&#123;tikzpicture&#125;[scale=2,tdplot_main_coords]
+
+	\coordinate (O) at (0,0,0);
+
+	\tdplotsetcoord&#123;P&#125;&#123;.8&#125;&#123;55&#125;&#123;60&#125;
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\draw[-stealth,color=red] (O) -- (P);
+
+	\draw[dashed, color=red] (O) -- (Px);
+	\draw[dashed, color=red] (O) -- (Py);
+	\draw[dashed, color=red] (O) -- (Pz);
+	\draw[dashed, color=red] (Px) -- (Pxy);
+	\draw[dashed, color=red] (Py) -- (Pxy);
+	\draw[dashed, color=red] (Px) -- (Pxz);
+	\draw[dashed, color=red] (Pz) -- (Pxz);
+	\draw[dashed, color=red] (Py) -- (Pyz);
+	\draw[dashed, color=red] (Pz) -- (Pyz);
+	\draw[dashed, color=red] (Pxy) -- (P);
+	\draw[dashed, color=red] (Pxz) -- (P);
+	\draw[dashed, color=red] (Pyz) -- (P);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 9: Other
+
+**ID**: `1e7a2788f210`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;50&#125;&#123;140&#125;
+\begin&#123;tikzpicture&#125;[scale=2,tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\pgfmathsetmacro&#123;\ax&#125;&#123;2&#125;
+	\pgfmathsetmacro&#123;\ay&#125;&#123;2&#125;
+	\pgfmathsetmacro&#123;\az&#125;&#123;1&#125;
+
+	\tdplotsetrotatedcoords&#123;20&#125;&#123;40&#125;&#123;00&#125;
+
+	\draw[thick,color=red,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (.7,0,0) node[anchor=east]&#123;$x'$&#125;;
+	\draw[thick,color=green!50!black,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (0,.7,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (0,0,.7) node[anchor=south]&#123;$z'$&#125;;
+
+
+	\tdplottransformmainrot&#123;\ax&#125;&#123;\ay&#125;&#123;\az&#125;
+
+	\draw[tdplot_rotated_coords,-&gt;,blue!50] (0,0,0) 
+		-- (\tdplotresx,\tdplotresy,\tdplotresz);
+
+	\node[tdplot_main_coords,anchor=south] 
+		at (\ax,\ay,\az)&#123;Main coords: (\ax, \ay, \az)&#125;;
+	\node[tdplot_rotated_coords,anchor=north] 
+		at (\tdplotresx,\tdplotresy,\tdplotresz) 
+		&#123;Rotated coords: (\tdplotresx, \tdplotresy, \tdplotresz)&#125;;
+
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 10: Other
+
+**ID**: `046ff24165de`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;50&#125;&#123;140&#125;
+\begin&#123;tikzpicture&#125;[scale=2,tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\pgfmathsetmacro&#123;\ax&#125;&#123;-.75&#125;
+	\pgfmathsetmacro&#123;\ay&#125;&#123;2.5&#125;
+	\pgfmathsetmacro&#123;\az&#125;&#123;0&#125;
+
+	\tdplotsetrotatedcoords&#123;20&#125;&#123;40&#125;&#123;00&#125;
+
+	\draw[thick,color=red,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (.7,0,0) node[anchor=east]&#123;$x'$&#125;;
+	\draw[thick,color=green!50!black,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (0,.7,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,color=blue,tdplot_rotated_coords,-&gt;] (0,0,0) 
+		-- (0,0,.7) node[anchor=south]&#123;$z'$&#125;;
+
+
+	\tdplottransformrotmain&#123;\ax&#125;&#123;\ay&#125;&#123;\az&#125;
+
+	\draw[tdplot_main_coords,-&gt;,blue!50] (0,0,0) 
+		-- (\tdplotresx,\tdplotresy,\tdplotresz);
+
+	\node[tdplot_rotated_coords,anchor=north] 
+		at (\ax,\ay,\az)&#123;Rotated coords: (\ax, \ay, \az)&#125;;
+	\node[tdplot_main_coords,anchor=south] 
+		at (\tdplotresx,\tdplotresy,\tdplotresz)
+		&#123;Main coords: (\tdplotresx, \tdplotresy, \tdplotresz)&#125;;
+
+
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 11: Other
+
+**ID**: `6973f7be160a`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;50&#125;&#123;140&#125;
+\begin&#123;tikzpicture&#125;[scale=2,tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\pgfmathsetmacro&#123;\ax&#125;&#123;2&#125;
+	\pgfmathsetmacro&#123;\ay&#125;&#123;3&#125;
+	\pgfmathsetmacro&#123;\az&#125;&#123;1&#125;
+
+	\tdplottransformmainscreen&#123;\ax&#125;&#123;\ay&#125;&#123;\az&#125;
+
+	\draw[tdplot_screen_coords,-&gt;,blue!50] (0,0) 
+		-- (\tdplotresx,\tdplotresy);
+
+	\node[tdplot_main_coords,anchor=south] 
+		at (\ax,\ay,\az)&#123;Main coords: (\ax, \ay, \az)&#125;;
+	\node[tdplot_screen_coords,anchor=north] 
+		at (\tdplotresx,\tdplotresy) 
+		&#123;Screen coords: (\tdplotresx, \tdplotresy)&#125;;
+
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 12: Other
+
+**ID**: `245234cf5eef`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (3,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,3,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,3) node[anchor=south]&#123;$z$&#125;;
+
+	\pgfmathsetmacro&#123;\ax&#125;&#123;1&#125;
+	\pgfmathsetmacro&#123;\ay&#125;&#123;1&#125;
+	\pgfmathsetmacro&#123;\az&#125;&#123;1&#125;
+
+	\draw[-&gt;,red] (0,0,0) -- (\ax,\ay,\az);
+
+	\draw[dashed,red] (0,0,0) -- (\ax,\ay,0) -- (\ax,\ay,\az);
+
+	\tdplotgetpolarcoords&#123;\ax&#125;&#123;\ay&#125;&#123;\az&#125;
+
+	\tdplotsetthetaplanecoords&#123;\tdplotresphi&#125;
+
+	\tdplotdrawarc[tdplot_rotated_coords]&#123;(0,0,0)&#125;&#123;1&#125;&#123;0&#125;%
+		&#123;\tdplotrestheta&#125;&#123;anchor=west&#125;&#123;$\theta = \tdplotrestheta$&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 13: Other
+
+**ID**: `f17acb81c82a`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;50&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (3,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,3,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,3) node[anchor=south]&#123;$z$&#125;;
+
+	\pgfmathsetmacro&#123;\ax&#125;&#123;1&#125;
+	\pgfmathsetmacro&#123;\ay&#125;&#123;1&#125;
+	\pgfmathsetmacro&#123;\az&#125;&#123;.4&#125;
+	\pgfmathsetmacro&#123;\bx&#125;&#123;-1&#125;
+	\pgfmathsetmacro&#123;\by&#125;&#123;1&#125;
+	\pgfmathsetmacro&#123;\bz&#125;&#123;.6&#125;
+
+	\tdplotcrossprod(\ax,\ay,\az)(\bx,\by,\bz)
+
+	\draw[-&gt;,red] (0,0,0) -- (\ax,\ay,\az) node[anchor=west]&#123;$\vec&#123;A&#125;$&#125;;
+	\draw[dashed,red] (0,0,0) -- (\ax,\ay,0) -- (\ax,\ay,\az);
+	\draw[-&gt;,green!50!black] (0,0,0) -- 
+		(\bx,\by,\bz) node[anchor=south west]&#123;$\vec&#123;B&#125;$&#125;;
+	\draw[dashed,green!50!black] (0,0,0) -- (\bx,\by,0) -- (\bx,\by,\bz);
+
+	\draw[-&gt;,blue] (0,0,0) -- (\tdplotresx,\tdplotresy,\tdplotresz) 
+		node[anchor=south east]&#123;$\vec&#123;A&#125;\times\vec&#123;B&#125;$&#125;;
+	\draw[dashed,blue] (0,0,0) -- (\tdplotresx,\tdplotresy,0) 
+		-- (\tdplotresx,\tdplotresy,\tdplotresz);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 14: Other
+
+**ID**: `c575cbc5a395`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+%
+\pgfmathsetmacro&#123;\rvec&#125;&#123;.8&#125;
+\pgfmathsetmacro&#123;\thetavec&#125;&#123;30&#125;
+\pgfmathsetmacro&#123;\phivec&#125;&#123;60&#125;
+%
+\begin&#123;tikzpicture&#125;[scale=5,tdplot_main_coords]
+
+	\coordinate (O) at (0,0,0);
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\tdplotsetcoord&#123;P&#125;&#123;\rvec&#125;&#123;\thetavec&#125;&#123;\phivec&#125;
+	\draw[-stealth,color=red] (O) -- (P);
+	\draw[dashed, color=red] (O) -- (Pxy);
+	\draw[dashed, color=red] (P) -- (Pxy);
+
+	\tdplotdrawarc&#123;(O)&#125;&#123;0.2&#125;&#123;0&#125;&#123;\phivec&#125;&#123;anchor=north&#125;&#123;$\phi$&#125;
+
+	\tdplotsetthetaplanecoords&#123;\phivec&#125;
+
+	\tdplotdrawarc[tdplot_rotated_coords]&#123;(0,0,0)&#125;&#123;0.5&#125;&#123;0&#125;%
+		&#123;\thetavec&#125;&#123;anchor=south west&#125;&#123;$\theta$&#125;
+
+	\draw[dashed,tdplot_rotated_coords] (\rvec,0,0) arc (0:90:\rvec);
+	\draw[dashed] (\rvec,0,0) arc (0:90:\rvec);
+
+	\tdplotsetrotatedcoords&#123;\phivec&#125;&#123;\thetavec&#125;&#123;0&#125;
+	\tdplotsetrotatedcoordsorigin&#123;(P)&#125;
+
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (.5,0,0) node[anchor=north west]&#123;$x'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,.5,0) node[anchor=west]&#123;$y'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,0,.5) node[anchor=south]&#123;$z'$&#125;;
+
+	\draw[-stealth,color=blue,tdplot_rotated_coords] (0,0,0) -- (.2,.2,.2);
+	\draw[dashed,color=blue,tdplot_rotated_coords] (0,0,0) -- (.2,.2,0);
+	\draw[dashed,color=blue,tdplot_rotated_coords] (.2,.2,0) -- (.2,.2,.2);
+
+	\tdplotdrawarc[tdplot_rotated_coords,color=blue]&#123;(0,0,0)&#125;&#123;0.2&#125;&#123;0&#125;%
+		&#123;45&#125;&#123;anchor=north west,color=black&#125;&#123;$\phi'$&#125;
+
+	
+... (truncated)
+</code></pre>
+
+---
+
+## Example 15: Other
+
+**ID**: `325d899a7e34`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (5,0,0) node[anchor=north east]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,5,0) node[anchor=north west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,5) node[anchor=south]&#123;$z$&#125;;
+
+	\tdplotdefinepoints(2,2,2)(3,5,1)(-1,5,3)
+
+	\draw[dashed] (0,0,0) -- (\tdplotvertexx,\tdplotvertexy,0) -- 
+		(\tdplotvertexx,\tdplotvertexy,\tdplotvertexz);
+	\draw[dashed] (0,0,0) -- (\tdplotax,\tdplotay,0) 
+		-- (\tdplotax,\tdplotay,\tdplotaz);
+	\draw[dashed] (0,0,0) -- (\tdplotbx,\tdplotby,0) 
+		-- (\tdplotbx,\tdplotby,\tdplotbz);
+
+	\draw[-&gt;,red] (\tdplotvertexx,\tdplotvertexy,\tdplotvertexz) 
+		-- (\tdplotax,\tdplotay,\tdplotaz);
+	\draw[-&gt;,green!50!black] (\tdplotvertexx,\tdplotvertexy,\tdplotvertexz) 
+		-- (\tdplotbx,\tdplotby,\tdplotbz);
+
+	\node[anchor=east] at (\tdplotvertexx,\tdplotvertexy,\tdplotvertexz)&#123;Vertex&#125;;
+	\node[anchor=north west] at (\tdplotax,\tdplotay,\tdplotaz)&#123;A&#125;;
+	\node[anchor=south west] at (\tdplotbx,\tdplotby,\tdplotbz)&#123;B&#125;;
+
+	\tdplotdrawpolytopearc[thick]&#123;1&#125;&#123;anchor=west&#125;&#123;$\theta$&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 16: Other
+
+**ID**: `fd593927f51b`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;70&#125;&#123;135&#125;
+\begin&#123;tikzpicture&#125;[scale=2,line join=bevel,tdplot_main_coords, fill opacity=.5]
+\pgfsetlinewidth&#123;.2pt&#125;
+\tdplotsphericalsurfaceplot[parametricfill]&#123;72&#125;&#123;36&#125;%
+&#123;sin(\tdplottheta)*cos(\tdplottheta)&#125;&#123;black&#125;&#123;\tdplotphi&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;&#125;%
+	\node[tdplot_screen_coords,fill opacity=1] at (0,-1) &#123;Parametric Fill in $\phi$&#125;;
+\end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;[scale=2,tdplot_main_coords,line join=bevel,fill opacity=.8]
+\pgfsetlinewidth&#123;.1pt&#125;
+\tdplotsphericalsurfaceplot[parametricfill]&#123;72&#125;&#123;36&#125;%
+&#123;0.5*abs(cos(\tdplottheta))&#125;&#123;black&#125;&#123;2*abs(\tdplotr)&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) 
+				-- (1,0,0) node[anchor=north east]&#123;$x$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) 
+				-- (0,1,0) node[anchor=north west]&#123;$y$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) 
+				-- (0,0,1) node[anchor=south]&#123;$z$&#125;;&#125;%
+	\node[tdplot_screen_coords,fill opacity=1] at (0,-1) &#123;Parametric Fill in $r$&#125;;
+\end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;[scale=2,line join=bevel,tdplot_main_coords, fill opacity=.7]
+\pgfsetlinewidth&#123;.4pt&#125;
+\tdplotsphericalsurfaceplot&#123;72&#125;&#123;24&#125;%
+&#123;0.5*cos(\tdplottheta)^2&#125;&#123;black&#125;&#123;red!80!black&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north east]&#123;$x$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=north west]&#123;$y$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) -- (
+... (truncated)
+</code></pre>
+
+---
+
+## Example 17: Other
+
+**ID**: `094207511a21`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[scale=2,line join=bevel,tdplot_main_coords,%
+	fill opacity=.5]
+
+\tdplotsetpolarplotrange&#123;90&#125;&#123;180&#125;&#123;180&#125;&#123;360&#125;
+\tdplotsphericalsurfaceplot[parametricfill]&#123;72&#125;&#123;36&#125;%
+&#123;.5&#125;&#123;black&#125;&#123;\tdplotphi + 3*\tdplottheta&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) 
+			-- (1,0,0) node[anchor=north east]&#123;$x$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0)
+			-- (0,1,0) node[anchor=north west]&#123;$y$&#125;;&#125;%
+	&#123;\draw[color=black,thick,-&gt;] (0,0,0) 
+			-- (0,0,1) node[anchor=south]&#123;$z$&#125;;&#125;%
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 18: Other
+
+**ID**: `e3244a02f339`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\tdplotsetmaincoords&#123;40&#125;&#123;0&#125;
+\begin&#123;tikzpicture&#125;[scale=2,line join=bevel,tdplot_main_coords,%
+	fill opacity=1]
+\tdplotsphericalsurfaceplot[parametricfill]&#123;72&#125;&#123;36&#125;%
+	&#123;sqrt(15/2)/2*sin(\tdplottheta)^2&#125;&#123;black&#125;%
+	&#123;2*\tdplotphi - 6 * \tdplottheta&#125;&#123;&#125;&#123;&#125;&#123;&#125;%
+\tdplotshowargcolorguide&#123;3&#125;&#123;-.2&#125;&#123;.1&#125;&#123;1&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 19: Other
+
+**ID**: `6209497d3036`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+Case A:
+%this one works fine using literal coordinates
+\begin&#123;tikzpicture&#125;[smooth]
+	\draw plot coordinates&#123;(1,0)(2,0.5)(3,0)(3,1)&#125;;
+	\draw[x=&#123;(0cm,1cm)&#125;,y=&#123;(1cm,0cm)&#125;,color=red] 
+		plot coordinates&#123;(1,0)(2,0.5)(3,0)(3,1)&#125;;
+\end&#123;tikzpicture&#125;
+
+Two distinct paths shown.  All is good.
+
+Case B:
+%this one does not work using predefined coordinates
+\begin&#123;tikzpicture&#125;[smooth]
+	\coordinate (A) at (1,0);
+	\coordinate (B) at (2,0.5);
+	\coordinate (C) at (3,0);
+	\coordinate (D) at (3,1);
+	\draw plot coordinates&#123;(A)(B)(C)(D)&#125;;
+	\draw[x=&#123;(0cm,1cm)&#125;,y=&#123;(1cm,0cm)&#125;,color=red] plot coordinates&#123;(A)(B)(C)(D)&#125;;
+\end&#123;tikzpicture&#125;
+
+Both paths draw overtop each other, and the coordinates are not transformed!
+</code></pre>
+
+---
+
+## Example 20: Other
+
+**ID**: `33eec2a92b43`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+Case A:
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[scale=3,tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+	\coordinate (P) at (3,3,3);
+	\tdplotsetrotatedcoords&#123;0&#125;&#123;0&#125;&#123;0&#125;
+	\tdplotsetrotatedcoordsorigin&#123;(P)&#125;
+
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (.5,0,0) node[anchor=north]&#123;$x'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,.5,0) node[anchor=south west]&#123;$y'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,0,.5) node[anchor=south east]&#123;$z'$&#125;;
+
+	\node[tdplot_rotated_coords] at (30:.5)&#123;$\theta_&#123;bad&#125;$&#125;;
+	\draw[tdplot_rotated_coords] (0,0,0) + (30:.5) node&#123;$\theta_&#123;good&#125;$&#125;;
+\end&#123;tikzpicture&#125;
+
+Here, the rotated coordinate frame is shifted by amount (P) within the main%
+coordinate frame.  The node labelled $\theta_&#123;bad&#125;$ does not accept any%
+positioning coordinates.
+
+Case B:
+\tdplotsetmaincoords&#123;60&#125;&#123;110&#125;
+\begin&#123;tikzpicture&#125;[scale=3,tdplot_main_coords]
+
+	\draw[thick,-&gt;] (0,0,0) -- (1,0,0) node[anchor=north]&#123;$x$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,1,0) node[anchor=west]&#123;$y$&#125;;
+	\draw[thick,-&gt;] (0,0,0) -- (0,0,1) node[anchor=south]&#123;$z$&#125;;
+
+%	\coordinate (P) at (3,3,3);
+	\tdplotsetrotatedcoords&#123;0&#125;&#123;0&#125;&#123;0&#125;
+%	\tdplotsetrotatedcoordsorigin&#123;(P)&#125;
+
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (.5,0,0) node[anchor=north]&#123;$x'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,.5,0) node[anchor=south west]&#123;$y'$&#125;;
+	\draw[thick,tdplot_rotated_coords,-&gt;] (0,0,0)
+		-- (0,0,.5) node[anchor=south east]&#123;$z'$&#125;;
+
+	\node[tdplot_rotated_coords] at (
+... (truncated)
+</code></pre>
+
+---
+
+## Example 21: Other
+
+**ID**: `7cd5d023e6a6`
+**Package**: tikz-3dplot
+
+<pre><code class="language-latex">
+\draw[-stealth,color=orange] (0,0,0) 
+	-- (xyz spherical cs:radius=.5,longitude=60,latitude=120);
+%this gives the following compile error using MikTeX 2.8:  
+%	Undefined control sequence. &lt;argument&gt; \tikz@cs@radius.
+</code></pre>
+
+---
+

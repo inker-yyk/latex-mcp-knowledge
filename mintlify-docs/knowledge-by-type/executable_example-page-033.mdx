@@ -1,61 +1,19 @@
 ---
 title: "Executable Examples - Page 34"
-description: "Items 1651-1700 of 5325 executable examples"
+description: "Items 1651-1700 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 34
 
-Showing items **1651-1700** of **5325**
+Showing items **1651-1700** of **5999**
 
-[← Previous](executable_example-page-032) | Page 34 of 107 | [Next →](executable_example-page-034)
-
----
-
-## 1651. Other
-
-**ID**: `204e9bd58bda`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    colormap/viridis high res,
-&#125;
-</code></pre>
+[← Previous](executable_example-page-032) | Page 34 of 120 | [Next →](executable_example-page-034)
 
 ---
 
-## 1652. Other
+## 1651. Line Chart
 
-**ID**: `b7f1f952d08c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    colormap name=plasma,
-&#125;
-</code></pre>
-
----
-
-## 1653. Other
-
-**ID**: `ececeeaf3f2c`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    colormap/plasma high res,
-&#125;
-</code></pre>
-
----
-
-## 1654. Line Chart
-
-**ID**: `c82062be73d9`  
+**ID**: `183f16f42a34`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
@@ -63,15 +21,64 @@ Showing items **1651-1700** of **5325**
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;
     \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=5,
-            lower quartile=7,
-            median=8.5,
-            upper quartile=9.5,
-            upper whisker=10,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\ 1\\ 3\\
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] coordinates &#123;
+        (1.1,0.9) += (0.4,0.2) -= (0.1,0.1)
+        (2.7,2)   -= (1,0)
+        (3,3)
+        (3.8,4.2) +- (0.3,0.2)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1652. Line Chart
+
+**ID**: `ccc06dbe9a27`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\addplot coordinates &#123;(0,0) [4]&#125;;
+</code></pre>
+
+---
+
+## 1653. Line Chart
+
+**ID**: `78d623c7b5c6`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\addplot coordinates &#123;(0,0) +- (0.1,0.2) [4]&#125;;
+</code></pre>
+
+---
+
+## 1654. Line Chart
+
+**ID**: `1b55f8c7dcc6`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;
+    \addplot+ [
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] table [y error=error] &#123;
+        x   y   error
+        1   0.9 0.4
+        2   2.1 0.2
+        3   3   0.1
+        4   4.2 0.3
     &#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
@@ -81,36 +88,31 @@ Showing items **1651-1700** of **5325**
 
 ## 1655. Line Chart
 
-**ID**: `1d516c5f78e4`  
+**ID**: `4bda172d898d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    y=1.5cm,
-]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=5,
-            lower quartile=7,
-            median=8.5,
-            upper quartile=9.5,
-            upper whisker=10,
-        &#125;,
-    ]
-        table [row sep=\\,y index=0] &#123;
-        data\\ 1\\ 3\\
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\addplot table[x error index=COLINDEX,y error index=COLINDEX]
 </code></pre>
 
 ---
 
 ## 1656. Line Chart
 
-**ID**: `5df31f367add`  
+**ID**: `3804f513d99b`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\addplot table[x error expr=\thisrow&#123;errorx&#125;^2]
+</code></pre>
+
+---
+
+## 1657. Line Chart
+
+**ID**: `f53b89bd4cc0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
@@ -118,146 +120,60 @@ Showing items **1651-1700** of **5325**
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;
     \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=36, lower quartile=39,
-            median=40,
-            upper quartile=41, upper whisker=43,
-        &#125;,
-    ]
-        % no outliers:
-        coordinates &#123;&#125;;
-
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=41, lower quartile=44,
-            median=45,
-            upper quartile=46, upper whisker=47,
-        &#125;,
-    ] coordinates &#123;(0,35) (0,55)&#125;;
+        error bars/.cd,
+            x dir=both, x explicit,
+            y dir=both, y explicit,
+    ] table [
+        x error plus=ex+,
+        x error minus=ex-,
+        y error plus=ey+,
+        y error minus=ey-,
+    ] &#123;
+        x   y   ex+  ey+  ex-  ey-
+        1.1 0.9 0.4  0.2  0.1  0.1
+        2.7 2   0    0    1    0
+        3   3   0    0    0    0
+        3.8 4.2 0.3  0.2  0.3  0.2
+    &#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1657. Line Chart
+## 1658. Other
 
-**ID**: `caaff7331d3b`  
+**ID**: `773612d6f2f3`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    ytick=&#123;1,2,3&#125;,
-    yticklabels=&#123;Group A, Group B, Group C&#125;,
-]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-
-    \addplot+[
-        boxplot prepared=&#123;
-            lower whisker=36, lower quartile=39,
-            median=40,
-            upper quartile=41, upper whisker=43,
-        &#125;,
-    ] coordinates &#123;&#125;;
-
-    \addplot+[
-        boxplot prepared=&#123;
-            lower whisker=41, lower quartile=44,
-            median=45,
-            upper quartile=46, upper whisker=47,
-        &#125;,
-    ] coordinates &#123;(0,35) (0,55)&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+% ...
+%
 </code></pre>
 
 ---
 
-## 1658. Line Chart
+## 1659. Scatter Plot
 
-**ID**: `64b19f3e855a`  
+**ID**: `e284953f9080`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    boxplot/draw direction=y,
+    enlargelimits=0.01,
+    title style=&#123;yshift=5pt&#125;,
+    title=Scatter plot with $2250$ points,
 ]
-    \addplot+ [boxplot prepared=&#123;
-        lower whisker=2.5, lower quartile=4,
-        median=8.5, upper quartile=12,
-        upper whisker=15&#125;,
-    ] coordinates &#123;&#125;;
-    \addplot+ [boxplot prepared=&#123;
-        lower whisker=2.5, lower quartile=4,
-        median=8.5, upper quartile=12,
-        upper whisker=15&#125;,
-    ] coordinates &#123;&#125;;
-    \addplot+ [boxplot prepared=&#123;draw position=5,
-        lower whisker=2.5, lower quartile=4,
-        median=8.5, upper quartile=12,
-        upper whisker=15&#125;,
-    ] coordinates &#123;&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1659. Line Chart
-
-**ID**: `55d12f41ad9b`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    only if/.style args=&#123;entry of #1 is #2&#125;&#123;
-        /pgfplots/boxplot/data filter/.code=&#123;
-            \edef\tempa&#123;\thisrow&#123;#1&#125;&#125;
-            \edef\tempb&#123;#2&#125;
-            \ifx\tempa\tempb
-            \else
-                \def\pgfmathresult&#123;&#125;
-            \fi
-        &#125;
-    &#125;
-&#125;
-
-% 'data.dat' contains
-% v     set
-% 0.1   a
-% 0.2   a
-% 0.3   a
-% 0.8   b
-% 0.9   b
-% 1.0   b
-
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    boxplot,
-    table/y=v,
-    boxplot/draw direction=y,
-]
- \addplot table[only if=&#123;entry of set is a&#125;]&#123;data.dat&#125;;
- \addplot table[only if=&#123;entry of set is b&#125;]&#123;data.dat&#125;;
+    \addplot [
+        blue,
+        mark=*,
+        only marks,
+        mark options=&#123;scale=0.3&#125;,
+    ] file [skip first]
+        &#123;plotdata/pgfplots_scatterdata3.dat&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
@@ -266,505 +182,409 @@ Showing items **1651-1700** of **5325**
 
 ## 1660. Line Chart
 
-**ID**: `f1cb6f66a94d`  
+**ID**: `ecb27eb30df4`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    boxplot/draw direction=y,
-    x axis line style=&#123;opacity=0&#125;,
-    axis x line*=bottom,
-    axis y line=left,
-    enlarge y limits,
-    ymajorgrids,
-    xtick=&#123;1,2,3&#125;,
-    xticklabels=&#123;Group A, Group B, Group C&#125;,
+    enlarge x limits=0.03,
+    title=Ornstein--Uhlenbeck sample
+        ($13000$ time steps),
+    xlabel=$t$,
 ]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=36, lower quartile=39,
-            median=40,
-            upper quartile=41, upper whisker=43,
-        &#125;,
-    ] coordinates &#123;&#125;;
-
-    \addplot+[
-        boxplot prepared=&#123;
-            lower whisker=41, lower quartile=44,
-            median=45,
-            upper quartile=46, upper whisker=47,
-        &#125;,
-    ] coordinates &#123;(0,35) (0,55)&#125;;
+    \addplot [blue] file &#123;plotdata/ou.dat&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1661. Line Chart
+## 1661. 3D Plot
 
-**ID**: `8c0f20062b43`  
+**ID**: `a81567561d90`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
+% huger graphs are possible; consider lualatex
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    ytick=&#123;1,2,3&#125;,
-    yticklabels=&#123;Group A, Group B, Group C&#125;,
-    boxplot/variable width,
+    title=$80 \times 80$ Smooth Surface,
+    xlabel=$x$,
+    ylabel=$y$,
 ]
-    \addplot+ [% Group A:
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            sample size=1000,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-
-    \addplot+ [% Group B:
-        boxplot prepared=&#123;
-            lower whisker=36, lower quartile=39,
-            median=40,
-            upper quartile=41, upper whisker=43,
-            sample size=100000,
-        &#125;,
-    ] coordinates &#123;&#125;;
-
-    \addplot+ [% Group C:
-        boxplot prepared=&#123;
-            lower whisker=41, lower quartile=44,
-            median=45,
-            upper quartile=46, upper whisker=47,
-            sample size=50000,
-        &#125;,
-    ] coordinates &#123;(0,35) (0,55)&#125;;
+  \addplot3 [surf,samples=80,shader=interp,domain=0:1]
+        &#123;sin(deg(8*pi*x))* exp(-20*(y-0.5)^2)
+        + exp(-(x-0.5)^2*30
+            - (y-0.25)^2 - (x-0.5)*(y-0.25))&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1662. Line Chart
+## 1662. Other
 
-**ID**: `078306f2c3ff`  
+**ID**: `5d5e77db0407`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[minor y tick num=1]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            box extend=1,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            box extend=0.5, &#125;, ]
-    table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+pdflatex
+    --stack-size=n --save-size=n
+    --main-memory=n --extra-mem-top=n --extra-mem-bot=n
+    --pool-size=n --max-strings=n
 </code></pre>
 
 ---
 
-## 1663. Line Chart
+## 1663. Other
 
-**ID**: `20d9f5a20b9a`  
+**ID**: `40879a9260ce`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1cm]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            draw relative anchor=0, &#125;, ]
-    table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+initexmf --edit-config-file=pdflatex
 </code></pre>
 
 ---
 
-## 1664. Line Chart
+## 1664. Other
 
-**ID**: `68182fb6a59e`  
+**ID**: `ada374cd2e4b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1cm]
-    \addplot+ [
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            draw relative anchor=0.5, &#125;, ]
-    table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+main_memory=90000000
+save_size=80000
 </code></pre>
 
 ---
 
-## 1665. Line Chart
+## 1665. Other
 
-**ID**: `6d91199f7242`  
+**ID**: `a3bf5ca96397`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1cm]
-    \addplot+[
-        boxplot prepared=&#123;
-            lower whisker=42, lower quartile=45,
-            median=47,
-            upper quartile=47.5, upper whisker=48,
-            draw relative anchor=1, &#125;, ]
-    table [row sep=\\,y index=0] &#123; 40\\ 34\\ 56\\ &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+export​ TEXMFCNF=~/texmf/mytexcnf:
 </code></pre>
 
 ---
 
-## 1666. Line Chart
+## 1666. Other
 
-**ID**: `7578db55878a`  
+**ID**: `69431467a28a`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1cm]
-    \addplot+ [boxplot]
-        table [row sep=\\,y index=0] &#123;
-            data\\
-            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+main_memory = n
+extra_mem_top = n
+extra_mem_bot = n
+max_strings = n
+param_size = n
+save_size = n
+stack_size = n
 </code></pre>
 
 ---
 
 ## 1667. Other
 
-**ID**: `b84253d06969`  
+**ID**: `02d57b9ef8e0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    boxplot/every average/.style=&#123;
-        /tikz/mark=diamond*,
-    &#125;,
-&#125;
+% newly created file ~/texmf/mytexcnf/texmf.cnf:
+% If you want to change some of these sizes only for a certain TeX
+% variant, the usual dot notation works, e.g.,
+% main_memory.hugetex = 20000000
+main_memory = 230000000 % words of inimemory available; also applies to inimf&mp
+extra_mem_top = 10000000     % extra high memory for chars, tokens, etc.
+extra_mem_bot = 10000000     % extra low memory for boxes, glue, breakpoints, etc.
+save_size = 150000    % for saving values outside current group
+stack_size = 150000    % simultaneous input sources
+
+% Max number of characters in all strings, including all error messages,
+% help texts, font names, control sequences.  These values apply to TeX and MP.
+%pool_size = 1250000
+% Minimum pool space after TeX/MP's own strings; must be at least
+% 25000 less than pool_size, but doesn't need to be nearly that large.
+%string_vacancies = 90000
+% Maximum number of strings.
+%max_strings = 100000
+% min pool space left after loading .fmt
+%pool_free = 47500
 </code></pre>
 
 ---
 
-## 1668. Line Chart
+## 1668. Other
 
-**ID**: `bbe429401842`  
+**ID**: `01628fbfe447`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1.5cm, ymax=2]
-\addplot+[boxplot]
-table[row sep=\\,y index=0] &#123;
-    data\\
-    1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-    7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-&#125;
-[above]
-node at
-  (boxplot box cs: \boxplotvalue&#123;lower whisker&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;lower whisker&#125;&#125;&#125;
-node at
-  (boxplot box cs: \boxplotvalue&#123;lower quartile&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;lower quartile&#125;&#125;&#125;
-node[left] at
-  (boxplot box cs: \boxplotvalue&#123;median&#125;,0.5)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;median&#125;&#125;&#125;
-node at
-  (boxplot box cs: \boxplotvalue&#123;upper quartile&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;upper quartile&#125;&#125;&#125;
-node at
-  (boxplot box cs: \boxplotvalue&#123;upper whisker&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;upper whisker&#125;&#125;&#125;
-;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+export​ TEXMFCNF=~/texmf/mytexcnf:
 </code></pre>
 
 ---
 
 ## 1669. Line Chart
 
-**ID**: `fe343e895a53`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[y=1.5cm, ymax=2]
-\addplot+[boxplot]
-table[row sep=\\,y index=0] &#123;
-    data\\
-    1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-    7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-&#125;
-[above]
-node at
-  (boxplot whisker cs:\boxplotvalue&#123;lower whisker&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;lower whisker&#125;&#125;&#125;
-node at
-  (boxplot box cs: \boxplotvalue&#123;median&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;median&#125;&#125;&#125;
-node at
-  (boxplot whisker cs:\boxplotvalue&#123;upper whisker&#125;,1)
-  &#123;\pgfmathprintnumber&#123;\boxplotvalue&#123;upper whisker&#125;&#125;&#125;
-;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1670. Other
-
-**ID**: `b78f36f0a193`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    boxplot/draw/lower whisker/.style=&#123;
-        /pgfplots/boxplot/draw/whisker=
-            &#123;\pgfplotsboxplotvalue&#123;lower quartile&#125;&#125;
-            &#123;\pgfplotsboxplotvalue&#123;lower whisker&#125;&#125;
-    &#125;,
-    boxplot/draw/upper whisker/.style=&#123;
-        /pgfplots/boxplot/draw/whisker=
-            &#123;\pgfplotsboxplotvalue&#123;upper quartile&#125;&#125;
-            &#123;\pgfplotsboxplotvalue&#123;upper whisker&#125;&#125;
-    &#125;,
-    boxplot/draw/whisker/.code 2 args=&#123;
-        \draw [/pgfplots/boxplot/every whisker/.try]
-            (boxplot cs:#1) -- (boxplot cs:#2)
-            (boxplot whisker cs:#2,0)
-            --
-            (boxplot whisker cs:#2,1)
-        ;
-    &#125;,
-&#125;
-</code></pre>
-
----
-
-## 1671. Other
-
-**ID**: `bd29923d5caa`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    boxplot/draw/box/.code=&#123;
-        \draw [/pgfplots/boxplot/every box/.try]
-            (boxplot box cs:\pgfplotsboxplotvalue&#123;lower quartile&#125;,0)
-            rectangle
-            (boxplot box cs:\pgfplotsboxplotvalue&#123;upper quartile&#125;,1)
-        ;
-    &#125;,
-&#125;
-</code></pre>
-
----
-
-## 1672. Other
-
-**ID**: `d02174c25e77`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;
-    boxplot/draw/median/.code=&#123;
-        \draw [/pgfplots/boxplot/every median/.try]
-            (boxplot box cs:\pgfplotsboxplotvalue&#123;median&#125;,0)
-            --
-            (boxplot box cs:\pgfplotsboxplotvalue&#123;median&#125;,1)
-        ;
-    &#125;,
-&#125;
-</code></pre>
-
----
-
-## 1673. Other
-
-**ID**: `e44b9aa114f2`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\makeatletter
-\pgfplotsset&#123;
-    boxplot/draw/average/.code=&#123;
-        \draw [/pgfplots/boxplot/every average/.try]
-            \pgfextra
-            % do NOT use \draw[mark=*] plot coordinates because
-            % boxplots uses the same plot handler to draw its
-            % outliers.
-            \pgftransformshift&#123;%
-                % basic level access to 'boxplot box cs':
-                \pgfplotsboxplotpointabbox
-                    &#123;\pgfplotsboxplotvalue&#123;average&#125;&#125;
-                    &#123;0.5&#125;%
-            &#125;%
-            \pgfuseplotmark&#123;\tikz@plot@mark&#125;%
-            \endpgfextra
-        ;
-    &#125;,
-&#125;
-\makeatother
-</code></pre>
-
----
-
-## 1674. Bar Chart
-
-**ID**: `5dfad5487e2f`  
+**ID**: `cdb34d0c0998`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    ybar interval,
-    xticklabel=
-\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick
+    small,
+    title=Do,
+    samples=2,
 ]
-    \addplot+ [hist=&#123;bins=3&#125;]
-        table [row sep=\\,y index=0] &#123;
-            data\\
-            1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-            7\\ 10\\ 9\\ 8\\ 9\\ 9\\
+    \addplot+ [
+        declare function=&#123;C=4;&#125;
+    ] &#123;C*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1670. Line Chart
+
+**ID**: `635274ad5e5a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    small,
+    title=Don't,
+    samples=2,
+]
+        \def\constantC&#123;4&#125;
+    \addplot &#123;\constantC*x&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1671. Line Chart
+
+**ID**: `a4afa8ed422e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[small,grid=major,title=Do]
+    \addplot+ [
+        unbounded coords=jump,
+        y filter/.expression=&#123;y==3 ? nan : y&#125;,
+    ] table &#123;
+        x   y
+        1   2
+        1.5 2.5
+        2   3
+        2.5 3.5
+        3   4
     &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1675. Bar Chart
-
-**ID**: `d2505a004954`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    ybar interval,
-    xtick=,% reset from ybar interval
-    xticklabel=&#123;
-        $[\pgfmathprintnumber\tick,
-         \pgfmathprintnumber\nexttick)$
-    &#125;,
-    x tick label style=&#123;draw=red&#125;,
-]
-    % a data file containing 8000 normally distributed
-    % random numbers of mean 0 and variance 1
-    \addplot+ [hist=&#123;data=x&#125;]
-        file &#123;plotdata/pgfplots.randn.dat&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1676. Bar Chart
-
-**ID**: `954ede03f266`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        tiny,
-        height=4cm,width=12cm,
-        ybar interval,
-        ymin=0,
-        xmin=0,xmax=1,
-        axis on top,
-        extra x ticks=&#123;0,1&#125;,
-        extra x tick style=&#123;
-            grid=none,
-            x tick label as interval=false,
-            xticklabel=&#123;$\pgfmathprintnumber\tick$&#125;
-        &#125;,
-        xticklabel=&#123;$[\pgfmathprintnumber[fixed]\tick,\cdot)$&#125;,
-    ]
-        \addplot+ [samples=200,hist] &#123;rnd&#125;;
     \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1677. Bar Chart
+## 1672. Line Chart
 
-**ID**: `0040bf3521aa`  
+**ID**: `9bbb7f20d72f`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+% [See the TikZ manual if you'd like to learn about nodes and pins]
+\begin&#123;tikzpicture&#125;
+    \tikzset&#123;
+        every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+        small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+    &#125;
+    \begin&#123;axis&#125;[
+        clip=false,
+        title=How \texttt&#123;axis description cs&#125; works,
+    ]
+        \addplot &#123;x&#125;;
+
+        \node [small dot,pin=120:&#123;$(0,0)$&#125;]      at (axis description cs:0,0)      &#123;&#125;;
+        \node [small dot,pin=-30:&#123;$(1,1)$&#125;]      at (axis description cs:1,1)      &#123;&#125;;
+        \node [small dot,pin=-90:&#123;$(1.03,0.5)$&#125;] at (axis description cs:1.03,0.5) &#123;&#125;;
+        \node [small dot,pin=125:&#123;$(0.5,0.5)$&#125;]  at (axis description cs:0.5,0.5)  &#123;&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1673. Line Chart
+
+**ID**: `b34fbe5167ff`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    ybar interval,
-    xtick=,% reset from ybar interval
-    xticklabel=&#123;
-        $[\pgfmathprintnumber\tick,
-        \pgfmathprintnumber\nexttick)$
-    &#125;,
-]
-    % a data file containing 8000 normally distributed
-    % random numbers of mean 0 and variance 1
-    \addplot+ [hist=&#123;data=x,cumulative&#125;]
-        file &#123;plotdata/pgfplots.randn.dat&#125;;
-\end&#123;axis&#125;
+    \begin&#123;axis&#125;[
+        legend entries=&#123;$x$,$x^2$&#125;,
+        legend style=&#123;
+            at=&#123;(1.03,0.5)&#125;,
+            anchor=west,
+        &#125;,
+    ]
+        \addplot &#123;x&#125;;
+        \addplot &#123;x^2&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1674. Line Chart
+
+**ID**: `1b2d9cc8517e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+% the same as above for 3D ...
+% [See the TikZ manual if you'd like to learn about nodes and pins]
+\begin&#123;tikzpicture&#125;
+    \tikzset&#123;
+        every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+        small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+    &#125;
+    \begin&#123;axis&#125;[
+        clip=false,
+        title=How \texttt&#123;axis description cs&#125; works in 3D,
+    ]
+        \addplot3 coordinates &#123;(-5,-5,-5) (5,5,5)&#125;;
+
+        \draw [black!15] (axis description cs:0,0) rectangle (axis description cs:1,1);
+
+        \node [small dot,pin=120:&#123;$(0,0)$&#125;]      at (axis description cs:0,0)      &#123;&#125;;
+        \node [small dot,pin=-30:&#123;$(1,1)$&#125;]      at (axis description cs:1,1)      &#123;&#125;;
+        \node [small dot,pin=-90:&#123;$(1.03,0.5)$&#125;] at (axis description cs:1.03,0.5) &#123;&#125;;
+        \node [small dot,pin=125:&#123;$(0.5,0.5)$&#125;]  at (axis description cs:0.5,0.5)  &#123;&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1675. Line Chart
+
+**ID**: `93d4aa855c41`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\tikzset&#123;
+    every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+    small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        clip=false,
+        ticklabel style=&#123;draw=red&#125;,
+        title=Positioning with \texttt&#123;xticklabel cs&#125;,
+    ]
+        \addplot &#123;x&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:0&#125;&#125;]    at (xticklabel cs:0)   &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:0.5&#125;&#125;]  at (xticklabel cs:0.5) &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:1&#125;&#125;]    at (xticklabel cs:1)   &#123;&#125;;
+
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel cs:0&#125;&#125;]    at (yticklabel cs:0)   &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel cs:0.5&#125;&#125;]  at (yticklabel cs:0.5) &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel cs:1&#125;&#125;]    at (yticklabel cs:1)   &#123;&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1676. Line Chart
+
+**ID**: `02c4935f0d8d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\tikzset&#123;
+    every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+    small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[
+        clip=false,
+        ticklabel style=&#123;draw=red&#125;,
+        title=Starred variant \texttt&#123;xticklabel* cs&#125;,
+    ]
+        \addplot &#123;x&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel* cs:0&#125;&#125;]   at (xticklabel* cs:0)   &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel* cs:0.5&#125;&#125;] at (xticklabel* cs:0.5) &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel* cs:1&#125;&#125;]   at (xticklabel* cs:1)   &#123;&#125;;
+
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel* cs:0&#125;&#125;]   at (yticklabel* cs:0)   &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel* cs:0.5&#125;&#125;] at (yticklabel* cs:0.5) &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;yticklabel* cs:1&#125;&#125;]   at (yticklabel* cs:1)   &#123;&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## 1677. Line Chart
+
+**ID**: `414808622d15`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+% the same as above for 3D ...
+\begin&#123;tikzpicture&#125;
+    \tikzset&#123;
+        every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+        small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+    &#125;
+    \begin&#123;axis&#125;[
+        ticklabel style=&#123;draw=red&#125;,
+        clip=false,
+        title=Positioning with \texttt&#123;ticklabel cs&#125; in 3D,
+    ]
+        \addplot3 coordinates &#123;(-5,-5,-5) (5,5,5)&#125;;
+
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:0&#125;&#125;]   at (xticklabel cs:0)   &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:0.5&#125;&#125;] at (xticklabel cs:0.5) &#123;&#125;;
+        \node [small dot,pin=-90:&#123;\texttt&#123;xticklabel cs:1&#125;&#125;]   at (xticklabel cs:1)   &#123;&#125;;
+
+        \node [small dot,pin=-45:&#123;\texttt&#123;yticklabel cs:0&#125;&#125;]   at (yticklabel cs:0)   &#123;&#125;;
+        \node [small dot,pin=-45:&#123;\texttt&#123;yticklabel cs:0.5&#125;&#125;] at (yticklabel cs:0.5) &#123;&#125;;
+        \node [small dot,pin=-45:&#123;\texttt&#123;yticklabel cs:1&#125;&#125;]   at (yticklabel cs:1)   &#123;&#125;;
+
+        \node [small dot,pin=180:&#123;\texttt&#123;zticklabel cs:0&#125;&#125;]   at (zticklabel cs:0)   &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;zticklabel cs:0.5&#125;&#125;] at (zticklabel cs:0.5) &#123;&#125;;
+        \node [small dot,pin=180:&#123;\texttt&#123;zticklabel cs:1&#125;&#125;]   at (zticklabel cs:1)   &#123;&#125;;
+    \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -772,28 +592,32 @@ node at
 
 ## 1678. Line Chart
 
-**ID**: `a6e5339a1572`  
+**ID**: `720dd816b073`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
+\tikzset&#123;
+    every pin/.style=&#123;fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny&#125;,
+    small dot/.style=&#123;fill=black,circle,scale=0.3&#125;,
+&#125;
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[small,ymin=0,title=\texttt&#123;hist&#125;]
-        \addplot [
-            hist,
-            fill=orange!75,
-            draw=orange!50!black]
-                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-%
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=density&#125;]
-        \addplot [
-            hist=density,
-            fill=orange!75,
-            draw=orange!50!black]
-                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \begin&#123;axis&#125;[
+        xticklabel style=&#123;draw=red&#125;,
+        clip=false,
+        title=\texttt&#123;ticklabel cs&#125; and its optional shift,
+    ]
+        \addplot3 coordinates &#123;(-5,-5,-5) (5,5,5)&#125;;
+
+        \draw [blue,thick,-&gt;]      (xticklabel cs:0,0)     -- (xticklabel cs:1,0);
+        \draw [red,thick,-&gt;]       (xticklabel cs:0,5pt)   -- (xticklabel cs:1,5pt);
+        \draw [magenta,thick,-&gt;]   (xticklabel cs:0,10pt)  -- (xticklabel cs:1,10pt);
+        \draw [green,thick,-&gt;]     (xticklabel cs:0,15pt)  -- (xticklabel cs:1,15pt);
+        \node [small dot,pin=0:&#123;\texttt&#123;xticklabel cs:1,0&#125;&#125;]      at (xticklabel cs:1,0) &#123;&#125;;
+        \node [small dot,pin=0:&#123;\texttt&#123;xticklabel cs:1,15pt&#125;&#125;]   at (xticklabel cs:1,15pt) &#123;&#125;;
+
+        \draw [blue,thick,-&gt;]      (xticklabel cs:0,0)     -- (xticklabel cs:0,15pt);
+        \draw [blue,thick,-&gt;]      (xticklabel cs:1,0)     -- (xticklabel cs:1,15pt);
     \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
@@ -802,296 +626,300 @@ node at
 
 ## 1679. Line Chart
 
-**ID**: `d534fae4a245`  
+**ID**: `001cda4f1ca8`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=cumulative&#125;]
-        \addplot [
-            hist=cumulative,
-            fill=orange!75,
-            draw=orange!50!black]
-                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \begin&#123;axis&#125;[
+        title=Without \texttt&#123;near ticklabel&#125;,
+        ylabel=&#123;$f(x)=x$&#125;,
+        every axis y label/.style=&#123;
+            at=&#123;(ticklabel cs:0.5)&#125;,rotate=90,anchor=center,
+        &#125;,
+        clip=false,                 % to display the \path below
+        ylabel style=&#123;draw=red&#125;,
+        yticklabel style=&#123;draw=red&#125;,
+    ]
+        \addplot &#123;x&#125;;
+
+        % visualize the position:
+        \fill (yticklabel cs:0.5) circle(2pt);
     \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
-%
 \begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[small,ymin=0, title=\texttt&#123;hist=\&#123;cumulative,density\&#125;&#125;]
-        \addplot [
-            hist=&#123;cumulative,density&#125;,
-            fill=orange!75,
-            draw=orange!50!black]
-                table [y index=0] &#123;plotdata/pgfplots.randn.dat&#125;;
+    \begin&#123;axis&#125;[
+        title=With \texttt&#123;near ticklabel&#125;,
+        ylabel=&#123;$f(x)=x$&#125;,
+        every axis y label/.style=&#123;
+            at=&#123;(ticklabel cs:0.5)&#125;,rotate=90,anchor=near ticklabel,
+        &#125;,
+        clip=false,
+        ylabel style=&#123;draw=red&#125;,
+        yticklabel style=&#123;draw=red&#125;,
+    ]
+        \addplot &#123;x&#125;;
+        \fill (yticklabel cs:0.5) circle(2pt);
     \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1680. Line Chart
+## 1680. Node Graph
 
-**ID**: `fd4115be4c0b`  
+**ID**: `e5d06695b230`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [
-        hist=&#123;bins=3&#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\
-        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-    &#125;;
-\end&#123;axis&#125;
+    \begin&#123;axis&#125;[
+        clip=false,
+        small,
+        title=\texttt&#123;near ticklabel&#125; (\texttt&#123;opposite&#125;),
+        min=0, max=1,
+    ]
+        \node [draw=yellow,anchor=near xticklabel,font=\small]
+            (namex) at (xticklabel cs:0.2) &#123;\texttt&#123;near xticklabel&#125;.&#125;;
+        \fill (xticklabel cs:0.2) circle(2pt);
+        \draw [green,-stealth] (xticklabel* cs:0.2) -- (xticklabel cs:0.2);
+        \draw [blue,-stealth]  (xticklabel cs:0.2)  -- (namex.center);
+        \draw [red,-stealth]   (namex.north east)   -- (xticklabel cs:0.2);
+
+        \node [draw=yellow,anchor=near xticklabel opposite,font=\small]
+            (namexx) at (xticklabel* cs:0.6) &#123;\texttt&#123;near xticklabel opposite&#125;.&#125;;
+        \fill [red] (xticklabel* cs:0.6) circle(2pt);
+        \draw [blue,-stealth]       (xticklabel* cs:0.6) -- (namexx.center);
+        \draw [red,thick,-stealth]  (namexx.south west)  -- (xticklabel* cs:0.6);
+
+        \node [draw=yellow,anchor=near yticklabel,font=\small]
+            (name) at (yticklabel cs:1) &#123;\texttt&#123;near yticklabel&#125;.&#125;;
+        \fill (yticklabel cs:1) circle(2pt);
+        \draw [green,-stealth] (yticklabel* cs:1) -- (yticklabel cs:1);
+        \draw [blue,-stealth]  (yticklabel cs:1)  -- (name.center);
+        \draw [red,-stealth]   (name.north west)  -- (yticklabel cs:1);
+    \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1681. Line Chart
+## 1681. Node Graph
 
-**ID**: `7fe38147c16c`  
+**ID**: `00f000d313e9`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [
-        hist=&#123;
-            bins=3,
-            handler/.style=&#123;const plot&#125;,
+    \begin&#123;axis&#125;[
+        clip=false,
+        small,
+        title=\texttt&#123;near ticklabel align&#125;,
+        min=0, max=1,
+        /tikz/node style/.style=&#123;
+            draw=yellow,
+            anchor=near yticklabel,
+            font=\tiny,
         &#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\
-        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-    &#125;;
-\end&#123;axis&#125;
+    ]
+        \node [node style,/pgfplots/near ticklabel align=center]
+            (C) at (yticklabel cs:0) &#123;\texttt&#123;center&#125;.&#125;;
+
+        \node [node style,/pgfplots/near ticklabel align=inside]
+            (I) at (yticklabel cs:1) &#123;\texttt&#123;inside&#125;.&#125;;
+
+        \node [node style,/pgfplots/near ticklabel align=outside]
+            (O) at (yticklabel cs:1) &#123;\texttt&#123;outside&#125;.&#125;;
+
+        \fill (yticklabel cs:0) circle(2pt);
+        \fill (yticklabel cs:1) circle(2pt);
+
+        \fill [blue] (C.center)     circle(1pt);
+        \fill [blue] (I.south west) circle(1pt);
+        \fill [blue] (O.north east) circle(1pt);
+
+        \draw [green,-stealth]  (yticklabel* cs:0) -- (yticklabel cs:0);
+        \draw [blue]            (yticklabel cs:0)  -- (C.center);
+        \draw [red,-stealth]    (C.north west)     -- (yticklabel cs:0);
+
+        \draw [green,-stealth]  (yticklabel* cs:1) -- (yticklabel cs:1);
+        \draw [blue]            (yticklabel cs:1)  -- (O.north east);
+        \draw [red,-stealth]    (O.north west)     -- (yticklabel cs:1);
+        \draw [red,-stealth]    (I.north west)     -- (yticklabel cs:1);
+    \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1682. Line Chart
+## 1682. 3D Plot
 
-**ID**: `c284b37a9b1d`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [
-        hist=&#123;
-            bins=3,
-            handler/.style=&#123;sharp plot&#125;,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\
-        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1683. Line Chart
-
-**ID**: `05c8a7178d3b`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;
-    \addplot+ [
-        hist=&#123;
-            bins=3,
-            handler/.style=&#123;sharp plot&#125;,
-            intervals=false,
-        &#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\
-        1\\ 2\\ 1\\ 5\\ 4\\ 10\\
-        7\\ 10\\ 9\\ 8\\ 9\\ 9\\
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1684. Bar Chart
-
-**ID**: `54c374677a1b`  
+**ID**: `5472f50eaa0e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    ybar interval,
-    hist/symbolic coords=&#123;A,B,C,D,E,F,G,H,I,J&#125;,
-    xticklabel=&#123;[\tick--\nexttick[&#125;,
+    xlabel=Variable 1,
+    ylabel=Variable 2,
+    zlabel=value,
+    xlabel style=&#123;sloped like x axis&#125;,
+    ylabel style=&#123;sloped&#125;,
 ]
-    \addplot+ [
-        hist=&#123;bins=3&#125;,
-    ] table [row sep=\\,y index=0] &#123;
-        data\\
-        A\\ B\\ A\\ D\\ F\\ J\\
-        G\\ J\\ I\\ H\\ I\\ I\\
-    &#125;;
+    \addplot3 [surf] &#123;y*x*(1-x)&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1685. Line Chart
+## 1683. Other
 
-**ID**: `426595ff9ab0`  
+**ID**: `751ef59e9acf`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    xtick distance=45,
-    ytick distance=0.5,
-    enlarge x limits=false,
+% for x:
+\node [
+    style=every axis label,
+    style=every axis x label,
 ]
-    \addplot [smooth,domain=0:360] &#123;sin(x)&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+% for y:
+\node [
+    style=every axis label,
+    style=every axis y label,
+]
 </code></pre>
 
 ---
 
-## 1686. Line Chart
+## 1684. Other
 
-**ID**: `719cd9e3956c`  
+**ID**: `204d98ac3fd3`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    xtick distance=10^(1.5),
-    ytick distance=10^1,
-]
-    \addplot expression [domain=1:10000] &#123;x^-2&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[xlabel style=&#123;align=right,text width=3cm&#125;,xlabel=A quite long label with a line break]
+...
+\end&#123;axis&#125;
+</code></pre>
+
+---
+
+## 1685. Other
+
+**ID**: `98131fd6142e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/xlabel near ticks/.style=&#123;
+        /pgfplots/every axis x label/.style=&#123;
+            at=&#123;(ticklabel cs:0.5)&#125;,anchor=near ticklabel,
+        &#125;,
+    &#125;,
+    /pgfplots/ylabel near ticks/.style=&#123;
+        /pgfplots/every axis y label/.style=&#123;
+            at=&#123;(ticklabel cs:0.5)&#125;,rotate=90,anchor=near ticklabel,
+        &#125;,
+    &#125;,
+&#125;
+</code></pre>
+
+---
+
+## 1686. Other
+
+**ID**: `03a31b7bdbf5`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;compat=1.3&#125; % or newer
 </code></pre>
 
 ---
 
 ## 1687. Other
 
-**ID**: `fef11685b0a1`  
+**ID**: `328542cba60d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    xtick=&#123;
-        12,
-        9897,
-        1468864
+\pgfplotsset&#123;
+    /pgfplots/xlabel absolute/.style=&#123;
+        /pgfplots/every axis x label/.style=&#123;at=&#123;(0.5,0)&#125;,below,yshift=-15pt&#125;,
+        /pgfplots/every x tick scale label/.style=&#123;
+            at=&#123;(1,0)&#125;,yshift=-2em,left,inner sep=0pt,
+        &#125;,
     &#125;,
-]
-    % see above for this macro:
-    \plotcoords
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+    /pgfplots/ylabel absolute/.style=&#123;
+        /pgfplots/every axis y label/.style=&#123;at=&#123;(0,0.5)&#125;,xshift=-35pt,rotate=90&#125;,
+        /pgfplots/every y tick scale label/.style=&#123;
+            at=&#123;(0,1)&#125;,above right,inner sep=0pt,yshift=0.3em,
+        &#125;,
+    &#125;,
+&#125;
 </code></pre>
 
 ---
 
-## 1688. Line Chart
+## 1688. Other
 
-**ID**: `1605ca1a0a24`  
+**ID**: `d344653d3c4b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    xtick=\empty,
-    ytick=&#123;-2,0.3,3,3.7,4.5&#125;,
-]
-    \addplot+ [smooth] coordinates &#123;
-        (-2,3) (-1.5,2) (-0.3,-0.2)
-        (1,1.2) (2,2) (3,5)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfplotsset&#123;every axis label/.append style=&#123;...&#125;&#125;
+\pgfplotsset&#123;every axis x label/.append style=&#123;...&#125;&#125;
+\pgfplotsset&#123;every axis y label/.append style=&#123;...&#125;&#125;
 </code></pre>
 
 ---
 
 ## 1689. Other
 
-**ID**: `c6fe875eb596`  
+**ID**: `70fa093c1831`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;tick style=&#123;very thin,gray&#125;&#125;   % modifies the style `every tick'
-\pgfplotsset&#123;minor tick style=&#123;black&#125;&#125;      % modifies the style `every minor tick'
+\node [every axis title] &#123;text&#125;;
 </code></pre>
 
 ---
 
 ## 1690. Line Chart
 
-**ID**: `9fb8bb2a43c9`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    xtick=data,
-    xmajorgrids,
-]
-    \addplot coordinates &#123;
-        (1,2)
-        (2,5)
-        (4,6.5)
-        (6,8)
-        (10,9)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1691. Line Chart
-
-**ID**: `6c376beecf39`  
+**ID**: `496d3bb53834`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;loglogaxis&#125;[
-    title=A log plot with small axis range,
+    xlabel=Dof,ylabel=Error,
+    title=&#123;$\mu=0.1$, $\sigma=0.2$&#125;,
 ]
     \addplot coordinates &#123;
-        (10,1e-4)
-        (17,8.3176e-05)
-        (25,7.0794e-05)
-        (50,5e-5)
+        (5,    8.312e-02)
+        (17,   2.547e-02)
+        (49,   7.407e-03)
+        (129,  2.102e-03)
+        (321,  5.874e-04)
+        (769,  1.623e-04)
+        (1793, 4.442e-05)
+        (4097, 1.207e-05)
+        (9217, 3.261e-06)
     &#125;;
 \end&#123;loglogaxis&#125;
 \end&#123;tikzpicture&#125;
@@ -1099,20 +927,38 @@ node at
 
 ---
 
-## 1692. Line Chart
+## 1691. Other
 
-**ID**: `27f3c73f10be`  
+**ID**: `b148f7b8d94b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
+\pgfplotsset&#123;title style=&#123;at=&#123;(0.75,1)&#125;&#125;&#125;
+% or, equivalently,
+\pgfplotsset&#123;every axis title/.append style=&#123;at=&#123;(0.75,1)&#125;&#125;&#125;
+</code></pre>
+
+---
+
+## 1692. Line Chart
+
+**ID**: `859eeaa2fda0`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every axis/.append style=&#123;
+        extra description/.code=&#123;
+            \node at (0.5,0.5) &#123;Center!&#125;;
+        &#125;,
+    &#125;,
+&#125;
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    minor tick num=1,
-]
-    \addplot &#123;x^3&#125;;
-    \addplot &#123;-20*x&#125;;
-\end&#123;axis&#125;
+    \begin&#123;axis&#125;
+        \addplot &#123;x^2&#125;;
+    \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -1120,17 +966,28 @@ node at
 
 ## 1693. Line Chart
 
-**ID**: `681c56359f16`  
+**ID**: `85bb0ece0058`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    minor tick num=3,
-]
-    \addplot &#123;x^3&#125;;
-    \addplot &#123;-20*x&#125;;
+\begin&#123;axis&#125;
+    \addplot [smooth,mark=*,blue] coordinates &#123;
+        (0,2)
+        (2,3)
+        (3,1)
+    &#125;;
+    \addlegendentry&#123;Case 1&#125;
+
+    \addplot [smooth,color=red,mark=x]
+        coordinates &#123;
+            (0,0)
+            (1,1)
+            (2,1)
+            (3,2)
+        &#125;;
+    \addlegendentry&#123;Case 2&#125;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
@@ -1139,55 +996,71 @@ node at
 
 ## 1694. Line Chart
 
-**ID**: `2f97a70d6850`  
+**ID**: `dee54802c4ae`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    minor x tick num=1,
-    minor y tick num=3,
-]
-    \addplot &#123;x^3&#125;;
-    \addplot &#123;-20*x&#125;;
+\begin&#123;axis&#125;
+    \foreach \p in &#123;1,2,3&#125; &#123;
+        \addplot &#123;x^\p&#125;;
+            \addlegendentryexpanded&#123;$x^\p$&#125;
+    &#125;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1695. Line Chart
+## 1695. Other
 
-**ID**: `fa07a91e5c5e`  
+**ID**: `306beeb3d254`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    minor xtick=&#123;-3,1&#125;,
-    grid=minor,
-]
-    \addplot &#123;x^3&#125;;
-    \addplot &#123;-20*x&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\legend&#123;$d=2$,$d=3$,$d=4$,$d=5$,$d=6$&#125;
 </code></pre>
 
 ---
 
-## 1696. Line Chart
+## 1696. Other
 
-**ID**: `b7dac76d7537`  
+**ID**: `20d8c7e71e52`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\legend&#123;$d=2$,$d=3$,$d=4$,$d=5$,$d=6$&#125;
+</code></pre>
+
+---
+
+## 1697. Other
+
+**ID**: `b515a8bc940a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\legend&#123;$a=1, b=2$\\,$a=2, b=3$\\$a=3, b=5$\\&#125;
+</code></pre>
+
+---
+
+## 1698. Line Chart
+
+**ID**: `47207772e755`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    minor ytick=data,
+    legend entries=&#123;$x$,$x^2$&#125;,
 ]
+    \addplot &#123;x&#125;;
     \addplot &#123;x^2&#125;;
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
@@ -1195,118 +1068,46 @@ node at
 
 ---
 
-## 1697. Line Chart
+## 1699. Line Chart
 
-**ID**: `2effe0ec7b55`  
+**ID**: `1df611fc500b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
 \begin&#123;axis&#125;[
-    xmin=0,xmax=3,ymin=0,ymax=15,
-    extra y ticks=&#123;2.71828&#125;,
-    extra y tick labels=&#123;$e$&#125;,
-    extra x ticks=&#123;2.2&#125;,
-    extra x tick style=&#123;grid=major,
-        tick label style=&#123;
-            rotate=90,anchor=east&#125;&#125;,
-    extra x tick labels=&#123;Cut&#125;,
+    legend entries=&#123;$x$,$x^2$&#125;,
 ]
-    \addplot &#123;exp(x)&#125;;
-    \addlegendentry&#123;$e^x$&#125;
+    \addplot &#123;x&#125;;
+    \addplot &#123;x^2&#125;;
+
+    \legend&#123;$a$,$b$&#125;    % overrides the option
 \end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1698. Line Chart
+## 1700. Line Chart
 
-**ID**: `520aff62726f`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\pgfplotsset&#123;every axis/.append style=&#123;width=5.3cm&#125;&#125;
-\begin&#123;tikzpicture&#125;
-    \begin&#123;loglogaxis&#125;[
-        title=Explicitly Provided Limits,
-        xtickten=&#123;1,2&#125;,
-        ytickten=&#123;-5,-6&#125;,
-    ]
-        \addplot coordinates
-            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
-    \end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
-
-\begin&#123;tikzpicture&#125;
-    \begin&#123;loglogaxis&#125;[
-        title=With Extra Ticks,
-        xtickten=&#123;1,2&#125;,
-        ytickten=&#123;-5,-6&#125;,
-        extra x ticks=&#123;20,40&#125;,
-        extra y ticks=&#123;5e-6,2.5e-6&#125;,
-    ]
-        \addplot coordinates
-            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
-    \end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
-
-\begin&#123;tikzpicture&#125;
-    \begin&#123;loglogaxis&#125;[
-        title=With Extra Ticks; $10^e$ format,
-        extra tick style=&#123;log identify minor tick positions=false&#125;,
-        xtickten=&#123;1,2&#125;,
-        ytickten=&#123;-5,-6&#125;,
-        extra x ticks=&#123;20,40&#125;,
-        extra y ticks=&#123;5e-6,2.5e-6&#125;,
-    ]
-        \addplot coordinates
-            &#123;(10,1e-5) (20,5e-6) (40,2.5e-6)&#125;;
-    \end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 1699. Line Chart
-
-**ID**: `a96ae3c7a89d`  
+**ID**: `f943a6f43f49`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-\begin&#123;semilogyaxis&#125;[
-    samples=8,
-    ytickten=&#123;-6,-4,...,4&#125;,
-    domain=0:10,
+\begin&#123;axis&#125;[
+    legend entries=&#123;$x$,[red]$x^2$,$x^3$&#125;,
 ]
-    \addplot &#123;2^(-2*x + 6)&#125;;
-    \addlegendentry&#123;$2^&#123;-2x + 6&#125;$&#125;
-
-    % or invoke gnuplot to generate coordinates:
-    \addplot gnuplot [id=pow2]
-        &#123;2**(-1.5*x -3)&#125;;
-    \addlegendentry&#123;$2^&#123;-1.5x -3&#125;$&#125;
-\end&#123;semilogyaxis&#125;
+    \addplot &#123;x&#125;;
+    \addplot &#123;x^2&#125;;
+    \addplot &#123;x^3&#125;;
+\end&#123;axis&#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 1700. Other
 
-**ID**: `8522ce03fe44`  
-**Package**: pgfplots  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-xticklabels=&#123;$\frac&#123;1&#125;&#123;2&#125;$,$e$&#125;
-</code></pre>
-
----
-
-
-[← Previous](executable_example-page-032) | Page 34 of 107 | [Next →](executable_example-page-034)
+[← Previous](executable_example-page-032) | Page 34 of 120 | [Next →](executable_example-page-034)

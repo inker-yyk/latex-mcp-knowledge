@@ -11,504 +11,503 @@ Showing items **551-600** of **1103**
 
 ---
 
-## 551. Command: `\pgftransformyslant\marg{factor`
+## 551. Command: `\pgfsys@endpicture`
 
-**ID**: `3e345c6680c8`  
+**ID**: `1e86242abeea`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Slants coordinates by factor in the $y$-direction. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); -1 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: Called at the end of a |&#123;pgfpicture&#125;|. Most drivers will need to implement this command.
 
 ---
 
-## 552. Command: `\pgftransformrotate\marg{angles`
+## 552. Command: `\pgfsys@typesetpicturebox\marg{box`
 
-**ID**: `ceebb6a2d46c`  
+**ID**: `d495320f0569`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Rotates coordinates counterclockwise by angles given in degrees. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); 30 [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: &#125; Called after a |&#123;pgfpicture&#125;| has been typeset. The picture will have been put in box box. This command should insert the box into the normal text. The box box will still be a ``raw'' box that contains only the ||'s that make up the description of the picture. The job of this command is to resize and shift box according to the baseline shift and the size of the box. This command has a default implementation and need not be implemented by a driver file.
 
 ---
 
-## 553. Command: `\pgftransformtriangle\marg{a`
+## 553. Command: `\pgfsys@beginpurepicture`
 
-**ID**: `3663c184438c`  
+**ID**: `7131cc43e666`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: bc&#125; This command transforms the coordinate system in such a way that the triangle given by the points a, b and c lies at the coordinates $(0,0)$, $(1pt,0pt)$ and $(0pt,1pt)$. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); &#123;1cm&#123;0cm&#125;&#125; &#123;0cm&#123;2cm&#125;&#125; &#123;3cm&#123;1cm&#125;&#125; (0,0) -- (1pt,0pt) -- (0pt,1pt) -- cycle; tikzpicture codeexample
+**Description**: This version of the |@beginpicture| picture command can be used for pictures that are guaranteed not to contain any escaped boxes (see below). In this case, a driver might provide a more compact version of the command. This command has a default implementation and need not be implemented by a driver file.
 
 ---
 
-## 554. Command: `\pgftransformcm\marg{a`
+## 554. Command: `\pgfsys@endpurepicture`
 
-**ID**: `5a2621687798`  
+**ID**: `ad9ad3c229a0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: bcdpoint&#125; Applies the transformation matrix given by $a$, $b$, $c$, and $d$ and the shift point to coordinates (in addition to any previous transformations already in force). codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1) -- (1,0); 1&#123;1&#125;&#123;0&#125;&#123;1&#125;&#123;.25cm&#123;.25cm&#125;&#125; [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: Called at the end of a ``pure'' |&#123;pgfpicture&#125;|. This command has a default implementation and need not be implemented by a driver file.
 
 ---
 
-## 555. Command: `\pgftransformarrow\marg{start`
+## 555. Command: `\pgfsys@hbox\marg{box number`
 
-**ID**: `62f73f099f13`  
+**ID**: `d5851b60358f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: end&#125; Shifts coordinates to the end of the line going from start to end with the correct rotation. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (3,1); &#123;3cm&#123;1cm&#125;&#125; tip tikzpicture codeexample
+**Description**: &#125; Called to insert a (horizontal) TeX box inside a |&#123;pgfpicture&#125;|. Most drivers will need to (re-)implement this command.
 
 ---
 
-## 556. Command: `\pgftransformlineattime\marg{time`
+## 556. Command: `\pgfsys@hboxsynced\marg{box number`
 
-**ID**: `12f18f067bec`  
+**ID**: `85cc43f09625`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: startend&#125; Shifts coordinates by a specific point on a line at a specific time. The point by which the coordinate is shifted is calculated by calling ||, see Section~section-pointsattime. In addition to shifting the coordinate, a rotation may also be applied. Whether this is the case depends on whether the \ if || is set to true or not. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) -- (2,1); .25&#123;&#125;&#123;2cm&#123;1cm&#125;&#125; Hi! tikzpicture codeexample codeexample[] tikzpicture [help lines] (0,0) 
+**Description**: &#125; Called to insert a (horizontal) TeX box inside a |&#123;pgfpicture&#125;|, but with the current coordinate transformation matrix synced with the canvas transformation matrix. This command should do the same as if you used || followed by |@hbox|. However, the default implementation of this command will use a ``TeX-translation'' for the translation part of the transformation matrix. This will ensure that hyperlinks ``survive'' at least translations. On the other hand, a driver may choose to revert to a si
 
 ---
 
-## 557. Command: `\pgftransformcurveattime\marg{time`
+## 557. Command: `\pgfsys@pictureboxsynced\marg{box number`
 
-**ID**: `6fc89c7d1546`  
+**ID**: `19378eb71d93`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: startfirst supportsecond supportend&#125; Shifts coordinates by a specific point on a curve at a specific time, see Section~section-pointsattime once more. As for the line-at-time transformation command, || decides whether an additional rotation should be applied. Again, the value of || is also considered. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); (0,0) .. controls (0,2) and (1,2) .. (2,1); .25&#123;&#125; &#123;0cm&#123;2cm&#125;&#125;&#123;1cm&#123;2cm&#125;&#125;&#123;2cm&#123;1cm&#125;&#125; Hi! tikzpicture codeexample codeexample[] tikzpicture [help
+**Description**: &#125; Basically, this should do the same as doing a (scoped) low level sync followed by inserting the box box number directly into the output stream. However, the default implementation uses |@hboxsynced| in conjunction with |@beginpicture| to ensure that, if possible, hyperlinks survive in pdfs. Drivers that are sensitive to picture-in-picture scopes should replace this implementation by codeexample[code only] @beginscope#1@endscope codeexample
 
 ---
 
-## 558. Command: `\pgftransformarcaxesattime\marg{time
-      $t$`
+## 558. Command: `\pgfsys@beginscope`
 
-**ID**: `7ae6d79df714`  
+**ID**: `9e981f240555`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: center0-degree axis90-degree axisstart angleend angle &#125; Shifts coordinates by a specific point on an arc at a specific time, see Section~section-pointsattime once more. As for the previous commands, || decides whether an additional rotation should be applied and || is also considered. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); &#123;2cm&#123;1cm&#125;&#125; 0&#123;60&#125;&#123;2cm&#123;0cm&#125;&#125;&#123;0cm&#123;1cm&#125;&#125; stroke .25 &#123;0cm&#123;1cm&#125;&#125; &#123;2cm&#123;0cm&#125;&#125;&#123;0cm&#123;1cm&#125;&#125; &#123;0&#125;&#123;60&#125; Hi! tikzpicture codeexample The value of || is also taken into accoun
+**Description**: Saves the current graphic state on a graphic state stack. All changes to the graphic state parameters mentioned for |@stroke| and |@fill| will be local to the current graphic state and the old values will be restored after |@endscope| is used. Warning: \ and PostScript differ with respect to the question of whether the current path is part of the graphic state or not. For this reason, you should never use this command unless the path is currently empty. For example, it might be a good idea to us
 
 ---
 
-## 559. Command: `\pgftransformreset`
+## 559. Command: `\pgfsys@endscope`
 
-**ID**: `e63f2c1d8ef2`  
+**ID**: `11dbe5dad64f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Resets the coordinate transformation matrix to the identity matrix. Thus, once this command is given no transformations are applied till the end of the scope. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 30 (0,0) -- (2,1) -- (1,0); [red] (0,0) -- (2,1) -- (1,0); tikzpicture codeexample
+**Description**: Restores the last saved graphic state. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 560. Command: `\pgftransformresetnontranslations`
+## 560. Command: `\pgfsys@moveto\marg{x`
 
-**ID**: `985641710168`  
+**ID**: `cf724402c339`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command sets the $a$, $b$, $c$, and $d$ part of the coordinate transformation matrix to $a=1$, $b=0$, $c=0$, and $d=1$. However, the current shifting of the matrix is not modified. The effect of this command is that any rotation/scaling/slanting is undone in the current \ group, but the origin is not ``moved back''. This command is mostly useful directly before a || command to ensure that the text is not scaled or rotated. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 2 30 1cm &#123;r
+**Description**: y&#125; This command is used to start a path at a specific point $(x,y)$ or to move the current point of the current path to $(x,y)$ without drawing anything upon stroking (the current path is ``interrupted''). Both x and y are given as \ dimensions. It is the driver's job to transform these to the coordinate system of the backend. Typically, this means converting the \ dimension into a dimensionless multiple of $1&#123;72&#125;in$. The function |@sys@bp| helps with this conversion. Draw a line from $(10pt,10p
 
 ---
 
-## 561. Command: `\pgftransforminvert`
+## 561. Command: `\pgfsys@lineto\marg{x`
 
-**ID**: `f91f83e7aae9`  
+**ID**: `f438efddef4c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Replaces the coordinate transformation matrix by a coordinate transformation matrix that ``exactly undoes the original transformation''. For example, if the original transformation was ``scale by 2 and then shift right by 1cm'' the new one is ``shift left by 1cm and then scale by $1/2$''. This command will produce an error if the determinant of the matrix is too small, that is, if the matrix is near-singular. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 30 (0,0) -- (2,1) -- (1,0); [r
+**Description**: y&#125; Continue the current path to $(x,y)$ with a straight line. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 562. Command: `\pgfgettransform\marg{macro`
+## 562. Command: `\pgfsys@curveto\marg{$x_1$`
 
-**ID**: `1d582c713ffb`  
+**ID**: `a1ac5cb431c0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command will (locally) define macro to a representation of the current coordinate transformation matrix. This matrix can later on be reinstalled using ||.
+**Description**: $y_1$$x_2$$y_2$$x_3$$y_3$&#125; Continue the current path to $(x_3,y_3)$ with a Bézier curve that has the two control points $(x_1,y_1)$ and $(x_2,y_2)$. Draw a good approximation of a quarter circle: codeexample[code only] @moveto&#123;10pt&#125;&#123;0pt&#125; @curveto&#123;10pt&#125;&#123;5.55pt&#125;&#123;5.55pt&#125;&#123;10pt&#125;&#123;0pt&#125;&#123;10pt&#125; @stroke codeexample This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 563. Command: `\pgfsettransform\marg{macro`
+## 563. Command: `\pgfsys@rect\marg{x`
 
-**ID**: `471f53419c81`  
+**ID**: `c7ba5ac6fd3e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Reinstalls a coordinate transformation matrix that was previously saved using ||.
+**Description**: ywidthheight&#125; Append a rectangle to the current path whose lower left corner is at $(x,y)$ and whose width and height in big points are given by width and height. This command can be ``mapped back'' to |@moveto| and |@lineto| commands, but it is included since \ has a special, quick version of this command. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 564. Command: `\pgfgettransformentries\marg{macro for a`
+## 564. Command: `\pgfsys@closepath`
 
-**ID**: `06c438c0c789`  
+**ID**: `642b9af3fa27`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macro for bmacro for cmacro for dmacro for shift xmacro for shift y &#125; This command is similar to || except that it stores the current coordinate transformation matrix in a set of six macros. The matrix can later on be reinstalled using ||. Furthermore, all these macros (or just a few of them) can be used as arguments for ||.
+**Description**: Close the current path. This results in joining the current point of the path with the point specified by the last |@moveto| operation. Typically, this is preferable over using |@lineto| to the last point specified by a |@moveto|, since the line starting at this point and the line ending at this point will be smoothly joined by |@closepath|. Consider codeexample[code only] @moveto&#123;0pt&#125;&#123;0pt&#125; @lineto&#123;10bp&#125;&#123;10bp&#125; @lineto&#123;0bp&#125;&#123;10bp&#125; @closepath @stroke codeexample and codeexample[code only] @moveto&#123;0
 
 ---
 
-## 565. Command: `\pgfsettransformentries\marg{a`
+## 565. Command: `\pgfsys@transformcm\marg{a`
 
-**ID**: `a3a1d58e974d`  
+**ID**: `4e154a2f9606`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: bcdshiftxshifty&#125; Reinstalls a coordinate transformation matrix that was previously saved using the storage command ||. This command can also be used to replace any previously existing coordinate transformation matrix (it is thus equivalent to || followed by ||).
+**Description**: bcdef&#125; Perform a concatenation of the canvas transformation matrix with the matrix given by the values a to f, see the \ or PostScript manual for details. The values a to d are dimensionless factors, e and f are \ dimensions |@transformcm&#123;1&#125;&#123;0&#125;&#123;0&#125;&#123;1&#125;&#123;1cm&#125;&#123;1cm&#125;|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 566. Command: `\pgfpointtransformed\marg{point`
+## 566. Command: `\pgfsys@transformshift\marg{x displacement`
 
-**ID**: `30a7922e1f05`  
+**ID**: `31897d2d6274`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Applies current transformation matrix to point $(x,y)$ and returns a transformed point $(ax+cy+s,bx+dy+t)$. Normally, this is done automatically by commands like || or ||, but sometimes you may wish to access a transformed point yourself.
+**Description**: y displacement&#125; This command will change the origin of the canvas to $(x,y)$. This command has a default implementation and need not be implemented by a driver file. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 567. Command: `\pgftransformationadjustments`
+## 567. Command: `\pgfsys@transformxyscale\marg{x scale`
 
-**ID**: `f96c712a2052`  
+**ID**: `3700eef7494d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command computes ``adjustments'' for the current transformation matrix so that even when you install a transformation matrix that scales everything by a certain factor, you can still draw something of ``an absolute size''. Suppose for instance that you install a transformation matrix that scales everything by a factor of 4 and you now wish to draw a horizontal line of length 1cm. Then, if you do not reset the transformation matrix, you can draw a line of logical length 2.5mm, which will the
+**Description**: y scale&#125; This command will scale the canvas (and everything that is drawn) by a factor of x scale in the $x$-direction and y scale in the $y$-direction. Note that this applies to everything, including lines. So a scaled line will have a different width and may even have a different width when going along the $x$-axis and when going along the $y$-axis, if the scaling is different in these directions. Usually, you do not want this. This command has a default implementation and need not be implemen
 
 ---
 
-## 568. Command: `\pgfverticaltransformationadjustment`
+## 568. Command: `\pgfsys@viewboxmeet\marg{$x_1$`
 
-**ID**: `50f771da557c`  
+**ID**: `eacefbe8264d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: $1/\|transform(0,1)\|_2$.
+**Description**: $y_1$$x_2$$y_2$ $x'_1$$y'_1$$x'_2$$y'_2$ &#125; Starts a ``view box'' scope, which must be ended using |@endviewbox| later on (with matching scopes). The effect of this command is as follows: Consider the rectangles $R$ with lower left corner $(x_1,y_1)$ and upper right corner $(x_2,y_2)$ and $R'$ with corners $(x'_1,y'_1)$ and $(x'_2,y'_2)$. The command will install a canvas translation and uniform scaling such that $R'$ then has the same center as~$R$ and additionally, has maximum size such that it
 
 ---
 
-## 569. Command: `\pgflowlevelsynccm`
+## 569. Command: `\pgfsys@viewboxslice\marg{$x_1$`
 
-**ID**: `2e38a7017ceb`  
+**ID**: `c4df205f4068`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command concatenates the canvas transformation matrix with the current coordinate transformation matrix. Afterward, the coordinate transformation matrix is reset. The effect of this command is to ``synchronize'' the coordinate transformation matrix and the canvas transformation matrix. All transformations that were previously applied by the coordinate transformations matrix are now applied by the canvas transformation matrix. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt 5 (0
+**Description**: $y_1$$x_2$$y_2$ $x'_1$$y'_1$$x'_2$$y'_2$ &#125; Works like the previous command, but now $R'$ has minimal size such that it encompasses all of $R$.
 
 ---
 
-## 570. Command: `\pgflowlevel\marg{transformation code`
+## 570. Command: `\pgfsys@endviewbox`
 
-**ID**: `322dd8a01c92`  
+**ID**: `d78e22821573`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command concatenates the canvas transformation matrix with the coordinate transformation specified by transformation code. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt &#123;5&#125; (0,0) -- (0.4,.2); tikzpicture codeexample
+**Description**: Ends a viewbox previously started using |@viewboxmeet| or the |...slice| variant.
 
 ---
 
-## 571. Command: `\pgflowlevelobj\marg{transformation code`
+## 571. Command: `\pgfsys@stroke`
 
-**ID**: `fe75ae76002e`  
+**ID**: `6cb84be8affe`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: code&#125; This command creates a local |&#123;pgfscope&#125;|. Inside this scope, || is first called with the argument transformation code, then the code is inserted. codeexample[] tikzpicture [help lines] (0,0) grid (3,2); 1pt &#123;5&#125; &#123; (0,0) -- (0.4,.2);&#125; &#123;-1cm&#125;&#123; (0,0) -- (0.4,.2);&#125; tikzpicture codeexample
+**Description**: Stroke the current path (as if it were drawn with a pen). A number of graphic state parameters influence this, which can be set using appropriate system commands described later. description [Line width] The ``thickness'' of the line. A width of 0 is the thinnest width renderable on the device. On a high-resolution printer this may become invisible and should be avoided. A good choice is 0.4pt, which is the default. [Stroke color] This special color is used for stroking. If it is not set, the cu
 
 ---
 
-## 572. Command: `\pgftransformnonlinear\marg{transformation code`
+## 572. Command: `\pgfsys@closestroke`
 
-**ID**: `7e9d4234e20b`  
+**ID**: `75cfa3cd159b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command adds the transformation code to the list of non-linear transformations currently in force. Thus, similar to linear coordinate transformations, each additional call to this function adds another transformation to the current \ scope and the effect ends at the end of the current scope. In practice, however, you typically will not have more than one active nonlinear transformation. The job of the transformation code is to map a point~$p$ given in the registers |@x| and |@y| to a new 
+**Description**: This command should have the same effect as first closing the path and then stroking it. This command has a default implementation and need not be implemented by a driver file. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 573. Command: `\pgfpointtransformednonlinear\marg{point`
+## 573. Command: `\pgfsys@fill`
 
-**ID**: `632f9a4aa963`  
+**ID**: `b8e398850853`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Works like ||, but also applies the current nonlinear transformation; that is, it first applies the current linear transformation and then the current nonlinear transformations. Note that, just like ||, you normally do not call this function directly since it is called internally by the path drawing commands.
+**Description**: This command fills the area surrounded by the current path. If the path has not yet been closed, it is closed prior to filling. The path itself is not stroked. For self-intersecting paths or paths consisting of multiple parts, the nonzero winding number rule is used to determine whether a point is inside or outside the path, except if |@eorule| holds -- in which case the even-odd rule should be used. (See the \ or PostScript manual for details.) The following graphic state parameters influence t
 
 ---
 
-## 574. Command: `\pgfsettransformnonlinearflatness\marg{dimension`
+## 574. Command: `\pgfsys@fillstroke`
 
-**ID**: `91b5dd4c5fa8`  
+**ID**: `b4e23322a515`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: (initially 5pt)&#125; Whenever in a to-be-drawn curve the $L^$-distance (maximum of the distances in $x$- and $y$-directions) between the start of a curve and its first control point or between the first and second control points or between the second control point and the end is more than distance, the curve gets split in the middle (more precisely, at time $t= 0.5$) and we draw the two parts individually (for them, splitting may occur again, if the curve is still too long). codeexample[preamble=&#123;no
+**Description**: First, the path is filled, then the path is stroked. If the fill and stroke colors are the same (or if they are not specified and the current color is used), this yields almost the same as a |@fill|. However, due to the line thickness of the stroked path, the fill-stroked area will be slightly larger. In addition to stroking and filling the path, the path will also be used for clipping if |@clipnext| is used prior to this command. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 575. Command: `\pgfapproximatenonlineartransformation`
+## 575. Command: `\pgfsys@discardpath`
 
-**ID**: `a38d7c799204`  
+**ID**: `d6ab1a2467d2`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command will do two things: enumerate It clears the nonlinear transformations for the rest of the current \ scope, so only linear transformations apply. However, before removing the nonlinear transformations, the linear transformation matrix is modified so that it mimics the effect the nonlinear transformation had at the origin. That is, after you call this command, drawing something near the origin will look almost the same as if you had not called it. enumerate codeexample[preamble=&#123;nonli
+**Description**: Normally, this command should ``throw away'' the current path. However, after |@clipnext| has been called, the current path should subsequently be used for clipping. See |@clipnext| for details. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 576. Command: `\pgfapproximatenonlineartranslation`
+## 576. Command: `\pgfsys@clipnext`
 
-**ID**: `1006b4d46cae`  
+**ID**: `a1331e630876`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This command works like the normal approximation command, but it will only approximate how the origin gets translated, it will not approximate the rotation, skewing, or scaling that is involved. This is useful for drawing text at the right position, but without ``mutilating'' the text. codeexample[preamble=&#123;nonlineartransformations&#125;] tikzpicture [help lines] (0,0) grid (3,2); (0pt,0mm) grid [xstep=10pt, ystep=5mm] (90pt, 20mm); scope[shift=&#123;(45pt,20mm)&#125;] [red] (-10pt,-10pt) -- (10pt,10pt); [red]
+**Description**: This command should be issued after a path has been constructed, but before it has been stroked and/or filled or discarded. When the command is used, the next stroking/filling/discarding command will first be executed normally. Then, afterwards, the just-used path will be used for subsequent clipping. If there has already been a clipping region, this region is intersected with the new clipping path (the clipping cannot get bigger). The nonzero winding number rule is used to determine whether a p
 
 ---
 
-## 577. Command: `\pgfsetcurvilinearbeziercurve\marg{start`
+## 577. Command: `\pgfsys@setlinewidth\marg{width`
 
-**ID**: `ca72293e6ad7`  
+**ID**: `840dd667c648`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: first supportsecond supportend&#125; Prior to using any other command from this library, you first call this function to ``install'' a Bézier curve to which the commands will refer. This curve will be local to the current \ scope and you can install only one curve at a time. The main job of this command is to store the passed points internally and to build a lookup table for distance-to-time conversions, see the next command. codeexample[code only] &#123;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; codeexample
+**Description**: &#125; Sets the width of lines, when stroked, to width, which must be a \ dimension. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 578. Command: `\pgfcurvilineardistancetotime\marg{distance`
+## 578. Command: `\pgfsys@buttcap`
 
-**ID**: `25305537ccd9`  
+**ID**: `3d0236998f47`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command does a ``distance-to-time-conversion'': It tries to compute a time $t$, returned in |@x|, that corresponds to travelling distance along the curve that has last been installed using the command ||. The distance-to-time-conversion uses the precomputations done by that command. Note that several compromises had to be made between speed and accuracy: itemize The conversion will be best near the start of the curve. The more ``degenerate'' the curve, the worse the results. itemize
+**Description**: Sets the cap to a butt cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 579. Command: `\pgfpointcurvilinearbezierorthogonal\marg{distance`
+## 579. Command: `\pgfsys@roundcap`
 
-**ID**: `842e21571d64`  
+**ID**: `6f262fa64b6c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: offset&#125; This command computes the following point: Consider the curve last installed using the command ||. We travel along this curve by distance, arriving at a point $p$. Then, we turn by $90^$ and travel by offset units ``always from the curve'', arriving at a point $q$. This point $q$ will now be returned in |@x| and |@y|; furthermore, the transformed local coordinate system at point $q$ will also be returned |@xa| and the other registers, see || for details. codeexample[ preamble=&#123;nonlineart
+**Description**: Sets the cap to a round cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 580. Command: `\pgfpointcurvilinearbezierpolar\marg{x`
+## 580. Command: `\pgfsys@rectcap`
 
-**ID**: `b9daf4af7f11`  
+**ID**: `038d8c491b02`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y&#125; This command is similar to the previous version, but the transformation is different: The idea is that a line form $(0,0)$ to $(x,0)$ gets transformed to the curve from the start of the curve to a point at distance $x$ along the curve. This is identical to what the ``orthogonal'' transformation above also does. The difference is that a line from $(0,0)$ to $(0,y)$ gets still transformed to an initial segment of the curve of a length of $y$, but now rotated by $90^$. In general, the point $p =
+**Description**: Sets the cap to a rectangular cap. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 581. Command: `\pgfprofilenew\marg{name`
+## 581. Command: `\pgfsys@miterjoin`
 
-**ID**: `8b876c8e3dfd`  
+**ID**: `73990613301a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Defines a new profiler entry named name. This updates a set of internal registers used to track the profiler entry. The name can be arbitrary, it doesn't need to be related to any \ macro. The actual job of counting seconds is accomplished using ||name followed eventually by the command ||name. It doesn't hurt if || is called multiple times with the same name.
+**Description**: Sets the join to a miter join. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 582. Command: `\pgfprofilenewforcommand\oarg{profiler entry name`
+## 582. Command: `\pgfsys@setmiterlimit\marg{factor`
 
-**ID**: `482b096cfe55`  
+**ID**: `d4bf02020207`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macroarguments&#125; Defines a new profiler entry which will measure the time spent in macro. This calls || and replaces the current definition of macro with a new one. If profiler entry name has been provided, this defines the argument for ||. It is allowed to use the same name for multiple commands; in this case, they are treated as if it where the same command. If the optional argument is not used, the profiler entry will be called `' (macro without backslash) where || is predefined to be |&lt;CS&gt;|. 
+**Description**: &#125; Sets the miter limit of lines to factor. See the \ or PostScript for details on what the miter limit is. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 583. Command: `\pgfprofilenewforcommandpattern\oarg{profiler entry name`
+## 583. Command: `\pgfsys@roundjoin`
 
-**ID**: `c8329b2093f7`  
+**ID**: `8475a103e29b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macroargument patterninvocation pattern&#125; A variant of || which can be used with arbitrary argument patterns. Example: codeexample[code only] #1#2#3&#123; ... &#125; &#123;#1#2#3&#125;&#123;&#123;#1&#125;#2#3&#125; codeexample Note that || is a special case of ||: codeexample[code only] #1#2&#123; ... &#125; 2 &#123;#1#2&#125;&#123;&#123;#1&#125;&#123;#2&#125;&#125; codeexample Thus, argument pattern is a copy-paste from the definition of your command. The invocation pattern is used by the |profiler| library to invoke the original command, so it is closely related to argument pattern,
+**Description**: Sets the join to a round join. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 584. Command: `\pgfprofileshowinvocationsfor\marg{profiler entry name`
+## 584. Command: `\pgfsys@beveljoin`
 
-**ID**: `716c3c94c7e7`  
+**ID**: `f57fd579a57a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Enables verbose output for every invocation of profiler entry name. This is only available for profiler entries for commands (those created by || for example). It will also show all given arguments.
+**Description**: Sets the join to a bevel join. See |@stroke|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 585. Command: `\pgfprofileshowinvocationsexpandedfor\marg{profiler entry name`
+## 585. Command: `\pgfsys@setdash\marg{pattern`
 
-**ID**: `cda0d206f0cb`  
+**ID**: `9bcb244a6fef`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; A variant of || which will expand all arguments for profiler entry name before showing them. The invocation as such is not affected by this expansion. This expansion (with ||) might yield unrecoverable errors for some commands. Handle with care.
+**Description**: phase&#125; Sets the dashing pattern. pattern should be a list of \ dimensions separated by commas. phase should be a single dimension. |@setdash&#123;3pt,3pt&#125;&#123;0pt&#125;| The list of values in pattern is used to determine the lengths of the ``on'' and ``off'' phases of the dashing. For example, if pattern is |3bp,4bp|, then the dashing pattern is ``3bp on followed by 4bp off, followed by 3bp on, followed by 4bp off, and so on''. A pattern of |.5pt,4pt,3pt,1.5pt| means ``.5pt on, 4pt off, 3pt on, 1.5pt off, .5p
 
 ---
 
-## 586. Command: `\pgfprofilenewforenvironment\oarg{profiler entry name`
+## 586. Command: `\ifpgfsys@eorule`
 
-**ID**: `07e6c3339e9b`  
+**ID**: `71374859e448`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: environment name&#125; Defines a new profiler entry which measures time spent in the environment environment name. This calls || and handles the begin/end of the environment automatically. The argument for || is profiler entry name, or, if this optional argument is not used, it is ` name' where || is predefined as |&lt;ENV&gt;|. Again, it is permitted to use the same profiler entry name multiple times to merge different commands into one output section.
+**Description**: Determines whether the even odd rule is used for filling and clipping or not.
 
 ---
 
-## 587. Command: `\pgfprofilestart\marg{profiler entry name`
+## 587. Command: `\pgfsys@color@rgb\marg{red`
 
-**ID**: `0a3d36afbff8`  
+**ID**: `2057212c9176`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Starts (or resumes) timing of profiler entry name. The argument must have been declared in the preamble using ||. Nested calls of || with the same argument will be ignored. The invocation of this command doesn't change the environment: it doesn't introduce any \ groups nor does it modify the token list.
+**Description**: greenblue&#125; Sets the color used for stroking and filling operations to the given red/green/blue tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 588. Command: `\pgfprofileend\marg{profiler entry name`
+## 588. Command: `\pgfsys@color@rgb@stroke\marg{red`
 
-**ID**: `84b850ab22ae`  
+**ID**: `2a43cc8e2bce`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Stops (or interrupts) timing of profiler entry name. This command finishes a preceding call to ||.
+**Description**: greenblue&#125; Sets the color used for stroking operations to the given red/green/blue tuple (numbers between 0 and 1). Make stroked text dark red: |@color@rgb@stroke&#123;0.5&#125;&#123;0&#125;&#123;0&#125;| The special stroking color is only used if the stroking color has been set since the last || or |@color@...| command. Thus, each || command will reset both the stroking and filling colors by calling |@color@reset|. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 589. Command: `\pgfprofilepostprocess`
+## 589. Command: `\pgfsys@color@rgb@fill\marg{red`
 
-**ID**: `b1485c70c34b`  
+**ID**: `cde6eee41b61`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: For , this command is installed automatically in |document|. It stops all running timings, evaluates them and returns the result into the logfile. Furthermore, it generates a text table called |.profiler.|YYYY|-|MM|-|DD|_|HH|h_|MM|m.dat| with the same information. Note that the |profiler| library predefines two profiler entries, namely |main job| which counts time from the beginning of the document until || and |preamble| which counts time from the beginning of the document until |document|.
+**Description**: greenblue&#125; Sets the color used for filling operations to the given red/green/blue tuple (numbers between 0 and 1). This color may be different from the stroking color. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 590. Command: `\pgfprofilesetrel\marg{profiler entry name`
+## 590. Command: `\pgfsys@color@cmyk\marg{cyan`
 
-**ID**: `5acd9c473ab4`  
+**ID**: `b43039d5c5db`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: (initially main job)&#125; Sets the profiler entry whose total time will be used to compute all other relative times. Thus, profiler entry name will use $100\ total time per definition, all other relative times are relative to this one.
+**Description**: magentayellowblack&#125; Sets the color used for stroking and filling operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 591. Command: `\pgfprofileifisrunning\marg{profiler entry name`
+## 591. Command: `\pgfsys@color@cmyk@stroke\marg{cyan`
 
-**ID**: `9202b6e51bdf`  
+**ID**: `436fcab61499`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: true codefalse code&#125; Invokes true code if profiler entry name is currently running and false code otherwise.
+**Description**: magentayellowblack&#125; Sets the color used for stroking operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 592. Command: `\pgfplothandlercurveto`
+## 592. Command: `\pgfsys@color@cmyk@fill\marg{cyan`
 
-**ID**: `f369813f70ca`  
+**ID**: `92a4f7c96c45`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler will issue a || command for each point of the plot, except possibly for the first. As for the line-to handler, what happens with the first point can be specified using || or ||. Obviously, the || command needs, in addition to the points on the path, some control points. These are generated automatically using a somewhat ``dumb'' algorithm: Suppose you have three points $x$, $y$, and $z$ on the curve such that $y$ is between $x$ and $z$: codeexample[] tikzpicture [gray] (0,0) node &#123;x
+**Description**: magentayellowblack&#125; Sets the color used for filling operations to the given cmyk tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 593. Command: `\pgfsetplottension\marg{value`
+## 593. Command: `\pgfsys@color@cmy\marg{cyan`
 
-**ID**: `4b291303c9bb`  
+**ID**: `49bac8a80240`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Sets the factor used by the curve plot handlers to determine the distance of the control points from the points they control. The higher the curvature of the curve points, the higher this value should be. A value of $1$ will cause four points at quarter positions of a circle to be connected using a circle. The default is $0.5$. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; 0.75 &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: magentayellow&#125; Sets the color used for stroking and filling operations to the given cmy tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 594. Command: `\pgfplothandlerclosedcurve`
+## 594. Command: `\pgfsys@color@cmy@stroke\marg{cyan`
 
-**ID**: `3d14d1efa7ed`  
+**ID**: `81e386c029cd`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler works like the curve-to plot handler, only it will add a new part to the current path that is a closed curve through the plot points. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: magentayellow&#125; Sets the color used for stroking operations to the given cmy tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 595. Command: `\pgfplothandlerconstantlineto`
+## 595. Command: `\pgfsys@color@cmy@fill\marg{cyan`
 
-**ID**: `de0512210e46`  
+**ID**: `ac097ced0cfb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler works like the line-to plot handler, only it will produce a connected, piecewise constant path to connect the points. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: magentayellow&#125; Sets the color used for filling operations to the given cmy tuple (numbers between 0 and 1). This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 596. Command: `\pgfplothandlerconstantlinetomarkright`
+## 596. Command: `\pgfsys@color@gray\marg{black`
 
-**ID**: `5eb5f9ccff21`  
+**ID**: `2992a60b0b36`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: A variant of || which places its mark on the right line ends. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: &#125; Sets the color used for stroking and filling operations to the given black value, where 0 means black and 1 means white. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 597. Command: `\pgfplothandlerconstantlinetomarkmid`
+## 597. Command: `\pgfsys@color@gray@stroke\marg{black`
 
-**ID**: `2374902d05c6`  
+**ID**: `71b8a84f1d3c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: A variant of || which places its mark on the center of the line. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample The plot handler always connects two data points by a horizontal line starting from the previous data points, followed by a vertical line in the middle between the two data points, followed by a horizontal line between the middle and the current data point. This results in a symmetric con
+**Description**: &#125; Sets the color used for stroking operations to the given black value, where 0 means black and 1 means white. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 598. Command: `\pgfplothandlerjumpmarkleft`
+## 598. Command: `\pgfsys@color@gray@fill\marg{black`
 
-**ID**: `a21976a9a113`  
+**ID**: `2ebf7a297b59`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the left open pieces. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: &#125; Sets the color used for filling operations to the given black value, where 0 means black and 1 means white. This command is protocolled, see Section~section-protocols.
 
 ---
 
-## 599. Command: `\pgfplothandlerjumpmarkright`
+## 599. Command: `\pgfsys@color@reset`
 
-**ID**: `cd9965e550be`  
+**ID**: `59c69829f7c2`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler works like the line-to plot handler, only it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed on the right open pieces. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample
+**Description**: This command will be called when the || command is used. It should purge any internal settings of stroking and filling color. After this call, till the next use of a command like |@color@rgb@fill|, the current color installed by the || command should be used. If the -if |@color@reset@inorder| is set to true, this command may ``assume'' that any call to a color command that sets the fill or stroke color came ``before'' the call to this command and may try to optimize the output accordingly. An ex
 
 ---
 
-## 600. Command: `\pgfplothandlerjumpmarkmid`
+## 600. Command: `\pgfsys@color@reset@inordertrue`
 
-**ID**: `b57ab126777c`  
+**ID**: `3364db48e6e4`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: This handler works like the ||, but it will produce a non-connected, piecewise constant path to connect the points. If there are any plot marks, they will be placed in the center of the horizontal line segment.. codeexample[] tikzpicture [gray] (0,0) node &#123;x&#125; (1,1) node &#123;y&#125; (2,.5) node &#123;z&#125;; &#123;0cm&#123;0cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;0.5cm&#125;&#125; stroke tikzpicture codeexample See || for details.
+**Description**: Sets the optimized ``in order'' version of the color resetting. This is the default.
 
 ---
 

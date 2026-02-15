@@ -1,94 +1,151 @@
 ---
 title: "Executable Examples - Page 99"
-description: "Items 4901-4950 of 5325 executable examples"
+description: "Items 4901-4950 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 99
 
-Showing items **4901-4950** of **5325**
+Showing items **4901-4950** of **5999**
 
-[← Previous](executable_example-page-097) | Page 99 of 107 | [Next →](executable_example-page-099)
+[← Previous](executable_example-page-097) | Page 99 of 120 | [Next →](executable_example-page-099)
 
 ---
 
-## 4901. Other
+## 4901. Node Graph
 
-**ID**: `671a84b87d3c`  
+**ID**: `285f93ec79f3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\foreach \x [remember=\x as \lastx (initially A)] in &#123;B,...,H&#125;&#123;$\overrightarrow&#123;\lastx\x&#125;$, &#125;
+\begin&#123;tikzpicture&#125;[node distance=5mm,
+                    every node/.style=draw,every join/.style=-&gt;]
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node[red] (existing) at (0,2) &#123;existing&#125;;
+
+  \begin&#123;scope&#125;[start chain]
+    \node [draw,on chain,join] &#123;Hello&#125;;
+    \node [draw,on chain,join] &#123;World&#125;;
+    \chainin (existing) [join];
+    \node [draw,on chain,join] &#123;this&#125;;
+    \node [draw,on chain,join] &#123;is&#125;;
+  \end&#123;scope&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4902. Other
 
-**ID**: `dce0ad3df6dd`  
+**ID**: `538b7411951a`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz[x=0.75cm,y=0.75cm]
-  \foreach \x [count=\xi] in &#123;a,...,e&#125;
-    \foreach \y [count=\yi] in &#123;\x,...,e&#125;
-      \node [draw, top color=white, bottom color=blue!50, minimum size=0.666cm]
-        at (\xi,-\yi) &#123;$\mathstrut\x\y$&#125;;
+\begin&#123;tikzpicture&#125;[every node/.style=draw]
+  \matrix [matrix of nodes,column sep=5mm,row sep=5mm]
+  &#123;
+    |(a)|           World & |(b) [circle]|             peace \\
+    |(c)|           be    & |(d) [isosceles triangle]| would \\
+    |(e) [ellipse]| great & |(f)|                      ! \\
+  &#125;;
+
+  % (the `scopes' library needs to be loaded to make the following work)
+  &#123; [start chain,every on chain/.style=&#123;join=by -&gt;&#125;]
+    \chainin (a);
+    \chainin (b);
+    \chainin (d);
+    \chainin (c);
+    \chainin (e);
+    \chainin (f);
+  &#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4903. Other
 
-**ID**: `b19816202856`  
+**ID**: `2d14fd6c495c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\foreach \x [parse=true] in &#123;1,...,1.0e+1 - 1&#125;&#123; \x &#125;
+\begin&#123;tikzpicture&#125;[start chain,node distance=5mm,
+                    every join/.style=&#123;-&gt;,red&#125;]
+  \node [draw,on chain,join] &#123;&#125;;
+  \node [draw,on chain,join] &#123;Hallo&#125;;
+  \node [draw,on chain,join] &#123;Welt&#125;;
+  \node [draw,on chain=going below,
+         join,join=with chain-1 by &#123;blue,&lt;-&#125;] &#123;foo&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4904. Other
 
-**ID**: `acb6e70c77c2`  
+**ID**: `25d38672675e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\Iota#1#2&#123;%
-  \ifnum\numexpr#1\relax&lt;\numexpr#2\relax
-    \the\numexpr#1\relax,%
-    \expandafter\Iota\expandafter&#123;\the\numexpr(#1)+1\relax&#125;&#123;#2&#125;%
-  \else
-    \the\numexpr#2\relax
-  \fi&#125;
-\foreach [expand list=true] \x in &#123;\Iota&#123;1&#125;&#123;5&#125;&#125; &#123;
-  \x
-&#125;
+\begin&#123;tikzpicture&#125;[every on chain/.style=join,every join/.style=-&gt;,
+                    node distance=2mm and 1cm]
+  &#123; [start chain=trunk]
+    \node [on chain] &#123;A&#125;;
+    \node [on chain] &#123;B&#125;;
+
+    &#123; [start branch=numbers going below]
+      \node [on chain] &#123;1&#125;;
+      \node [on chain] &#123;2&#125;;
+      \node [on chain] &#123;3&#125;;
+    &#125;
+    &#123; [start branch=greek going above]
+      \node [on chain] &#123;$\alpha$&#125;;
+      \node [on chain] &#123;$\beta$&#125;;
+      \node [on chain] &#123;$\gamma$&#125;;
+    &#125;
+
+    \node [on chain,join=with trunk/numbers-end,join=with trunk/greek-end] &#123;C&#125;;
+    &#123; [start branch=symbols going below]
+      \node [on chain] &#123;$\star$&#125;;
+      \node [on chain] &#123;$\circ$&#125;;
+      \node [on chain] &#123;$\int$&#125;;
+    &#125;
+  &#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4905. Other
 
-**ID**: `2611542be6ea`  
+**ID**: `a1f32783b7f0`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \foreach \x in &#123;1,...,4&#125;
-    \foreach \y in &#123;1,...,4&#125;
-    &#123;
-      \fill[red!50] (\x,\y) ellipse (3pt and 6pt);
+\begin&#123;tikzpicture&#125;[every on chain/.style=join,every join/.style=-&gt;,
+                    node distance=2mm and 1cm]
+  &#123; [start chain=trunk]
+    \node [on chain] &#123;A&#125;;
+    \node [on chain] &#123;B&#125;;
+    &#123; [start branch=numbers going below] &#125; % just a declaration,
+    &#123; [start branch=greek   going above] &#125; % we will come back later
+    \node [on chain] &#123;C&#125;;
 
-      \ifnum \x&lt;\y
-        \breakforeach
-      \fi
+    % Now come the branches...
+    &#123; [continue branch=numbers]
+      \node [on chain] &#123;1&#125;;
+      \node [on chain] &#123;2&#125;;
     &#125;
+    &#123; [continue branch=greek]
+      \node [on chain] &#123;$\alpha$&#125;;
+      \node [on chain] &#123;$\beta$&#125;;
+    &#125;
+  &#125;
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -96,97 +153,65 @@ Showing items **4901-4950** of **5325**
 
 ## 4906. Other
 
-**ID**: `1cb797aa9e5a`  
+**ID**: `2acf76e2e001`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;stamp&#125;&#123;
-  % This is the class stamp
-
-  \attribute text;
-  \attribute rotation angle=20;
-
-  \method stamp(#1) &#123; % The constructor
-    ...
-  &#125;
-
-  \method apply(#1,#2) &#123; % Causes the stamp to be shown at coordinate (#1,#2)
-    ...
-  &#125;
-&#125;
-
-% We can now create objects of type "stamp"
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+  \draw (canvas cs:x=0cm,y=2mm)
+     -- (canvas polar cs:radius=2cm,angle=30);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4907. Other
 
-**ID**: `d91388bddb95`  
+**ID**: `11fc8b2c67ff`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfoonew \firststamp=new stamp()
-\pgfoonew \secondstamp=new stamp()
-&#123;
-  \pgfoonew \thirdstamp=new stamp()
-  ...
-&#125;
-% \thirdstamp no longer exists, but \firststamp and \secondstamp do
-% even if you try to store \thirdstamp in a global variable, trying
-% to access it will result in an error.
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+  \draw (0cm,2mm) -- (30:2cm);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4908. Other
 
-**ID**: `7cf281d959f7`  
+**ID**: `b959477ff527`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;foo&#125;
-&#123;
-  \attribute stamp obj;
-  \attribute another object;
-
-  \method foo() &#123;
-    \pgfoonew&#123;stamp obj&#125;=new stamp()
-    \pgfoonew&#123;another object&#125;=new bar()
-  &#125;
-  ...
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+  \draw      (0,0) -- (1,1);
+  \draw[red] (0,0) -- ([xshift=3pt] 1,1);
+  \draw      (1,0) -- +(30:2cm);
+  \draw[red] (1,0) -- +([shift=(135:5pt)] 30:2cm);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4909. Other
 
-**ID**: `d8fc8d435864`  
+**ID**: `e5c64ace98e3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;stamp&#125;&#123;
-  % This is the class stamp
-
-  \method stamp() &#123; % The constructor
-  &#125;
-
-  \method apply(#1,#2) &#123; % Causes the stamp to be shown at coordinate (#1,#2)
-    % Draw the stamp:
-    \node [rotate=20,font=\huge] at (#1,#2) &#123;Passed&#125;;
-  &#125;
-&#125;
-
-\pgfoonew \mystamp=new stamp()
-
 \begin&#123;tikzpicture&#125;
-  \mystamp.apply(1,2)
-  \mystamp.apply(3,4)
+  \draw[help lines] (0,0) grid (3,2);
+
+  \fill (canvas cs:x=1cm,y=1.5cm)    circle (2pt);
+  \fill (canvas cs:x=2cm,y=-5mm+2pt) circle (2pt);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -194,220 +219,201 @@ Showing items **4901-4950** of **5325**
 
 ## 4910. Other
 
-**ID**: `3871f162df21`  
+**ID**: `ed7b6fa2fb99`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;stamp&#125;&#123;
-  % This is the class stamp
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
 
-  \method stamp() &#123;&#125;
-
-  \method apply(#1,#2) &#123;
-    \pgfoothis.shift origin(#1,#2)
-
-    % Draw the stamp:
-    \node [rotate=20,font=\huge] &#123;Passed&#125;;
-  &#125;
-
-  % Private method:
-  \method shift origin(#1,#2) &#123;
-    \tikzset&#123;xshift=#1,yshift=#2&#125;
-  &#125;
-&#125;
+  \fill (1cm,1.5cm)    circle (2pt);
+  \fill (2cm,-5mm+2pt) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4911. Other
 
-**ID**: `991f3cdfbb59`  
+**ID**: `d9546f98e8b7`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;stamp&#125;&#123;
-  % This is the class stamp
-
-  \attribute text;
-  \attribute rotation angle = 20;
-
-  \method stamp(#1) &#123;
-    \pgfooset&#123;text&#125;&#123;#1&#125; % Set the text
-  &#125;
-
-  \method apply(#1,#2) &#123;
-    \pgfoothis.shift origin(#1,#2)
-
-    % Draw the stamp:
-    \node [rotate=\pgfoovalueof&#123;rotation angle&#125;,font=\huge]
-      &#123;\pgfoovalueof&#123;text&#125;&#125;;
-  &#125;
-
-  \method shift origin(#1,#2) &#123; ... &#125;
-
-  \method set rotation (#1) &#123;
-    \pgfooset&#123;rotation angle&#125;&#123;#1&#125;
-  &#125;
-&#125;
+\begin&#123;tikzpicture&#125;[-&gt;]
+  \draw (0,0) -- (xyz cs:x=1);
+  \draw (0,0) -- (xyz cs:y=1);
+  \draw (0,0) -- (xyz cs:z=1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4912. Other
 
-**ID**: `068fb4ef9220`  
+**ID**: `97de3cc9f128`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\method set rotation (#1) &#123;
-  \pgfooset&#123;rotation angle&#125;&#123;#1&#125;
-&#125;
+\begin&#123;tikzpicture&#125;[-&gt;]
+  \draw (0,0) -- (1,0);
+  \draw (0,0) -- (0,1,0);
+  \draw (0,0) -- (0,0,1);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4913. Other
 
-**ID**: `741a9403497e`  
+**ID**: `abb84e9e6957`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\method foo () &#123;
-  \pgfoolet&#123;my func&#125;\myfunc
-  % Changing \myfunc now has no effect on the value of attribute my func
-&#125;
+\tikz \draw (0,0) -- (canvas polar cs:angle=30,radius=1cm);
 </code></pre>
 
 ---
 
 ## 4914. Other
 
-**ID**: `9657a830be07`  
+**ID**: `03ea045c1750`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\method apply(#1,#2) &#123;
-  \pgfoothis.shift origin(#1,#2)
-
-  \node [rotate=\pgfoovalueof&#123;rotation angle&#125;,font=\huge]
-    &#123;\pgfoovalueof&#123;text&#125;&#125;;
-&#125;
+\tikz \draw    (0cm,0cm) -- (30:1cm) -- (60:1cm) -- (90:1cm)
+            -- (120:1cm) -- (150:1cm) -- (180:1cm);
 </code></pre>
 
 ---
 
 ## 4915. Other
 
-**ID**: `5c45ce62e25c`  
+**ID**: `f0743fca867e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-...
-  \method get rotation (#1) &#123;
-    \pgfooget&#123;rotation angle&#125;&#123;#1&#125;
-  &#125;
-...
+\begin&#123;tikzpicture&#125;[x=1.5cm,y=1cm]
+  \draw[help lines] (0cm,0cm) grid (3cm,2cm);
 
-\mystamp.get rotation(\therotation)
-``\therotation'' is now ``20'' (or whatever).
+  \draw (0,0) -- (xyz polar cs:angle=0,radius=1);
+  \draw (0,0) -- (xyz polar cs:angle=30,radius=1);
+  \draw (0,0) -- (xyz polar cs:angle=60,radius=1);
+  \draw (0,0) -- (xyz polar cs:angle=90,radius=1);
+
+  \draw (xyz polar cs:angle=0,radius=2)
+     -- (xyz polar cs:angle=30,radius=2)
+     -- (xyz polar cs:angle=60,radius=2)
+     -- (xyz polar cs:angle=90,radius=2);
+ \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4916. Other
 
-**ID**: `a92900f1f71b`  
+**ID**: `f776eecba239`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Create a new object:
-\pgfoonew \mystamp=new stamp()
-
-% Get the object's id and store it in \myid:
-\mystamp.get id(\myid)
-
-% The following two calls have the same effect:
-\mystamp.apply(1,1)
-\pgfooobj&#123;\myid&#125;.apply(1,1)
+\tikz[x=&#123;(0cm,1cm)&#125;,y=&#123;(-1cm,0cm)&#125;]
+  \draw  (0,0) -- (30:1) -- (60:1) -- (90:1)
+             -- (120:1) -- (150:1) -- (180:1);
 </code></pre>
 
 ---
 
-## 4917. Other
+## 4917. Node Graph
 
-**ID**: `483474cdd0d2`  
+**ID**: `a55daf2ef860`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfooclass&#123;some class&#125;&#123;
-  \method some class() &#123;
-    \pgfoothis.get handle(\me)
-    \somesignal.connect(\me,foo)
-    \anothersignal.connect(\me,bar)
-  &#125;
-  \method foo () &#123;&#125;
-  \method bar (#1,#2) &#123;&#125;
-&#125;
-\pgfoonew \objA=new some class()
-\pgfoonew \objB=new some class()
+\begin&#123;tikzpicture&#125;
+  \coordinate (content)   at (90:3cm);
+  \coordinate (structure) at (210:3cm);
+  \coordinate (form)      at (-30:3cm);
+
+  \node [above]       at (content)   &#123;content oriented&#125;;
+  \node [below left]  at (structure) &#123;structure oriented&#125;;
+  \node [below right] at (form)      &#123;form oriented&#125;;
+
+  \draw [thick,gray] (content.south) -- (structure.north east) -- (form.north west) -- cycle;
+
+  \small
+  \node at (barycentric cs:content=0.5,structure=0.1 ,form=1)    &#123;PostScript&#125;;
+  \node at (barycentric cs:content=1  ,structure=0   ,form=0.4)  &#123;DVI&#125;;
+  \node at (barycentric cs:content=0.5,structure=0.5 ,form=1)    &#123;PDF&#125;;
+  \node at (barycentric cs:content=0  ,structure=0.25,form=1)    &#123;CSS&#125;;
+  \node at (barycentric cs:content=0.5,structure=1   ,form=0)    &#123;XML&#125;;
+  \node at (barycentric cs:content=0.5,structure=1   ,form=0.4)  &#123;HTML&#125;;
+  \node at (barycentric cs:content=1  ,structure=0.2 ,form=0.8)  &#123;\TeX&#125;;
+  \node at (barycentric cs:content=1  ,structure=0.6 ,form=0.8)  &#123;\LaTeX&#125;;
+  \node at (barycentric cs:content=0.8,structure=0.8 ,form=1)    &#123;Word&#125;;
+  \node at (barycentric cs:content=1  ,structure=0.05,form=0.05) &#123;ASCII&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4918. Other
+## 4918. Node Graph
 
-**ID**: `745818a9121f`  
+**ID**: `42a75fb82821`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\anothersignal.emit(1,2)
-% will call \objA.bar(1,2) and \objB.bar(1,2)
+\begin&#123;tikzpicture&#125;[node font=\ttfamily]
+  \node (shape)   at (0,2)  [draw] &#123;class Shape&#125;;
+  \node (rect)    at (-2,0) [draw] &#123;class Rectangle&#125;;
+  \node (circle)  at (2,0)  [draw] &#123;class Circle&#125;;
+  \node (ellipse) at (6,0)  [draw] &#123;class Ellipse&#125;;
+
+  \draw (node cs:name=circle,anchor=north) |- (0,1);
+  \draw (node cs:name=ellipse,anchor=north) |- (0,1);
+  \draw [arrows = -&#123;Triangle[open, angle=60:3mm]&#125;]
+           (node cs:name=rect,anchor=north)
+        |- (0,1) -| (node cs:name=shape,anchor=south);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4919. Node Graph
 
-**ID**: `b7bc175d76c6`  
+**ID**: `9a64a8e51b93`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz &#123;
-  \node [circle,draw] (A)              &#123;A&#125;;
-  \node [circle,draw] (B) [right=of A] &#123;B&#125;;
-
-  \draw [draw = blue, thick,
-         arrows=&#123;
-           Computer Modern Rightarrow [sep]
-         - Latex[blue!50,length=8pt,bend,line width=0pt]
-           Stealth[length=8pt,open,bend,sep]&#125;]
-    (A) edge [bend left=45] (B)
-    (B) edge [in=-110, out=-70,looseness=8] (B);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \node (start) [draw,shape=ellipse] &#123;start&#125;;
+  \foreach \angle in &#123;-90, -80, ..., 90&#125;
+    \draw (node cs:name=start,angle=\angle)
+      .. controls +(\angle:1cm) and +(-1,0) .. (2.5,0);
+  \end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4920. Other
 
-**ID**: `c9bdc34b7d0c`  
+**ID**: `402d22844d3e`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
 \begin&#123;tikzpicture&#125;
-  \draw[-&gt;]        (0,0)   -- (1,0);
-  \draw[&gt;-Stealth] (0,0.3) -- (1,0.3);
+  \path (0,0)  node(a) [ellipse,rotate=10,draw] &#123;An ellipse&#125;
+        (3,-1) node(b) [circle,draw]            &#123;A circle&#125;;
+  \draw[thick] (node cs:name=a) -- (node cs:name=b);
 \end&#123;tikzpicture&#125;
 </code></pre>
 
@@ -415,403 +421,550 @@ Showing items **4901-4950** of **5325**
 
 ## 4921. Other
 
-**ID**: `e7533de346df`  
+**ID**: `0b610719a6ea`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \draw[-&#123;Stealth[red]&#125;] (0,0)   -- (1,0);
-\end&#123;tikzpicture&#125;
+\tikz \draw (0,0) node(x) [draw] &#123;Text&#125;
+            rectangle (1,1)
+            (node cs:name=x) -- +(1,1);
 </code></pre>
 
 ---
 
 ## 4922. Other
 
-**ID**: `ee7ff18ab9fe`  
+**ID**: `9088649ea985`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% No path, no arrow tips:
-\tikz [&lt;-&gt;] \draw;
+\tikz \draw (0,0) node(x) [draw] &#123;X&#125;
+            (2,0) node(y) &#123;Y&#125;
+            (node cs:name=x) .. controls +(1,1) and +(-1,1) ..
+            (node cs:name=y);
 </code></pre>
 
 ---
 
 ## 4923. Other
 
-**ID**: `f3aafde52ae9`  
+**ID**: `abadb62a8f5d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Degenerate path, draw arrow tips (but no path, it is degenerate...)
-\tikz [&lt;-&gt;] \draw (0,0);
+\begin&#123;tikzpicture&#125;[fill=blue!20]
+  \draw[help lines] (-1,-2) grid (6,3);
+  \path (0,0)  node(a) [ellipse,rotate=10,draw,fill]    &#123;An ellipse&#125;
+        (3,-1) node(b) [circle,draw,fill]               &#123;A circle&#125;
+        (2,2)  node(c) [rectangle,rotate=20,draw,fill]  &#123;A rectangle&#125;
+        (5,2)  node(d) [rectangle,rotate=-30,draw,fill] &#123;Another rectangle&#125;;
+  \draw[thick] (a.south) -- (b) -- (c) -- (d);
+  \draw[thick,red,-&gt;] (a) |- +(1,3) -| (c) |- (b);
+  \draw[thick,blue,&lt;-&gt;] (b) .. controls +(right:2cm) and +(down:1cm) .. (d);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4924. Other
 
-**ID**: `8f063627803c`  
+**ID**: `454afb1cac60`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Degenerate path, tips=proper suppresses arrows
-\tikz [&lt;-&gt;] \draw [tips=proper] (0,0);
+% \begin&#123;tikzpicture&#125;
+%   \draw[help lines] (0,0) grid (3,2);
+%   \draw (0,0) coordinate (A) -- (3,2) coordinate (B)
+%         (1,2)                -- (3,0);
+%
+%   \fill[red] (intersection cs:
+%     first line=&#123;(A)--(B)&#125;,
+%     second line=&#123;(1,2)--(3,0)&#125;) circle (2pt);
+% \end&#123;tikzpicture&#125;
+%
 </code></pre>
 
 ---
 
-## 4925. Other
+## 4925. Node Graph
 
-**ID**: `39f4ac62c151`  
+**ID**: `cf7dd46332c8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Normal case:
-\tikz [&lt;-&gt;] \draw (0,0) -- (1,0);
+% \begin&#123;tikzpicture&#125;[scale=.25]
+%   \coordinate [label=-135:$a$] (a) at ($ (0,0)   + (rand,rand) $);
+%   \coordinate [label=45:$b$]   (b) at ($ (3,2) + (rand,rand) $);
+%
+%   \coordinate [label=-135:$u$] (u) at (-1,1);
+%   \coordinate [label=45:$v$]   (v) at (6,0);
+%
+%   \draw (a) -- (b)
+%         (u) -- (v);
+%
+%   \node (c1) at (a) [draw,circle through=(b)] &#123;&#125;;
+%   \node (c2) at (b) [draw,circle through=(a)] &#123;&#125;;
+%
+%   \coordinate [label=135:$c$] (c) at (intersection 2 of c1 and c2);
+%   \coordinate [label=-45:$d$] (d) at (intersection of u--v and c2);
+%   \coordinate [label=135:$e$] (e) at (intersection of u--v and a--b);
+%
+%   \foreach \p in &#123;a,b,c,d,e,u,v&#125;
+%     \fill [opacity=.5] (\p) circle (8pt);
+% \end&#123;tikzpicture&#125;
+%
 </code></pre>
 
 ---
 
-## 4926. Other
+## 4926. Node Graph
 
-**ID**: `4cf1f20d0015`  
+**ID**: `fc866ba070d1`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Two subpaths, only second gets tips
-\tikz [&lt;-&gt;] \draw (0,0) -- (1,0) (2,0) -- (3,0);
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (3,2);
+
+  \coordinate (a) at (3,2);
+
+  \node [circle,draw] (c) at (1,1) [minimum size=40pt] &#123;$c$&#125;;
+
+  \draw[red] (a)  -- (tangent cs:node=c,point=&#123;(a)&#125;,solution=1) --
+       (c.center) -- (tangent cs:node=c,point=&#123;(a)&#125;,solution=2) -- cycle;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4927. Other
 
-**ID**: `a3eda4be229c`  
+**ID**: `a280b4a40a7d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Two subpaths, second degenerate, but still gets tips
-\tikz [&lt;-&gt;] \draw (0,0) -- (1,0) (2,0);
+\makeatletter
+\define@key&#123;cylindricalkeys&#125;&#123;angle&#125;&#123;\def\myangle&#123;#1&#125;&#125;
+\define@key&#123;cylindricalkeys&#125;&#123;radius&#125;&#123;\def\myradius&#123;#1&#125;&#125;
+\define@key&#123;cylindricalkeys&#125;&#123;z&#125;&#123;\def\myz&#123;#1&#125;&#125;
+\makeatother
+\tikzdeclarecoordinatesystem&#123;cylindrical&#125;%
+&#123;%
+  \setkeys&#123;cylindricalkeys&#125;&#123;#1&#125;%
+  \pgfpointadd&#123;\pgfpointxyz&#123;0&#125;&#123;0&#125;&#123;\myz&#125;&#125;&#123;\pgfpointpolarxy&#123;\myangle&#125;&#123;\myradius&#125;&#125;
+&#125;
+\begin&#123;tikzpicture&#125;[z=0.2pt]
+  \draw [-&gt;] (0,0,0) -- (0,0,350);
+  \foreach \num in &#123;0,10,...,350&#125;
+    \fill (cylindrical cs:angle=\num,radius=1,z=\num) circle (1pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4928. Other
 
-**ID**: `5ad54a0e5ff2`  
+**ID**: `ad54025e4acd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Two subpaths, second degenerate, proper suppresses them
-\tikz [&lt;-&gt;] \draw [tips=on proper draw] (0,0) -- (1,0) (2,0);
+\begin&#123;tikzpicture&#125;
+  \path (30:1cm) node(p1) &#123;$p_1$&#125;   (75:1cm) node(p2) &#123;$p_2$&#125;;
+
+  \draw (-0.2,0) -- (1.2,0) node(xline)[right] &#123;$q_1$&#125;;
+  \draw (2,-0.2) -- (2,1.2) node(yline)[above] &#123;$q_2$&#125;;
+
+  \draw[-&gt;] (p1) -- (p1 |- xline);
+  \draw[-&gt;] (p2) -- (p2 |- xline);
+  \draw[-&gt;] (p1) -- (p1 -| yline);
+  \draw[-&gt;] (p2) -- (p2 -| yline);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4929. Other
+## 4929. Node Graph
 
-**ID**: `3b01733685d1`  
+**ID**: `af5e56801669`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-% Two subpaths, but one is closed: No tips, even though last subpath is open
-\tikz [&lt;-&gt;] \draw (0,0) circle[radius=2pt] (2,0) -- (3,0);
+\begin&#123;tikzpicture&#125;
+  \node (A) at (0,1)    &#123;A&#125;;
+  \node (B) at (1,1.5)  &#123;B&#125;;
+  \node (C) at (2,0)    &#123;C&#125;;
+  \node (D) at (2.5,-2) &#123;D&#125;;
+
+  \draw (A) -- (B) node [midway] &#123;x&#125;;
+  \draw (C) -- (D) node [midway] &#123;x&#125;;
+
+  \node at (&#123;$(A)!.5!(B)$&#125; -| &#123;$(C)!.5!(D)$&#125;) &#123;X&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4930. Other
 
-**ID**: `76a9277417ac`  
+**ID**: `04a901d064d0`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz&#123;
-  \draw [-&#123;Stealth[length=5mm]&#125;] (0,0) -- (2,0);
-  \draw [|&lt;-&gt;|] (1.5,.4) -- node[above=1mm] &#123;5mm&#125; (2,.4);
-&#125;
+\begin&#123;tikzpicture&#125;[every node/.style=&#123;opacity=1, black, above left&#125;]
+  \draw [help lines] grid (3,2);
+  \draw [name path=ellipse] (2,0.5) ellipse (0.75cm and 1cm);
+  \draw [name path=rectangle, rotate=10] (0.5,0.5) rectangle +(2,1);
+  \fill [red, opacity=0.5, name intersections=&#123;of=ellipse and rectangle&#125;]
+    (intersection-1) circle (2pt) node &#123;1&#125;
+    (intersection-2) circle (2pt) node &#123;2&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4931. Other
 
-**ID**: `7112c6d73f77`  
+**ID**: `435e83ed23c3`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz&#123;
-  \draw [-&#123;Latex[length=5mm]&#125;] (0,0) -- (2,0);
-  \draw [|&lt;-&gt;|] (1.5,.4) -- node[above=1mm] &#123;5mm&#125; (2,.4);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;of=curve 1 and curve 2, name=i, total=\t&#125;]
+        [red, opacity=0.5, every node/.style=&#123;above left, black, opacity=1&#125;]
+        \foreach \s in &#123;1,...,\t&#125;&#123;(i-\s) circle (2pt) node &#123;\footnotesize\s&#125;&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4932. Other
 
-**ID**: `25831fab2c33`  
+**ID**: `7690b0887df2`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz&#123;
-  \draw [-&#123;Classical TikZ Rightarrow[length=5mm]&#125;] (0,0) -- (2,0);
-  \draw [|&lt;-&gt;|] (1.5,.6) -- node[above=1mm] &#123;5mm&#125; (2,.6);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;of=curve 1 and curve 2, by=&#123;a,b&#125;&#125;]
+        (a) circle (2pt)
+        (b) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4933. Other
 
-**ID**: `6d3d8d9d5d19`  
+**ID**: `d43106f3012f`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = &#123;-Latex[length=0pt 3 0]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \clip (-2,-2) rectangle (2,2);
+  \draw [name path=curve 1] (-2,-1) .. controls (8,-1) and (-8,1) .. (2,1);
+  \draw [name path=curve 2] (-1,-2) .. controls (-1,8) and (1,-8) .. (1,2);
+
+  \fill [name intersections=&#123;
+          of=curve 1 and curve 2,
+          by=&#123;[label=center:a],[label=center:...],[label=center:i]&#125;&#125;];
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4934. Other
 
-**ID**: `87b89f62aad2`  
+**ID**: `8ecf1ed5af8d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = &#123;-Latex[length=0pt 3 .5]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+\clip (-0.5,-0.75) rectangle (3.25,2.25);
+\foreach \pathname/\shift in &#123;line/0cm, curve/2cm&#125;&#123;
+  \tikzset&#123;xshift=\shift&#125;
+  \draw [-&gt;, name path=curve] (1,1.5) .. controls (-1,1) and (2,0.5) .. (0,0);
+  \draw [-&gt;, name path=line]  (0,-.5) -- (1,2) ;
+  \fill [name intersections=&#123;of=line and curve,sort by=\pathname, name=i&#125;]
+    [red, opacity=0.5, every node/.style=&#123;left=.25cm, black, opacity=1&#125;]
+    \foreach \s in &#123;1,2,3&#125;&#123;(i-\s) circle (2pt) node &#123;\footnotesize\s&#125;&#125;;
+&#125;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4935. Other
 
-**ID**: `41e497828b33`  
+**ID**: `ae9fd5b4fde8`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = &#123;-Latex[length=0pt 3 1]&#125; ] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw (0,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (2,0)     -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+  \draw (1.5,1.5) -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4936. Other
 
-**ID**: `f1332f7acd87`  
+**ID**: `f0639d9b79ab`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz&#123;
-  \draw [line width=1mm, -&#123;Stealth[length=10mm, open]&#125;]
-          (0,0) -- (2,0);
-  \draw [|&lt;-&gt;|] (2,.6) -- node[above=1mm] &#123;10mm&#125; ++(-10mm,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw (0,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (2,0)     -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+  \draw (1.5,1.5) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4937. Other
 
-**ID**: `7b4e728c9915`  
+**ID**: `c4f232684c32`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz&#123;
-  \draw [line width=1mm, -&#123;Stealth[length=10mm, open, round]&#125;]
-          (0,0) -- (2,0);
-  \draw [|&lt;-&gt;|] (2,.6) -- node[above=1mm] &#123;10mm&#125; ++(-10mm,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw (1,0) .. controls +(30:1cm) and +(60:1cm) .. (3,-1);
+  \draw[gray,-&gt;] (1,0) -- +(30:1cm);
+  \draw[gray,&lt;-] (3,-1) -- +(60:1cm);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4938. Other
 
-**ID**: `7acec749b152`  
+**ID**: `367250f5b53d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Latex[width=10pt, length=10pt]&#125;] (0,0) -- (1,0);
+\tikz \draw (0,0) -- (1,1) -- ([turn]-45:1cm) -- ([turn]-30:1cm);
 </code></pre>
 
 ---
 
 ## 4939. Other
 
-**ID**: `d0edad1c74d6`  
+**ID**: `ed1044ebb189`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Latex[width=0pt 10, length=10pt]&#125;] (0,0) -- (1,0);
+\tikz [delta angle=30, radius=1cm]
+  \draw (0,0) arc [start angle=0]  -- ([turn]0:1cm)
+              arc [start angle=30] -- ([turn]0:1cm)
+              arc [start angle=60] -- ([turn]30:1cm);
 </code></pre>
 
 ---
 
 ## 4940. Other
 
-**ID**: `451564b7807c`  
+**ID**: `71e311673a24`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-length = 10pt, width'=5pt 2, length=7pt
+\tikz \draw (0,0) to [bend left] (2,1) -- ([turn]0:1cm);
 </code></pre>
 
 ---
 
 ## 4941. Other
 
-**ID**: `68f488a1dce6`  
+**ID**: `b6f76fa86454`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Latex[width'=0pt .5, length=10pt]&#125;] (0,0) -- (1,0);
+\tikz \draw plot coordinates &#123;(0,0) (1,1) (2,0) (3,0) &#125; -- ([turn]30:1cm);
 </code></pre>
 
 ---
 
 ## 4942. Other
 
-**ID**: `d8d7a2e4c341`  
+**ID**: `095ca21772bc`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Latex[width'=0pt .5, length=15pt]&#125;] (0,0) -- (1,0);
+\tikz \draw (0.5,0.5) -| (2,1) -- ([turn]1,1)
+         .. controls ([turn]0:1cm) .. ([turn]-90:1cm);
 </code></pre>
 
 ---
 
 ## 4943. Other
 
-**ID**: `0b7590d66952`  
+**ID**: `69841bc3f026`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[length=10pt, inset=5pt]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0) &#123; -- ++(0,1) &#125; -- ++(-1,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4944. Other
 
-**ID**: `7a6c153023cb`  
+**ID**: `e668f0406ebd`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[length=10pt, inset=2pt]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw      (0,0) -- ++(1,0)   -- ++(0,1)   -- ++(-1,0);
+  \draw[red] (2,0) -- ++(1,0)
+     &#123; [current point is local] -- ++(0,1) &#125; -- ++(-1,0);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 4945. Other
+## 4945. Node Graph
 
-**ID**: `2975628a7052`  
+**ID**: `e0e354106b39`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[inset=0pt, angle=90:10pt]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \node (a) at (1,1) &#123;A&#125;;
+  \fill [red] ($(a) + 1/3*(1cm,0)$) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4946. Other
 
-**ID**: `9f8e4660217f`  
+**ID**: `4a2b8b0f94d5`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[inset=0pt, angle=30:10pt]&#125;] (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \fill [red] ($2*(1,1)$) circle (2pt);
+  \fill [green] ($&#123;1+1&#125;*(1,.5)$) circle (2pt);
+  \fill [blue] ($cos(0)*sin(90)*(1,1)$) circle (2pt);
+  \fill [black] ($&#123;3*(4-3)&#125;*(1,0.5)$) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4947. Other
 
-**ID**: `a4dee2bb71a6`  
+**ID**: `4c2dd5c2fa22`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[inset=0pt, length=10pt, angle'=90]&#125;]
-            (0,0) -- (1,0);
+(1,2)!.75!(3,4)
 </code></pre>
 
 ---
 
-## 4948. Other
+## 4948. Node Graph
 
-**ID**: `df9f2df3d144`  
+**ID**: `2f3bffc04f6c`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz \draw [arrows = &#123;-Stealth[inset=0pt, length=10pt, angle'=30]&#125;]
-            (0,0) -- (1,0);
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \draw (1,0) -- (3,2);
+
+  \foreach \i in &#123;0,0.2,0.5,0.9,1&#125;
+    \node at ($(1,0)!\i!(3,2)$) &#123;\i&#125;;
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4949. Other
 
-**ID**: `ebcdf9179242`  
+**ID**: `5afd0598343d`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz &#123;
-  \draw [arrows = &#123;-Stealth[]&#125;]          (0,1)   -- (1,1);
-  \draw [arrows = &#123;-Stealth[scale=1.5]&#125;] (0,0.5) -- (1,0.5);
-  \draw [arrows = &#123;-Stealth[scale=2]&#125;]   (0,0)   -- (1,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,3);
+
+  \coordinate (a) at (1,0);
+  \coordinate (b) at (3,2);
+
+  \draw[-&gt;] (a) -- (b);
+
+  \coordinate (c) at ($ (a)!1! 10:(b) $);
+
+  \draw[-&gt;,red] (a) -- (c);
+
+  \fill ($ (a)!.5! 10:(b) $) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 ## 4950. Other
 
-**ID**: `43fdce1d0a46`  
+**ID**: `cfdebd5131b9`  
 **Package**: tikz-pgf  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikz &#123;
-  \draw [arrows = &#123;-Stealth[]&#125;]                 (0,1)   -- (1,1);
-  \draw [arrows = &#123;-Stealth[scale length=1.5]&#125;] (0,0.5) -- (1,0.5);
-  \draw [arrows = &#123;-Stealth[scale length=2]&#125;]   (0,0)   -- (1,0);
-&#125;
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (4,4);
+
+  \foreach \i in &#123;0,0.125,...,2&#125;
+    \fill ($(2,2) !\i! \i*180:(3,2)$) circle (2pt);
+\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-097) | Page 99 of 107 | [Next →](executable_example-page-099)
+[← Previous](executable_example-page-097) | Page 99 of 120 | [Next →](executable_example-page-099)

@@ -1,0 +1,2098 @@
+[
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{helice}(t){3*cos(4*t)}{3*sin(4*t)}{t}",
+    "source_file": "doc/text/par-courbeR3-en.tex",
+    "id": "7e57f851c356"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6,-3)(6,8)\n\\psframe*[linecolor=blue!50](-6,-3)(6,8)\n\\psSolid[object=grille,base=-4 4 -4 4,linecolor=red,linewidth=0.5\\pslinewidth]%\n\\axesIIID(0,0,0)(4,4,7)\n\\defFunction[algebraic]{helice}(t){3*cos(4*t)}{3*sin(4*t)}{t}\n\\psSolid[object=courbe,\n        r=0,\n        range=0 6,\n        linecolor=blue,linewidth=0.1,\n        resolution=360,\n        function=helice]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-courbeR3-en.tex",
+    "id": "697e2744b6e9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6,-3)(6,8)\n\\psframe*[linecolor=blue!50](-6,-3)(6,8)\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\psSolid[object=grille,base=-4 4 -4 4,linecolor=red,linewidth=0.5\\pslinewidth]%\n\\axesIIID(0,0,0)(4,4,7)\n\\psset{range=-4 4}\n\\defFunction{cosRad}(t){ t 2 mul Cos 4 mul }{ t }{ 0 }\n\\psSolid[object=courbe,linewidth=0.1,\n  r=0,linecolor=red,\n  resolution=360,\n  function=cosRad]\n\\psSolid[object=grille,base=-4 4 -4 4,linecolor=blue,linewidth=0.5\\pslinewidth](0,0,3)\n\\psPoint(0,0,3){O1}\\psPoint(0,0,7){Z1}\\psline(O1)(Z1)\\psline[linestyle=dashed](O1)(O)\n\\pstVerb{/tmin -4 def /tmax 4 def}%\n\\defFunction{sinRad}(t){ t }{ t Sin 3 mul }{ 3 }\n\\psSolid[object=courbe,linewidth=0.1,\n  r=0,linecolor=blue,\n  resolution=30,\n  function=sinRad]\n\\end{pspicture}",
+    "source_file": "doc/text/par-courbeR3-en.tex",
+    "id": "a1e580e74141"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6.5,-3)(7,11)\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 20 rtp2xyz,Decran=50}\n\\psSolid[object=grille,base=-4 4 -4 4,\n  linecolor=lightgray,linewidth=0.5\\pslinewidth]%\n\\psSolid[object=grille,base=-4 4 0 8,\n  linecolor=lightgray,RotX=90,\n  linewidth=0.5\\pslinewidth](0,4,0)\n\\psSolid[object=grille,base=-4 4 -4 4,\n  linecolor=lightgray,RotY=90,\n  linewidth=0.5\\pslinewidth](-4,0,4)\n\\defFunction[algebraic]{helice}(t)%\n  {1.3*(1-cos(2.5*t))*cos(6*t)}\n  {1.3*(1-cos(2.5*t))*sin(6*t)}{t}\n\\defFunction[algebraic]{helice_xy}(t)%\n  {1.3*(1-cos(2.5*t))*cos(6*t)}\n  {1.3*(1-cos(2.5*t))*sin(6*t)}{0}\n\\defFunction[algebraic]{helice_xz}%\n  (t){1.3*(1-cos(2.5*t))*cos(6*t)}{4}{t}\n\\defFunction[algebraic]{helice_yz}%\n  (t){-4}{1.3*(1-cos(2.5*t))*sin(6*t)}{t}\n\\psset{range=0 8}\n\\psSolid[object=courbe,r=0,linecolor=blue,\n  linewidth=0.05,resolution=360,\n  normal=0 0 1,function=helice_xy]\n\\psSolid[object=courbe,r=0,\n  linecolor=green,linewidth=0.05,\n  resolution=360,normal=0 0 1,\n  function=helice_xz]\n\\psSolid[object=courbe,r=0,\n  linewidth=0.05,resolution=360,\n  normal=0 0 1,function=helice_yz]\n\\psSolid[object=courbe,r=0,\n  linecolor=red,linewidth=0.1,\n  resolution=360,function=helice]\n \\end{pspicture}",
+    "source_file": "doc/text/par-courbeR3-en.tex",
+    "id": "4b71ea35c0c9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction{shell}(u,v){1.2 v exp u Sin dup mul v Cos mul mul}% x(u,v)\n                        {1.2 v exp u Sin dup mul v Sin mul mul}% y(u,v)\n                        {1.2 v exp u Sin u Cos mul mul}        % z(u,v)",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "ccaf2262c37c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{shell}(u,v){1.2^v*(sin(u)^2*cos(v))}% x(u,v)\n                                   {1.2^v*(sin(u)^2*sin(v))}% y(u,v)\n                                   {1.2^v*(sin(u)*cos(u))}  % z(u,v)",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "9b20d0b619d2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75}\n\\begin{pspicture}(-5.5,-6)(4.5,4)\n\\psframe*(-5.5,-6)(4.5,4)\n\\psset[pst-solides3d]{viewpoint=20 120 30 rtp2xyz,\n  Decran=15,lightsrc=-10 15 10}\n% Parametric Surfaces\n\\psSolid[object=grille,base=-4 4 -4 4,\n  action=draw*,linecolor={[cmyk]{1,0,1,0.5}}]\n  (0,0,-3)\n\\defFunction{shell}(u,v)\n  {1.2 v exp u Sin dup mul v Cos mul mul}\n  {1.2 v exp u Sin dup mul v Sin mul mul}\n  {1.2 v exp u Sin u Cos mul mul}\n\\psSolid[object=surfaceparametree,\n  linecolor={[cmyk]{1,0,1,0.5}},\n  base=0 pi pi 4 div neg 5 pi mul 2 div,\n  fillcolor=yellow!50,incolor=green!50,\n  function=shell,linewidth=0.5\\pslinewidth,ngrid=25]%\n\\psSolid[object=parallelepiped,a=8,b=8,c=6,\n  action=draw,linecolor={[cmyk]{1,0,1,0.5}}]%\n\\quadrillage\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "0116eb4e45bc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75}\n\\begin{pspicture}(-5,-4)(5,6)\n\\psframe*(-5,-4)(5,6)\n\\psset[pst-solides3d]{viewpoint=20 20 -10 rtp2xyz,\n  Decran=15,lightsrc=5 10 2}\n% Parametric Surfaces\n\\psSolid[object=grille,base=-4 4 -4 4,\n  action=draw*,linecolor=red](0,0,-3)\n\\defFunction[algebraic]{shell}(u,v)\n  {1.21^v*(sin(u)*cos(u))}\n  {1.21^v*(sin(u)^2*sin(v))}\n  {1.21^v*(sin(u)^2*cos(v))}\n%% \\defFunction{shell}(u,v)\n%%    {1.2 v exp u Sin u Cos mul mul}\n%%    {1.2 v exp u Sin dup mul v Sin mul mul}\n%%    {1.2 v exp u Sin dup mul v Cos mul mul}\n\\psSolid[object=surfaceparametree,\n   linecolor={[cmyk]{1,0,1,0.5}},\n   base=0 pi pi 4 div neg 5 pi mul 2 div,\n   fillcolor=green!50,incolor=yellow!50,\n   function=shell,linewidth=0.5\\pslinewidth,\n   ngrid=25]%\n\\white%\n\\gridIIID[Zmin=-3,Zmax=4,linecolor=white,\n  QZ=0.5](-4,4)(-4,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "db9ddeaaba93"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75}\n\\begin{pspicture}(-3,-4)(3,6)\n\\psset[pst-solides3d]{viewpoint=20 10 2,Decran=20,\n  lightsrc=20 10 10}\n% Parametric Surfaces\n\\defFunction{helix}(u,v)\n  {1 .4 v Cos mul sub u Cos mul 2 mul}\n  {1 .4 v Cos mul sub u Sin mul 2 mul}\n  {.4 v Sin mul u .3 mul add}\n\\psSolid[object=surfaceparametree,linewidth=0.5\\pslinewidth,\n  base=-10 10 0 6.28,fillcolor=yellow!50,incolor=green!50,\n  function=helix,\n  ngrid=60 0.4]%\n\\gridIIID[Zmin=-3,Zmax=3](-2,2)(-2,2)\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "9af66992df20"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-9,-7)(10,12)\n\\psframe*(-9,-7)(10,12)\n\\psset[pst-solides3d]{\n  viewpoint=20 5 10,\n  Decran=50,lightsrc=20 10 5}\n\\psSolid[\n  object=grille,base=-2 2 -2 2,\n  linecolor=white](0,0,-2)\n% Parametric Surfaces\n\\defFunction{cone}(u,v)\n  {u v Cos mul}{u v Sin mul}{u}\n\\psSolid[object=surfaceparametree,\n   base=-2 2 0 2 pi mul,\n   fillcolor=yellow!50,\n   incolor=green!50,function=cone,\n   linewidth=0.5\\pslinewidth,\n   ngrid=25 40]%\n\\psset{linecolor=white}\\white\n\\gridIIID[Zmin=-2,Zmax=2]\n  (-2,2)(-2,2)\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfacesparametrees-en.tex",
+    "id": "ce6071bca7f0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=cube,a=4,action=draw*,linecolor=red]%",
+    "source_file": "doc/text/par-transformpointconnu-en.tex",
+    "id": "9ceff8faf8fc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=cube,a=4,action=draw*,RotX=-30,RotY=60,RotZ=-60](7.5,11.25,10)%",
+    "source_file": "doc/text/par-transformpointconnu-en.tex",
+    "id": "ec0dfd88c4d7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psTransformPoint[RotX=-30,RotY=60,RotZ=-60](2 2 2)(7.5,11.25,10){A'}",
+    "source_file": "doc/text/par-transformpointconnu-en.tex",
+    "id": "ab308e2f95e0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSurface[options](xmin,ymin)(xmax,ymax){equation of the surface z=f(x,y)}\n\\psSurface*[options,r=...,xytranslate](xmin,ymin)(xmax,ymax){equation of the surface z=f(x,y)}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "a6504f44db48"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=parallelepiped,a=8,b=8,c=8,action=draw](0,0,0)\n\\multido{\\ix=-4+1}{9}{%\n    \\psPoint(\\ix\\space,4,-4){X1}\n    \\psPoint(\\ix\\space,4.2,-4){X2}\n    \\psline(X1)(X2)\\uput[dr](X1){\\ix}}\n\\multido{\\iy=-4+1}{9}{%\n    \\psPoint(4,\\iy\\space,-4){Y1}\n    \\psPoint(4.2,\\iy\\space,-4){Y2}\n    \\psline(Y1)(Y2)\\uput[dl](Y1){\\iy}}\n\\multido{\\iz=-4+1}{9}{%\n    \\psPoint(4,-4,\\iz\\space){Z1}\n    \\psPoint(4,-4.2,\\iz\\space){Z2}\n    \\psline(Z1)(Z2)\\uput[l](Z1){\\iz}}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "0647364f322a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 20 20 rtp2xyz,Decran=100,lightsrc=viewpoint}\n\\begin{pspicture}(-5,-4)(6,6)\n\\psSolid[object=grille,base=-2 2 -2 2,action=draw]%\n\\axesIIID(0,0,0)(2,2,1)\n\\psSurface*[\nfillcolor=cyan,r=1,\nngrid=.25 .25,incolor=yellow,grid,\nalgebraic](-1,-1)(1,1){ e^(x*y) }\n\\psSolid[object=cylindre,r=1,h=2,action=draw,ngrid=1 18]\n\\psPoint(0,0,1){O}\n\\psPoint(0,0,3){Z}\n\\psline{->}(O)(Z)\n\\uput[r](Z){$z$}\n\\psPoint(0.5,0.5,0){C}\n\\psdot[linecolor=red,dotstyle=x,dotscale=2](C)\n\\end{pspicture}\n\n\\begin{pspicture}(-5,-4)(6,10)\n\\psSolid[object=grille,base=-2 2 -2 2,action=draw]%\n\\axesIIID(0,0,0)(2,2,1)\n\\psSurface*[\nfillcolor=cyan,r=1,xytranslate=0.5 0.5,\nngrid=.25 .25,incolor=yellow,grid,\nalgebraic](-1,-1)(1,1){ e^(x*y) }\n\\psSolid[object=cylindre,r=1,h=4,action=draw,ngrid=1 18](0.5,0.5,0)\n\\psPoint(0,0,1){O}\n\\psPoint(0,0,5){Z}\n\\psline{->}(O)(Z)\n\\uput[r](Z){$z$}\n\\psPoint(0.5,0.5,0){C}\n\\psdot[linecolor=red,dotstyle=x,dotscale=2](C)\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "0e9a008dd6e8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction{F}(t){t}{4 t div 4 min}{4}\n\\psSolid[object=courbe,range=1 4,\n   linecolor=red,linewidth=2\\pslinewidth,\n   function=F]",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "2d375ab4c1f7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.45}\n\\psset{viewpoint=50 40 30 rtp2xyz,Decran=50}\n\\psset{lightsrc=viewpoint}\n\\begin{pspicture}(-7,-8)(7,8)\n\\psSurface[ngrid=.25 .25,incolor=yellow,\n   linewidth=0.5\\pslinewidth,axesboxed,\n   algebraic,hue=0 1](-4,-4)(4,4){%\n   ((y^2)-(x^2))/4 }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "78d88c774c3f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=30 30 25}\n\\psset{viewpoint=50 40 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-7,-8)(7,8)\n\\psSurface[fillcolor=red!50,ngrid=.25 .25,\n   incolor=yellow,linewidth=0.5\\pslinewidth,\n   grid,axesboxed](-4,-4)(4,4){%\n   y dup mul x dup mul sub 4 div }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "74daefe18bf6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=30 -10 10,linewidth=0.5\\pslinewidth}\n\\psset{viewpoint=50 40 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-7,-4)(7,12)\n\\psSolid[object=grille,base=-4 4 -4 4,action=draw]%\n\\psSurface[\n   fillcolor=cyan!50,\n   intersectionplan={[0 0 1 -5]},\n   intersectioncolor=(bleu),\n   intersectionlinewidth=3,\n    intersectiontype=0,\n     ngrid=.25 .25,incolor=yellow,\n   axesboxed,Zmin=0,Zmax=8,QZ=4](-4,-4)(4,4){%\n   y dup mul x dup mul add 4 div }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "d8a70796f19a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.35}\n\\psset{lightsrc=30 -10 10}\n\\psset{viewpoint=50 20 30 rtp2xyz,Decran=70}\n\\begin{pspicture}(-11,-8)(7,8)\n\\psSurface[ngrid=.2 .2,algebraic,Zmin=-1,Zmax=1,\n           linewidth=0.5\\pslinewidth,spotX=r,spotY=d,spotZ=l,\n           hue=0 1](-5,-5)(5,5){%\n   sin((x^2+y^2)/3) }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "4c6cbaf720b9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.25}\n\\psset{lightsrc=30 -10 10}\n\\psset{viewpoint=100 20 20 rtp2xyz,Decran=80}\n\\begin{pspicture}(-15,-10)(7,12)\n\\psSurface[ngrid=0.4 0.4,algebraic,Zmin=-2,Zmax=10,QZ=4,\n           linewidth=0.25\\pslinewidth,\n           fcol=0 1 4225\n           {/iF ED iF [iF 4225 div 0.75 1] (sethsbcolor) astr2str} for\n          ](-13,-13)(13,13){%\n   10*sin(sqrt((x^2+y^2)))/(sqrt(x^2+y^2)) }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "3721189b4ac0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{viewpoint=50 20 30 rtp2xyz,Decran=50}\n\\psset{lightsrc=viewpoint,linewidth=0.5\\pslinewidth}\n\\begin{pspicture}(-7,-8)(7,8)\n\\psSolid[object=datfile,filename=data/paraboloid,hue=0 1 0.5 1,incolor=yellow]\n\\gridIIID[Zmin=-4,Zmax=4,spotX=r](-4,4)(-4,4)\n\\defFunction{F}(t){t}{4 t div 4 min}{4}\n\\psSolid[object=courbe,range=1 4,r=0,\n   linecolor=red,linewidth=2\\pslinewidth,\n   function=F]\n\\defFunction{G}(t){t}{4 t div -4 max}{4}\n\\psSolid[object=courbe,range=-1 -4,r=0,\n   linecolor=red,linewidth=2\\pslinewidth,\n   function=G]\n\\defFunction{H}(t){t neg}{4 t div -4 max}{-4}\n\\psSolid[object=courbe,range=-1 -4,r=0,\n   linecolor=red,linewidth=2\\pslinewidth,\n   function=H]\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "172b3a62bd83"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.35}\n\\psset{lightsrc=10 12 20,linewidth=0.5\\pslinewidth}\n\\psset{viewpoint=30 50 60 rtp2xyz,Decran=50}\n\\begin{pspicture}(-10,-10)(12,10)\n\\psSurface[\n   fillcolor=cyan!50,algebraic,\n   ngrid=.25 .25,incolor=yellow,hue=0 1,\n   Zmin=-3,Zmax=3](-3,-3)(3,3){%\n   x*y*(x^2-y^2)*0.1}\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "ea33dee506d1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5cm,viewpoint=50 60 30 rtp2xyz,Decran=50}\n\\psset{lightsrc=viewpoint}\n\\begin{pspicture}(-4,-5)(6,8)\n  \\psSurface[ngrid=.25 .25,incolor=yellow,linewidth=0.5\\pslinewidth,\n    base= -2 2 -2 2, axesboxed, Zmin=-5,Zmax=2,hue=0 1](-5,-5)(5,5){%\n    1 0.5 x dup mul y dup mul add mul sub dup -5 lt { pop -5 }if }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "6160278c0f29"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5cm,viewpoint=50 60 30 rtp2xyz,Decran=50,\n  lightsrc=viewpoint}\n\\begin{pspicture}(-4,-5)(6,8)\n  \\psSurface*[ngrid=.25 .25,incolor=yellow,\n    linewidth=0.5\\pslinewidth,\n    r = 3 sqrt 2 mul, axesboxed, Zmin=-5,Zmax=2,hue=0 1](-5,-5)(5,5){%\n    1 0.5 x dup mul y dup mul add mul sub dup -5 lt { pop -5 }if }\n\\end{pspicture}",
+    "source_file": "doc/text/par-surfaces-en.tex",
+    "id": "62e005e008a1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   planmarks,name=monplan]\n\\psset{plan=monplan}\n%% definition du point A\n\\psProjection[object=point,\n   name=A,text=A,\n   pos=ur](-2,1.25)\n\\psProjection[object=point,\n   name=B,text=B,\n   pos=ur](1,.75)\n\\psProjection[object=droite,\n   linecolor=blue,\n   args=0 0 1 .5]\n\\psProjection[object=droite,\n   linecolor=orange,\n   args=A B]\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiondroite-en.tex",
+    "id": "955f0b7a1fe4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pstVerb{/Facteur {.5 mulv3d} def}%",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "8379f5739ce5"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=cube,a=2,ngrid=3,\n         transform=Facteur](2,0,1)%",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "d36be0150f24"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=cube,a=2,ngrid=3,\n         transform={.5 mulv3d}](2,0,1)%",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "3147111dceb9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{matransformation}(x,y,z)\n   {.5*x}\n   {.5*y}\n   {.5*z}",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "05d1c246e570"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=20 60 20 rtp2xyz,lightsrc=viewpoint,Decran=20}\n\\begin{pspicture}(-5,-3)(6,5)\n\\psSolid[object=grille,base=-4 4 -4 4,fillcolor=red!50]%\n\\axesIIID(0,0,0)(4,4,4)%\n\\psSolid[object=cube,fillcolor=yellow!50,\n      a=2,ngrid=3](-2,0,1)\n\\psSolid[object=cube,fillcolor=green!50,\n      a=2,transform={.5 mulv3d},\n      ngrid=3](2,0,1)\n\\psSolid[object=cube,\n      action=draw,\n      a=2,ngrid=3](2,0,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "df69134e9b10"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=20 60 20 rtp2xyz,lightsrc=viewpoint,Decran=20}\n\\begin{pspicture}(-5,-3)(6,5)\n\\psSolid[object=grille,base=-4 4 -4 4,fillcolor=red!50]%\n\\axesIIID(0,0,0)(4,4,4)%\n\\psSolid[object=cube,fillcolor=yellow!50,\n      a=2,ngrid=3](-2,0,1)\n\\psSolid[object=cube,fillcolor=green!50,\n      a=2,transform={.75 4 .5 scaleOpoint3d},\n      ngrid=3](2,0,1)\n\\psSolid[object=cube,\n      action=draw,\n      a=2,ngrid=3](2,0,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "2eae169733dc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(4,3)\n\\psset{viewpoint=20 60 20 rtp2xyz,lightsrc=10 15 7,Decran=20}\n\\pstVerb{\n/gro {\n4 dict begin\n   /M defpoint3d\n   /a .5 def\n   /b 1 a 3 sqrt mul sub def\n   /k M norme3d a mul b add def\n   M k mulv3d\nend\n} def}%\n\\psset{linewidth=.02,linecolor=gray}\n\\psSolid[object=cube,a=3,ngrid=9,\n      transform=gro]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "ea10e0d6d648"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=100 50 20 rtp2xyz,lightsrc=viewpoint,Decran=100,unit=0.65}\n\\begin{pspicture}(-3,-1)(3.5,11)\n\\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%\n\\psSolid[object=prisme,h=10,ngrid=20 2,\n        base=0.5 0 0.5 0.5 0 0.5 -0.5 0.5 -0.5 0 -0.5 -0.5 0 -0.5 0.5 -0.5]%\n\\end{pspicture}\n\\begin{pspicture}(-3,-1)(3.5,11)\n\\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%\n\\pstVerb{\n/torsion {% on tourne de 10 degr\\'{e}s suivant l'axe Oz \\`{a} chaque niveau\n2 dict begin\n   /M defpoint3d % on r\\'{e}cup\\`{e}re les coordonn\\'{e}es\n   M /z exch def pop pop\n    M 0 0 z 20 mul rotateOpoint3d\nend} def}%\n\\psSolid[object=prisme,h=10,ngrid=20 2,\n        base=0.5 0 0.5 0.5 0 0.5 -0.5 0.5 -0.5 0 -0.5 -0.5 0 -0.5 0.5 -0.5,\n        transform=torsion]%\n\\psTransformPoint[RotZ=20](2 0 10)(0,0,0){A}\n\\psTransformPoint[RotZ=20](2 1 10)(0,0,0){A'}\n\\psTransformPoint[RotZ=20](-2 0 10)(0,0,0){B}\n\\psTransformPoint[RotZ=20](-2 -1 10)(0,0,0){B'}\n\\psline[linecolor=red]{v-v}(A')(A)(B)(B')\n\\end{pspicture}\n\\begin{pspicture}(-3.5,-1)(3,11)\n\\psSolid[object=grille,base=-2 2 -2 2,ngrid=8]%\n\\pstVerb{%  id\\'{e}e de Christophe Poulain\n/flexion {% on tourne de 2 degr\\'{e}s suivant l'axe Oy \\`{a} chaque niveau\n2 dict begin\n   /M defpoint3d % on r\\'{e}cup\\`{e}re les coordonn\\'{e}es\n   M /z exch def pop pop\n    M 0 z 2 mul 0 rotateOpoint3d\nend} def}%\n\\axesIIID(0,0,0)(3,3,10)\n\\psSolid[object=prisme,h=10,ngrid=20 2,\n        base=0.5 0 0.5 0.5 0 0.5 -0.5 0.5 -0.5 0 -0.5 -0.5 0 -0.5 0.5 -0.5,\n        transform=flexion]%\n\\psTransformPoint[RotY=20](0.5 0 10)(0,0,0){A}\n\\psPoint(3 20 cos mul 20 sin 10 mul add 0.5 add,0, 20 cos 10 mul 20 sin 3 mul sub){A'}\n\\psdot(A)\\psline[linecolor=red]{-v}(A)(A')\n\\end{pspicture}",
+    "source_file": "doc/text/par-transform-en.tex",
+    "id": "8955374d4d0c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75}\n\\begin{pspicture*}(-4,-4)(5,4)\n\\psset{solidmemory}\n\\psSolid[object=cube,\n      linecolor=blue,\n      a=4,fillcolor=red!50,\n      ngrid=3,\n      action=none,\n      name=A,\n      ](0,0,0)\n\\psSolid[object=load,\n   deactivatecolor,\n   load=A]\n\\composeSolid\n\\end{pspicture*}",
+    "source_file": "doc/text/par-nommersolide-en.tex",
+    "id": "8c5e855dcc3d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\newcommand\\Section{%\n% y z\n  R h 2 div neg % sommet 1\n  % S1 (R,-h/2)\n  R h 2 div     % sommet 2\n  % S2 (r,h/2)\n  r h 2 div     % sommet 3\n  % S3 (r,h/2)\n  r h 2 div neg % sommet 4\n  % S4 (r,-h/2)\n            }",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "4ef3e29cae28"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\newcommand\\SectionTriangulaire{\n% y <----z---->\n  R h 2 div neg\n  % S1 (R,-h/2)\n  R r add 2 div h 2 div\n  % S2 ((R+r)/2,h/2)\n  r h 2 div neg\n  % S3 (r,-h/2)\n}",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "4c089e08f7c0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=anneau,section=\\SectionTriangulaire,%\n         fillcolor=cyan,h=3,R=8,r=4,RotX=10](0,0,0)\n\\psSolid[object=anneau,section=\\SectionTriangulaire,%\n         fillcolor=yellow,h=3,R=8,r=4,RotX=-90,RotZ=10](0,0,0)",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "61ceedbd01e6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\renewcommand\\SectionPneu{\n   /m {90 4 div} bind def\n   /Scos {m cos 2 m mul cos add 3 m mul cos add} bind def\n   /Z0 {h 4 div} bind def\n   /c {Z0 Scos div} bind def\n   /Z1 {Z0 c m cos mul add} bind def\n   /Z2 {Z1 c m 2 mul cos mul add} bind def\n   /R1 {R c m sin mul sub} bind def\n   /R2 {R1 c m 2 mul sin mul sub} bind def\n   /R3 {R2 c m 3 mul sin mul sub} bind def\n   R h 4 div neg % 1\n   R h 4 div % 2\n   R1 Z1 % 3\n   R2 Z2 % 4\n   R3 h 2 div % 5\n   r h 2 div  % 6\n   r h 2 div neg  % 7\n   R3 h 2 div neg % 8\n   R2 Z2 neg % 9\n   R1 Z1 neg % 10\n   }",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "84b231fba292"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=anneau,section=\\SectionPneu,%\n         fillcolor=cyan,h=3,R=8,r=4,RotX=10](0,0,0)\n\\psSolid[object=anneau,section=\\SectionPneu,%\n         fillcolor=yellow,h=3,R=8,r=4,RotX=-90,RotZ=10]%",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "37ac241686da"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\newcommand\\SectionBobine{\n   r h 2 div % 1\n   r h 2 div neg % 2\n   R h 2 div neg % 3\n   R h 3 div neg % 4\n   R h 4 div sub h 3 div neg % 5\n   R h 4 div sub h 3 div % 6\n   R h 3 div % 7\n   R h 2 div % 8\n   }",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "945d1ee989bd"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=grille,base=-15 15 -15 15,fillcolor=yellow!30](0,0,-8)\n\\psSolid[object=anneau,section=\\SectionBobine,%\n         fillcolor=gray!50,h=6,R=8,r=4,RotX=90,linecolor=gray]%",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "1b13267035bf"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-5,-4)(5,4)\n\\psset[pst-solides3d]{viewpoint=50 20 40 rtp2xyz,\n  Decran=25,lightsrc=10 20 20}\n\\psSolid[object=anneau,fillcolor=cyan,\n  h=3,R=8,r=6,ngrid=4,RotX=10](0,0,0)\n\\end{pspicture}\\\\\n\\begin{pspicture}(-5,-4)(5,4)\n\\psset[pst-solides3d]{viewpoint=50 -20 -40 rtp2xyz,\n  Decran=25,lightsrc=-10 -20 -20}\n\\psSolid[object=anneau,\nfillcolor=yellow,h=3,R=8,r=6,\nRotX=90,RotZ=10](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "556d2d45de08"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-5,-6)(5,6)\n\\psset[pst-solides3d]{viewpoint=50 20 40 rtp2xyz,Decran=25,\n   lightsrc=10 20 20}\n\\psSolid[object=anneau,\n   section=6 -2 10 0 6 2,\n   fillcolor=cyan,RotX=10]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-anneaux-en.tex",
+    "id": "068f7e758d1e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2.5)(7,2.5)\n\\psset{viewpoint=50 20 20 rtp2xyz,Decran=40}\n\\psSolid[\n   action=draw,\n   object=cube,\n   RotZ=30,\n   show=all,\n   num=all\n    ]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-pointagesommets-en.tex",
+    "id": "bcd3276e6cdb"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2.5)(7,2.5)\n\\psset{viewpoint=50 20 20 rtp2xyz,Decran=40}\n\\psSolid[action=draw,\n   object=cube,\n   RotZ=30,\n   show=0 1 2 3,\n   num=0 1 2 3\n    ]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-pointagesommets-en.tex",
+    "id": "97ab18666490"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{nom_fonction}(x){x*sin(x)}{}{}",
+    "source_file": "doc/text/par-projectioncourbe-en.tex",
+    "id": "be3883ab8fee"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction{nom_fonction}(x){x dup sin mul}{}{}",
+    "source_file": "doc/text/par-projectioncourbe-en.tex",
+    "id": "74ce925cefac"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{cercle}(t){3*cos(t)}{3*sin(t)}{}",
+    "source_file": "doc/text/par-projectioncourbe-en.tex",
+    "id": "58df01e88e80"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{lightsrc=50 20 20,viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n\\defFunction[algebraic]{1_sin}(x){2*sin(1/x)}{}{}\n\\psSolid[object=grille,\n   base=-3 0 -3 3,\n   linewidth=0.5\\pslinewidth,linecolor=gray,]\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   base=-3.2 3.2 -2.2 2.2,\n   planmarks,\n   showBase,\n   name=monplan]\n\\psset{plan=monplan}\n\\psSolid[object=plan,\n   args=monplan,\n   linecolor=gray!40,\n   plangrid,\n   action=none]\n\\psProjection[object=courbe,\n   linecolor=red,\n   range=-3 3,resolution=720,\n   function=1_sin]\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectioncourbe-en.tex",
+    "id": "fae0ebff63be"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{lightsrc=50 20 20,viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n\\defFunction[algebraic]{F}(t){2*sin(0.57735*t)}{2*sin(0.707*t)}{}\n\\psSolid[object=grille,\n   base=-3 0 -3 3,\n   linewidth=0.5\\pslinewidth,linecolor=gray,]\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   base=-3.2 3.2 -2.2 2.2,\n   name=monplan,\n   planmarks,\n   showBase]\n\\psset{plan=monplan}\n\\psSolid[object=plan,\n   args=monplan,\n   linecolor=gray!40,\n   plangrid,\n   action=none]\n\\psProjection[object=courbeR2,\n   range=-25.12 25.12,resolution=720,\n   normal=1 1 2,linecolor=red,\n   function=F]\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectioncourbe-en.tex",
+    "id": "cd8539613303"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{lightsrc=50 -50 50,viewpoint=50 20 50 rtp2xyz,Decran=50}\n\\begin{pspicture}(-6,-2)(6,8)\n\\psframe(-6,-2)(6,8)\n\\codejps{\n% solide 1\n    /tour{\n      -6 1.5 6 [4 16] newcylindre\n      dup (jaune) outputcolors\n    } def\n% solide 2\n    /anneau{\n      [4 -1 4 1 3 1 3 -1] 24 newanneau\n      {0 0 -1 translatepoint3d} solidtransform\n      dup (orange) outputcolors\n    } def\n% fusion\n    tour anneau solidfuz\n    drawsolid**}\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "5214d987d1d4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\codejps{\n/Soufre1 {3.56  [20 16] newsphere\n dup (Yellow) outputcolors} def\n/Soufre2 {3.56  [20 16] newsphere\n {0 0.000 20.10 translatepoint3d} solidtransform\n dup (Yellow) outputcolors} def",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "501d46449000"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(3,4)\n\\psset{lightsrc=100 -50 -10,lightintensity=3,viewpoint=200 20 10 rtp2xyz,Decran=20}\n{\\psset{linewidth=0.5\\pslinewidth}\n\\codejps{/Cl {9.02  [18 16] newsphere\n{-90 0 0 rotateOpoint3d} solidtransform\n dup (Green) outputcolors} def\n/Cl1 { Cl {10.25 10.25 10.25 translatepoint3d} solidtransform } def\n/Cl2 { Cl {10.25 -10.25 10.25 translatepoint3d} solidtransform } def\n/Cl3 { Cl {-10.25 -10.25 10.25 translatepoint3d} solidtransform } def\n/Cl4 { Cl {-10.25 10.25 10.25 translatepoint3d} solidtransform } def\n/Cl5 { Cl {10.25 10.25 -10.25 translatepoint3d} solidtransform } def\n/Cl6 { Cl {10.25 -10.25 -10.25 translatepoint3d} solidtransform } def\n/Cl7 { Cl {-10.25 -10.25 -10.25 translatepoint3d} solidtransform } def\n/Cl8 { Cl {-10.25 10.25 -10.25 translatepoint3d} solidtransform } def\n/Cs {8.38  [18 16] newsphere\n dup (White) outputcolors} def\n/Cl12{ Cl1 Cl2 solidfuz} def\n/Cl123{ Cl12 Cl3 solidfuz} def\n/Cl1234{ Cl123 Cl4 solidfuz} def\n/Cl12345{ Cl1234 Cl5 solidfuz} def\n/Cl123456{ Cl12345 Cl6 solidfuz} def\n/Cl1234567{ Cl123456 Cl7 solidfuz} def\n/Cl12345678{ Cl1234567 Cl8 solidfuz} def\n/C_Cs { Cl12345678 Cs solidfuz} def\nC_Cs  drawsolid**}}%\n\\psPoint(0,0,0){P}\n\\psPoint(10.25,10.25,10.25){Cl1}\n\\psPoint(10.25,-10.25,10.25){Cl2}\n\\psPoint(-10.25,-10.25,10.25){Cl3}\n\\psPoint(-10.25,10.25,10.25){Cl4}\n\\psPoint(10.25,10.25,-10.25){Cl5}\n\\psPoint(10.25,-10.25,-10.25){Cl6}\n\\psPoint(-10.25,-10.25,-10.25){Cl7}\n\\psPoint(-10.25,10.25,-10.25){Cl8}\n\\pspolygon[linestyle=dashed](Cl1)(Cl2)(Cl3)(Cl4)\n\\pspolygon[linestyle=dashed](Cl5)(Cl6)(Cl7)(Cl8)\n\\psline[linestyle=dashed](Cl2)(Cl6)\n\\psline[linestyle=dashed](Cl3)(Cl7)\n\\psline[linestyle=dashed](Cl1)(Cl5)\n\\psline[linestyle=dashed](Cl4)(Cl8)\n\\pcline[offset=0.5]{<->}(Cl2)(Cl1)\n\\aput{:U}{a}\n\\pcline[offset=0.5]{<->}(Cl6)(Cl2)\n\\aput{:U}{a}\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "a7d2dd5af4dd"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-3)(6,3)\n\\psset{lightsrc=50 -50 50,viewpoint=100 -30\n40,Decran=100,linewidth=0.5\\pslinewidth, unit=0.5}\n\\codejps{\n /cylindre1 {\n     -6 2 6 [36 36] newcylindrecreux %newcylindre\n     {90 0 0 rotateOpoint3d} solidtransform\n      dup (Yellow) (White) inoutputcolors\n   } def\n /cylindre2 {\n     -6 2 6 [36 36] newcylindrecreux %newcylindre\n     {90 0 90 rotateOpoint3d} solidtransform\n      dup (Yellow) (White) inoutputcolors\n   } def\n /UnionCylindres {cylindre1 cylindre2 solidfuz} def\n  UnionCylindres  drawsolid**}\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "bdea7646b03a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5,lightsrc=50 -50 50,viewpoint=100 0 0 rtp2xyz,Decran=110,linewidth=0.5\\pslinewidth}\n\\begin{pspicture}(-7,-6)(5,6)\n\\defFunction{F}(t){t cos dup mul 5 mul}{t cos t sin mul 5 mul}{t sin 5 mul}\n\\codejps{%\n   /cylindre1 {\n       -5 2.5 5 [36 36] newcylindre\n       {2.5 0 0 translatepoint3d} solidtransform\n        dup (White) outputcolors\n   } def\n   /sphere1 {\n        5 [36 72] newsphere\n        dup (White) outputcolors\n   } def\n   /CS {cylindre1 sphere1 solidfuz} def\n   CS drawsolid**}\n\\psPoint(0,0,0){O}\n\\psSolid[object=courbe,r=0,\n   function=F,\n   range=0 360,\n   linecolor=red,linewidth=4\\pslinewidth]\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "2d2212fbd4ec"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-5,-4)(3,3)\n\\psset{lightsrc=50 50 50,viewpoint=40 50 60,Decran=30,unit=0.85}\n\\codejps{\n /anneau1 {1 7 [12 36] newtore\n {0 0 0 translatepoint3d} solidtransform\n dup (Yellow) outputcolors} def\n /anneau2 {1 7 [12 36] newtore\n {90 0 0 rotateOpoint3d} solidtransform\n {7 0 0 translatepoint3d} solidtransform\n dup (White) outputcolors} def\n /collier {anneau1 anneau2 solidfuz} def\n  collier  drawsolid**}\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "37506f2f8912"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4.5,-4)(3.2,5)\n\\psset{lightsrc=50 50 10,lightintensity=2,viewpoint=100 50 20 rtp2xyz,\nDecran=30}\n\\psset{linecolor={[cmyk]{0,0.72,1,0.45}},linewidth=0.5\\pslinewidth,\n  unit=1}\n%\\psframe[fillstyle=solid,fillcolor=green!20](-4,-4)(3.2,5)\n\\pstVerb{/hetre {0.764 0.6 0.204 setrgbcolor} def\n         /chene {0.568 0.427 0.086 setrgbcolor} def\n         /bois {0.956 0.921 0.65 setrgbcolor} def\n         }%\n\\codejps{\n /H1 {\n 2  [18 16] newsphere\n {-90 0 0 rotateOpoint3d} solidtransform\n {0 10.93 0 translatepoint3d} solidtransform\n dup (hetre) outputcolors} def\n  /L1 {\n     0 0.25 10  [12 10] newcylindre\n     {-90 0 0 rotateOpoint3d} solidtransform\n      dup (bois) outputcolors\n   } def\n/HL1{ H1 L1  solidfuz} def\n/HL2 { HL1 {0 0 -109.5 rotateOpoint3d} solidtransform } def\n/HL3 { HL2 {0 -120 0 rotateOpoint3d} solidtransform } def\n/HL4 { HL2 {0 120 0 rotateOpoint3d} solidtransform } def\n /C {3  [18 16] newsphere\n  {90 0 0 rotateOpoint3d} solidtransform\n   dup (chene) outputcolors} def\n/HL12 { HL1 HL2 solidfuz} def\n/HL123 { HL12 HL3 solidfuz} def\n/HL1234 { HL123 HL4 solidfuz} def\n/methane { HL1234 C solidfuz} def\n  methane  drawsolid**}\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusionjps-en.tex",
+    "id": "78267e0315f8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-2,-2)(3,3)\n\\psset{viewpoint=100 30 20,Decran=100}\n\\psSolid[object=cube,a=2,\n        action=draw*,\n        fillcolor=magenta!20]\n\\axesIIID[showOrigin=false](1,1,1)(3,2,2.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-axes3D-en.tex",
+    "id": "2227e51b56ca"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-2,-1)(3,4)\n\\psset{viewpoint=100 45 20,Decran=100}\n\\psSolid[object=cylindre,h=2,r=1,\n        action=draw*,mode=4,\n        fillcolor=green!20]\n\\axesIIID[linewidth=1pt,linecolor=red,arrowsize=5pt,\n          arrowinset=0,axisnames={a,b,c},\n          axisemph={\\boldmath\\Large\\color{red}},\n          labelsep=10pt]\n         (1,1,2)(2,2,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-axes3D-en.tex",
+    "id": "9d26d808684a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-7,-2)(7,4)\n\\psset{lightsrc=80 30 30}\n\\psset{viewpoint=1000 60 20 rtp2xyz,Decran=1000}\n\\psframe(-7,-2)(7,4)\n\\psset{solidmemory}\n\\codejps{/a 2 def /b 2 def}%\n\\defFunction[algebraic]{F3}(t)\n   {a*(1+cos(t))}\n   {b*tan(t/2)}\n   {a*sin(t)}\n\\defFunction[algebraic]{F3'}(t)\n   {-a*sin(t)}\n   {b*(1+tan(1/2*t)^2)}\n   {a*cos(t)}\n\\psSolid[object=courbe,\n   range=-2.7468 2.7468,\n   ngrid=72 12,\n   function=F3,hue=0 1 0.7 1,\n   action=none,name=H1,\n   r=1]%\n\\psSolid[object=cylindrecreux,\n         h=20,r=1,RotX=90,\n         incolor=green!30,action=none,\n         name=C1,\n         ngrid=36 36](2,10,0)\n\\psSolid[object=fusion,\n   base=H1 C1]\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "05f9e8bda907"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=fusion,\n         base=H1 C1,\n         filename=horoptere,\n         action=writesolid]",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "7e0acc6731e2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-4)(4,4)\n\\psset{lightsrc=80 30 30,viewpoint=100 45 30 rtp2xyz,Decran=110,linewidth=0.2pt}\n\\defFunction[algebraic]{Func}(t){2.5*cos(t)}{2.5*sin(t)}{2*cos(5*t)}\n\\defFunction[algebraic]{Func'}(t){-2.5*sin(t)}{2.5*cos(t)}{-10*sin(5*t)}\n\\psSolid[object=courbe,range=0 6.28,hue=0 1 0.7 1,\n   ngrid=360 8,function=Func,r=0.15]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "ca2942671c14"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-4)(4,4)\n\\psset{lightsrc=80 30 30,viewpoint=100 45 30 rtp2xyz,Decran=110}\n\\defFunction[algebraic]{FI}(t){2.5*cos(t)}{2.5*sin(t)}{2*cos(5*t)}\n\\psSolid[object=courbe,range=0 6.28,linewidth=2pt,linecolor=blue,function=FI,r=0]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "000d0ed673f9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-3.5)(4,3.5)\n\\psset{lightsrc=80 30 30,viewpoint=100 45 90 rtp2xyz,Decran=100,linewidth=0.2pt}\n\\codejps{\n/rpn {tx@AlgToPs begin AlgToPs end cvx exec} def\n/xc {((2+1*cos(2.75*t))*cos(t)) rpn } def\n/yc {((2+1*cos(2.75*t))*sin(t)) rpn } def\n/zc {(1*sin(2.75*t)) rpn } def\n/xc' {(-2.75*sin(2.75*t)*cos(t)-(2+cos(2.75*t))*sin(t)) rpn } def\n/yc' {(-2.75*sin(2.75*t)*sin(t)+(2+cos(2.75*t))*cos(t)) rpn } def\n/zc' {(2.75*cos(2.75*t)) rpn } def\n/g { 3 dict begin /t exch def xc yc zc end } def\n/g' { % first derivative\n3 dict begin /t exch def xc' yc' zc' end } def\n/solenoide{\n% t_min t_max (name_function) radius_tube [resolution]\n   0 25.2 (g) 0.1 [360 8] newtube dup [0 1] solidputhuecolors} def\nsolenoide\ndrawsolid**\n}%\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "40040a50f13a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-5,-3.5)(4,3)\n\\psset{lightsrc=80 30 30}\n\\psset{viewpoint=100 60 20 rtp2xyz,\n       Decran=75}\n\\psframe*[linecolor=cyan!30](-4.5,-3)(3.5,3)\n\\psSolid[object=datfile,filename=data/horoptere]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "150928d19fcc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-2)(3.5,2)\n\\psset{viewpoint=100 -20 20 rtp2xyz,\n       Decran=75,unit=0.8}\n\\psSolid[object=grille,base=-4 4 -4 4]%\n\\defFunction[algebraic]{FIV}(t){t}{t}{0.5}\n\\defFunction[algebraic]{FIV'}(t){1}{1}{0}\n\\psSolid[object=courbe,\n   range=-4 4, ngrid=16 16,\n   function=FIV, r=0.5]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "dfee8d241d6a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-3)(3.5,3)\n\\psset{viewpoint=100 20 45 rtp2xyz,\n       Decran=75,unit=0.7}\n\\psSolid[object=grille,base=-5 5 -5 5]%\n\\defFunction[algebraic]{FII}(t)\n   {4*cos(t)+cos(4*t)/2}\n   {4*sin(t)-sin(4*t)/2}\n   {1}\n\\defFunction[algebraic]{FII'}(t)\n   {-4*sin(t)-2*sin(4*t)}\n   {4*cos(t)-2*cos(4*t)}\n   {0}\n\\psSolid[object=courbe,\n   range=0 6.28,ngrid=90 16,\n   function=FII,r=1]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "bf4f7650331c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-4)(3.5,4.5)\n\\psset{lightsrc=80 30 30,\n  viewpoint=100 20 20 rtp2xyz,Decran=50}\n\\defFunction[algebraic]{FIII}(t)\n  {(t^2+3)*sin(15*t)}\n  {(t^2+3)*cos(15*t)}{2*t}\n\\defFunction[algebraic]{FIII'}(t)\n  {2*t*sin(15*t)+15*(t^2+3)*cos(15*t)}\n  {2*t*cos(15*t)-15*(t^2+3)*sin(15*t)}{2}\n\\psSolid[object=courbe,\n  range=-2 2,ngrid=360 6,\n  function=FIII,hue=0.2 0.3,\n  linewidth=0.1pt,r=0.2]\n\\end{pspicture}",
+    "source_file": "doc/text/par-tube-en.tex",
+    "id": "b0b73514cd9c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psPoint(x,y,z){name}",
+    "source_file": "doc/text/par-positionnerpointconnu-en.tex",
+    "id": "2d97f7c60e43"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-4)(4,5)\n\\psset{viewpoint=100 50 20 rtp2xyz,Decran=20}\n\\axesIIID(3,3,3)(20,20,20)\n\\psPoint(-4.79,2.06,0){C1}\n\\psPoint(-4.79,15.76,0){Ox}\n\\psPoint(8.43,5.57,0){C2}\n\\psPoint(-14.14,3.34,0){H3}\n\\psPoint(14.14,-2.94,8.90){H6}\n\\psPoint(14.14,-2.94,-8.90){H7}\n\\psPoint(6.43,-16.29,0){H8}\n\\psline(C1)(H3)\\psline(C2)(H7)\n\\psline(C2)(H8)\\psline(C1)(C2)\n\\psline[doubleline=true](C1)(Ox)\n\\psline(C2)(H6)\n\\uput[r](H3){$\\mathrm{H_1}$}\n\\uput[l](H6){$\\mathrm{H_2}$}\n\\uput[l](H7){$\\mathrm{H_3}$}\n\\uput[l](H8){$\\mathrm{H_4}$}\n\\uput{0.25}[u](C1){$\\mathrm{C_1}$}\n\\uput{0.25}[d](C2){$\\mathrm{C_2}$}\n\\uput{0.25}[r](Ox){$\\red\\mathrm{O}$}\n\\psdots[dotstyle=o,dotsize=0.3](H3)(H6)(H7)(H8)\n\\psdots[dotsize=0.4](C1)(C2)\n\\psdot[linecolor=red,dotsize=0.4](Ox)\n\\end{pspicture}",
+    "source_file": "doc/text/par-positionnerpointconnu-en.tex",
+    "id": "3236a5d5f74f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{solidmemory}\n\\psSolid[object=cylindre,\n   r=2,h=6\n   ngrid=6 24,\n   plansepare={[0.707 0 0.707 0]},\n   name=partiescylindre,\n   action=none](0,0,-3)",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "64c0c8dd61fb"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=load,\n   load=partiescylindre1,\n   fillcolor={[rgb]{0.7 1 0.7 }},\n   fcol=0 (1 1 0.7 setrgbcolor)]\n\\psSolid[object=load,\n   load=partiescylindre0,RotZ=60,\n   fillcolor={[rgb]{0.7 1 0.7 }},\n   fcol=0 (1 1 0.7 setrgbcolor)](0,4,0)",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "a9e97d74f50a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=new,\n   sommets=\n      0 -2 0 %% 0\n      -2 0 0 %% 1\n      0 4 0  %% 2\n      4 0 0  %% 3\n      0 0 5, %% 4\n  faces={\n     [3 2 1 0]\n     [4 0 3]\n     [4 3 2]\n     [4 2 1]\n     [4 1 0]},\n   plansepare={[0 0 1 -2]},\n   name=firstSlice,\n   action=none]\n\\psSolid[object=load,action=draw*,\n        load=firstSlice1]\n\\psSolid[object=plan,\n       definition=equation,\n       args={[0 0 1 -2]},\n       base=-3 5 -3 5,action=draw]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "2d9c07195a37"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=new,\n   sommets=\n      0 -2 0 %% 0\n      -2 0 0 %% 1\n      0 4 0  %% 2\n      4 0 0  %% 3\n      0 0 5, %% 4\n  faces={\n     [3 2 1 0]\n     [4 0 3]\n     [4 3 2]\n     [4 2 1]\n     [4 1 0]\n},filename=data/Pyramid,fillcolor=yellow!50,\n  action=writesolid]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "c00905bb234c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=datfile,\n         filename=data/Pyramid]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "d138ec73e5be"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{solidmemory}\n\\psSolid[object=datfile,\n         filename=data/Pyramid,\n   plansepare={[0 0 1 -2]},\n   name=firstSlice,\n   action=none]\n\\psSolid[object=load,\n        load=firstSlice1,\n        action=none,\n        plansepare={[0 0 1 -1]},\n        name=secondSlice]\n\\psSolid[object=load,action=draw*,\n        load=secondSlice0]\n\\psSolid[object=load,\n       load=secondSlice0,\n       filename=data/slicePyramid,\n      action=writesolid]\n\\psSolid[object=datfile,fillcolor=yellow!50,\n         filename=data/slicePyramid]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "e92140886ca2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=load,\n   load=my_octahedron,\n   plansepare=P,\n   name=part]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "34c06be21d2a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=load,\n         fcol=0 (YellowOrange),\n         fillcolor={[rgb]{0.7 1 0.7}},\n        load=part1]\n\\psSolid[object=load,\n         fillcolor={[rgb]{0.7 1 0.7}},\n        load=part0](H 2 mulv3d,,)\n\\composeSolid",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "0eef983adaa1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{solidmemory}\n\\psSolid[object=datfile,\n         fcol=0 (Dandelion),\n         fillcolor={[rgb]{0.7 1 0.7}},\n         name=C1,\n         action=none,\n         filename=data/cubeHexagone]",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "8361fd2b5ffa"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2)(3,7.5)\n\\psset{viewpoint=50 20 20 rtp2xyz,Decran=50}\n\\psset{lightsrc=viewpoint} \n\\psSolid[object=cylindre,\n   ngrid=1 24,\n   r=2,\n   fillcolor=yellow!25,\n   intersectiontype=0,\n   intersectionplan={\n      [0 0 1 -1]\n      [0 0 1 -2]\n      [0 0 1 -3]\n      [0.894 0 0.447 -1.8]},\n   intersectioncolor=(bleu) (rouge) (vert) (rose),\n   intersectionlinewidth=1 1.5 1.8 2.2]\n\\axesIIID(2,2,6)(3,3,7)\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "59f50abd2c19"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-3)(4.5,5)\n\\psset{viewpoint=100 5 10 rtp2xyz,Decran=80,\n   lightsrc=viewpoint,solidmemory,action=none}\n\\psSolid[object=octahedron,\n   a=4,name=my_octahedron,]\n\\psSolid[object=point,\n   definition=solidcentreface,\n   args=my_octahedron 1,\n   name=G,]\n\\psSolid[object=point,\n   definition=mulv3d,\n   args=G .8,\n   name=H,]\n\\psSolid[object=plan,\n   definition=solidface,\n   args=my_octahedron 1,\n   base=-4 4 -4 4,\n   name=P,](H,,)\n\\psSolid[object=load,\n   load=my_octahedron,\n   plansepare=P,\n   name=part]\n\\psSolid[object=load,load=part1,\n         rm=0,hollow,action=draw**,\n         fillcolor={[rgb]{0.7 1 0.7}},\n         incolor={[rgb]{1 1 0.7}},]\n\\psSolid[object=plan,args=P,\n       action=draw,showBase]\n\\psSolid[object=line,\n   args=0 0 0 H,\n   linestyle=dashed,]\n\\psProjection[object=point,plan=P,args=0 0,\n    fontsize=20,pos=cl,text=H,phi=90,]\n\\axesIIID[linecolor=blue,linewidth=0.4pt](0,0,0)(4,4,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "b79e94d31dc6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-3)(4.5,5)\n\\psset{viewpoint=100 5 10 rtp2xyz,Decran=80,\n   lightsrc=viewpoint,solidmemory,action=none}\n\\psSolid[object=octahedron,\n   a=4,name=my_octahedron,]\n\\psSolid[object=point,\n   definition=solidcentreface,\n   args=my_octahedron 1,\n   name=G,]\n\\psSolid[object=point,\n   definition=mulv3d,\n   args=G .8,\n   name=H,]\n\\psSolid[object=plan,\n   definition=solidface,\n   args=my_octahedron 1,\n   base=-4 4 -4 4,\n   name=P,](H,,)\n\\psSolid[object=load,\n   load=my_octahedron,\n   plansepare=P,\n   name=part]\n\\psSolid[object=load,\n   load=part1,\n   fcol=0 (YellowOrange),\n   action=draw**,\n   fillcolor={[rgb]{0.7 1 0.7}},]\n\\psSolid[object=plan,args=P,\n       action=draw,showBase]\n\\psSolid[object=line,\n   args=0 0 0 H,\n   linestyle=dashed,]\n\\psProjection[object=point,plan=P,args=0 0,\n    fontsize=20,pos=cl,text=H,phi=90,]\n\\axesIIID[linecolor=blue,linewidth=0.4pt](0,0,0)(4,4,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "ab0e91a29818"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-3)(4.5,5)\n\\psset{viewpoint=100 5 20 rtp2xyz,Decran=150,\n   lightsrc=viewpoint,solidmemory,action=none}\n\\psSolid[object=octahedron,\n   a=2,name=my_octahedron,]\n\\psSolid[object=point,\n   definition=solidcentreface,\n   args=my_octahedron 1,\n   name=G,]\n\\psSolid[object=point,\n   definition=mulv3d,\n   args=G .7,\n   name=H,]\n\\psSolid[object=plan,\n   definition=solidface,\n   args=my_octahedron 1,\n   base=-4 4 -4 4,\n   name=P,](H,,)\n\\psSolid[object=load,\n   load=my_octahedron,\n   plansepare=P,\n   name=part]\n\\psset{action=draw**}\n\\psSolid[object=load,\n   load=part1,\n   fcol=0 (YellowOrange),\n   fillcolor={[rgb]{0.7 1 0.7}},]\n\\psSolid[object=load,\n         fillcolor={[rgb]{0.7 1 0.7}},\n        load=part0](H 2 mulv3d,,)\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "f95de6dd9f49"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=100 30 20 rtp2xyz,Decran=150}\n\\begin{pspicture}(-4,-3)(4,5)\n\\psset{solidmemory}\n\\psSolid[object=plan,definition=normalpoint,\n   args={1 1 1 [1 1 1]},action=none,name=P]\n\\psSolid[object=cube,a=2,action=draw,\n   intersectiontype=0,\n   intersectionplan=P,\n   intersectionlinewidth=2,\n   intersectioncolor=(rouge),\n](1,1,1)\n\\psProjection[object=point,\n   args=0 0,fontsize=10,pos=dc,\n   text=H,phi=-30,plan=P,\n]\n\\psSolid[object=line,\n   linestyle=dashed,\n   args=0 0 0 1 1 1]\n\\psSolid[object=vecteur,\n   linecolor=red,\n   args=1 1 1 .7 mulv3d](1,1,1)\n\\axesIIID[linecolor=blue](2,2,2)(2.5,2.5,2.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "70880c2e0be2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=100 30 20 rtp2xyz,Decran=150}\n\\begin{pspicture}(-4,-3)(4,5)\n\\psset{solidmemory}\n\\psSolid[object=plan,action=none,definition=normalpoint,\n   args={1 1 1 [1 1 1]},name=P]\n\\psSolid[object=cube,a=2,\n   plansepare=P,\n   action=none,\n   name=parts_cube,\n](1,1,1)\n\\psSolid[object=load,\n         load=parts_cube1,\n         fcol=0 (Dandelion),\n         fillcolor={[rgb]{0.7 1 0.7}},\n]\n\\psProjection[object=point,\n   args=0 0,fontsize=10,pos=dc,\n   text=H,phi=-30,plan=P,\n]\n\\psSolid[object=vecteur,\n   linecolor=red,\n   args=1 1 1 .7 mulv3d](1,1,1)\n\\axesIIID[linecolor=blue](2,2,2)(2.5,2.5,2.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "afaebc6ee145"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-4)(4,4)\n\\psset{viewpoint=100 20 20 rtp2xyz,Decran=75}\n\\psset{solidmemory,lightsrc=viewpoint}\n\\codejps{\n   /coeff 0.75 def /rO 4 def /OH coeff rO mul neg def}%\n\\psSolid[object=sphere,\n   r=rO,ngrid=9 18,\n   plansepare={[1 0 0 OH]},\n   name=part,\n   action=none]\n\\psSolid[object=load,\n   load=part1,plansepare={[-1 0 0 OH]},action=none,name=part]\n\\psSolid[object=load,\n   load=part1,plansepare={[0 1 0 OH]},action=none,name=part]\n\\psSolid[object=load,\n   load=part1,plansepare={[0 -1 0 OH]},action=none,name=part]\n\\psSolid[object=load,\n   load=part1,plansepare={[0 0 1 OH]},action=none,name=part]\n\\psSolid[object=load,\n   load=part1,plansepare={[0 0 -1 OH]},action=none,name=part]\n\\psSolid[object=load,hue=.1 .8 0.5 1,\n   load=part1](0,0,0)\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "c1704b3ccd5a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-4)(3.5,4)\n\\psset{viewpoint=100 -20 10 rtp2xyz,Decran=100}\n%\\lightsource\n\\psset{lightsrc=viewpoint}\n\\codejps{\n4 4 6 newparallelepiped\n45 90 360 {\n/iAngle exch def\n  /n_x iAngle cos 35.2644 cos mul def\n  /n_y iAngle sin 35.2644 cos mul def\n  /n_z 35.2644 sin def\n  /distance 2 3 add 3 sqrt div neg def\n[ n_x n_y n_z distance]\nsolidplansepare\n} for\n45 90 360 {\n/iAngle exch def\n  /n_x iAngle cos 35.2644 cos mul def\n  /n_y iAngle sin 35.2644 cos mul def\n  /n_z 35.2644 sin neg def\n  /distance 2 3 add 3 sqrt div neg def\n[ n_x n_y n_z distance]\nsolidplansepare\n} for\n45 90 360 {\n/iAngle exch def\n% plan : ax+by+cz-d=0\n[ iAngle cos % a\n  iAngle sin % b\n  0 % c\n  -2.5 % -d\n] solidplansepare\n} for\ndup [.5 .2] solidputhuecolors\nsolidlightOn\ndrawsolid*}\n\\end{pspicture}",
+    "source_file": "doc/text/par-section-en.tex",
+    "id": "c2801ad846f0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=face,base=x1 y1 x2 y2 x3 y3 ...xn yn](0,0,0)%",
+    "source_file": "doc/text/par-face-en.tex",
+    "id": "c39f7cabe9c6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.4}\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-5.5,-4.5)(7,3.5)\n\\psSolid[object=grille,base=-4 6 -4 4,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=face,fillcolor=yellow,action=draw*,\n  incolor=blue,biface,base=0 0 3 0 1.5 3,\n  num=all,show=all](0,1,0)\n\\psSolid[object=face,fillcolor=yellow,\n  action=draw*,incolor=blue,\n  base=0 0 3 0 1.5 3,num=all,\n  show=all,biface,RotX=180](0,-1,0)\n\\axesIIID(0,0,0)(6,6,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-face-en.tex",
+    "id": "9e0e60d31b54"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.45}\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\def\\BASE{0 10 360{/Angle ED 5 Angle cos dup mul mul % x\n 3 Angle cos 3 exp Angle sin mul mul } for}% y\n\\begin{pspicture}(-7,-5.5)(9,6)\n\\defFunction[algebraic]{F}(t){5*(cos(t))^2}\n   {3*(sin(t))*(cos(t))^3}{}\n\\psSolid[object=grille,base=-6 6 -6 6,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=face,fillcolor=magenta,action=draw*,\n  incolor=blue,biface,RotZ=90,\n  base=0 2 pi mul {F} CourbeR2+](0,0,0)\n\\psSolid[object=face,fillcolor=yellow,action=draw*,\n  incolor=blue,biface,\n  base=0 2 pi mul {F} CourbeR2+](0,0,0)\n\\psSolid[object=face,fillcolor=yellow,action=draw*,\n  incolor=blue,biface,RotY=180,\n  base=0 2 pi mul {F} CourbeR2+](0,0,0)\n\\psSolid[object=face,fillcolor=yellow,action=draw*,\n  incolor=red,biface,RotY=180,RotZ=90,\n  base=0 2 pi mul {F} CourbeR2+](0,0,0)\n\\axesIIID(0,0,0)(6,6,5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-face-en.tex",
+    "id": "281c7c55fd93"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=.6}\n\\begin{pspicture}(-6,-5)(6,7)\n\\psset{solidmemory}\n\\psSolid[object=cylindre,h=6,fillcolor=blue,\n      r=1.5,\n      ngrid=4 16,\n      action=none,\n      name=A1,\n      ](0,0,-4)\n\\psSolid[object=anneau,h=6,fillcolor=red!50,\n      R=4,r=3,h=1,\n      action=none,\n      name=B1,\n      ](0,0,-1)\n\\psSolid[object=fusion,\n      action=draw**,\n      base=A1 B1,\n      ](0,0,0)\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusion-en.tex",
+    "id": "9cd566e013a2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6,-5)(6,5)\n\\psset{solidmemory}\n\\psset{lightsrc=50 -50 50,viewpoint=100 -30 40,\n   Decran=100,linewidth=0.5\\pslinewidth,\n   ngrid=18 18,fillcolor=white,\n   h=12,r=2,RotX=90}\n\\psframe*[linecolor=black](-6,-5)(6,5)\n\\psSolid[object=cylindrecreux,\n   action=none,\n   name=cylindre1](0, 6, 0)\n\\psSolid[object=cylindrecreux,\n   RotZ=90,\n   action=none,\n   name=cylindre2](-6, 0, 0)\n\\psSolid[object=fusion,\n   base=cylindre1 cylindre2,RotX=0]\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-fusion-en.tex",
+    "id": "108b26485a49"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=tore,\n   filename=montore,\n   action=writesolid]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "096bc4c7c952"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=datfile, filename=montore]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "2a30cc7413bf"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=tore,\n   filename=montore,\n   action=writeobj]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "8876a87fe26c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=objfile, filename=montore]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "e77370e5dd38"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=tore,\n   filename=montore,\n   action=writeoff]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "576d1e0a052d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=offfile, filename=montore]",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "0132c660fed1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=20 15 10 rtp2xyz,Decran=20}\n\\begin{pspicture}(-3,-4)(3,3)\n\\psframe*[linecolor=cyan!50](-3,-4)(1,3)\n\\psSolid[object=objfile,\n         unit=20,RotX=60,\n         filename=data/rocket]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-datfile-en.tex",
+    "id": "b1a51a73d5e8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{fillcolor=yellow,mode=3}\n\\psSolid[object=cube](0.5,0.5,0.5)\n\\psSolid[object=cube](4.5,0.5,0.5)\n\\psSolid[object=cube](0.5,4.5,0.5)\n\\psSolid[object=cube](0.5,0.5,4.5)\n\\psSolid[object=cube](4.5,4.5,4.5)\n\\psSolid[object=cube](4.5,0.5,4.5)\n\\psSolid[object=cube](4.5,4.5,0.5)\n\\psSolid[object=cube](0.5,4.5,4.5)",
+    "source_file": "doc/text/par-positionnersolide-en.tex",
+    "id": "5d1a0af2fce6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]{G1}(t){t}{2*sin(t)}{-2}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "a7f8fc27b976"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=cylindre,\n   h=4,function=G1,\n   range=-3 3,\n   ngrid=3 16,\n   axe=0 1 1,\n   incolor=green!50,\n   fillcolor=yellow!50]",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "3658e4c054eb"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pstVerb{/ladistance 2 sqrt 2 mul def}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "8df2804c0c4e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-1.5,-3)(6.5,6)\n\\psSolid[object=grille,base=-3 3 -1 8,action=draw]\n\\pstVerb{/ladistance 2 sqrt 2 mul def}\n\\defFunction[algebraic]{G3}(t){6*(cos(t))^3*sin(t)}{4*(cos(t))^2}{0}\n\\defFunction[algebraic]{G4}(t){6*(cos(t))^3*sin(t)}{4*(cos(t))^2+ladistance}{ladistance}\n\\psSolid[object=courbe,function=G3,range=0 6.28,r=0,linecolor=blue,linewidth=2pt]\n\\psSolid[object=cylindre,range=0 -6.28,h=4,function=G3,axe=0 1 1,ngrid=3 36,\n   fillcolor=green!50,incolor=yellow!50]\n\\psSolid[object=courbe,function=G4,range=0 6.28,r=0,linecolor=blue,linewidth=2pt]\n\\psSolid[object=vecteur,linecolor=red,args=0 ladistance dup]\n\\psSolid[object=plan,action=draw,definition=equation,args={[0 0 1 ladistance neg] 90},\n   base=-1 8 -3 3,planmarks,showBase]\n\\axesIIID(0,4.5,0)(4,8,5)\n\\rput(0,-3){\\texttt{axe=0 1 1}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "996b5b6c3126"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75,lightsrc=viewpoint,\n  viewpoint=100 -10 20 rtp2xyz,Decran=100}\n\\begin{pspicture}(-1.5,-3)(6.5,6)\n\\psSolid[object=grille,base=-3 3 -1 6,action=draw]\n\\defFunction[algebraic]{G5}(t)\n  {t}{0.5*t^2}{0}\n\\defFunction[algebraic]{G6}(t)\n  {t}{0.5*t^2}{4}\n\\psSolid[object=courbe,function=G5,\n  range=-3 2,r=0,linecolor=blue,\n  linewidth=2pt]\n\\psSolid[object=cylindre,\n  range=-3 2,h=4,\n  function=G5,\n  axe=0 0 1, %% valeur par d\\'{e}faut\n  incolor=green!50,\n  fillcolor=yellow!50,\n  ngrid=3 8]\n\\psSolid[object=courbe,function=G6,\n  range=-3 2,r=0,linecolor=blue,\n  linewidth=2pt]\n\\axesIIID(0,4.5,0)(4,6,5)\n\\psSolid[object=vecteur,\n  linecolor=red,args=0 0 4]\n\\psSolid[object=plan,action=draw,\n  definition=equation,\n  args={[0 0 1 -4] 90},\n  base=-1 6 -3 3,planmarks,showBase]\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "4793dd59f7cb"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75,lightsrc=viewpoint,\n  viewpoint=100 -10 20 rtp2xyz,Decran=100}\n\\begin{pspicture}(-3.5,-3)(6.5,6)\n\\psset{lightsrc=viewpoint,viewpoint=100 45 45,Decran=100}\n\\psSolid[object=grille,base=-3 3 -2 7,fillcolor=gray!30]\n\\defFunction[algebraic]{G7}(t)\n   {2*cos(t)}{2*sin(t)}{0}\n\\defFunction[algebraic]{G8}(t)\n    {2*cos(t)}{2*sin(t)+4}{4}\n\\psSolid[object=courbe,function=G7,\n  range=0 6.28,r=0,\n  linecolor=blue,linewidth=2pt]\n\\psSolid[object=cylindre,\n  range=0 6.28,h=5.65685,\n  function=G7,axe=0 1 1,\n  incolor=green!20,\n  fillcolor=yellow!50,\n  ngrid=3 36]\n\\psSolid[object=courbe,function=G8,\n  range=0 6.28,r=0,linecolor=blue,\n  linewidth=2pt]\n\\axesIIID(2,4.5,2)(4,8,5)\n\\psSolid[object=vecteur,\n  linecolor=red,args=0 1 1](0,4,4)\n\\psSolid[object=plan,action=draw,\n  definition=equation,\n  args={[0 0 1 -4] 90},\n  base=-2 7 -3 3,planmarks,showBase]\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "5a0e9a55e336"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-2)(4,5)\n\\psset{unit=0.75,lightsrc=viewpoint,viewpoint=100 -5 10 rtp2xyz,Decran=100}\n\\psSolid[object=grille,base=-4 4 -4 4,ngrid=8. 8.](0,0,-1)\n\\defFunction[algebraic]{G9}(t)\n  {3*cos(t)}{3*sin(t)}{1*cos(5*t)}\n\\psSolid[object=cylindre,\n  range=0 6.28,h=5,function=G9,\n  axe=0 0 1,incolor=green!50,\n  fillcolor=yellow!50,\n  ngrid=4 72,grid]\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "a4179d962306"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(4.5,6)\n\\psset{unit=0.75,lightsrc=viewpoint,viewpoint=100 10 10 rtp2xyz,Decran=100}\n\\psSolid[object=grille,base=-4 4 -3 3,action=draw](0,0,-2)\n\\defFunction[algebraic]{G1}(t){t}{0.25*t^2}{-2}\n\\defFunction[algebraic]{G2}(t){-t}{-0.25*t^2}{2}\n\\psSolid[object=courbe,function=G1,\n  range=-3.46 3,r=0,\n  linecolor=blue,linewidth=2pt]\n\\psSolid[object=cone,function=G1,\n  range=-3.46 3,ngrid=3 16,\n  incolor=green!50,\n  fillcolor=yellow!50,\n  origine=0 0 0]\n\\psSolid[object=courbe,\n  function=G2,range=-3.46 3,\n   r=0,linecolor=blue,\n   linewidth=2pt]\n\\psPoint(0,0,0){I}\n\\uput[l](I){\\red$(0,0,0)$}\n\\psdot[linecolor=red](I)\n\\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-3,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "5c3f3bae4908"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(4.5,6)\n\\psset{unit=0.7,lightsrc=viewpoint,viewpoint=100 -10 20 rtp2xyz,Decran=100}\n\\psSolid[object=grille,base=-4 4 -3 3,\n  linecolor={[rgb]{0.72 0.72 0.5}},action=draw](0,0,-2)\n\\defFunction[algebraic]{G1}(t){t}{2*sin(t)}{-2}\n\\defFunction[algebraic]{G2}(t){-t}{-2*sin(t)}{2}\n\\psSolid[object=courbe,function=G1,\n   range=-3.14 3.14,r=0,\n   linecolor=blue,\n   linewidth=2pt]\n\\psSolid[object=cone,function=G1,\n   range=-3.14 3.14,ngrid=3 16,\n   incolor=green!50,\n   fillcolor=yellow!50,\n   origine=0 0 0]\n\\psSolid[object=courbe,\n   function=G2,range=-3.14 3.14,\n   r=0,linecolor=blue,\n   linewidth=2pt]\n\\psPoint(0,0,0){I} \\uput[l](I){\\red$(0,0,0)$}\n\\psdot[linecolor=red](I)\n\\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-3,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "6b22b168c1d1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(4.5,6)\n\\psset{unit=0.7,lightsrc=viewpoint,viewpoint=100 -10 20 rtp2xyz,Decran=100}\n\\psSolid[object=grille,base=-4 4 -4 4,linecolor={[rgb]{0.72 0.72 0.5}},action=draw](0,0,-2)\n\\defFunction[algebraic]{G1}(t){t}{2*sin(t)}{-2}\n\\defFunction[algebraic]{G2}(t){-t}{-2*sin(t)-2}{2}\n\\psSolid[object=courbe,function=G1,\n   range=-3.14 3.14,r=0,\n   linecolor=blue,\n   linewidth=2pt]\n\\psSolid[object=cone,\n   function=G1,range=-3.14 3.14,\n   ngrid=3 16,incolor=green!50,\n   fillcolor=yellow!50,\n   origine=0 -1 0]\n\\psSolid[object=courbe,\n   function=G2,range=-3.14 3.14,\n   r=0,linecolor=blue,\n   linewidth=2pt]\n\\psPoint(0,-1,0){I}\\uput[l](I){\\red$(0,-1,0)$}\n\\psdot[linecolor=red](I)\n\\gridIIID[Zmin=-2,Zmax=2,spotX=r](-4,4)(-4,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-cylindres-cones-en.tex",
+    "id": "7335515f7054"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-1.5)(3.5,2.5)\n\\psSolid[object=grille,\n   base=0 4 -3 3,\n   linecolor=gray](0,0,0)\n\\axesIIID(0,0,0)(4,3,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-grille-en.tex",
+    "id": "6d406dd0915d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-1.5)(3.5,2.5)\n\\psSolid[object=grille,\n   ngrid=1,\n   base=0 4 -3 3,\n   linecolor=gray](0,0,0)\n\\axesIIID(0,0,0)(3,3,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-grille-en.tex",
+    "id": "57478c1ba16d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3.5,-1.5)(3.5,2.5)\n\\psSolid[object=grille,\n   ngrid=1. 1,\n   base=0 4 -3 3,\n   linecolor=gray](0,0,0)\n\\axesIIID(0,0,0)(3,3,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-grille-en.tex",
+    "id": "dab9d659e522"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pstheader{myObj.pro}",
+    "source_file": "doc/text/par-extensions-en.tex",
+    "id": "5cabb7e6c83b"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\addtosolideslistobject{myObj}",
+    "source_file": "doc/text/par-extensions-en.tex",
+    "id": "10de44776aa1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,Decran=10,\n  fontsize=10,unit=0.65}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=equation,\n   args={[0 0 1 0]},\n   fillcolor=Aquamarine,\n   planmarks,\n   base=-2.2 2.2 -3.2 3.2,\n   showbase]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "fb51b01479b4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,Decran=10,\n  fontsize=10,unit=0.65cm}\n\\begin{pspicture*}(-4,-5.5)(6,4)\n\\psSolid[object=plan,\n   definition=equation,\n   args={[0 0 1 0]},\n   fillcolor=Aquamarine,\n   origine=1 2 0,\n   base=-2.2 2.2 -3.2 3.2,\n   planmarks]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "1744433609b7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,\n  Decran=10,fontsize=10,unit=0.65cm}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=equation,\n   args={[0 0 1 0] 90},\n   fillcolor=Aquamarine,\n   base=-2.2 2.2 -3.2 3.2,\n   planmarks]\n\\axesIIID(0,0,0)(3.2,2.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "f218a5c0dd02"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,\n  Decran=10,fontsize=10,unit=0.65cm}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=normalpoint,\n   args={0 0 0 [0 0 1]},\n   fillcolor=Aquamarine,\n   planmarks,\n   base=-2.2 2.2 -3.2 3.2,\n   showbase]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "220169f004e7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,\n  Decran=10,fontsize=10,unit=0.65}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=normalpoint,\n   args={0 0 0 [0 0 1 45]},\n   fillcolor=Aquamarine,\n   planmarks,\n   base=-2.2 2.2 -3.2 3.2,\n   showbase]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "877758f01b23"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,\n  Decran=10,fontsize=10,unit=0.65cm}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=normalpoint,\n   args={0 0 0 [1 1 0 0 0 1]},\n   fillcolor=Aquamarine,\n   planmarks,\n   base=-2.2 2.2 -3.2 3.2,\n   showbase,\n]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "e27ccb05a844"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 60 rtp2xyz,\n  Decran=10,fontsize=10,unit=0.65cm}\n\\begin{pspicture*}(-5,-4)(5,4)\n\\psSolid[object=plan,\n   definition=normalpoint,\n   args={0 0 0 [1 1 0 0 0 1 45]},\n   fillcolor=Aquamarine,\n   planmarks,\n   base=-2.2 2.2 -3.2 3.2,\n   showbase]\n\\axesIIID(0,0,0)(2.2,3.2,4)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "1269d1c017ec"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 20 rtp2xyz,Decran=8}\n\\begin{pspicture}(-3.5,-2)(3,2.5)\n\\psset{solidmemory}\n\\psSolid[object=cube,a=2,fontsize=20,numfaces=all,name=A]\n\\psSolid[object=plan,\n   definition=solidface,\n   args=A 0,\n   showBase]\n\\end{pspicture}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "a0dcc8a6d32f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=10 18 20 rtp2xyz,Decran=8}\n\\begin{pspicture}(-3.5,-1.5)(3,3)\n\\psset{solidmemory}\n\\psSolid[object=cube,a=2,fontsize=20,numfaces=all,name=A]\n\\psSolid[object=plan,\n   definition=solidface,\n   args=A 0,\n   showBase](0,0,2)\n\\end{pspicture}",
+    "source_file": "doc/text/par-plan-en.tex",
+    "id": "7a54b79c7cf0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   planmarks,\n   name=monplan]\n\\psset{plan=monplan}\n%% definition du point A\n\\psProjection[object=point,\n   name=A,\n   text=A,\n   pos=ur](-2,1.25)\n\\psProjection[object=cercle,\n   args=A 1,\n   range=0 360]\n\\psProjection[object=cercle,\n   args=1 1 .5,linecolor=blue,\n   range=0 180]\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectioncercle-en.tex",
+    "id": "9f69849a0657"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{Decran=12,grid=true,viewpoint=15 10 15}\n\\begin{pspicture}(-2.5,-2.5)(2.5,2.5)\n\\psSolid[object=cylindrecreux,\n    ngrid=2 6,\n    h=6,r=2,\n    fillcolor=green!60,\n    incolor=yellow!50,\n    RotZ=-60,\n    rm=1 3 6,](0,0,-3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-enleverfacettes-en.tex",
+    "id": "7d776475379b"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{Decran=12,grid=true,viewpoint=15 10 15}\n\\begin{pspicture}(-2.5,-2.5)(2.5,2.5)\n\\psSolid[object=troncconecreux,\n    rm=1 12 13 14,\n    r0=3,r1=1,h=6,\n    fillcolor=green!60,\n    incolor=yellow,\n    mode=3](0,0,-3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-enleverfacettes-en.tex",
+    "id": "8d08666b7a64"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[a=8,object=cube,ngrid=4,fillcolor=yellow]%",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "a999b3d75ac4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\newarray\\colors\n\\readarray{colors}{%\n    Apricot&Aquamarine%\n    etc.}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "6eb6a0a1040f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\edef\\colorfaces{}%\n\\multido{\\i=0+1}{67}{%\n    \\checkcolors(\\i)\n    \\xdef\\colorfaces{%\n    \\colorfaces\\i\\space(\\cachedata)\\space}\n     }",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "c51b163b64e4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[a=8,object=cube,ngrid=3,%\n        fcol=\\colorfaces,\n        RotY=45,RotX=30,RotZ=20]%",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "89b707e02f41"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint}\n\\psset{color1=cyan,color2=red}\n\\psSolid[\n   fcol=251 (OliveGreen) 232 (color1) 214 (color2),\n   object=sphere,\n   ngrid=16 18,\n   RotX=180,RotZ=30]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "1e466f9a8e84"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint}\n\\psset{color1=cyan,color2=red}\n\\psSolid[\n   action=draw*,\n   fcol=0 (OliveGreen) 2 (color1) 3 (color2),\n   object=sphere,\n   ngrid=4 4,\n   RotX=180,RotZ=30]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "3b347c1d5ff2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(3,4)\n\\psset{viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint}\n\\psset{color1=cyan,color2=red}\n\\psSolid[\n   fcol=0 (OliveGreen) 2 (color1) 3 (color2),\n   h=5,r=2,\n   object=cylindrecreux,\n   ngrid=4 30,\n   RotZ=30\n](0,0,-2.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "ed7a953e8236"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-4)(4,4)\n\\psset{viewpoint=50 50 20 rtp2xyz,Decran=50,lightsrc=viewpoint}\n\\psset{color1=cyan,color2=red}\n\\psSolid[\n   action=draw*,\n   fcol=0 (OliveGreen) 2 (color1) 3 (color2),\n   h=5,r=2,\n   object=cylindre,\n   ngrid=2 12,\n   RotY=-20\n](0,0,-2.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "005c697470e6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2)(3,2)\n\\psset{viewpoint=50 50 30 rtp2xyz,Decran=25,lightsrc=viewpoint}\n\\psSolid[r1=2.5,r0=1.5,\n    object=tore,\n    ngrid=4 36,\n    fillcolor=green!30,\n    action=draw**]%\n\\axesIIID(4,4,0)(5,5,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "32f4cba889af"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2)(3,2)\n\\psset{viewpoint=50 50 30 rtp2xyz,Decran=25,lightsrc=viewpoint}\n\\psSolid[r1=3.5,r0=1,\n    object=tore,\n    ngrid=9 18,\n    fillcolor=magenta!30,\n    action=draw**]%\n\\axesIIID(4.5,4.5,0)(5,5,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-definitionmaillage-en.tex",
+    "id": "e5548682e642"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture*}(-1,-1)(1,2)\n\\psSolid[object=vecteur,\n    action=draw*,\n   args=0 0 1,\n   linecolor=yellow]%\n\\psSolid[object=vecteur,\n   args=1 0 0,\n   linecolor=red]\n\\psSolid[object=vecteur,\n   args=0 0 1,\n   linecolor=blue](1,0,0)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-vecteur-en.tex",
+    "id": "eaf505c506cc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture*}(-3,-3)(4.5,2)\n\\psSolid[object=plan,\n   linecolor=gray,\n   definition=equation,\n   args={[0 1 1 0]},\n   base=-1 3 -2 2,\n   planmarks,\n   plangrid]\n\\psSolid[object=vecteur,\n   definition=vecteur3d,\n   args=0 0 1 1 1 1]%\n\\end{pspicture*}",
+    "source_file": "doc/text/par-vecteur-en.tex",
+    "id": "948adee1c982"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[a=1,object=cube,color1=red!60!yellow!20,fcol=0 (color1)]%",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "2931088ef428"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pstVerb{/hetre {0.764 0.6 0.204 setrgbcolor} def\n         /chene {0.568 0.427 0.086 setrgbcolor} def\n         /cheneclair {0.956 0.921 0.65 setrgbcolor} def\n         }%",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "5fb145568282"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{Decran=20,viewpoint=10 5 10,unit=0.5}\n\\begin{pspicture}(-5,-5)(5,5)\n\\psSolid[\n   fcol=0 (red) 1 (Aquamarine)  2 (Bittersweet)\n        3 (ForestGreen) 4 (Goldenrod)\n        13 (GreenYellow)\n        40 (Mulberry),\n   object=cube,mode=3]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "2941b0660d5a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{Decran=20,viewpoint=10 5 10,unit=0.5}\n\\begin{pspicture}(-5,-5)(5,5)\n\\psSolid[\n   fcol=0 (red) 2 (Lavender) 3 (SkyBlue)  11 (LimeGreen) 12 (OliveGreen),\n   object=cylindre,\n   h=4,\n   ngrid=4 10](0,0,-2)\n\\end{pspicture}",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "7c214322a61d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3.5,2.5)\n\\psset{Decran=7.5,viewpoint=10 10 5}\n\\pstVerb{/iface 0 store}%\n\\psSolid[\nfcol=48 {iface (Black)\n  iface 1 add (LimeGreen)\n  iface 2 add (Yellow) /iface\n  iface 3 add store} repeat,\n  r1=4,r0=1,\n  object=tore,\n  ngrid=8 18,\n  RotY=30]\n\\end{pspicture}",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "385b79cf9bd5"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2.5)(3,2.5)\n\\psset[pst-solides3d]{viewpoint=50 50 50,Decran=40,lightsrc=50 20 1e2}\n\\psSolid[r1=5,r0=1,object=tore,ngrid=16 18,hue=0 1]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-colorierfacettes-en.tex",
+    "id": "5b03fe1e102e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-5,-4)(6,5)\n\\psSolid[object=cube,\n   fillcolor=cyan,\n   incolor=red,\n   hollow,\n   affinage=0]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-affinage-en.tex",
+    "id": "17996c222eb0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-5,-4)(6,5)\n\\psSolid[object=cube,\n   fillcolor=cyan,\n   affinagecoeff=.5,\n   affinagerm,\n   fcolor=.5 setfillopacity Yellow,\n   hollow,\n   affinage=all]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-affinage-en.tex",
+    "id": "38e66e611afc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psImplicitSurface[options](x0,y0,z0)",
+    "source_file": "doc/text/par-implicitsurface-en.tex",
+    "id": "e7a187b7743d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{animateinline}[controls,autoplay,loop,\n  begin={\\begin{pspicture}(-6,-5)(6,4)},end={\\end{pspicture}}]{5}\n  \\multiframe{18}{iA=0+20}{%\n  \\psset{lightsrc=viewpoint,viewpoint=40 \\iA\\space 15 rtp2xyz,Decran=50}\n  \\psSolid[object=grille,base=-4 4 -4 4,ngrid=8 8,linecolor=black!10](0,0,-2)\n  \\psImplicitSurface[\n    XMinMax=-2.0 2.0 0.15,YMinMax=-2.0 2.0 0.15,ZMinMax=-2.0 2.0 0.15,\n    algebraic,\n    ImplFunction=4*x^4+4*y^4+8*y^2*z^2+4*z^4+17*x^2*y^2+17*x^2*z^2-20*x^2-20*y^2-20*z^2+17,\n    fillcolor=cyan!20,hue=.1 .8 0.5 1,\n    linewidth=0.01pt]%\n}\n\\end{animateinline}",
+    "source_file": "doc/text/par-implicitsurface-en.tex",
+    "id": "d132f2e5a605"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-6,-5)(6,4)\n\\psset{lightsrc=viewpoint,viewpoint=40 80 15 rtp2xyz,Decran=50}\n\\psSolid[object=grille,base=-4 4 -4 4,ngrid=8 8,linecolor=black!10](0,0,-2)\n\\psImplicitSurface[\n    XMinMax=-2.0 2.0 0.15,YMinMax=-2.0 2.0 0.15,ZMinMax=-2.0 2.0 0.15,\n    algebraic,\n    ImplFunction=4*x^4+4*y^4+8*y^2*z^2+4*z^4+17*x^2*y^2+17*x^2*z^2-20*x^2-20*y^2-20*z^2+17,\n    fillcolor=cyan!20,hue=.1 .8 0.5 1,\n    linewidth=0.01pt]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-implicitsurface-en.tex",
+    "id": "ce21851568fa"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-5,-4)(5,4)\n\\psset{lightsrc=viewpoint,viewpoint=50 90 30 rtp2xyz,Decran=50}\n\\psSolid[object=grille,base=-4 4 -4 4,ngrid=8 8,linecolor=black!20](0,0,-1)\n\\psImplicitSurface[%hollow,\n    hue=1 0 0.5 1,\n    XMinMax=-4 4 0.2,YMinMax=-4 4 0.2,ZMinMax=-4 4 0.2,\n    algebraic,\n    ImplFunction=1/((x+0.75)^2+y^2+z^2)+1/((x-0.75)^2+y^2+z^2)-1,\n    fillcolor=cyan!20,linewidth=0.05pt]\n\\end{pspicture}",
+    "source_file": "doc/text/par-implicitsurface-en.tex",
+    "id": "cb003340cf03"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-6,-3)(6,4)\n\\psset{lightsrc=10 20 20 rtp2xyz,viewpoint=100 60 50 rtp2xyz,Decran=150}\n\\pstVerb{\n  /RConst 1 def\n  /rConst 0.25 def\n  /torusImplicit {\n    X dup mul Y dup mul add z dup mul add dup mul\n    -2 RConst dup mul rConst dup mul add mul X dup mul Y dup mul add mul \n    add\n    2 RConst dup mul rConst dup mul sub mul z dup mul mul\n    add\n    RConst dup mul rConst dup mul sub add\n  } def\n  /tripleTorus {\n    0 120 240 {\n      /i exch def\n      /X {x 1.5 i cos mul sub} def\n      /Y {y 1.5 i sin mul sub} def\n      torusImplicit\n    } for\n    mul mul\n    10 sub\n  } def\n}%\n\\psImplicitSurface[\n  ImplFunction=tripleTorus,linewidth=0.01pt,\n  fillcolor=red!60!green!40,linecolor=black!10,\n  lightintensity=5,\n  XMinMax=-3 3 0.1,YMinMax=-3 3 0.1,ZMinMax=-0.5 0.5 0.1]\n\\end{pspicture}",
+    "source_file": "doc/text/par-implicitsurface-en.tex",
+    "id": "060947eb134d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=ruban,h=3,base=x1 y1 x2 y2 x3 y3 ...xn yn,ngrid=n](0,0,0)%",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "a6f51974859e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\multido{\\iA=0+72,\\iB=36+72,\\i=0+1}{6}{%\n    \\psPoint(\\iA\\space cos 5 mul,\\iA\\space sin 5 mul,0){P\\i}\n    \\psPoint(\\iB\\space cos 3 mul,\\iB\\space sin 3 mul,0){p\\i}\n    }%\n\\pspolygon[fillstyle=solid,fillcolor=blue!50](P0)(p0)(P1)(p1)(P2)(p2)\n                                             (P3)(p3)(P4)(p4)(P5)(p5)",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "a43f6d552964"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{lightsrc=10 0 10,viewpoint=50 -20 30 rtp2xyz,Decran=50,unit=0.75}\n\\begin{pspicture}(-5.5,-4.5)(7,5)\n\\psSolid[object=grille,base=-4 6 -4 4,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=ruban,h=3,fillcolor=red!50,\n      base=0 0 2 2 4 0 6 2,\n      num=0 1 2 3,\n      show=0 1 2 3,\n      ngrid=3\n      ](0,0,0)\n\\axesIIID(0,2,0)(6,6,4.5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "7aba838ca77c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.35}\n\\begin{pspicture}(-10,-6)(12,8)\n\\defFunction{F}(t){2 t 4 mul cos mul}{t 20 div}{}\n\\psSolid[object=grille,base=-6 6 -10 10,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=ruban,h=2,fillcolor=red!50,\n      resolution=72,\n      base=-200 200 {F} CourbeR2+,  %% -200 5 200 {/Angle ED 2 Angle 4 mul cos mul Angle 20 div } for,\n      ngrid=4](0,0,0)\n\\axesIIID(5,10,0)(7,11,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "cef06a81c868"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.4}\n\\begin{pspicture}(-14,-7)(8,5)\n\\defFunction{F}(t){t 4 mul cos}{t 20 div}{}\n\\psSolid[object=grille,base=0 16 -10 10,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=ruban,h=16,fillcolor=red!50,RotY=90,incolor=green!20,\n      resolution=72,\n      base=-200 200 {F} CourbeR2+,\n      ngrid=16](0,0,1)\n\\axesIIID(16,10,0)(20,12,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "d801bca97521"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.45}\n\\begin{pspicture}(-9,-5)(9,7)\n\\multido{\\iA=0+72,\\iB=36+72,\\i=0+1}{6}{%\n    \\psPoint(\\iA\\space cos 5 mul,\\iA\\space sin 5 mul,0){P\\i}\n    \\psPoint(\\iB\\space cos 3 mul,\\iB\\space sin 3 mul,0){p\\i}\n    }%\n\\pspolygon[fillstyle=solid,fillcolor=blue!50](P0)(p0)(P1)(p1)(P2)(p2)(P3)(p3)(P4)(p4)(P5)(p5)\n\\defFunction{F}(t){t cos 5 mul}{t sin 5 mul}{}\n\\defFunction{G}(t){t 36 add cos 3 mul}{t 36 add sin 3 mul}{}\n\\psSolid[object=grille,base=-6 6 -6 6,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=ruban,h=1,fillcolor=red!50,\n      base=0 72 360 {/Angle exch def Angle F Angle G} for,\n      num=0 1 2 3,show=0 1 2 3,ngrid=2](0,0,0)\n\\axesIIID(5,5,0)(6,6,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "a9544d37b391"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.4}\n\\begin{pspicture}(-9,-4)(9,7)\n\\defFunction{F}(t){t cos 5 mul}{t sin 5 mul}{}\n\\defFunction{G}(t){t 36 add cos 3 mul}{t 36 add sin 3 mul}{}\n\\psSolid[object=face,fillcolor=blue!50,biface,\n      base=0 72 360 {/Angle exch def Angle F Angle G} for,](0,0,0)\n\\psSolid[object=grille,base=-6 6 -6 6,action=draw,linecolor=gray](0,0,0)\n\\psSolid[object=ruban,h=1,fillcolor=red!50,\n      base=0 72 360 {/Angle exch def Angle F Angle G} for,\n      ngrid=2](0,0,0)\n\\axesIIID(5,5,0)(6,6,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ruban-en.tex",
+    "id": "be0f6d4402b0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=point,\nargs=1 1 0]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "5f8f293af6cc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=line,\nargs=0 -1 0 1 2 2]",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "52d1b45b31ee"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=vecteur,\nargs=1 2 2]",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "4d964e29a269"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=plan,\ndefinition=equation,\nargs={[0 0 1 0]},\nbase=-1 1 -1.5 1.5]",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "f189e76bbce6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=cube,\n   a=2,\n   action=draw*,\n   fillcolor=magenta!20]",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "5825a4caa3c4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n  object=cylindre,\n  h=5,r=2,\n  fillcolor=white,\n  ngrid=4 32]\n  (0,0,-3)",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "abe74be9d169"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=cylindrecreux,\n   h=5,r=2,\n   fillcolor=white,\n   mode=4,\n   incolor=green!50]\n   (0,0,-3)",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "356c190a7288"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=cone,\n    h=5,r=2,\n    fillcolor=cyan,\n    mode=4]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "0305b04ce881"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=conecreux,\n    h=5,r=2,\n    RotY=-60,\n    fillcolor=white,\n    incolor=green!50,\n    mode=4]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "c8076d14108c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=tronccone,\n    r0=2,r1=1.5,h=5,\n    fillcolor=cyan,\n    mode=4]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "b90bdbb970c9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=troncconecreux,\n   r0=2,r1=1,h=5,\n   fillcolor=white,\n   mode=4]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "3fa437650447"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=sphere,\n    r=2,fillcolor=red!25,\n    ngrid=18 18]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "d6242fad967f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=calottesphere,\n   r=3,ngrid=16 18,\n   theta=45,phi=-30,\n   hollow,RotY=-80]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "6eb6b04f6eb9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    r1=2.5,r0=1.5,\n    object=tore,\n    ngrid=18 36,\n    fillcolor=green!30,\n    action=draw*]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "294e4850f51d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=anneau,\n    fillcolor=yellow,\n    h=1.5,R=4,r=3]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "32563914bbea"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=tetrahedron,\n   r=3,\n   linecolor=blue,\n   action=draw]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "be5c27015ef9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=octahedron,\n    a=3,\n    linecolor=blue,\n    fillcolor=Turquoise]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "cc0e73476503"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n    object=dodecahedron,\n    a=2.5,RotZ=90,\n    action=draw*,\n    fillcolor=OliveGreen]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "220179ea218c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=icosahedron,\n   a=3,\n   action=draw*,\n   fillcolor=green!50]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "39819b983218"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=prisme,\n   action=draw*,\n   linecolor=red,\n   h=4]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "298eb47cea31"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=grille,\n   base=-5 5 -3 3]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "a785a5646202"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=parallelepiped,%\n   a=5,b=6,c=2,\n   fillcolor=yellow]%\n   (0,0,c 2 div)",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "71e78996b843"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=face,\n   fillcolor=yellow,\n   incolor=blue,\n   base=0 0 3 0 1.5 3\n   ](0,1,0)\n\\psSolid[\n   object=face,\n   fillcolor=yellow,\n   incolor=blue,\n   base=0 0 3 0 1.5 3,\n   RotX=180](0,-1,0)",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "effe711eb687"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[\n   object=ruban,h=3,\n   fillcolor=red!50,\n   base=0 0 2 2 4 0 6 2,\n   num=0 1 2 3,\n   show=0 1 2 3,\n   ngrid=3])",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "ae1f725a5d00"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "%%     \\psProjection[object=chemin,\n%%     fillstyle=hlines,\n%%     hatchcolor=yellow,\n%%     linecolor=red,\n%%     normal=1 1 2 180,\n%%     path=newpath\n%%     2 0 smoveto\n%%     0 2 360 {\n%%      /x exch def\n%%      x cos 2 mul\n%%      x sin 2 mul\n%%      slineto\n%%     } for\n%%     ](1,1,2)\n%%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "69546396eeca"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSurface[ngrid=.25 .25,\n  incolor=white,axesboxed]\n  (-4,-4)(4,4){%\n  x dup mul y dup mul 3 mul\n  sub x mul 32 div}",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "0191a8b9d7c0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=new,\n         action=draw,\n         sommets=\n         2  4  3\n        -2  4  3\n        -2 -4  3\n         2 -4  3\n         2  4  0\n        -2  4  0\n        -2 -4  0\n         2 -4  0\n         0  4  5\n         0 -4  5,\n    faces={\n        [0 1 2 3]\n        [7 6 5 4]\n        [0 3 7 4]\n        [3 9 2]\n        [1 8 0]\n        [8 9 3 0]\n        [9 8 1 2]\n        [6 7 3 2]\n        [2 1 5 6]}]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "534d6ba92b60"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\defFunction[algebraic]%\n   {helice}(t)\n   {3*cos(4*t)}{3*sin(4*t)}{t}\n\\psSolid[object=courbe,r=0,\n   range=0 6,\n   linecolor=blue,\n   linewidth=0.1,\n   resolution=360,\n   function=helice]%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "159ded41bd47"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "%% \\psProjection[object=courbeR2,\n%%    range=-2 2,\n%%    linecolor=green,\n%%    normal=0 1 0 1 0 0,\n%%    function=parabole]\n%%",
+    "source_file": "doc/text/par-solidespredefinis-en.tex",
+    "id": "189e5ffd1187"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "%% \\axesIIID(0,0,0)(4,4,4)\n%% \\psSolid[object=cube,\n%%    RotY=90,\n%%    ngrid=4,\n%%    numfaces=2 6 10,\n%%    action=draw**](0,0,0)\n%%",
+    "source_file": "doc/text/par-numeroterfacettes-en.tex",
+    "id": "fe1f3958ac1f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-3)(3,1.5)\n\\psSolid[object=grille,\n   base=0 4 -2 2,\n   numfaces=2 6 7 10,\n   linecolor=gray](0,0,0)\n\\axesIIID(0,0,0)(4,2,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-numeroterfacettes-en.tex",
+    "id": "77d83b5fa85b"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture*}(-4,-3)(4,3)\n\\psSolid[object=cube,\n   RotY=90,\n   ngrid=4,\n   fontsize=15,\n   action=draw,\n   numfaces=all,](0,0,0)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-numeroterfacettes-en.tex",
+    "id": "5610ff344272"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture*}(-4,-3)(4,3)\n\\axesIIID(0,0,0)(8,3,2)\n\\psSolid[object=grille,\n   RotY=90,\n   RotZ=180,\n   ngrid=1.,\n   fontsize=15,\n   numfaces=\n      0 1 5 {} for\n      8 3 23 {} for,\n   base=-2 2 -3 3,\n   visibility=false,\n   action=draw](0,0,0)\n\\end{pspicture*}",
+    "source_file": "doc/text/par-numeroterfacettes-en.tex",
+    "id": "493e2d4e36b8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-4,-4)(4,4)\n\\psSolid[object=cube,\n   a=5,\n   fillcolor=red]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-chanfrein-en.tex",
+    "id": "334d63bd6bc4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-4,-4)(4,4)\n\\psSolid[object=cube,\n   a=5,\n   fillcolor=red,\n   chanfrein,\n   chanfreincoeff=.6]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-chanfrein-en.tex",
+    "id": "2de4862ac501"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-4,-4)(4,4)\n\\psSolid[object=dodecahedron,\n   a=5,\n   fillcolor=cyan]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-chanfrein-en.tex",
+    "id": "7594a9970c0b"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture*}(-4,-4)(4,4)\n\\psSolid[object=dodecahedron,\n   a=5,\n   fillcolor=cyan,\n   chanfrein,\n   chanfreincoeff=.8]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-chanfrein-en.tex",
+    "id": "60cd52b86016"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 50 30 rtp2xyz,Decran=25,lightsrc=viewpoint}\n\\begin{pspicture}(-3,-2)(2,2)\n\\psSolid[\n   action=draw,\n   object=cube,\n   RotZ=30,\n   trunccoeff=.2,\n   trunc=all]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-tronque-en.tex",
+    "id": "190a3e2fd5c8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 50 30 rtp2xyz,Decran=25,lightsrc=viewpoint}\n\\begin{pspicture}(-3,-2)(2,2)\n\\psSolid[action=draw,\n   object=cube,\n   RotZ=30,\n   trunccoeff=.2,\n   trunc=0 1 2 3]%\n\\end{pspicture}",
+    "source_file": "doc/text/par-tronque-en.tex",
+    "id": "5a333e096b5b"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture*}(-7,-4)(7,7)\n\\psSolid[object=new,\n  sommets=\n    2  4  3   -2  4  3  -2 -4  3   2 -4  3\n    2  4  0   -2  4  0  -2 -4  0   2 -4  0\n   0  4  5   0 -4  5,\n  faces={\n  [0 1 2 3] [7 6 5 4] [0 3 7 4]\n  [3 9 2]   [1 8 0]   [8 9 3 0]\n  [9 8 1 2] [6 7 3 2] [2 1 5 6]},\n  num=all,show=all,action=draw]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-new-en.tex",
+    "id": "b9e1dfe24612"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture*}(-7,-3.5)(7,7.5)\n\\psSolid[object=new,fillcolor=red!50,incolor=yellow,\n  action=draw**,hollow,rm=2,\n  sommets=\n   2  4  3  -2  4  3  -2 -4  3   2 -4  3\n   2  4  0  -2  4  0  -2 -4  0   2 -4  0\n   0  4  5   0 -4  5,\n  faces={   [0 1 2 3][7 6 5 4][0 3 7 4]\n   [3 9 2]  [1 8 0]  [8 9 3 0][9 8 1 2]\n   [6 7 3 2][2 1 5 6]},\n  num=all,show=all]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-new-en.tex",
+    "id": "ddf3de1ddf22"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.75}\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture*}(-5,-5)(3,5)\n\\psSolid[object=new,fillcolor=red!50,incolor=yellow,\n  hollow, a=10, %% nb d'etages\n  b=20, %% diviseur de 360, nb de meridiens\n  h=8,  %% hauteur\n  action=draw**,sommets=\n   /z0 h neg 2 div def\n   a -1 0 {\n    /k exch def\n    0 1 b 1 sub {\n     /i exch def\n     /r z0 h a div k mul add dup mul 4 div 1 add sqrt def\n     360 b idiv i mul cos r mul 360 b idiv i mul sin r mul\n     z0 h a div k mul add\n    } for\n   } for,\n   faces={\n    0 1 a 1 sub {\n    /k exch def\n    k b mul 1 add 1 k 1 add b mul 1 sub {\n    /i exch def\n    [i i 1 sub b i add 1 sub b i add]\n   } for\n   [k b mul k 1 add b mul 1 sub k 2 add b mul 1 sub k 1 add b mul]\n  } for\n}]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-new-en.tex",
+    "id": "585b3e02bfe1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.4}\n\\definecolor{AntiqueWhite}{rgb}{0.98,0.92,0.84}\n\\begin{pspicture}(-7,-9)(7,7)\n\\psset{lightsrc=30 -40 10}\n\\psset{viewpoint=50 -50 20 rtp2xyz,Decran=50}\n\\psset{RotX=90,sommets= (data/sommets_nefer.dat) run}\n\\psSolid[object=new,fillcolor=AntiqueWhite,linewidth=0.5\\pslinewidth,\n    faces={(data/faces_nefer.dat) run}]%\n\\psSolid[object=new,fillcolor=red,linewidth=0.5\\pslinewidth,\n    faces={(data/faces_nefer_levres.dat) run}]%\n\\psSolid[object=new,fillcolor=black,\n    faces={(data/faces_nefer_sourcils.dat) run}]%\n\\end{pspicture}\n\\hfill\n\\begin{pspicture}(-7,-9)(7,7)\n\\psset{lightsrc=-10 -40 -5,lightintensity=.5}\n\\psset{viewpoint=50 -80 10 rtp2xyz,Decran=50}\n\\psset{RotX=90,RotZ=30,sommets= (data/sommets_nefer.dat) run}\n\\psSolid[object=new,fillcolor=AntiqueWhite,linewidth=0.5\\pslinewidth,\n  grid,faces={(data/faces_nefer.dat) run}]\n\\psSolid[object=new,fillcolor=red,linewidth=0.5\\pslinewidth,grid,\n    faces={(data/faces_nefer_levres.dat) run}]\n\\psSolid[object=new,fillcolor=black,\n    faces={(data/faces_nefer_sourcils.dat) run}]\n\\end{pspicture}",
+    "source_file": "doc/text/par-new-en.tex",
+    "id": "abc12eaf39a4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   planmarks,\n   name=monplan]\n\\psset{plan=monplan}\n%% definition du point A\n\\psProjection[object=point,\n   args=-2 0.75,\n   name=A,text=A,\n   pos=dl]\n\\psProjection[object=vecteur,\n   linecolor=red,\n   args=1 1,\n   name=U](1,0)\n\\psProjection[object=vecteur,\n   args=U,\n   linecolor=blue](A)\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionvecteur-en.tex",
+    "id": "f4f726c354a9"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=plan,definition=solidface,args=A 0,name=P0]\n\\psProjection[object=texte,linecolor=red,text=A,plan=P0]%",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "35e79030d807"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{solidmemory}\n\\psSolid[object=cube,a=8,name=A1](0,0,4.2)%",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "f14f994648f2"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{solidmemory}\n\\psProjection[object=texte,text=po\\`{e}me,fontsize=30,plan=P0](0,3)%\n\\psSolid[object=cube,a=8,name=A](0,0,4.2)%",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "ed5fb2d66409"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=plan,action=none,definition=solidface,args=A 0,name=P0]%\n\\psProjection[object=texte,text=po\\`{e}me,fontsize=30,plan=P0](0,3)%",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "a4eff26c2234"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-1.5)(4,1.5)\n\\psset{solidmemory}\n\\psset{lightsrc=10 0 10,\n   viewpoint=50 -90 89.99 rtp2xyz,Decran=50}\n\\psSolid[object=plan,definition=normalpoint,plangrid,\n   base=-4 4 -1 1,args={0 0 0 [0 0 1]},name=monplan,]\n\\psProjection[object=texte,\n   fontsize=20,linecolor=red,\n   pos=bc,plan=monplan,\n   text=j'aimerais tant voir Syracuse,\n](0,0)%\n\\axesIIID(0,0,0)(4,2,1)\n\\composeSolid\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "1b3633361477"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-1.5)(4,1.5)\n\\psset{solidmemory}\n\\psset{lightsrc=10 0 10,\n   viewpoint=50 -90 89.99 rtp2xyz,,Decran=50}\n\\psSolid[object=plan,definition=normalpoint,plangrid,\n   base=-4 4 -1 1,args={0 0 0 [0 0 1]},name=monplan,]\n\\psProjection[object=texte,\n   fontsize=20,linecolor=red,\n   text= L'\\^{\\i}le de P\\^{a}ques et Kairouan,\n   plan=monplan]%\n\\axesIIID(0,0,0)(4,2,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "61adf9629c29"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-3)(4,3)\n\\psset{solidmemory}\n\\psset{lightsrc=10 0 10,\n   viewpoint=50 -90 89.99 rtp2xyz,Decran=50}\n\\psSolid[object=plan,definition=normalpoint,plangrid,\n   base=-4 4 -3 3,args={0 0 0 [0 0 1]},name=monplan,]\n\\psset{plan=monplan}\n\\psProjection[object=texte,\n   fontsize=28.45,linecolor=gray!50,\n   text=Tournez man\\`{e}ges]%\n\\psProjection[object=texte,\n   fontsize=28.45,linecolor=red,\n   text=Tournez man\\`{e}ges,\n   phi=60]%\n\\axesIIID(0,0,0)(4,3,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "cfc8eab66d2c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-4,-3)(4,3)\n\\psset{solidmemory}\n\\psset{viewpoint=50 -90 89.99 rtp2xyz,Decran=50}\n\\psSolid[object=plan,definition=normalpoint,plangrid,\n   base=-4 4 -3 3,args={0 0 0 [0 0 1]},name=monplan,]\n\\psset{fontsize=28.45,plan=monplan}\n\\psProjection[object=texte,\n   linecolor=green,\n   text=ici](-2,-2)\n\\psProjection[object=texte,\n   linecolor=red,\n   text=ou]%\n\\psProjection[object=texte,\n   linecolor=blue,\n   text=l\\`{a}](2,2)\n\\psPoint(0,0,0){O}\n\\psPoint(-2,-2,0){O1}\n\\psPoint(2,2,0){O2}\n\\psdots[dotsize=0.2](O)(O1)(O2)\n\\axesIIID(0,0,0)(4,4,1)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "3d003e955aa7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 20 30 rtp2xyz,Decran=100}\n\\begin{pspicture}(-4,-4)(4,4)\n\\psSolid[object=cube,a=2,action=draw,\n   linecolor=red,numfaces=all]%\n\\axesIIID(1,1,1)(2,2,2)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "98b66189648e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 20 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-4,-4)(4,5)\n\\psset{unit=0.5}\n\\psset{solidmemory}\n\\psSolid[object=cube,a=8,action=draw,name=A,linecolor=red]%\n\\psset{fontsize=100}\n\\psSolid[object=plan,action=none,\n   definition=solidface,args=A 0,name=P0]\n\\psProjection[object=texte,linecolor=red,text=A,plan=P0]%\n\\psSolid[object=plan,action=none,\n   definition=solidface,args=A 1,name=P1]\n\\psProjection[object=texte,linecolor=red,text=B,plan=P1]%\n\\psSolid[object=plan,action=none,\n   definition=solidface,args=A 4,name=P4]\n\\psProjection[object=texte,linecolor=red,text=E,plan=P4]%\n\\axesIIID(4,4,4)(6,6,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "da241f5f206d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 20 30 rtp2xyz,Decran=50}\n\\psset{unit=0.4}\n\\begin{pspicture}(-8,-7)(4,9)\n\\psset{solidmemory}\n\\psSolid[object=cube,a=8,action=draw,linecolor=red,name=A]%\n\\psset{fontsize=200}\n\\psSolid[object=plan,action=none,\n   definition=solidface,args=A 0,name=P0]\n\\psProjection[object=texte,linecolor=gray,text=A,plan=P0]%\n\\psset{phi=90}\n\\psProjection[object=texte,linecolor=red,text=A,plan=P0]%\n\\axesIIID(4,4,4)(6,6,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectiontexte-en.tex",
+    "id": "b408d302c988"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{lightsrc=50 20 20,viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n\\psSolid[object=grille,\n   base=-3 0 -3 3,\n   linewidth=0.5\\pslinewidth,linecolor=gray,]\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   base=-3.2 3.2 -2.2 2.2,\n   name=monplan,\n   planmarks]\n\\psset{plan=monplan}\n\\psSolid[object=plan,\n   args=monplan,\n   linecolor=gray!40,\n   plangrid,\n   action=none]\n\\psProjection[object=line,\n   args=-1 0 -3 1 1 2,\n   name=P]\n\\psProjection[object=line,\n   definition=rotatepol,\n   linecolor=blue,\n   args=P -1 0 -45]\n%% du code jps dans la definition\n\\psProjection[object=line,\n   definition={2 -2 addv} papply,\n   linestyle=dashed,\n   args=P]\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionligne-en.tex",
+    "id": "b4f35e69b247"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 20 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-3,-4)(4,4)\n\\psSolid[object=cube,a=4,action=draw*,\n  fillcolor=magenta!20]%\n\\psLineIIID[linecolor=blue,\n  linewidth=0.1,linearc=0.5,\n  doubleline=true](-2,-2,-2)(2,2,2)(2,2,-2)(2,-2,0)\n\\psPoint(2,-2,0){A}\\psPoint(-2,-2,-2){B}\n\\psPoint(2,2,2){C}\\psPoint(2,2,-2){D}\n\\psdot[dotsize=0.2](A)\\psdot[dotsize=0.2](B)\n\\psdot[dotsize=0.2](C)\\psdot[dotsize=0.2](D)\n\\psLineIIID[linecolor=green]%\n  (-2,-2,-2)(2,2,2)(2,2,-2)(2,-2,0)\n\\psPolygonIIID[linecolor=red,\n  fillstyle=vlines,linearc=0.5,\n  linewidth=0.1](-2,-2,2)(-2,2,2)(2,2,2)(2,-2,2)\n\\axesIIID(2,2,2)(4,4,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-ligne3D-en.tex",
+    "id": "4b2b65baacc7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psPoint(0,10.93,0){H1}\n\\psPoint(10.3,-3.64,0){H2}\n\\psPoint(-5.15,-3.64,8.924){H3}\n\\psPoint(-5.15,-3.64,-8.924){H4}",
+    "source_file": "doc/text/par-annoterschema-en.tex",
+    "id": "84e5600a9c62"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pcline[offset=0.25]{<->}(H2)(H3)\n\\aput{:U}{17,8 pm}\n\\pcline[offset=0.15]{<->}(H2)(O)\n\\aput{:U}{10,93 pm}\n\\psPoint(-5.15,-3.64,-8.924){H4}",
+    "source_file": "doc/text/par-annoterschema-en.tex",
+    "id": "a6e888b85e35"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\pstMarkAngle[arrows=<->]{H1}{O}{H3}{\\small 109,5$^{\\mathrm{o}}$}",
+    "source_file": "doc/text/par-annoterschema-en.tex",
+    "id": "aecd28a8cc59"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{lightsrc=50 20 20,viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n\\psSolid[object=grille,\n   base=-3 0 -3 3,\n   linewidth=0.5\\pslinewidth,linecolor=gray,]\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   base=-3.2 3.2 -2.2 2.2,\n   name=monplan,\n   planmarks,\n]\n\\psset{plan=monplan}\n\\psSolid[object=plan,\n   args=monplan,\n   linecolor=gray!40,\n   plangrid,\n   action=none,\n]\n\\psProjection[object=polygone,\n   args=-1 0 -3 1 0 2,\n   name=P,\n]\n\\psProjection[object=polygone,\n   definition=rotatepol,\n   linecolor=blue,\n   args=P -1 0 -45,\n]\n%% du code jps dans la definition\n\\psProjection[object=polygone,\n   definition={2 -2 addv} papply,\n   fillstyle=hlines,hatchcolor=yellow,\n   linestyle=dashed,\n   args=P,\n]\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionpolygone-en.tex",
+    "id": "7c58824ab34a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=0 1](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "1cf4378668a0"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=0 .3](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "dcfd7fbb7af4"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=.5 .6](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "90521acf276f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=0 1 .8 .7](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "b21b351de91e"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=0 1 .5 1](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "36f894b9358a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=0 .8 1 1 1 .7 (hsb)](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "39d5283dbc58"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=1 0 0 0 0 1](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "4edc5302547a"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=1 0 0 0 0 0 1 0](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "645c94e2fccb"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   hue=(jaune) (CadetBlue)](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "1448a21c8a6c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=1}\n\\begin{pspicture}(-4,-1.5)(3,1)\n\\psSolid[object=grille,\n   base=-3 5 -3 3,\n   linecolor=gray,\n   color1=red!50,\n   color2=green!20,\n   hue=(color1) (color2)](0,0,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-couleurs-en.tex",
+    "id": "d3375979eb60"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-9,-6.5)(6,6)\n\\psframe*[linecolor=blue!50](-6,-6)(6,6)\n\\psset{lightsrc=10 -20 50,viewpoint=50 20 30 rtp2xyz,Decran=50}\n{\\psset{linewidth=0.5\\pslinewidth,linecolor=gray}\n\\psSolid[object=grille,base=-4 4 -4 4]}\n\\defFunction[algebraic]{f1}(x){3*cos(x)}{3*sin(x)}{}\n\\psProjection[object=courbeR2,\n   range=-3.14 3.14,\n   linecolor=blue,\n   normal=0 0 1,\n   function=f1]\n\\axesIIID(0,0,0)(4,4,4)\n\\psProjection[object=chemin,\n  linewidth=.1,\n  linecolor=red,\n  normal=1 0 0,\n  path=newpath\n    0 0 smoveto\n    -1 0 slineto]\n\\rput(0,-6.75){%\n  \\psframebox[linecolor=blue!50]\n   {\\texttt{$\\backslash${}defFunction[algebraic]%\n    \\{f\\}(x)\\{3*cos(x)\\}\\{3*sin(x)\\}\\{\\}}}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-definirplanquelconque-en.tex",
+    "id": "821a96ce5068"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-2.5)(3.5,2.5)%\n\\psframe*[linecolor=blue!50](-3,-2.5)(3.5,2.5)\n\\psset{lightsrc=viewpoint,viewpoint=50 30 15,Decran=40}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 1 0] 90},\n   base=-4 4 -3 3,\n   fillcolor=white,\n   linecolor=gray!30,\n%   plangrid,\n   planmarks,\n   name=monplan]\n\\psset{plan=monplan,visibility=false}\n%% definition droite d\n\\psProjection[object=droite,\n   definition=horizontale,\n   args=-1,name=d]\n\\psset{fontsize=15}\n%% definition du point M\n\\psProjection[object=point,\n   args=-2 1,\n   name=M,text=M,\n   pos=ul]\n%% definition du point H\n\\psProjection[object=point,\n   definition=orthoproj,\n   args=M d,\n   name=H,text=H,\n   pos=dr]\n%% definition du point H' pour orienter l'angle droit\n%% et mettre la legende\n\\psProjection[object=point,\n   definition=xdpoint,\n   args=2 d,name=H',\n   action=none,\n   text=d,pos=ur]\n%% definition d'une ligne\n\\psProjection[object=line,\n   args=M H]\n%% dessin angle droit\n\\psProjection[object=rightangle,\n   args=M H H']\n\\composeSolid\n%\\axesIIID(4,4,2)(5,5,6)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionangledroit-en.tex",
+    "id": "d955d422ac42"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{lightsrc=20 -20 10,viewpoint=50 -20 10 rtp2xyz,Decran=50}\n\\psset{unit=0.5}\n\\begin{pspicture*}(-5,-4)(5,5)\n\\psSolid[object=cube,\n   intersectiontype=0,\n   intersectionplan={[1 0 .5 2] [1 0 .5 -1]},\n   intersectionlinewidth=1 2,\n   intersectioncolor=(bleu) (rouge),\n   RotX=20,RotY=90,RotZ=30,\n   a=6,\n   action=draw*]\n\\end{pspicture*}",
+    "source_file": "doc/text/par-lignedeniveau-en.tex",
+    "id": "6819ff18c908"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   name=monplan,\n   planmarks,\n   showBase]\n\\psset{plan=monplan}\n%% definition du point A\n\\psProjection[object=point,\n   args=-2 1,\n   text=A,\n   pos=ur]\n\\psProjection[object=point,\n   text=B,\n   pos=ur](2,1)\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionpoint-en.tex",
+    "id": "bb1e15b52ab6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(4,3.5)%\n\\psframe*[linecolor=blue!50](-3,-3)(4,3.5)\n\\psset{viewpoint=50 30 15,Decran=60}\n\\psset{solidmemory}\n%% definition du plan de projection\n\\psSolid[object=plan,\n   definition=equation,\n   args={[1 0 0 0] 90},\n   name=monplan,\n   planmarks,\n   showbase]\n\\psset{plan=monplan}\n%% definition du point A\n\\psProjection[object=point,\n   text=A,pos=ur,name=A](-1,.7)\n%% definition du point B\n\\psProjection[object=point,\n   text=B,pos=ur,name=B](2,1)\n%% definition du point C\n\\psProjection[object=point,\n   text=C,pos=ur,name=C](1,-1.5)\n%% definition du point D\n\\psProjection[object=point,\n   definition=parallelopoint,\n   args=A B C,\n   text=D,pos=ur,name=D]\n%% definition du point G\n\\psProjection[object=point,\n   definition=milieu,\n   args=D B]\n\\composeSolid\n\\axesIIID(4,2,2)(5,4,3)\n\\end{pspicture}",
+    "source_file": "doc/text/par-projectionpoint-en.tex",
+    "id": "d671f25b77d3"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=viewpoint,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-2,-3)(6,6)\n\\psSolid[object=cylindre,h=6,r=2,\n   fillcolor=yellow,\n      ](0,4,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "c031bc70ca45"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=viewpoint,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-2,-3)(6,6)\n\\psSolid[object=cylindre,h=6,r=2,\n   fillcolor=yellow,incolor=red,\n   hollow](0,4,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "3dfe62348822"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=viewpoint,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-9,-4)(4,8)\n\\defFunction{F}(t){t cos 3 mul}{t sin 3 mul}{}\n\\defFunction{G}(t){t cos}{t sin}{}\n\\psSolid[object=grille,base=-6 6 -4 4,action=draw]%\n\\psSolid[object=prisme,\n    h=8,fillcolor=yellow,\n    RotX=90,ngrid=8 18,\n    base=0 180 {F} CourbeR2+\n         180 0 {G} CourbeR2+](0,4,0)\n\\axesIIID(3,4,3)(8,6,7)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "f20a03c6af6c"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=viewpoint,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-9,-4)(3,8)\n\\defFunction{F}(t){t cos 3 mul}{t sin 3 mul}{}\n\\defFunction{G}(t){t cos}{t sin}{}\n\\psSolid[object=grille,base=-6 6 -4 4,action=draw]%\n\\psSolid[object=prisme,\n    h=8,fillcolor=yellow,incolor=red,\n    RotX=90,hollow,ngrid=8 18,\n    base=0 180 {F} CourbeR2+\n         180 0 {G} CourbeR2+](0,4,0)\n\\axesIIID(3,4,3)(8,6,7)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "d5f29af57004"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=10 20 30,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-7,-4)(5,7)\n\\psSolid[object=grille,\n    base=-5 5 -5 5,\n    action=draw]%\n\\psSolid[object=calottesphere,\n    r=3,ngrid=16 18,\n    fillcolor=cyan!50,\n    incolor=yellow,\n    theta=45,phi=-30](0,0,1.5)%\n\\axesIIID(3,3,3.6)(6,6,5)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "70811c356248"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\psset{lightsrc=10 20 30,viewpoint=50 60 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-7,-5)(7,5)\n\\psSolid[object=calottesphere,\n    r=3,ngrid=16 18,\n    fillcolor=cyan!50,\n    incolor=yellow,\n    theta=45,phi=-30,\n    hollow,\n    RotY=-80]%\n\\axesIIID(0,3,3)(6,5,4)\n\\end{pspicture}",
+    "source_file": "doc/text/par-solidescreux-en.tex",
+    "id": "8b15be099fe3"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\codejps{N n newgeode drawsolid**}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "760ba3b435b8"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=geode,ngrid=N n]",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "4105e21e8733"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\codejps{N n newdualgeode drawsolid**}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "aa8033da92fc"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psSolid[object=geode,dualreg,ngrid=N n]",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "185394be1f55"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\documentclass{article}\n\\usepackage{pst-solides3d}\n\\begin{document}\n\\codejps{\n4 4 newdualgeode\n dup {[.5 .6]} exec solidputhuecolors\n(geodedual44) writesolidfile\n}\n\\end{document}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "ca5ace6e0505"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=100}\n\\psSolid[object=geode,\n         ngrid=5 0]\n%\\codejps{5 0 newgeode drawsolid**}\n\\psframe*(-2,-2.8)(2,-2.2)\n\\rput(0,-2.5){\\textcolor{white}{\\textsf{N=5 n=0}}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "dc65d5448145"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=100}\n\\psSolid[object=geode,\n   dualreg,\n   ngrid=5 0]\n%\\codejps{5 0 newdualgeode drawsolid**}\n\\psframe*(-2,-2.8)(2,-2.2)\n\\rput(0,-2.5){\\textcolor{white}{\\textsf{N=5 n=0}}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "d2a6469989d6"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=100}\n\\psSolid[object=geode,\n   ngrid=5 1]\n%\\codejps{5 1 newgeode drawsolid**}\n\\psframe*(-2,-2.8)(2,-2.2)\n\\rput(0,-2.5){\\textcolor{white}{\\textsf{N=5 n=1}}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "3b973563e188"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-3,-3)(3,3)\n\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=100}\n\\psSolid[object=geode,\n   dualreg,\n   ngrid=5 1]\n%\\codejps{5 1 newdualgeode drawsolid**}\n\\psframe*(-2,-2.8)(2,-2.2)\n\\rput(0,-2.5){\\textcolor{white}{\\textsf{N=5 n=1}}}\n\\end{pspicture}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "55baaffc4259"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{viewpoint=50 -20 30 rtp2xyz,Decran=150}\n\\begin{pspicture}(-3.5,-3.5)(3.5,3.5)\n\\psset{linewidth=2pt}\n\\codejps{\n/geode42{4 2 newdualgeode} def\n.7 setfillopacity\norange\n/geodetransparente{\ngeode42\ndup videsolid\ndup (orange) inputcolors\ndup [.1 .9] solidputhuecolors} def\ngeodetransparente\ndrawsolid**}\n\\end{pspicture}",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "240c48db44d1"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "%% \\psset{unit=2}\n%% \\psset{lightsrc=10 0 10,SphericalCoor=true,viewpoint=50 -20 30,Decran=100}\n%% \\begin{pspicture}(-2,-2)(2,2)\n%% \\psframe(-2,-2)(2,2)\n%% \\psSolid[object=datfile,filename=data/geodedual44]\n%% \\end{pspicture}\n%%",
+    "source_file": "doc/text/par-geode-en.tex",
+    "id": "cc86df83866d"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psImage[filename=<filename with extension>,\n             divisions=10,\n             normale=nx ny nz,\n             origine=xO yO zO,\n             phi=angle,\n             unitPicture=28.45](x,y)",
+    "source_file": "doc/text/par-image2d-en.tex",
+    "id": "751416530213"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\begin{pspicture}(-5,-5)(5,5)\n\\psset{solidmemory}\n\\psSolid[object=cube,a=8,action=draw,name=OBJECT,linecolor=red]%\n\\psImage[filename=tiger.eps,normal=OBJECT 0 solidnormaleface,\n         origine=OBJECT 0 solidcentreface,unitPicture=75]\n\\psImage[filename=tiger.eps,normal=OBJECT 1 solidnormaleface,\n         origine=OBJECT 1 solidcentreface,unitPicture=75]\n\\psImage[filename=tiger.eps,normal=OBJECT 4 solidnormaleface,\n         origine=OBJECT 4 solidcentreface,unitPicture=75]\n\\psImage[filename=tiger.eps,normal=OBJECT 3 solidnormaleface,\n         origine=OBJECT 3 solidcentreface,unitPicture=75]\n\\psImage[filename=tiger.eps,normal=OBJECT 2 solidnormaleface,\n         origine=OBJECT 2 solidcentreface,unitPicture=75]\n\\end{pspicture}",
+    "source_file": "doc/text/par-image2d-en.tex",
+    "id": "e086abbe852f"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5cm}\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture}(-5,-4)(3,9)\n\\psSolid[object=grille,base=-4 4 -4 4,action=draw]\n\\psSolid[object=prisme,h=6,fillcolor=yellow,\n base=\n    0 10 90 {/i exch def i cos 1 add i sin 1 add } for\n   90 10 180 {/i exch def i cos 1 sub i sin 1 add} for\n  180 10 270 {/i exch def i cos 1 sub i sin 1 sub} for\n  270 10 360 {/i exch def i cos 1 add i sin 1 sub} for]\n\\axesIIID(4,4,6)(6,6,8)\n\\end{pspicture}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "49e602d30c53"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5cm}\n\\begin{pspicture}(-6,-5)(4,12)\n\\psset{lightsrc=10 20 30,viewpoint=50 20 25 rtp2xyz,Decran=50}\n\\psSolid[object=grille,base=-6 6 -4 4,action=draw]\n\\defFunction{FuncI}(t){t cos 4 mul}{t sin 2 mul}{}\n\\psSolid[object=prisme,h=8,fillcolor=green!20,\n       base=0 350 {FuncI} CourbeR2+]%\n\\defFunction{FuncII}(t){t cos 4 mul}{t sin 2 mul}{8}\n\\psSolid[object=courbe,r=0,\n   function=FuncII,range=0 360,\n   linewidth=2\\pslinewidth,\n   linecolor=green]\n\\axesIIID(6,4,8)(8,6,10)\n\\end{pspicture}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "7dd72b642b85"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5cm}\n\\psset{lightsrc=10 -20 50,viewpoint=50 -20 30 rtp2xyz,Decran=50}\n\\begin{pspicture*}(-5,-4)(6,9)\n\\defFunction{F}(t){3 t cos 3 exp mul}{3 t sin 3 exp mul}{}\n\\psSolid[object=grille,base=-4 4 -4 4,action=draw]%\n\\psSolid[object=prismecreux,h=8,fillcolor=red!50,\n       resolution=36,\n       base=0 350 {F} CourbeR2+\n      ]%\n\\end{pspicture*}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "94057cff7bd7"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.35cm}\n\\psset{lightsrc=10 20 30,viewpoint=50 30 25 rtp2xyz,Decran=50}\n\\begin{pspicture}(-10,-5)(6,10)\n\\defFunction[algebraic]{F}(t)\n  {3*cos(t)}{3*sin(t)}{}\n\\defFunction[algebraic]{G}(t)\n  {2.5*cos(t)}{2.5*sin(t)}{}\n\\psSolid[object=grille,\n  base=-6 6 -6 6,action=draw]%\n\\psSolid[object=prisme,h=12,\n  fillcolor=blue!30,RotX=-90,\n  resolution=19,\n  base=0 pi {F} CourbeR2+\n  pi 0 {G} CourbeR2+](0,-6,3)\n\\axesIIID(6,6,2)(8,8,8)\n\\end{pspicture}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "4acf4bac92be"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6,-4)(6,7)\n\\defFunction{F}(t){t cos 3 mul}{t sin 3 mul}{}\n\\psSolid[object=prisme,h=8,\n      fillcolor=yellow,RotX=-90,\n      num=0 1 2 3 4 5 6,\n      show=0 1 2 3 4 5 6,\n      resolution=7,\n      base=0 180 {F} CourbeR2+\n      ](0,-10,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "9b0d48321215"
+  },
+  {
+    "type": "executable_example",
+    "macro_package": "pst-solides3d",
+    "chart_type": "other",
+    "code": "\\psset{unit=0.5}\n\\begin{pspicture}(-6,-4)(6,7)\n\\defFunction{F}(t){t cos 3 mul}{t sin 3 mul}{}\n\\psSolid[object=prisme,h=8,\n      fillcolor=yellow,RotX=-90,\n      decal=0,\n      num=0 1 2 3 4 5 6,\n      show=0 1 2 3 4 5 6,\n      resolution=7,\n      base=0 180 {F} CourbeR2+\n      ](0,-10,0)\n\\end{pspicture}",
+    "source_file": "doc/text/par-prisme-en.tex",
+    "id": "48f1a44736f1"
+  }
+]

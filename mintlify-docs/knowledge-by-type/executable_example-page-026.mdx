@@ -1,923 +1,920 @@
 ---
 title: "Executable Examples - Page 27"
-description: "Items 1301-1350 of 5325 executable examples"
+description: "Items 1301-1350 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 27
 
-Showing items **1301-1350** of **5325**
+Showing items **1301-1350** of **5999**
 
-[← Previous](executable_example-page-025) | Page 27 of 107 | [Next →](executable_example-page-027)
+[← Previous](executable_example-page-025) | Page 27 of 120 | [Next →](executable_example-page-027)
 
 ---
 
-## 1301. Line Chart
+## 1301. Other
 
-**ID**: `bd7a3b03cb77`  
+**ID**: `1ceda141de02`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    % equivalent to 'x filter/.expression=&#123;x+0.5&#125;'
-    x filter/.code=&#123;
-        \pgfmathadd&#123;#1&#125;&#123;0.5&#125;,
-    &#125;,
-]
-    \addplot coordinates &#123;
-        (4,0)
-        (6,1)
-    &#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,frac, frac denom=10&#125;
+\pgfmathprintnumber&#123;0.1&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;0.5&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;1.2&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;-0.6&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;-1.4&#125;\hspace&#123;1em&#125;
 </code></pre>
 
 ---
 
-## 1302. Line Chart
+## 1302. Other
 
-**ID**: `b932a4378846`  
+**ID**: `7f13ffab0e60`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    samples=20,
-    % equivalent to
-    % x filter/.expression=&#123;
-    %   \coordindex&gt;4 && \coordindex&lt;11 ? nan : x
-    % &#125;,
-    x filter/.code=&#123;
-        \ifnum\coordindex&gt;4
-            \ifnum\coordindex&lt;11
-                \def\pgfmathresult&#123;&#125;
-            \fi
-        \fi
-    &#125;,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,frac, frac whole=false&#125;
+\pgfmathprintnumber&#123;20.1&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;5.5&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;1.2&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;-5.6&#125;\hspace&#123;1em&#125;
+\pgfmathprintnumber&#123;-1.4&#125;\hspace&#123;1em&#125;
 </code></pre>
 
 ---
 
-## 1303. Line Chart
+## 1303. Other
 
-**ID**: `7ec86a463f03`  
+**ID**: `c3de27bbc2bd`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;semilogyaxis&#125;
-    \addplot+ [
-        restrict expr to domain=&#123;rawy&#125;&#123;1e0:1.5e1&#125;,
-    ] &#123;exp(x)&#125;;
-\end&#123;semilogyaxis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/read comma as period&#125;
+\pgfmathprintnumber&#123;1234,56&#125;
 </code></pre>
 
 ---
 
-## 1304. Line Chart
+## 1304. Other
 
-**ID**: `cf80fe504c45`  
+**ID**: `fb63bd5395c7`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    samples=20,
-    skip coords between index=&#123;5&#125;&#123;11&#125;,
-    skip coords between index=&#123;15&#125;&#123;18&#125;,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    read comma as period,
+    use comma&#125;
+\pgfmathprintnumber&#123;1234,56&#125;
 </code></pre>
 
 ---
 
-## 1305. Line Chart
+## 1305. Other
 
-**ID**: `71bf66eaa6ee`  
+**ID**: `e846f1cd11aa`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        restrict y to domain=-10:10,
-        samples=1000,
-        % some fine-tuning for the display:
-        width=10cm, height=210pt,
-        xmin=-4.7124, xmax=4.7124,
-        xtick=&#123;-4.7124,-1.5708,...,10&#125;,
-        xticklabels=&#123;$-\frac32 \pi$,$-\pi/2$,$\pi/2$,$\frac32 \pi$&#125;,
-        axis x line=center,
-        axis y line=center,
-    ]
-        \addplot [blue] gnuplot [id=tangens,domain=-1.5*pi:1.5*pi] &#123;tan(x)&#125;;
-        \legend&#123;$\tan(x)$&#125;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator=&#123;&#125;&#125;
+\pgfmathprintnumber&#123;1234.56&#125;
 </code></pre>
 
 ---
 
 ## 1306. Other
 
-**ID**: `294cd8dfcb6f`  
+**ID**: `5b2edb70f496`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \pgfplotsset&#123;
-        every axis post/.style=&#123;
-            xmin=0,xmax=1,
-        &#125;,
-    &#125;
-    \begin&#123;axis&#125;[
-        xmin=-1,xmax=2,
-        ymin=0,ymax=1,
-    ]
-        ...
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator=&#123;&#125;&#125;
+\pgfmathprintnumber&#123;1234567890&#125;
 </code></pre>
 
 ---
 
-## 1307. Line Chart
+## 1307. Other
 
-**ID**: `355c9e2e09ff`  
+**ID**: `f7a7dc382d50`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\pgfplotsset&#123;
-    every axis plot post/.append style=&#123;mark=none&#125;,
-&#125;
-\begin&#123;axis&#125;[
-    legend pos=north west,
-    domain=0:1,
-]
-    \addplot &#123;x^2&#125;;
-    \addplot &#123;exp(x)&#125;;
-    \legend&#123;$x^2$,$e^x$&#125;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator=&#123;.&#125;&#125;
+\pgfmathprintnumber&#123;1234567890&#125;
 </code></pre>
 
 ---
 
 ## 1308. Other
 
-**ID**: `79e101c3e45b`  
+**ID**: `ed4f58d16b77`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;every axis title/.style=&#123;at=&#123;(0.5,1)&#125;,above,yshift=6pt&#125;&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator=&#123;,&#125;&#125;
+\pgfmathprintnumber&#123;1234567890&#125;
 </code></pre>
 
 ---
 
 ## 1309. Other
 
-**ID**: `6ef654f4633b`  
+**ID**: `73f9786ea1cb`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    every axis legend/.style=&#123;
-        cells=&#123;anchor=center&#125;,
-        inner xsep=3pt,inner ysep=2pt,
-        nodes=&#123;inner sep=2pt,text depth=0.15em&#125;,
-        anchor=north east,
-        shape=rectangle,
-        fill=white,draw=black,
-        at=&#123;(0.98,0.98)&#125;,
-    &#125;,
-&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision=2,
+    set thousands separator=&#123;&#123;&#123;&#123;,&#125;&#125;&#125;&#125;&#125;
+\pgfmathprintnumber&#123;1234567890&#125;
 </code></pre>
 
 ---
 
 ## 1310. Other
 
-**ID**: `32ba82786395`  
+**ID**: `9790fb3101f7`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    every x tick scale label/.style=&#123;
-        at=&#123;(xticklabel cs:0.9,5pt)&#125;,
-        anchor=near xticklabel,
-        inner sep=0pt,
-    &#125;,
-    every y tick scale label/.style=&#123;
-        at=&#123;(yticklabel* cs:1.03,-0.3em)&#125;,
-        /pgfplots/near ticklabel align=outside,
-        anchor=near yticklabel opposite,
-        inner sep=0pt,
-    &#125;,
-    every z tick scale label/.style=&#123;
-        at=&#123;(zticklabel* cs:1.2,-0.3em)&#125;,
-        anchor=near zticklabel,
-        inner sep=0pt,
-    &#125;,
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    precision=999,
+    set thousands separator=&#123;\,&#125;,
+    1000 sep in fractionals,
 &#125;
+\pgfmathprintnumber&#123;1234.1234567&#125;
 </code></pre>
 
 ---
 
 ## 1311. Other
 
-**ID**: `11fa7f94a4b3`  
+**ID**: `a637275448ab`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    every extra x tick/.style=&#123;/pgfplots/log identify minor tick positions=true&#125;,
-    every extra y tick/.style=&#123;/pgfplots/log identify minor tick positions=true&#125;,
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,fixed zerofill,
+    precision=9,
+    set thousands separator=&#123;\,&#125;,
+    1000 sep in fractionals,
 &#125;
+\pgfmathprintnumber&#123;1234.1234567&#125;
 </code></pre>
 
 ---
 
 ## 1312. Other
 
-**ID**: `5b503a1364f0`  
+**ID**: `a0724a6fde82`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;every extra x tick/.append style=&#123;grid=major&#125;&#125;
-\pgfplotsset&#123;every extra x tick/.append style=&#123;major tick length=0pt&#125;&#125;
-\pgfplotsset&#123;every extra x tick/.append style=&#123;/pgf/number format=sci subscript&#125;&#125;
-\pgfplotsset&#123;
-    extra x tick style=&#123;
-        grid style=&#123;
-            color=red,
-        &#125;,
-        tickwidth=3mm,
-        % the initial 'every tick style' defines a 'line width'.
-        % this here redefines it:
-        tick style=&#123;
-            line width=2mm,
-        &#125;,
-    &#125;,
-&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    int detect,
+    1000 sep=&#123;\,&#125;,
+    min exponent for 1000 sep=0&#125;
+\pgfmathprintnumber&#123;5000&#125;; \pgfmathprintnumber&#123;1000000&#125;
 </code></pre>
 
 ---
 
-## 1313. Line Chart
+## 1313. Other
 
-**ID**: `167dbe860bb7`  
+**ID**: `597e7a36378d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\pgfplotsset&#123;
-    my personal style/.style=&#123;
-        grid=major,
-        font=\large,
-    &#125;,
-&#125;
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[my personal style]
-    \addplot coordinates &#123;(0,0) (1,1)&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    int detect,
+    1000 sep=&#123;\,&#125;,
+    min exponent for 1000 sep=4&#125;
+\pgfmathprintnumber&#123;1000&#125;; \pgfmathprintnumber&#123;5000&#125;
 </code></pre>
 
 ---
 
-## 1314. Line Chart
+## 1314. Other
 
-**ID**: `0b317838ce96`  
+**ID**: `00a2a63ba825`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    title=Auto Limits,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    int detect,
+    1000 sep=&#123;\,&#125;,
+    min exponent for 1000 sep=4&#125;
+\pgfmathprintnumber&#123;10000&#125;; \pgfmathprintnumber&#123;1000000&#125;
 </code></pre>
 
 ---
 
-## 1315. Line Chart
+## 1315. Other
 
-**ID**: `d00777279a78`  
+**ID**: `2832bba024d9`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    title=&#123;\texttt&#123;xmin=0&#125;&#125;,
-    xmin=0,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,fixed,precision=2,use period&#125;
+\pgfmathprintnumber&#123;12.3456&#125;
 </code></pre>
 
 ---
 
-## 1316. Line Chart
+## 1316. Other
 
-**ID**: `b3f9ffb38e10`  
+**ID**: `6e9c2d538627`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    title=&#123;\texttt&#123;ymax=10&#125;&#125;,
-    ymax=10,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,fixed,precision=2,use period&#125;
+\pgfmathprintnumber&#123;1234.56&#125;
 </code></pre>
 
 ---
 
-## 1317. Line Chart
+## 1317. Other
 
-**ID**: `886f700c0b12`  
+**ID**: `3fcf4c7b0d30`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
- % Show (automatically) computed limits:
- title=&#123;
-  Axis limits are
-  $
- [\pgfmathprintnumber&#123;\pgfkeysvalueof&#123;/pgfplots/xmin&#125;&#125;
- :\pgfmathprintnumber&#123;\pgfkeysvalueof&#123;/pgfplots/xmax&#125;&#125;
- ]  \times
- [\pgfmathprintnumber&#123;\pgfkeysvalueof&#123;/pgfplots/ymin&#125;&#125;
- :\pgfmathprintnumber&#123;\pgfkeysvalueof&#123;/pgfplots/ymax&#125;&#125;
- ]$ &#125;,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,fixed,precision=2,use comma&#125;
+\pgfmathprintnumber&#123;12.3456&#125;
 </code></pre>
 
 ---
 
-## 1318. Line Chart
+## 1318. Other
 
-**ID**: `8441094d72fd`  
+**ID**: `19b707f6304d`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    xlabel=$x$ \emph&#123;decreasing&#125; $\to$,
-    x dir=reverse,
-]
-    \addplot &#123;x + rand*0.3&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,fixed,precision=2,use comma&#125;
+\pgfmathprintnumber&#123;1234.56&#125;
 </code></pre>
 
 ---
 
-## 1319. Line Chart
+## 1319. Other
 
-**ID**: `cf6d8c836094`  
+**ID**: `542b3a7834a2`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    ylabel=$y$ \emph&#123;decreasing&#125; $\to$,
-    y dir=reverse,
-]
-    \addplot &#123;x^2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,precision=2,
+    skip 0.&#125;
+\pgfmathprintnumber&#123;0.56&#125;
 </code></pre>
 
 ---
 
-## 1320. Scatter Plot
+## 1320. Other
 
-**ID**: `dee3b14cc613`  
+**ID**: `ebc935508a2a`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-    \begin&#123;axis&#125;[
-        ylabel=$y$ \emph&#123;decreasing&#125; $\to$,
-        xlabel=$x$ normal,
-        title=reversed axis,
-        y dir=reverse,
-        colorbar,
-        colorbar style=&#123;y dir=reverse&#125;,
-    ]
-        \addplot+ [mesh,scatter] &#123;x^15&#125;;
-    \end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,
+    fixed,
+    fixed zerofill,precision=2,
+    skip 0.=false&#125;
+\pgfmathprintnumber&#123;0.56&#125;
 </code></pre>
 
 ---
 
-## 1321. Line Chart
+## 1321. Other
 
-**ID**: `1630588a1ddf`  
+**ID**: `a13c46682a86`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    small,
-]
-    \addplot &#123;5 * x^3 - x^2 + 4*x -2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/showpos&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
-## 1322. Line Chart
+## 1322. Other
 
-**ID**: `d63dda5e9815`  
+**ID**: `8c85ae05a2ce`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    small,
-    enlarge x limits=0.2,
-]
-    \addplot &#123;5 * x^3 - x^2 + 4*x -2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/showpos=false&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
-## 1323. Line Chart
+## 1323. Other
 
-**ID**: `a392e3c1f522`  
+**ID**: `a44f07563ef4`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    small,
-    minor x tick num=1,
-    enlarge x limits=&#123;rel=0.5,upper&#125;,
-]
-    \addplot &#123;5 * x^3 - x^2 + 4*x -2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,showpos,sci&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
-## 1324. Line Chart
+## 1324. Other
 
-**ID**: `da9445a1ca17`  
+**ID**: `41fa5db40966`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[
-    small,
-    minor x tick num=1,
-    enlarge x limits=&#123;abs=3&#125;,
-]
-    \addplot &#123;5 * x^3 - x^2 + 4*x -2&#125;;
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,sci,sci 10e&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
-## 1325. Line Chart
+## 1325. Other
 
-**ID**: `0118f438690a`  
+**ID**: `d9bbf76d0625`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;axis&#125;[small,minor x tick num=1,
-    enlarge x limits=&#123;abs=1cm&#125;,
-]
-    \addplot &#123;5 * x^3 - x^2 + 4*x -2&#125;
-        coordinate [pos=0] (first)
-        coordinate [pos=1] (last);
-
-    \draw [red,-&gt;] (first) -- ++(-1cm,0pt);
-    \draw [red,-&gt;] (last)  -- ++( 1cm,0pt);
-\end&#123;axis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,sci,sci e&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
-## 1326. Line Chart
+## 1326. Other
 
-**ID**: `fce18086363e`  
+**ID**: `10ec71a007a0`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\begin&#123;loglogaxis&#125;[
-    small,
-    enlarge x limits=&#123;abs=11&#125;,
-]
-    \addplot+ [domain=1:100000] &#123;x^-2&#125;;
-\end&#123;loglogaxis&#125;
-\end&#123;tikzpicture&#125;
+\pgfkeys&#123;/pgf/number format/.cd,sci,sci E&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
 ## 1327. Other
 
-**ID**: `2be0f27dbbd2`  
+**ID**: `4ae1d8a64c6b`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\count0=42
-The value is now `\the\count0'.
-\def\macro&#123;-123456&#125;
-\count0=\macro
-The value is now `\the\count0'.
+\pgfkeys&#123;/pgf/number format/.cd,sci,sci subscript&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
 ## 1328. Other
 
-**ID**: `da7f81c547a9`  
+**ID**: `d7d7116d90e7`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\firstmacro&#123;123&#125;
-\def\secondmacro&#123;456&#125;
-\def\thirdmacro&#123;789&#125;
-\count0=\firstmacro\secondmacro\thirdmacro
-The value is now `\the\count0'.
+\pgfkeys&#123;/pgf/number format/.cd,sci,sci superscript&#125;
+\pgfmathprintnumber&#123;12.345&#125;
 </code></pre>
 
 ---
 
 ## 1329. Other
 
-**ID**: `42f9fddcd6e3`  
+**ID**: `bc764edd74da`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-1. \count0=42 % a white space after the number aborts the reading process. It is discarded.
-The value is now `\the\count0'.
-2. The following code will absorb the `3' of '3.':
-\def\macro&#123;1234&#125;
-\count0=\macro % a white space after a macro will be absorbed by TeX, so this is wrong.
-3. The value is now `\the\count0'.
-4. Use \textbackslash relax after an assignment to end scanning:
-\count0=\macro\relax
-5. The value is now `\the\count0'.
+\pgfkeys&#123;
+    /pgf/number format/.cd,
+    sci,
+    sci generic=&#123;mantissa sep=\times,exponent=&#123;10^&#123;#1&#125;&#125;&#125;&#125;
+\pgfmathprintnumber&#123;12.345&#125;;
+\pgfmathprintnumber&#123;0.00012345&#125;
 </code></pre>
 
 ---
 
 ## 1330. Other
 
-**ID**: `6251feac01f5`  
+**ID**: `5eaa50b35093`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\dimen0=1pt
-The value is now \the\dimen0.
-\dimen0=0.0001pt
-The value is now \the\dimen0.
-\def\macro&#123;1234.5678&#125;
-\dimen0=\macro pt
-The value is now \the\dimen0.
+\pgfkeys&#123;
+    /pgf/number format/.cd,
+    sci, retain unit mantissa=false&#125;
+\pgfmathprintnumber&#123;10.5&#125;;
+\pgfmathprintnumber&#123;10&#125;;
+\pgfmathprintnumber&#123;1010&#125;;
+\pgfmathprintnumber[precision=1]&#123;-1010&#125;;
 </code></pre>
 
 ---
 
 ## 1331. Other
 
-**ID**: `c73bde9d31ae`  
+**ID**: `cf0060c30ee6`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\toks0=&#123;abc&#125;%
-\toks1=&#123;DEF&#125;%
-The value is now \the\toks0 \the\toks1.
+\pgfkeys&#123;
+    /pgf/fpu,
+    /pgf/number format/.cd,
+    sci,
+    verbatim&#125;
+\pgfmathprintnumber&#123;12.345&#125;;
+\pgfmathprintnumber&#123;0.00012345&#125;;
+\pgfmathparse&#123;exp(15)&#125;
+\pgfmathprintnumber&#123;\pgfmathresult&#125;
 </code></pre>
 
 ---
 
 ## 1332. Other
 
-**ID**: `5ca79e79be3c`  
+**ID**: `086da8ac8007`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\toks0=&#123;#1&#125;%
-\message&#123;Meaning is \the\toks0&#125;%
+% An example how to use
+% \usepackage&#123;multirow&#125; and
+% \usepackage&#123;booktabs&#125;:
+\pgfplotstabletypeset[
+    columns/Z/.style=&#123;
+        column name=&#123;&#125;,
+        assign cell content/.code=&#123;% use \multirow for Z column:
+            \ifnum\pgfplotstablerow=0
+                \pgfkeyssetvalue&#123;/pgfplots/table/@cell content&#125;
+                    &#123;\multirow&#123;4&#125;&#123;*&#125;&#123;##1&#125;&#125;%
+            \else
+                \pgfkeyssetvalue&#123;/pgfplots/table/@cell content&#125;&#123;&#125;%
+            \fi
+        &#125;,
+    &#125;,
+    % use \booktabs as well (compare examples above):
+    every head row/.style=&#123;before row=\toprule,after row=\midrule&#125;,
+    every last row/.style=&#123;after row=\bottomrule&#125;,
+    row sep=\\,col sep=&,
+    outfile=pgfplotstable.multirow.out,% write it to file
+]&#123;% here: inline data in tabular format:
+    Z    & a & b \\
+    data & 1 & 2 \\
+         & 3 & 4 \\
+         & 5 & 6 \\
+         & 7 & 8 \\
+&#125;
+% ... and show the generated file:
+\lstinputlisting[basicstyle=\footnotesize\ttfamily]&#123;pgfplotstable.multirow.out&#125;
 </code></pre>
 
 ---
 
 ## 1333. Other
 
-**ID**: `e81acfa0b10f`  
+**ID**: `990ff6467a06`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\newdimen\variable
+% Requires
+% \usepackage&#123;pgfcalendar&#125;
+\pgfplotstableset&#123;columns=&#123;date,account1&#125;&#125;
 
-\variable=42pt
+% plotdata/accounts.dat contains:
+%
+% date              account1  account2  account3
+% 2008-01-03        60        1200      400
+% 2008-02-06        120       1600      410
+% 2008-03-15        -10       1600      410
+% 2008-04-01        1800      500       410
+% 2008-05-20        2300      500       410
+% 2008-06-15        800       1920      410
 
-The value is now \the\variable.
+% Show the contents in `string type':
+\pgfplotstabletypeset[
+    columns/date/.style=&#123;string type&#125;
+]&#123;plotdata/accounts.dat&#125;
+\hspace&#123;1cm&#125;
+% Show the contents in `date type':
+\pgfplotstabletypeset[
+    columns/date/.style=&#123;date type=&#123;\monthname\ \year&#125;&#125;
+]&#123;plotdata/accounts.dat&#125;
 </code></pre>
 
 ---
 
 ## 1334. Other
 
-**ID**: `06418216544c`  
+**ID**: `a4b218d5b25e`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\toks3=&#123;Value outside of group&#125;
-
-\begingroup
-\toks3=&#123;Value inside of group&#125;
-toks3 inside of group: \the\toks3
-\endgroup
-
-toks3 outside of group: \the\toks3
+\usepackage&#123;pgfcalendar&#125;
 </code></pre>
 
 ---
 
 ## 1335. Other
 
-**ID**: `a7b916d30719`  
+**ID**: `3d6d62effcc2`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\usepackage&#123;etex&#125;
+\pgfplotstabletypeset[columns=&#123;level,dof&#125;]
+    &#123;pgfplotstable.example1.dat&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;level,dof&#125;,
+    columns/level/.style=&#123;string replace=&#123;A&#125;&#123;B&#125;&#125;, % does nothing because there is no cell 'A'
+    columns/dof/.style=&#123;string replace=&#123;256&#125;&#123;-42&#125;&#125;]  % replace cell '256' with '-42'
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1336. Other
 
-**ID**: `7d0345c170d1`  
+**ID**: `5352a388bc00`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\count0=42
-\advance\count0 by 10
-The value is now \the\count0.
+\pgfplotstabletypeset[
+    string replace*=&#123;2&#125;&#123;6&#125;,
+    col sep=&,row sep=\\]&#123;
+  colA & colB & colC \\
+  11   & 12   & 13   \\
+  21   & 22   & 23   \\
+&#125;
 </code></pre>
 
 ---
 
 ## 1337. Other
 
-**ID**: `25f9f7a6df3d`  
+**ID**: `161eb8e2a8e4`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\dimen0=1pt
-\advance\dimen0 by 10pt
-The value is now \the\dimen0.
+\pgfplotstabletypeset[
+    columns=&#123;level&#125;,
+    columns/level/.style=&#123;
+        column name=&#123;$2\cdot \text&#123;level&#125;+4$&#125;,
+        preproc/expr=&#123;2*##1 + 4&#125;
+    &#125;
+]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1338. Other
 
-**ID**: `c7a902c0dc58`  
+**ID**: `f453b6aae22f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\count0=42
-\multiply\count0 by -10
-The value is now \the\count0.
+\pgfplotstableset&#123;
+    columns=&#123;error1,sqrterror1&#125;,
+    create on use/sqrterror1/.style=&#123;create col/copy=error1&#125;,
+    columns/error1/.style=&#123;column name=$\epsilon$&#125;,
+    columns/sqrterror1/.style=&#123;sqrt,column name=$\sqrt \epsilon$&#125;,
+    sci,sci 10e,precision=3,sci zerofill
+&#125;
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1339. Other
 
-**ID**: `388703304166`  
+**ID**: `d2b58f04808f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\dimen0=0.5pt
-\multiply\dimen0 by 20
-The value is now \the\dimen0.
+\pgfplotstableset&#123;
+    columns=&#123;dof,error2,slopes2&#125;,
+    columns/error2/.style=&#123;sci,sci zerofill&#125;,
+    columns/slopes2/.style=&#123;dec sep align,empty cells with=&#123;\ensuremath&#123;-&#125;&#125;&#125;,
+    create on use/slopes2/.style=
+        &#123;create col/gradient loglog=&#123;dof&#125;&#123;error2&#125;&#125;&#125;
+
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
+
+\pgfplotstabletypeset[columns/slopes2/.append style=&#123;multiply -1&#125;]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1340. Other
 
-**ID**: `a04af7169da1`  
+**ID**: `3645fad77441`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\count0=5
-\divide\count0 by 2
-The value is now \the\count0.
+% requires \usepackage&#123;booktabs&#125;
+\pgfplotstabletypeset[
+    every head row/.style=&#123;
+        before row=\toprule,after row=\midrule&#125;,
+    every last row/.style=&#123;
+        after row=\bottomrule&#125;,
+    row predicate/.code=&#123;%
+        \ifnum#1&gt;4\relax
+            \ifnum#1&lt;8\relax
+                \pgfplotstableuserowfalse
+            \fi
+        \fi&#125;
+]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1341. Other
 
-**ID**: `ea822b0b4c5c`  
+**ID**: `d7ce26594618`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\dimen0=10pt
-\divide\dimen0 by 20
-The value is now \the\dimen0.
+% requires \usepackage&#123;booktabs&#125;
+\pgfplotstabletypeset[
+    every head row/.style=&#123;
+        before row=\toprule,after row=\midrule&#125;,
+    every last row/.style=&#123;
+        after row=\bottomrule&#125;,
+    skip rows between index=&#123;2&#125;&#123;4&#125;,
+    skip rows between index=&#123;7&#125;&#123;9&#125;
+]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1342. Other
 
-**ID**: `af414a147938`  
+**ID**: `769e4324485f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\dimen1=50pt
-\dimen0=0.6\dimen1
-The value is now \the\dimen0.
+% requires \usepackage&#123;booktabs&#125;
+\pgfplotstableset&#123;
+    every head row/.style=&#123;before row=\toprule,after row=\midrule&#125;,
+    every last row/.style=&#123;after row=\bottomrule&#125;&#125;
+
+\pgfplotstabletypeset[string type]&#123;pgfplotstable.example2.dat&#125;%
+~
+\pgfplotstabletypeset[
+    columns=&#123;A,B,A,B&#125;,
+    display columns/0/.style=&#123;select equal part entry of=&#123;0&#125;&#123;2&#125;,string type&#125;,% first part of `A'
+    display columns/1/.style=&#123;select equal part entry of=&#123;0&#125;&#123;2&#125;,string type&#125;,% first part of `B'
+    display columns/2/.style=&#123;select equal part entry of=&#123;1&#125;&#123;2&#125;,string type&#125;,% second part of `A'
+    display columns/3/.style=&#123;select equal part entry of=&#123;1&#125;&#123;2&#125;,string type&#125;,% second part of `B'
+]
+    &#123;pgfplotstable.example2.dat&#125;
 </code></pre>
 
 ---
 
 ## 1343. Other
 
-**ID**: `72a9cda54b12`  
+**ID**: `9a6155a7c6e1`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro&#123;This here is actually the replacement text.&#125;
-Executing it: `\macro'.
+% requires \usepackage&#123;eurosym&#125;
+\pgfplotstabletypeset[
+    column type=r,
+    columns=&#123;dof,info&#125;,
+    columns/info/.style=&#123;
+        % stupid example for multiple postprocessors:
+        postproc cell content/.append style=&#123;
+            /pgfplots/table/@cell content/.add=&#123;$\bf&#125;&#123;$&#125;,
+        &#125;,
+        postproc cell content/.append style=&#123;
+            /pgfplots/table/@cell content/.add=&#123;&#125;&#123;\EUR&#123;&#125;&#125;,
+        &#125;
+    &#125;]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1344. Other
 
-**ID**: `ba3d059e696f`  
+**ID**: `585e768fccfc`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro#1&#123;replacement with first argument=#1&#125;
-Invoking it: \macro&#123;hello!&#125;.
+\pgfplotstableset&#123;
+    create on use/slopes1/.style=
+        &#123;create col/gradient loglog=&#123;dof&#125;&#123;error1&#125;&#125;&#125;
+
+\pgfplotstabletypeset[
+    columns=&#123;dof,error1,slopes1&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill&#125;,
+    columns/slopes1/.style=&#123;
+        postproc cell content/.append code=&#123;%
+            \ifnum\pgfplotstablerow=0
+                \pgfkeyssetvalue&#123;/pgfplots/table/@cell content&#125;&#123;\ensuremath&#123;-&#125;&#125;%
+            \fi
+        &#125;%
+    &#125;]
+    &#123;pgfplotstable.example1.dat&#125;
 </code></pre>
 
 ---
 
 ## 1345. Other
 
-**ID**: `bc4a07b9367d`  
+**ID**: `dd81f7289e2f`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro#1-#2.&#123;replacement with arguments: `#1' and `#2'.&#125;
-Invoking it: \macro a-sign.
+% Requires
+% \usepackage&#123;pgfcalendar&#125;
+
+% plotdata/accounts.dat contains:
+%
+% date              account1  account2  account3
+% 2008-01-03        60        1200      400
+% 2008-02-06        120       1600      410
+% 2008-03-15        -10       1600      410
+% 2008-04-01        1800      500       410
+% 2008-05-20        2300      500       410
+% 2008-06-15        800       1920      410
+
+\pgfplotstabletypeset[
+    columns=&#123;date,account1&#125;,
+    column type=r,
+    columns/date/.style=&#123;date type=&#123;\monthname\ \year&#125;&#125;,
+    columns/account1/.style=&#123;fonts by sign=&#123;&#125;&#123;\color&#123;red&#125;&#125;&#125;
+]
+    &#123;plotdata/accounts.dat&#125;
 </code></pre>
 
 ---
 
 ## 1346. Other
 
-**ID**: `cd39865dfced`  
+**ID**: `b01b2d689711`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro(#1,#2,#3)&#123;I found arguments `#1', `#2' and `#3'.&#125;
-\macro(42,43,44)
+% this key setting could be provided in the document's preamble:
+\pgfplotstableset&#123;
+    % define how the 'new' column shall be filled:
+    create on use/new/.style=&#123;create col/set list=&#123;4,5,6,7,...,10&#125;&#125;&#125;
+% create a new table with 11 rows and column 'new':
+\pgfplotstablenew[columns=&#123;new&#125;]&#123;11&#125;\loadedtable
+% show it:
+\pgfplotstabletypeset[empty cells with=&#123;---&#125;]\loadedtable
 </code></pre>
 
 ---
 
 ## 1347. Other
 
-**ID**: `9721670797f6`  
+**ID**: `3ba4d83441dd`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macro&#123;Replacement \textmacro text  \count0=42 \the\count0.&#125;
-\message&#123;Debug message: '\meaning\macro'&#125;
+% create a new table with 11 rows and column 'new':
+\pgfplotstablenew[
+    % define how the 'new' column shall be filled:
+    create on use/new/.style=&#123;create col/expr=&#123;factorial(15+\pgfplotstablerow)&#125;&#125;,
+    columns=&#123;new&#125;]
+    &#123;11&#125;
+    \loadedtable
+% show it:
+\pgfplotstabletypeset\loadedtable
 </code></pre>
 
 ---
 
 ## 1348. Other
 
-**ID**: `990e03d2a7d6`  
+**ID**: `7c57abf7adcc`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macroone&#123;This is macro one&#125;
-\def\macrotwo&#123;Macro two contains \macroone.&#125;
-Now, I execute it: \macrotwo.
-\def\macroone&#123;Redefined macroone&#125;
-Now, I execute the second macro again: \macrotwo.
+\pgfplotstablevertcat&#123;\output&#125;&#123;datafile1&#125; % loads `datafile1' -&gt; `\output'
+\pgfplotstablevertcat&#123;\output&#125;&#123;datafile2&#125; % appends rows of datafile2
+\pgfplotstablevertcat&#123;\output&#125;&#123;datafile3&#125; % appends rows of datafile3
 </code></pre>
 
 ---
 
 ## 1349. Other
 
-**ID**: `0f927268d8e1`  
+**ID**: `baedfd74c132`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\macroone abc&#123;\macrotwo&#125;
-\def\macrotwo def&#123;\macrothree&#125;
-\def\macrothree#1&#123;Got `#1'&#125;
-\macroone abcdefg
+\pgfplotsforeachungrouped \i in &#123;1,2,...,10&#125; &#123;%
+    \pgfplotstablevertcat&#123;\output&#125;&#123;datafile\i&#125; % appends `datafile\i' -&gt; `\output'
+&#125;%
 </code></pre>
 
 ---
 
 ## 1350. Other
 
-**ID**: `493be9672211`  
+**ID**: `89ee10c26f11`  
 **Package**: pgfplots  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\def\point(#1,#2)&#123;we do something with #1 and #2&#125;
-\def\temp&#123;(42,1234)&#125;
-\expandafter\point\temp
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstablecreatecol[
+    create col/assign/.code=&#123;%
+        \getthisrow&#123;level&#125;\entry
+        \getnextrow&#123;level&#125;\nextentry
+        \edef\entry&#123;thisrow=\entry; nextrow=\nextentry.
+            (\#\pgfplotstablerow/\pgfplotstablerows)&#125;%
+        \pgfkeyslet&#123;/pgfplots/table/create col/next content&#125;\entry
+    &#125;]
+    &#123;new&#125;\loadedtable
+
+\pgfplotstabletypeset[
+    column type=l,
+    columns=&#123;level,new&#125;,
+    columns/new/.style=&#123;string type&#125;
+]\loadedtable
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-025) | Page 27 of 107 | [Next →](executable_example-page-027)
+[← Previous](executable_example-page-025) | Page 27 of 120 | [Next →](executable_example-page-027)

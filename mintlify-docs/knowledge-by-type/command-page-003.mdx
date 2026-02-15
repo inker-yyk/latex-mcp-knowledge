@@ -11,497 +11,503 @@ Showing items **151-200** of **1103**
 
 ---
 
-## 151. Command: `\let\meta{\textbackslash newmacro`
+## 151. Command: `\legend\marg{list`
 
-**ID**: `5069afa73d2d`  
+**ID**: `1de6f03ce919`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: =token&#125; Defines or redefines || to be an equivalent to token. For example, |=| will create a new copy of macro ||. The copy is named ||, and it will have exactly the same replacement text and argument pattern as ||. It is also possible that token is something different than a macro, for example a named register or a single character.
+**Description**: &#125; You can use ||list to assign a complete legend. codeexample[code only] $d=2$,$d=3$,$d=4$,$d=5$,$d=6$ codeexample The argument of || is a list of entries, one for each plot. Two different delimiters are supported: enumerate There are comma-separated lists like codeexample[code only] $d=2$,$d=3$,$d=4$,$d=5$,$d=6$ codeexample These lists are processed using the || command and are quite powerful. The || command supports a dots notation to denote ranges like |1,2,...,5| or even |$x^1$,$x^...$,$x^d$
 
 ---
 
-## 152. Command: `\gdef\meta{\textbackslash macroname`
+## 152. Command: `\ref\marg{label name`
 
-**ID**: `d11546c58ea6`  
+**ID**: `56d340789afc`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: argument patternreplacement text&#125; A shortcut for ||. It defines || globally, independent of the current scope. You should avoid macros which exist in both, the global namespace and a local scope, with different meanings. Section~sec:scopes explains more about scoping.
+**Description**: &#125; Can be used to reference a labeled, single plot. See the example above. This will also work together with |hyperref| links and ||.Older versions of &#123; required the use of protect ref when used inside of captions or section headings. This is no longer necessary.&#125;
 
 ---
 
-## 153. Command: `\xdef\meta{\textbackslash macroname`
+## 153. Command: `\pgfplotslegendfromname\marg{name`
 
-**ID**: `4ea5a75a4ab6`  
+**ID**: `dc13ba490913`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: argument patternreplacement text&#125; A shortcut for ||. It defines || globally, independent of the current scope. You should avoid macros which exist in both, the global namespace and a local scope, with different meanings. Section~sec:scopes explains more about scoping.
+**Description**: &#125; This command poses an equivalent alternative for ||name: it has essentially the same effect, but it does not create links when used with the |hyperref| package.Since this manual uses colored links, the text in &#123; would usually be blue. Using avoids link text colors in the legend (this has been applied to the manual styles here).&#125;
 
 ---
 
-## 154. Command: `\csname\meta{expandable tokens`
+## 154. Command: `\addlegendimage\marg{options`
 
-**ID**: `e0fe23a1840e`  
+**ID**: `14bf14545431`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: endcsname&#125; This command is not a macro definition, it is a definition of a macro's name. The ``cs'' means ``control sequence''. The ||, || pair defines a control sequence name (a macro name) using expandable tokens. The control sequence character `|\|' will be prepended automatically by ||.In fact, the contents of &#123; escapechar will be used here. If its value is -1, no character will be prepended. The same holds for any occurrence where a backslash would be inserted by \ commands.&#125; codeexample[] 
+**Description**: &#125; Adds a further legend image for legend creation. Each || command appends its plot style options to a list, and || adds options to the very same list. Thus, the effect is as if you had provided ||options, but || bypasses all the logic usually associated with a plot. In other words: except for the legend, the state of the axis remains as if the command would not have been issued. Not even the current plot's index is advanced. codeexample[] tikzpicture semilogyaxis[ domain=0:4, ] &#123;x&#125;; $x$ &#123;x^2&#125;; 
 
 ---
 
-## 155. Command: `\string\meta{\textbackslash macro`
+## 155. Command: `\pgfplotscolorbarfromname\marg{name`
 
-**ID**: `c4338a7af23f`  
+**ID**: `e7bfbb6ae965`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: &#125; This command does not define a macro. Instead, it returns a macro's name as a sequence of separate tokens, including the control sequence token `|\|'. codeexample[] I have just defined `' using `'. codeexample You can also use || on other tokens -- for example characters. That doesn't hurt, the character will be returned as-is.
+**Description**: &#125; This command poses an equivalent alternative for ||name: it has essentially the same effect, but it does not create links when used with the |hyperref| package.
 
 ---
 
-## 156. Command: `\message\marg{tokens`
+## 156. Command: `\pgfplotsaxistransformcs\marg{fromname`
 
-**ID**: `9969cdba1863`  
+**ID**: `d4dc85c5debc`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: toname&#125; Expects the current point in a set of keys, provided in the coordinate system fromname and replaces them by the same coordinates represented in toname. On input, the coordinates are stored in |/data point/x|, |/data point/y|, and |/data point/z| (the latter may be empty). The macro will test if there is a declared coordinate transformation from fromname to toname and invoke it. If there is none, it will attempt to convert to |cart| first and then from |cart| to toname. If that does not e
 
 ---
 
-## 157. Command: `\meaning\meta{\textbackslash macro`
+## 157. Command: `\pgfplotsdefinecstransform\marg{fromname`
 
-**ID**: `aabf90de330c`  
+**ID**: `0ad9f352433e`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: &#125;
+**Description**: tonamecode&#125; Defines a new coordinate system transformation. The code is expected to get input and write output as described for ||. Implementing a new coordinate system immediately raises the question in which math mode the operations shall be applied. supports different so-called ``coordinate math systems'' for generic operations, and for each individual coordinate as well. These coordinate math systems can either use basic math arithmetics, the |fpu|, or perhaps there will come a Lua library. 
 
 ---
 
-## 158. Command: `\tracingmacros=2`
+## 158. Command: `\tikzsetexternalprefix\marg{file name prefix`
 
-**ID**: `01c519a17383`  
+**ID**: `407566a1139e`  
 **Package**: pgfplots  
 **Type**: Command Specification  
+
+**Description**: &#125; Assigns a common prefix used by all file names. For example, codeexample[code only] figures/ codeexample will prepend |figures/| to every external graphics file name.
 
 ---
 
-## 159. Command: `\tracingcommands=2`
+## 159. Command: `\tikzsetnextfilename\marg{file name`
 
-**ID**: `417b52180800`  
+**ID**: `c83712636969`  
 **Package**: pgfplots  
 **Type**: Command Specification  
+
+**Description**: &#125; Sets the file name for the next picture or || short command. It will only be used for the next picture. Pictures for which no explicit file name has been set will get automatically generated file names. Please note that |prefix| will still be prepended to file name. codeexample[code only] article tikz external [prefix=figures/] document firstplot tikzpicture axis &#123;x&#125;; axis tikzpicture tikzpicture [help lines] (0,0) grid (5,5); tikzpicture document codeexample codeexample[code only] pdflatex -s
 
 ---
 
-## 160. Command: `\tracingrestores=1`
+## 160. Command: `\tikzsetfigurename\marg{name`
 
-**ID**: `155aa8be6b99`  
+**ID**: `74c3f12bdf8f`  
 **Package**: pgfplots  
 **Type**: Command Specification  
+
+**Description**: &#125; Changes the names of all following figures. It is possible to change |figure name| during the document using |external/figure name|=&#123;name|&#125;|. A unique counter will be used for each different name, and each counter will start at $0$.These counters are stored into different &#123;macros. In other words: no register will be needed.&#125; The value of |prefix| will be applied after |figure name| has been evaluated. codeexample[code only] article tikz external document tikzpicture semilogyaxis &#123;exp(x)&#125;; semi
 
 ---
 
-## 161. Command: `\begingroup`
+## 161. Command: `\tikzappendtofigurename\marg{suffix`
 
-**ID**: `1dd1146065f0`  
+**ID**: `450f01bdb8c8`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: Starts a new \ group (a local scope). The scope will be active until it will be closed by ||. The || command can occur later in the main token list.
+**Description**: &#125; Appends suffix to the actual value of |figure name|. It is a shortcut for |external/figure name/.add=&#123;|suffix|&#125;| (a shortcut which is also supported if is not installed, see below).
 
 ---
 
-## 162. Command: `\endgroup`
+## 162. Command: `\pgfmathprintnumber\marg{x`
 
-**ID**: `68d36fabec55`  
+**ID**: `17712479353b`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: Ends a \ group which has been opened with ||.
+**Description**: &#125; Generates pretty-printed output for the (real) number x. The input number x is parsed using || which allows arbitrary precision. Numbers are typeset in math mode using the current set of number printing options, see below. Optional arguments can also be provided using |[|options|]|x. Please refer to the manual of (shipped with this package) for details about options related to number-printing.
 
 ---
 
-## 163. Command: `\bgroup`
+## 163. Command: `\pgfplotssetlayers`
 
-**ID**: `90c19501e2da`  
+**ID**: `5969a6b9e8a2`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: A special variant of || which can also be used to delimit arguments to || or || (i.e. it avoids the necessity to provide matched curly braces in this context). The || macro is also useful to test whether the next following character is an opening brace (see ||). If one just needs to open a \ group, one should prefer ||.
+**Description**: An alias for |set layers|. It activates the |layers/default| layer configuration.
 
 ---
 
-## 164. Command: `\egroup`
+## 164. Command: `\pgfplotssetlayers\marg{layer configuration name`
 
-**ID**: `44e4ccf26741`  
+**ID**: `ba4256eff459`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: Closes a preceding ||.
+**Description**: &#125; An alias for |set layers=|&#123;layer configuration name|&#125;|.
 
 ---
 
-## 165. Command: `\global\meta{definition or assignment`
+## 165. Command: `\pgfplotbarwidth`
 
-**ID**: `1a9bb4246adf`  
+**ID**: `2b34a8c29e5c`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: &#125; The definition which follows || immediately will be done globally. codeexample[code only] &#123; 123 0 by3 0=&#123;34&#125; &#125; codeexample
+**Description**: A mathematical expression which results in the fully computed value of |bar width| (i.e.\@ it includes any unit computations).
 
 ---
 
-## 166. Command: `\globaldefs=\mchoice{-1,0,1`
+## 166. Command: `\pgfplotbarshift`
 
-**ID**: `f8454be07a73`  
+**ID**: `186b111a67ff`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: (initially 0)&#125; I cite from~texbook: ``If the || parameter is positive at the time of an assignment, a prefix of || is automatically implied; but if || is negative at the time of the assignment, a prefix of || is ignored. If || is zero (which it usually is), the appearance of nonappearance of || determines whether or not a global assignment is made.''
+**Description**: A mathematical expression which results in the fully computed value of |bar shift| (i.e.\@ it includes any unit computations).
 
 ---
 
-## 167. Command: `ifnum\meta{count/integer number`
+## 167. Command: `\closedcycle`
 
-**ID**: `4c4155999893`  
+**ID**: `90623d180263`  
 **Package**: pgfplots  
 **Type**: Command Specification  
 
-**Description**: =count/integer numbertrue-block elsefalse-block fi&#125; || compare integer numbers or integer registers (|| registers) and contains two branches, one is executed in the true case, the other in the case of false: codeexample[] 1=2 This is shown if above were true. This is shown if above results to false. codeexample Note that the || with its false-block is optional.
+**Description**: Provide || as trailing path commands after || to draw a closed line from the last plot coordinate to the first one. Use || whenever you intend to fill the area under a plot. codeexample[] tikzpicture axis &#123;x^2+2&#125; ; axis tikzpicture codeexample codeexample[] tikzpicture axis + [fill] &#123;x^2+2&#125; ; axis tikzpicture codeexample In case of stacked plots, || connects the current plot with the previous plot instead of connecting with the $x$-axis.The implementation for stacked plots requires some addition
 
 ---
 
-## 168. Command: `ifdim\meta{dimen/fixed point number`
+## 168. Command: `Vertex`
 
-**ID**: `017deb7eca61`  
-**Package**: pgfplots  
+**ID**: `55a41fd51b1f`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: =dimen/fixed point numbertrue-block elsefalse-block fi&#125; Similar to ||, || compares two fixed point numbers or || registers. The numbers must have a unit. codeexample[] 1pt=2pt This is shown if above were true. This is shown if above results to false. codeexample
+**Description**: Command for Vertex
 
 ---
 
-## 169. Command: `ifx\meta{token1`
+## 169. Command: `Edge`
 
-**ID**: `697c85da0b19`  
-**Package**: pgfplots  
+**ID**: `f1a4a23d2bf0`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: token2true-block elsefalse-block fi&#125; || is a bit more complex: It compares two tokens up to their first-level expansion. codeexample[] This is shown if the two tokens have equal expansion. This is shown if the two tokens expand to something different. codeexample Here, we have defined a token || to be a replacement for || and subsequently have compared whether these two tokens are equal in first-level expansion. Note that the definition is actually nonsense. If ever were to go through the whole 
+**Description**: Command for Edge
 
 ---
 
-## 170. Command: `if\meta{token1`
+## 170. Command: `Text`
 
-**ID**: `39cd67f17c22`  
-**Package**: pgfplots  
+**ID**: `94c0161be3ff`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: token2true-block elsefalse-block fi&#125; The || comparison is closely related to the || conditional, with one major exception: it expands tokens until it finds the next two unexpandable tokens. If these two tokens are the same, it expands to the true-block, otherwise to the false-block. The || conditional should be handled with care as it might produce undesirable effects. Use it only if you know what you do. A useful example is if you know that a macro contains at most one character, and you want t
+**Description**: Command for Text
 
 ---
 
-## 171. Command: `iftrue\meta{true-block`
+## 171. Command: `Vertices`
 
-**ID**: `717522014899`  
-**Package**: pgfplots  
+**ID**: `3b55442113aa`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: elsefalse-block fi&#125; A ``conditional'' which always invokes the true-block.
+**Description**: Command for Vertices
 
 ---
 
-## 172. Command: `iffalse\meta{true-block`
+## 172. Command: `Edges`
 
-**ID**: `b4461ea18424`  
-**Package**: pgfplots  
+**ID**: `bc13283bb88a`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: elsefalse-block fi&#125; A ``conditional'' which always invokes the false-block.
+**Description**: Command for Edges
 
 ---
 
-## 173. Command: `\newif\meta{if-name`
+## 173. Command: `SetLayerDistance`
 
-**ID**: `27b058ddb7e5`  
-**Package**: pgfplots  
+**ID**: `4476fffd65c5`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; You can declare a new ``boolean variable `|| by means of ||. Afterwards, you can use the || and || switches to assign the boolean and || to check it. The if-name has to start with || (to support scans for nested |...| pairs, see below).
+**Description**: Command for SetLayerDistance
 
 ---
 
-## 174. Command: `\pgfkeyssetvalue\marg{/key path/key name`
+## 174. Command: `SetCoordinates`
 
-**ID**: `3415cf3601de`  
-**Package**: pgfplots  
+**ID**: `f87a8b763102`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: value&#125; This macro (re)defines a key. It is (almost) equivalent to a macro definition of sorts | key@|/key path/key name||value; i.e.\ it stores value into a new macro such that the key can be looked up in constant time in 's hash map. Note that in contrast to other key--value packages like |xkeyval|, the low--level macro name which is used to store the value is not part of the Keys that &#123;key@ is unrelated to Keys.&#125; -- use || and its friends to access the value. The only limit for the number of p
+**Description**: Command for SetCoordinates
 
 ---
 
-## 175. Command: `\pgfkeysgetvalue\marg{/key path/key name`
+## 175. Command: `Plane`
 
-**ID**: `313fe979eec4`  
-**Package**: pgfplots  
+**ID**: `66e160dd73b5`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: macro&#125; As you might have guessed, this macro allows to retrieve the value for some key and store it into macro. Now that we have read about || and ||, we can also provide an example: codeexample[] /notes/key&#123;abc&#125; /notes/key The value of key /notes/key is `'. codeexample There is few magic around these two keys; it is just like a hashmap access with some special naming convention for the keys (due to the key path). Note that since ``hashmap access'' is what \ does all the time when it handles mac
+**Description**: Command for Plane
 
 ---
 
-## 176. Command: `\pgfkeyslet\marg{/key path/key name`
+## 176. Command: `SetDefaultUnit`
 
-**ID**: `dde4b2c12b86`  
-**Package**: pgfplots  
+**ID**: `298bcf39159e`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: macro&#125; This is essentially the same as ||, except that the key's value is already available inside of macro: codeexample[] /notes/key&#123;&#125; /notes/key The value of key /notes/key is `'. codeexample Just like || boils down to ||, || boils down to ||.
+**Description**: Command for SetDefaultUnit
 
 ---
 
-## 177. Command: `\pgfkeysvalueof\marg{/key path/key name`
+## 177. Command: `SetDistanceScale`
 
-**ID**: `967cfc350283`  
-**Package**: pgfplots  
+**ID**: `59287afba560`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; This is essentially the same as ||/key path/key name macro macro; i.e.\ it expands to the value stored in a key. codeexample[] /notes/key&#123;abc&#125; The value of key /notes/key is `/notes/key'. codeexample However, this key has one major advantage: it can be used inside of an || (because it is fully expandable): codeexample[] /notes/key&#123;abc&#125; --- &#123;/notes/key ---&#125; The value of key /notes/key along with dashes is . codeexample It boils down to a suitable | ... |. Consequently, it expands to || if the k
+**Description**: Command for SetDistanceScale
 
 ---
 
-## 178. Command: `\pgfkeysdef\marg{/key path/key name`
+## 178. Command: `SetLayerDistance`
 
-**ID**: `d1abda350970`  
-**Package**: pgfplots  
+**ID**: `4476fffd65c5`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: macro body&#125; This is a variant of ||. However, it has a substantial difference which appears to be unmotivated as long as we discuss the low--level . It defines a so--called code--key. Code--keys are executable macros. They take an argument, and they do something with it. ``Assigning values'' to such a key is equivalent to invoking macro body in a ``suitable'' way. The result of this macro call is a new key named /key path/key name/|.@cmd|. That key, in turn, is stored as executable macro. The ma
+**Description**: Command for SetLayerDistance
 
 ---
 
-## 179. Command: `\pgfkeys\marg{comma--separated key--value pairs`
+## 179. Command: `SetCoordinates`
 
-**ID**: `4dcd7a576878`  
-**Package**: pgfplots  
+**ID**: `f87a8b763102`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; This key constitutes the public \ of Keys. It accepts any number of key--value pairs, separated by commas.
+**Description**: Command for SetCoordinates
 
 ---
 
-## 180. Command: `\pgfkeysalso\marg{comma--separated key--value pairs`
+## 180. Command: `SetVertexStyle`
 
-**ID**: `8055c3647ccc`  
-**Package**: pgfplots  
+**ID**: `04cc5ea36bf3`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; This macro is almost the same as ||comma--separated key--value pairs. In fact, if any assignments in its argument use fully--qualified paths (as we did so far in this document), both invocations are equivalent. The difference is how they treat keys which are relative to some current key path, a concept which will be explained in the next subsection. Here is the difference between the macros: || resets the current key path to |/| before processing its argument whereas || does not change the cur
+**Description**: Command for SetVertexStyle
 
 ---
 
-## 181. Command: `\addplot\oarg{options`
+## 181. Command: `SetEdgeStyle`
 
-**ID**: `6484b59249ea`  
-**Package**: pgfplots  
+**ID**: `a0e5c123be38`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: input data trailing path commands;&#125; This is the main plotting command, available within each axis environment. It can be used one or more times within an axis to add plots to the current axis. There is also an 3 command which is described in Section~sec:3d. It reads point coordinates from one of the available input sources specified by input data, updates limits, remembers options for use in a legend (if any) and applies any necessary coordinate transformations (or logarithms). The options can b
+**Description**: Command for SetEdgeStyle
 
 ---
 
-## 182. Command: `\thisrow\marg{column name`
+## 182. Command: `EdgesNotInBG`
 
-**ID**: `d96c54059f7d`  
-**Package**: pgfplots  
+**ID**: `abfa9d0c9a4d`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; Yields the value of the column designated by column name. There is no limit on the number of columns which can be part of a mathematical expression, but only values inside of the currently processed table row can be used. It is possible to provide column aliases for column name as described in the manual of . The argument column name has to denote either an existing column or one for which a column alias exists (see the manual of ). If it can't be resolved, the math parser yields an ``Unknown 
+**Description**: Command for EdgesNotInBG
 
 ---
 
-## 183. Command: `\thisrowno\marg{column index`
+## 183. Command: `EdgesInBG`
 
-**ID**: `27bcf944e4a8`  
-**Package**: pgfplots  
+**ID**: `54e717eec1b8`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: &#125; Similar to ||, this command yields the value of the column with index column index (starting with $0$). Limitations: see limitations for ||.
+**Description**: Command for EdgesInBG
 
 ---
 
-## 184. Command: `\coordindex`
+## 184. Command: `SetTextStyle`
 
-**ID**: `b19a5a31ac57`  
-**Package**: pgfplots  
+**ID**: `680ba04573f6`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: Yields the current index of the table row (starting with $0$). This does not count header or comment lines.
+**Description**: Command for SetTextStyle
 
 ---
 
-## 185. Command: `\lineno`
+## 185. Command: `SetPlaneStyle`
 
-**ID**: `8d006ce97625`  
-**Package**: pgfplots  
+**ID**: `649235969e7f`  
+**Package**: tikz-network  
 **Type**: Command Specification  
 
-**Description**: Yields the current line number (starting with $0$). This does also count header and comment lines.
+**Description**: Command for SetPlaneStyle
 
 ---
 
-## 186. Command: `\pgfplotsset\marg{key-value-list`
+## 186. Command: `\pgfdeclarearrow\marg{config`
 
-**ID**: `d5ec4135cb6b`  
-**Package**: pgfplots  
+**ID**: `9825b47367a9`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Defines or sets all options in key-value-list. The key-value-list can contain any of the options in this manual which have the prefix |/pgfplots/| (however, you do not need to type that prefix). Inside of key-value-list, the prefixes `|/pgfplots/|' which are commonly presented in this manual can be omitted (they are checked automatically). This command can be used to define default options for the complete document or a part of the document. For example, codeexample[code only] cycle list=&#123; &#123;re
+**Description**: &#125; This command is both used to define a new arrow tip kind and to to declare a so-called shorthand. We have a look at the case that a complete new arrow tip kind is created and then have a look how the command can be used to create shorthands. a Complete New Arrow Tip Kind. The config is a key--value list in which different keys are used to setup the to-be defined arrow. The following keys can be given: itemize |name||=|name or |name=|start name|-|end name This defines the name of the arrow tip.
 
 ---
 
-## 187. Command: `\pgfplotstableset\marg{key-value-options`
+## 187. Command: `\pgfarrowssetbackend\marg{dimension`
 
-**ID**: `c764acb1203f`  
-**Package**: pgfplots  
+**ID**: `1c14f55cd083`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; The user interface of this package is based on key-value-options. They determine what to display, how to format and what to compute. Key--value pairs can be set in two ways: enumerate As default settings for the complete document (or maybe a part of the document), using ||options. For example, the document's preamble may contain codeexample[code only] fixed zerofill,precision=3 codeexample to configure a precision of $3$ digits after the period, including zeros to get exactly $3$ digits for al
+**Description**: &#125; Works like the command for the tip end, only it sets the back end. In our example we would call codeexample[code only] -3cm codeexample Defaults to |0pt|.
 
 ---
 
-## 188. Command: `\pgfplotstabletypeset\oarg{optional arguments`
+## 188. Command: `\pgfarrowssetlineend\marg{dimension`
 
-**ID**: `2d8c3b1395e4`  
-**Package**: pgfplots  
+**ID**: `13c08435c5af`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: file name &#123; or macro &#123; or&#125; inline table&#125;&#125; Loads (or acquires) a table and typesets it using the current configuration of number formats and table options. In case the first argument is a file name, the table will be loaded from disk. If it is an already loaded table (see || or ||), it will be used. Otherwise, if it is inline table data, this data will be parsed just as if it was found in a file (see ||). codeexample[] [sci zerofill]&#123; a b 5000 1.234e5 6000 1.631e5 7000 2.1013e5 9000 1000000 &#125; cod
+**Description**: &#125; Sets the line end, so in the example we have |-1cm|. Default to |0pt|.
 
 ---
 
-## 189. Command: `\pgfplotstabletypesetfile\oarg{optional arguments`
+## 189. Command: `\pgfarrowssetvisualbackend\marg{dimension`
 
-**ID**: `207dd1519f6f`  
-**Package**: pgfplots  
+**ID**: `3602f19ef0e6`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: file name&#125; Loads the table file name and typesets it. As of 1.2, this command is an alias to ||, that means the first argument can be either a file name or an already loaded table.
+**Description**: &#125; Sets the visual back end, |-2cm| in our example. Default to the value of the normal back end.
 
 ---
 
-## 190. Command: `\pgfplotstablecol`
+## 190. Command: `\pgfarrowssetvisualtipend\marg{dimension`
 
-**ID**: `378069b6a476`  
-**Package**: pgfplots  
+**ID**: `8d15f7325043`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: During the evaluation of row or column options, this command expands to the current column's index.
+**Description**: &#125; Sets the visual tip end. Default to the value of the normal tip end and, thus, we need not set it in our example.
 
 ---
 
-## 191. Command: `\pgfplotstablecolname`
+## 191. Command: `\pgfarrowshullpoint\marg{x dimension`
 
-**ID**: `270331f6f418`  
-**Package**: pgfplots  
+**ID**: `524a0a0711be`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: During the evaluation of column options, this command expands to the current column's name. It is valid while || processes the column styles (including the preprocessing step explained in Section~sec:pgfplotstable:preproc), prepares the output cell content and checks row predicates.
+**Description**: y dimension&#125; Adds a point to the convex hull of the arrow tip. As for the previous commands, no math parsing is done; instead \ says |@x=|x dimension and then |@y=|y dimension. Thus, both ``dimensions'' can contain code for advancing and thus modifying |@x| and |@y|. In our example we would write codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; -3cm&#123;-2cm&#125; codeexample
 
 ---
 
-## 192. Command: `\pgfplotstablerow`
+## 192. Command: `\pgfarrowsupperhullpoint\marg{x dimension`
 
-**ID**: `c586ac09991d`  
-**Package**: pgfplots  
+**ID**: `263437697762`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: pgfplotstable:page:tablerow During the evaluation of row or column options, this command expands to the current row's index. ``Evaluation of column options'' applies to any of the styles in Section~sec:data:processing, i.e.\@ preprocessing, typesetting, and postprocessing. The macro || can take any of the values $0,1,2,,n-1$ where $n$ is the value of ||. ``Evaluation of row options'' applies to stuff like |every last row|. Note that it will have the special value $-1$ for the header row.
+**Description**: y dimension&#125; This command works like the previous command, only it normally adds two points to the convex hull: First, the point $(x dimension,y dimension)$ and, secondly, the point $(x dimension,-y dimension)$. However, the second point is only added if the arrow is not a harpoon. Thus, in our example we could simplify the convex hull to codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; codeexample If the y dimension is zero or less, only one point, namely $(x dimension,y dimension)$, is added to the h
 
 ---
 
-## 193. Command: `\pgfplotstablecols`
+## 193. Command: `\pgfarrowssave\marg{macro`
 
-**ID**: `38754746e209`  
-**Package**: pgfplots  
+**ID**: `942f7c129904`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: During the evaluation of row or column options, this command expands to the total number of columns in the output table.
+**Description**: &#125; As explained earlier, the setup code needs to ``communicate'' with the drawing code via ``saved values''. This command get the name of a macro and will store the value this macro had internally. Then, each time drawing code is executed, the value of this macro will be restored.
 
 ---
 
-## 194. Command: `\pgfplotstablerows`
+## 194. Command: `\pgfarrowssavethe\marg{register`
 
-**ID**: `5a61e9bebcc9`  
-**Package**: pgfplots  
+**ID**: `12453b5f397f`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: During evaluation of columns, this command expands to the total number of input rows. You can use it inside of |row predicate|. During evaluation of rows, this command expands to the total number of output rows.
+**Description**: &#125; Works like ||, only the parameter must be a register and ||register will be saved. Typically, you will write something like codeexample[code only] codeexample To ensure that inside the drawing code the the dimension registers || and || are setup with the values they had during the setup.
 
 ---
 
-## 195. Command: `\pgfplotstablename`
+## 195. Command: `\pgfarrowsaddtooptions\marg{code`
 
-**ID**: `71d20b422dc4`  
-**Package**: pgfplots  
+**ID**: `cfad944ed0a6`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: During ||, this macro contains the table's macro name as top-level expansion. If you are unfamiliar with ``top-level-expansions'' and `||', you will probably never need this macro. Advances users may benefit from expressions like ||. For tables which have been loaded from disk (and have no explicitly assigned macro name), this expands to a temporary macro.
+**Description**: &#125; This command should be called by keys with the prefix |/pgf/arrow keys| to add code to the arrow option cache. For our |depth| key example, we could use this key as follows: codeexample[code only] /pgf/arrow keys/depth/.code= &#123;&#123;&#123;#1&#125;&#125; codeexample Actually, this is still not optimal since the expensive || command is now called each time an arrow tip is used with the |depth| option set. The trick is to do the expensive operation only once and then store only very quick code in the arrow option ca
 
 ---
 
-## 196. Command: `\newcolumntype\marg{letter`
+## 196. Command: `\pgfarrowsaddtolateoptions\marg{code`
 
-**ID**: `388acc2728c2`  
-**Package**: pgfplots  
+**ID**: `8c4ae20db260`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: number of arguments$&gt;$before columncolumn type$&lt;$after column &#125; The command || is part of the |array| package and it defines a new column type letter for use in tabular environments. codeexample[code only] array codeexample codeexample[] d&#123;&gt;&#123;-&#125;c&lt;&#123;+&#125;&#125; tabular&#123;dl&#125; a & b \\ c & d \\ tabular codeexample Now, the environment |pgfplotstablecoltype| can be used in before column and after column to define numerical columns: codeexample[] L[1] &#123;&gt;&#123;pgfplotstablecoltype[#1]&#125;r&lt;&#123;pgfplotstablecoltype&#125;&#125; tabular
+**Description**: &#125; This command works like ||, only the code will be executed ``later'' than the code added by the normal version of the command. This is useful for keys that depend on the length of an arrow: Keys like |width'| want to define the arrow width as a multiple of the arrow length, but when the |width'| key is given, the length may not yet have been specified. By making the computation of the width a ``late'' option, we ensure that || will have been setup correctly.
 
 ---
 
-## 197. Command: `\pgfmathprintnumber\marg{x`
+## 197. Command: `\pgfarrowsaddtolengthscalelist\marg{dimension register`
 
-**ID**: `700dd3df72d4`  
-**Package**: pgfplots  
+**ID**: `91b246a907f2`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Generates pretty-printed output for the (real) number x. The input number x is parsed using || which allows arbitrary precision. Numbers are typeset in math mode using the current set of number printing options, see below. Optional arguments can also be provided using |[|options|]|x.
+**Description**: &#125; Each time an arrow tip is used, the given dimension register will be multiplied by the |scale length| factor prior to the actual drawing. You call this command only once in the preamble somewhere.
 
 ---
 
-## 198. Command: `\pgfmathprintnumberto\marg{x`
+## 198. Command: `\pgfarrowsaddtowidthscalelist\marg{dimension register`
 
-**ID**: `1c637e2c1348`  
-**Package**: pgfplots  
+**ID**: `560f52dd68a7`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: macro&#125; Returns the resulting number into macro instead of typesetting it directly.
+**Description**: &#125; Works like ||, only for width parameters.
 
 ---
 
-## 199. Command: `\pgfmathifisint\marg{number constant`
+## 199. Command: `\pgfarrowsthreeparameters\marg{line-width dependent size specification`
 
-**ID**: `1477dcae5662`  
-**Package**: pgfplots  
+**ID**: `ecb86c834ad3`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: true codefalse code&#125; A command which does the same check as |int detect|, but it invokes true code if the number constant actually is an integer and the false code if not. As a side-effect, || will contain the parsed number, either in integer format or as parsed floating point number. The argument number constant will be parsed with ||. codeexample[] 15 15&#123;is an int: .&#125;&#123;is no int&#125;1em 15.5 15.5&#123;is an int: .&#125;&#123;is no int&#125; codeexample
+**Description**: &#125; This command is useful for parsing the values given to keys like |length| or |width| the expect a dimension followed optionally for some numbers. This command converts the line-width dependent size specification, which may consist of one, two, or three numbers, into a triple of three numbers in curly braces, which gets stored in the macro ||. Here is an example, where || is used in this example to show the value stored in a macro: codeexample[setup code,hidden] #1&#123; @gobble#1 &#125; codeexample code
 
 ---
 
-## 200. Command: `\year`
+## 200. Command: `\pgfarrowslinewidthdependent\marg{dimension`
 
-**ID**: `d9a23abb825e`  
-**Package**: pgfplots  
+**ID**: `1969c80b9bf5`  
+**Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: Inside of date format, this macro expands to the year as a number (like |2008|).
+**Description**: line width factorouter factor&#125; This command takes three parameters and does the ``line width dependent computation'' described on page~length-arrow-key for the |length| key. The result is returned in |@x|. The idea is that you can setup line-width dependent keys like |length| or |width| using code like the following: codeexample[code only] /pgf/arrow keys/depth/.code=&#123; &#123;#1 @x &#125; codeexample
 
 ---
 

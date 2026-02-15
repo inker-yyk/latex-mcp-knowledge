@@ -11,503 +11,505 @@ Showing items **301-350** of **1103**
 
 ---
 
-## 301. Command: `\pgfarrowshullpoint\marg{x dimension`
+## 301. Command: `\pgfparsetime\marg{time`
 
-**ID**: `524a0a0711be`  
+**ID**: `d0c47d84e073`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y dimension&#125; Adds a point to the convex hull of the arrow tip. As for the previous commands, no math parsing is done; instead \ says |@x=|x dimension and then |@y=|y dimension. Thus, both ``dimensions'' can contain code for advancing and thus modifying |@x| and |@y|. In our example we would write codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; -3cm&#123;-2cm&#125; codeexample
+**Description**: &#125; This command works like || (indeed, it calls is internally), but returns the result in the macro || rather than ||. Furthermore, the following changes are installed: itemize The postfix operator |s| is added, which has no effect. The postfix operator |ms| is added, which divides a number by 1000, so |2ms| equals 0.002s. The postfix operator |min| is added, which multiplies a number by 60. The postfix operator |h| is added, which multiplies a number by 3600. The infix operator |:| is redefined,
 
 ---
 
-## 302. Command: `\pgfarrowsupperhullpoint\marg{x dimension`
+## 302. Command: `\pgfsnapshot\marg{time`
 
-**ID**: `263437697762`  
+**ID**: `5888b764c9ed`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y dimension&#125; This command works like the previous command, only it normally adds two points to the convex hull: First, the point $(x dimension,y dimension)$ and, secondly, the point $(x dimension,-y dimension)$. However, the second point is only added if the arrow is not a harpoon. Thus, in our example we could simplify the convex hull to codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; codeexample If the y dimension is zero or less, only one point, namely $(x dimension,y dimension)$, is added to the h
+**Description**: &#125; When this command is used inside a \ scope, the behavior of || changes: Instead of adding an animation to the object and the attribute, the object's attribute is set to value it would have during the animation at time time. Note that when this command is used in a \ scope, no animation is created and no support by the driver is needed (so, it works with pdf). codeexample[preamble=&#123;animations&#125;] [make snapshot of=1s, animate = &#123; myself: = &#123; :rotate = &#123; 0s = "0", 2s = "90" &#125;, :color = &#123; 0s = "red
 
 ---
 
-## 303. Command: `\pgfarrowssave\marg{macro`
+## 303. Command: `\pgfsnapshotafter\marg{time`
 
-**ID**: `942f7c129904`  
+**ID**: `81c62b98e663`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; As explained earlier, the setup code needs to ``communicate'' with the drawing code via ``saved values''. This command get the name of a macro and will store the value this macro had internally. Then, each time drawing code is executed, the value of this macro will be restored.
+**Description**: &#125; This command works exactly like || only the ``moment'' that time refers to is conceptually $time + $: When timeline specifies several values for time, this command will select the last value at time, while || will select the first value at time. Similarly, when a timeline ends at time, || will select the last value of the timeline while || will not apply the animation any more: codeexample[preamble=&#123;animations&#125;] in &#123;0,1,2,3,4&#125; &#123; :rotate = &#123; 0s = "0", 2s = "90", 2s = "180", 4s = "270" &#125; [draw=b
 
 ---
 
-## 304. Command: `\pgfarrowssavethe\marg{register`
+## 304. Command: `\graph`
 
-**ID**: `12453b5f397f`  
+**ID**: `79f8f779c764`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Works like ||, only the parameter must be a register and ||register will be saved. Typically, you will write something like codeexample[code only] codeexample To ensure that inside the drawing code the the dimension registers || and || are setup with the values they had during the setup.
+**Description**: Inside a |&#123;tikzpicture&#125;| this is an abbreviation for | graph|.
 
 ---
 
-## 305. Command: `\pgfarrowsaddtooptions\marg{code`
+## 305. Command: `\tikzgraphsset\marg{options`
 
-**ID**: `cfad944ed0a6`  
+**ID**: `01fad7f71690`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command should be called by keys with the prefix |/pgf/arrow keys| to add code to the arrow option cache. For our |depth| key example, we could use this key as follows: codeexample[code only] /pgf/arrow keys/depth/.code= &#123;&#123;&#123;#1&#125;&#125; codeexample Actually, this is still not optimal since the expensive || command is now called each time an arrow tip is used with the |depth| option set. The trick is to do the expensive operation only once and then store only very quick code in the arrow option ca
+**Description**: &#125; Executes the options with the path prefix |/tikz/graphs|.
 
 ---
 
-## 306. Command: `\pgfarrowsaddtolateoptions\marg{code`
+## 306. Command: `\tikzgraphnodetext`
 
-**ID**: `8c4ae20db260`  
+**ID**: `e2a434332dd4`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command works like ||, only the code will be executed ``later'' than the code added by the normal version of the command. This is useful for keys that depend on the length of an arrow: Keys like |width'| want to define the arrow width as a multiple of the arrow length, but when the |width'| key is given, the length may not yet have been specified. By making the computation of the width a ``late'' option, we ensure that || will have been setup correctly.
+**Description**: This macro expands to the text to the right of the double underscore or slash in a direct node specification or, if there is no slash, to the node name.
 
 ---
 
-## 307. Command: `\pgfarrowsaddtolengthscalelist\marg{dimension register`
+## 307. Command: `\tikzgraphnodename`
 
-**ID**: `91b246a907f2`  
+**ID**: `2ffd512bbadb`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Each time an arrow tip is used, the given dimension register will be multiplied by the |scale length| factor prior to the actual drawing. You call this command only once in the preamble somewhere.
+**Description**: This macro expands to the name of the current node without the path.
 
 ---
 
-## 308. Command: `\pgfarrowsaddtowidthscalelist\marg{dimension register`
+## 308. Command: `\tikzgraphnodepath`
 
-**ID**: `560f52dd68a7`  
+**ID**: `4bc55a041bb7`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Works like ||, only for width parameters.
+**Description**: This macro expands to the current path of the node. These paths result from the use of the |name| key as described above.
 
 ---
 
-## 309. Command: `\pgfarrowsthreeparameters\marg{line-width dependent size specification`
+## 309. Command: `\tikzgraphnodefullname`
 
-**ID**: `ecb86c834ad3`  
+**ID**: `f8b939bd52cf`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command is useful for parsing the values given to keys like |length| or |width| the expect a dimension followed optionally for some numbers. This command converts the line-width dependent size specification, which may consist of one, two, or three numbers, into a triple of three numbers in curly braces, which gets stored in the macro ||. Here is an example, where || is used in this example to show the value stored in a macro: codeexample[setup code,hidden] #1&#123; @gobble#1 &#125; codeexample code
+**Description**: This macro contains the concatenation of the above two.
 
 ---
 
-## 310. Command: `\pgfarrowslinewidthdependent\marg{dimension`
+## 310. Command: `\tikzgraphforeachcolorednode\marg{color name`
 
-**ID**: `1969c80b9bf5`  
+**ID**: `a236be143e1a`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: line width factorouter factor&#125; This command takes three parameters and does the ``line width dependent computation'' described on page~length-arrow-key for the |length| key. The result is returned in |@x|. The idea is that you can setup line-width dependent keys like |length| or |width| using code like the following: codeexample[code only] /pgf/arrow keys/depth/.code=&#123; &#123;#1 @x &#125; codeexample
+**Description**: macro&#125; When this command is called inside code, the following will happen: \ will iterate over all nodes inside the just-specified group that have the color color name. The order in which they are iterated over is the order in which they appear inside the group specification (if a node is encountered several times inside the specification, only the first occurrence counts). Then, for each node the macro is executed with the node's name as the only argument. In the following example we use an ope
 
 ---
 
-## 311. Command: `\pgfarrowslengthdependent\marg{dimension`
+## 311. Command: `\tikzgraphpreparecolor\marg{color name`
 
-**ID**: `bd6b19295f4e`  
+**ID**: `f23de383b452`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: length factordummy&#125; This command takes three parameters, of which the last one is ignored, and does the ``length dependent computation'' described for the |width'| and |inset'| keys. The result is returned in |@x|. You can setup length dependent keys using code like the following: codeexample[code only] /pgf/arrow keys/depth'/.code=&#123; &#123;#1 @x &#125; codeexample
+**Description**: counterprefix&#125; This command is used to ``prepare'' the nodes of a certain color for random access. The effect is the following: It is counted how many nodes there are having color color name in the current group and the result is stored in counter. Next, macros named prefix|1|, prefix|2|, and so on are defined, that store the names of the first, second, third, and so on node having the color color name. The net effect is that after you have prepared a color, you can quickly iterate over them. Th
 
 ---
 
-## 312. Command: `\pgflibraryfpuifactive\marg{true-code`
+## 312. Command: `\pgfdeclarepatternformonly%
+    \opt{\oarg{variables`
 
-**ID**: `d0b7825cca7d`  
+**ID**: `0b7bfe0f7233`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: false-code&#125; This command can be used to execute either true-code or false-code, depending on whether the FPU has been activated or not.
+**Description**: &#125; name bottom left top right tile size code &#125; This command declares a new form-only pattern. The name is a name for later reference. The two parameters lower left and upper right must describe a bounding box that is large enough to encompass the complete tile. The size of a tile is given by tile size, that is, a tile is a rectangle whose lower left corner is the origin and whose upper right corner is given by tile size. This might make you wonder why the second and third parameters are needed. F
 
 ---
 
-## 313. Command: `\pgfmathfloatparsenumber\marg{x`
+## 313. Command: `\pgfdeclarepatterninherentlycolored
+    \opt{\oarg{variables`
 
-**ID**: `484c9b8d7b92`  
+**ID**: `661696f34396`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Reads a number of arbitrary magnitude and precision and stores its result into || as floating point number $m 10^e$ with mantissa and exponent base~$10$. The algorithm and the storage format is purely text-based. The number is stored as a triple of flags, a positive mantissa and an exponent, such as codeexample[] 2 codeexample Please do not rely on the low-level representation here, use || (and its variants) and || if you want to work with these components. The flags encoded in || are represen
+**Description**: &#125; name lower left upper right tile size code &#125; This command works like ||, only the pattern will have an inherent color. To set the color, you should use 's color commands, not the || command, since this fill is not protocolled. codeexample[preamble=&#123;patterns&#125;] green stars &#123;&#125;&#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123; green!50!black &#123;.5cm&#123;.5cm&#125;&#125; &#123;0&#123;4mm&#125;&#125; &#123;144&#123;4mm&#125;&#125; &#123;288&#123;4mm&#125;&#125; &#123;72&#123;4mm&#125;&#125; &#123;216&#123;4mm&#125;&#125; stroke,fill &#125; tikzpicture [pattern=green stars] (0,0) rectangle (3,2); tikzpicture codeexample
 
 ---
 
-## 314. Command: `\pgfmathfloatqparsenumber\marg{x`
+## 314. Command: `\pgfsetfillpattern\marg{name`
 
-**ID**: `5d0baa7eaa36`  
+**ID**: `495892897a24`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; The same as ||, but does not perform sanity checking.
+**Description**: color&#125; This command specifies that paths that are filled should be filled with the ``color'' by the pattern name. For an inherently colored pattern, the color parameter is ignored. For form-only patterns, the color parameter specifies the color to be used for the pattern. codeexample[ preamble=&#123;patterns stars &#123;&#125;&#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123; &#123;.5cm&#123;.5cm&#125;&#125; &#123;0&#123;4mm&#125;&#125; &#123;144&#123;4mm&#125;&#125; &#123;288&#123;4mm&#125;&#125; &#123;72&#123;4mm&#125;&#125; &#123;216&#123;4mm&#125;&#125; fill &#125; green stars &#123;&#125;&#123;1cm&#123;1cm&#125;&#125; &#123;1cm&#123;1cm&#125;&#125; &#123; green!50!black &#123;.5cm&#123;.5cm&#125;&#125; &#123;0&#123;4mm&#125;&#125; &#123;144&#123;4mm&#125;&#125; &#123;288&#123;
 
 ---
 
-## 315. Command: `\pgfmathfloattofixed{\marg{x`
+## 315. Command: `\pgfplotstreamstart`
 
-**ID**: `88a3865c89bc`  
+**ID**: `5df470c46527`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; Converts a number in floating point representation to a fixed point number. It is a counterpart to ||. The algorithm is purely text based and defines || as a string sequence which represents the floating point number x as a fixed point number (of arbitrary precision). codeexample[] 0.00052 &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent $$ codeexample codeexample[] 123.456e4 &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent $$ codeexample
+**Description**: This command signals that a plot stream starts. The effect of this command is to call the internal command |@plotstreamstart|, which is set by the current plot handler to do whatever needs to be done at the beginning of the plot. It will also reset the meaning of the internal commands like |@plotstreampoint| to the initial setting for the plot handler (what this means will be explained in a moment).
 
 ---
 
-## 316. Command: `\pgfmathfloattoint\marg{x`
+## 316. Command: `\pgfplotstreampoint\marg{point`
 
-**ID**: `ed8adbadee62`  
+**ID**: `ceb86c16b8f0`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Converts a number from low-level floating point representation to an integer (by truncating the fractional part). codeexample[] 123456 codeexample See also || which returns the result as float.
+**Description**: &#125; This command adds a point to the current plot stream. The effect of this command is to call the internal command |@plotstreampoint|, which is also set by the current plot handler. This command should now ``handle'' the point in some sensible way. For example, a line-to command might be issued for the point. When a plot handler is installed, it will setup the internal command |@plotstreampoint| in some way. It is permissible to change the meaning of this internal command during a stream. For in
 
 ---
 
-## 317. Command: `\pgfmathfloattosci\marg{float`
+## 317. Command: `\pgfplotstreampointoutlier\marg{point`
 
-**ID**: `9246b7eaa8df`  
+**ID**: `a79f9d278944`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Converts a number from low-level floating point representation to scientific format, $1.234e4$. The result will be assigned to the macro ||.
+**Description**: &#125; An outlier is a point that is ``out of bounds'' in some way. For instance, it might have very large coordinates or the coordinates might just be outside some specified range. Nevertheless, an outlier is still a well-defined point. This command is issued, for instance, by gnuplot when a value is outside the specified range. You can configure how outliers are treated using the following key: key&#123;/pgf/handle outlier points in plots=how (initially jump)&#125; tikz You can set how to one of the followin
 
 ---
 
-## 318. Command: `\pgfmathfloatvalueof\marg{float`
+## 318. Command: `\pgfplotstreampointundefined`
 
-**ID**: `e1cb66e69847`  
+**ID**: `2fe9463186af`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Expands a number from low-level floating point representation to scientific format, $1.234e4$. Use || in contexts where only expandable macros are allowed.
+**Description**: This command indicated that the stream contains an ``undefined'' point like a point where some coordinate results for a division by zero. Such a point cannot be plotted, which is why it is not given as a parameter. However, such a point can result in a jump in the plot, depending on the setting of the following key: key&#123;/pgf/handle undefined points in plots=how (initially jump)&#125; tikz You can set how to one of the following values: itemize |ignore| The undefined point will be completely ignored, 
 
 ---
 
-## 319. Command: `\pgfmathfloatcreate{\marg{flags`
+## 319. Command: `\pgfplotstreamnewdataset`
 
-**ID**: `0c8afa917981`  
+**ID**: `38d7369f1126`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;mantissa&#125;&#123;exponent&#125;&#125; Defines || as the floating point number encoded by flags, mantissa and exponent. All arguments are characters and will be expanded using ||. codeexample[] 1&#123;1.0&#125;&#123;327&#125; &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent codeexample
+**Description**: This command indicated that in the stream a ``new data set'' starts. So, the stream does not end, but there is a logical break in the data. For example, when a table is read from a file, empty lines are interpreted as indicating new data sets. What happens when a new data set is encountered is governed by the following key: key&#123;/pgf/handle new data sets in plots=how (initially jump)&#125; tikz You can set how to one of the following values: itemize |ignore| The command will be completely ignored, jus
 
 ---
 
-## 320. Command: `\pgfmathfloatifflags\marg{floating point number`
+## 320. Command: `\pgfplotstreamspecial\marg{text`
 
-**ID**: `0fd1f63f41eb`  
+**ID**: `cc91c576c727`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: flagtrue-codefalse-code&#125; Invokes true-code if the flag of floating point number equals flag and false-code otherwise. The argument flag can be one of description [0] to test for zero, [1] to test for positive numbers, [+] to test for positive numbers, [2] to test for negative numbers, [-] to test for negative numbers, [3] for ``not-a-number'', [4] for $+$, [5] for $-$. description codeexample[preamble=&#123;fpu&#125;] 42 &#123;0&#125;&#123;It's zero!&#125;&#123;It's not zero!&#125; &#123;1&#125;&#123;It's positive!&#125;&#123;It's not positive!&#125; &#123;2&#125;&#123;It's nega
+**Description**: &#125; This command causes |@plotstreamspecial| to be called with text as its parameter. This allows handler-specific information to be passed to the handler. All normal handlers ignore this command.
 
 ---
 
-## 321. Command: `\pgfmathfloattomacro{\marg{x`
+## 321. Command: `\pgfplotstreamend`
 
-**ID**: `9f1772a37b3b`  
+**ID**: `63cfe2e53b5d`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;flagsmacro&#125;&#123;mantissamacro&#125;&#123;exponentmacro&#125;&#125; Extracts the flags of a floating point number x to flagsmacro, the mantissa to mantissamacro and the exponent to exponentmacro.
+**Description**: This command signals that a plot stream ends. It calls |@plotstreamend|, which should now do any necessary ``cleanup''.
 
 ---
 
-## 322. Command: `\pgfmathfloattoregisters{\marg{x`
+## 322. Command: `\pgfplotxyfile\marg{filename`
 
-**ID**: `7e4c7bf86255`  
+**ID**: `ba9e87eadef6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;flagscount&#125;&#123;mantissadimen&#125;&#123;exponentcount&#125;&#125; Takes a floating point number x as input and writes flags to count register flagscount, mantissa to dimen register mantissadimen and exponent to count register exponentcount. Please note that this method rounds the mantissa to -precision.
+**Description**: &#125; This command will try to open the file filename. If this succeeds, it will convert the file contents into a plot stream as follows: A || is issued. Then, for each empty line a || is produced. Other lines in the file should start with two numbers separated by a space, such as |0.1 1| or |100 -.3|. The numbers may be followed by some text, which will be ignore except if it is exactly ``|u|'' or ``|o|''. For ``|u|'' the point is considered to be undefined and || is called. For ``|o|'' the point i
 
 ---
 
-## 323. Command: `\pgfmathfloattoregisterstok{\marg{x`
+## 323. Command: `\pgfplotxyzfile\marg{filename`
 
-**ID**: `503296d169ec`  
+**ID**: `5e2d1ffd1a9b`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;flagscount&#125;&#123;mantissatoks&#125;&#123;exponentcount&#125;&#125; A variant of || which writes the mantissa into a token register. It maintains the full input precision.
+**Description**: &#125; This command works like ||, only three numbers are expected on each non-empty line. They are converted into points in the $xyz$-coordinate system. Consider, the following file: codeexample[code only, tikz syntax=false] # more comments 2 -5 1 first entry 2 -.2 2 o 2 -5 2 third entry codeexample It is turned into the following stream: codeexample[code only] &#123;2&#123;-5&#125;&#123;1&#125;&#125; &#123;2&#123;-.2&#125;&#123;2&#125;&#125; &#123;2&#123;-5&#125;&#123;2&#125;&#125; codeexample
 
 ---
 
-## 324. Command: `\pgfmathfloatgetflags{\marg{x`
+## 324. Command: `\pgfplotfunction\marg{variable`
 
-**ID**: `78607f576a39`  
+**ID**: `1d542e73e362`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;flagscount&#125;&#125; Extracts the flags of x into the count register flagscount.
+**Description**: sample listpoint&#125; This command will produce coordinates by iterating the variable over all values in sample list, which should be a list in the || syntax. For each value of variable, the point is evaluated and the resulting coordinate is inserted into the plot stream. codeexample[] tikzpicture[x=3.8cm/360] &#123;0,5,...,360&#125;&#123;&#123;sin()+sin(3*)&#125;&#125; stroke tikzpicture codeexample codeexample[] tikzpicture[y=3cm/360] &#123;0,5,...,360&#125;&#123;sin(2*)&#123;&#125;&#123;cos(2*)&#125;&#125; stroke tikzpicture codeexample Be warned that if the expres
 
 ---
 
-## 325. Command: `\pgfmathfloatgetflagstomacro{\marg{x`
+## 325. Command: `\pgfplotgnuplot\oarg{prefix`
 
-**ID**: `62bf45fff71f`  
+**ID**: `b9dff3cb8b3f`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;macro&#125;&#125; Extracts the flags of x into the macro macro.
+**Description**: function&#125; This command will ``try'' to call the gnuplot program to generate the coordinates of the function. In detail, the following happens: This command works with two files: prefix|.gnuplot| and prefix|.table|. If the optional argument prefix is not given, it is set to ||. Let us start with the situation where none of these files exists. Then \ will first generate the file prefix|.gnuplot|. In this file it writes codeexample[code only, tikz syntax=false] set table "#1.table"; set format " co
 
 ---
 
-## 326. Command: `\pgfmathfloatgetmantissa{\marg{x`
+## 326. Command: `\pgfplothandlerlineto`
 
-**ID**: `9d360c63075c`  
+**ID**: `885aaa1312ce`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;mantissadimen&#125;&#125; Extracts the mantissa of x into the dimen register mantissadimen.
+**Description**: This handler will issue a || command for each point of the plot, except possibly for the first. What happens with the first point can be specified using the two commands described below. codeexample[] pgfpicture &#123;1cm&#123;0cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;2cm&#125;&#125; &#123;1cm&#123;2cm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 327. Command: `\pgfmathfloatgetmantissatok{\marg{x`
+## 327. Command: `\pgfsetmovetofirstplotpoint`
 
-**ID**: `684038ab086c`  
+**ID**: `18cc684bc78c`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;mantissatoks&#125;&#125; Extracts the mantissa of x into the token register mantissatoks.
+**Description**: Specifies that the line-to plot handler (and also some other plot handlers) should issue a move-to command for the first point of the plot instead of a line-to. This will start a new part of the current path, which is not always, but often, desirable. This is the default.
 
 ---
 
-## 328. Command: `\pgfmathfloatgetexponent{\marg{x`
+## 328. Command: `\pgfsetlinetofirstplotpoint`
 
-**ID**: `3d26130db266`  
+**ID**: `3d0538fe7382`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;exponentcount&#125;&#125; Extracts the exponent of x into the count register exponentcount.
+**Description**: Specifies that plot handlers should issue a line-to command for the first point of the plot. codeexample[] pgfpicture &#123;1cm&#123;0cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;2cm&#125;&#125; &#123;1cm&#123;2cm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 329. Command: `\pgfmathroundto{\marg{x`
+## 329. Command: `\pgfplothandlerpolygon`
 
-**ID**: `32a4291d6e1d`  
+**ID**: `f59ff192ea81`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; Rounds a fixed point number to prescribed precision and writes the result to ||. The desired precision can be configured with |/pgf/number format/precision|, see section~pgfmath-numberprinting. This section does also contain application examples. Any trailing zeros after the period are discarded. The algorithm is purely text based and allows to deal with precisions beyond 's fixed point support. As a side effect, the global boolean || will be set to true if and only if the resulting mantissa 
+**Description**: This handler works like the line-to plot handler, only the line is closed at the end using ||, resulting in a polygon.
 
 ---
 
-## 330. Command: `\pgfmathroundtozerofill{\marg{x`
+## 330. Command: `\pgfplothandlerdiscard`
 
-**ID**: `1d9c77a7e7c2`  
+**ID**: `9212df2dcb16`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; A variant of || which always uses a fixed number of digits behind the period. It fills missing digits with zeros. codeexample[] 1 codeexample codeexample[] 4.685 codeexample codeexample[] 19999.9996 codeexample
+**Description**: This handler will simply throw away the stream.
 
 ---
 
-## 331. Command: `\pgfmathfloatround{\marg{x`
+## 331. Command: `\pgfplothandlerrecord\marg{macro`
 
-**ID**: `6e9bbabf7c75`  
+**ID**: `b73e7a777ac5`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; Rounds a normalized floating point number to a prescribed precision and writes the result to ||. The desired precision can be configured with |/pgf/number format/precision|, see section~pgfmath-numberprinting. This method employs || to round the mantissa and applies renormalization if necessary. As a side effect, the global boolean || will be set to true if and only if the resulting mantissa has a period. codeexample[] 52.5864 codeexample codeexample[] 9.995 codeexample
+**Description**: &#125; When this handler is installed, each time a plot stream command is called, this command will be appended to macro. Thus, at the end of the stream, macro will contain all the commands that were issued on the stream. You can then install another handler and invoke macro to ``replay'' the stream (possibly many times). codeexample[] pgfpicture &#123;1cm&#123;0cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;1cm&#125;&#125; &#123;1cm&#123;2cm&#125;&#125; stroke pgfpicture codeexample
 
 ---
 
-## 332. Command: `\pgfmathfloatroundzerofill{\marg{x`
+## 332. Command: `\pgfdeclareplothandler\marg{macro`
 
-**ID**: `ecd2cb96a87b`  
+**ID**: `ba2aee1ca711`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; A variant of || produces always the same number of digits after the period (it includes zeros if necessary). codeexample[] 52.5864 codeexample codeexample[] 9.995 codeexample
+**Description**: argumentsconfiguration&#125; This command creates a new plot handler that can subsequently be called using the macro macro. This macro take the arguments given in arguments, which can be a list like |#1#2| if macro should be invoked with two arguments. Here is a typical example: codeexample[code only] &#123;#1&#125;&#123;...&#125; ... foo ... codeexample The configuration is used to define the behavior of the handler. It is a list of key--value pairs, where the following keys are allowed: itemize |start=|code. The code 
 
 ---
 
-## 333. Command: `\pgfmathfloat\meta{op`
+## 333. Command: `\pgfgdbeginscope`
 
-**ID**: `2b05068a16d3`  
+**ID**: `d9e9318bec2e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Methods of this form constitute the replacement operations where op can be any of the well-known math operations. Thus, is the counterpart for || and so on. The semantics and number of arguments is the same, but all input and output arguments are expected to be floating point numbers.
+**Description**: This macro starts a \ scope inside which the following things happen: enumerate The display layer method |beginGraphDrawingScope| is called, which created a new graph drawing scope inside the graph drawing system and places it on top of an internal stack. From now on, all subsequent interface calls will refer to this scope until || is called, which will pop the scope once more. Inside the \ scope, nodes are not placed immediately. Rather, ||, see Section~section-shapes-deferred-node-positioning,
 
 ---
 
-## 334. Command: `\pgfmathfloattoextentedprecision{\marg{x`
+## 334. Command: `\pgfgdendscope`
 
-**ID**: `20f658aa5629`  
+**ID**: `d1c40eb9be7e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; Renormalizes x to extended precision mantissa, meaning $100 m &lt; 1000$ instead of $1 m &lt; 10$. The ``extended precision'' means we have higher accuracy when we apply pgfmath operations to mantissas. The input argument is expected to be a normalized floating point number; the output argument is a non-normalized floating point number (well, normalized to extended precision). The operation is supposed to be very fast.
+**Description**: This macro is used to end a graph drawing scope. It must be given on the same \ grouping level as the corresponding ||. When the macro is called, it triggers a lot of new calls: enumerate The special treatment of newly created boxes is ended. Nodes are once more created normally. The effects of the code that was inserted via the specification hook command also ends (provided it had no global effects). We call |InterfaceToDisplay.runGraphDrawingAlgorithm|. This will cause the algorithm(s) for the
 
 ---
 
-## 335. Command: `\pgfmathfloatsetextprecision\marg{shift`
+## 335. Command: `\pgfgdedge\marg{first node`
 
-**ID**: `71ad678e3f5e`  
+**ID**: `2da9d45f17a6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Sets the precision used inside of || to shift. The different choices are tabular&#123;llrll&#125; 0 & normalization to & $0$ & $ m &lt; 1$ & (disable extended precision) \\ 1 & normalization to & $10$ & $ m &lt; 100$ & \\ 2 & normalization to & $100$ & $ m &lt; 1000$ & (default of ||) \\ 3 & normalization to & $1000$ & $ m &lt; 10000$ & \\ tabular
+**Description**: second nodeedge directionedge optionsedge nodes&#125; This command is used to tell the graph drawing engine that there is an edge between first node and second node in your graph. The ``kind'' of connection is indicated by direction, which may be one of the following: itemize |-&gt;| indicates a directed edge (also known as an arc) from first node to second node. |--| indicates an undirected edge between first node and second node, |&lt;-| indicates a directed edge from second node to first node, but with 
 
 ---
 
-## 336. Command: `\pgfmathfloatlessthan{\marg{x`
+## 336. Command: `\pgfgdsetedgecallback\marg{macro`
 
-**ID**: `7130f79dfdb7`  
+**ID**: `c0319807db36`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;y&#125;&#125; Defines || as $1.0$ if $x &lt; y$, but $0.0$ otherwise. It also sets the global -boolean || accordingly. The arguments x and y are expected to be numbers which have already been processed by ||. Arithmetic is carried out using -registers for exponent- and mantissa comparison.
+**Description**: &#125; This command allows you to change the macro that gets called form inside the graph drawing system at the end of the creation of a graph, when the nodes have been positioned. The macro will be called once for each edge with the following parameters: quote macrofirst nodesecond nodedirectionedge optionsedge nodes\\ algorithm-generated optionsbend informationanimations quote The first five parameters are the original values that were passed down to the || command. The algorithm-generated options 
 
 ---
 
-## 337. Command: `\pgfmathfloatmultiplyfixed\marg{float`
+## 337. Command: `\pgfgdbeginlayout`
 
-**ID**: `967f974db655`  
+**ID**: `a46f7e75beb8`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: fixed&#125; Defines || to be $float fixed$ where float is a floating point number and fixed is a fixed point number. The computation is performed in floating point arithmetic, that means we compute $m fixed$ and renormalize the result where $m$ is the mantissa of float. This operation renormalizes float with || before the operation, that means it is intended for relatively small arguments of fixed. The result is a floating point number.
+**Description**: This command first starts a new \ scope and then informs the display layer that a new (sub)layout should be started. For each graph there may be a hierarchy of layouts, each of which contains a certain number of vertices and edges. This hierarchy is created through calls to this macros and the corresponding calls of ||. For each graph drawing scope there has to be exactly one main layout that encompasses all nodes and edges and also all sublayouts. Thus, after a graph drawing scope has been open
 
 ---
 
-## 338. Command: `\pgfmathfloatifapproxequalrel\marg{a`
+## 338. Command: `\pgfgdendlayout`
 
-**ID**: `ae6bdbeac2dd`  
+**ID**: `25196ec95670`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: btrue-codefalse-code&#125; Computes the relative error between a and b (assuming b$ 0$) and invokes true-code if the relative error is below |/pgf/fpu/rel thresh| and false-code if that is not the case. The input arguments will be parsed with ||. key&#123;/pgf/fpu/rel thresh=number (initially 1e-4)&#125; A threshold used by || to decide whether numbers are approximately equal. key
+**Description**: This command ends the \ scope of the current layout. Once closed, no nodes or edges can be added to a layout.
 
 ---
 
-## 339. Command: `\pgfmathfloatshift{\marg{x`
+## 339. Command: `\pgfgdsetlatenodeoption\marg{node name`
 
-**ID**: `08bae621bace`  
+**ID**: `e9e6dd3f1d43`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#123;num&#125;&#125; Defines || to be $x 10^&#123;num&#125;$. The operation is an arithmetic shift base ten and modifies only the exponent of x. The argument num is expected to be a (positive or negative) integer.
+**Description**: &#125; This command can only be called when the node named node name has already been created inside the current graph drawing scope. The effect of calling this macro will be that all options currently on the graph drawing system's option stack will be added to the node's option, possibly overwriting the original option settings. Furthermore, the node will become part of all layouts currently on the option stack. This means that you can use this command to add a node to several layouts that are not i
 
 ---
 
-## 340. Command: `\pgfmathfloatabserror\marg{x`
+## 340. Command: `\pgfgdsetrequestcallback\marg{macro`
 
-**ID**: `a4445821ec49`  
+**ID**: `55684a3a30ca`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y&#125; Defines || to be the absolute error between two floating point numbers $x$ and $y$, $ x - y $ and returns the result as floating point number.
+**Description**: &#125; This command sets up macro as the macro that is called whenever a layout key ``requests'' that a layout and, possibly, a graph drawing scope is opened. When macro is called, it gets two parameters, the begin code and the end code. In addition to whatever setup the macro would like to do, it should execute the begin code at the beginning of a \ scope (the code will open graph drawing and layout scopes) and the end code at the end of the same \ scope. The need for this slightly strange macro ari
 
 ---
 
-## 341. Command: `\pgfmathfloatrelerror\marg{x`
+## 341. Command: `\pgfgdevent\marg{kind`
 
-**ID**: `c75e6ae6402e`  
+**ID**: `bfe83b1a8fde`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: y&#125; Defines || to be the relative error between two floating point numbers $x$ and $y$, $ x - y / y $ and returns the result as floating point number.
+**Description**: parameter&#125; Calls |createEvent| of the graph drawing system's interface class. This creates a new |Event| object on the Lua layer whose |kind| field is set to kind and the |parameters| field to parameter. You must be inside a graph drawing scope to use this command.
 
 ---
 
-## 342. Command: `\pgfmathfloatint\marg{x`
+## 342. Command: `\pgfgdbegineventgroup\marg{parameter`
 
-**ID**: `131720a0d53e`  
+**ID**: `4a2fb527e220`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; Returns the integer part of the floating point number x, by truncating any digits after the period. This methods truncates the absolute value $ x $ to the next smaller integer and restores the original sign afterwards. The result is returned as floating point number as well. See also || which returns the number in integer format.
+**Description**: &#125; Starts an event group. This just means that an |Event| of kind |begin| is created with the given parameter.
 
 ---
 
-## 343. Command: `\pgfmathlog{\marg{x`
+## 343. Command: `\pgfgdendeventgroup`
 
-**ID**: `1d4b447852d0`  
+**ID**: `7281661fa600`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125;&#125; Defines || to be the natural logarithm of x, $(x)$. This method is logically the same as ||, but it applies floating point arithmetic to read number x and employs the logarithm identity \[ (m 10^e) = (m) + e (10) \] to get the result. The factor $(10)$ is a constant, so only $(m)$ with $1 m &lt; 10$ needs to be computed. This is done using standard pgf math operations. Please note that x needs to be a number, expression parsing is not possible here. If x is not a bounded positive real number (fo
+**Description**: Ends an event group. This is done by adding an event of kind |end| without any parameters to the event string.
 
 ---
 
-## 344. Command: `\spy \opt{\oarg{options`
+## 344. Command: `\pgfgdeventgroup\marg{parameters`
 
-**ID**: `70ba903d71d9`  
+**ID**: `6d86401476a9`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; |on| coordinate in node node options|;|&#125; This command can only be used inside a |spy scope|. Let us start with the syntax: itemize The || command is not a special case of ||. Rather, it has a small parser of its own. Following the optional options, you must write |on|, followed by a coordinate. This coordinate will be the center of the area that is to be magnified. Following the coordinate, you must write |in node| followed by some node options. The syntax for these options is the same as for 
+**Description**: &#125; Starts an event group just like ||, but adds a corresponding closing |end| event at the end of the current \ group (using ||).
 
 ---
 
-## 345. Command: `\pgfpathmoveto\marg{coordinate`
+## 345. Command: `\pgfgdsubgraphnode\marg{name`
 
-**ID**: `173219ce403e`  
+**ID**: `0dac6d0d5ad6`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command expects a -coordinate like || as its parameter. When the current path is empty, this operation will start the path at the given coordinate. If a path has already been partly constructed, this command will end the current part of the path and start a new one. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0.5cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0.5cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,s
+**Description**: node optionsnode text&#125; A subgraph node is a node that ``surrounds'' the nodes of a subgraph. The special property of a subgraph node opposed to a normal node is that it is created only after the subgraph has been laid out. However, the difference to a collection like |hyper| is that the node is available immediately as a normal node in the sense that you can connect edges to it. What happens internally is that subgraph nodes get ``registered'' immediately both on the \ level and on the Lua level
 
 ---
 
-## 346. Command: `\pgfpathlineto\marg{coordinate`
+## 346. Command: `\pgfmathreciprocal\marg{x`
 
-**ID**: `a8a9188a75c0`  
+**ID**: `f09ef3cdcc96`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: &#125; This command extends the current path in a straight line to the given coordinate. If this command is given at the beginning of path without any other path construction command given before (in particular without a move-to operation), the \ file may compile without an error message, but a viewer application may display an error message when trying to render the picture. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample The command will apply the c
+**Description**: &#125; Defines || as $1$. This provides greatest accuracy when x is small.
 
 ---
 
-## 347. Command: `\pgfpathcurveto\marg{support 1`
+## 347. Command: `\pgfmathapproxequalto\marg{x`
 
-**ID**: `989fd4b39a2f`  
+**ID**: `531ff955045e`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: support 2coordinate&#125; This command extends the current path with a Bézier curve from the last point of the path to coordinate. The support 1 and support 2 are the first and second support point of the Bézier curve. For more information on Bézier curves, please consult a standard textbook on computer graphics. Like the line-to command, this command may not be the first path construction command in a path. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125;&#123;2cm&#123;1cm&#125;&#125;&#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpictur
+**Description**: y&#125; Defines || 1.0 if $ x - y &lt; 0.0001$, but 0.0 otherwise. As a side-effect, the global boolean || will be set accordingly.
 
 ---
 
-## 348. Command: `\pgfpathquadraticcurveto\marg{support`
+## 348. Command: `\pgfmathgeneratepseudorandomnumber`
 
-**ID**: `107479182dbe`  
+**ID**: `d5ceceaee0ea`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: coordinate&#125; This command works like ||, only it uses a quadratic Bézier curve rather than a cubic one. This means that only one support point is needed. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125;&#123;2cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample Internally, the quadratic curve is converted into a cubic curve. The only noticeable effect of this is that the points used for computing the bounding box are the control points of the converted curve rather than support. The main effect of this is t
+**Description**: Defines || as a pseudo-random integer between 1 and $2^&#123;31&#125;-1$. This uses a linear congruency generator, based on ideas of Erich Janka.
 
 ---
 
-## 349. Command: `\pgfpathcurvebetweentime\marg{time $t_1$`
+## 349. Command: `\pgfmathrandominteger\marg{macro`
 
-**ID**: `e862f21b4735`  
+**ID**: `671522197f00`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: time $t_2$point ppoint $s_1$point $s_2$point q&#125; This command draws the part of the curve described by $p$, $s_1$, $s_2$ and $q$ between the times $t_1$ and $t_2$. A time value of 0 indicates the point $p$ and a time value of 1 indicates point $q$. This command includes a moveto operation to the first point. codeexample[] tikzpicture [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2); 0.25&#123;0.9&#125;&#123;0&#123;0&#125;&#125;&#123;0&#123;2&#125;&#125; &#123;3&#123;0&#125;&#125;&#123;3&#123;2&#125;&#125; red 0.5 2pt stroke tikzpicture codeexample
+**Description**: minimummaximum&#125; This defines macro as a pseudo-randomly generated integer from the range minimum to maximum (inclusive). codeexample[] pgfpicture in &#123;1,...,50&#125;&#123; &#123;1&#125;&#123;50&#125; &#123;1&#125;&#123;50&#125; &#123;+ pt&#123;+ pt&#125;&#125;&#123;+2pt&#125; blue!40!white blue!80!black stroke, fill &#125; pgfpicture codeexample
 
 ---
 
-## 350. Command: `\pgfpathcurvebetweentimecontinue\marg{time $t_1$`
+## 350. Command: `\pgfmathdeclarerandomlist\marg{list name`
 
-**ID**: `413abce5fb93`  
+**ID**: `8d519e2a6b18`  
 **Package**: tikz-pgf  
 **Type**: Command Specification  
 
-**Description**: time $t_2$point ppoint $s_1$point $s_2$point q&#125; This command works like ||, except that a moveto operation is not made to the first point.
+**Description**: &#123;\&#123;&#125;item-1item-2...&#123;\&#125;&#125;&#125; This creates a list of items with the name list name.
 
 ---
 

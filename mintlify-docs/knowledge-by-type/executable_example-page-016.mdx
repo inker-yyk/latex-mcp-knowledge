@@ -1,41 +1,29 @@
 ---
 title: "Executable Examples - Page 17"
-description: "Items 801-850 of 5325 executable examples"
+description: "Items 801-850 of 5999 executable examples"
 ---
 
 # Executable Examples - Page 17
 
-Showing items **801-850** of **5325**
+Showing items **801-850** of **5999**
 
-[← Previous](executable_example-page-015) | Page 17 of 107 | [Next →](executable_example-page-017)
+[← Previous](executable_example-page-015) | Page 17 of 120 | [Next →](executable_example-page-017)
 
 ---
 
 ## 801. Circuit
 
-**ID**: `78bec81e4c0a`  
+**ID**: `cf34b062ffe4`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;circuitikz&#125;[smallR/.style=&#123;european resistor, resistors/scale=0.5&#125;]
-    \draw (0,0) node[tacdcshape, anchor=ac mid in](acdc)&#123;&#125; to[smallR] ++(-2,0)
-        -- coordinate(point) node[circ]()&#123;&#125; ++(-.5,0);
-    \draw (acdc.ac up in)
-        to[nos, invert, mirror, name=switch,color=red] ++(-2,0)
-        -- (point);
-    \draw (acdc.ac down in) to[smallR] ++(-2,0)
-        -- (point)
-        to[oosourcetrans,prim=wye,sec=delta,l=transformer] ++(-1.5,0)
-        to[tmultiwire] ++(-.5,0)
-        node[gridnode, anchor=right]&#123;&#125;;
-    \node[above=.3cm,color=red] at (switch) &#123;fault&#125;;
-    \draw (acdc.dc up out) to[smallR,l=HVDC line] ++(2,0 )
-        node[tdcacshape, anchor=dc up in](dcac)&#123;&#125;;
-    \draw (acdc.dc down out) -- (dcac.dc down in);
-    \draw (dcac.right)
-        to[ooosource,prim=delta,sec=delta,tert=wye,invert] ++(1.5,0)
-        to[tmultiwire] ++(.5,0) node[gridnode,anchor=left]&#123;&#125;;
+\begin&#123;circuitikz&#125;[]
+    \draw (0,1) to[R, v=$v$] ++(3,0);
+    \draw (0,0) to[R, v, name=R, voltage/bump b=3] ++(3,0);
+    \draw [thin, red, -&#123;Stealth[width=8pt]&#125;, ]
+    (R-Vfrom) .. controls (R-Vcont1) and (R-Vcont2).. (R-Vto)
+    node [black, pos=0.5, fill=white]&#123;v&#125;;
 \end&#123;circuitikz&#125;
 </code></pre>
 
@@ -43,1041 +31,788 @@ Showing items **801-850** of **5325**
 
 ## 802. Circuit
 
-**ID**: `021d8b840fba`  
+**ID**: `b5a7b1940163`  
 **Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\tikzset&#123;mypic/.pic = &#123;
-    \draw (0,0) coordinate(-in)
-    % unnamed component
-    to[R=#1] ++(2,1)
-    % named component
-    to[leD*, diodes/scale=0.6, led arrows from cathode,
-        name=-led, l=label, v]
-    ++(2,-1) coordinate(-out);
-    &#125;
+\begin&#123;circuitikz&#125;[voltage shift=0.5]
+    \def\eurVPM#1#2&#123;% node, label
+        \draw [thin, -&#123;Stealth[width=8pt]&#125;, shorten &gt;=5pt,
+        shorten &lt;=5pt] (#1-Vfrom) node[font=\tiny]&#123;$\vphantom&#123;+&#125;-$&#125;
+        .. controls (#1-Vcont1) and (#1-Vcont2)..
+        (#1-Vto) node[font=\tiny]&#123;$+$&#125;
+        node[pos=0.5,anchor=\ctikzgetanchor&#123;#1&#125;&#123;Vlab&#125;]&#123;#2&#125;;&#125;
+    \draw (0,0) to[R=R1, name=R1, v, i=$i$] ++(3,0)
+        to[R, l_=R2, v^, name=R2] ++(0,-3);
+    \eurVPM&#123;R1&#125;&#123;$v_1$&#125; \eurVPM&#123;R2&#125;&#123;$v_2$&#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+---
+
+## 803. Circuit
+
+**ID**: `d1c7e507b465`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<pre><code class="language-latex">
+\newcommand&#123;\iarronly&#125;[1]&#123;% name
+    \node [currarrow, color=red, anchor=center,
+    rotate=\ctikzgetdirection&#123;#1-Iarrow&#125;] at (#1-Ipos) &#123;&#125;;
 &#125;
-\begin&#123;tikzpicture&#125;
-    \ctikzset&#123;voltage=raised&#125;
-    \draw (0,0) to[R] ++(2,1);
-    \begin&#123;scope&#125;[xshift=2cm,
-        name prefix=inner-
-        ]
-        \draw (0,0) to[R, name=r, i&lt;] ++(2,1);
-    \end&#123;scope&#125;
-    \draw (4,0) pic(P)&#123;mypic=PR&#125;;
-    \node[circ] at (inner-r) &#123;&#125;;
-    \node[circ, cyan] at (inner-r-Ipos) &#123;&#125;;
-    \node[circ, red] at (P-led) &#123;&#125;;
-    \node[circ, blue] at (P-ledlabel) &#123;&#125;;
-    \node[circ, green] at (P-led-Vto) &#123;&#125;;
-    \node[circ, purple] at (P-led-Vfrom) &#123;&#125;;
-    \draw (4,0) pic[rotate=-60, scale=0.7, transform shape](P2)&#123;mypic=P2R&#125;;
-    \node[circ, red] at (P2-led) &#123;&#125;;
-    \node[circ, blue] at (P2-ledlabel) &#123;&#125;;
-    \node[circ, green] at (P2-led-Vto) &#123;&#125;;
-    \node[circ, purple] at (P2-led-Vfrom) &#123;&#125;;
-    %% extra data
-    \node[right] at (0, -1) &#123;DIR: \ctikzgetdirection&#123;inner-r&#125;&#125;;
-    \node[right] at (0, -1.5) &#123;ANC: \ctikzgetanchor&#123;P-led&#125;&#123;Vlab&#125;&#125;;
-    \node[right] at (0, -2) &#123;Iarr: \ctikzgetdirection&#123;inner-r-Iarrow&#125;&#125;;
-    \node[right] at (0, -2.5) &#123;LAB: \ctikzgetdirection&#123;P2-ledlabel&#125;&#125;;
-\end&#123;tikzpicture&#125;
+\newcommand&#123;\varronly&#125;[1]&#123;% name
+    \draw [color=blue] (#1-Vfrom) .. controls (#1-Vcont1)
+        and (#1-Vcont2)..  (#1-Vto) node [currarrow,
+        sloped, anchor=tip, allow upside down,pos=1]&#123;&#125;;
+&#125;
+\begin&#123;circuitikz&#125;[]
+    \ctikzset&#123;!vi/.style=&#123;no v symbols, no i symbols&#125;&#125;
+    \ctikzset&#123;bipole voltage style/.style=&#123;color=blue&#125;,
+        bipole current style/.style=&#123;color=red&#125;&#125;
+    \draw (120:6) to[R, *-,  name=R, v^=$v_R$, !vi]
+        (120:3) to[short, i=$i_R$, name=SR, !vi] (0,0);
+    \draw (180:4) to[L, o-, l=$L$, name=L2, v=$v_L$, !vi]
+        (180:2) to[V, -*, name=V2, v_=$v_2$, !vi] (0:0);
+    \iarronly&#123;SR&#125;\varronly&#123;R&#125;\varronly&#123;L2&#125;\varronly&#123;V2&#125;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 803. Geometry
+## 804. Circuit
 
-**ID**: `6d30e478a661`  
-**Package**: tkz-euclide  
+**ID**: `74f77f7a937d`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-  \tkzDefPoint(0,0)&#123;A&#125; \tkzDefPoint(3,0)&#123;B&#125;
-  \tkzDefSquare(A,B)
-  \tkzDrawPolygon[new](A,B,tkzFirstPointResult,%
-               tkzSecondPointResult)
-  \tkzDefSquare(B,A)
-  \tkzDrawPolygon(B,A,tkzFirstPointResult,%
-               tkzSecondPointResult) 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[]
+    \def\myvv#1#2&#123;%
+    \draw [thin, blue, -&gt;,]
+    (#1-Vfrom) .. controls (#1-Vcont1) and (#1-Vcont2).. (#1-Vto)
+    node [pos=0.5, below,
+    rotate=\ctikzgetdirection&#123;#1&#125;] at (#1-Vlab) &#123;#2&#125;; &#125;
+    \draw (0,0) to[R, v, name=A] ++(3,0);
+    \draw (0,0) to[R, v, name=B] ++(3,3);
+    \myvv&#123;A&#125;&#123;$v_A$&#125;\myvv&#123;B&#125;&#123;$v_B$&#125;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 804. Geometry
+## 805. Circuit
 
-**ID**: `96b86cd5c810`  
-**Package**: tkz-euclide  
+**ID**: `a65b6b5a17ce`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-  \tkzDefPoint(0,0)&#123;A&#125;
-  \tkzDefPoint(3,0)&#123;B&#125;
-  \tkzDefSquare(A,B) \tkzGetFirstPoint&#123;C&#125;
-  \tkzDrawSegment(A,B)
-  \tkzDrawSegments[new](A,C B,C)
-  \tkzMarkRightAngles(A,B,C)
-  \tkzDrawPoints(A,B) \tkzDrawPoint[new](C)
-  \tkzLabelPoints(A,B)
-  \tkzLabelPoints[new,above](C)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[]
+    \newcommand\myff[3][blue]&#123;% [opt: color] node label
+        \draw [lray, #1, ] (#2-Ffrom) -- (#2-Fto)
+        node [anchor=\ctikzgetanchor&#123;#2&#125;&#123;Flab&#125;, inner sep=4pt]
+        at (#2-Fpos) &#123;#3&#125;;&#125;
+    \draw (0,1) to[R, f, name=A] ++(3,0);
+    \draw (0,0) to[R, f_&lt;, name=B] ++(3,0);
+    \myff&#123;A&#125;&#123;$P_A$&#125;\myff[red]&#123;B&#125;&#123;$P_B$&#125;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 805. Geometry
+## 806. Circuit
 
-**ID**: `58e82ca2a04e`  
-**Package**: tkz-euclide  
+**ID**: `9b82ba19f50f`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-\tkzDefPoint(0,0)&#123;C&#125;
-\tkzDefPoint(4,0)&#123;A&#125;
-\tkzDefPoint(0,3)&#123;B&#125; 
-\tkzDefSquare(B,A)\tkzGetPoints&#123;E&#125;&#123;F&#125; 
-\tkzDefSquare(A,C)\tkzGetPoints&#123;G&#125;&#123;H&#125; 
-\tkzDefSquare(C,B)\tkzGetPoints&#123;I&#125;&#123;J&#125; 
-\tkzDrawPolygon(A,B,C) 
-\tkzDrawPolygon(A,C,G,H) 
-\tkzDrawPolygon(C,B,I,J) 
-\tkzDrawPolygon(B,A,E,F) 
-\tkzLabelSegment(A,C)&#123;$a$&#125; 
-\tkzLabelSegment[right](C,B)&#123;$b$&#125; 
-\tkzLabelSegment[swap](A,B)&#123;$c$&#125; 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[european,]
+    \ctikzset&#123;voltage=straight&#125;
+    \draw (0,0) to[R,v=$v_1$,*-*] ++(2,0) to[R, v&lt;=$v_2$] ++(4,0) to[C, *-*, v=$v_3$] ++(1,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 806. Geometry
+## 807. Circuit
 
-**ID**: `508cd04a86dd`  
-**Package**: tkz-euclide  
+**ID**: `4d2b0c0dbbb4`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\tkzDefPoints&#123;0/0/A,5/2/C&#125;
-\tkzDefRectangle(A,C) \tkzGetPoints&#123;B&#125;&#123;D&#125;
-\tkzDrawPolygon[fill=teal!15](A,...,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[european,]
+    \ctikzset&#123;voltage=straight&#125;
+    \draw (0,2) to[R,v=$v_1$,*-*] ++(2,0) to[R, v&lt;=$v_2$] ++(4,0) to[C, *-*, v=$v_3$] ++(1,0);
+    \draw (0,0) to[R,v=,name=v1,*-*] ++(2,0) to[R, v&lt;=, name=v2] ++(4,0) to[C, *-*, v, name=v3] ++(1,0);
+    \fixedvlen&#123;v1&#125;&#123;$V_1$&#125;
+    \fixedvlen&#123;v2&#125;&#123;$V_2$&#125;
+    \fixedvlen&#123;v3&#125;&#123;$V_3$&#125;[red]
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 807. Geometry
+## 808. Circuit
 
-**ID**: `5d47aa30c21a`  
-**Package**: tkz-euclide  
+**ID**: `b09ce2158e93`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
- \tkzDefPoints&#123;0/0/A,3/0/B,4/2/C&#125; 
- \tkzDefParallelogram(A,B,C) 
- % or   \tkzDefPointWith[colinear= at C](B,A) 
- \tkzGetPoint&#123;D&#125;
- \tkzDrawPolygon(A,B,C,D)
- \tkzLabelPoints(A,B) 
- \tkzLabelPoints[above right](C,D)
- \tkzDrawPoints(A,...,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[european,]
+    \ctikzset&#123;voltage=straight&#125;
+    \draw (0,2) to[R,v=$v_1$,*-*] ++(2,0) to[R, v&lt;=$v_2$] ++(4,0) to[C, *-*, v=$v_3$] ++(1,0);
+    \draw (0,0) to[R,v=,name=v1,*-*] ++(2,0) to[R, v&lt;=, name=v2] ++(4,0) to[C, *-*, v, name=v3] ++(1,0);
+    \compvlen&#123;v1&#125;&#123;$V_1$&#125;
+    \compvlen&#123;v2&#125;&#123;$V_2$&#125;
+    \compvlen&#123;v3&#125;&#123;$V_3$&#125;[red]
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 808. Geometry
+## 809. Circuit
 
-**ID**: `1cf5c191abeb`  
-**Package**: tkz-euclide  
+**ID**: `8f35da9c96f1`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.6]
- \tkzDefPoint(0,0)&#123;A&#125;      \tkzDefPoint(8,0)&#123;B&#125;
- \tkzDefGoldRectangle(A,B) \tkzGetPoints&#123;C&#125;&#123;D&#125;
- \tkzDefGoldRectangle(B,C) \tkzGetPoints&#123;E&#125;&#123;F&#125;
- \tkzDefGoldRectangle(C,E) \tkzGetPoints&#123;G&#125;&#123;H&#125;
- \tkzDrawPolygon(A,B,C,D)
- \tkzDrawSegments(E,F G,H)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, l=1&lt;\kilo\ohm&gt;] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 809. Geometry
+## 810. Circuit
 
-**ID**: `f6c4eaae8f40`  
-**Package**: tkz-euclide  
+**ID**: `8dcb98cb9219`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5] 
-\tkzDefPoint(0,0)&#123;A&#125;
-\tkzDefPoint(8,0)&#123;B&#125; 
-\tkzDefMidPoint(A,B)
-\tkzGetPoint&#123;I&#125; 
-\tkzDefSquare(A,B)\tkzGetPoints&#123;C&#125;&#123;D&#125; 
-\tkzInterLC(A,B)(I,C)\tkzGetPoints&#123;G&#125;&#123;E&#125; 
-\tkzDefPointWith[colinear= at C](E,B) 
- \tkzGetPoint&#123;F&#125;
-\tkzDefPointBy[projection=onto D--C ](E) 
- \tkzGetPoint&#123;H&#125;
-\tkzDrawArc[style=dashed](I,E)(D)
-\tkzDrawPolygon(A,B,C,D) 
-\tkzDrawPoints(C,D,E,F,H) 
-\tkzLabelPoints(A,B,C,D,E,F,H)
-\tkzLabelPoints[above](C,D,F,H)  
-\tkzDrawSegments[style=dashed,color=gray]%
-(E,F C,F B,E F,H H,C E,H) 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, l=$\SI&#123;1&#125;&#123;\kilo\ohm&#125;$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 810. Geometry
+## 811. Circuit
 
-**ID**: `3c4fed155072`  
-**Package**: tkz-euclide  
+**ID**: `282da054f288`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/0/P0,0/0/Q0,2/0/P1&#125;
-  \tkzDefMidPoint(P0,P1) \tkzGetPoint&#123;Q1&#125;
-  \tkzDefRegPolygon[center,sides=7](P0,P1)
-  \tkzDefMidPoint(P1,P2) \tkzGetPoint&#123;Q1&#125;
-  \tkzDefRegPolygon[center,sides=7,name=Q](P0,Q1)
-  \tkzFillPolygon[teal!20](Q0,Q1,P2,Q2)
-  \tkzDrawPolygon(P1,P...,P7)
-  \foreach \j in &#123;1,...,7&#125; &#123;%
-  \tkzDrawSegment[black](P0,Q\j)&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i=1&lt;\milli\ampere&gt;] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 811. Geometry
+## 812. Circuit
 
-**ID**: `08f47a668f37`  
-**Package**: tkz-euclide  
+**ID**: `28f4826b8409`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-    \tkzDefPoints&#123;-4/0/A, -1/0/B&#125;
-    \tkzDefRegPolygon[side,sides=5,name=P](A,B)
-    \tkzDrawPolygon[thick](P1,P...,P5)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i=$\SI&#123;1&#125;&#123;\milli\ampere&#125;$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 812. Geometry
+## 813. Circuit
 
-**ID**: `df25eae47317`  
-**Package**: tkz-euclide  
+**ID**: `97355309a303`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/0/A,5/0/B,3/2/C,3/1/D&#125;
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
-  \tkzLabelPoints(A,B) 
-  \tkzLabelPoints[above right](C) 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, v=1&lt;\volt&gt;] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 813. Geometry
+## 814. Circuit
 
-**ID**: `b1fc4cfd9059`  
-**Package**: tkz-euclide  
+**ID**: `ce0abac9d5b8`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzSetUpPoint[size=4,color=red,fill=red!20]
-  \tkzDefPoints&#123;0/0/A,5/0/B,3/2/C,3/1/D&#125;
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
-  \tkzDrawPoint[shape=cross out,thick](D)
-  \tkzLabelPoints(A,B) 
-  \tkzLabelPoints[above right](C) 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, v=$\SI&#123;1&#125;&#123;\volt&#125;$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 814. Geometry
+## 815. Circuit
 
-**ID**: `3ac873196688`  
-**Package**: tkz-euclide  
+**ID**: `957a5afd9547`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/0/A,5/0/B,3/2/C,3/1/D&#125;
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
-  \begin&#123;scope&#125;
-    \tkzSetUpPoint[size=4,color=red,fill=red!20]
-    \tkzDrawPoint(D)
-  \end&#123;scope&#125;
-  \tkzLabelPoints(A,B) 
-  \tkzLabelPoints[above right](C) 
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;bipoles/length=.5cm, nodes width=0.1&#125;%small components, big nodes
+    \foreach \a/\p [evaluate=\a as \b using (\a+180)] in
+    &#123;-90/none, -60/circ, -30/ocirc, 0/diamondpole, 30/odiamondpole, 60/squarepole, 90/osquarepole&#125;
+        \draw (0,0) to[R, bipole nodes=&#123;none&#125;&#123;\p&#125;] ++(\a:1.5)  node[font=\tiny, anchor=\b]&#123;\p&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 815. Geometry
+## 816. Circuit
 
-**ID**: `f426d96306f2`  
-**Package**: tkz-euclide  
+**ID**: `50f4283a4dae`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzSetUpPoint[shape = cross out,color=blue]
-  \tkzDefPoint(2,1)&#123;A&#125;
-  \tkzDefPoint(4,0)&#123;B&#125;
-  \tkzDrawLine(A,B)
-  \tkzDrawPoints(A,B)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+    \draw (0,0) to[R, *-o] ++(2,0) to[R, -d] ++(2,0)
+        to[R, bipole nodes=&#123;diamondpole&#125;&#123;odiamondpole, fill=red&#125;] ++(2,0);
+    \draw (0,-1) to[R, *-o] ++(2,0) ;
+    \draw (2,-1) to[R, -d] ++(2,0) to[R, bipole nodes=&#123;none&#125;&#123;squarepole&#125;] ++(2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 816. Geometry
+## 817. Circuit
 
-**ID**: `8badaaea816d`  
-**Package**: tkz-euclide  
+**ID**: `ef76dff0271c`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/0/A,2/4/B,4/0/C,3/2/D&#125;
-  \tkzDrawSegments(A,B A,C A,D)
-  &#123;\tkzSetUpPoint[shape=cross out,
-            fill= teal!50,
-            size=4,color=teal]
-  \tkzDrawPoints(A,B)&#125;
-  \tkzSetUpPoint[fill= teal!50,size=4,
-               color=teal]
-   \tkzDrawPoints(C,D)
-  \tkzLabelPoints(A,B,C,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;-s/.style = &#123;bipole nodes=&#123;none&#125;&#123;osquarepole, fill=red&#125;&#125;&#125;
+    \draw (0,0) to[R, -s] ++(2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 817. Geometry
+## 818. Circuit
 
-**ID**: `ca4499b7f367`  
-**Package**: tkz-euclide  
+**ID**: `0a57ba88c230`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-\tkzSetUpLine[line width=1pt]
-\begin&#123;scope&#125;[rotate=-90]
-    \tkzDefPoints&#123;0/6/A,10/0/B,10/6/C&#125;
-    \tkzDefPointBy[projection = onto B--A](C)
-    \tkzGetPoint&#123;H&#125;
-    \tkzMarkRightAngle[size=.4,
-                       fill=teal!20](B,C,A)
-    \tkzMarkRightAngle[size=.4,
-                       fill=orange!20](B,H,C)
-    \tkzDrawPolygon(A,B,C)
-    \tkzDrawSegment[new](C,H)
-\end&#123;scope&#125;
- \tkzLabelSegment[below](C,B)&#123;$a$&#125;
- \tkzLabelSegment[right](A,C)&#123;$b$&#125;
- \tkzLabelSegment[left](A,B)&#123;$c$&#125;
- \tkzLabelSegment[color=red](C,H)&#123;$h$&#125;
- \tkzDrawPoints(A,B,C)
- \tkzLabelPoints[above left](H)
- \tkzLabelPoints(B,C)
- \tkzLabelPoints[above](A)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, o-o] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 818. Geometry
+## 819. Circuit
 
-**ID**: `e7797cff6b26`  
-**Package**: tkz-euclide  
+**ID**: `977f7ef7a866`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-\tikzset&#123;line style/.style = &#123;color = gray,
-                             style=dashed&#125;&#125;
-\tkzDefPoints&#123;1/0/A,4/0/B,1/1/C,5/1/D&#125;
-\tkzDefPoints&#123;1/2/E,6/2/F,0/4/A',3/4/B'&#125;
-\tkzCalcLength(C,D)
-\tkzGetLength&#123;rCD&#125;
-\tkzCalcLength(E,F)
-\tkzGetLength&#123;rEF&#125;
-\tkzInterCC[R](A',\rCD)(B',\rEF)
-\tkzGetPoints&#123;I&#125;&#123;J&#125;
-\tkzDrawLine(A',B')
-\tkzCompass(A',B')
-\tkzDrawSegments(A,B C,D E,F)
-\tkzDefCircle[R](A',\rCD) \tkzGetPoint&#123;a'&#125;
-\tkzDefCircle[R](B',\rEF)\tkzGetPoint&#123;b'&#125;
-\tkzDrawCircles(A',a' B',b')
-\begin&#123;scope&#125;
-  \tkzSetUpLine[color=red]
-  \tkzDrawSegments(A',I B',I)
-\end&#123;scope&#125;
-\tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
-\tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, -o] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 819. Geometry
+## 820. Circuit
 
-**ID**: `6a5252bc141e`  
-**Package**: tkz-euclide  
+**ID**: `90ab94ee0b66`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-  \tkzSetUpLine[add=.5 and .5]
-  \tkzDefPoints&#123;0/0/A,4/0/B,1/3/C&#125;
-  \tkzDrawLines(A,B B,C A,C)
-  \tkzDrawPolygon[red,thick](A,B,C)
-  \tkzSetUpPoint[size=4,circle,color=red,fill=red!20]
-  \tkzDrawPoints(A,B,C)
-  \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, o-] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 820. Geometry
+## 821. Circuit
 
-**ID**: `4cb09fc05ccd`  
-**Package**: tkz-euclide  
+**ID**: `81cc8cda7d2b`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\def\r&#123;3&#125; \def\angle&#123;200&#125;
-\tkzSetUpArc[delta=10,color=purple,line width=.2pt]
-\tkzSetUpLabel[font=\scriptsize,red]
-\tkzDefPoint(0,0)&#123;O&#125;
-\tkzDefPoint(\angle:\r)&#123;A&#125;
-\tkzInterCC(O,A)(A,O) \tkzGetPoints&#123;C'&#125;&#123;C&#125;
-\tkzInterCC(O,A)(C,O) \tkzGetPoints&#123;D'&#125;&#123;D&#125;
-\tkzInterCC(O,A)(D,O) \tkzGetPoints&#123;X'&#125;&#123;X&#125;
-\tkzDrawCircle(O,A)
-\tkzDrawArc(A,C')(C)
-\tkzDrawArc(C,O)(D)
-\tkzDrawArc(D,O)(X)
-\tkzDrawLine[add=.1 and .1](A,X)
-\tkzDrawPoints(O,A)
-\tkzSetUpPoint[size=3,color=purple,fill=purple!10]
-\tkzDrawPoints(C,C',D,X)
-\tkzLabelPoints[below left](O,A)
-\tkzLabelPoints[below](C')
-\tkzLabelPoints[below right](X)
-\tkzLabelPoints[above](C,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, *-*] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 821. Geometry
+## 822. Circuit
 
-**ID**: `e81fba71f001`  
-**Package**: tkz-euclide  
+**ID**: `758616b1f6a1`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzSetUpCompass[color=red,delta=15]
-  \tkzDefPoint(1,1)&#123;A&#125;
-  \tkzDefPoint(6,1)&#123;B&#125;
-  \tkzInterCC[R](A,4)(B,4) \tkzGetPoints&#123;C&#125;&#123;D&#125;
-  \tkzCompass(A,C)
-  \tkzCompass(B,C)
-  \tkzDrawPolygon(A,B,C)
-  \tkzDrawPoints(A,B,C)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, -*] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 822. Geometry
+## 823. Circuit
 
-**ID**: `9f498436e7c7`  
-**Package**: tkz-euclide  
+**ID**: `734ba882be8a`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-\tkzSetUpStyle[bisector,size=2,gap=3]&#123;showbi&#125;
-\tkzSetUpCompass[color=teal,line width=.3 pt] 
-\tkzDefPoints&#123;0/1/A, 8/3/B, 3/6/C&#125; 
-\tkzDrawPolygon(A,B,C) 
-\tkzDefLine[bisector](B,A,C) \tkzGetPoint&#123;a&#125; 
-\tkzDefLine[bisector](C,B,A) \tkzGetPoint&#123;b&#125; 
-\tkzShowLine[showbi](B,A,C) 
-\tkzShowLine[showbi](C,B,A) 
-\tkzInterLL(A,a)(B,b) \tkzGetPoint&#123;I&#125; 
-\tkzDefPointBy[projection= onto A--B](I)
-\tkzGetPoint&#123;H&#125; 
-\tkzDrawCircle[new](I,H) 
-\tkzDrawSegments[new](I,H) 
-\tkzDrawLines[add=0 and .2,new](A,I B,I)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, *-] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 823. Geometry
+## 824. Circuit
 
-**ID**: `36318f0926e8`  
-**Package**: tkz-euclide  
+**ID**: `c4295668e8e2`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75]
-  \tkzSetUpLabel[font=\scriptsize,red]
-  \tkzSetUpStyle[line width=1pt,teal]&#123;XY&#125;
-  \tkzInit[xmin=-3,xmax=3,ymin=-3,ymax=3]
-  \tkzDrawX[noticks,XY]
-  \tkzDrawY[noticks,XY]
-  \tkzDefPoints&#123;1/0/A,0/1/B,-1/0/C,0/-1/D&#125;
-  \tkzDrawPoints[teal,fill=teal!30,size=6](A,...,D)
-  \tkzLabelPoint[above right](A)&#123;$A(1,0)$&#125;
-  \tkzLabelPoint[above right](B)&#123;$B(0,1)$&#125;
-  \tkzLabelPoint[above left](C)&#123;$C(-1,0)$&#125;
-  \tkzLabelPoint[below left](D)&#123;$D(0,-1)$&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, d-d] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 824. Geometry
+## 825. Circuit
 
-**ID**: `17250f16572e`  
-**Package**: tkz-euclide  
+**ID**: `9495307f38ef`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzSetUpStyle[color=blue!20!black,fill=blue!20]&#123;mystyle&#125;
-  \tkzDefPoint(0,0)&#123;O&#125;
-  \tkzDefPoint(0,1)&#123;A&#125;
-  \tkzDrawPoints(O) % general style
-  \tkzDrawPoints[mystyle,size=4](A) % my style
-  \tkzLabelPoints(O,A)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, -d] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 825. Geometry
+## 826. Circuit
 
-**ID**: `5cb5fe941914`  
-**Package**: tkz-euclide  
+**ID**: `090391671b66`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawSegment[-Triangle](A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, d-] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 826. Geometry
+## 827. Circuit
 
-**ID**: `1d95b6aa47bc`  
-**Package**: tkz-euclide  
+**ID**: `9995e968c559`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawSegment[Stealth-Stealth](A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, o-*] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 827. Geometry
+## 828. Circuit
 
-**ID**: `937faaed65e1`  
-**Package**: tkz-euclide  
+**ID**: `1195cf90f372`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawLine[red,Latex-Latex](A,B)
-      \tkzDrawPoints(A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, *-o] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 828. Geometry
+## 829. Circuit
 
-**ID**: `1e888ccd180a`  
-**Package**: tkz-euclide  
+**ID**: `f8e4d67820d1`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawSegment[To-To](A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, o-d] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 829. Geometry
+## 830. Circuit
 
-**ID**: `a9d32f0890b4`  
-**Package**: tkz-euclide  
+**ID**: `72a27365bba3`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawSegment[Latex-Latex](A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, d-o] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 830. Geometry
+## 831. Circuit
 
-**ID**: `2753d0571183`  
-**Package**: tkz-euclide  
+**ID**: `67b433b547c3`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-      \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-      \tkzDrawSegment[Latex-](A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, *-d] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 831. Geometry
+## 832. Circuit
 
-**ID**: `1376336ca08e`  
-**Package**: tkz-euclide  
+**ID**: `1f4011516266`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,4/0/B,5/-2/C&#125;
- \tkzDrawSegments[-Latex](A,B A,C)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, d-*] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 832. Geometry
+## 833. Circuit
 
-**ID**: `6d82040706cb`  
-**Package**: tkz-euclide  
+**ID**: `05b6e651eadd`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,4/0/B&#125;
- \tkzDrawSegment[&#123;Latex[scale=2]&#125;-&#123;Latex[scale=2]&#125;](A,B)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;[scale=3, transform shape]
+    \fill[cyan] (0,0) rectangle (4.1,-0.6);
+    \ctikzset&#123;open poles fill=red&#125;
+    \tikzset&#123;open poles opacity=0.5&#125;
+    % automatic positioning  when opacity is not 1.0 creates artifacts
+    % note that the global fill opacity affects the "generic shape", but not the poles!
+    % the fill color of the poles, instead, goes with the component
+    \draw[fill opacity=0.8] (0,0) to[generic, fill=white, -o] ++(2,0) --++(0,-0.5);
+    % \draw (0,0) to[generic, fill=white, -o] ++(2,0) --++(0,-0.5);
+    % you have to use manual positioning
+    \draw (2.2,0) -- ++(0.5,0) node[ocirc, anchor=180, fill opacity=0.5]&#123;&#125;;
+    \draw (3,0) node[ocirc, fill opacity=0.5](B)&#123;&#125;  (B.0) --++(0.5,0) (B.-90) --++(0,-0.5);
+    % maybe really useful only for terminals going out of the circuit...
+    % notice that in node commands you can specify the opacity directly
+    \draw (3.6,0) -- ++(0.2,0) node[ocirc, fill=white, fill opacity=0.5, anchor=180]&#123;&#125;;
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 833. Geometry
+## 834. Circuit
 
-**ID**: `2251329e15e3`  
-**Package**: tkz-euclide  
+**ID**: `ccd95e242504`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,4/0/B&#125;
-\tkzDrawSegment[vector style](A,B)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[pD] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 834. Geometry
+## 835. Circuit
 
-**ID**: `fb047e8cd391`  
-**Package**: tkz-euclide  
+**ID**: `62412b4e8101`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,3/0/B,4/2/C&#125; 
- \tkzDefParallelogram(A,B,C) 
- \tkzGetPoint&#123;D&#125;
- \tkzDrawSegments[tkz arrow](A,B D,C)
- \tkzDrawSegments(B,C D,A)
- \tkzLabelPoints(A,B) 
- \tkzLabelPoints[above right](C,D)
- \tkzDrawPoints(A,...,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[pD, mirror] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 835. Geometry
+## 836. Circuit
 
-**ID**: `32660bec8c8f`  
-**Package**: tkz-euclide  
+**ID**: `9235f64fc1af`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,3/0/B,1/2/C&#125; 
- \tkzDefPointWith[colinear= at C](A,B) 
- \tkzGetPoint&#123;D&#125;
- \tkzDrawSegments[tkz arrow=Triangle](A,B C,D)
- \tkzLabelPoints(A,B,C) 
- \tkzDrawPoints(A,...,C)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[pD, invert] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 836. Geometry
+## 837. Circuit
 
-**ID**: `3a1ff869ee7d`  
-**Package**: tkz-euclide  
+**ID**: `eeb47752ec76`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-\tkzDefPoints&#123;0/0/A,3/0/B&#125; 
-\begin&#123;scope&#125;[rotate=150]
- \tkzDrawCircle[tkz arrow=&#123;Latex[scale=2,red]&#125;](A,B)
-\end&#123;scope&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[ospst=T, i=$i_1$, v=$v$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 837. Geometry
+## 838. Circuit
 
-**ID**: `3c1d380e4b1b`  
-**Package**: tkz-euclide  
+**ID**: `1ffa1d788aba`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,3/0/B&#125;  
- \tkzDefSquare(A,B) \tkzGetPoints&#123;C&#125;&#123;D&#125;
- \tkzDrawPolygon[tkz arrows](A,...,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[ospst=T, mirror, i=$i_1$, v=$v$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 838. Geometry
+## 839. Circuit
 
-**ID**: `0909cc62fac7`  
-**Package**: tkz-euclide  
+**ID**: `143cadcaf08a`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzDefPoints&#123;0/0/A,3/0/B&#125; 
- \tkzDrawCircle[tkz arrows](A,B)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[ospst=T, invert, i=$i_1$, v=$v$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 839. Geometry
+## 840. Circuit
 
-**ID**: `364a82d7a4e9`  
-**Package**: tkz-euclide  
+**ID**: `d0fcb1eef46f`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
-    \tkzDefPoints&#123;0/0/A,8/0/B&#125;
-   \foreach \tr in &#123;golden, equilateral&#125;
-    &#123;\tkzDefTriangle[\tr](A,B) \tkzGetPoint&#123;C&#125;
-    \tkzDrawPoint(C)
-    \tkzLabelPoint[right](C)&#123;\tr&#125;
-    \tkzDrawSegments(A,C C,B)&#125;
-    \tkzDrawPoints(A,B)
-    \tkzDrawSegments(A,B)
-    \tkzLabelPoints(A,B)
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[ospst=T,mirror,invert, i=$i_1$, v=$v$] (2,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 840. Geometry
+## 841. Circuit
 
-**ID**: `3dc4a957751d`  
-**Package**: tkz-euclide  
+**ID**: `3f66da0cb4bf`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;       
-    \tkzDefPoints&#123;0/0/A,4/2/B&#125;       
-    \tkzDrawPoints(A,B)       
-    \tkzLabelPoints(A,B)     
-  \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R=1&lt;\kilo\ohm&gt;,
+      i&gt;_=1&lt;\milli\ampere&gt;, o-*] (3,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 841. Geometry
+## 842. Circuit
 
-**ID**: `4d0dcdca24b0`  
-**Package**: tkz-euclide  
+**ID**: `2f21fdba2dd8`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;       
-    \tkzSetUpPoint[shape=cross, color=red]       
-    \tkzDefPoints&#123;0/0/A,4/2/B&#125;       
-    \tkzDrawPoints(A,B)       
-    \tkzLabelPoints(A,B)     
-    \end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[D*, v=$v_D$,
+      i=1&lt;\milli\ampere&gt;, o-*] (3,0);
+\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 842. Geometry
+## 843. Circuit
 
-**ID**: `0cd7fe2858ce`  
-**Package**: tkz-euclide  
+**ID**: `b06e2a2ac595`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;       
-    \tkzDefPoint(0,0)&#123;A&#125;       
-    \tkzDrawPoints(A)       
-    \tkzLabelPoint(A)&#123;$P$&#125;     
-  \end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;[line width=3pt,european]
+	\draw (0,0) to[R]++(2,0)to[R]++(0,2)
+		--++(-2,0)to[R]++(0,-2);
+	\draw[red,line width=1pt] circle(2mm);
+	\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 843. Geometry
+## 844. Circuit
 
-**ID**: `a26c626d7b8a`  
-**Package**: tkz-euclide  
+**ID**: `2c68555299bd`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
- \tkzDefPoints&#123;0/0/A,2/-3/B,2/5/C&#125;
- \tkzDuplicateSegment(A,B)(A,C)  
- \tkzGetPoint&#123;D&#125;
- \tkzDrawSegments[new](A,B A,C)
- \tkzDrawSegment[teal](A,D)
- \tkzDrawPoints[new](A,B,C,D) 
- \tkzLabelPoints[above right=3pt](A,B,C,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;[line width=3pt,european]
+	\draw (0,0) to[R]++(2,0)to[R]++(0,2)
+		--++(-2,0)to[R,-.]++(0,-2);
+	\draw[red,line width=1pt] circle(2mm);
+	\end&#123;tikzpicture&#125;
 </code></pre>
 
 ---
 
-## 844. Geometry
+## 845. Circuit
 
-**ID**: `cfe66b5cf090`  
-**Package**: tkz-euclide  
+**ID**: `3b99308a5e75`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[rotate=-90,scale=.4]
- \tkzDefPoints&#123;0/0/A,10/0/B&#125;
- \tkzDefMidPoint(A,B)   
- \tkzGetPoint&#123;I&#125;
- \tkzDefPointWith[orthogonal,K=-.75](B,A)
- \tkzGetPoint&#123;C&#125;
- \tkzInterLC(B,C)(B,I)  \tkzGetSecondPoint&#123;D&#125;
- \tkzDuplicateSegment(B,D)(D,A) \tkzGetPoint&#123;E&#125;
- \tkzInterLC(A,B)(A,E)   \tkzGetPoints&#123;N&#125;&#123;M&#125;
- \tkzDrawArc[orange,delta=10](D,E)(B)
- \tkzDrawArc[orange,delta=10](A,M)(E)
- \tkzDrawLines(A,B B,C A,D)
- \tkzDrawArc[orange,delta=10](B,D)(I)
- \tkzDrawPoints(A,B,D,C,M,I)
- \tkzLabelPoints[below left](A,B,D,C,M,I)
-\end&#123;tikzpicture&#125;
+\tikz \draw[thick] (0,0) -- (1,0) &#123;[color=red] -- (2,0) node[draw]&#123;&#125;&#125; --(3,0); \par
+\tikz \draw[thick] (0,0) -- (1,0) [color=red] -- (2,0) node[draw]&#123;&#125; --(3,0);
 </code></pre>
 
 ---
 
-## 845. Geometry
+## 846. Circuit
 
-**ID**: `0ad5891f0ae2`  
-**Package**: tkz-euclide  
+**ID**: `2e0e0214040c`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.75] 
-  \tkzDefPoints&#123;0/0/A,5/0/C,0/5/B&#125; 
-  \tkzDefMidPoint(A,C)\tkzGetPoint&#123;H&#125; 
-  \tkzDuplicateSegment(H,B)(H,A)\tkzGetPoint&#123;D&#125; 
-  \tkzDuplicateSegment(A,D)(A,B)\tkzGetPoint&#123;E&#125; 
-  \tkzDuplicateSegment(A,D)(B,A)\tkzGetPoint&#123;G&#125; 
-  \tkzInterCC(A,C)(B,G)\tkzGetSecondPoint&#123;F&#125;
-  \tkzDrawLine(A,C)
-  \tkzDrawArc(A,C)(B) 
-  \begin&#123;scope&#125;[arc style/.style=&#123;color=gray,%
-                               style=dashed&#125;]
-    \tkzDrawArc(H,B)(D) 
-    \tkzDrawArc(A,D)(B) 
-    \tkzDrawArc(B,G)(F) 
-  \end&#123;scope&#125;
-  \tkzDrawSegment[dashed](H,B) 
-  \tkzCompass(B,F) 
-  \tkzDrawPolygon[new](A,B,F)
-  \tkzDrawPoints(A,...,H)
-  \tkzLabelPoints[below left](A,...,H)
-\end&#123;tikzpicture&#125;
+\color&#123;red&#125;
+Red text
+\tikz \draw (0,0) -- node[draw] &#123;x&#125; (1,0) -- node[draw=cyan] &#123;y&#125; (2,0);
+\tikz \draw (0,0) to[R] (2,0) to[R,color=cyan] (4,0) to [generic] (6,0) to [fullgeneric] (8,0);
+
+\color&#123;blue&#125;
+Blue text
+\tikz \draw (0,0) -- node[draw] &#123;x&#125; (1,0) -- node[draw=cyan] &#123;y&#125; (2,0);
+\tikz \draw (0,0) to[R] (2,0) to[R,color=cyan] (4,0) to [generic] (6,0) to [fullgeneric] (8,0);
+
+\color&#123;black&#125;
+Black text
+\tikz \draw[fill=yellow] (0,0) -- node[draw, fill] &#123;x&#125; (1,0) -- node[draw=cyan] &#123;y&#125; (2,0);
+\tikz \draw[fill=yellow] (0,0) to[R] (2,0) to[R,color=cyan] (4,0) to [generic] (6,0) to [fullgeneric] (8,0);
 </code></pre>
 
 ---
 
-## 846. Geometry
+## 847. Circuit
 
-**ID**: `2f51db14a8d4`  
-**Package**: tkz-euclide  
+**ID**: `74009fb562c9`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=1]
-  \tkzDefPoint(0,0)&#123;A&#125; \tkzDefPoint(4,0)&#123;B&#125;
-  \tkzCalcLength(A,B)\tkzGetLength&#123;dAB&#125;
-  \tkzDefLine[perpendicular=through A](A,B)
-  \tkzGetPoint&#123;D&#125;
-  \tkzDefPointWith[orthogonal,K=-1](B,A)    
-    \tkzGetPoint&#123;F&#125;
-  \tkzGetPoint&#123;C&#125;
-  \tkzDrawLine[add= .6 and .2](A,B)
-  \tkzDrawLine(A,D) 
-  \tkzShowLine[orthogonal=through A,gap=2](A,B)
-  \tkzMarkRightAngle(B,A,D)
-  \tkzCompasss(A,D D,C)
-  \tkzDrawArc[R](B,\dAB)(80,110)
-  \tkzDrawPoints(A,B,C,D)
-  \tkzDrawSegments[color=gray,style=dashed](B,C C,D)
-  \tkzLabelPoints[below left](A,B,C,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125; \draw[red]
+  (0,2) node[and port](myand1)&#123;1&#125;
+  (0,0) node[and port](myand2)&#123;2&#125;
+  (2,1) node[xnor port](myxnor)&#123;3&#125;
+  (myand1.out) -| (myxnor.in 1)
+  (myand2.out) -| (myxnor.in 2)
+;\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 847. Geometry
+## 848. Circuit
 
-**ID**: `f71145c2e3dc`  
-**Package**: tkz-euclide  
+**ID**: `82a831a1f5a4`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[scale=.5]
- \tkzDefPoint(0,0)&#123;A&#125;
- \tkzDefPoint(3,-4)&#123;B&#125;
- \tkzDefMidPoint(A,B) \tkzGetPoint&#123;M&#125;
- \tkzCalcLength(M,B)\tkzGetLength&#123;rAB&#125;
- \tkzDrawCircle(A,B)
- \tkzDrawPoints(A,B)
- \tkzLabelPoints(A,B)
- \tkzDrawSegment[dashed](A,B)
- \tkzLabelSegment(A,B)&#123;$\pgfmathprintnumber&#123;\rAB&#125;$&#125;
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125; \draw[color=red]
+  (0,2) node[and port](myand1)&#123;1&#125;
+  (0,0) node[and port](myand2)&#123;2&#125;
+  (2,1) node[xnor port](myxnor)&#123;3&#125;
+  (myand1.out) -| (myxnor.in 1)
+  (myand2.out) -| (myxnor.in 2)
+;\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 848. Geometry
+## 849. Circuit
 
-**ID**: `c760083e30d6`  
-**Package**: tkz-euclide  
+**ID**: `26c901390708`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
- \tkzInit[xmax=5,ymax=3]
- \tkzGrid[sub,orange]
- \tkzDrawX \tkzDrawY
- \tkzDefPoint(1,0)&#123;A&#125;
- \tkzDefPoint(4,2)&#123;B&#125;
- \tkzGetPointCoord(A)&#123;a&#125;
- \tkzGetPointCoord(B)&#123;b&#125;
- \tkzDefPoint(\ax,\ay)&#123;C&#125;
- \tkzDefPoint(\bx,\by)&#123;D&#125;
- \tkzDrawPoints[color=red](C,D)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125; \draw
+  (0,0) node[pnp, color=blue](pnp2)&#123;q1&#125;
+  (pnp2.B) node[pnp, xscale=-1, anchor=B, color=brown](pnp1)&#123;\ctikzflipx&#123;q2&#125;&#125;
+  (pnp1.C) node[npn, anchor=C, color=green](npn1)&#123;q3&#125;
+  (pnp2.C) node[npn, xscale=-1, anchor=C, color=magenta](npn2)&#123;\ctikzflipx&#123;q4&#125;&#125;
+  (pnp1.E) -- (pnp2.E)  (npn1.E) -- (npn2.E)
+  (pnp1.B) node[circ]&#123;&#125; |- (pnp2.C) node[circ]&#123;&#125;
+;\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
-## 849. Geometry
+## 850. Circuit
 
-**ID**: `1392b4a76902`  
-**Package**: tkz-euclide  
+**ID**: `7ee0dbaa010b`  
+**Package**: circuitikz  
 **Type**: Executable Example  
 
 <pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;[&gt;=latex]
-  \tkzDefPoint(1,4)&#123;a&#125;
-  \tkzDefPoint(3,2)&#123;b&#125;
-  \tkzDefPoint(1,1)&#123;c&#125;
-  \tkzDrawSegment[-&gt;,red](a,b)
-  \tkzGetPointCoord(c)&#123;c&#125;
-  \draw[color=blue,-&gt;](a) -- ([shift=(b)]\cx,\cy) ;
-  \draw[color=purple,-&gt;](b) -- ([shift=(b)]\cx,\cy) ;
-  \tkzDrawSegment[-&gt;,blue](a,c)
-  \tkzDrawSegment[-&gt;,purple](b,c)
-\end&#123;tikzpicture&#125;
-</code></pre>
-
----
-
-## 850. Geometry
-
-**ID**: `7cfcc8f2b59f`  
-**Package**: tkz-euclide  
-**Type**: Executable Example  
-
-<pre><code class="language-latex">
-\begin&#123;tikzpicture&#125;
-  \tkzDefPoints&#123;0/0/O,5/-1/A,2/2/B&#125;
-   \tkzSwapPoints(A,B)
-   \tkzDrawPoints(O,A,B)
-   \tkzLabelPoints(O,A,B)
-\end&#123;tikzpicture&#125;
+\begin&#123;circuitikz&#125; \draw
+  (0,0) to[V=1&lt;\volt&gt;] (0,2)
+        to[R=1&lt;\ohm&gt;, color=red] (2,2)
+        to[C=1&lt;\farad&gt;] (2,0) -- (0,0)
+;\end&#123;circuitikz&#125;
 </code></pre>
 
 ---
 
 
-[← Previous](executable_example-page-015) | Page 17 of 107 | [Next →](executable_example-page-017)
+[← Previous](executable_example-page-015) | Page 17 of 120 | [Next →](executable_example-page-017)
