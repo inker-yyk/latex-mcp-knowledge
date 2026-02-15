@@ -1,0 +1,1854 @@
+---
+title: "PGFPLOTS Code Examples"
+description: "Executable LaTeX examples from pgfplots package"
+---
+
+# PGFPLOTS Code Examples
+
+This page contains 100 executable examples from the pgfplots package.
+
+## Example 1: Other
+
+**ID**: `55dd8d997f8f`
+
+<pre><code class="language-latex">
+\draw [
+    gray,
+    thin,
+    mark options=&#123;
+        scale=2,fill=yellow!80!black,draw=black,
+    &#125;,
+]
+</code></pre>
+
+---
+
+## Example 2: Line Chart
+
+**ID**: `ba97bb524c11`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=2cm]
+    \addplot coordinates
+        &#123;(-2,0) (-1,1) (0,0) (1,1) (2,0)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 3: Line Chart
+
+**ID**: `a97117d372e7`
+
+<pre><code class="language-latex">
+\tikzset&#123;every mark/.append style=&#123;scale=2&#125;&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=2cm]
+    \addplot coordinates
+        &#123;(-2,0) (-1,1) (0,0) (1,1) (2,0)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 4: Line Chart
+
+**ID**: `04bd57a1b245`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=2cm]
+  \addplot+ [
+    mark=halfcircle*,
+    every mark/.append style=&#123;rotate=90&#125;]
+  coordinates
+    &#123;(-2,0) (-1,1) (0,0) (1,1) (2,0)&#125;;
+
+  \addplot+ [
+    mark=halfcircle*,
+    every mark/.append style=&#123;rotate=180&#125;]
+  coordinates
+    &#123;(-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 5: Scatter Plot
+
+**ID**: `8f9cbf59b4e8`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=2cm]
+    \addplot+ [
+        mark=ball,
+        mark size=4pt,
+        scatter,% enable scatter
+        scatter src=rand,% the "color data"
+        % configure individual appearances:
+        scatter/use mapped color=
+            &#123;ball color=mapped color&#125;]
+    coordinates
+        &#123;(-2,0) (-1,1) (0,0) (1,1) (2,0)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 6: Scatter Plot
+
+**ID**: `63aba7a0f927`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[tiny]
+        \addplot+ [scatter] &#123;sin(deg(x))&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[tiny]
+        \addplot+ [scatter,
+            mark repeat=3,mark phase=2]
+                &#123;sin(deg(x))&#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 7: Line Chart
+
+**ID**: `c36ef6713ca0`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=2cm]
+    \addplot [
+        blue,
+        mark color=blue!50!white,
+        mark=halfcircle*
+    ] coordinates &#123;
+        (-2,0) (-1,1) (0,0) (1,1) (2,0)
+    &#125;;
+    \addplot [
+        red,
+        mark color=red!50!white,
+        mark=halfsquare*,
+    ] coordinates &#123;
+        (-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)
+    &#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 8: Line Chart
+
+**ID**: `4dec8ec2bb35`
+
+<pre><code class="language-latex">
+% Overwrite any cycle list:
+\pgfplotsset&#123;
+    every axis plot post/.append style=&#123;
+        mark=triangle,
+        every mark/.append style=&#123;rotate=90&#125;,
+    &#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;axis&#125;[y=2cm]
+        \addplot coordinates &#123;
+            (-2,0) (-1,1) (0,0) (1,1) (2,0)
+        &#125;;
+    \end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 9: Other
+
+**ID**: `579a7cfd4c60`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    every mark/.append style=&#123;solid&#125;,
+&#125;
+</code></pre>
+
+---
+
+## Example 10: Line Chart
+
+**ID**: `fd52bc4d1dd6`
+
+<pre><code class="language-latex">
+% requires \usetikzlibrary&#123;spy&#125;
+\begin&#123;tikzpicture&#125;[spy using outlines=
+    &#123;circle, magnification=6, connect spies&#125;]
+\begin&#123;axis&#125;[no markers,grid=major,
+    every axis plot post/.append style=&#123;thick&#125;]
+\addplot  coordinates
+ &#123;(0, 0) (0, 0.9) (1, 0.9) (2, 1) (3, 0.9) (80, 0)&#125;;
+\addplot+ [line join=round] coordinates
+ &#123;(0, 0) (0, 0.9) (2, 0.9) (3, 1) (4, 0.9) (80, 0)&#125;;
+\addplot+ [line join=bevel] coordinates
+ &#123;(0, 0) (0, 0.9) (3, 0.9) (4, 1) (5, 0.9) (80, 0)&#125;;
+\addplot+ [miter limit=5] coordinates
+ &#123;(0, 0) (0, 0.9) (4, 0.9) (5, 1) (6, 0.9) (80, 0)&#125;;
+
+    \coordinate (spypoint)     at (3,1);
+    \coordinate (magnifyglass) at (60,0.7);
+\end&#123;axis&#125;
+
+\spy [blue, size=2.5cm] on (spypoint)
+    in node[fill=white] at (magnifyglass);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 11: Other
+
+**ID**: `b28bde0f474f`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    tick label style=&#123;font=\small&#125;,
+    label style=&#123;font=\small&#125;,
+    legend style=&#123;font=\footnotesize&#125;,
+&#125;
+</code></pre>
+
+---
+
+## Example 12: Other
+
+**ID**: `54dedbffc329`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;line width=1pt&#125;&#125;
+</code></pre>
+
+---
+
+## Example 13: Other
+
+**ID**: `69de82148153`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;thick&#125;&#125;
+</code></pre>
+
+---
+
+## Example 14: Other
+
+**ID**: `9aa97654ad10`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;
+    line width=1pt,
+    tick style=&#123;line width=0.6pt&#125;&#125;&#125;
+</code></pre>
+
+---
+
+## Example 15: Other
+
+**ID**: `85805abed3c8`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;
+    thick,
+    tick style=&#123;semithick&#125;&#125;&#125;
+</code></pre>
+
+---
+
+## Example 16: Line Chart
+
+**ID**: `da60360cf798`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;
+    font=\large,
+    line width=1pt,
+    tick style=&#123;line width=0.8pt&#125;&#125;&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;[
+    legend pos=south west,
+    xlabel=\textsc&#123;Dof&#125;,
+    ylabel=$L_2$ Error
+]
+\addplot coordinates &#123;
+    (5,8.312e-02)    (17,2.547e-02)   (49,7.407e-03)
+    (129,2.102e-03)  (321,5.874e-04)  (769,1.623e-04)
+    (1793,4.442e-05) (4097,1.207e-05) (9217,3.261e-06)
+&#125;;
+
+\addplot coordinates&#123;
+    (7,8.472e-02)    (31,3.044e-02)   (111,1.022e-02)
+    (351,3.303e-03)  (1023,1.039e-03) (2815,3.196e-04)
+    (7423,9.658e-05) (18943,2.873e-05)
+    (47103,8.437e-06)&#125;;
+
+\addplot coordinates&#123;
+    (9,7.881e-02)     (49,3.243e-02)   (209,1.232e-02)
+    (769,4.454e-03)   (2561,1.551e-03)
+    (7937,5.236e-04)  (23297,1.723e-04)
+    (65537,5.545e-05) (178177,1.751e-05)&#125;;
+
+\addplot coordinates&#123;
+    (11,6.887e-02)    (71,3.177e-02)   (351,1.341e-02)
+    (1471,5.334e-03)  (5503,2.027e-03)
+    (18943,7.415e-04) (61183,2.628e-04)
+    (187903,9.063e-05) (553983,3.053e-05)&#125;;
+
+\addplot coordinates&#123;
+    (13,5.755e-02)    (97,2.925e-02)   (545,1.351e-02)
+    (2561,5.842e-03)  (10625,2.397e-03)
+    (40193,9.414e-04) (141569,3.564e-04)
+    (471041,1.308e-04) (1496065,4.670e-05)&#125;;
+\legend&#123;$d=2$,$d=3$,$d=4$,$d=5$,$d=6$&#125;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 17: Other
+
+**ID**: `51557aa80f4f`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;every axis/.append style=&#123;
+    font=\footnotesize,
+    thin,
+    tick style=&#123;ultra thin&#125;&#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+    \begin&#123;loglogaxis&#125;[
+        xlabel=\textsc&#123;Dof&#125;,
+        ylabel=$L_2$ Error
+    ]
+        % see above for this macro:
+        \plotcoords
+        \legend&#123;$d=2$,$d=3$,$d=4$,$d=5$,$d=6$&#125;
+    \end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 18: Line Chart
+
+**ID**: `55830b7f899c`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[enlarge x limits=false]
+    \addplot [red,samples=500] &#123;sin(deg(x))&#125;;
+    \addplot [orange,samples=7] &#123;sin(deg(x))&#125;;
+    \addplot [teal,const plot,samples=14]
+        &#123;sin(deg(x))&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 19: Other
+
+**ID**: `0d580473648a`
+
+<pre><code class="language-latex">
+\definecolor&#123;color1&#125;&#123;rgb&#125;&#123;1,1,0&#125;
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+</code></pre>
+
+---
+
+## Example 20: Other
+
+**ID**: `d15048ce380f`
+
+<pre><code class="language-latex">
+\definecolor&#123;color1&#125;&#123;cmyk&#125;&#123;0.6,0.9,0.5,0.1&#125;
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+</code></pre>
+
+---
+
+## Example 21: Other
+
+**ID**: `9067cae6f317`
+
+<pre><code class="language-latex">
+\definecolor&#123;color1&#125;&#123;HTML&#125;&#123;D0B22B&#125;
+\tikz \fill[color1]
+    (0,0) rectangle (1em,0.6em);
+</code></pre>
+
+---
+
+## Example 22: Other
+
+**ID**: `0ec05f702d69`
+
+<pre><code class="language-latex">
+\usepackage[cmyk]&#123;xcolor&#125;
+\usepackage&#123;pgfplots&#125;
+</code></pre>
+
+---
+
+## Example 23: Other
+
+**ID**: `09e5b31fea70`
+
+<pre><code class="language-latex">
+\selectcolormodel&#123;cmyk&#125;
+</code></pre>
+
+---
+
+## Example 24: Other
+
+**ID**: `a34fac896546`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;colormap=&#123;CM&#125;&#123;rgb=(0,0,1) color=(black) rgb255=(238,140,238)&#125;&#125;
+</code></pre>
+
+---
+
+## Example 25: Other
+
+**ID**: `f5a6ebd8669c`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;colormap=&#123;CM&#125;&#123;rgb(-500)=(0,0,1) color(0)=(black) rgb255(1500)=(238,140,238)&#125;&#125;
+</code></pre>
+
+---
+
+## Example 26: Scatter Plot
+
+**ID**: `1bdd2dbf43f9`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    colormap=&#123;bw&#125;&#123;
+        gray(0cm)=(0);
+        gray(1cm)=(1);
+    &#125;,
+]
+    \addplot+ [
+        scatter,
+        only marks,
+        domain=0:8,
+        samples=100,
+    ] &#123;exp(x)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 27: Other
+
+**ID**: `456c4ce5ae3a`
+
+<pre><code class="language-latex">
+% non-uniform spacing example: the mesh width is provided as first
+% part of the specification.
+\pgfplotsset&#123;colormap=&#123;violetnew&#125;
+    &#123;[1cm] rgb255(0cm)=(25,25,122) color(1cm)=(white) rgb255(5cm)=(238,140,238)&#125;&#125;
+</code></pre>
+
+---
+
+## Example 28: Other
+
+**ID**: `18a86246488a`
+
+<pre><code class="language-latex">
+\usepackage[cmyk]&#123;xcolor&#125;
+</code></pre>
+
+---
+
+## Example 29: Other
+
+**ID**: `07051d792b23`
+
+<pre><code class="language-latex">
+\selectcolormodel&#123;cmyk&#125;
+</code></pre>
+
+---
+
+## Example 30: Other
+
+**ID**: `99431eca46b1`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap name=viridis,
+&#125;
+</code></pre>
+
+---
+
+## Example 31: Other
+
+**ID**: `47941904168b`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;hot&#125;&#123;color(0cm)=(blue); color(1cm)=(yellow); color(2cm)=(orange); color(3cm)=(red)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 32: Other
+
+**ID**: `3b532ae28179`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hot2&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
+        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 33: Other
+
+**ID**: `39f1c760a566`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;jet&#125;&#123;rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
+        rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0) rgb255(8cm)=(128,0,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 34: Other
+
+**ID**: `df307cb4b3d5`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;blackwhite&#125;&#123;gray(0cm)=(0); gray(1cm)=(1)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 35: Other
+
+**ID**: `7ca0509c4251`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;bluered&#125;&#123;
+        rgb255(0cm)=(0,0,180); rgb255(1cm)=(0,255,255); rgb255(2cm)=(100,255,0);
+        rgb255(3cm)=(255,255,0); rgb255(4cm)=(255,0,0); rgb255(5cm)=(128,0,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 36: Scatter Plot
+
+**ID**: `df0804c4c88f`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[colormap/bluered]
+    \addplot+ [scatter,
+         scatter src=x,samples=50]
+        &#123;sin(deg(x))&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 37: Other
+
+**ID**: `bcf7d43f53d3`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;cool&#125;&#123;rgb255(0cm)=(255,255,255); rgb255(1cm)=(0,128,255); rgb255(2cm)=(255,0,255)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 38: Other
+
+**ID**: `4fec80f79a3e`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;greenyellow&#125;&#123;rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 39: Other
+
+**ID**: `e9fc993a6143`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;redyellow&#125;&#123;rgb255(0cm)=(255,0,0); rgb255(1cm)=(255,255,0)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 40: Other
+
+**ID**: `188101495bcb`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap=&#123;violet&#125;&#123;rgb255=(25,25,122) color=(white) rgb255=(238,140,238)&#125;
+&#125;
+</code></pre>
+
+---
+
+## Example 41: Other
+
+**ID**: `b22b98a352d0`
+
+<pre><code class="language-latex">
+% convert `hot' -> \result
+    \pgfplotscolormaptoshadingspec&#123;hot&#125;&#123;8cm&#125;\result
+    % define and use a shading in pgf:
+    \def\tempb&#123;\pgfdeclarehorizontalshading&#123;tempshading&#125;&#123;1cm&#125;&#125;%
+    % where `\result' is inserted as last argument:
+    \expandafter\tempb\expandafter&#123;\result&#125;%
+    \pgfuseshading&#123;tempshading&#125;%
+</code></pre>
+
+---
+
+## Example 42: Other
+
+**ID**: `624b085768d3`
+
+<pre><code class="language-latex">
+point meta min=0,
+    point meta max=1000,
+    parent axis width/.initial=6cm,
+    parent axis height/.initial=6cm,
+</code></pre>
+
+---
+
+## Example 43: Line Chart
+
+**ID**: `6deaa7412dc1`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=1cm,table/col sep=comma]
+        \pgfplotscolormaptodatafile&#123;hot&#125;&#123;hot.dat&#125;
+    \addplot[red,mark=|]   table[y index=1] &#123;hot.dat&#125;;
+    \addplot[green,mark=|] table[y index=2] &#123;hot.dat&#125;;
+    \addplot[blue,mark=|]  table[y index=3] &#123;hot.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 44: Line Chart
+
+**ID**: `8f95bfb98719`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[y=1cm,table/col sep=comma]
+    \pgfplotscolormaptodatafile&#123;viridis&#125;&#123;viridis.dat&#125;
+    \addplot[red]   table[y index=1] &#123;viridis.dat&#125;;
+    \addplot[green] table[y index=2] &#123;viridis.dat&#125;;
+    \addplot[blue]  table[y index=3] &#123;viridis.dat&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 45: Other
+
+**ID**: `82324f105d0b`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=(4 of viridis)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 46: Other
+
+**ID**: `bf7df3ce31ac`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=(4 of viridis)
+    &#125;,
+    colorbar horizontal,
+    colormap access=map,
+]
+</code></pre>
+
+---
+
+## Example 47: Other
+
+**ID**: `b6d7e976fe34`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=(4)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 48: Other
+
+**ID**: `c8bf354e090a`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=(4)
+    &#125;,
+    colorbar horizontal,
+    colormap access=map,
+]
+</code></pre>
+
+---
+
+## Example 49: Other
+
+**ID**: `9313005727a6`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=&#123;
+            5 of viridis,
+            target pos=&#123;0,800,850,950,1000&#125;,
+        &#125;
+    &#125;,
+    colorbar horizontal,
+    colormap access=map,
+]
+</code></pre>
+
+---
+
+## Example 50: Other
+
+**ID**: `90630d416574`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        % simpler alternative:
+        % of colormap=&#123;viridis,target pos=&#123;...&#125;&#125;
+        samples of colormap=&#123;
+            5 of viridis,
+            target pos=&#123;0,400,500,700,800,1000&#125;,
+            sample for=const,
+        &#125;
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 51: Other
+
+**ID**: `8ac34bb8d550`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,400,500,700,800,1000&#125;,
+            sample for=const,
+        &#125;
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 52: Other
+
+**ID**: `616843bf348f`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        color=(green),
+        index of colormap=(2 of viridis)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 53: Other
+
+**ID**: `9912d524162e`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+ colormap=&#123;example&#125;&#123;color=(red) color=(blue)&#125;&#125;
+\tikz \draw[index of colormap=0 of example] (0,0) -- (1,0);
+</code></pre>
+
+---
+
+## Example 54: Other
+
+**ID**: `e490d4e8a8a8`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+ colormap=&#123;example&#125;&#123;color=(red) color=(blue)&#125;&#125;
+\tikz \fill[index of colormap=1 of example] (0,0) rectangle (1,1);
+</code></pre>
+
+---
+
+## Example 55: Other
+
+**ID**: `e45c931b87d3`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+ colormap=&#123;example&#125;&#123;color=(red) color=(blue)&#125;&#125;
+\tikz \shade[
+    index of colormap=0 of example,left color=.,
+    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
+</code></pre>
+
+---
+
+## Example 56: Other
+
+**ID**: `a559d6e9bb91`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        indices of colormap=(0,5,10,12,
+          \pgfplotscolormaplastindexof&#123;viridis&#125;
+          of viridis)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 57: Other
+
+**ID**: `79bce6878837`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+ colormap=&#123;example&#125;&#123;color=(red) color=(blue)&#125;&#125;
+\tikz \shade[
+    color of colormap=250 of example,left color=.,
+    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
+</code></pre>
+
+---
+
+## Example 58: Other
+
+**ID**: `3acd91915a21`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+      colors of colormap=(0,400,800,900,
+          1000 of viridis)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 59: Other
+
+**ID**: `bf56e79b2b33`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,400,500,700,800,1000&#125;,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=map,
+]
+</code></pre>
+
+---
+
+## Example 60: Other
+
+**ID**: `690d5e803767`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,400,500,700,800,1000&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 61: Other
+
+**ID**: `267df6fd15bd`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;viridis,
+            target pos=&#123;-10,-3,0,1,2&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 62: Other
+
+**ID**: `c1532d651e21`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;viridis,
+            target pos=&#123;-10,-3,0,1,2&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    point meta min=-10,point meta max=2,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 63: Other
+
+**ID**: `1bc9c3c1b009`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;viridis,
+            target pos=&#123;-10,-3,0,1,2&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    point meta min=-10,point meta max=2,
+    colorbar horizontal,
+    colorbar style=&#123;xtick=data&#125;,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 64: Other
+
+**ID**: `d831f562b3ff`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;viridis&#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 65: Other
+
+**ID**: `532ae57f048d`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=&#123;
+            5 of viridis,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 66: Other
+
+**ID**: `528d62017903`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,500,850,950,1000&#125;,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 67: Other
+
+**ID**: `2fa5c8a07078`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=&#123;
+            5 of viridis,
+            target pos=&#123;0,500,850,950,1000&#125;,
+        &#125;,
+    &#125;,
+    colormap access/extra interval width=h,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 68: Other
+
+**ID**: `cad25f9f949e`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,500,850,950,1000&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 69: Other
+
+**ID**: `0e61089cfa57`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,500,850,950,1000&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=map]
+</code></pre>
+
+---
+
+## Example 70: Other
+
+**ID**: `e860d31b1be8`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        samples of colormap=&#123;
+            5 of viridis,
+            target pos=&#123;0,100,500,850,950,1000&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 71: Other
+
+**ID**: `92031b7849ee`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        colors of colormap=&#123;
+            -30000,-10000,0,100000,110000 of viridis,
+            source range=-30000:120000,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 72: Other
+
+**ID**: `32689f07cd67`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    point meta min=-7046,
+    point meta max=2895,
+    colormap=&#123;whiteblue&#125;&#123;color=(blue) color=(white)&#125;,
+    colormap=&#123;gb&#125;&#123;color=(green) color=(yellow)
+        color=(brown)&#125;,
+    colormap=&#123;CM&#125;&#123;
+        of colormap=&#123;
+            whiteblue,
+            target pos=&#123;-7046,-6000,-5000,-3000,
+                -1000,-750,-500,-250,-100,-50,0&#125;,
+            sample for=const,
+        &#125;,
+        of colormap=&#123;
+            gb,
+            target pos=&#123;10,100,200,500,1000,1100,
+                1200,1500,2000,2895&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const]
+</code></pre>
+
+---
+
+## Example 73: Other
+
+**ID**: `93cc2f5ccd44`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    of colormap/ocean height/.style=&#123;
+        target pos=&#123;-12000,-10000,-6000,-5000,-3000,
+            -1000,-750,-500,-250,-100,-50,0,10,100,
+            200,500,1000,1100,1200,1500,2000,4000,
+            6000,8000&#125;,
+    &#125;,
+&#125;
+\pgfplotscolorbardrawstandalone[
+  point meta min=-7046,
+  point meta max=2895,
+  colormap=&#123;whiteblue&#125;&#123;color=(blue) color=(white)&#125;,
+  colormap=&#123;gb&#125;&#123;color=(green) color=(yellow)
+      color=(brown)&#125;,
+  colormap=&#123;CM&#125;&#123;
+      of colormap=&#123;
+        whiteblue,
+        ocean height,
+        target pos min*=
+          \pgfkeysvalueof&#123;/pgfplots/point meta min&#125;,
+        target pos max=0,
+        sample for=const,
+      &#125;,
+      of colormap=&#123;
+        gb,
+        ocean height,
+        target pos min=0.1,
+        target pos max*=
+          \pgfkeysvalueof&#123;/pgfplots/point meta max&#125;,
+        sample for=const,
+      &#125;,
+  &#125;,
+  colorbar horizontal,
+  colormap access=const]
+</code></pre>
+
+---
+
+## Example 74: Other
+
+**ID**: `66da4739a551`
+
+<pre><code class="language-latex">
+...
+target pos=&#123;-7046,-6000,-5000,-3000,-1000,-750,-500,-250,-100,-50,0&#125;
+...
+target pos=&#123;10,100,200,500,1000,1100,1200,1500,2000,2895&#125;
+</code></pre>
+
+---
+
+## Example 75: 3D Plot
+
+**ID**: `fe32c9fdd709`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+  colormap=&#123;whiteblue&#125;&#123;color=(blue) color=(white)&#125;,
+  colormap=&#123;gb&#125;&#123;color=(green) color=(yellow)
+      color=(brown)&#125;,
+  of colormap/ocean height/.style=&#123;
+      target pos=&#123;-12000,-10000,-6000,-5000,-3000,
+          -1000,-750,-500,-250,-100,-50,0,10,100,
+          200,500,1000,1100,1200,1500,2000,4000,
+          6000,8000&#125;,
+  &#125;,
+  colormap=&#123;CM&#125;&#123;
+      of colormap=&#123;
+          whiteblue,
+          ocean height,
+          target pos max=0,
+          sample for=const,
+      &#125;,
+      of colormap=&#123;
+          gb,
+          ocean height,
+          target pos min=0.1,
+          sample for=const,
+      &#125;,
+  &#125;,
+&#125;
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[small,colorbar]
+    \addplot3[surf] &#123;x*y&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+~
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[small,colorbar,
+    colorbar style=&#123;colormap access=const&#125;
+]
+    \addplot3[surf,shader=interp,colormap access=const] &#123;x*y&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 76: Other
+
+**ID**: `378add6820a9`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+  colormap=&#123;example&#125;&#123;color=(red) color=(blue) color=(yellow)&#125;&#125;
+\tikz \fill[const color of colormap=50 of example] (0,0) rectangle (1,1);
+\tikz \fill[const color of colormap=750 of example] (0,0) rectangle (1,1);
+</code></pre>
+
+---
+
+## Example 77: Other
+
+**ID**: `e4c12621d897`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        color=(blue)
+        color=(red)
+        color=(black)
+    &#125;,
+    colorbar horizontal,
+    colorbar style=&#123;xtick=data&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 78: Other
+
+**ID**: `c5a14ad60ac4`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        color(0)=(blue)
+        color(500)=(red)
+        color(1000)=(black)
+    &#125;,
+    colorbar horizontal,
+    colorbar style=&#123;xtick=data&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 79: Other
+
+**ID**: `ba654f58fce4`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;example&#125;&#123;
+        color(0)=(blue)
+        color(500)=(red)
+        color(1000)=(black)
+    &#125;,
+    colorbar horizontal,
+    colorbar style=&#123;xtick=data&#125;,
+    colormap access/extra interval width=h,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 80: Other
+
+**ID**: `a723e20acc27`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;nonuniform&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,200,300,500,700,1000&#125;
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style=&#123;xtick=data,font=\tiny,
+        /pgf/number format/precision=0&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 81: Other
+
+**ID**: `d1875431923f`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;nonuniform&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,200,300,500,700,1000&#125;
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+    colormap access/extra interval width=h,
+    colorbar style=&#123;xtick=data,font=\tiny,
+        /pgf/number format/precision=0&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 82: Other
+
+**ID**: `c06ec9558158`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;nonuniform&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,200,300,500,700,1000&#125;,
+            sample for=const,
+        &#125;,
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style=&#123;xtick=data,font=\tiny,
+        /pgf/number format/precision=0&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 83: Other
+
+**ID**: `eb82d7a5011c`
+
+<pre><code class="language-latex">
+\pgfplotscolorbardrawstandalone[
+    colormap=&#123;nonuniform&#125;&#123;
+        of colormap=&#123;
+            viridis,
+            target pos=&#123;0,200,300,500,700,1000&#125;
+        &#125;,
+        color(1100)=(red)
+    &#125;,
+    colorbar horizontal,
+    colormap access=const,
+    colorbar style=&#123;xtick=data,font=\tiny,
+        /pgf/number format/precision=0&#125;,
+    colormap access=const,
+]
+</code></pre>
+
+---
+
+## Example 84: Other
+
+**ID**: `6a58c4d884de`
+
+<pre><code class="language-latex">
+\tikz\fill [color of colormap=&#123;800&#125;, thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+</code></pre>
+
+---
+
+## Example 85: Other
+
+**ID**: `0d8084385790`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;colormap name=viridis&#125;
+\tikz\fill [color of colormap=&#123;1000&#125;,thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+</code></pre>
+
+---
+
+## Example 86: Other
+
+**ID**: `cd8ee0732fde`
+
+<pre><code class="language-latex">
+\tikz\fill [color of colormap=&#123;300 of viridis&#125;,thick,
+    draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+</code></pre>
+
+---
+
+## Example 87: Other
+
+**ID**: `c110146dc0e6`
+
+<pre><code class="language-latex">
+\tikz\fill [color of colormap=&#123;300 of colormap/cool&#125;,
+    thick,draw=.!60!black]
+        (0,0) -- (1,1) -- (2,1) circle (10pt);
+</code></pre>
+
+---
+
+## Example 88: Other
+
+**ID**: `0a39d9739238`
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;colormap/jet&#125;
+\foreach \i in &#123;
+    0,...,\pgfplotscolormaplastindexof&#123;jet&#125;
+&#125;&#123;
+    \tikz\fill [
+        index of colormap=&#123;\i of jet&#125;,
+        thick,
+        draw=.!60!black,
+    ] (0,0) rectangle (10pt,6pt);
+&#125;
+</code></pre>
+
+---
+
+## Example 89: Line Chart
+
+**ID**: `c834f94b293e`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=color,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 90: Line Chart
+
+**ID**: `1643284142c0`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=exotic,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 91: Line Chart
+
+**ID**: `913e23e965b4`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=black white,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 92: Line Chart
+
+**ID**: `a803c0dab424`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=mark list,
+]
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 93: Line Chart
+
+**ID**: `80feb73b67db`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=mark list*,
+]
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+  \addplot+ [blue] coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 94: Line Chart
+
+**ID**: `4b64193cb69e`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=color list,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 95: Line Chart
+
+**ID**: `f0b01c01b90a`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=linestyles,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 96: Line Chart
+
+**ID**: `9a9b78863b08`
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+\begin&#123;axis&#125;[
+    stack plots=y,stack dir=minus,
+    cycle list name=linestyles*,
+]
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+    \addplot coordinates &#123;(0,1) (0.5,1) (1,1)&#125;;
+\end&#123;axis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+---
+
+## Example 97: Other
+
+**ID**: `93f462fb9c92`
+
+<pre><code class="language-latex">
+\pgfplotscreateplotcyclelist&#123;color&#125;&#123;
+    blue,every mark/.append style=&#123;fill=blue!80!black&#125;,mark=*\\
+    red,every mark/.append style=&#123;fill=red!80!black&#125;,mark=square*\\
+    brown!60!black,every mark/.append style=&#123;fill=brown!80!black&#125;,mark=otimes*\\
+    black,mark=star\\
+    blue,every mark/.append style=&#123;fill=blue!80!black&#125;,mark=diamond*\\
+    red,densely dashed,every mark/.append style=&#123;solid,fill=red!80!black&#125;,mark=*\\
+    brown!60!black,densely dashed,every mark/.append style=&#123;
+        solid,fill=brown!80!black&#125;,mark=square*\\
+    black,densely dashed,every mark/.append style=&#123;solid,fill=gray&#125;,mark=otimes*\\
+    blue,densely dashed,mark=star,every mark/.append style=solid\\
+    red,densely dashed,every mark/.append style=&#123;solid,fill=red!80!black&#125;,mark=diamond*\\
+&#125;
+</code></pre>
+
+---
+
+## Example 98: Other
+
+**ID**: `d60970dd636e`
+
+<pre><code class="language-latex">
+\pgfplotscreateplotcyclelist&#123;black white&#125;&#123;
+    every mark/.append style=&#123;fill=gray&#125;,mark=*\\
+    every mark/.append style=&#123;fill=gray&#125;,mark=square*\\
+    every mark/.append style=&#123;fill=gray&#125;,mark=otimes*\\
+    mark=star\\
+    every mark/.append style=&#123;fill=gray&#125;,mark=diamond*\\
+    densely dashed,every mark/.append style=&#123;solid,fill=gray&#125;,mark=*\\
+    densely dashed,every mark/.append style=&#123;solid,fill=gray&#125;,mark=square*\\
+    densely dashed,every mark/.append style=&#123;solid,fill=gray&#125;,mark=otimes*\\
+    densely dashed,every mark/.append style=&#123;solid&#125;,mark=star\\
+    densely dashed,every mark/.append style=&#123;solid,fill=gray&#125;,mark=diamond*\\
+&#125;
+</code></pre>
+
+---
+
+## Example 99: Other
+
+**ID**: `feaaa54b391d`
+
+<pre><code class="language-latex">
+\pgfplotscreateplotcyclelist&#123;exotic&#125;&#123;
+    teal,every mark/.append style=&#123;fill=teal!80!black&#125;,mark=*\\
+    orange,every mark/.append style=&#123;fill=orange!80!black&#125;,mark=square*\\
+    cyan!60!black,every mark/.append style=&#123;fill=cyan!80!black&#125;,mark=otimes*\\
+    red!70!white,mark=star\\
+    lime!80!black,every mark/.append style=&#123;fill=lime&#125;,mark=diamond*\\
+    red,densely dashed,every mark/.append style=&#123;solid,fill=red!80!black&#125;,mark=*\\
+    yellow!60!black,densely dashed,
+        every mark/.append style=&#123;solid,fill=yellow!80!black&#125;,mark=square*\\
+    black,every mark/.append style=&#123;solid,fill=gray&#125;,mark=otimes*\\
+    blue,densely dashed,mark=star,every mark/.append style=solid\\
+    red,densely dashed,every mark/.append style=&#123;solid,fill=red!80!black&#125;,mark=diamond*\\
+&#125;
+</code></pre>
+
+---
+
+## Example 100: Other
+
+**ID**: `4fff05391a13`
+
+<pre><code class="language-latex">
+% note that "." is the currently defined Tikz color.
+\pgfplotscreateplotcyclelist&#123;mark list&#125;&#123;
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill&#125;,mark=*\\
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill&#125;,mark=square*\\
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill&#125;,mark=triangle*\\
+    every mark/.append style=&#123;solid&#125;,mark=star\\
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill&#125;,mark=diamond*\\
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill!40&#125;,mark=otimes*\\
+    every mark/.append style=&#123;solid&#125;,mark=|\\
+    every mark/.append style=&#123;solid,fill=\pgfplotsmarklistfill&#125;,mark=pentagon*\\
+    every mark/.append style=&#123;solid&#125;,mark=text,text mark=p\\
+    every mark/.append style=&#123;solid&#125;,mark=text,text mark=a\\
+&#125;
+</code></pre>
+
+---
+
