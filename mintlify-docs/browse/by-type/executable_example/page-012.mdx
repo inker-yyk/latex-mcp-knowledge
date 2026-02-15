@@ -18,41 +18,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \pgfplotstableread{
-        Year  Cat1  Cat2  Cat3  Cat4
-        2005  10    50    -10   30
-        2006  -40   60    -15   90
-        2007  -20   60    -15   60
-    }\mytable
-\begin{axis}[
-    xbar stacked,
-    % is default anyway:
-    stack negative=separate,
-    %
-    /pgf/number format/1000 sep=,
-    xmajorgrids,
-    nodes near coords,
-    nodes near coords style={font=\tiny},
-    ytick distance=1,
-    legend style={at={(0.5,-0.1)},
-        anchor=north,legend columns=-1},
-    extra x ticks={0},
-    extra x tick style={grid style={black},
-    xticklabel=\empty},
-]
-    \addplot table [x index=1,y=Year] {\mytable};
-    \addplot table [x index=2,y=Year] {\mytable};
-    \addplot table [x index=3,y=Year] {\mytable};
-    \addplot table [x index=4,y=Year] {\mytable};
-    \legend{Cat1,Cat2,Cat3,Cat4}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -62,28 +27,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,
-    area style,
-    enlarge x limits=false,
-]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -95,18 +38,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    /pgfplots/area style/.style={
-        area cycle list,
-        area legend,
-        axis on top,
-    },
-}
-```
-
 
 ---
 
@@ -116,29 +47,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        const plot,
-        stack plots=y,
-        area style,
-        enlarge x limits=false,
-    ]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -150,29 +58,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        smooth,
-        stack plots=y,
-        area style,
-        enlarge x limits=false,
-    ]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -182,13 +67,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
-\pgfplotstabletypeset\loadedtable
-```
 
 
 ---
@@ -200,36 +78,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}{\loadedtable}
-\begin{tikzpicture}
-    \begin{axis}[
-        ymin=0,
-        minor tick num=4,
-        enlarge x limits=false,
-        axis on top,
-        every axis plot post/.append style={mark=none},
-        const plot,
-        legend style={
-            area legend,
-            at={(0.5,-0.15)},
-            anchor=north,
-            legend columns=-1,
-        },
-    ]
-        \addplot [draw=blue,fill=blue!30!white]
-            table [x=time,y=1minload]       from \loadedtable
-                \closedcycle;
-        \addplot table [x=time,y=nodes]     from \loadedtable;
-        \addplot table [x=time,y=cpus]      from \loadedtable;
-        \addplot table [x=time,y=processes] from \loadedtable;
-        \legend{1min load,nodes,cpus,processes}
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -239,41 +87,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
-\begin{tikzpicture}
-    \begin{axis}[
-        ymin=0,
-        minor tick num=4,
-        enlarge x limits=false,
-        const plot,
-        axis on top,
-        stack plots=y,
-        cycle list={
-            {blue!70!black,fill=blue},
-            {blue!60!white,fill=blue!30!white},
-            {draw=none,fill={rgb:red,138;green,82;blue,232}},
-            {red,thick}
-        },
-        ylabel={Mem [GB]},
-        legend style={
-            area legend,
-            at={(0.5,-0.15)},
-            anchor=north,
-            legend columns=2},
-    ]
-    \addplot  table [x=time,y=memused]      from \loadedtable \closedcycle;
-    \addplot  table [x=time,y=memcached]    from \loadedtable \closedcycle;
-    \addplot  table [x=time,y=membuf]       from \loadedtable \closedcycle;
-    \addplot+ [stack plots=false]
-              table [x=time,y=memtotal]     from \loadedtable;
-    \legend{Memory used,Memory cached,Memory buffered,Total memory}
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -285,28 +98,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [gray] fill between [
-        of=A and B,soft clip={domain=3:4},
-    ];
-    \addplot [gray!30] fill between [
-        of=A and B,soft clip={domain=2:3},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -316,39 +107,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    % define some common macro
-    \def\clippath{
-        (3,-1) rectangle (4,100)
-    }
-    \draw [help lines] \clippath;
-
-    \addplot+ [name path=A,domain=0:5,
-        mark=none,
-        postaction={decorate,red,line width=2pt,
-            decoration={
-                soft clip,
-                soft clip path={\clippath},
-            },
-        },
-    ] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [orange] fill between [
-        of=A and B,soft clip={\clippath},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -360,33 +118,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:5] {x^2};
-    \addplot [red,name path=B,smooth] table {
-        x y
-        0 10
-        1 8
-        2 6
-        3 1
-        4 5
-    };
-    \addplot [gray!50] fill between [
-        of=A and B,
-        soft clip={domain=3:4},
-    ];
-    \addplot [gray!10,draw=black] fill between [
-        of=A and B,
-        soft clip={domain=1:2.5},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -396,34 +127,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:5] {x^2};
-    \addplot [red,name path=B,smooth] table {
-        x y
-        0 10
-        1 8
-        2 6
-        3 1
-        4 5
-    };
-    \addplot [gray] fill between [
-        of=A and B,
-        split,
-        every segment no 0/.style=
-            {pattern color=gray!50,
-             pattern=north east lines},
-        every segment no 1/.style=
-            {pattern=north west lines},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -435,19 +138,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[enlargelimits=false]
-    \addplot+ [
-        only marks,
-        samples=400,
-    ] {rand};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -457,21 +147,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        only marks,
-        samples=50,
-        scatter src=y,
-    ] {x - x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -483,20 +158,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        samples=50,
-        scatter src=y,
-    ] {x^3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -506,51 +167,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}
-        % provide color data explicitly using [<data>]
-        % behind coordinates:
-        \addplot+ [scatter,scatter src=explicit]
-            coordinates {
-                (0,0) [1.0e10]
-                (1,2) [1.1e10]
-                (2,3) [1.2e10]
-                (3,4) [1.3e10]
-                % ...
-            };
-
-        % Assumes a datafile.dat like
-        % xcolname  ycolname    colordata
-        % 0         0           0.001
-        % 1         2           0.3
-        % 2         2.1         0.4
-        % 3         3           0.5
-        % ...
-        % the file may have more columns.
-        \addplot+ [scatter,scatter src=explicit]
-            table [x=xcolname,y=ycolname,meta=colordata]
-                {datafile.dat};
-        % Same data as last example:
-        \addplot+ [scatter,scatter src=\thisrow{colordata}+\thisrow{ycolname}]
-            table [x=xcolname,y=ycolname]
-                {datafile.dat};
-
-        % Assumes a datafile.dat like
-        % 0         0           0.001
-        % 1         2           0.3
-        % 2         2.1         0.4
-        % 3         3           0.5
-        % ...
-        % the first three columns will be used here:
-        \addplot+ [scatter,scatter src=explicit]
-            file {datafile.dat};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -562,19 +178,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[title=Default arguments]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -584,25 +187,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Black fill color and varying draw color,
-    scatter/use mapped color={
-        draw=mapped color,
-        fill=black,
-    },
-]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -614,25 +198,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Black draw color and varying fill color,
-    scatter/use mapped color={
-        draw=black,
-        fill=mapped color,
-    },
-]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -642,28 +207,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[colormap/bluered,colorbar]
-    \addplot3+ [
-        samples=4,
-        z buffer=sort,
-        % enable scatter:
-        scatter,
-        % redefine appearance:
-        scatter/use mapped color={ball color=mapped color},
-        % configure input:
-        scatter src=rand,
-        only marks,
-        mark=ball,
-        mark size=3pt,
-    ] {0};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -675,40 +218,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    scatter/classes={
-        a={mark=square*,blue},
-        b={mark=triangle*,red},
-        c={mark=o,draw=black}   % <-- don't add comma
-    },
-]
-    % \addplot[] is better than \addplot+[] here:
-    % it avoids scalings of the cycle list
-    \addplot [
-        scatter,only marks,
-        scatter src=explicit symbolic,
-    ] coordinates {
-        (0.1,0.15)  [a]
-        (0.45,0.27) [c]
-        (0.02,0.17) [a]
-        (0.06,0.1)  [a]
-        (0.9,0.5)   [b]
-        (0.5,0.3)   [c]
-        (0.85,0.52) [b]
-        (0.12,0.05) [a]
-        (0.73,0.45) [b]
-        (0.53,0.25) [c]
-        (0.76,0.5)  [b]
-        (0.55,0.32) [c]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -718,44 +227,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[legend pos=south east]
-    % The data file contains:
-    % x     y      label
-    % 0.1   0.15   a
-    % 0.45  0.27   c
-    % 0.02  0.17   a
-    % 0.06  0.1    a
-    % 0.9   0.5    b
-    % 0.5   0.3    c
-    % 0.85  0.52   b
-    % 0.12  0.05   a
-    % 0.73  0.45   b
-    % 0.53  0.25   c
-    % 0.76  0.5    b
-    % 0.55  0.32   c
-    \addplot [
-        % clickable coords={\thisrow{label}},
-        scatter/classes={
-            a={mark=square*,blue},
-            b={mark=triangle*,red},
-            c={mark=o,draw=black,fill=black}% no comma
-        },
-        scatter,only marks,
-        scatter src=explicit symbolic,
-    ] table [x=x,y=y,meta=label]
-        {plotdata/scattercl.dat};
-
-    \addplot coordinates
-        {(0.1,0.1) (0.5,0.3) (0.85,0.5)};
-    \legend{Class 1,Class 2,Class 3,Line}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -767,29 +238,6 @@ Showing items **2401-2600** of **5325** | Page **13** of **27**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\addplot [
-    scatter/classes={
-        a={mark=square*,blue},
-        b={mark=triangle*,red},
-        c={mark=o,draw=black,fill=black}    % <-- don't add comma here
-    },
-    scatter,only marks,
-    scatter src=explicit symbolic,
-]
-    % [and coordinate input here... ]
-;
-
-\label[a]{label:for:first:class}
-\label[b]{label:for:second:class}
-\label[c]{label:for:third:class}
-
-...
-First class is \ref{label:for:first:class}, second is \ref{label:for:second:class}.
-```
-
 
 ---
 
@@ -799,21 +247,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[nodes near coords]
-    \addplot+ [
-        only marks
-    ] coordinates {
-        (0.5,0.2) (0.2,0.1) (0.7,0.6)
-        (0.35,0.4) (0.65,0.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -825,25 +258,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[nodes near coords,enlargelimits=0.2]
-    \addplot+ [
-        only marks,
-        point meta=explicit symbolic,
-    ] coordinates {
-        (0.5,0.2) [(1)]
-        (0.2,0.1) [(2)]
-        (0.7,0.6) [(3)]
-        (0.35,0.4) [(4)]
-        (0.65,0.1) [(5)]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -853,31 +267,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[enlargelimits=0.2]
-        \addplot [
-            scatter,mark=*,only marks,
-            % we use 'point meta' as color data...
-            point meta=\thisrow{color},
-            % ... therefore, we can't use it as argument for nodes near coords ...
-            nodes near coords*={$(\pgfmathprintnumber[frac]\myvalue)$},
-            % ... which requires to define a visualization dependency:
-            visualization depends on={\thisrow{myvalue} \as \myvalue},
-        ] table {
-            x      y    color   myvalue
-            0.5    0.2  1       0.25
-            0.2    0.1  2       1.5
-            0.7    0.6  3       0.75
-            0.35   0.4  4       0.125
-            0.65   0.1  5       2
-        };
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -889,34 +278,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        nodes near coords,
-        only marks,
-        coordinate style/.condition=
-            {\coordindex==0}{below},
-        coordinate style/.condition=
-            {\coordindex==1}{red},
-        coordinate style/.condition=
-            {x < 2.1 && y > 4}{green},
-        point meta=explicit symbolic,
-    ] table [meta=label] {
-        Depth Breadth label
-        2.57  3.59    Cambridge
-        2.58  4.27    Dresden
-        2.45  3.77    {Palo Alto}
-        2.61  2.10    Asan
-        2.03  4.17    Heidelberg
-        2.25  4.29    Yamagata
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -926,32 +287,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        nodes near coords,
-        only marks,
-        coordinate style/.from=
-            \thisrow{style},
-        coordinate style/.condition=
-            {x < 2.1 && y > 4}{black},
-        point meta=explicit symbolic,
-    ] table [meta=label] {
-        Depth Breadth label       style
-        2.57  3.59    Cambridge   below
-        2.58  4.27    Dresden     red
-        2.45  3.77    {Palo Alto} green
-        2.61  2.10    Asan        {}
-        2.03  4.17    Heidelberg  {left}
-        2.25  4.29    Yamagata    {}
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -963,20 +298,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        coordinate style/.condition=
-            {abs(x-1) < 0.001}{scale=3,xshift=4pt},
-    ] coordinates {(0,0) (0.5,0.5) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -986,38 +307,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-% Low-Level scatter plot interface Example:
-% use three different marker classes
-% 0% -- 30%   : first class
-% 30% -- 60%  : second class
-% 60% -- 100% : third class
-\begin{axis}[
-  scatter/@pre marker code/.code={
-    \ifdim\pgfplotspointmetatransformed pt<300pt
-      \def\markopts{mark=square*,fill=blue}
-    \else
-      \ifdim\pgfplotspointmetatransformed pt<600pt
-        \def\markopts{mark=triangle*,fill=orange}
-      \else
-         \def\markopts{mark=pentagon*,fill=red}
-      \fi
-    \fi
-    \expandafter\scope\expandafter[\markopts]
-  },
-  scatter/@post marker code/.code={
-    \endscope
-  },
-]
-    \addplot+ [scatter,scatter src=y,samples=40]
-       {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1029,16 +318,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [mesh] {x + sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1048,25 +327,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [
-        mesh,
-        point meta=explicit,
-    ] coordinates {
-        (0,0)   [0]
-        (1,0.1) [1]
-        (2,0.1) [2]
-        (3,0.3) [3]
-        (4,0.3) [4]
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1078,22 +338,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Interrupted data plot,
-]
-    \addplot coordinates {
-        (0,0) (10,50) (20,100) (30,200)
-
-        (50,600) (60,800) (80,1000)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1103,33 +347,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Discarding unbounded coords,
-        unbounded coords=discard,
-    ]
-        \addplot coordinates {
-            (0,0) (10,50) (20,100) (30,200)
-            (40,inf) (50,600) (60,800) (80,1000)
-        };
-    \end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Jumps at unbounded coords,
-        unbounded coords=jump,
-    ]
-        \addplot coordinates {
-            (0,0) (10,50) (20,100) (30,200)
-            (40,inf) (50,600) (60,800) (80,1000)
-        };
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1141,21 +358,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    unbounded coords=jump,
-    x filter/.expression={
-        x<0 && y<0 ? nan : x
-    },
-]
-    \addplot3 [surf] {exp(-sqrt(x^2 + y^2))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1165,24 +367,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y dir=reverse]
-    \addplot coordinates {(0,0) (3,2)};
-
-    \addplot [surf,point meta=explicit] coordinates {
-        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [3]
-
-        (0,1) [4] (1,1) [5] (2,1) [nan] (3,1) [7]
-
-        (0,2) [8] (1,2) [9] (2,2) [10] (3,2) [11]
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1194,24 +378,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y dir=reverse,shader=flat corner]
-    \addplot coordinates {(0,0) (3,2)};
-
-    \addplot [surf,point meta=explicit] coordinates {
-        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [3]
-
-        (0,1) [4] (1,1) [5] (2,1) [nan] (3,1) [7]
-
-        (0,2) [8] (1,2) [9] (2,2) [10] (3,2) [11]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1221,24 +387,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    shader=flat corner,
-    domain=-1:1,
-]
-    \addplot3 [
-        surf,
-        point meta={
-            abs(x-y)<0.1 || abs(x-0.5)<0.1 ? nan : z
-        },
-    ] {exp(-x^2-y^2)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1250,20 +398,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    point meta={
-        x<0 && y<0 ? nan : z
-    },
-]
-    \addplot3 [surf] {exp(-sqrt(x^2 + y^2))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1273,19 +407,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot3 [
-        surf,
-        mesh/ordering=y varies,
-    ] table {concat_VV_together.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1297,24 +418,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    view/h=40,
-    colorbar horizontal,
-    xlabel=$x$, ylabel=$y$,
-]
-    \addplot3 [
-        surf,
-        mesh/ordering=y varies,
-        shader=interp,
-    ] table {concat_VV_together.dat};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1324,27 +427,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    view/h=40,
-    colorbar horizontal,
-    xlabel=$x$, ylabel=$y$,
-]
-    \addplot3 [surf,mesh/ordering=y varies,
-        shader=interp
-    ] table {concat_VV_together.dat};
-
-    \addplot3 [blue,mark=*,
-        mark options={fill=blue!80!black},
-        only marks,mark size=0.6pt,
-    ] table [z expr=1.2]{concat_VV_together_grid.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1356,20 +438,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1379,24 +447,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 [
-        surf,
-        domain=-2:2,
-        domain y=-1.3:1.3,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1408,24 +458,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 [
-        contour lua,
-        domain=-2:2,
-        domain y=-1.3:1.3,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1435,28 +467,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    enlarge x limits,
-    view={0}{90},
-    xlabel=$x$, ylabel=$y$,
-    small,
-	colorbar,
-]
-    \addplot3[
-        domain=-2:2,
-        domain y=-1.3:1.3,
-        contour lua={number=14,labels=false},
-        thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1468,16 +478,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot {x^2+2} \closedcycle;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1487,16 +487,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [fill] {x^2+2} \closedcycle;
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1508,25 +498,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[stack plots=y]
-    \addplot+ [fill] coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    }
-        \closedcycle
-    ;
-    \addplot+ [fill] coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    }
-        \closedcycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1536,18 +507,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1559,20 +518,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    }
-        --cycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1582,20 +527,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [fill] coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    }
-        --cycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1607,21 +538,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-%\pgfplotsset{
-%    % initialize Set1-5:
-%    cycle list/Set1-5,
-%    % combine it with 'mark list*':
-%    cycle multiindex* list={
-%        mark list*\nextlist
-%        Set1-5\nextlist
-%    },
-%}
-%
-```
-
 
 ---
 
@@ -1631,13 +547,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-[new axis base=my axis,
- my axis={attribute=some attribute}]
-```
 
 
 ---
@@ -1649,15 +558,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-[new axis base=x axis,
-   new axis base=y axis,
-   x axis={attribute=x},
-   y axis={attribute=y}]
-```
-
 
 ---
 
@@ -1667,15 +567,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-[new axis base=x axis,
-   new axis base=y axis,
-   x axis={attribute=time},
-   y axis={attribute=height}]
-```
 
 
 ---
@@ -1687,23 +578,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          x axis={attribute=people, length=2.5cm, ticks=few},
-                          y axis={attribute=year},
-                          visualize as scatter]
-  data {
-    year, people
-    1900, 100
-    1910, 200
-    1950, 200
-    1960, 250
-    2000, 150
-  };
-```
-
 
 ---
 
@@ -1713,17 +587,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes, all axes={length=3cm},
-                          visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
 
 
 ---
@@ -1735,19 +598,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes, all axes={length=3cm},
-                          visualize as line,
-                          x axis={include value=20},
-                          y axis={include value=0}]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -1757,12 +607,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-[y axis = {scaling = 1900 at 0cm and 2000 at 5cm}]
-```
 
 
 ---
@@ -1774,24 +618,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-   [scientific axes,
-    x axis={attribute=people, length=2.5cm, ticks=few},
-    y axis={attribute=year, scaling=1900 at 0cm and 2000 at 5cm},
-    visualize as scatter]
-  data {
-    year, people
-    1900, 100
-    1910, 200
-    1950, 200
-    1960, 250
-    2000, 150
-  };
-```
-
 
 ---
 
@@ -1801,12 +627,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-scaling = min at 0cm and max at 5cm
-```
 
 
 ---
@@ -1818,12 +638,6 @@ scaling = min at 0cm and max at 5cm
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-[x axis = {attribute = x, scaling=1000 at 20 and 2000 at 30}]
-```
-
 
 ---
 
@@ -1833,12 +647,6 @@ scaling = min at 0cm and max at 5cm
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-[x axis = {attribute = x, scaling=1 at 0cm and 1000 at 3cm}]
-```
 
 
 ---
@@ -1850,12 +658,6 @@ scaling = min at 0cm and max at 5cm
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
-```
-
 
 ---
 
@@ -1865,20 +667,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-   [scientific axes,
-    x axis={ticks={major={at={1,10,100,1000}}},
-             scaling=1 at 0cm and 1000 at 3cm,
-             function=\pgfdvmathln{\pgfvalue}{\pgfvalue}},
-    visualize as scatter]
-  data [format=named] {
-    x={1,100,...,1000}, y={1,2,3}
-  };
-```
 
 
 ---
@@ -1890,20 +678,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-   [scientific axes,
-    x axis={ticks=few,
-            scaling=1 at 0cm and 1000 at 3cm,
-            function=\pgfdvmathunaryop{\pgfvalue}{sqrt}{\pgfvalue}},
-    visualize as scatter]
-  data [format=named] {
-    x={0,100,...,1000}, y={1,2,3}
-  };
-```
-
 
 ---
 
@@ -1913,19 +687,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          x axis={logarithmic},
-                          y axis={logarithmic},
-                          visualize as line]
- data [format=function] {
-   var x : interval [0.01:100];
-   func y = \value x * \value x;
- };
-```
 
 
 ---
@@ -1937,19 +698,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes,
-     angle axis={logarithmic, scaling=1 at 0 and 90 at 90},
-     radius axis={scaling=0 at 0cm and 100 at 3cm},
-     visualize as scatter]
-  data [format=named] {
-    angle={1,10,...,90}, radius={1,10,...,100}
-  };
-```
-
 
 ---
 
@@ -1959,19 +707,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes,
-     angle axis={degrees},
-     radius axis={logarithmic, scaling=1 at 0cm and 100 at 3cm},
-     visualize as scatter]
-  data [format=named] {
-    angle={1,10,...,90}, radius={1,10,...,100}
-  };
-```
 
 
 ---
@@ -1983,23 +718,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          x axis={length=3cm},
-                          y axis={length=2cm},
-                          all axes={ticks=few},
-                          visualize as line]
-    data {
-      x, y
-      10, 10
-      20, 20
-      15, 30
-      13, 20
-    };
-```
-
 
 ---
 
@@ -2009,23 +727,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          x axis={length=3cm},
-                          y axis={length=4cm},
-                          all axes={ticks=few},
-                          visualize as line]
-    data {
-      x, y
-      10, 10
-      20, 20
-      15, 30
-      13, 20
-    };
-```
 
 
 ---
@@ -2037,21 +738,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={ticks=few, unit length=1mm},
-                          visualize as line]
-    data {
-      x, y
-      10, 10
-      40, 20
-      15, 30
-      13, 20
-    };
-```
-
 
 ---
 
@@ -2061,22 +747,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   x axis={unit length=1mm per 1000000000 units, ticks=few},
-   visualize as line]
- data {
-   x, y
-   10000000000, 10
-   40000000000, 20
-   15000000000, 30
-   13000000000, 20
- };
-```
 
 
 ---
@@ -2088,25 +758,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   y axis={logarithmic, power unit length=1mm, grid},
-   visualize as line]
- data {
-   x, y
-   0, 0.0000000001
-   1, 1
-   2, 100000
-   3, 100000000000
-   4, 10000000000000000000000000000000
-   5, 500000000
-   6, 5000000000000000000
- };
-```
-
 
 ---
 
@@ -2116,20 +767,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-    scientific axes,
-    x axis = {label, length=2.5cm},
-    y axis = {label={[node style={fill=blue!20}]{$x^2$}}},
-    visualize as smooth line]
- data [format=function] {
-   var x : interval [-3:5];
-   func y = \value x * \value x;
- };
-```
 
 
 ---
@@ -2141,31 +778,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-
-  \datavisualization
-    [new Cartesian axis=x axis, x axis={attribute=x},
-     new Cartesian axis=y axis, y axis={attribute=y},
-     x axis={unit vector=(0:1pt)},
-     y axis={unit vector=(60:1pt)},
-     visualize as scatter]
-  data {
-    x, y
-    0, 0
-    1, 0
-    2, 0
-    1, 1
-    2, 1
-    1, 1.5
-    2, 1.5
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2175,12 +787,6 @@ some axis={function=\pgfdvmathln{\pgfvalue}{\pgfvalue}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-x axis = {attribute = time}
-```
 
 
 ---
@@ -2192,12 +798,6 @@ x axis = {attribute = time}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-all axes={grid}
-```
-
 
 ---
 
@@ -2207,12 +807,6 @@ all axes={grid}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-all axes={ticks=few}
-```
 
 
 ---
@@ -2224,12 +818,6 @@ all axes={ticks=few}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-x axis={ticks={tick unit=cm}}, y axis={ticks={tick unit=m/s^2}}
-```
-
 
 ---
 
@@ -2239,12 +827,6 @@ x axis={ticks={tick unit=cm}}, y axis={ticks={tick unit=m/s^2}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-x axes={time $t$ (ms)}, y axis={distance $d$ (mm)}
-```
 
 
 ---
@@ -2256,29 +838,6 @@ x axes={time $t$ (ms)}, y axis={distance $d$ (mm)}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes=clean,
-  x axis={attribute=time, ticks={tick unit=ms},
-    label={elapsed time}},
-  y axis={attribute=v, ticks={tick unit=m/s},
-    label={speed of disc}},
-  all axes=grid,
-  visualize as line]
-data {
-  time, v
-  0, 0
-  1, 0.001
-  2, 0.002
-  3, 0.004
-  4, 0.0035
-  5, 0.0085
-  6, 0.0135
-};
-```
-
 
 ---
 
@@ -2288,19 +847,6 @@ data {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes,
-                      visualize as smooth line]
-    data [format=function] {
-      var x : interval [0:100];
-      func y = sqrt(\value x);
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2312,12 +858,6 @@ data {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/scientific axes
-```
-
 
 ---
 
@@ -2327,20 +867,6 @@ data {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [visualize as smooth line,
-                      scientific axes,
-                      all axes={unit length=1cm per 10 units, ticks={few}}]
-    data [format=function] {
-      var x : interval [0:100];
-      func y = sqrt(\value x);
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2352,19 +878,6 @@ data {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes=outer ticks,
-                      visualize as smooth line]
-    data [format=function] {
-      var x : interval [-12:12];
-      func y = \value x*\value x*\value x;
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2374,19 +887,6 @@ data {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes=inner ticks,
-                      visualize as smooth line]
-    data [format=function] {
-      var x : interval [-12:12];
-      func y = \value x*\value x*\value x;
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2398,30 +898,6 @@ data {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes={inner ticks, width=3.2cm},
-                      style sheet=cross marks,
-                      visualize as scatter/.list={a,b}]
-    data [set=a] {
-      x, y
-      0, 0
-      1, 1
-      0.5, 0.5
-      2, 1
-    }
-    data [set=b] {
-      x, y
-      0.05, 0
-      1.5, 1
-      0.5, 0.75
-      2, 0.5
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2431,18 +907,6 @@ data {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes=clean,
-  visualize as smooth line]
-data [format=function] {
-  var x : interval [-12:12];
-  func y = \value x*\value x*\value x;
-};
-```
 
 
 ---
@@ -2454,21 +918,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
- [scientific axes={clean, standard labels},
-  visualize as smooth line,
-  x axis={label=degree $d$,
-    ticks={tick unit={}^\circ}},
-  y axis={label=$\sin d$}]
-data [format=function] {
-  var x : interval [-10:10] samples 10;
-  func y = sin(\value x);
-};
-```
-
 
 ---
 
@@ -2478,24 +927,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes={clean, upright labels},
-  visualize as smooth line,
-  x axis={label=degree $d$,
-    ticks={tick unit={}^\circ}},
-  y axis={label=$\cos d$, include value=1,
-    ticks={style={
-        /pgf/number format/precision=4,
-        /pgf/number format/fixed zerofill}}}]
-data [format=function] {
-  var x : interval [-10:10] samples 10;
-  func y = cos(\value x);
-};
-```
 
 
 ---
@@ -2507,21 +938,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes={clean, end labels},
-  visualize as smooth line,
-  x axis={label=degree $d$,
-    ticks={tick unit={}^\circ}},
-  y axis={label=$\tan d$}]
-data [format=function] {
-  var x : interval [-80:80];
-  func y = tan(\value x);
-};
-```
-
 
 ---
 
@@ -2531,18 +947,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as smooth line]
-    data [format=function] {
-      var x : interval [-1.3:1.3];
-      func y = \value x*\value x*\value x;
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2554,22 +958,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes={unit=10},
-                      visualize as smooth line,
-                      clean ticks,
-                      x axis={label=$x$},
-                      y axis={label=$f(x)$}]
-    data [format=function] {
-      var x : interval [-20:20];
-      func y = \value x*\value x/10;
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2579,22 +967,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes={standard labels},
-                      visualize as smooth line,
-                      clean ticks,
-                      x axis={label=$x$},
-                      y axis={label=$f(x)$}]
-    data [format=function] {
-      var x : interval [-1:1];
-      func y = \value x*\value x + 1;
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2606,18 +978,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [xy Cartesian, visualize as smooth line]
-    data [format=function] {
-      var x : interval [-1.25:1.25];
-      func y = \value x*\value x*\value x;
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2627,27 +987,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes, visualize as line,
-  x axis={ticks={step=24, minor steps between steps=3},
-          label=hours}]
-  data {
-    x, y
-    0, 0
-    10, 0
-    20, 0.5
-    30, 0.75
-    40, 0.7
-    50, 0.6
-    60, 0.5
-    70, 0.45
-    80, 0.47
-  };
-```
 
 
 ---
@@ -2659,21 +998,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   visualize as smooth line,
-   all axes= {grid, unit length=1.25cm},
-   y axis={ ticks=few },
-   x axis={ ticks=many, ticks and grid={ major also at={(pi/2) as $\frac{\pi}{2}$}}}]
-  data [format=function] {
-    var x : interval [-pi/2:3*pi] samples 50;
-    func y = sin(\value x r);
-  };
-```
-
 
 ---
 
@@ -2683,29 +1007,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes, visualize as smooth line]
-    data [format=function] {
-      var x : interval [1:11];
-      func y = \value x*\value x;
-    };
-\end{tikzpicture}
-\qquad
-\begin{tikzpicture}
-  \datavisualization [scientific axes, visualize as smooth line,
-    y axis={exponential steps},
-    x axis={ticks={quarter about strategy}},
-  ]
-    data [format=function] {
-      var x : interval [1:11];
-      func y = \value x*\value x;
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2717,19 +1018,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-    school book axes, visualize as smooth line,
-    y axis={ticks={step=1.25}},
-  ]
-    data [format=function] {
-      var x : interval [0:3];
-      func y = \value x*\value x/2;
-    };
-```
-
 
 ---
 
@@ -2739,21 +1027,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as smooth line,
-    x axis={ticks={minor steps between steps=3}},
-    y axis={ticks={minor steps between steps}},
-  ]
-    data [format=function] {
-      var x : interval [-1.5:1.5];
-      func y = \value x*\value x;
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2765,18 +1038,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [ school book axes, visualize as smooth line,
-    x axis={ticks={major={at={1, 1.5, 2}}}}]
-  data [format=function] {
-    var x : interval [-1.25:2];
-    func y = \value x * \value x / 2;
-  };
-```
-
 
 ---
 
@@ -2786,18 +1047,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [ school book axes, visualize as smooth line,
-    x axis={grid={minor={at={1, 1.5, 2}}}}]
-  data [format=function] {
-    var x : interval [-1.25:2];
-    func y = \value x * \value x / 2;
-  };
-```
 
 
 ---
@@ -2809,18 +1058,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [ school book axes, visualize as smooth line,
-    x axis={ticks={minor steps between steps, common={low=0}}} ]
-  data [format=function] {
-    var x : interval [-1.25:2];
-    func y = \value x * \value x / 2;
-  };
-```
-
 
 ---
 
@@ -2830,18 +1067,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [ school book axes, visualize as smooth line,
-    x axis={ticks={major={at={-1,0.5,(pi/2)}}}}]
-  data [format=function] {
-    var x : interval [-1.25:2];
-    func y = \value x * \value x / 2;
-  };
-```
 
 
 ---
@@ -2853,12 +1078,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-some axis = {ticks = {major = {at = {...}}}}
-```
-
 
 ---
 
@@ -2868,18 +1087,6 @@ some axis = {ticks = {major = {at = {...}}}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [ school book axes, visualize as smooth line,
-    x axis={grid, ticks and grid={major={also at={0.5}}}}]
-  data [format=function] {
-    var x : interval [-1.25:2];
-    func y = \value x * \value x / 2;
-  };
-```
 
 
 ---
@@ -2891,20 +1098,6 @@ some axis = {ticks = {major = {at = {...}}}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   all axes={ticks={style=blue}, length=3cm},
-   y axis={grid, grid={minor steps between steps, major={style=red}}},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -2914,19 +1107,6 @@ some axis = {ticks = {major = {at = {...}}}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   all axes={ticks={node style=red}, length=3cm},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
 
 
 ---
@@ -2938,24 +1118,6 @@ some axis = {ticks = {major = {at = {...}}}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   all axes={
-     length=3cm,
-     grid,
-     grid={minor steps between steps}
-   },
-   grid layer/.style=, % none, so on top of data (bad idea)
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -2965,12 +1127,6 @@ some axis = {ticks = {major = {at = {...}}}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-low=min, high=max
-```
 
 
 ---
@@ -2982,20 +1138,6 @@ low=min, high=max
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   all axes={length=3cm, grid},
-   every grid/.append style={style=densely dashed},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -3005,12 +1147,6 @@ low=min, high=max
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-style = {help lines, thin, black!25}
-```
 
 
 ---
@@ -3022,24 +1158,6 @@ style = {help lines, thin, black!25}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   all axes={
-     length=3cm,
-     grid,
-     grid={minor steps between steps}
-   },
-   every major grid/.style = {style={blue, thin}},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -3049,12 +1167,6 @@ style = {help lines, thin, black!25}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-style = {help lines, black!25}
-```
 
 
 ---
@@ -3066,12 +1178,6 @@ style = {help lines, black!25}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-style = {help lines, black!10}
-```
-
 
 ---
 
@@ -3081,17 +1187,6 @@ style = {help lines, black!10}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-node style={
-  font=\footnotesize,
-  inner sep=1pt,
-  outer sep=.1666em,
-  rounded corners=1.5pt
-}
-```
 
 
 ---
@@ -3103,12 +1198,6 @@ node style={
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-style={line cap=round}, tick length=2pt
-```
-
 
 ---
 
@@ -3118,12 +1207,6 @@ style={line cap=round}, tick length=2pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-style={help lines,thin, line cap=round}, tick length=1.4pt
-```
 
 
 ---
@@ -3135,12 +1218,6 @@ style={help lines,thin, line cap=round}, tick length=1.4pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-style={help lines, line cap=round}, tick length=0.8pt
-```
-
 
 ---
 
@@ -3150,22 +1227,6 @@ style={help lines, line cap=round}, tick length=0.8pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line,
-  x axis={ticks={major={
-    options at = 3    as [no tick text],
-    also at    = (pi) as
-      [{tick text padding=1ex}] $\pi$}}}]
-data [format=function] {
-  var x : interval[0:2*pi];
-  func y = sin(\value x r);
-};
-```
 
 
 ---
@@ -3177,25 +1238,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes=clean,
-   x axis={length=2.5cm, ticks={major at={
-         5,
-         6 as [style=red],
-         7 as [{style=blue, low=-1em}],
-         8 as [style=green] $2^3$,
-         10 as ten
-       }}},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -3205,19 +1247,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes, all axes={ticks=few, length=2.5cm},
-   x axis={ticks={tick prefix=$\langle$, tick suffix=$]$}},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
 
 
 ---
@@ -3229,20 +1258,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes, all axes={length=3cm},
-   x axis={ticks={tick unit=s}},
-   y axis={ticks={tick unit=m/s^2}},
-   visualize as line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -3252,24 +1267,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\mytypesetter#1{%
-  \pgfmathparse{#1/pi}%
-  \pgfmathprintnumber{\pgfmathresult}$\pi$%
-}
-\tikz \datavisualization
-  [school book axes, all axes={unit length=1.25cm},
-   x axis={ticks={step=(0.5*pi), tick typesetter/.code=\mytypesetter{##1}}},
-   y axis={include value={-1,1}},
-   visualize as smooth line]
-  data [format=function] {
-    var x : interval [0.5:7];
-    func y = sin(\value x r);
-  };
-```
 
 
 ---
@@ -3281,18 +1278,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
-
 
 ---
 
@@ -3302,19 +1287,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          x axis={ticks={node style={rotate=90, anchor=east}}},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
 
 
 ---
@@ -3326,22 +1298,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          x axis={ticks={major at={0,4000,8000,
-                                2000 as [node style={yshift=-1em}],
-                                6000 as [node style={yshift=-1em}],
-                                10000 as [node style={yshift=-1em}]}}},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
-
 
 ---
 
@@ -3351,18 +1307,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm}, x axis={ticks=stack},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
 
 
 ---
@@ -3374,12 +1318,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
-```
-
 
 ---
 
@@ -3389,19 +1327,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          x axis={ticks={tick text low even padding=-1em}},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
 
 
 ---
@@ -3413,19 +1338,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          x axis={ticks={stack=1.5em}},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
-
 
 ---
 
@@ -3435,19 +1347,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes,
-                          all axes={length=2.5cm},
-                          x axis={ticks=stack'},
-                          visualize as smooth line]
-  data [format=function] {
-    var y : interval[-100:100];
-    func x = \value y*\value y;
-  };
-```
 
 
 ---
@@ -3459,20 +1358,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes,
-   x axis={ticks={stack, many, major also at=
-     {(pi) as [{tick text padding=2.5em}] $\pi$}}},
-   visualize as smooth line]
-  data [format=function] {
-    var x : interval[0:(2*pi)];
-    func y = sin(\value x r);
-  };
-```
-
 
 ---
 
@@ -3482,23 +1367,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization
-    [scientific axes={inner ticks, width=3cm},
-     x axis={ticks={step=3, minor steps between steps=2}},
-     y axis={ticks={step=.36}},
-     visualize as scatter]
-    data {
-      x, y
-      17, 30
-      34, 32
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -3510,23 +1378,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization
-    [scientific axes,
-     x axis={logarithmic, length=2cm, ticks={step=1.5}},
-     y axis={logarithmic, ticks={step=1, minor steps between steps=9}},
-     visualize as scatter]
-    data {
-      x, y
-      1, 10
-      1000, 1000000
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3536,26 +1387,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\silly{
-  \tikzdatavisualizationset{major={at={
-        2,3,5,7,11,13}}}
-}
-\begin{tikzpicture}
-  \datavisualization [
-    scientific axes, visualize as scatter,
-    x axis={tick placement strategy=\silly}
-    ]
-    data {
-      x, y
-      0, 0
-      15, 15
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -3567,16 +1398,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.style={
-    ...
-  }
-}
-```
-
 
 ---
 
@@ -3586,21 +1407,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.style={
-    new Cartesian axis=x axis,
-    new Cartesian axis=left axis,
-    new Cartesian axis=right axis,
-    x axis={attribute=x},
-    left axis={unit vector={(0cm,1pt)}},
-    right axis={unit vector={(0cm,1pt)}},
-  }
-}
-```
 
 
 ---
@@ -3612,14 +1418,6 @@ ticks={major at={1,2,3,4}, major at={0,-1,-2}, minor at={9,8,7}}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-x axis    ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/width}},
-left axis ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}},
-right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}}
-```
-
 
 ---
 
@@ -3629,41 +1427,6 @@ right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/heig
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization data group {people and money} = {
-    data [set=people 1] {
-      time, people
-      1900, 1000000000
-      1920, 1500000000
-      1930, 2000000000
-      1980, 3000000000
-    }
-    data [set=people 2] {
-      time, people
-      1900, 2000000000
-      1920, 2500000000
-      1940, 4000000000
-      2000, 5700000000
-    }
-    data [set=money 1] {
-      time, money
-      1910, 1.1
-      1920, 2
-      1930, 5
-      1980, 2
-    }
-    data [set=money 2] {
-      time, money
-      1950, 3
-      1960, 3
-      1970, 4
-      1990, 3.5
-    }
-  };
-```
 
 
 ---
@@ -3675,24 +1438,6 @@ right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/heig
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzdatavisualizationset{
-  our system/.style={
-    new Cartesian axis=x axis,
-    new Cartesian axis=left axis,
-    new Cartesian axis=right axis,
-    x axis={attribute=x},
-    left axis={unit vector={(0cm,1pt)}},
-    right axis={unit vector={(0cm,1pt)}},
-    x axis    ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/width}},
-    left axis ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}},
-    right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}}
-  }
-}
-```
-
 
 ---
 
@@ -3702,22 +1447,6 @@ right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/heig
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=4cm},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2},
-    people 1={style={visualizer color=blue}},
-    people 2={style={visualizer color=blue!50}},
-    money 1={style={visualizer color=red}},
-    money 2={style={visualizer color=red!50}}]
-  data group {people and money};
-```
 
 
 ---
@@ -3729,12 +1458,6 @@ right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/heig
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-left axis={ visualize axis={ x axis={ goto=min } }
-```
-
 
 ---
 
@@ -3744,26 +1467,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    left axis= {visualize axis={x axis=   {goto=min}}},
-    right axis={visualize axis={x axis=   {goto=max}}},
-    x axis=    {visualize axis={left axis={goto=min}},
-                visualize axis={left axis={goto=max}}},
- }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=4cm},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -3775,24 +1478,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    x axis=    {visualize axis={left axis={goto pos=0.25}},
-                visualize axis={left axis={goto pos=0.5}}},
- }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=4cm},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
-
 
 ---
 
@@ -3802,27 +1487,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    every axis/.style={style=black!50}, % make this the default
-    left axis= {visualize axis={x axis=   {goto=min}, style=red!75}},
-    right axis={visualize axis={x axis=   {goto=max}, style=blue!75}},
-    x axis=    {visualize axis={left axis={goto=min}},
-                visualize axis={left axis={goto=max}}},
- }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=4cm},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -3834,20 +1498,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [scientific axes=clean,
-                      x axis={padding min=-1cm},
-                      visualize as smooth line]
-    data [format=function] {
-      var x : interval [-3:5];
-      func y = \value x * \value x;
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3857,27 +1507,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    all axes=  {padding=.5em},
-    left axis= {visualize axis={x axis=   {goto=padded min}, padded}},
-    right axis={visualize axis={x axis=   {goto=padded max}, padded}},
-    x axis=    {visualize axis={left axis={goto=padded min}, padded},
-                visualize axis={left axis={goto=padded max}, padded}},
- }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=3cm},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -3889,22 +1518,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-    xyz Cartesian cabinet,
-    all axes={visualize axis={low=0, style=->}},
-    x axis={visualize grid={direction axis=y axis}, grid=many},
-    visualize as scatter]
-  data {
-    x, y, z
-    0, 0, 1
-    0, 1, 0
-    2, 2, 2
-  };
-```
-
 
 ---
 
@@ -3914,24 +1527,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-    xyz Cartesian cabinet,
-    all axes={visualize axis={low=0, style=->}, grid=many},
-    x axis={visualize grid={direction axis=z axis}},
-    z axis={visualize grid={direction axis=x axis},
-            visualize grid={direction axis=y axis},},
-    visualize as scatter]
-  data {
-    x, y, z
-    0, 0, 1
-    0, 1, 0
-    2, 2, 2
-  };
-```
 
 
 ---
@@ -3943,24 +1538,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-    xy Cartesian,
-    all axes={visualize axis={low=0, style=->},
-              grid={some, minor steps between steps}},
-    x axis=  {visualize grid={
-                direction axis=y axis,
-                minor={low=0.25, high=1.75, style=red!50}}},
-    visualize as scatter]
-  data {
-    x, y
-    0, 0
-    3, 3
-  };
-```
-
 
 ---
 
@@ -3970,27 +1547,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    x axis=    {visualize grid={direction axis=left axis}},
-    left axis= {visualize grid={direction axis=x axis,
-                                common={style=red!50}}},
-    right axis={visualize grid={direction axis=x axis,
-                                common={style=blue!50}}},
-  }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=3cm, grid=many},
-    left axis ={attribute=money, grid=some},
-    right axis={attribute=people, grid=few},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -4002,18 +1558,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes, all axes={length=3cm},
-                          x axis={ticks={stack}},
-                          visualize as smooth line]
-  data [format=function] {
-    var x : interval [0:2];
-    func y = \value  x*\value x;
-  };
-```
-
 
 ---
 
@@ -4023,25 +1567,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    x axis={visualize ticks={direction axis=left axis, left axis={goto=min}},
-            visualize ticks={direction axis=left axis, left axis={goto=max}},
-    }
-  }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=3cm, ticks=many},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -4053,26 +1578,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    x axis={
-      visualize ticks={direction axis=left axis,high=0pt,left axis={goto=min}},
-      visualize ticks={direction axis=left axis,low=0pt,left axis={goto=max}},
-    }
-  }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=3cm, ticks=many},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
-
 
 ---
 
@@ -4082,28 +1587,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  data visualization/our system/.append style={
-    x axis={
-      visualize ticks={direction axis=left axis, left axis={goto=min},
-                       high=0pt, tick text at low, stack},
-      visualize ticks={direction axis=left axis, left axis={goto=max},
-                       low=0pt, tick text at high, stack}
-    }
-  }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, length=3cm, ticks=some},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -4115,19 +1598,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [scientific axes, all axes={length=3cm},
-                          x axis={ticks={
-                              major also at={6.5 as [no tick text]}}},
-                          visualize as smooth line]
-  data [format=function] {
-    var x : interval [5:10];
-    func y = \value x * \value x;
-  };
-```
-
 
 ---
 
@@ -4137,26 +1607,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzdatavisualizationset{
-  our system/.append style={
-    x axis={visualize label={
-        x axis={goto pos=.5},
-        left axis={padding=1.5em, goto=padded min}}}
-  }
-}
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, ticks=some, label},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={
-      people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
 
 
 ---
@@ -4168,27 +1618,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzdatavisualizationset{
-  our system/.append style={
-    x axis={visualize label={
-      x axis={goto pos=.5},
-      node style={
-        at={(0,0 |- data visualization bounding box.south)},
-        below
-} } } } }
-\tikz \datavisualization [
-    our system,
-    x axis={attribute=time, ticks=some, label=Year},
-    left axis ={attribute=money},
-    right axis={attribute=people},
-    visualize as line/.list={
-      people 1, people 2, money 1, money 2}]
-  data group {people and money};
-```
-
 
 ---
 
@@ -4198,43 +1627,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzdatavisualizationset{ our system/.style={
-  % The axes
-  new Cartesian axis=x axis,     new Cartesian axis=left axis,         new Cartesian axis=right axis,
-  % The directions of the axes
-  all axes={padding=.5em},       left axis={unit vector={(0cm,1pt)}},  right axis={unit vector={(0cm,1pt)}},
-  % The default attributes, other attributes must be configured
-  x axis={attribute=x},
-  % The lengths of the axes
-  x axis    ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/width}},
-  left axis ={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}},
-  right axis={length=\pgfkeysvalueof{/tikz/data visualization/scientific axes/height}},
-  % The styling of the axes
-  every axis/.style={style=black!50}, % make this the default
-  % Visualizing the axes themselves
-  left axis= {visualize axis={x axis=   {goto=padded min}, style=red!75, padded}},
-  right axis={visualize axis={x axis=   {goto=padded max}, style=blue!75,padded}},
-  x axis=    {visualize axis={left axis={goto=padded min}, padded},
-              visualize axis={left axis={goto=padded max}, padded}},
-  % Visualizing the grid, when requested
-  x axis=    {visualize grid={direction axis=left axis}},
-  left axis= {visualize grid={direction axis=x axis, common={style=red!50}}},
-  right axis={visualize grid={direction axis=x axis, common={style=blue!50}}},
-  % Visualizing the ticks, when requested
-  left axis={visualize ticks={style={red!50!black}, direction axis=x axis,
-                              x axis={goto=padded min}, high=0pt, tick text at low}},
-  right axis={visualize ticks={style={blue!80!black}, direction axis=x axis,
-                              x axis={goto=padded max}, low=0pt, tick text at high}},
-  x axis={visualize ticks={direction axis=left axis, left axis={goto=padded min}, high=0pt,
-                           tick text at low},
-          visualize ticks={direction axis=left axis, left axis={goto=padded max}, low=0pt}},
-  % By default, there are ticks on al
-... (truncated)
-```
 
 
 ---
@@ -4246,30 +1638,6 @@ left axis={ visualize axis={ x axis={ goto=min } }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  our system,
-  x axis={attribute=time, label=Year,
-    ticks={tick text padding=2pt,  style={/pgf/number format/set thousands separator=}}},
-  left axis={attribute=money, label=Spending,
-    padding min=0, include value=0, grid,
-    ticks={tick prefix=\$, style={/pgf/number format/fixed,
-        /pgf/number format/fixed zerofill, /pgf/number format/precision=2}}},
-  right axis={attribute=people,
-    label=Population,
-    padding min=0, include value=0,
-    ticks={style=/pgf/number format/fixed}},
-  visualize as line/.list={
-    people 1, people 2, money 1, money 2},
-  people 1={style={visualizer color=blue}},
-  people 2={style={visualizer color=blue!50}},
-  money 1={style={visualizer color=red}},
-  money 2={style={visualizer color=red!50}} ]
-data group {people and money};
-```
-
 
 ---
 
@@ -4279,12 +1647,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-/tikz/data visualization/our system
-```
 
 
 ---
@@ -4296,18 +1658,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[scale=.7]
-  \datavisualization [school book axes, visualize as smooth line]
-  data [format=function] {
-    var x : interval [-2:2];
-    func y = \value x*\value x + 1;
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4317,18 +1667,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[scale=.7]
-  \datavisualization [scientific axes, visualize as smooth line]
-  data [format=function] {
-    var x : interval [-2:2];
-    func y = \value x*\value x + 1;
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -4340,14 +1678,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[mindmap,concept color=red!50]
-  \node [concept] {Root concept}
-    child[grow=right] {node[concept] {Child concept}};
-```
-
 
 ---
 
@@ -4357,14 +1687,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[large mindmap,concept color=red!50]
-  \node [concept] {Root concept}
-    child[grow=right] {node[concept] {Child concept}};
-```
 
 
 ---
@@ -4376,12 +1698,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[mindmap,concept color=red!50] \node [concept] {Some concept};
-```
-
 
 ---
 
@@ -4391,15 +1707,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[mindmap,concept color=blue!80]
-  \node [concept]                 {Root concept};
-  \node [extra concept] at (10,0) {extra concept};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4411,15 +1718,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz
-  [root concept/.append style={concept color=blue!80,minimum size=3.5cm},
-   mindmap]
-  \node [concept] {Root concept};
-```
-
 
 ---
 
@@ -4429,18 +1727,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  [root concept/.append style={concept color=blue!80},
-   level 1 concept/.append style={concept color=red!50},
-   mindmap]
-  \node [concept] {Root concept}
-    child[grow=30] {node[concept] {child}}
-    child[grow=0 ] {node[concept] {child}};
-```
 
 
 ---
@@ -4452,15 +1738,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[mindmap,concept color=blue!80]
-  \node [concept] {Root concept}
-    child[concept color=red,grow=30] {node[concept] {Child concept}}
-    child[concept color=orange,grow=0]  {node[concept] {Child concept}};
-```
-
 
 ---
 
@@ -4470,18 +1747,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[mindmap,text=white,
-      root concept/.style={concept color=blue},
-      level 1 concept/.append style=
-        {every child/.style={concept color=blue!50}}]
-  \node [concept] {Root concept}
-    child[grow=30] {node[concept] {child}}
-    child[grow=0 ] {node[concept] {child}};
-```
 
 
 ---
@@ -4493,26 +1758,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [root concept/.append style={concept color=blue!20,minimum size=2cm},
-   level 1 concept/.append style={sibling angle=45},
-   mindmap]
-  \node [concept] {Root concept}
-    [clockwise from=45]
-    child { node[concept] (c1) {child}}
-    child { node[concept] (c2) {child}}
-    child { node[concept] (c3) {child}};
-  \begin{pgfonlayer}{background}
-    \draw [concept connection]  (c1) edge (c2)
-                                     edge (c3)
-                                (c2) edge (c3);
-  \end{pgfonlayer}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4522,19 +1767,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    [decoration={start radius=1cm,end radius=.5cm,amplitude=2mm,angle=30}]
-  \fill[blue!20] (0,0)   circle (1cm);
-  \fill[red!20]  (2.5,0) circle (.5cm);
-
-  \filldraw [draw=red,fill=black,
-             decorate,decoration=circle connection bar] (1,0) -- (2,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4546,19 +1778,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [blue!50,decoration={start radius=1cm,
-                       end radius=.5cm,amplitude=2mm,angle=30}]
-  \fill (0,0)   circle (1cm);
-  \fill (2.5,0) circle (.5cm);
-
-  \fill [decorate,decoration=circle connection bar] (1,0) -- (2,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4568,19 +1787,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [blue!50,decoration={start radius=1cm,
-                       end radius=.5cm,amplitude=2mm,angle=30}]
-  \fill (0,0)   circle (1cm+1pt);
-  \fill (2.4,0) circle (.5cm+1pt);
-
-  \fill [decorate,decoration=circle connection bar] (1,0) -- (1.9,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4592,17 +1798,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[concept color=blue!50,blue!50,outer sep=0pt]
-  \node (n1) at (0,0)   [circle,minimum size=2cm,fill,draw,thick] {};
-  \node (n2) at (2.5,0) [circle,minimum size=1cm,fill,draw,thick] {};
-
-  \path (n1) to[circle connection bar] (n2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4612,17 +1807,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[outer sep=0pt]
-  \node (n1) at (0,0)    [circle,minimum size=2cm,fill,draw,thick,red] {};
-  \node (n2) at (30:2.5) [circle,minimum size=1cm,fill,draw,thick,blue] {};
-
-  \path (n1) to[circle connection bar switch color=from (red) to (blue)] (n2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4634,35 +1818,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \path[mindmap,concept color=black,text=white]
-    node[concept] {Computer Science}
-    [clockwise from=0]
-    % note that `sibling angle' can only be defined in
-    % `level 1 concept/.append style={}'
-    child[concept color=green!50!black] {
-      node[concept] {practical}
-      [clockwise from=90]
-      child { node[concept] {algorithms} }
-      child { node[concept] {data structures} }
-      child { node[concept] {pro\-gramming languages} }
-      child { node[concept] {software engineer\-ing} }
-    }
-    % note that the `concept color' is passed to the `child'(!)
-    child[concept color=blue] {
-      node[concept] {applied}
-      [clockwise from=-30]
-      child { node[concept] {databases} }
-      child { node[concept] {WWW} }
-    }
-    child[concept color=red] { node[concept] {technical} }
-    child[concept color=orange] { node[concept] {theoretical} };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4672,19 +1827,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [mindmap,concept color=blue!80,
-  every annotation/.style={fill=red!20}]
-  \node [concept] (root)  {Root concept};
-
-  \node [annotation,right] at (root.east)
-  {The root concept is, in general, the most important concept.};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4696,12 +1838,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfarrowssettipend{1cm}
-```
-
 
 ---
 
@@ -4711,12 +1847,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfarrowssettipend{1cm\advance\pgf@x by-.5\pgflinewidth}
-```
 
 
 ---
@@ -4728,12 +1858,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfarrowssettipend{-3cm}
-```
-
 
 ---
 
@@ -4743,14 +1867,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfarrowshullpoint{1cm}{0pt}
-\pgfarrowshullpoint{-3cm}{2cm}
-\pgfarrowshullpoint{-3cm}{-2cm}
-```
 
 
 ---
@@ -4762,13 +1878,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfarrowshullpoint{1cm}{0pt}
-\pgfarrowsupperhullpoint{-3cm}{2cm}
-```
-
 
 ---
 
@@ -4778,13 +1887,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfarrowssavethe{\pgfarrowlength}
-\pgfarrowssavethe{\pgfarrowwidth}
-```
 
 
 ---
@@ -4796,37 +1898,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarearrow{
-  name = foo,
-  parameters = { \the\pgfarrowlength },
-  setup code = {
-    % The different end values:
-    \pgfarrowssettipend{.25\pgfarrowlength}
-    \pgfarrowssetlineend{-.25\pgfarrowlength}
-    \pgfarrowssetvisualbackend{-.5\pgfarrowlength}
-    \pgfarrowssetbackend{-.75\pgfarrowlength}
-    % The hull
-    \pgfarrowshullpoint{.25\pgfarrowlength}{0pt}
-    \pgfarrowshullpoint{-.75\pgfarrowlength}{.5\pgfarrowlength}
-    \pgfarrowshullpoint{-.75\pgfarrowlength}{-.5\pgfarrowlength}
-    % Saves: Only the length:
-    \pgfarrowssavethe\pgfarrowlength
-  },
-  drawing code = {
-    \pgfpathmoveto{\pgfqpoint{.25\pgfarrowlength}{0pt}}
-    \pgfpathlineto{\pgfqpoint{-.75\pgfarrowlength}{.5\pgfarrowlength}}
-    \pgfpathlineto{\pgfqpoint{-.5\pgfarrowlength}{0pt}}
-    \pgfpathlineto{\pgfqpoint{-.75\pgfarrowlength}{-.5\pgfarrowlength}}
-    \pgfpathclose
-    \pgfusepathqfill
-  },
-  defaults = { length = 4cm }
-}
-```
-
 
 ---
 
@@ -4836,12 +1907,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [-foo] (0,0) -- (8,0);
-```
 
 
 ---
@@ -4853,12 +1918,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [-{foo[length=2cm,bend]}] (0,0) to [bend left] (3,0);
-```
-
 
 ---
 
@@ -4868,12 +1927,6 @@ data group {people and money};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarearrow{ name=foo, means = bar[length=2cm+\mydimen] }
-```
 
 
 ---
@@ -4885,14 +1938,6 @@ data group {people and money};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-parameters = { \the\pgfarrowlength,...,
-                 \ifpgfarrowharpoon h\fi\
-                 \ifpgfarrowroundjoin j\fi}
-```
-
 
 ---
 
@@ -4902,12 +1947,6 @@ parameters = { \the\pgfarrowlength,...,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newdimen\pgfarrowdepth
-```
 
 
 ---
@@ -4919,12 +1958,6 @@ parameters = { \the\pgfarrowlength,...,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/arrow keys/depth/.code = \pgfmathsetlength{\pgfarrowdepth}{#1}}
-```
-
 
 ---
 
@@ -4934,13 +1967,6 @@ parameters = { \the\pgfarrowlength,...,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/arrow keys/depth/.code=
-  \pgfarrowsaddtooptions{\pgfmathsetlength{\pgfarrowdepth}{#1}}
-```
 
 
 ---
@@ -4952,14 +1978,6 @@ parameters = { \the\pgfarrowlength,...,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/arrow keys/depth/.code=
-  \pgfmathsetlength{\somedimen}{#1}
-  \pgfarrowsaddtooptions{\pgfarrowdepth=\somedimen} % buggy
-```
-
 
 ---
 
@@ -4969,14 +1987,6 @@ parameters = { \the\pgfarrowlength,...,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/arrow keys/depth/.code=
-  \pgfmathsetlength{\somedimen}{#1}
-  \expandafter\pgfarrowsaddtooptions\expandafter{\expandafter\pgfarrowdepth\expandafter=\the\somedimen}
-```
 
 
 ---
@@ -4988,15 +1998,6 @@ parameters = { \the\pgfarrowlength,...,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\makeatletter
-    \def\showvalueofmacro#1{%
-        \texttt{\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\pgfutil@gobble\expandafter\expandafter\expandafter\string\expandafter\csname#1\endcsname}
-    }%
-```
-
 
 ---
 
@@ -5006,13 +2007,6 @@ parameters = { \the\pgfarrowlength,...,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfarrowsthreeparameters{2pt 1}
-\showvalueofmacro\pgfarrowstheparameters
-```
 
 
 ---

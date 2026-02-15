@@ -18,32 +18,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[pattern={horizontal lines},pattern color=orange]
-    (0,0) rectangle +(1,1);
-  \draw[pattern={Lines[yshift=.5pt]},pattern color=blue]
-    (0,0) rectangle +(1,1);
-
-  \draw[pattern={vertical lines},pattern color=orange]
-    (1,0) rectangle +(1,1);
-  \draw[pattern={Lines[angle=90,yshift=-.5pt]},pattern color=blue]
-    (1,0) rectangle +(1,1);
-
-  \draw[pattern={north east lines},pattern color=orange]
-    (0,1) rectangle +(1,1);
-  \draw[pattern={Lines[angle=45,distance={3pt/sqrt(2)}]},pattern color=blue]
-    (0,1) rectangle +(1,1);
-
-  \draw[pattern={north west lines},pattern color=orange]
-    (1,1) rectangle +(1,1);
-  \draw[pattern={Lines[angle=-45,distance={3pt/sqrt(2)}]},pattern color=blue]
-    (1,1) rectangle +(1,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -53,22 +27,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[pattern={grid},pattern color=orange]
-    (0,0) rectangle +(1,1);
-  \draw[pattern={Hatch},pattern color=blue]
-    (0,0) rectangle +(1,1);
-
-  \draw[pattern={crosshatch},pattern color=orange]
-    (1,0) rectangle +(1,1);
-  \draw[pattern={Hatch[angle=45,distance={3pt/sqrt(2)},xshift=.1pt]},
-    pattern color=blue] (1,0) rectangle +(1,1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -80,22 +38,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[pattern={dots},pattern color=orange]
-    (0,0) rectangle +(1,1);
-  \draw[pattern={Dots},pattern color=blue]
-    (0,0) rectangle +(1,1);
-
-  \draw[pattern={crosshatch dots},pattern color=orange]
-    (1,0) rectangle +(1,1);
-  \draw[pattern={Dots[angle=45,distance={3pt/sqrt(2)}]},
-    pattern color=blue] (1,0) rectangle +(1,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -105,22 +47,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[pattern={fivepointed stars},pattern color=orange]
-    (0,0) rectangle +(1,1);
-  \draw[pattern={Stars},pattern color=blue]
-    (0,0) rectangle +(1,1);
-
-  \draw[pattern={sixpointed stars},pattern color=orange]
-    (1,0) rectangle +(1,1);
-  \draw[pattern={Stars[points=6]},pattern color=blue]
-    (1,0) rectangle +(1,1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -132,31 +58,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzdeclarepattern{
-  name=flower,
-  type=colored,
-  bottom left={(-.1pt,-.1pt)},
-  top right={(10.1pt,10.1pt)},
-  tile size={(10pt,10pt)},
-  code={
-    \tikzset{x=1pt,y=1pt}
-    \path [draw=green] (5,2.5) -- (5, 7.5);
-    \foreach \i in {0,60,...,300}
-      \path [fill=pink, shift={(5,7.5)}, rotate=-\i]
-        (0,0) .. controls ++(120:4) and ++(60:4) .. (0,0);
-    \path [fill=red] (5,7.5) circle [radius=1];
-    \foreach \i in {-45,45}
-      \path [fill=green, shift={(5,2.5)}, rotate=-\i]
-        (0,0) .. controls ++(120:4) and ++(60:4) .. (0,0);
-  }
-}
-
-\tikz\draw [pattern=flower] circle [radius=1];
-```
-
 
 ---
 
@@ -166,38 +67,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzdeclarepattern{
-  name=mystars,
-  type=uncolored,
-  bounding box={(-5pt,-5pt) and (5pt,5pt)},
-  tile size={(\tikztilesize,\tikztilesize)},
-  parameters={\tikzstarpoints,\tikzstarradius,\tikzstarrotate,\tikztilesize},
-  tile transformation={rotate=\tikzstarrotate},
-  defaults={
-    points/.store in=\tikzstarpoints,points=5,
-    radius/.store in=\tikzstarradius,radius=3pt,
-    rotate/.store in=\tikzstarrotate,rotate=0,
-    tile size/.store in=\tikztilesize,tile size=10pt,
-  },
-  code={
-    \pgfmathparse{180/\tikzstarpoints}\let\a=\pgfmathresult
-    \fill (90:\tikzstarradius) \foreach \i in {1,...,\tikzstarpoints}{
-      -- (90+2*\i*\a-\a:\tikzstarradius/2) -- (90+2*\i*\a:\tikzstarradius)
-    } -- cycle;
-  }
-}
-
-\begin{tikzpicture}
- \draw[pattern=mystars,pattern color=blue]               (0,0) rectangle +(2,2);
- \draw[pattern={mystars[points=7,tile size=15pt]}]       (2,0) rectangle +(2,2);
- \draw[pattern={mystars[rotate=45]},pattern color=red]   (0,2) rectangle +(2,2);
- \draw[pattern={mystars[rotate=30,points=4,radius=5pt]}] (2,2) rectangle +(2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -209,46 +78,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzdeclarepattern{
-  name=mylines,
-  parameters={
-      \pgfkeysvalueof{/pgf/pattern keys/size},
-      \pgfkeysvalueof{/pgf/pattern keys/angle},
-      \pgfkeysvalueof{/pgf/pattern keys/line width},
-  },
-  bounding box={
-    (0,-0.5*\pgfkeysvalueof{/pgf/pattern keys/line width}) and
-    (\pgfkeysvalueof{/pgf/pattern keys/size},
-     0.5*\pgfkeysvalueof{/pgf/pattern keys/line width})},
-  tile size={(\pgfkeysvalueof{/pgf/pattern keys/size},
-              \pgfkeysvalueof{/pgf/pattern keys/size})},
-  tile transformation={rotate=\pgfkeysvalueof{/pgf/pattern keys/angle}},
-  defaults={
-    size/.initial=5pt,
-    angle/.initial=45,
-    line width/.initial=.4pt,
-  },
-  code={
-      \draw [line width=\pgfkeysvalueof{/pgf/pattern keys/line width}]
-        (0,0) -- (\pgfkeysvalueof{/pgf/pattern keys/size},0);
-  },
-}
-
-\begin{tikzpicture}
-  \draw[pattern={mylines[size=10pt,line width=.8pt,angle=10]},
-        pattern color=red]    (0,0) rectangle ++(2,2);
-  \draw[pattern={mylines[size= 5pt,line width=.8pt,angle=40]},
-        pattern color=blue]   (2,0) rectangle ++(2,2);
-  \draw[pattern={mylines[size=10pt,line width=.4pt,angle=90]},
-        pattern color=green]  (0,2) rectangle ++(2,2);
-  \draw[pattern={mylines[size= 2pt,line width= 1pt,angle=70]},
-        pattern color=orange] (2,2) rectangle ++(2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -258,12 +87,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\foreach \x in {1,2,3,0} {[\x]}
-```
 
 
 ---
@@ -275,13 +98,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\mylist{1,2,3,0}
-\foreach \x in \mylist {[\x]}
-```
-
 
 ---
 
@@ -291,14 +107,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \foreach \x in {0,1,2,3}
-    \draw (\x,0) circle (0.2cm);
-```
 
 
 ---
@@ -310,19 +118,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \x in {0,1,2,3}
-    \foreach \y in {0,1,2,3}
-      {
-        \draw (\x,\y) circle (0.2cm);
-        \fill (\x,\y) circle (0.1cm);
-      }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -332,14 +127,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \foreach \position in {(0,0), (1,1), (2,0), (3,1)}
-    \draw \position rectangle +(.25,.5);
-```
 
 
 ---
@@ -351,16 +138,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz
-  \draw (0,0)
-    foreach \x in {1,...,3}
-      { -- (\x,1) -- (\x,0) }
-    ;
-```
-
 
 ---
 
@@ -370,12 +147,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw foreach \p in {1,...,3} {(\p,1)--(\p,3) (1,\p)--(3,\p)};
-```
 
 
 ---
@@ -387,15 +158,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \x/\xtext in {0,...,3,2.72 / e}
-    \draw (\x,0) node{$\xtext$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -405,23 +167,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  % Define some coordinates:
-  \path[nodes={circle,fill=yellow!80!black,draw}]
-    (0,0)    node(a) {a}
-    (2,0.55) node(b) {b}
-    (1,1.5)  node(c) {c}
-    (2,1.75) node(d) {d};
-
-  % Draw some connections:
-  \foreach \source/\target in {a/b, b/c, c/a, c/d}
-    \draw (\source) .. controls +(.75cm,0pt) and +(-.75cm,0pt)..(\target);
-\end{tikzpicture}
-```
 
 
 ---
@@ -433,20 +178,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  % Let's draw circles at interesting points:
-  \foreach \x / \y / \r in {0 / 0 / 2mm, 1 / 1 / 3mm, 2 / 0 / 1mm}
-    \draw (\x,\y) circle (\r);
-
-  % Same effect
-  \foreach \center/\r in {{(0,0)/2mm}, {(1,1)/3mm}, {(2,0)/1mm}}
-    \draw[yshift=2.5cm] \center circle (\r);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -456,28 +187,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[line cap=round,line width=3pt]
-  \filldraw [fill=yellow!80!black] (0,0) circle (2cm);
-
-  \foreach \angle / \label in
-    {0/3, 30/2, 60/1, 90/12, 120/11, 150/10, 180/9,
-     210/8, 240/7, 270/6, 300/5, 330/4}
-  {
-    \draw[line width=1pt] (\angle:1.8cm) -- (\angle:2cm);
-    \draw (\angle:1.4cm) node{\textsf{\label}};
-  }
-
-  \foreach \angle in {0,90,180,270}
-    \draw[line width=2pt] (\angle:1.6cm) -- (\angle:2cm);
-
-  \draw (0,0) -- (120:0.8cm); % hour
-  \draw (0,0) -- (90:1cm);    % minute
-\end{tikzpicture}%
-```
 
 
 ---
@@ -489,15 +198,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[shading=ball]
-  \foreach \x / \cola in {0/red,1/green,2/blue,3/yellow}
-    \foreach \y / \colb in {0/red,1/green,2/blue,3/yellow}
-      \shade[ball color=\cola!50!\colb] (\x,\y) circle (0.4cm);
-```
-
 
 ---
 
@@ -507,12 +207,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\foreach \x [evaluate=\x] in {2^0,2^...,2^8}{$\x$, }
-```
 
 
 ---
@@ -524,12 +218,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x [evaluate=\x as \xeval] in {2^0,2^...,2^8}{$\x=\xeval$, }
-```
-
 
 ---
 
@@ -539,13 +227,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz\foreach \x [evaluate=\x as \shade using \x*10] in {0,1,...,10}
-  \node [fill=red!\shade!yellow, minimum size=0.65cm] at (\x,0) {\x};
-```
 
 
 ---
@@ -557,12 +238,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x [remember=\x as \lastx (initially A)] in {B,...,H}{$\overrightarrow{\lastx\x}$, }
-```
-
 
 ---
 
@@ -572,16 +247,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[x=0.75cm,y=0.75cm]
-  \foreach \x [count=\xi] in {a,...,e}
-    \foreach \y [count=\yi] in {\x,...,e}
-      \node [draw, top color=white, bottom color=blue!50, minimum size=0.666cm]
-        at (\xi,-\yi) {$\mathstrut\x\y$};
-```
 
 
 ---
@@ -593,12 +258,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x [parse=true] in {1,...,1.0e+1 - 1}{ \x }
-```
-
 
 ---
 
@@ -608,21 +267,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\Iota#1#2{%
-  \ifnum\numexpr#1\relax<\numexpr#2\relax
-    \the\numexpr#1\relax,%
-    \expandafter\Iota\expandafter{\the\numexpr(#1)+1\relax}{#2}%
-  \else
-    \the\numexpr#2\relax
-  \fi}
-\foreach [expand list=true] \x in {\Iota{1}{5}} {
-  \x
-}
-```
 
 
 ---
@@ -634,22 +278,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \x in {1,...,4}
-    \foreach \y in {1,...,4}
-    {
-      \fill[red!50] (\x,\y) ellipse (3pt and 6pt);
-
-      \ifnum \x<\y
-        \breakforeach
-      \fi
-    }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -659,27 +287,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfooclass{stamp}{
-  % This is the class stamp
-
-  \attribute text;
-  \attribute rotation angle=20;
-
-  \method stamp(#1) { % The constructor
-    ...
-  }
-
-  \method apply(#1,#2) { % Causes the stamp to be shown at coordinate (#1,#2)
-    ...
-  }
-}
-
-% We can now create objects of type "stamp"
-```
 
 
 ---
@@ -691,20 +298,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfoonew \firststamp=new stamp()
-\pgfoonew \secondstamp=new stamp()
-{
-  \pgfoonew \thirdstamp=new stamp()
-  ...
-}
-% \thirdstamp no longer exists, but \firststamp and \secondstamp do
-% even if you try to store \thirdstamp in a global variable, trying
-% to access it will result in an error.
-```
-
 
 ---
 
@@ -714,22 +307,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfooclass{foo}
-{
-  \attribute stamp obj;
-  \attribute another object;
-
-  \method foo() {
-    \pgfoonew{stamp obj}=new stamp()
-    \pgfoonew{another object}=new bar()
-  }
-  ...
-}
-```
 
 
 ---
@@ -741,29 +318,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfooclass{stamp}{
-  % This is the class stamp
-
-  \method stamp() { % The constructor
-  }
-
-  \method apply(#1,#2) { % Causes the stamp to be shown at coordinate (#1,#2)
-    % Draw the stamp:
-    \node [rotate=20,font=\huge] at (#1,#2) {Passed};
-  }
-}
-
-\pgfoonew \mystamp=new stamp()
-
-\begin{tikzpicture}
-  \mystamp.apply(1,2)
-  \mystamp.apply(3,4)
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -773,28 +327,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfooclass{stamp}{
-  % This is the class stamp
-
-  \method stamp() {}
-
-  \method apply(#1,#2) {
-    \pgfoothis.shift origin(#1,#2)
-
-    % Draw the stamp:
-    \node [rotate=20,font=\huge] {Passed};
-  }
-
-  % Private method:
-  \method shift origin(#1,#2) {
-    \tikzset{xshift=#1,yshift=#2}
-  }
-}
-```
 
 
 ---
@@ -806,35 +338,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfooclass{stamp}{
-  % This is the class stamp
-
-  \attribute text;
-  \attribute rotation angle = 20;
-
-  \method stamp(#1) {
-    \pgfooset{text}{#1} % Set the text
-  }
-
-  \method apply(#1,#2) {
-    \pgfoothis.shift origin(#1,#2)
-
-    % Draw the stamp:
-    \node [rotate=\pgfoovalueof{rotation angle},font=\huge]
-      {\pgfoovalueof{text}};
-  }
-
-  \method shift origin(#1,#2) { ... }
-
-  \method set rotation (#1) {
-    \pgfooset{rotation angle}{#1}
-  }
-}
-```
-
 
 ---
 
@@ -844,14 +347,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\method set rotation (#1) {
-  \pgfooset{rotation angle}{#1}
-}
-```
 
 
 ---
@@ -863,15 +358,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\method foo () {
-  \pgfoolet{my func}\myfunc
-  % Changing \myfunc now has no effect on the value of attribute my func
-}
-```
-
 
 ---
 
@@ -881,17 +367,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\method apply(#1,#2) {
-  \pgfoothis.shift origin(#1,#2)
-
-  \node [rotate=\pgfoovalueof{rotation angle},font=\huge]
-    {\pgfoovalueof{text}};
-}
-```
 
 
 ---
@@ -903,19 +378,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-...
-  \method get rotation (#1) {
-    \pgfooget{rotation angle}{#1}
-  }
-...
-
-\mystamp.get rotation(\therotation)
-``\therotation'' is now ``20'' (or whatever).
-```
-
 
 ---
 
@@ -925,20 +387,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Create a new object:
-\pgfoonew \mystamp=new stamp()
-
-% Get the object's id and store it in \myid:
-\mystamp.get id(\myid)
-
-% The following two calls have the same effect:
-\mystamp.apply(1,1)
-\pgfooobj{\myid}.apply(1,1)
-```
 
 
 ---
@@ -950,22 +398,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfooclass{some class}{
-  \method some class() {
-    \pgfoothis.get handle(\me)
-    \somesignal.connect(\me,foo)
-    \anothersignal.connect(\me,bar)
-  }
-  \method foo () {}
-  \method bar (#1,#2) {}
-}
-\pgfoonew \objA=new some class()
-\pgfoonew \objB=new some class()
-```
-
 
 ---
 
@@ -975,13 +407,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\anothersignal.emit(1,2)
-% will call \objA.bar(1,2) and \objB.bar(1,2)
-```
 
 
 ---
@@ -993,15 +418,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[->]        (0,0)   -- (1,0);
-  \draw[>-Stealth] (0,0.3) -- (1,0.3);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1011,14 +427,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[-{Stealth[red]}] (0,0)   -- (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -1030,13 +438,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% No path, no arrow tips:
-\tikz [<->] \draw;
-```
-
 
 ---
 
@@ -1046,13 +447,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Degenerate path, draw arrow tips (but no path, it is degenerate...)
-\tikz [<->] \draw (0,0);
-```
 
 
 ---
@@ -1064,13 +458,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% Degenerate path, tips=proper suppresses arrows
-\tikz [<->] \draw [tips=proper] (0,0);
-```
-
 
 ---
 
@@ -1080,13 +467,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Normal case:
-\tikz [<->] \draw (0,0) -- (1,0);
-```
 
 
 ---
@@ -1098,13 +478,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% Two subpaths, only second gets tips
-\tikz [<->] \draw (0,0) -- (1,0) (2,0) -- (3,0);
-```
-
 
 ---
 
@@ -1114,13 +487,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Two subpaths, second degenerate, but still gets tips
-\tikz [<->] \draw (0,0) -- (1,0) (2,0);
-```
 
 
 ---
@@ -1132,13 +498,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% Two subpaths, second degenerate, proper suppresses them
-\tikz [<->] \draw [tips=on proper draw] (0,0) -- (1,0) (2,0);
-```
-
 
 ---
 
@@ -1148,13 +507,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Two subpaths, but one is closed: No tips, even though last subpath is open
-\tikz [<->] \draw (0,0) circle[radius=2pt] (2,0) -- (3,0);
-```
 
 
 ---
@@ -1166,15 +518,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz{
-  \draw [-{Stealth[length=5mm]}] (0,0) -- (2,0);
-  \draw [|<->|] (1.5,.4) -- node[above=1mm] {5mm} (2,.4);
-}
-```
-
 
 ---
 
@@ -1184,15 +527,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz{
-  \draw [-{Latex[length=5mm]}] (0,0) -- (2,0);
-  \draw [|<->|] (1.5,.4) -- node[above=1mm] {5mm} (2,.4);
-}
-```
 
 
 ---
@@ -1204,15 +538,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz{
-  \draw [-{Classical TikZ Rightarrow[length=5mm]}] (0,0) -- (2,0);
-  \draw [|<->|] (1.5,.6) -- node[above=1mm] {5mm} (2,.6);
-}
-```
-
 
 ---
 
@@ -1222,13 +547,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = {-Latex[length=0pt 3 0]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1240,13 +558,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = {-Latex[length=0pt 3 .5]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1256,13 +567,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [line width=1pt, double distance=3pt,
-             arrows = {-Latex[length=0pt 3 1]} ] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1274,16 +578,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz{
-  \draw [line width=1mm, -{Stealth[length=10mm, open]}]
-          (0,0) -- (2,0);
-  \draw [|<->|] (2,.6) -- node[above=1mm] {10mm} ++(-10mm,0);
-}
-```
-
 
 ---
 
@@ -1293,16 +587,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz{
-  \draw [line width=1mm, -{Stealth[length=10mm, open, round]}]
-          (0,0) -- (2,0);
-  \draw [|<->|] (2,.6) -- node[above=1mm] {10mm} ++(-10mm,0);
-}
-```
 
 
 ---
@@ -1314,12 +598,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[width=10pt, length=10pt]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1329,12 +607,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[width=0pt 10, length=10pt]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1346,12 +618,6 @@ Showing items **2801-3000** of **3242** | Page **15** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-length = 10pt, width'=5pt 2, length=7pt
-```
-
 
 ---
 
@@ -1361,12 +627,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[width'=0pt .5, length=10pt]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1378,12 +638,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[width'=0pt .5, length=15pt]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1393,12 +647,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[length=10pt, inset=5pt]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1410,12 +658,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[length=10pt, inset=2pt]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1425,12 +667,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[inset=0pt, angle=90:10pt]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1442,12 +678,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[inset=0pt, angle=30:10pt]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1457,13 +687,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[inset=0pt, length=10pt, angle'=90]}]
-            (0,0) -- (1,0);
-```
 
 
 ---
@@ -1475,13 +698,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Stealth[inset=0pt, length=10pt, angle'=30]}]
-            (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1491,16 +707,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [arrows = {-Stealth[]}]          (0,1)   -- (1,1);
-  \draw [arrows = {-Stealth[scale=1.5]}] (0,0.5) -- (1,0.5);
-  \draw [arrows = {-Stealth[scale=2]}]   (0,0)   -- (1,0);
-}
-```
 
 
 ---
@@ -1512,16 +718,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw [arrows = {-Stealth[]}]                 (0,1)   -- (1,1);
-  \draw [arrows = {-Stealth[scale length=1.5]}] (0,0.5) -- (1,0.5);
-  \draw [arrows = {-Stealth[scale length=2]}]   (0,0)   -- (1,0);
-}
-```
-
 
 ---
 
@@ -1531,16 +727,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [arrows = {-Stealth[]}]                 (0,1)   -- (1,1);
-  \draw [arrows = {-Stealth[scale width=1.5]}] (0,0.5) -- (1,0.5);
-  \draw [arrows = {-Stealth[scale width=2]}]   (0,0)   -- (1,0);
-}
-```
 
 
 ---
@@ -1552,16 +738,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] {
-  \draw [arrows = {-Hooks[]}]         (0,1)   -- (1,1);
-  \draw [arrows = {-Hooks[arc=90]}]   (0,0.5) -- (1,0.5);
-  \draw [arrows = {-Hooks[arc=270]}]  (0,0)   -- (1,0);
-}
-```
-
 
 ---
 
@@ -1571,16 +747,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [arrows = {->[]}]         (0,1)   -- (1,1);
-  \draw [arrows = {->[slant=.5]}] (0,0.5) -- (1,0.5);
-  \draw [arrows = {->[slant=1]}]  (0,0)   -- (1,0);
-}
-```
 
 
 ---
@@ -1592,13 +758,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [>={[slant=.3] To[] To[]}]
-  \graph [math nodes] { A -> B <-> C };
-```
-
 
 ---
 
@@ -1608,12 +767,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[reversed]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1625,12 +778,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[reversed, reversed]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1640,12 +787,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1657,12 +798,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {->[harpoon]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1672,12 +807,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1689,12 +818,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[harpoon,swap]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1704,12 +827,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[left]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1721,12 +838,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [arrows = {-Stealth[right]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1736,12 +847,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [red, arrows = {-Stealth}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1753,12 +858,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [blue, arrows = {-Stealth}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1768,12 +867,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [red, arrows = {-Stealth[color=blue]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1785,12 +878,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [red, arrows = {-Stealth[color=black]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1800,12 +887,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [ultra thick] \draw [red, arrows = {-Stealth[blue]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -1817,13 +898,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [draw=red, fill=red!50, arrows = {-Stealth[length=10pt]}]
-                          (0,0) -- (1,1) -- (2,0);
-```
-
 
 ---
 
@@ -1833,15 +907,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
-  \draw [thick, red, arrows = {-Stealth[fill=white,length=15pt]}] (0,0) -- (1,0);
-}
-```
 
 
 ---
@@ -1853,15 +918,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
-  \draw [thick, red, arrows = {-Stealth[fill=none,length=15pt]}] (0,0) -- (1,0);
-}
-```
-
 
 ---
 
@@ -1871,16 +927,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (0,-.5) grid [step=1mm] (1,.5);
-  \draw [thick, red, arrows = {-Stealth[color=blue, fill=white, length=15pt]}]
-        (0,0) -- (1,0);
-}
-```
 
 
 ---
@@ -1892,14 +938,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [ultra thick] \draw [draw=red, fill=red!50,
-                           arrows = {-Stealth[length=15pt, fill=pgffillcolor]}]
-                          (0,0) -- (1,1) -- (2,0);
-```
-
 
 ---
 
@@ -1909,14 +947,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[line cap=butt]}]
-        (0,0) -- (1,0);
-```
 
 
 ---
@@ -1928,14 +958,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[line cap=round]}]
-        (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1945,14 +967,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,line cap=butt]}]
-        (0,0) -- (1,0);
-```
 
 
 ---
@@ -1964,14 +978,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,line cap=round]}]
-        (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1981,14 +987,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[line join=miter]}]
-        (0,0) -- (1,0);
-```
 
 
 ---
@@ -2000,14 +998,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[line join=round]}]
-        (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2017,14 +1007,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,line join=miter]}]
-        (0,0) -- (1,0);
-```
 
 
 ---
@@ -2036,14 +1018,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,line join=round]}]
-        (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2053,13 +1027,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[round]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2071,13 +1038,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,round]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2087,13 +1047,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Computer Modern Rightarrow[sharp]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2105,13 +1058,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw [arrows = {-Bracket[reversed,sharp]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2121,12 +1067,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[line width=0.1pt, fill=white, length=10pt]}] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2138,12 +1078,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [arrows = {-Latex[line width=1pt, fill=white, length=10pt]}] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2153,19 +1087,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\wall{ \fill     [fill=black!50]  (1,-.5) rectangle (2,.5);
-           \pattern  [pattern=bricks] (1,-.5) rectangle (2,.5);
-           \draw     [line width=1pt]  (1cm+.5pt,-.5) -- ++(0,1); }
-\begin{tikzpicture}
-  \wall
-  % The "line"
-  \draw [red,line width=1mm] (-1,0) -- (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2177,15 +1098,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\usetikzlibrary{patterns}
-\def\wall{ \fill     [fill=black!50]  (1,-.5) rectangle (2,.5);
-           \pattern  [pattern=bricks] (1,-.5) rectangle (2,.5);
-           \draw     [line width=1pt]  (1cm+.5pt,-.5) -- ++(0,1); }
-```
-
 
 ---
 
@@ -2195,16 +1107,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue]}]
-        (-1,0) -- (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2216,16 +1118,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm] (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2235,17 +1127,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,quick]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2257,17 +1138,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{[quick,sep]>>>}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2277,17 +1147,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2299,17 +1158,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex=0]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2319,17 +1167,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex=.5]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2341,17 +1178,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,flex=0]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2361,17 +1187,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{[flex,sep]>>>}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2383,17 +1198,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=1cm,open,blue,flex']}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2403,17 +1207,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Computer Modern Rightarrow[flex]}]
-        (0,-.5) .. controls (1,-.5) and (0.5,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2425,17 +1218,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Computer Modern Rightarrow[flex'=.75]}]
-        (0,-.5) .. controls (1,-.5) and (0.5,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2445,17 +1227,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[length=20pt,bend]}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2467,17 +1238,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{[bend,sep]>>>}]
-        (-1,-.5) .. controls (0,-.5) and (0,0) .. (1,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2487,17 +1247,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \wall
-  \draw [red!25,line width=1mm] (-1,0) -- (1,0);
-  \draw [red,line width=1mm,-{Stealth[bend,round,length=20pt]}]
-        (0,-.5) .. controls (1,-.5) and (0.25,0) .. (1,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2509,12 +1258,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [<<<->>>>] (0,0) -- (2,0);
-```
-
 
 ---
 
@@ -2524,16 +1267,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [-{>[sep=1pt]>[sep= 2pt]>}] (0,1.0) -- (1,1.0);
-  \draw [-{>[sep=1pt]>[sep=-2pt]>}] (0,0.5) -- (1,0.5);
-  \draw [-{>         >[sep]     >}] (0,0.0) -- (1,0.0);
-}
-```
 
 
 ---
@@ -2545,12 +1278,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [->_>] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2560,12 +1287,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [->__>] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2577,12 +1298,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [very thick] \draw [<<<->>>] (0,0) -- (2,0);
-```
-
 
 ---
 
@@ -2592,12 +1307,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [very thick] \draw [<.<<->.>>] (0,0) -- (2,0);
-```
 
 
 ---
@@ -2609,12 +1318,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [very thick] \draw [<<.<-.>>>] (0,0) -- (2,0);
-```
-
 
 ---
 
@@ -2624,12 +1327,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [very thick] \draw [<<.<->.>>] (0,0) to [bend left] (2,0);
-```
 
 
 ---
@@ -2641,12 +1338,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [very thick] \draw [-{Stealth[] . Stealth[] Stealth[]}] (0,0) -- (2,0);
-```
-
 
 ---
 
@@ -2656,13 +1347,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [foo /.tip = {Stealth[sep]. >>}]
-  \draw [-foo] (0,0) -- (2,0);
-```
 
 
 ---
@@ -2674,14 +1358,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [foo /.tip = {Stealth[sep] Latex[sep]},
-       bar /.tip = {Stealth[length=10pt,open]}]
-  \draw [-{foo[red] . bar}] (0,0) -- (2,0);
-```
-
 
 ---
 
@@ -2691,12 +1367,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [<->] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2708,12 +1378,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [>->] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2723,12 +1387,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [Stealth-Stealth] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2740,12 +1398,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [<-> /.tip = Stealth] \draw [<->>] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2755,12 +1407,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [<-> /.tip = Latex] \draw [>-<] (0,0) -- (1,0);
-```
 
 
 ---
@@ -2772,21 +1418,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[scale=2,ultra thick]
-  \begin{scope}[>=Latex]
-    \draw[>->]    (0pt,3ex) -- (1cm,3ex);
-    \draw[|<->>|] (0pt,2ex) -- (1cm,2ex);
-  \end{scope}
-  \begin{scope}[>=Stealth]
-    \draw[>->]    (0pt,1ex) -- (1cm,1ex);
-    \draw[|<<.<->|] (0pt,0ex) -- (1cm,0ex);
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2796,12 +1427,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [arrows={[bend]}] ... % Bend all arrows
-```
 
 
 ---
@@ -2813,17 +1438,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \shade [left color=white, right color=red!50] (0,0) rectangle (4,1);
-
-  \draw [ultra thick,-{Triangle[open]}]       (0,2/3) -- ++ (3,0);
-  \draw [ultra thick,-{Triangle[fill=white]}] (0,1/3) -- ++ (3,0);
-}
-```
-
 
 ---
 
@@ -2833,16 +1447,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \graph [clockwise=3, math nodes,
-              edges = {double equal sign distance, -Implies}] {
-  "\alpha", "\beta", "\gamma";
-  "\alpha" -> "\beta" -> "\gamma" -> "\alpha"
-};
-```
 
 
 ---
@@ -2854,12 +1458,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [line width=1ex, line cap=round, -Butt Cap] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -2869,14 +1467,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [line width=1ex,
-             -{Round Cap []. Fast Round[] Fast Round[]}]
-  (0,0) -- (1,0);
-```
 
 
 ---
@@ -2888,14 +1478,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [f/.tip = Fast Round] % shorthand
-  \draw [line width=1ex, -{[bend] Round Cap[] . f f f}]
-  (0,0) to [bend left] (1,0);
-```
-
 
 ---
 
@@ -2905,14 +1487,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw [line width=1ex,
-             -{Triangle Cap []. Fast Triangle[] Fast Triangle[]}]
-  (0,0) -- (1,0);
-```
 
 
 ---
@@ -2924,14 +1498,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [f/.tip = Fast Triangle] % shorthand
-  \draw [line width=1ex, -{[bend] Triangle Cap[] . f f f}]
-  (0,0) to [bend left] (1,0);
-```
-
 
 ---
 
@@ -2941,18 +1507,6 @@ length = 10pt, width'=5pt 2, length=7pt
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
--- File BindingToASCII.lua
-
--- Imports
-local lib = require "pgf.gd.lib"
-
--- Subclass the Binding class:
-local BindingToASCII = lib.class { base_class = require "pgf.gd.bindings.Binding" }
-```
 
 
 ---
@@ -2964,23 +1518,6 @@ local BindingToASCII = lib.class { base_class = require "pgf.gd.bindings.Binding
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-local canvas
-
-function BindingToASCII:renderStart()
-  canvas = {}
-  -- Clear the canvas
-  for x=-30,30 do
-    canvas [x] = {}
-    for y=-30,30 do
-      canvas[x][y] = ' '
-    end
-  end
-end
-```
-
 
 ---
 
@@ -2990,14 +1527,6 @@ end
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-function BindingToASCII:renderVertex(v)
-  canvas [math.floor(v.pos.x)][math.floor(v.pos.y)] = v.name
-end
-```
 
 
 ---
@@ -3009,38 +1538,6 @@ end
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-function BindingToASCII:renderEdge(e)
-  local function connect (p,q)
-    -- Connect the points p and q
-    local x1, y1, x2, y2 = math.floor(p.x+0.5), math.floor(p.y+0.5), math.floor(q.x+0.5), math.floor(q.y+0.5)
-    ...
-    local delta_x = x2-x1
-    local delta_y = y2-y1
-    ...
-      local slope = delta_y/delta_x
-      for i=x1,x2 do
-        local x,y = i, math.floor(y1 + (i-x1)*slope + 0.5)
-
-        if canvas[x][y] == " " then
-          canvas[x][y] = '.'
-        end
-      end
-    ...
-  end
-
-  -- Iterate over all points on the path from tail to head:
-  local p = e.tail.pos
-  for i=1,#e.path do
-    connect(p, e.tail.pos + e.path[i])
-    p = e.tail.pos + e.path[i]
-  end
-  connect(p, e.head.pos)
-end
-```
-
 
 ---
 
@@ -3050,26 +1547,6 @@ end
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-function BindingToASCII:renderStop()
-  for y=10,-30,-1 do
-    local t = {}
-    for x=-30,30 do
-      local s = canvas[x][y]
-      for i=1,#s do
-        pos = x+30+i-math.floor(#s/2)
-        if not t[pos] or t[pos] == " " or t[pos] == "." then
-          t[pos] = string.sub(s,i,i)
-        end
-      end
-    end
-    print(table.concat(t))
-  end
-end
-```
 
 
 ---
@@ -3081,12 +1558,6 @@ end
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-return BindingToASCII
-```
-
 
 ---
 
@@ -3096,24 +1567,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\makeatletter
-
-\def\animationexample#1#2#3{%
-  \tikz[fill=blue!25, draw=blue, ultra thick] {
-    \pgfidrefnextuse{\objid}{#1}
-    \pgfsysanimkeywhom{\objid}{#2}
-    \pgfidrefnextuse{\nodeid}{node}
-    \pgfsysanimkeyevent{\nodeid}{}{click}{}{begin}
-    #3
-    \node [font=\footnotesize, circle, fill, draw, align=center]
-      (node) {Click \\ here};
-  }%
-}
-```
 
 
 ---
@@ -3125,31 +1578,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsysanimkeyrepeatindefinite % Both of the following animations
-                                    % repeat indefinitely
-{
-  \pgfsysanimkeywhom{\someid}{}% The id of a later object
-  \pgfsysanimkeyevent{}{}{click}{0}{begin}% Begin on a click ...
-  \pgfsysanimkeytime{5}{1}{1}{0}{0} % Timeline starts after 5s
-  \pgfsysanimvalscalar{0} % With a value of 0
-  \pgfsysanimkeytime{8}{1}{1}{0}{0} % Timeline ends after 8s
-  \pgfsysanimvalscalar{0.9} % With a value of 0.9
-  \pgfsysanimate{fillopacity}% ... and the attribute is the fill opacity
-}
-{
-  \pgfsysanimkeywhom{\someid}{}% The id of a later object
-  \pgfsysanimkeyoffset{0}{begin}% Begin right away ...
-  \pgfsysanimkeytime{1}{1}{1}{0}{0} % Timeline starts after 1s
-  \pgfsysanimvalcurrent % With the current value
-  \pgfsysanimkeytime{5}{1}{1}{0}{0} % Timeline ends after 5s
-  \pgfsysanimvaldimension{5pt} % With a value of 5pt
-  \pgfsysanimate{linewidth}% ... and the attribute is the line width
-}
-```
-
 
 ---
 
@@ -3159,22 +1587,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\animationexample#1#2#3{
-  \tikz[fill=blue!25, draw=blue, ultra thick] {
-    \pgfidrefnextuse{\objid}{#1}
-    \pgfsysanimkeywhom{\objid}{#2}
-    \pgfidrefnextuse{\nodeid}{node}
-    \pgfsysanimkeyevent{\nodeid}{}{click}{}{begin}
-    #3
-    \node [font=\scriptsize, circle, fill, draw, align=center]
-      (node) {Click \\ here};
-  }
-}
-```
 
 
 ---
@@ -3186,18 +1598,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimate{opacity}
-}
-```
-
 
 ---
 
@@ -3207,24 +1607,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\foreach \t in {0.5,1,1.5,2} {
-  \pgfsysanimsnapshot{\t}
-  \tikz {
-    \pgfidrefnextuse{\objid}{node}
-    \pgfsysanimkeywhom{\objid}{}
-    \pgfsysanimkeytime{0}{1}{1}{0}{0}
-    \pgfsysanimvalscalar{1}
-    \pgfsysanimkeytime{2}{1}{1}{0}{0}
-    \pgfsysanimvalscalar{0}
-    \pgfsysanimate{opacity}
-    \node (node) [draw = blue, very thick, fill=blue!20, circle] {Hi};
-  }
-}
-```
 
 
 ---
@@ -3236,18 +1618,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimate{opacity}
-}
-```
-
 
 ---
 
@@ -3257,18 +1627,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimate{fillopacity}
-}
-```
 
 
 ---
@@ -3280,18 +1638,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimate{strokeopacity}
-}
-```
-
 
 ---
 
@@ -3301,18 +1647,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltext{hidden}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltext{hidden}
-  \pgfsysanimate{visibility}
-}
-```
 
 
 ---
@@ -3324,18 +1658,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalcolorrgb{0}{0}{0}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalcolorrgb{1}{0}{0}
-  \pgfsysanimate{strokecolor}
-}
-```
-
 
 ---
 
@@ -3345,18 +1667,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalcolorrgb{0}{0}{0}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalcolorrgb{1}{0}{0}
-  \pgfsysanimate{fillcolor}
-}
-```
 
 
 ---
@@ -3368,23 +1678,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{my path}{path}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalpath{\pgfsys@moveto{1cm}{0cm}%
-                     \pgfsys@lineto{1cm}{1cm}%
-                     \pgfsys@lineto{2cm}{0cm}}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalpath{\pgfsys@moveto{1cm}{1cm}%
-                     \pgfsys@lineto{2cm}{1cm}%
-                     \pgfsys@lineto{1cm}{0cm}}
-  \pgfsysanimate{path}
-  \filldraw [ultra thick,draw=blue,fill=blue!20, name=my path]
-    (1,0) -- (1,1) -- (2,0); }
-```
-
 
 ---
 
@@ -3394,40 +1687,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Declare a marker:
-\pgfsys@marker@declare\mymarker{%
-  \pgfscope%
-    \pgfsetcolor{red!75}%
-    \pgfpathmoveto{\pgfpoint{0pt}{5pt}}\pgfpathlineto{\pgfpoint{8pt}{0pt}}%
-    \pgfpathlineto{\pgfpoint{0pt}{0pt}}\pgfpathclose%
-    \pgfusepathqfill%
-  \endpgfscope%
-  \pgfpathmoveto{\pgfpoint{0pt}{5pt}}\pgfpathlineto{\pgfpoint{8pt}{0pt}}%
-  \pgfpathlineto{\pgfpoint{0pt}{-5pt}}\pgfpathclose%
-  \pgfusepathqstroke%
-}%
-\animationexample{my path}{path}{
-  \pgfsysanimkeytipmarkers{\mymarker}{\mymarker}
-  \pgfsysanimkeybase
-  \pgfsysanimvalpath{\pgfsys@moveto{1cm}{0cm}%
-                     \pgfsys@lineto{1cm}{1cm}%
-                     \pgfsys@lineto{2cm}{0cm}}
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalpath{\pgfsys@moveto{1cm}{0cm}%
-                     \pgfsys@lineto{1cm}{1cm}%
-                     \pgfsys@lineto{2cm}{0cm}}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalpath{\pgfsys@moveto{1cm}{1cm}%
-                     \pgfsys@lineto{2cm}{1cm}%
-                     \pgfsys@lineto{1cm}{0cm}}
-  \pgfsysanimate{path}
-  \filldraw [ultra thick,draw=blue,fill=blue!20, name=my path];
-  \path (1,0) (2,1);}
-```
 
 
 ---
@@ -3439,18 +1698,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaldimension{1pt}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaldimension{10pt}
-  \pgfsysanimate{linewidth}
-}
-```
-
 
 ---
 
@@ -3460,18 +1707,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaldash{1pt,10pt}{0pt}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaldash{10pt,3pt}{0pt}
-  \pgfsysanimate{dash}
-}
-```
 
 
 ---
@@ -3483,18 +1718,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaldash{1cm,1pt}{0pt}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaldash{1cm,1pt}{1cm}
-  \pgfsysanimate{dash}
-}
-```
-
 
 ---
 
@@ -3504,18 +1727,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaldash{3pt,1pt}{0pt}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaldash{1pt,3pt}{10pt}
-  \pgfsysanimate{dash}
-}
-```
 
 
 ---
@@ -3527,28 +1738,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\animationcanvasexample#1#2{%
-  \animationexample{ball}{}{%
-    \pgfsysanimkeycanvastransform{#1}{#2}%
-    \pgfsysanimkeytime{0}{1}{1}{0}{0}
-    \pgfsysanimvaltranslate{0cm}{0cm}%
-    \pgfsysanimkeytime{2}{1}{1}{0}{0}
-    \pgfsysanimvaltranslate{1cm}{0cm}%
-    \pgfsysanimate{translate}
-    \fill [ball color=red,name=ball] (1,0) circle [radius=3mm]; }
-  \animationexample{ball}{}{%
-    \pgfsysanimkeycanvastransform{#1}{#2}%
-    \pgfsysanimkeytime{0}{1}{1}{0}{0}
-    \pgfsysanimvalscalar{0}%
-    \pgfsysanimkeytime{2}{1}{1}{0}{0}
-    \pgfsysanimvalscalar{90}%
-    \pgfsysanimate{rotate}
-    \fill [ball color=blue,name=ball] (1,0) circle [radius=3mm]; } }
-```
-
 
 ---
 
@@ -3558,14 +1747,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationcanvasexample
-{}
-{}
-```
 
 
 ---
@@ -3577,14 +1758,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationcanvasexample
-{\pgfsys@transformshift{10mm}{0mm}}
-{\pgfsys@transformshift{-10mm}{0mm}}
-```
-
 
 ---
 
@@ -3594,15 +1767,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationcanvasexample
-{\pgfsys@transformcm{0.5}{0.5}{-0.5}{0.5}
-                    {0pt}{0pt}}
-{}
-```
 
 
 ---
@@ -3614,16 +1778,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationcanvasexample
-{\pgfsys@transformcm{0.5}{0.5}{-0.5}{0.5}
-                    {0pt}{0pt}}
-{\pgfsys@transformcm{1}{-1}{1}{1}
-                    {0pt}{0pt}}
-```
-
 
 ---
 
@@ -3633,18 +1787,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{5mm}{-1cm}
-  \pgfsysanimate{translate}
-}
-```
 
 
 ---
@@ -3656,18 +1798,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscale{1}{1}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscale{0.5}{2}
-  \pgfsysanimate{scale}
-}
-```
-
 
 ---
 
@@ -3677,18 +1807,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{90}
-  \pgfsysanimate{rotate}
-}
-```
 
 
 ---
@@ -3700,18 +1818,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{45}
-  \pgfsysanimate{skewx}
-}
-```
-
 
 ---
 
@@ -3721,24 +1827,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeymovealong{
-    \pgfsyssoftpath@movetotoken{0pt}{0pt}
-    \pgfsyssoftpath@linetotoken{0pt}{-5mm}
-    \pgfsyssoftpath@curvetosupportatoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetosupportbtoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetotoken{-5mm}{-1cm} }
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimate{motion}
-}
-```
 
 
 ---
@@ -3750,25 +1838,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeyrotatealong
-  \pgfsysanimkeymovealong{%
-    \pgfsyssoftpath@movetotoken{0pt}{0pt}%
-    \pgfsyssoftpath@linetotoken{0pt}{-5mm}%
-    \pgfsyssoftpath@curvetosupportatoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetosupportbtoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetotoken{-5mm}{-1cm}}
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimate{motion}
-}
-```
-
 
 ---
 
@@ -3778,26 +1847,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{my view}{view}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalviewbox{-10mm}{-20mm}{10mm}{20mm}%
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalviewbox{15mm}{-15mm}{27mm}{8mm}%
-  \pgfsysanimate{viewbox}
-  \scoped [xshift=2cm] {
-    \draw [red] (-1,-2) rectangle (1,2) node [font=\scriptsize,
-               below left, align=right] {original\\ view\\ box};
-    \scoped [meet={(-1,-2) (1,2)}, name=my view]  {
-      \draw (-5mm,-15mm) rectangle (7mm,8mm)
-        node [font=\scriptsize, align=right, below left]
-          {target\\ view\\ box};
-      \filldraw (0,0) circle [radius=3mm];
-} } }
-```
 
 
 ---
@@ -3809,15 +1858,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsysanimkeytime{10}{0.1}{0.2}{0.3}{0.4}
-\pgfsysanimvalscalar{100}
-\pgfsysanimkeytime{15}{0.5}{0.6}{0.7}{0.8}
-\pgfsysanimvalscalar{200}
-```
-
 
 ---
 
@@ -3827,18 +1867,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrepeat{2.5}
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -3850,18 +1878,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrepeatindefinite
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -3871,18 +1887,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrepeatdur{5}
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -3894,18 +1898,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyoffset{5}{begin}
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -3915,18 +1907,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyevent{\nodeid}{}{mouseup}{}{begin}
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -3938,18 +1918,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyevent{\nodeid}{}{mousedown}{}{begin}
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -3959,18 +1927,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyevent{\nodeid}{}{mouseover}{}{begin}
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -3982,18 +1938,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyevent{\nodeid}{}{mousemove}{}{begin}
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -4003,18 +1947,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyevent{\nodeid}{}{mouseout}{}{begin}
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -4026,32 +1958,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-5mm}
-  \pgfsysanimkeyrepeatdur{5}
-  \pgfsys@new@id{\animationid}
-  \pgfsys@use@id{\animationid}
-  \pgfsysanimate{translate}
-  \global\let\animationid\animationid }
-\tikz {
-  \pgfidrefnextuse{\objid}{other}
-  \pgfsysanimkeyrepeatevent{\animationid}{}{2}{0}{begin}
-  \pgfsysanimkeysnapshotstart{4}
-  \pgfsysanimkeywhom{\objid}{}
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-5mm}
-  \pgfsysanimate{translate}
-  \node [fill=red, text=white, circle] (other) {Other}; }
-```
-
 
 ---
 
@@ -4061,19 +1967,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyaccesskey{s}{}{begin}
-  \pgfsysanimate{translate}
-}
-```
 
 
 ---
@@ -4085,18 +1978,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrestartalways
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -4106,18 +1987,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrestartnever
-  \pgfsysanimate{translate} }
-```
 
 
 ---
@@ -4129,18 +1998,6 @@ return BindingToASCII
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyrestartwhennotactive
-  \pgfsysanimate{translate} }
-```
-
 
 ---
 
@@ -4150,18 +2007,6 @@ return BindingToASCII
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyfreezeatend
-  \pgfsysanimate{translate} }
-```
 
 
 ---

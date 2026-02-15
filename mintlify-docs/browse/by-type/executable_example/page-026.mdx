@@ -18,12 +18,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph { a ->[edge node={node[red,auto]{1}}] b ->[edge label=0] c };
-```
-
 
 ---
 
@@ -33,13 +27,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\let\mycharacter="
-\meaning\mycharacter
-```
 
 
 ---
@@ -51,21 +38,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character "/.initial=\myquotemacro,
-  /handlers/first char syntax/the character </.initial=\mypointedmacro,
-}
-
-\def\myquotemacro#1{Quoted: #1. }
-\def\mypointedmacro#1{Pointed: #1. }
-
-\ttfamily \pgfkeys{"foo", <bar>}
-```
-
 
 ---
 
@@ -75,19 +47,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character '/.initial=\mysinglequotemacro
-}
-
-\def\mysinglequotemacro#1{\pgfkeysalso{label={#1}}}
-
-\tikz \node [circle, 'foo', draw] {bar};
-```
 
 
 ---
@@ -99,27 +58,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-  /handlers/first char syntax=true,
-  /handlers/first char syntax/the character (/.initial=\myparamacro
-}
-
-\def\myparamacro#1{\myparaparser#1\someendtext}
-\def\myparaparser(#1)#2\someendtext{
-  \pgfmathparse{#1}
-  \ifx\pgfmathresult\onetext
-    \pgfkeysalso{#2}
-  \fi
-}
-\def\onetext{1}
-
-\foreach \i in {1,...,4}
-  \tikz \node [draw, thick, rectangle, (pi>\i) circle, (pi>\i*2) draw=red] {x};
-```
-
 
 ---
 
@@ -129,16 +67,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\mystore#1+#2\pgfeov{\def\a{#1}\def\b{#2}}
-\pgfkeyslet{/my key/.@cmd}{\mystore}
-\pgfkeys{/my key=hello+world}
-
-|\a| is `\a', |\b| is `\b'.
-```
 
 
 ---
@@ -150,13 +78,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeysdef{/my key}{#1, #1.}
-\pgfkeys{/my key=hello}
-```
-
 
 ---
 
@@ -166,17 +87,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeysdefnargs{/my key}{2}{\def\a{#1}\def\b{#2}}
-\pgfkeys{/my key=
-    {hello}
-    {world}}
-
-|\a| is `\a', |\b| is `\b'.
-```
 
 
 ---
@@ -188,15 +98,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeysdefargs{/my key}{#1+#2}{\def\a{#1}\def\b{#2}}
-\pgfkeys{/my key=hello+world}
-
-|\a| is `\a', |\b| is `\b'.
-```
-
 
 ---
 
@@ -206,19 +107,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeysdef{/handlers/.print to log}
-{%
-  \pgfkeysgetvalue{\pgfkeyscurrentpath}{\temp}
-  \writetolog{\temp}
-}
-\pgfkeyssetvalue{/my key}{Hi!}
-...
-\pgfkeys{/my key/.print to log}
-```
 
 
 ---
@@ -230,14 +118,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeysdef{/handlers/.my code}{\pgfkeysdef{\pgfkeyscurrentpath}{#1}}
-\pgfkeys{/my key/.my code=(#1)}
-\pgfkeys{/my key=hallo}
-```
-
 
 ---
 
@@ -247,32 +127,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Define a test key and error handlers:
-\pgfkeys{/the/key/.code={Initial definition. }}
-\pgfkeys{/handlers/.unknown/.code={Unknown key `\pgfkeyscurrentkey'. }}
-
-% calling the test key yields 'Initial definition. ':
-\pgfkeys{/the/key}
-
-% Change configuration:
-\pgfkeys{/handler config=only existing}
-
-% allowed: key *re*-definition:
-\pgfkeys{/the/key/.code={Re-Definition. }}
-% calling the key yields 'Re-Definition. ':
-\pgfkeys{/the/key}
-
-% not allowed: definition of new keys:
-% this checks for '/the/other key/.unknown'
-% and '/handlers/.unknown'
-% and yields finally
-% 'Unknown key `/the/other key/.code`'
-\pgfkeys{/the/other key/.code={New definition. }}
-```
 
 
 ---
@@ -284,22 +138,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my search path/.unknown/.code=
-  {%
-    \let\searchname=\pgfkeyscurrentname%
-    \pgfkeysalso{%
-      /a/\searchname/.try=#1,
-      /b/\searchname/.retry=#1,
-      /b/c/\searchname/.retry=#1%
-    }%
-  }%
-}
-\pgfkeys{/my search path/.cd,foo,bar}
-```
-
 
 ---
 
@@ -309,12 +147,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/my search path/.cd,custom/.style={variables}}
-```
 
 
 ---
@@ -326,39 +158,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my search path/.unknown/.code=
-  {%
-    \let\searchname=\pgfkeyscurrentname%
-    \pgfkeysalso{%
-      /a/\searchname/.try=#1,
-      /b/\searchname/.retry=#1,
-      /b/c/\searchname/.retry=#1%
-    }%
-  }%
-}
-
-% Let's define /b/custom here:
-\pgfkeys{/b/custom/.code={This is `\pgfkeyscurrentkey'. }}
-
-% Reconfigure treatment of key handlers:
-\pgfkeys{/handler config=only existing}
-
-% The search path procedure will find /b/custom
-% -> leads to This is `/b/custom'
-\pgfkeys{/my search path/.cd,custom}
-
-% Due to the reconfiguration, this will find /b/custom instead of
-% defining /my search path/custom:
-\pgfkeys{/my search path/.cd,custom/.append code={Modified. }}
-
-% So using the search path, we again find /b/custom which
-% leads to This is `/b/custom' Modified
-\pgfkeys{/my search path/.cd,custom}
-```
-
 
 ---
 
@@ -368,13 +167,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/tikz/.is family}
-\pgfkeys{tikz,line width=1cm}
-```
 
 
 ---
@@ -386,16 +178,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my key/.code=I do not want an argument!}
-\pgfkeys{/my key/.value forbidden}
-
-\pgfkeys{/my key}     % Ok
-\pgfkeys{/my key=foo} % Error
-```
-
 
 ---
 
@@ -405,15 +187,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/par indent/.code={\parindent=#1},/par indent/.default=2em}
-\pgfkeys{/par indent=1cm}
-...
-\pgfkeys{/par indent}
-```
 
 
 ---
@@ -425,13 +198,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/page size/.code 2 args={\paperheight=#2\paperwidth=#1}}
-\pgfkeys{/page size={30cm}{20cm}}
-```
-
 
 ---
 
@@ -441,13 +207,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/a key/.code n args={2}{First=`#1', Second=`#2'}}
-\pgfkeys{/a key={A}{B}}
-```
 
 
 ---
@@ -459,13 +218,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/page size/.code args={#1 and #2}{\paperheight=#2\paperwidth=#1}}
-\pgfkeys{/page size=30cm and 20cm}
-```
-
 
 ---
 
@@ -475,17 +227,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/par indent/.code={\parindent=#1}}
-\newdimen\myparindent
-\pgfkeys{/par indent/.add code={}{\myparindent=#1}}
-...
-\pgfkeys{/par indent=1cm} % This will set both \parindent and
-                          % \myparindent to 1cm
-```
 
 
 ---
@@ -497,17 +238,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/par indent/.code={\parindent=#1}}
-\pgfkeys{/no indent/.style={/par indent=0pt}}
-\pgfkeys{/normal indent/.style={/par indent=2em}}
-\pgfkeys{/no indent}
-...
-\pgfkeys{/normal indent}
-```
-
 
 ---
 
@@ -517,15 +247,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[outline/.style={draw=#1,fill=#1!20}]
-  \node [outline=red]            {red box};
-  \node [outline=blue] at (0,-1) {blue box};
-\end{tikzpicture}
-```
 
 
 ---
@@ -537,14 +258,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/paper height/.code={\paperheight=#1},/paper width/.code={\paperwidth=#1}}
-\pgfkeys{/page size/.style 2 args={/paper height=#1,/paper width=#2}}
-\pgfkeys{/page size={30cm}{20cm}}
-```
-
 
 ---
 
@@ -554,16 +267,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/par indent/.code={\parindent=#1}}
-\pgfkeys{/par indent/.add style={}{/my key=#1}}
-...
-\pgfkeys{/par indent=1cm} % This will set \parindent and
-                          % then execute /my key=#1
-```
 
 
 ---
@@ -575,15 +278,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my key/.initial=red}
-% "/my key" now stores the value "red"
-\pgfkeys{/my key=blue}
-% "/my key" now stores the value "blue"
-```
-
 
 ---
 
@@ -593,16 +287,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/my key/.initial=red}
-\pgfkeys{/my key/.code=#1}
-% "/my key" now both stores the value "red" and executes commands
-\pgfkeys{/my key=blue}
-% "/my key" now still stores the value "red"
-```
 
 
 ---
@@ -614,15 +298,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my key/.initial=red}
-\pgfkeys{/my key=blue}
-\pgfkeys{/my key/.get=\mymacro}
-\mymacro
-```
-
 
 ---
 
@@ -632,16 +307,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/text/.store in=\mytext}
-\def\a{world}
-\pgfkeys{/text=Hello \a!}
-\def\a{Gruffalo}
-\mytext
-```
 
 
 ---
@@ -653,16 +318,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/text/.estore in=\mytext}
-\def\a{world}
-\pgfkeys{/text=Hello \a!}
-\def\a{Gruffalo}
-\mytext
-```
-
 
 ---
 
@@ -672,19 +327,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newif\iftheworldisflat
-\pgfkeys{/flat world/.is if=theworldisflat}
-\pgfkeys{/flat world=false}
-\iftheworldisflat
-  Flat
-\else
-  Round?
-\fi
-```
 
 
 ---
@@ -696,18 +338,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/line cap/.is choice}
-\pgfkeys{/line cap/round/.code={\pgfsetroundcap}}
-\pgfkeys{/line cap/butt/.code={\pgfsetbuttcap}}
-\pgfkeys{/line cap/rect/.code={\pgfsetrectcap}}
-\pgfkeys{/line cap/rectangle/.style={/line cap=rect}}
-...
-\draw [/line cap=butt] ...
-```
-
 
 ---
 
@@ -717,30 +347,6 @@ Showing items **5201-5325** of **5325** | Page **27** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\a{bottom}
-\def\b{\a}
-\def\c{\b}
-
-\pgfkeys{/key1/.initial=\c}
-\pgfkeys{/key2/.initial/.expand once=\c}
-\pgfkeys{/key3/.initial/.expand twice=\c}
-\pgfkeys{/key4/.initial/.expanded=\c}
-
-\def\a{{\ttfamily\string\a}}
-\def\b{{\ttfamily\string\b}}
-\def\c{{\ttfamily\string\c}}
-
-\begin{tabular}{ll}
-Key 1:& \pgfkeys{/key1} \\
-Key 2:& \pgfkeys{/key2} \\
-Key 3:& \pgfkeys{/key3} \\
-Key 4:& \pgfkeys{/key4}
-\end{tabular}
-```
 
 
 ---
@@ -752,15 +358,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-  /golden ratio/.initial/.evaluated={(1 + sqrt(5))/2},
-}
-\pgfkeys{/golden ratio}
-```
-
 
 ---
 
@@ -770,13 +367,6 @@ Key 4:& \pgfkeys{/key4}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/foo/.code=(#1)}
-\pgfkeys{/foo/.list={a,b,0,1,...,5}}
-```
 
 
 ---
@@ -788,18 +378,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-  /a/.code=(a:#1),
-  /b/.code=(b:#1),
-  /b/.forward to=/a,
-  /c/.forward to=/a
-}
-\pgfkeys{/b=1} \pgfkeys{/c=2}
-```
-
 
 ---
 
@@ -809,20 +387,6 @@ Key 4:& \pgfkeys{/key4}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% define a key:
-\pgfkeys{/secondary path/option/.code={Invoking /secondary path/option with `#1'}}
-
-% set up a search path:
-\pgfkeys{/main path/.search also={/secondary path}}
-
-% try searching for `option=value' in '/main path':
-% -> this finds `/secondary path/option'!
-\pgfkeys{/main path/.cd,option=value}
-```
 
 
 ---
@@ -834,26 +398,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% define a key:
-\pgfkeys{/secondary path/option/.code={Invoking /secondary path/option with `#1'}}
-
-% set up a search path:
-\pgfkeys{/main path/.search also={/secondary path}}
-
-% try searching for `option=value' in '/main path':
-% -> this finds `/secondary path/option'!
-\pgfkeys{/main path/.cd,option=value}
-
-% negative example:
-% try searching for fully qualified key /main path/option.
-% This won't be handled by .search also.
-\pgfkeys{/handlers/.unknown/.code={Found unknown option \pgfkeyscurrentkeyRAW={#1}!}}%
-\pgfkeys{/main path/.cd,/main path/option=value}
-```
-
 
 ---
 
@@ -863,34 +407,6 @@ Key 4:& \pgfkeys{/key4}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/path/.unknown/.code={%
-        \def\pgfkeys@searchalso@temp@value{#1}%
-        \ifpgfkeysaddeddefaultpath
-            \expandafter\pgfkeys@firstoftwo
-        \else
-            \expandafter\pgfkeys@secondoftwo
-        \fi{%
-            % only process keys for which no full path has been
-            % provided:
-            \pgfkeyssuccessfalse
-            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
-            \ifpgfkeyssuccess
-            \else
-                % search with /tikz as default path:
-                \pgfqkeys{/tikz}{\pgfkeys@searchalso@name/.expand once=%
-                  \pgfkeys@searchalso@temp@value}%
-            \fi
-        }{%
-            \pgfkeysgetvalue{/handlers/.unknown/.@cmd}{\pgfkeys@code}%
-            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
-        }%
-    }
-}
-```
 
 
 ---
@@ -902,37 +418,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/path/.unknown/.code={%
-        \def\pgfkeys@searchalso@temp@value{#1}%
-        \ifpgfkeysaddeddefaultpath
-            \expandafter\pgfkeys@firstoftwo
-        \else
-            \expandafter\pgfkeys@secondoftwo
-        \fi{%
-            \pgfkeyssuccessfalse
-            \let\pgfkeys@searchalso@name=\pgfkeyscurrentkeyRAW
-            \ifpgfkeyssuccess
-            \else
-                % step 1: search in /tikz with .try:
-                \pgfqkeys{/tikz}{\pgfkeys@searchalso@name/.try/.expand once=%
-                  \pgfkeys@searchalso@temp@value}%
-            \fi
-            \ifpgfkeyssuccess
-            \else
-                % step 2: search in /pgf (without .try!):
-                \pgfqkeys{/pgf}{\pgfkeys@searchalso@name/.expand once=\pgfkeys@searchalso@}%
-            \fi
-        }{%
-            \pgfkeysgetvalue{/handlers/.unknown/.@cmd}{\pgfkeys@code}%
-            \expandafter\pgfkeys@code\pgfkeys@searchalso@temp@value\pgfeov
-        }%
-    }
-}
-```
-
 
 ---
 
@@ -942,14 +427,6 @@ Key 4:& \pgfkeys{/key4}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-   /main path/.search also={/secondary path},
-   /handler config=full or existing}
-```
 
 
 ---
@@ -961,14 +438,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/a/.code=(a:#1)}
-\pgfkeys{/b/.code=(b:#1)}
-\pgfkeys{/x/.try=hmm,/a/.try=hallo,/b/.try=welt}
-```
-
 
 ---
 
@@ -978,14 +447,6 @@ Key 4:& \pgfkeys{/key4}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/a/.code=(a:#1)}
-\pgfkeys{/b/.code=(b:#1)}
-\pgfkeys{/x/.try=hmm,/a/.retry=hallo,/b/.retry=welt}
-```
 
 
 ---
@@ -997,16 +458,6 @@ Key 4:& \pgfkeys{/key4}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-x, y, z
-0, 0, 0
-1, 1, 0
-1, 1, 0.5
-0, 1, 0.5
-```
-
 
 ---
 
@@ -1016,16 +467,6 @@ x, y, z
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-angle, radius
-0, 1
-45, 2
-90, 3
-135, 4
-```
 
 
 ---
@@ -1037,26 +478,6 @@ angle, radius
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as line]
-    data [separator=\space] {
-      x y
-      0 0
-      1 1
-      2 1
-      3 0
-    }
-    data [separator=;] {
-      x; y; z
-      3; 1; 0
-      2; 2; 0
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1066,20 +487,6 @@ angle, radius
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as line]
-    data [headline={x, y}] {
-      0, 0
-      1, 1
-      2, 1
-      3, 0
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -1091,20 +498,6 @@ angle, radius
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as line]
-    data [format=named] {
-      x=0, y=0
-      x=1, y=1
-      x=2, y=1
-      x=3, y=0
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1114,20 +507,6 @@ angle, radius
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-  [scientific axes=clean,
-   visualize as scatter/.list={a,b,c},
-   style sheet=cross marks]
-data [format=named] {
-  x=0,       y={1,2,3},        set=a
-  x={2,3,4}, y={3,4,5,7},      set=b
-  x=6,       y={5,7,...,15},   set=c
-};
-```
 
 
 ---
@@ -1139,21 +518,6 @@ data [format=named] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization [school book axes, visualize as line]
-    data [format=TeX code] {
-      \pgfkeys{/data point/.cd,x=0, y=0} \pgfdatapoint
-      \pgfkeys{/data point/.cd,x=1, y=1} \pgfdatapoint
-      \pgfkeys{/data point/x=2}          \pgfdatapoint
-      \pgfkeyssetvalue{/data point/x}{3}
-      \pgfkeyssetvalue{/data point/y}{0} \pgfdatapoint
-    };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1163,18 +527,6 @@ data [format=named] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \datavisualization [school book axes, visualize as smooth line]
-    data [format=function] {
-      var x : interval [-1.5:1.5];
-
-      func y = \value x * \value x;
-    };
-```
 
 
 ---
@@ -1186,21 +538,6 @@ data [format=named] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes,
-  all axes={unit length=5mm, ticks={step=2}},
-  visualize as smooth line]
-data [format=function] {
-  var t : interval [0:2*pi];
-
-  func x = \value t * cos(\value t r);
-  func y = \value t * sin(\value t r);
-};
-```
-
 
 ---
 
@@ -1210,25 +547,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes=clean,
-  y axis={ticks={style={
-        /pgf/number format/fixed,
-        /pgf/number format/fixed zerofill,
-        /pgf/number format/precision=2}}},
-  x axis={ticks={tick suffix=${}^\circ$}},
-  visualize as smooth line/.list={1,2,3,4,5,6},
-  style sheet=vary hue]
-data [format=function] {
-  var set : {1,...,6};
-  var x : interval [0:50];
-  func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-};
-```
 
 
 ---
@@ -1240,14 +558,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% Data is read from two external files:
-\pgfdata[format=table, read from file=file1.csv]
-\pgfdata[format=table, read from file=file2.csv]
-```
-
 
 ---
 
@@ -1257,18 +567,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Data is given inline:
-\pgfdata[format=table]
-{
-  x, y
-  1, 2
-  2, 3
-}
-```
 
 
 ---
@@ -1280,17 +578,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-# This is some data formatted according to the "coordinates" format
-(0,0)
-(0.5,0.25)
-(1,1)
-(1.5,2.25)
-(2,4)
-```
-
 
 ---
 
@@ -1300,32 +587,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclaredataformat{coordinates}
-% First comes the catcode argument. We turn the hash mark into a comment character.
-{\catcode`\#=14\relax}
-% Second comes the startup code. Since we do not need to setup things, we can leave
-% it empty. Note that we could also set it to something like \begingroup, provided we
-% put an \endgroup in the end code
-{}
-% Now comes the arguments for non-empty lines. Well, these should be of the form
-% (#1,#2), so we specify that:
-{(#1,#2)}
-% Now we must do something with a line of this form. We store the #1 argument in
-% /data point/x and #2 in /data point/y. Then we call \pgfdatapoint to create a data point.
-{
-  \pgfkeyssetvalue{/data point/x}{#1}
-  \pgfkeyssetvalue{/data point/y}{#2}
-  \pgfdatapoint
-}
-% We ignore empty lines:
-{}
-% And we also have no end-of-line code.
-{}
-```
 
 
 ---
@@ -1337,23 +598,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \datavisualization[school book axes, visualize as smooth line]
-  data [format=coordinates] {
-    # This is some data formatted according
-    # to the "coordinates" format
-    (0,0)
-    (0.5,0.25)
-    (1,1)
-    (1.5,2.25)
-    (2,4)
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1363,25 +607,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (4,3);
-  {
-    \pgftransformshift{\pgfpoint{1.5cm}{1cm}}
-    \pgfnode{rectangle}{north}{Hello World}{hellonode}{\pgfusepath{stroke}}
-  }
-  {
-    \color{red!20}
-    \pgftransformrotate{10}
-    \pgftransformshift{\pgfpoint{3cm}{1cm}}
-    \pgfnode{rectangle}{center}
-      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
-  }
-\end{tikzpicture}
-```
 
 
 ---
@@ -1393,22 +618,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (4,3);
-  {
-    \color{red!20}
-    \pgftransformrotate{10}
-    \pgftransformshift{\pgfpoint{3cm}{1cm}}
-    \pgftransformresetnontranslations
-    \pgfnode{rectangle}{center}
-      {\color{black}Hello World}{hellonode}{\pgfusepath{fill}}
-  }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1418,16 +627,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\setbox\pgfnodeparttextbox=\hbox{$q_1$}
-\setbox\pgfnodepartlowerbox=\hbox{01}
-\begin{pgfpicture}
-  \pgfmultipartnode{circle split}{center}{my state}{\pgfusepath{stroke}}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1439,13 +638,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\newbox\pgfnodepartlowerbox
-\let\pgfnodepartmethodsbox=\pgfnodepartlowerbox
-```
-
 
 ---
 
@@ -1455,13 +647,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newbox\mybox
-\expandafter\let\csname pgfnodepartclass namebox\endcsname=\mybox
-```
 
 
 ---
@@ -1473,17 +658,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (-2,0) grid (2,1);
-
-  \pgfset{minimum width=3cm}
-  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1493,17 +667,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (-2,0) grid (2,1);
-
-  \pgfset{inner xsep=1cm}
-  \pgfnode{rectangle}{center}{Hello World}{}{\pgfusepath{stroke}}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1515,24 +678,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (-2,0) grid (2,1);
-
-  \pgfset{outer xsep=.5cm}
-  \pgfnode{rectangle}{center}{Hello World}{x}{\pgfusepath{stroke}}
-
-  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
-  \pgfusepath{fill}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1542,39 +687,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\newbox\mybox
-
-\def\mysaver{
-  \global\setbox\mybox=\box\pgfpositionnodelaterbox
-  \global\let\myname=\pgfpositionnodelatername
-  \global\let\myminx=\pgfpositionnodelaterminx
-  \global\let\myminy=\pgfpositionnodelaterminy
-  \global\let\mymaxx=\pgfpositionnodelatermaxx
-  \global\let\mymaxy=\pgfpositionnodelatermaxy
-}
-
-\begin{tikzpicture}
-  {
-    \pgfpositionnodelater{\mysaver}
-    \node [fill=blue!20,below,rotate=30] (hi) {Hello world};
-  }
-  \draw [help lines] (0,0) grid (3,2);
-
-  \let\pgfpositionnodelatername=\myname
-  \let\pgfpositionnodelaterminx=\myminx
-  \let\pgfpositionnodelaterminy=\myminy
-  \let\pgfpositionnodelatermaxx=\mymaxx
-  \let\pgfpositionnodelatermaxy=\mymaxy
-  \setbox\pgfpositionnodelaterbox=\box\mybox
-  \pgfpositionnodenow{\pgfqpoint{2cm}{2cm}}
-
-  \draw (hi) -- (0,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -1586,22 +698,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgftransformrotate{30}
-  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
-
-  \pgfpathcircle{\pgfpointanchor{x}{north}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{south}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{east}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{west}}{2pt}
-  \pgfpathcircle{\pgfpointanchor{x}{north east}}{2pt}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -1611,24 +707,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgftransformrotate{30}
-  \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
-
-  {
-    \pgftransformreset
-    \pgfpointanchor{x}{east}
-    \xdef\mycoordinate{\noexpand\pgfpoint{\the\pgf@x}{\the\pgf@y}}
-  }
-
-  \pgfpathcircle{\mycoordinate}{2pt}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1640,22 +718,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \begin{pgfscope}
-    \pgftransformrotate{30}
-    \pgfnode{rectangle}{center}{Hello World!}{x}{\pgfusepath{stroke}}
-  \end{pgfscope}
-  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{2cm}{1cm}}}{2pt}
-  \pgfpathcircle{\pgfpoint{2cm}{1cm}}{2pt}
-  \pgfpathcircle{\pgfpointshapeborder{x}{\pgfpoint{-1cm}{1cm}}}{2pt}
-  \pgfpathcircle{\pgfpoint{-1cm}{1cm}}{2pt}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -1665,12 +727,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfpointanchor{current bounding box}{south east}
-```
 
 
 ---
@@ -1682,22 +738,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfrememberpicturepositiononpagetrue
-\begin{pgfpicture}
-  \pgfusepath{use as bounding box}
-  \pgftransformshift{\pgfpointanchor{current page}{south west}}
-  \pgftransformshift{\pgfpoint{1cm}{1cm}}
-  \pgftext[left,base]{
-    \textcolor{red}{
-      Text absolutely positioned in
-      the lower left corner.}
-  }
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -1707,19 +747,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  { [local bounding box=outer box]
-    \draw (1,1) circle (.5) [local bounding box=inner box] (2,2) circle (.5);
-  }
-  \draw      (outer box.south west) rectangle (outer box.north east);
-  \draw[red] (inner box.south west) rectangle (inner box.north east);
-\end{tikzpicture}
-```
 
 
 ---
@@ -1731,21 +758,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareshape{coordinate}
-{
-  \savedanchor\centerpoint{%
-    \pgf@x=.5\wd\pgfnodeparttextbox%
-    \pgf@y=.5\ht\pgfnodeparttextbox%
-    \advance\pgf@y by -.5\dp\pgfnodeparttextbox%
-  }
-  \anchor{center}{\centerpoint}
-  \anchorborder{\centerpoint}
-}
-```
-
 
 ---
 
@@ -1755,14 +767,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclareshape{simple rectangle}{
-  ...
-}
-```
 
 
 ---
@@ -1774,15 +778,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\savedanchor{\upperrightcorner}{
-  \pgf@y=.5\ht\pgfnodeparttextbox % height of the box, ignoring the depth
-  \pgf@x=.5\wd\pgfnodeparttextbox % width of the box
-}
-```
-
 
 ---
 
@@ -1792,19 +787,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\savedanchor{\upperrightcorner}{
-  \pgf@y=.\ht\pgfnodeparttextbox % height of the box
-  \pgf@x=.\wd\pgfnodeparttextbox % width of the box
-  \setlength{\pgf@xa}{\pgfshapeminwidth}
-  \ifdim\pgf@x<.5\pgf@xa
-    \pgf@x=.5\pgf@xa
-  \fi
-}
-```
 
 
 ---
@@ -1816,14 +798,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\saveddimen{\depth}{
-  \pgf@x=\dp\pgfnodeparttextbox
-}
-```
-
 
 ---
 
@@ -1833,12 +807,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\savedmacro{\sides}{\let\sides\pgfpolygonsides}
-```
 
 
 ---
@@ -1850,12 +818,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\anchor{north east}{\upperrightcorner}
-```
-
 
 ---
 
@@ -1865,15 +827,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\anchor{north west}{
-  \upperrightcorner
-  \pgf@x=-\pgf@x
-}
-```
 
 
 ---
@@ -1885,12 +838,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\anchor{center}{\pgfpointorigin}
-```
-
 
 ---
 
@@ -1900,16 +847,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\anchor{text}{%
-  \upperrightcorner%
-  \pgf@x=-\pgf@x%
-  \pgf@y=-\pgf@y%
-}
-```
 
 
 ---
@@ -1921,12 +858,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\anchor{text}{\pgfpoint{-.5\wd\pgfnodeparttextbox}{-.5\ht\pgfnodeparttextbox}}
-```
-
 
 ---
 
@@ -1936,30 +867,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\makeatletter
-\def\foo{foo}
-\pgfdeclareshape{simple shape}{%
-  \savedanchor{\center}{%
-    \pgfpointorigin}
-  \anchor{center}{\center}
-  \savedanchor{\anchorfoo}{%
-    \pgf@x=1cm
-    \pgf@y=0cm}
-  \deferredanchor{anchor \foo}{\anchorfoo}}
-
-\begin{tikzpicture}
-  \node[simple shape] (Test1) at (0,0) {};
-  \fill (Test1.anchor foo) circle (2pt) node[below] {anchor foo anchor};
-  %
-  \def\foo{bar}
-  \node[simple shape] (Test2) at (2,2) {};
-  \fill (Test2.anchor bar) circle (2pt) node[below] {anchor bar anchor};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1971,19 +878,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\anchorborder{%
-  % Call a function that computes a border point. Since this
-  % function will modify dimensions like \pgf@x, we must move them to
-  % other dimensions.
-  \@tempdima=\pgf@x
-  \@tempdimb=\pgf@y
-  \pgfpointborderrectangle{\pgfpoint{\@tempdima}{\@tempdimb}}{\upperrightcorner}
-}
-```
-
 
 ---
 
@@ -1993,16 +887,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\backgroundpath{
-  \pgfpathrectanglecorners
-    {\upperrightcorner}
-    {\pgfpointscale{-1}{\upperrightcorner}}
-}
-```
 
 
 ---
@@ -2014,48 +898,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\pgfdeclareshape{document}{
-  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
-  \inheritanchorborder[from=rectangle]
-  \inheritanchor[from=rectangle]{center}
-  \inheritanchor[from=rectangle]{north}
-  \inheritanchor[from=rectangle]{south}
-  \inheritanchor[from=rectangle]{west}
-  \inheritanchor[from=rectangle]{east}
-  % ... and possibly more
-  \backgroundpath{% this is new
-    % store lower right in xa/ya and upper right in xb/yb
-    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
-    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
-    % compute corner of ``flipped page''
-    \pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
-    \pgf@yc=\pgf@yb \advance\pgf@yc by-5pt
-    % construct main path
-    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
-    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
-    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yb}}
-    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
-    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
-    \pgfpathclose
-    % add little corner
-    \pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@yb}}
-    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
-    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
-    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
- }
-}\hskip-1.2cm
-\begin{tikzpicture}
-  \node[shade,draw,shape=document,inner sep=2ex] (x) {Remark};
-  \node[fill=yellow!80!black,draw,ellipse,double]
-    at ([shift=(-80:3cm)]x) (y) {Use Case};
-
-  \draw[dashed] (x) -- (y);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2065,17 +907,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2087,17 +918,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2107,19 +927,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{stroke,clip}
-  \pgfpathcircle{\pgfpoint{1cm}{1cm}}{0.5cm}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2131,21 +938,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetlinewidth{1mm}
-  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
-  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
-  \pgfusepath{stroke}
-  \pgfsetlinewidth{2\pgflinewidth} % double in size
-  \pgfpathmoveto{\pgfpoint{0mm}{5mm}}
-  \pgfpathlineto{\pgfpoint{2cm}{5mm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2155,25 +947,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0cm}
-  \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
-  \pgfpathlineto{\pgfpoint{2cm}{0mm}}
-  \pgfusepath{stroke}
-  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.1cm}
-  \pgfpathmoveto{\pgfpoint{0mm}{1mm}}
-  \pgfpathlineto{\pgfpoint{2cm}{1mm}}
-  \pgfusepath{stroke}
-  \pgfsetdash{{0.5cm}{0.5cm}{0.1cm}{0.2cm}}{0.2cm}
-  \pgfpathmoveto{\pgfpoint{0mm}{2mm}}
-  \pgfpathlineto{\pgfpoint{2cm}{2mm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2185,20 +958,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetlinewidth{1pt}
-  \color{red}
-  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
-  \pgfsetstrokecolor{black}
-  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
-  \color{red}
-  \pgfpathcircle{\pgfpoint{2cm}{0cm}}{3mm} \pgfusepath{fill,stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2208,19 +967,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfsetlinewidth{2pt}
-  \pgfsetinnerlinewidth{1pt}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2232,20 +978,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{1cm}}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfsetlinewidth{2pt}
-  \pgfsetinnerlinewidth{1pt}
-  \pgfsetinnerstrokecolor{red!50}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2255,21 +987,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetarrowsstart{Latex[length=10pt]}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{stroke}
-  \pgfsetarrowsstart{Computer Modern Rightarrow}
-  \pgfpathmoveto{\pgfpoint{0cm}{2mm}}
-  \pgfpathlineto{\pgfpoint{1cm}{2mm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2281,18 +998,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetarrowsstart{Latex[length=10pt]}
-  \pgfsetarrowsend{Computer Modern Rightarrow}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2302,17 +1007,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetarrows{Latex[length=10pt]->>}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{1cm}{0cm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2324,20 +1018,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathcircle{\pgfpointorigin}{5mm}
-  \pgfusepath{stroke}
-  \pgfsetarrows{Latex-}
-  \pgfsetshortenstart{4pt}
-  \pgfpathmoveto{\pgfpoint{5mm}{0cm}} % would be on the circle
-  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2347,17 +1027,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfseteorule
-  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
-  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
 
 
 ---
@@ -2369,17 +1038,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetnonzerorule
-  \pgfpathcircle{\pgfpoint{0mm}{0cm}}{7mm}
-  \pgfpathcircle{\pgfpoint{5mm}{0cm}}{7mm}
-  \pgfusepath{fill}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2389,20 +1047,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-Left
-\begin{pgfpicture}
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
-  \pgfusepath{use as bounding box} % draws nothing
-
-  \pgfpathcircle{\pgfpointorigin}{2ex}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-right.
-```
 
 
 ---
@@ -2414,36 +1058,6 @@ right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[baseline]
-  \datavisualization [
-    school book axes,
-    visualize as smooth line,
-    clean ticks,
-    all axes={grid={step=1,minor steps between steps=1}},
-    x axis={
-      ticks={
-        major={
-          also at={(0.5*pi) as $\pi/2$},
-          also at={(pi) as $\pi$},
-          options at=3 as [no tick text]
-        }
-      },
-      label=$x$
-    },
-    y axis={
-      label=$y$,
-    }
-  ]
-  data [format=function] {
-    var x : interval [-0.5*pi:4] samples 50;
-    func y = sin(\value x r);
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2453,31 +1067,6 @@ right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[baseline]
-  \datavisualization [
-    scientific axes=clean,
-    visualize as line,
-    all axes={padding=4pt},
-    x axis={logarithmic,
-      ticks={many, tick unit={ms},
-        node style={rotate=45,anchor=north east}},
-      label={time},
-      grid},
-    y axis={label={distance}},
-  ]
-  data {
-    x, y, z
-    0.001, 0, 0
-    2000, 2.23, 2
-    20670, 1, 3
-    501, -2, 0
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2489,35 +1078,6 @@ right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[baseline,mark=*]
-  \datavisualization [
-    scientific axes=inner ticks,
-    all axes={padding=4pt},
-    euro about strategy,
-    visualize as scatter,
-    x axis={attribute=x2},
-    y axis={attribute=y2}
-  ]
-  data [separator=\space] {
-x       y       x1      y1      x2      y2      x3      y3
-10.0    8.04    10.0    9.14    10.0    7.46    8.0     6.58
-8.0     6.95    8.0     8.14    8.0     6.77    8.0     5.76
-13.0    7.58    13.0    8.74    13.0    12.74   8.0     7.71
-9.0     8.81    9.0     8.77    9.0     7.11    8.0     8.84
-11.0    8.33    11.0    9.26    11.0    7.81    8.0     8.47
-14.0    9.96    14.0    8.10    14.0    8.84    8.0     7.04
-6.0     7.24    6.0     6.13    6.0     6.08    8.0     5.25
-4.0     4.26    4.0     3.10    4.0     5.39    19.0    12.50
-12.0    10.84   12.0    9.13    12.0    8.15    8.0     5.56
-7.0     4.82    7.0     7.26    7.0     6.42    8.0     7.91
-5.0     5.68    5.0     4.74    5.0     5.73    8.0     6.89
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2527,13 +1087,6 @@ x       y       x1      y1      x2      y2      x3      y3
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [even odd rule]
-  \draw [general shadow={fill=red}] (0,0) circle (.5) (0.5,0) circle (.5);
-```
 
 
 ---
@@ -2545,14 +1098,6 @@ x       y       x1      y1      x2      y2      x3      y3
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [even odd rule]
-  \draw [general shadow={fill=red,shadow scale=1.25}]
-    (0,0) circle (.5) (0.5,0) circle (.5);
-```
-
 
 ---
 
@@ -2562,14 +1107,6 @@ x       y       x1      y1      x2      y2      x3      y3
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [even odd rule]
-  \draw [general shadow={fill=red,shadow xshift=-5pt}]
-    (0,0) circle (.5) (0.5,0) circle (.5);
-```
 
 
 ---
@@ -2581,13 +1118,6 @@ x       y       x1      y1      x2      y2      x3      y3
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
-  opacity=.5, fill=black!50, every shadow
-```
-
 
 ---
 
@@ -2597,13 +1127,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [even odd rule]
-  \filldraw [drop shadow,fill=white] (0,0) circle (.5) (0.5,0) circle (.5);
-```
 
 
 ---
@@ -2615,15 +1138,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,4}
-    \node[starburst,drop shadow,fill=white,draw] at (0,\i) {Burst \i};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2633,19 +1147,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \filldraw [drop shadow={opacity=1},fill=white]
-    (1,2)  circle (.5) (1.5,2)  circle (.5);
-
-  \filldraw [drop shadow={opacity=0.25},fill=white]
-    (1,.5) circle (.5) (1.5,.5) circle (.5);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2657,14 +1158,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every shadow/.style={opacity=.8,fill=blue!50!black}]
-  \filldraw [drop shadow,fill=white] (0,0) circle (.5) (0.5,0) circle (.5);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2674,12 +1167,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex, every shadow
-```
 
 
 ---
@@ -2691,28 +1178,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex, every shadow
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [copy shadow,fill=blue!20,draw=blue,thick] {Hello World!};
-
-  \node at (0,-1) [copy shadow={shadow xshift=1ex,shadow yshift=1ex},
-                   fill=blue!20,draw=blue,thick]
-    {Hello World!};
-
-  \node at (0,-2) [copy shadow={opacity=.5},tape,
-                   fill=blue!20,draw=blue,thick]
-    {Hello World!};
-
-  % We have to repeat the left color since shadings are not
-  % automatically applied to shadows
-  \node at (0,-3) [copy shadow={left color=blue!50},
-                   left color=blue!50,draw=blue,thick]
-    {Hello World!};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2722,26 +1187,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex, every shadow
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [double copy shadow,fill=blue!20,draw=blue,thick] {Hello World!};
-
-  \node at (0,-1) [double copy shadow={shadow xshift=1ex,shadow yshift=1ex},
-                   fill=blue!20,draw=blue,thick]
-    {Hello World!};
-
-  \node at (0,-2) [double copy shadow={opacity=.5},tape,
-                   fill=blue!20,draw=blue,thick]
-    {Hello World!};
-
-  \node at (0,-3) [double copy shadow={left color=blue!50},
-                   left color=blue!50,draw=blue,thick]
-    {Hello World!};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2753,14 +1198,6 @@ shadow scale=1, shadow xshift=.5ex, shadow yshift=-.5ex, every shadow
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-shadow scale=1.1, shadow xshift=.3ex, shadow yshift=-.3ex,
-  fill=black, path fading={circle with fuzzy edge 15 percent},
-  every shadow,
-```
-
 
 ---
 
@@ -2770,16 +1207,6 @@ shadow scale=1.1, shadow xshift=.3ex, shadow yshift=-.3ex,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,8}
-    \node[circle,circular drop shadow,draw=blue,fill=blue!20,thick]
-      at (\i*45:1) {Circle \i};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2791,14 +1218,6 @@ shadow scale=1.1, shadow xshift=.3ex, shadow yshift=-.3ex,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
-  fill=black, path fading={circle with fuzzy edge 15 percent},
-  every shadow,
-```
-
 
 ---
 
@@ -2808,16 +1227,6 @@ shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,8}
-  \node[circle,circular glow,fill=red!20,draw=red,thick]
-    at (\i*45:1) {Circle \i};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2829,16 +1238,6 @@ shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,8}
-  \node[circle,circular glow={fill=white},fill=red!20,draw=red,thick]
-    at (\i*45:1) {Circle \i};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2849,16 +1248,6 @@ shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,8}
-  \node[circle,circular glow={fill=green},fill=black,text=green!50!black]
-    at (\i*45:1) {Circle \i};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2868,16 +1257,6 @@ shadow scale=1.25, shadow xshift=0pt, shadow yshift=0pt,
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \i in {1,...,8}
-  \node[circle,circular glow={fill=red!\i0}]
-    at (\i*45:1) {Circle \i};
-\end{tikzpicture}
-```
 
 
 ---

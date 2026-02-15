@@ -31,14 +31,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpathmoveto{\pgfpoint{0bp}{0bp}}
-\pgfpathlineto{\pgfpoint{10bp}{0bp}}
-\pgfusepath{stroke}
-```
-
 
 ---
 
@@ -48,15 +40,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@moveto{0}{0}
-\pgfsys@setlinewidth{1}
-\pgfsys@lineto{10}{0}
-\pgfsys@stroke
-```
 
 
 ---
@@ -68,15 +51,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsyssoftpath@moveto{0pt}{0pt}
-\pgfsyssoftpath@lineto{10pt}{10pt}
-\pgfsyssoftpath@flushcurrentpath
-\pgfsys@stroke
-```
-
 
 ---
 
@@ -86,12 +60,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsyssoftpath@movetotoken{0bp}{0bp}\pgfsyssoftpath@linetotoken{10bp}{0bp}
-```
 
 
 ---
@@ -103,12 +71,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsyssoftpath@curveto{1bp}{2bp}{3bp}{4bp}{5bp}{6bp}
-```
-
 
 ---
 
@@ -118,14 +80,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsyssoftpath@curvetosupportatoken{1bp}{2bp}
-\pgfsyssoftpath@curvetosupportbtoken{3bp}{4bp}
-\pgfsyssoftpath@curvetotoken{5bp}{6bp}
-```
 
 
 ---
@@ -137,17 +91,6 @@ Appends a ``close-path'' segment to the current soft path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-#include <pgf/gd/interface/c/InterfaceFromC.h>
-#include <math.h>
-
-static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
-  ...
-}
-```
-
 
 ---
 
@@ -157,22 +100,6 @@ static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
-  double angle  = 6.28318530718 / graph->vertices.length;
-  double radius = pgfgd_tonumber(graph->options, "fast simple demo radius");
-
-  int i;
-  for (i = 0; i < graph->vertices.length; i++) {
-    pgfgd_Vertex* v = graph->vertices.array[i];
-    v->pos.x = cos(angle*i) * radius;
-    v->pos.y = sin(angle*i) * radius;
-  }
-}
-```
 
 
 ---
@@ -184,20 +111,6 @@ static void fast_hello_world (pgfgd_SyntacticDigraph* graph) {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-int luaopen_pgf_gd_examples_c_SimpleDemoC (struct lua_State *state) {
-
-  pgfgd_Declaration* d = pgfgd_new_key ("fast simple demo layout");
-  pgfgd_key_summary          (d, "The C version of the hello world of graph drawing");
-  pgfgd_key_algorithm        (d, fast_hello_world);
-  pgfgd_key_add_precondition (d, "connected");
-  pgfgd_key_add_precondition (d, "tree");
-  pgfgd_declare              (state, d)
-  pgfgd_free_key             (d);
-```
-
 
 ---
 
@@ -207,22 +120,6 @@ int luaopen_pgf_gd_examples_c_SimpleDemoC (struct lua_State *state) {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-declare {
-  key = "fast simple demo layout",
-  summary = "The C version of the hello world of graph drawing",
-  preconditions = {
-    connected = true,
-    tree = true,
-  },
-  algorithm = {
-    run =  -- something magic we cannot express in Lua
-  }
-}
-```
 
 
 ---
@@ -234,20 +131,6 @@ declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-d = pgfgd_new_key ("fast simple demo radius");
-  pgfgd_key_summary (d, "A radius value for the hello world of graph drawing");
-  pgfgd_key_type    (d, "length");
-  pgfgd_key_initial (d, "1cm");
-  pgfgd_declare     (state, d);
-  pgfgd_free_key    (d);
-
-  return 0;
-}
-```
-
 
 ---
 
@@ -257,12 +140,6 @@ d = pgfgd_new_key ("fast simple demo radius");
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-require 'pgf.gd.examples.c.SimpleDemoC'
-```
 
 
 ---
@@ -274,12 +151,6 @@ require 'pgf.gd.examples.c.SimpleDemoC'
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\usegdlibrary {examples.c.SimpleDemoC}
-```
-
 
 ---
 
@@ -289,12 +160,6 @@ require 'pgf.gd.examples.c.SimpleDemoC'
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pgf_gd_examples_c_SimpleDemoC.so
-```
 
 
 ---
@@ -306,12 +171,6 @@ pgf_gd_examples_c_SimpleDemoC.so
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-require 'pgf_gd_examples_c_SimpleDemoC'
-```
-
 
 ---
 
@@ -321,12 +180,6 @@ require 'pgf_gd_examples_c_SimpleDemoC'
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usegdlibrary {pgf_gd_examples_c_SimpleDemoC}
-```
 
 
 ---
@@ -338,13 +191,6 @@ require 'pgf_gd_examples_c_SimpleDemoC'
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [fast simple demo layout, fast simple demo radius=1.25cm]
-{ a -> b -> c -> d -> e -> a };
-```
-
 
 ---
 
@@ -354,12 +200,6 @@ require 'pgf_gd_examples_c_SimpleDemoC'
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pgfgd_key_documentation_in (d, "pgf.gd.doc.examples.SimpleDemoC");
-```
 
 
 ---
@@ -371,38 +211,6 @@ pgfgd_key_documentation_in (d, "pgf.gd.doc.examples.SimpleDemoC");
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- File pgf/gd/doc/examples/SimpleDemoC.lua
-local key           = require 'pgf.gd.doc'.key
-local documentation = require 'pgf.gd.doc'.documentation
-local summary       = require 'pgf.gd.doc'.summary
-local example       = require 'pgf.gd.doc'.example
-
-key           "fast simple demo layout"
-documentation
-[[
-This layout is used...
-]]
-example
-[[
-\tikz \graph [fast simple example layout]
-{ a -- b -- c -- d -- e; };
-]]
-
-key           "fast simple demo radius"
-documentation
-[[
-The radius parameter is used to ...
-]]
-example
-[[
-\tikz \graph [fast simple demo layout, fast simple demo radius=1.25cm]
-{ a -> b -> c -> d -> e -> a };
-]]
-```
-
 
 ---
 
@@ -412,19 +220,6 @@ example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-#include <pgf/gd/interface/c/InterfaceFromC++.h>
-#include <pgf/gd/interface/c/InterfaceFromC.h>
-
-#include <math.h>
-
-struct FastLayout : scripting::declarations, scripting::runner {
-  ...
-}
-```
 
 
 ---
@@ -436,23 +231,6 @@ struct FastLayout : scripting::declarations, scripting::runner {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-void run () {
-  pgfgd_SyntacticDigraph* graph = parameters->syntactic_digraph;
-
-  double angle  = 6.28318530718 / graph->vertices.length;
-  double radius = parameters->option<double>("fast simple demo radius c++");
-
-  for (int i = 0; i < graph->vertices.length; i++) {
-    pgfgd_Vertex* v = graph->vertices.array[i];
-    v->pos.x = cos(angle*i) * radius;
-    v->pos.y = sin(angle*i) * radius;
-  }
-}
-```
-
 
 ---
 
@@ -462,25 +240,6 @@ void run () {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-void declare(scripting::script s) {
-  using namespace scripting;
-
-  s.declare(key ("fast simple demo layout c++")
-            .summary ("The C++ version of the hello world of graph drawing")
-            .precondition ("connected")
-            .precondition ("tree")
-            .algorithm (this));
-
-  s.declare(key ("fast simple demo radius c++")
-            .summary ("A radius value for the hello world of graph drawing")
-            .type ("length")
-            .initial ("1cm"));
-}
-```
 
 
 ---
@@ -492,16 +251,6 @@ void declare(scripting::script s) {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoCPlusPlus (struct lua_State *state) {
-  scripting::script s (state);
-  s.declare (new FastLayout);
-  return 0;
-}
-```
-
 
 ---
 
@@ -511,12 +260,6 @@ extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoCPlusPlus (struct lua_State *
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pgf_gd_examples_c_SimpleDemoCPlusPlus.so
-```
 
 
 ---
@@ -528,12 +271,6 @@ pgf_gd_examples_c_SimpleDemoCPlusPlus.so
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-require 'pgf_gd_examples_c_SimpleDemoCPlusPlus'
-```
-
 
 ---
 
@@ -543,12 +280,6 @@ require 'pgf_gd_examples_c_SimpleDemoCPlusPlus'
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usegdlibrary {pgf_gd_examples_c_SimpleDemoCPlusPlus}
-```
 
 
 ---
@@ -560,13 +291,6 @@ require 'pgf_gd_examples_c_SimpleDemoCPlusPlus'
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [fast simple demo layout c++, fast simple demo radius c++=1.25cm]
-{ a -> b -> c -> d -> e -> a };
-```
-
 
 ---
 
@@ -576,14 +300,6 @@ require 'pgf_gd_examples_c_SimpleDemoCPlusPlus'
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-s.declare (key (...)
-           .algorithm(this)
-           ...);
-```
 
 
 ---
@@ -595,14 +311,6 @@ s.declare (key (...)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-double dist;
-if (parameters->option ("node distance", dist))
-  ...
-```
-
 
 ---
 
@@ -612,20 +320,6 @@ if (parameters->option ("node distance", dist))
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-class MyClass {
-public:
-  void setMyDistance (double distance);
-...
-};
-...
-
-MyClass m;
-parameters->configure_option("node distance", &MyClass::setMyDistance, m);
-```
 
 
 ---
@@ -637,16 +331,6 @@ parameters->configure_option("node distance", &MyClass::setMyDistance, m);
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-#include <pgf/gd/ogdf/c/InterfaceFromOGDF.h>
-#include <math.h>
-
-using namespace ogdf;
-using namespace scripting;
-```
-
 
 ---
 
@@ -656,23 +340,6 @@ using namespace scripting;
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-struct FastLayoutOGDF : declarations, ogdf_runner {
-
-  void run () {
-    double angle  = 6.28318530718 / graph.numberOfNodes();
-    double radius = parameters->option<double>("my radius ogdf");
-
-    int i = 0;
-    for (node v = graph.firstNode(); v; v=v->succ(), i++) {
-      graph_attributes.x(v) = cos(angle*i) * radius;
-      graph_attributes.y(v) = sin(angle*i) * radius;
-    }
-  }
-```
 
 
 ---
@@ -684,25 +351,6 @@ struct FastLayoutOGDF : declarations, ogdf_runner {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-void declare(script s) {
-    using namespace scripting;
-
-    s.declare(key ("fast simple demo layout ogdf")
-          .summary ("The OGDF version of the hello world of graph drawing")
-          .precondition ("connected")
-          .algorithm (this));
-
-    s.declare(key ("my radius ogdf")
-          .summary ("A radius value for the hello world of graph drawing")
-          .type ("length")
-          .initial ("1cm"));
-  }
-};
-```
-
 
 ---
 
@@ -712,15 +360,6 @@ void declare(script s) {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoOGDF (struct lua_State *state) {
-  script (state).declare (new FastLayoutOGDF);
-  return 0;
-}
-```
 
 
 ---
@@ -732,13 +371,6 @@ extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoOGDF (struct lua_State *state
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [fast simple demo layout ogdf, my radius ogdf=1cm]
-{ a -> b -> c -> d -> e -> a };
-```
-
 
 ---
 
@@ -748,36 +380,6 @@ extern "C" int luaopen_pgf_gd_examples_c_SimpleDemoOGDF (struct lua_State *state
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-// File HelloWorldLayout.h
-#include <ogdf/module/LayoutModule.h>
-
-class HelloWorldLayout : public ogdf::LayoutModule {
-public:
-
-  virtual void call(ogdf::GraphAttributes &GA)
-  {
-    using namespace ogdf;
-
-    const Graph &graph = GA.constGraph();
-    double angle  = 6.28318530718 / graph.numberOfNodes();
-    int i = 0;
-    for (node v = graph.firstNode(); v; v=v->succ(), i++) {
-      GA.x(v) = cos(angle*i) * radius;
-      GA.y(v) = sin(angle*i) * radius;
-    }
-  }
-
-  void setRadius (double r) { radius = r; }
-
-private:
-
-  double radius;
-};
-```
 
 
 ---
@@ -789,17 +391,6 @@ private:
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-void run ()
-{
-  HelloWorldLayout layout;
-  parameters->configure_option("HelloWorldLayout.radius", &HelloWorldLayout::setRadius, layout);
-  layout.call(graph_attributes);
-}
-```
-
 
 ---
 
@@ -810,24 +401,6 @@ void run ()
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-void declare(script s) {
-  using namespace scripting;
-
-  s.declare(key ("HelloWorldLayout")
-            .summary ("The OGDF version of the hello world of graph drawing")
-            .precondition ("connected")
-            .algorithm (this));
-
-  s.declare(key ("HelloWorldLayout.radius")
-            .summary ("A radius value for the hello world of graph drawing")
-            .type ("length")
-            .alias ("radius"));
-}
-```
-
 
 ---
 
@@ -837,28 +410,6 @@ void declare(script s) {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-// File HelloWorldLayout_script.c++
-
-#include <pgf/gd/ogdf/c/InterfaceFromOGDF.h>
-#include <HelloWorldLayout.h>
-
-using namespace ogdf;
-using namespace scripting;
-
-struct HelloWorldLayout_script : declarations, ogdf_runner {
-  void run ()             { ... see above ... }
-  void declare (script s) { ... see above ... }
-};
-
-extern "C" int luaopen_my_path_HelloWorldLayout_script (struct lua_State *state) {
-  script (state).declare (new HelloWorldLayout_script);
-  return 0;
-}
-```
 
 
 ---
@@ -1052,19 +603,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (3,2);
-  \pgftransformxshift{1cm}
-  \pgfpathqmoveto{0pt}{0pt} % not transformed
-  \pgfpathqlineto{1cm}{1cm} % not transformed
-  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1074,17 +612,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (3,2);
-  \pgfpathqmoveto{0pt}{0pt}
-  \pgfpathqcurveto{1cm}{1cm}{2cm}{1cm}{3cm}{0cm}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1096,18 +623,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\colorlet{examplefill}{yellow!80!black}
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (1,1);
-  \pgfpathqcircle{10pt}
-  \pgfsetfillcolor{examplefill}
-  \pgfusepath{stroke,fill}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1117,15 +632,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathqcircle{5pt}
-  \pgfusepathqstroke
-\end{pgfpicture}
-```
 
 
 ---
@@ -1137,29 +643,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes={0 to pi, clean},
-  all axes=grid,
-  style sheet=vary hue,
-  legend=below
-  ]
-  [visualize as smooth line=sin,
-   sin={label in legend={text=$1+\sin \alpha$}}]
-  data [format=function] {
-    var  angle : interval [0:pi];
-    func radius = sin(\value{angle}r) + 1;
-  }
-  [visualize as smooth line=cos,
-   cos={label in legend={text=$1+\cos\alpha$}}]
-  data [format=function] {
-    var  angle : interval [0:pi];
-    func radius = cos(\value{angle}r) + 1;
-  };
-```
-
 
 ---
 
@@ -1169,37 +652,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[baseline] \datavisualization [
-  scientific axes={clean},
-  x axis={attribute=angle, ticks={minor steps between steps=4}},
-  y axis={attribute=radius, ticks={some, style=red!80!black}},
-  all axes=grid,
-  visualize as smooth line=sin]
-  data [format=function] {
-    var t : interval [-3:3];
-    func angle = exp(\value t);
-    func radius = \value{t}*\value{t};
-  };
-\qquad
-\tikz[baseline] \datavisualization [
-  scientific polar axes={right half clockwise, clean},
-  angle axis={logarithmic,
-    ticks={
-      minor steps between steps=8,
-      major also at/.list={2,3,4,5,15,20}}},
-  radius axis={ticks={some, style=red!80!black}},
-  all axes=grid,
-  visualize as smooth line=sin]
-  data [format=function] {
-    var t : interval [-3:3];
-    func angle = exp(\value t);
-    func radius = \value{t}*\value{t};
-  };
-```
 
 
 ---
@@ -1211,12 +663,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/scientific polar axes
-```
-
 
 ---
 
@@ -1226,25 +672,6 @@ Clips all subsequent drawings against the current path. The path is not processe
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes,
-  radius axis={
-    attribute=distance,
-    ticks={step=5000},
-    padding=1.5em,
-    length=3cm,
-    grid
-  },
-  visualize as smooth line]
-data [format=function] {
-  var  angle : interval [0:100];
-  func distance = \value{angle}*\value{angle};
-};
-```
 
 
 ---
@@ -1256,18 +683,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes={outer ticks, 0 to 180},
-  visualize as smooth line]
-data [format=function] {
-  var  angle : interval [0:100];
-  func radius = \value{angle};
-};
-```
-
 
 ---
 
@@ -1277,18 +692,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes={inner ticks, 0 to 180},
-  visualize as smooth line]
-data [format=function] {
-  var  angle : interval [0:100];
-  func radius = \value{angle};
-};
-```
 
 
 ---
@@ -1300,18 +703,6 @@ data [format=function] {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes={clean, 0 to 180},
-  visualize as smooth line]
-data [format=function] {
-  var  angle : interval [0:100];
-  func radius = \value{angle};
-};
-```
-
 
 ---
 
@@ -1321,22 +712,6 @@ data [format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific polar axes={
-    clean,
-    0 to 90  % the option
-  },
-  angle axis={ticks={step=30}},
-  radius axis={length=1cm, ticks={step=1}},
-  visualize as scatter]
-data point [angle=20, radius=0.5]
-data point [angle=30, radius=1]
-data point [angle=40, radius=1.5];
-```
 
 
 ---
@@ -1348,18 +723,6 @@ data point [angle=40, radius=1.5];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes={angle axis}{radius axis},
-     radius axis={length=2cm},
-     visualize as scatter]
-  data [format=named] {
-    angle={0,20,...,160}, radius={0,...,5}
-  };
-```
-
 
 ---
 
@@ -1369,19 +732,6 @@ data point [angle=40, radius=1.5];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes={angle axis}{radius axis},
-     radius axis={unit length=1cm},
-     angle axis={unit vectors={(10:1pt)}{(60:1pt)}},
-     visualize as scatter]
-  data [format=named] {
-    angle={0,90}, radius={0.25,0.5,...,2}
-  };
-```
 
 
 ---
@@ -1393,19 +743,6 @@ data point [angle=40, radius=1.5];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes={angle axis}{radius axis},
-     radius axis={unit length=1cm},
-     angle axis={degrees},
-     visualize as scatter]
-  data [format=named] {
-    angle={10,90}, radius={0.25,0.5,...,2}
-  };
-```
-
 
 ---
 
@@ -1415,19 +752,6 @@ data point [angle=40, radius=1.5];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization
-    [new polar axes={angle axis}{radius axis},
-     radius axis={unit length=1cm},
-     angle axis={radians},
-     visualize as scatter]
-  data [format=named] {
-    angle={0,1.5}, radius={0.25,0.5,...,2}
-  };
-```
 
 
 ---
@@ -1517,21 +841,6 @@ box} This command sets to logical page number to box. The box should be the code
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\documentclass{article}
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
-
-\begin{document}
-This text is shown on the left.
-\clearpage
-This text is shown on the right.
-\end{document}
-```
-
 
 ---
 
@@ -1541,24 +850,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\documentclass{beamer}
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
-
-\begin{document}
-\begin{frame}
-  This text is shown at the top.
-\end{frame}
-\begin{frame}
-  This text is shown at the bottom.
-\end{frame}
-\end{document}
-```
 
 
 ---
@@ -1570,22 +861,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\documentclass{article}
-
-\usepackage{pgfpages}
-%%\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
-%%\nofiles
-
-\begin{document}
-This text is shown on the left.
-\clearpage
-This text is shown on the right.
-\end{document}
-```
-
 
 ---
 
@@ -1595,22 +870,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\documentclass{article}
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[a4paper,landscape,border shrink=5mm]
-\nofiles
-
-\begin{document}
-This text is shown on the left.
-\clearpage
-This text is shown on the right.
-\end{document}
-```
 
 
 ---
@@ -1622,13 +881,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\usepackage{pgfpages}
-\pgfpagesuselayout{resize to}[a4paper]
-```
-
 
 ---
 
@@ -1638,22 +890,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\documentclass[a4paper]{article}
-%% a4 is currently the logical size and also the physical size
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{resize to}[letterpaper]
-%% a4 is still the logical size, but letter is the physical one
-
-\begin{document}
-  \title{My Great Article}
-...
-\end{document}
-```
 
 
 ---
@@ -1665,17 +901,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\documentclass{beamer}
-\usepackage{pgfpages}
-\pgfpagesuselayout{rounded corners}[corner width=5pt]
-\begin{document}
-...
-\end{document}
-```
-
 
 ---
 
@@ -1685,30 +910,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfpagesdeclarelayout{resize to}
-{
-  \def\pgfpageoptionborder{0pt}
-}
-{
-  \pgfpagesphysicalpageoptions
-  {%
-    logical pages=1,%
-    physical height=\pgfpageoptionheight,%
-    physical width=\pgfpageoptionwidth%
-  }
-  \pgfpageslogicalpageoptions{1}
-  {%
-    resized width=\pgfphysicalwidth,%
-    resized height=\pgfphysicalheight,%
-    border shrink=\pgfpageoptionborder,%
-    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
-  }%
-}
-```
 
 
 ---
@@ -1720,30 +921,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpagesphysicalpageoptions
-{%
-  logical pages=2,%
-  physical height=\paperwidth,%
-  physical width=\paperheight,%
-}
-
-\pgfpageslogicalpageoptions{1}
-{%
-  resized width=.5\pgfphysicalwidth,%
-  resized height=\pgfphysicalheight,%
-  center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}%
-}%
-\pgfpageslogicalpageoptions{2}
-{%
-  resized width=.5\pgfphysicalwidth,%
-  resized height=\pgfphysicalheight,%
-  center=\pgfpoint{.75\pgfphysicalwidth}{.5\pgfphysicalheight}%
-}%
-```
-
 
 ---
 
@@ -1753,17 +930,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfpageslogicalpageoptions{1}
-{% center logical page on middle of left side
-  center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}%
-  resized width=.5\pgfphysicalwidth,%
-  resized height=\pgfphysicalheight,%
-}
-```
 
 
 ---
@@ -1775,12 +941,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpageslogicalpageoptions{2}{copy from=2}
-```
-
 
 ---
 
@@ -1790,12 +950,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfpageslogicalpageoptions{2}{copy from=1}
-```
 
 
 ---
@@ -1807,12 +961,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
-```
-
 
 ---
 
@@ -1822,12 +970,6 @@ This text is shown on the right.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfpagesshipoutlogicalpage{0}\vbox{Hi!}
-```
 
 
 ---
@@ -1839,21 +981,6 @@ This text is shown on the right.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpagesuselayout{two screens with optional second}
-...
-Text for main page.
-\clearpage
-
-\pgfpagescurrentpagewillbelogicalpage{2}
-Text that goes to second page
-\clearpage
-
-Text for main page.
-```
-
 
 ---
 
@@ -1863,26 +990,6 @@ Text for main page.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% Copyright 2019 by Till Tantau
-%
-% This file may be distributed and/or modified
-%
-% 1. under the LaTeX Project Public License and/or
-% 2. under the GNU Public License.
-%
-% See the file doc/generic/pgf/licenses/LICENSE for more details.
-
-
-\RequirePackage{pgf,pgffor}
-
-\input{tikz.code.tex}
-
-\endinput
-```
 
 
 ---
@@ -1894,12 +1001,6 @@ Text for main page.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-ps2pdf -dALLOWPSTRANSPARENCY example.ps
-```
-
 
 ---
 
@@ -1909,19 +1010,6 @@ ps2pdf -dALLOWPSTRANSPARENCY example.ps
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% example.tex
-\documentclass[dvisvgm]{minimal}
-
-\usepackage{tikz}
-
-\begin{document}
-Hello \tikz [baseline] \fill [fill=blue!80!black] (0,.75ex) circle[radius=.75ex];
-\end{document}
-```
 
 
 ---
@@ -1933,13 +1021,6 @@ Hello \tikz [baseline] \fill [fill=blue!80!black] (0,.75ex) circle[radius=.75ex]
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-latex example
-dvisvgm example
-```
-
 
 ---
 
@@ -1949,13 +1030,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-lualatex --output-format=dvi example
-dvisvgm example
-```
 
 
 ---
@@ -1967,12 +1041,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[draw,/pgf/tex4ht node/escape=false] {Example : $(a+b)^2=a^2+2ab+b^2$};
-```
-
 
 ---
 
@@ -1982,13 +1050,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[draw,/pgf/tex4ht node/escape=true]
-  {Example : $\int_0^\infty\frac{1}{1+t^2}dt=\frac{\pi}{2}$};
-```
 
 
 ---
@@ -2013,13 +1074,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\usetikzlibrary{graphdrawing}
-\usegdlibrary{trees,force}
-```
-
 
 ---
 
@@ -2029,13 +1083,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usetikzlibrary{graphs, graphdrawing}
-\usegdlibrary{trees, layered}
-```
 
 
 ---
@@ -2047,21 +1094,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [rounded corners]
-  \graph [layered layout, sibling distance=8mm, level distance=8mm]
-  {
-    a -> {
-      b,
-      c -> { d, e }
-    } ->
-    f ->
-    a
-  };
-```
-
 
 ---
 
@@ -2071,12 +1103,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \graph [spring layout, vertical=1 to 2] { 1--2--3--1 };
-```
 
 
 ---
@@ -2088,27 +1114,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [spring layout] {
-  \begin{scope}[tree layout]
-    \node (a) {a};
-    \node (b) {b};
-    \node (c) {c};
-    \draw (a) edge (b) edge (c);
-  \end{scope}
-
-  \begin{scope}[tree layout]
-    \node (1) {1};
-    \node (2) {2};
-    \draw (1) edge (2);
-  \end{scope}
-
-  \draw (a) edge (1);
-}
-```
-
 
 ---
 
@@ -2118,16 +1123,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \graph [spring layout] {
-  // [tree layout] { a -- {b, c} };
-  // [tree layout] { 1 -- 2 };
-  a -- 1;
-};
-```
 
 
 ---
@@ -2139,22 +1134,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [simple necklace layout] {
- // [simple necklace layout] { a -> b -> c -> d -> e -> f -> a };
-
- // [tree layout] { % first tentacle
-   a -> {1, 2};
- };
-
- // [tree layout] {% second tentacle
-   d -> {3, 4 -> {5, 6}}
- };
-};
-```
-
 
 ---
 
@@ -2164,24 +1143,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \graph [simple necklace layout] {
-  // [tree layout] { % first ``giant node''
-    a -> {1, 2};
-  };
-
-  a -> b -> c -> d;
-
-  // [tree layout] {% second ``giant node''
-    d -> {3, 4 -> {5, 6}}
-  },
-
-  d -> e -> f -> a;
-};
-```
 
 
 ---
@@ -2193,20 +1154,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [simple necklace layout] {
-     tree 1[draw, circle] // [tree layout] { a -> {1, 2}; }
-  -> b
-  -> c
-  -> tree 2[draw] // [tree layout] { d -> {3, 4 -> {5, 6} } }
-  -> e
-  -> f
-  -> tree 1;
-};
-```
-
 
 ---
 
@@ -2216,21 +1163,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [subgraph text bottom=text centered,
-       subgraph nodes={font=\itshape}]
-  \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    left [draw]  // { b, c, d };
-    right [draw] // { e, f, g, h};
-
-    left <-> right;
-  };
-```
 
 
 ---
@@ -2242,21 +1174,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [subgraph text bottom=text centered,
-       subgraph nodes=red]
-  \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    left [draw]  // { b, c, d };
-    right [draw] // { e, f, g, h};
-
-    left <-> right;
-  };
-```
-
 
 ---
 
@@ -2266,20 +1183,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [subgraph text none]
-  \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    left [draw]  // { b, c, d };
-    right [draw] // { e, f, g, h};
-
-    left <-> right;
-  };
-```
 
 
 ---
@@ -2291,20 +1194,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [subgraph text top=text ragged left]
-  \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    left [draw]  // { b, c, d };
-    right [draw] // { e, f, g, h};
-
-    left <-> right;
-  };
-```
-
 
 ---
 
@@ -2314,17 +1203,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [subgraph text top=text centered]
-  \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    left [draw, circle] // { b, c, d };
-  };
-```
 
 
 ---
@@ -2336,17 +1214,6 @@ dvisvgm example
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    / ["left", draw]  // { b, c, d } <->
-    / ["right", draw] // { e, f, g, h};
-  };
-```
-
 
 ---
 
@@ -2356,24 +1223,6 @@ dvisvgm example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pgf.gd.interface.InterfaceToAlgorithms.declare {
-  key = "very simple demo layout",
-  algorithm = {
-    run =
-      function (self)
-        local alpha = (2 * math.pi) / #self.ugraph.vertices
-        for i,vertex in ipairs(self.ugraph.vertices) do
-          vertex.pos.x = math.cos(i * alpha) * 25
-          vertex.pos.y = math.sin(i * alpha) * 25
-        end
-      end
-  }
-}
-```
 
 
 ---
@@ -2385,13 +1234,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [very simple demo layout]
-  \graph { f -> c -> e -> a -> {b -> {c, d, f}, e -> b}};
-```
-
 
 ---
 
@@ -2401,16 +1243,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [very simple demo layout, componentwise]
-  \graph {
-    1 -> 2 ->[orient=right] 3 -> 1;
-    a -- b --[orient=45]  c -- d -- a;
-  };
-```
 
 
 ---
@@ -2422,13 +1254,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- This is the file ExampleLayout.lua
-local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
-```
-
 
 ---
 
@@ -2438,22 +1263,6 @@ local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-local ExampleClass = {}  -- A local variable holding the class table
-
-declare {
-  key = "very simple demo layout",
-  algorithm = ExampleClass
-}
-
-function ExampleClass:run ()
-  local alpha = (2 * math.pi) / #self.ugraph.vertices
-  ...
-end
-```
 
 
 ---
@@ -2465,17 +1274,6 @@ end
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- File ExampleLayout.lua
-local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
-declare {
-  key = "very simple demo layout",
-  algorithm = "ExampleLayoutImplementation"
-}
-```
-
 
 ---
 
@@ -2485,18 +1283,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
--- File ExampleLayoutImplementation.lua
-local ExampleClass = {}
-function ExampleClass:run ()
-  local alpha = (2 * math.pi) / #self.ugraph.vertices
-  ...
-end
-return ExampleClass
-```
 
 
 ---
@@ -2508,16 +1294,6 @@ return ExampleClass
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-declare {
-  key = "radius",
-  type = "length",
-  initial = "25pt"
-}
-```
-
 
 ---
 
@@ -2527,13 +1303,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-vertex.pos.x = math.cos(i * alpha) * vertex.options.radius
-          vertex.pos.y = math.sin(i * alpha) * vertex.options.radius
-```
 
 
 ---
@@ -2545,27 +1314,6 @@ vertex.pos.x = math.cos(i * alpha) * vertex.options.radius
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
----
-declare {
-  key = "radius",
-  type = "length",
-  initial = "25pt",
-  summary = [[
-    Specifies the radius of a circle on which the nodes are placed when
-    the |very simple example layout| is used. Each vertex can have a
-    different radius.
-  ]],
-  examples = [[
-    \tikz \graph [very simple example layout, radius=2cm] {
-      a -- b -- c -- d -- e;
-    };
-  ]]
-}
-```
-
 
 ---
 
@@ -2575,25 +1323,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
----
-declare {
-  key               = "very simple demo layout",
-  algorithm         = ExampleClass,
-  documentation_in  = "documentation_file"
-}
-
----
-declare {
-  key               = "radius",
-  type              = "length",
-  initial           = "25",
-  documentation_in  = "documentation_file"
-}
-```
 
 
 ---
@@ -2605,32 +1334,6 @@ declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- File documentation_file.lua
-local key           = require 'pgf.gd.doc'.key
-local documentation = require 'pgf.gd.doc'.documentation
-local summary       = require 'pgf.gd.doc'.summary
-local example       = require 'pgf.gd.doc'.example
-
-key           "very simple demo layout"
-documentation "This layout is a very simple layout that, ..."
-
-key           "radius"
-summary       "Specifies the radius of a circle on which the nodes are placed."
-documentation
-[[
-This key can be used together with |very simple example layout|. An
-important feature is that...
-]]
-example
-[[
-\tikz \graph [very simple example layout, radius=2cm]
-{ a -- b -- c -- d -- e; };
-]]
-```
-
 
 ---
 
@@ -2640,13 +1343,6 @@ example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
--- File pgf.gd.example.SomeClass.lua:
-local SomeClass = {}
-```
 
 
 ---
@@ -2658,12 +1354,6 @@ local SomeClass = {}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-require("pgf.gd.example").SomeClass = SomeClass
-```
-
 
 ---
 
@@ -2673,12 +1363,6 @@ require("pgf.gd.example").SomeClass = SomeClass
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-return SomeClass
-```
 
 
 ---
@@ -2690,14 +1374,6 @@ return SomeClass
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-...
-local SomeClass = require "pgf.gd.examples.SomeClass"
-...
-```
-
 
 ---
 
@@ -2707,12 +1383,6 @@ local SomeClass = require "pgf.gd.examples.SomeClass"
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-graph { a -- {b, c} }
-```
 
 
 ---
@@ -2724,14 +1394,6 @@ graph { a -- {b, c} }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-node (a) { a }
-child { node (b) {b} }
-child { node (c) {c} }
-```
-
 
 ---
 
@@ -2741,12 +1403,6 @@ child { node (c) {c} }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-graph { a -- b --[red] c, b --[green, bend right] c }
-```
 
 
 ---
@@ -2862,19 +1518,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetlinewidth{5mm}
-  \color{red}
-  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{10mm} \pgfusepath{stroke}
-  \color{black}
-  \pgfsetstrokeopacity{0.5}
-  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{10mm} \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -2884,17 +1527,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetfillopacity{0.5}
-  \fill[red]   (90:1cm)  circle (11mm);
-  \fill[green] (210:1cm) circle (11mm);
-  \fill[blue]  (-30:1cm) circle (11mm);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2906,16 +1538,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetfillopacity{0.5}
-  \fill[red] (0,0) circle (1);
-  \fill[red] (1,0) circle (1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2925,18 +1547,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [transparency group] {
-  \pgfsetblendmode{screen}
-
-  \fill[red!90!black]   ( 90:.6) circle (1);
-  \fill[green!80!black] (210:.6) circle (1);
-  \fill[blue!90!black]  (330:.6) circle (1);
-}
-```
 
 
 ---
@@ -2948,18 +1558,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarefading{fading1}{\textcolor{white}{Ti\emph{k}Z}}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading1}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2969,20 +1567,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefading{fading2}
-{\tikz \shade[left color=pgftransparent!0,
-              right color=pgftransparent!100] (0,0) rectangle (2,2);}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2994,25 +1578,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareradialshading{myshading}{\pgfpointorigin}
-{
-  color(0mm)=(pgftransparent!0);
-  color(5mm)=(pgftransparent!0);
-  color(8mm)=(pgftransparent!100);
-  color(15mm)=(pgftransparent!100)
-}
-\pgfdeclarefading{fading3}{\pgfuseshading{myshading}}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading3}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3022,20 +1587,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefading{fading2}
-{\tikz \shade[left color=pgftransparent!0,
-              right color=pgftransparent!100] (0,0) rectangle (2,2);}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3047,19 +1598,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-(0,0) rectangle (2,2);}}]
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}
-                         \pgftransformrotate{20}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3069,33 +1607,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarehorizontalshading{shading}{100bp}
-{ color(0pt)=(transparent!0);    color(25bp)=(transparent!0);
-  color(75bp)=(transparent!100); color(100bp)=(transparent!100)}
-
-\pgfdeclarefading{fading}{\pgfuseshading{shading}}
-
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
-  \pgfsetfadingforcurrentpath{fading}{}
-  \pgfusepath{discard}
-
-  \fill [red] (0,0) rectangle (2,1);
-
-  \pgfpathrectangle{\pgfpoint{0cm}{1cm}}{\pgfpoint{2cm}{1cm}}
-  \pgfsetfadingforcurrentpath{fading}{\pgftransformrotate{90}}
-  \pgfusepath{discard}
-
-  \fill [red] (0,1) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3107,18 +1618,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetlinewidth{2mm}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
-  \pgfsetfadingforcurrentpathstroked{fading}{}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3128,25 +1627,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (2,2);
-
-  % Stuff outside the picture, but still in a transparency group.
-  \node [left,overlay] at (0,1) {
-    \begin{tikzpicture}
-      \pgfsetfillopacity{0.5}
-      \pgftransparencygroup
-      \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
-        {Smoking};
-      \endpgftransparencygroup
-    \end{tikzpicture}
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -3158,17 +1638,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
-  \begin{scope}[meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
-
 
 ---
 
@@ -3178,17 +1647,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
-  \begin{scope}[slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
 
 
 ---
@@ -3200,24 +1658,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [animate = {
-  my scope:view = {
-    begin on = { click, of next = here },
-    0s = "{(0.5,0.5) (2.5,1.5)}",
-    2s = "{(0.5,0) (1.5,2)}", forever
-  }}] {
-  \draw [red, fill=red!20, very thick, name=here]
-    (0,0) rectangle (20mm,20mm);
-  \begin{scope}[name = my scope,
-                meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
-
 
 ---
 
@@ -3227,24 +1667,6 @@ transformations} This command works like ||, only the current path is enlarged b
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [animate = {
-  my scope:view = {
-  }}] {
-  \draw [red, fill=red!20, very thick, name=here]
-    (0,0) rectangle (20mm,20mm);
-  \begin{scope}[animate = { myself: = { :view = {
-                  begin on = { click, of = here },
-                  0s = "{(0.5,0.5) (2.5,1.5)}",
-                  2s = "{(0.5,0) (1.5,2)}", forever }}},
-                slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
 
 
 ---

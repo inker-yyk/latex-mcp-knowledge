@@ -122,12 +122,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw decorate[decoration=zigzag] {(0,0) -- (3,0)};
-```
-
 
 ---
 
@@ -137,14 +131,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \path decorate [decoration={text along path,
-     text={Some text along a path}}]
-   { (0,2) .. controls (2,2) and (1,0) .. (3,0) };
-```
 
 
 ---
@@ -156,14 +142,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpathlineto{\pgfpoint{5pt}{5pt}}
-\pgfpathlineto{\pgfpoint{15pt}{-5pt}}
-\pgfpathlineto{\pgfpoint{20pt}{0pt}}
-```
-
 
 ---
 
@@ -173,31 +151,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclaredecoration{example}{initial}
-{
-  \state{initial}[width=10pt]
-  {
-    \pgfpathlineto{\pgfpoint{0pt}{5pt}}
-    \pgfpathlineto{\pgfpoint{5pt}{5pt}}
-    \pgfpathlineto{\pgfpoint{5pt}{-5pt}}
-    \pgfpathlineto{\pgfpoint{10pt}{-5pt}}
-    \pgfpathlineto{\pgfpoint{10pt}{0pt}}
-  }
-  \state{final}
-  {
-    \pgfpathlineto{\pgfpointdecoratedpathlast}
-  }
-}
-\tikz[decoration=example]
-{
-  \draw [decorate]     (0,0) -- (3,0);
-  \draw [red,decorate] (0,0) to [out=45,in=135] (3,0);
-}
-```
 
 
 ---
@@ -209,29 +162,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclaredecoration{stars}{initial}{
-  \state{initial}[width=15pt]
-  {
-    \pgfmathparse{round(rnd*100)}
-    \pgfsetfillcolor{yellow!\pgfmathresult!orange}
-    \pgfsetstrokecolor{yellow!\pgfmathresult!red}
-    \pgfnode{star}{center}{}{}{\pgfusepath{stroke,fill}}
-  }
-  \state{final}
-  {
-    \pgfpathmoveto{\pgfpointdecoratedpathlast}
-  }
-}
-\tikz\path[decorate, decoration=stars, star point ratio=2, star points=5,
-           inner sep=0, minimum size=rnd*10pt+2pt]
-  (0,0) .. controls (0,2)  and (3,2)  .. (3,0)
-        .. controls (3,-3) and (0,0)  .. (0,-3)
-        .. controls (0,-5) and (3,-5) .. (3,-3);
-```
-
 
 ---
 
@@ -241,54 +171,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclaredecoration{complicated example decoration}{initial}
-{
-  \state{initial}[width=5pt,next state=up]
-  { \pgfpathlineto{\pgfpoint{5pt}{0pt}} }
-
-  \state{up}[width=5pt,next state=down]
-  {
-    \ifdim\pgfdecoratedremainingdistance>\pgfdecoratedcompleteddistance
-      % Growing
-      \pgfpathlineto{\pgfpoint{0pt}{\pgfdecoratedcompleteddistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{\pgfdecoratedcompleteddistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{0pt}}
-    \else
-      % Shrinking
-      \pgfpathlineto{\pgfpoint{0pt}{\pgfdecoratedremainingdistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{\pgfdecoratedremainingdistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{0pt}}
-    \fi%
-  }
-  \state{down}[width=5pt,next state=up]
-  {
-    \ifdim\pgfdecoratedremainingdistance>\pgfdecoratedcompleteddistance
-      % Growing
-      \pgfpathlineto{\pgfpoint{0pt}{-\pgfdecoratedcompleteddistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{-\pgfdecoratedcompleteddistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{0pt}}
-    \else
-      % Shrinking
-      \pgfpathlineto{\pgfpoint{0pt}{-\pgfdecoratedremainingdistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{-\pgfdecoratedremainingdistance}}
-      \pgfpathlineto{\pgfpoint{5pt}{0pt}}
-    \fi%
-  }
-  \state{final}
-  {
-    \pgfpathlineto{\pgfpointdecoratedpathlast}
-  }
-}
-\begin{tikzpicture}[decoration=complicated example decoration]
-  \draw decorate{ (0,0) -- (3,0)};
-  \fill [red!50,rounded corners=2pt]
-    decorate {(.5,-2) -- ++(2.5,-2.5)} -- (3,-5) -| (0,-2) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -300,20 +182,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={segment length=5pt}]
-  \draw [help lines] grid (3,2);
-  \begin{pgfdecoration}{{curveto}{1cm},{zigzag}{2cm},{curveto}{1cm}}
-    \pgfpathmoveto{\pgfpointorigin}
-    \pgfpathcurveto
-      {\pgfpoint{0cm}{2cm}}{\pgfpoint{3cm}{2cm}}{\pgfpoint{3cm}{0cm}}
-  \end{pgfdecoration}
-\pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -323,24 +191,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={segment length=5pt}]
-  \draw [help lines] grid (3,2);
-  \begin{pgfdecoration}{
-      {curveto}{\pgfdecoratedpathlength/3},
-      {zigzag}{\pgfdecoratedpathlength/3},
-      {curveto}{\pgfdecoratedremainingdistance}
-    }
-    \pgfpathmoveto{\pgfpointorigin}
-    \pgfpathcurveto
-      {\pgfpoint{0cm}{2cm}}{\pgfpoint{3cm}{2cm}}{\pgfpoint{3cm}{0cm}}
-  \end{pgfdecoration}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
 
 
 ---
@@ -352,38 +202,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] grid (3,2);
-  \begin{pgfdecoration}{
-      {curveto}{\pgfdecoratedpathlength/3}
-      {}
-      {
-        \pgfusepath{stroke}
-      },
-      {zigzag}{\pgfdecoratedpathlength/3}
-      {
-        \pgfpathmoveto{\pgfpointdecoratedpathfirst}
-        \pgfdecorationsegmentlength=5pt
-      }
-      {
-        \pgfsetstrokecolor{red}
-        \pgfusepath{stroke}
-        \pgfpathmoveto{\pgfpointdecoratedpathlast}
-        \pgfsetstrokecolor{black}
-      },
-      {curveto}{\pgfdecoratedremainingdistance}
-    }
-    \pgfpathmoveto{\pgfpointorigin}
-    \pgfpathcurveto
-      {\pgfpoint{0cm}{2cm}}{\pgfpoint{3cm}{2cm}}{\pgfpoint{3cm}{0cm}}
-  \end{pgfdecoration}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -393,15 +211,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdecoration{{name}{\pgfdecoratedpathlength}
-               {\pgfdecoratebeforecode}{\pgfdecorateaftercode}}
-  // the path commands.
-\endpgfdecoration
-```
 
 
 ---
@@ -413,28 +222,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] grid (3,2);
-  \begin{pgfdecoration}{
-      {curveto}{\pgfdecoratedpathlength/3},
-      {zigzag}{\pgfdecoratedpathlength/3}
-      {
-        \pgfdecorationsegmentlength=5pt
-        \pgfsetdecorationsegmenttransformation{\pgftransformyshift{.5cm}}
-      },
-      {curveto}{\pgfdecoratedremainingdistance}
-    }
-    \pgfpathmoveto{\pgfpointorigin}
-    \pgfpathcurveto
-      {\pgfpoint{0cm}{2cm}}{\pgfpoint{3cm}{2cm}}{\pgfpoint{3cm}{0cm}}
-  \end{pgfdecoration}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -444,55 +231,6 @@ name} This environment decorates the input path described in environment content
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclaremetadecoration{arrows}{initial}{
-  \state{initial}[width=0pt, next state=arrow]
-  {
-    \pgfmathdivide{100}{\pgfmetadecoratedpathlength}
-    \let\factor\pgfmathresult
-    \pgfsetlinewidth{1pt}
-    \pgfset{/pgf/decoration/segment length=4pt}
-  }
-  \state{arrow}[
-    switch if less than=\pgfmetadecorationsegmentlength to final,
-    width=\pgfmetadecorationsegmentlength/3,
-    next state=zigzag]
-  {
-    \decoration{curveto}
-    \beforedecoration
-    {
-      \pgfmathparse{\pgfmetadecoratedcompleteddistance*\factor}
-      \pgfsetcolor{red!\pgfmathresult!yellow}
-      \pgfpathmoveto{\pgfpointmetadecoratedpathfirst}
-    }
-  }
-  \state{zigzag}[width=\pgfmetadecorationsegmentlength/3, next state=end arrow]
-  {
-    \decoration{zigzag}
-  }
-  \state{end arrow}[width=\pgfmetadecorationsegmentlength/3, next state=move]
-  {
-    \decoration{curveto}
-    \beforedecoration{\pgfpathmoveto{\pgfpointmetadecoratedpathfirst}}
-    \afterdecoration
-    {
-      \pgfsetarrowsend{to}
-      \pgfusepath{stroke}
-    }
-  }
-  \state{move}[width=\pgfmetadecorationsegmentlength/2, next state=arrow]{}
-  \state{final}{}
-}
-
-\tikz\draw[decorate,decoration={arrows,meta-segment length=2cm}]
-  (0,0) .. controls (0,2)   and (3,2)   .. (3,0)
-        .. controls (3,-2)  and (0,-2)  .. (0,-4)
-        .. controls (0,-6)  and (3,-6)  .. (3,-8)
-        .. controls (3,-10) and (0,-10) .. (0,-8);
-```
 
 
 ---
@@ -582,12 +320,6 @@ name} This environment decorates the input path described in environment content
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-$A \mathbin{\tikz[baseline] \draw[->>] (0pt,.5ex) -- (3ex,.5ex);} B$
-```
-
 
 ---
 
@@ -597,14 +329,6 @@ $A \mathbin{\tikz[baseline] \draw[->>] (0pt,.5ex) -- (3ex,.5ex);} B$
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-Hello
-\tikz[baseline=(X.base)]
-  \node [cross out,draw] (X) {world.};
-```
 
 
 ---
@@ -616,14 +340,6 @@ Hello
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-Top align:
-\tikz[baseline=(current bounding box.north)]
-  \draw (0,0) rectangle (1cm,1ex);
-```
-
 
 ---
 
@@ -633,22 +349,6 @@ Top align:
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[execute at end picture=%
-  {
-    \begin{pgfonlayer}{background}
-      \path[fill=yellow,rounded corners]
-        (current bounding box.south west) rectangle
-        (current bounding box.north east);
-    \end{pgfonlayer}
-  }]
-  \node at (0,0) {X};
-  \node at (2,1) {Y};
-\end{tikzpicture}
-```
 
 
 ---
@@ -660,12 +360,6 @@ Top align:
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{every picture/.style=semithick}
-```
-
 
 ---
 
@@ -675,12 +369,6 @@ Top align:
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every picture/.style={line width=1pt}}
-```
 
 
 ---
@@ -692,23 +380,6 @@ Top align:
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[ultra thick]
-  \begin{scope}[red]
-    \draw (0mm,10mm) -- (10mm,10mm);
-    \draw (0mm,8mm) -- (10mm,8mm);
-  \end{scope}
-  \draw (0mm,6mm) -- (10mm,6mm);
-  \begin{scope}[green]
-    \draw (0mm,4mm) -- (10mm,4mm);
-    \draw (0mm,2mm) -- (10mm,2mm);
-    \draw[blue] (0mm,0mm) -- (10mm,0mm);
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -718,25 +389,6 @@ Top align:
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  { [ultra thick]
-    { [red]
-      \draw (0mm,10mm) -- (10mm,10mm);
-      \draw (0mm,8mm)  -- (10mm,8mm);
-    }
-    \draw (0mm,6mm) -- (10mm,6mm);
-  }
-  { [green]
-    \draw (0mm,4mm) -- (10mm,4mm);
-    \draw (0mm,2mm) -- (10mm,2mm);
-    \draw[blue] (0mm,0mm) -- (10mm,0mm);
-  }
-\end{tikzpicture}
-```
 
 
 ---
@@ -748,16 +400,6 @@ Top align:
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [fill=white] at (1,1) {Hello world};
-  \scoped [on background layer]
-    \draw (0,0) grid (3,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -767,14 +409,6 @@ Top align:
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1)
-           {[rounded corners] -- (2,0) -- (3,1)}
-           -- (3,0) -- (2,1);
-```
 
 
 ---
@@ -786,15 +420,6 @@ Top align:
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw             (0,0) grid +(2,2);
-  \draw[help lines] (2,0) grid +(2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -804,12 +429,6 @@ Top align:
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-my style/.style={draw=red,fill=red!20}
-```
 
 
 ---
@@ -821,15 +440,6 @@ my style/.style={draw=red,fill=red!20}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[help lines/.style={blue!50,very thin}]
-  \draw             (0,0) grid +(2,2);
-  \draw[help lines] (2,0) grid +(2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -839,17 +449,6 @@ my style/.style={draw=red,fill=red!20}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{help lines/.style={blue!50,very thin}}
-% ...
-\begin{tikzpicture}
-  \draw             (0,0) grid +(2,2);
-  \draw[help lines] (2,0) grid +(2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -861,15 +460,6 @@ my style/.style={draw=red,fill=red!20}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[help lines/.append style=blue!50]
-  \draw             (0,0) grid +(2,2);
-  \draw[help lines] (2,0) grid +(2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -880,15 +470,6 @@ my style/.style={draw=red,fill=red!20}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[outline/.style={draw=#1,thick,fill=#1!50}]
-  \node [outline=red]  at (0,1) {red};
-  \node [outline=blue] at (0,0) {blue};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -898,16 +479,6 @@ my style/.style={draw=red,fill=red!20}
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[outline/.style={draw=#1,thick,fill=#1!50},
-                    outline/.default=black]
-  \node [outline]      at (0,1) {default};
-  \node [outline=blue] at (0,0) {blue};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1101,13 +672,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\muskipdef\mymuskip=0
-  \pgfmathsetlength{\mymuskip}{1mu+3*4mu} \the\mymuskip
-```
-
 
 ---
 
@@ -1117,13 +681,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\dimendef\mydimen=0
-  \pgfmathsetlength{\mydimen}{1pt+3*4pt}  \the\mydimen
-```
 
 
 ---
@@ -1135,13 +692,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\skipdef\myskip=0
-  \pgfmathsetlength{\myskip}{1pt+3*4pt}  \the\myskip
-```
-
 
 ---
 
@@ -1151,13 +701,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\skipdef\myskip=0
-  \pgfmathsetlength{\myskip}{+1pt plus 1fil}  \the\myskip
-```
 
 
 ---
@@ -1169,13 +712,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{scalar(1pt/2pt)} \pgfmathresult\
-\ifpgfmathunitsdeclared with \else without \fi unit
-```
-
 
 ---
 
@@ -1185,13 +721,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{1pt+scalar(1pt)} \pgfmathresult\
-\ifpgfmathunitsdeclared with \else without \fi unit
-```
 
 
 ---
@@ -1203,13 +732,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{scalar(1pt)+1pt} \pgfmathresult\
-\ifpgfmathunitsdeclared with \else without \fi unit
-```
-
 
 ---
 
@@ -1219,22 +741,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz{
-  \coordinate["$A$"]       (A) at (2,2);
-  \coordinate["$B$" below] (B) at (0,0);
-  \coordinate["$C$" below] (C) at (3,0);
-  \draw (A) -- (B) -- (C) -- cycle;
-  \path
-    let \p1 =($(A)-(B)$), \p2 =($(A)-(C)$),
-        \n1 = {veclen(\x1,\y1)}, \n2 = {veclen(\x2,\y2)}
-    in  coordinate ["$D$" below] (D) at ($ (B)!scalar(\n1/(\n1+\n2))!(C) $);
-  \draw (A) -- (D);
-}
-```
 
 
 ---
@@ -1246,13 +752,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\myarray{{1,"two",2+1,"IV","cinq","sechs",sin(\i*5)*14}}
-\foreach \i in  {0,...,6}{\pgfmathparse{\myarray[\i]}\pgfmathresult, }
-```
-
 
 ---
 
@@ -1262,13 +761,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\myarray{{7,-3,4,-9,11}}
-\pgfmathparse{\myarray[3]} \pgfmathresult
-```
 
 
 ---
@@ -1280,15 +772,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\print#1{\pgfmathparse{#1}\pgfmathresult}
-\def\identitymatrix{{{1,0,0},{0,1,0},{0,0,1}}}
-\tikz[x=0.5cm,y=0.5cm]\foreach \i in {0,1,2} \foreach \j in {0,1,2}
-  \node at (\j,-\i) [anchor=base] {\print{\identitymatrix[\i][\j]}};
-```
-
 
 ---
 
@@ -1298,16 +781,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\x{5}
-\foreach \y in {0,10}{
-  \pgfmathparse{\x > \y ? "\noexpand\Large Bigger" : "\noexpand\tiny smaller"}
-  \x\ is \pgfmathresult\ than \y.
-}
-```
 
 
 ---
@@ -1319,12 +792,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{add(75,6)} \pgfmathresult
-```
-
 
 ---
 
@@ -1334,12 +801,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{subtract(75,6)} \pgfmathresult
-```
 
 
 ---
@@ -1351,12 +812,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{neg(50)} \pgfmathresult
-```
-
 
 ---
 
@@ -1366,12 +821,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{multiply(75,6)} \pgfmathresult
-```
 
 
 ---
@@ -1383,12 +832,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{divide(75,6)} \pgfmathresult
-```
-
 
 ---
 
@@ -1398,12 +841,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{div(75,9)} \pgfmathresult
-```
 
 
 ---
@@ -1415,12 +852,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{factorial(5)} \pgfmathresult
-```
-
 
 ---
 
@@ -1430,12 +861,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{sqrt(10)} \pgfmathresult
-```
 
 
 ---
@@ -1447,12 +872,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sqrt(8765.432)} \pgfmathresult
-```
-
 
 ---
 
@@ -1462,12 +881,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{pow(2,7)} \pgfmathresult
-```
 
 
 ---
@@ -1479,12 +892,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{(e^2-e^-2)/2} \pgfmathresult
-```
-
 
 ---
 
@@ -1494,12 +901,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{exp(1)} \pgfmathresult
-```
 
 
 ---
@@ -1511,12 +912,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{exp(2.34)} \pgfmathresult
-```
-
 
 ---
 
@@ -1526,12 +921,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{ln(10)} \pgfmathresult
-```
 
 
 ---
@@ -1543,12 +932,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{ln(exp(5))} \pgfmathresult
-```
-
 
 ---
 
@@ -1558,12 +941,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{log10(100)} \pgfmathresult
-```
 
 
 ---
@@ -1575,12 +952,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{log2(128)} \pgfmathresult
-```
-
 
 ---
 
@@ -1590,12 +961,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{abs(-5)} \pgfmathresult
-```
 
 
 ---
@@ -1607,12 +972,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{-abs(4*-3)} \pgfmathresult
-```
-
 
 ---
 
@@ -1622,12 +981,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{mod(20,6)} \pgfmathresult
-```
 
 
 ---
@@ -1639,12 +992,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{mod(-100,30)} \pgfmathresult
-```
-
 
 ---
 
@@ -1654,12 +1001,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{Mod(-100,30)} \pgfmathresult
-```
 
 
 ---
@@ -1671,12 +1012,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sign(-5)} \pgfmathresult
-```
-
 
 ---
 
@@ -1686,12 +1021,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{sign(0)} \pgfmathresult
-```
 
 
 ---
@@ -1703,12 +1032,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sign(5)} \pgfmathresult
-```
-
 
 ---
 
@@ -1718,12 +1041,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{round(32.5/17)} \pgfmathresult
-```
 
 
 ---
@@ -1735,12 +1052,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{round(398/12)} \pgfmathresult
-```
-
 
 ---
 
@@ -1750,12 +1061,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{floor(32.5/17)} \pgfmathresult
-```
 
 
 ---
@@ -1767,12 +1072,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{floor(398/12)} \pgfmathresult
-```
-
 
 ---
 
@@ -1782,12 +1081,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{floor(-398/12)} \pgfmathresult
-```
 
 
 ---
@@ -1799,12 +1092,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{ceil(32.5/17)} \pgfmathresult
-```
-
 
 ---
 
@@ -1814,12 +1101,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{ceil(398/12)} \pgfmathresult
-```
 
 
 ---
@@ -1831,12 +1112,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{ceil(-398/12)} \pgfmathresult
-```
-
 
 ---
 
@@ -1846,12 +1121,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{int(32.5/17)} \pgfmathresult
-```
 
 
 ---
@@ -1863,12 +1132,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{frac(32.5/17)} \pgfmathresult
-```
-
 
 ---
 
@@ -1878,12 +1141,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{real(4)} \pgfmathresult
-```
 
 
 ---
@@ -1895,12 +1152,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{gcd(42,56)} \pgfmathresult
-```
-
 
 ---
 
@@ -1910,13 +1161,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{isodd(2)} \pgfmathresult,
-\pgfmathparse{isodd(3)} \pgfmathresult
-```
 
 
 ---
@@ -1928,13 +1172,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{iseven(2)} \pgfmathresult,
-\pgfmathparse{iseven(3)} \pgfmathresult
-```
-
 
 ---
 
@@ -1944,15 +1181,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{isprime(1)} \pgfmathresult,
-\pgfmathparse{isprime(2)} \pgfmathresult,
-\pgfmathparse{isprime(31)} \pgfmathresult,
-\pgfmathparse{isprime(64)} \pgfmathresult
-```
 
 
 ---
@@ -1964,12 +1192,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{pi} \pgfmathresult
-```
-
 
 ---
 
@@ -1979,12 +1201,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{pi r} \pgfmathresult
-```
 
 
 ---
@@ -1996,12 +1212,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{rad(90)} \pgfmathresult
-```
-
 
 ---
 
@@ -2011,12 +1221,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{deg(3*pi/2)} \pgfmathresult
-```
 
 
 ---
@@ -2028,12 +1232,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sin(60)} \pgfmathresult
-```
-
 
 ---
 
@@ -2043,12 +1241,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{sin(pi/3 r)} \pgfmathresult
-```
 
 
 ---
@@ -2060,12 +1252,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{cos(60)} \pgfmathresult
-```
-
 
 ---
 
@@ -2075,12 +1261,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{cos(pi/3 r)} \pgfmathresult
-```
 
 
 ---
@@ -2092,12 +1272,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{tan(45)} \pgfmathresult
-```
-
 
 ---
 
@@ -2107,12 +1281,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{tan(2*pi/8 r)} \pgfmathresult
-```
 
 
 ---
@@ -2124,12 +1292,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sec(45)} \pgfmathresult
-```
-
 
 ---
 
@@ -2139,12 +1301,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{cosec(30)} \pgfmathresult
-```
 
 
 ---
@@ -2156,12 +1312,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{cot(15)} \pgfmathresult
-```
-
 
 ---
 
@@ -2171,12 +1321,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{asin(0.7071)} \pgfmathresult
-```
 
 
 ---
@@ -2188,12 +1332,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{acos(0.5)} \pgfmathresult
-```
-
 
 ---
 
@@ -2203,12 +1341,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{atan(1)} \pgfmathresult
-```
 
 
 ---
@@ -2220,12 +1352,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{atan2(-4,3)} \pgfmathresult
-```
-
 
 ---
 
@@ -2235,12 +1361,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{cos(45)} \pgfmathresult
-```
 
 
 ---
@@ -2252,13 +1372,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/trig format=rad}
-\pgfmathparse{cos(pi/2)} \pgfmathresult
-```
-
 
 ---
 
@@ -2268,18 +1381,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \draw[-stealth]
-        (0:1) -- (45:1) -- (90:1) -- (135:1) -- (180:1);
-
-    \draw[-stealth,trig format=rad,red]
-        (pi:1) -- (5/4*pi:1) -- (6/4*pi:1) -- (7/4*pi:1) -- (2*pi:1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -2291,12 +1392,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{equal(20,20)} \pgfmathresult
-```
-
 
 ---
 
@@ -2306,12 +1401,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{greater(20,25)} \pgfmathresult
-```
 
 
 ---
@@ -2323,12 +1412,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{less(20,25)} \pgfmathresult
-```
-
 
 ---
 
@@ -2338,12 +1421,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{notequal(20,25)} \pgfmathresult
-```
 
 
 ---
@@ -2355,12 +1432,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{notgreater(20,25)} \pgfmathresult
-```
-
 
 ---
 
@@ -2370,12 +1441,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{notless(20,25)} \pgfmathresult
-```
 
 
 ---
@@ -2387,12 +1452,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{and(5>4,6>7)} \pgfmathresult
-```
-
 
 ---
 
@@ -2402,12 +1461,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{or(5>4,6>7)} \pgfmathresult
-```
 
 
 ---
@@ -2419,12 +1472,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{not(true)} \pgfmathresult
-```
-
 
 ---
 
@@ -2434,12 +1481,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{ifthenelse(5==4,"yes","no")} \pgfmathresult
-```
 
 
 ---
@@ -2451,12 +1492,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{true ? "yes" : "no"} \pgfmathresult
-```
-
 
 ---
 
@@ -2466,12 +1501,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{false ? "yes" : "no"} \pgfmathresult
-```
 
 
 ---
@@ -2483,12 +1512,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x in {1,...,10}{\pgfmathparse{rnd}\pgfmathresult, }
-```
-
 
 ---
 
@@ -2498,12 +1521,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\foreach \x in {1,...,10}{\pgfmathparse{rand}\pgfmathresult, }
-```
 
 
 ---
@@ -2515,12 +1532,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x in {1,...,10}{\pgfmathparse{random()}\pgfmathresult, }
-```
-
 
 ---
 
@@ -2530,12 +1541,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\foreach \x in {1,...,10}{\pgfmathparse{random(100)}\pgfmathresult, }
-```
 
 
 ---
@@ -2547,12 +1552,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\foreach \x in {1,...,10}{\pgfmathparse{random(232,762)}\pgfmathresult, }
-```
-
 
 ---
 
@@ -2562,12 +1561,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{hex(65535)} \pgfmathresult
-```
 
 
 ---
@@ -2579,12 +1572,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{Hex(65535)} \pgfmathresult
-```
-
 
 ---
 
@@ -2594,12 +1581,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{oct(63)} \pgfmathresult
-```
 
 
 ---
@@ -2611,12 +1592,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{bin(185)} \pgfmathresult
-```
-
 
 ---
 
@@ -2626,12 +1601,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{min(3,4,-2,250,-8,100)} \pgfmathresult
-```
 
 
 ---
@@ -2643,12 +1612,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{max(3,4,-2,250,-8,100)} \pgfmathresult
-```
-
 
 ---
 
@@ -2658,12 +1621,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{veclen(12,5)} \pgfmathresult
-```
 
 
 ---
@@ -2675,12 +1632,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{array({9,13,17,21},2)} \pgfmathresult
-```
-
 
 ---
 
@@ -2690,12 +1641,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{dim({1,2,3,4})} \pgfmathresult
-```
 
 
 ---
@@ -2707,12 +1652,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{sinh(0.5)} \pgfmathresult
-```
-
 
 ---
 
@@ -2722,12 +1661,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{cosh(0.5)} \pgfmathresult
-```
 
 
 ---
@@ -2739,12 +1672,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{tanh(0.5)} \pgfmathresult
-```
-
 
 ---
 
@@ -2754,12 +1681,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{width("Some Lovely Text")} \pgfmathresult
-```
 
 
 ---
@@ -2771,12 +1692,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfmathparse{height("Some Lovely Text")} \pgfmathresult
-```
-
 
 ---
 
@@ -2786,12 +1701,6 @@ This -if is similar to ||, but it is only set when the unit |mu| is encountered 
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfmathparse{depth("Some Lovely Text")} \pgfmathresult
-```
 
 
 ---
@@ -2881,20 +1790,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \begin{scope}[/pgf/fpu/install only={reciprocal}]
-    \draw[postaction=decorate,decoration={
-        markings,mark=at position 0.52 with {
-            \draw circle[radius=2pt];
-        }},
-    ] plot[smooth,variable=\x,domain=-1:1] (\x*\x*\x,\x*\x);
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2904,16 +1799,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=lineto]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -2925,16 +1810,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={straight zigzag,meta-segment length=1.1cm}]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2944,17 +1819,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    [decoration={random steps,segment length=2mm}]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -2966,16 +1830,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=saw]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2985,16 +1839,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=zigzag]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -3006,15 +1850,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=bent]
-  \draw [help lines] grid (3,2);
-  \draw [decorate] (0,0) -- (3,1) -- (1.5,2) -- (0,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3024,18 +1859,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={bent,aspect=.3}]
-  \draw [decorate,fill=yellow!80!black] (0,0) rectangle (3.5,2);
-  \node[circle,draw] (A) at (.5,.5) {A};
-  \node[circle,draw] (B) at (3,1.5) {B};
-  \draw[->,decorate] (A) -- (B);
-  \draw[->,decorate] (B) -- (A);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3047,16 +1870,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=bumps]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3066,16 +1879,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=coil]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -3087,17 +1890,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    [decoration={coil,aspect=0.3,segment length=3mm,amplitude=3mm}]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3107,16 +1899,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=curveto]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -3128,16 +1910,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=snake]
-  \draw [help lines] grid (3,2);
-  \draw [decorate,fill=yellow!80!black]
-    (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3147,16 +1919,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=border]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate,draw,red}]
-        (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3168,15 +1930,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=brace]
-  \draw [help lines] grid (3,2);
-  \draw [decorate] (0,0) -- (3,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3186,15 +1939,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={expanding waves,angle=5}]
-  \draw [help lines] grid (3,2);
-  \draw [decorate] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3206,15 +1950,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=ticks]
-  \draw [help lines] grid (3,2);
-  \draw [decorate] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3224,15 +1959,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={waves,radius=4mm}]
-  \draw [help lines] grid (3,2);
-  \draw [decorate] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3244,32 +1970,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth, every node/.style={midway, sloped, font=\tiny},
-  decoration={show path construction,
-    moveto code={
-      \fill [red] (\tikzinputsegmentfirst) circle (2pt)
-        node [fill=none, below] {moveto};},
-    lineto code={
-      \draw [blue,->] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast)
-        node [above] {lineto};
-    },
-    curveto code={
-      \draw [green!75!black,->] (\tikzinputsegmentfirst) .. controls
-        (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)
-        ..(\tikzinputsegmentlast) node [above] {curveto};
-    },
-    closepath code={
-      \draw [orange,->] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast)
-        node [above] {closepath};}
-  }]
-  \draw [help lines] grid (3,2);
-  \path [decorate] (0,0) -- (3,1) arc (0:180:1.5 and 1) -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3279,31 +1979,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-  show curve controls/.style={
-    decoration={
-      show path construction,
-      curveto code={
-        \draw [blue, dashed]
-          (\tikzinputsegmentfirst)    -- (\tikzinputsegmentsupporta)
-          node [at end, cross out, draw, solid, red, inner sep=2pt]{};
-        \draw [blue, dashed]
-          (\tikzinputsegmentsupportb) -- (\tikzinputsegmentlast)
-          node [at start, cross out, draw, solid, red, inner sep=2pt]{};
-      }
-    },decorate
-  }
-}
-
-\begin{tikzpicture}
-  \draw [postaction=show curve controls, thick]
-    (0,2) .. controls (2.5,1.5) and (0.5,0.5) .. (3,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3315,13 +1990,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\draw (-2pt,-2pt) -- (2pt,2pt);
-\draw (2pt,-2pt) -- (-2pt,2pt);
-```
-
 
 ---
 
@@ -3331,25 +1999,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=% actually add a mark
-      at position 2cm
-      with
-      {
-        \draw (-2pt,-2pt) -- (2pt,2pt);
-        \draw (2pt,-2pt) -- (-2pt,2pt);
-      }
-    }
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3361,25 +2010,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=% actually add a mark
-      between positions 0 and 1 step 5mm
-      with
-      {
-        \draw (-2pt,-2pt) -- (2pt,2pt);
-        \draw (2pt,-2pt) -- (-2pt,2pt);
-      }
-    }
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3389,20 +2019,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=at position 1cm  with \node[red]{1cm};,
-    mark=at position .5   with \node[green]{mid};,
-    mark=at position -1cm with {\node[blue,transform shape]{1cm from end};}}
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3414,25 +2030,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[domain=0:4,label/.style={postaction={
-      decorate,
-      decoration={
-        markings,
-        mark=at position .75 with \node #1;}}}]
-  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
-
-  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
-  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
-
-  \draw[red,label={[above left]{$f(x)=x$}}]                       plot (\x,\x);
-  \draw[blue,label={[below left]{$f(x)=\sin x$}}]                 plot (\x,{sin(\x r)});
-  \draw[orange,label={[right]{$f(x)= \frac{1}{20} \mathrm e^x$}}] plot (\x,{0.05*exp(\x)});
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3442,18 +2039,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark=between positions 0 and 1 step 0.1
-         with { \draw (-2pt,-2pt) -- (2pt,2pt);
-                \draw (2pt,-2pt) -- (-2pt,2pt); }} ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3465,18 +2050,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark=between positions 0 and 1 step 1cm
-      with { \node [single arrow,fill=red,
-                    single arrow head extend=3pt,transform shape] {};}}]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3486,21 +2059,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark=between positions 0 and 1 step 1cm with {
-      \node [draw,
-        name=mark-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number},
-        transform shape]
-      {\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}};}}]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-  \draw [red,->] (mark-3) -- (mark-7);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3512,24 +2070,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    % Main marks
-    mark=between positions 0 and 1 step 40pt with
-      { \draw [help lines] (0,0) -- (0,0.5)
-        node[above,font=\tiny]{
-          \pgfkeysvalueof{/pgf/decoration/mark info/distance from start}}; },
-    mark=at position -0.1pt with
-      { \draw [help lines] (0,0) -- (0,0.5)
-        node[above,font=\tiny]{
-          \pgfkeysvalueof{/pgf/decoration/mark info/distance from start}}; }}]
-  \draw [help lines] grid (5,3);
-  \draw [postaction={decorate}]  (0,0) .. controls (8,3) and (0,3) .. (5,0) ;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3539,18 +2079,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark connection node=my node,
-    mark=at position .5 with
-      {\node [draw,blue,transform shape] (my node) {my node};}}]
-  \draw [help lines] grid (3,2);
-  \draw decorate { (0,0) -- (3,2) };
-\end{tikzpicture}
-```
 
 
 ---
@@ -3562,18 +2090,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark connection node=my node,
-    mark=at position .25 with
-      {\node [draw,red] (my node) {my node};}}]
-  \draw [help lines] grid (3,2);
-  \draw decorate { (0,0) -- (3,2) };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3584,20 +2100,6 @@ The second support on the curveto input segment path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=at position 1cm  with {\node[red]{1cm};},
-    mark=at position .75  with {\arrow[blue,line width=2mm]{>}},
-    mark=at position -1cm with {\arrowreversed[black]{stealth}}}
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3607,19 +2109,6 @@ The second support on the curveto input segment path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=between positions 0 and .75 step 4mm with {\arrow{stealth}},
-    mark=between positions .75 and 1 step 4mm with {\arrowreversed{stealth}}}
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---

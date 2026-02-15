@@ -122,18 +122,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\draw [
-    gray,
-    thin,
-    mark options={
-        scale=2,fill=yellow!80!black,draw=black,
-    },
-]
-```
-
 
 ---
 
@@ -143,17 +131,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=2cm]
-    \addplot coordinates
-        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -165,18 +142,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\tikzset{every mark/.append style={scale=2}}
-\begin{tikzpicture}
-\begin{axis}[y=2cm]
-    \addplot coordinates
-        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -186,26 +151,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=2cm]
-  \addplot+ [
-    mark=halfcircle*,
-    every mark/.append style={rotate=90}]
-  coordinates
-    {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
-
-  \addplot+ [
-    mark=halfcircle*,
-    every mark/.append style={rotate=180}]
-  coordinates
-    {(-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -217,25 +162,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=2cm]
-    \addplot+ [
-        mark=ball,
-        mark size=4pt,
-        scatter,% enable scatter
-        scatter src=rand,% the "color data"
-        % configure individual appearances:
-        scatter/use mapped color=
-            {ball color=mapped color}]
-    coordinates
-        {(-2,0) (-1,1) (0,0) (1,1) (2,0)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -245,23 +171,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[tiny]
-        \addplot+ [scatter] {sin(deg(x))};
-    \end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{axis}[tiny]
-        \addplot+ [scatter,
-            mark repeat=3,mark phase=2]
-                {sin(deg(x))};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -273,29 +182,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=2cm]
-    \addplot [
-        blue,
-        mark color=blue!50!white,
-        mark=halfcircle*
-    ] coordinates {
-        (-2,0) (-1,1) (0,0) (1,1) (2,0)
-    };
-    \addplot [
-        red,
-        mark color=red!50!white,
-        mark=halfsquare*,
-    ] coordinates {
-        (-2,-0.1) (-1,0.9) (0,-0.1) (1,0.9) (2,-0.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -305,25 +191,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% Overwrite any cycle list:
-\pgfplotsset{
-    every axis plot post/.append style={
-        mark=triangle,
-        every mark/.append style={rotate=90},
-    },
-}
-\begin{tikzpicture}
-    \begin{axis}[y=2cm]
-        \addplot coordinates {
-            (-2,0) (-1,1) (0,0) (1,1) (2,0)
-        };
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -335,14 +202,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    every mark/.append style={solid},
-}
-```
-
 
 ---
 
@@ -352,32 +211,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usetikzlibrary{spy}
-\begin{tikzpicture}[spy using outlines=
-    {circle, magnification=6, connect spies}]
-\begin{axis}[no markers,grid=major,
-    every axis plot post/.append style={thick}]
-\addplot  coordinates
- {(0, 0) (0, 0.9) (1, 0.9) (2, 1) (3, 0.9) (80, 0)};
-\addplot+ [line join=round] coordinates
- {(0, 0) (0, 0.9) (2, 0.9) (3, 1) (4, 0.9) (80, 0)};
-\addplot+ [line join=bevel] coordinates
- {(0, 0) (0, 0.9) (3, 0.9) (4, 1) (5, 0.9) (80, 0)};
-\addplot+ [miter limit=5] coordinates
- {(0, 0) (0, 0.9) (4, 0.9) (5, 1) (6, 0.9) (80, 0)};
-
-    \coordinate (spypoint)     at (3,1);
-    \coordinate (magnifyglass) at (60,0.7);
-\end{axis}
-
-\spy [blue, size=2.5cm] on (spypoint)
-    in node[fill=white] at (magnifyglass);
-\end{tikzpicture}
-```
 
 
 ---
@@ -389,16 +222,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    tick label style={font=\small},
-    label style={font=\small},
-    legend style={font=\footnotesize},
-}
-```
-
 
 ---
 
@@ -408,12 +231,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={line width=1pt}}
-```
 
 
 ---
@@ -425,12 +242,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={thick}}
-```
-
 
 ---
 
@@ -440,14 +251,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={
-    line width=1pt,
-    tick style={line width=0.6pt}}}
-```
 
 
 ---
@@ -459,14 +262,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={
-    thick,
-    tick style={semithick}}}
-```
-
 
 ---
 
@@ -476,53 +271,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={
-    font=\large,
-    line width=1pt,
-    tick style={line width=0.8pt}}}
-\begin{tikzpicture}
-\begin{loglogaxis}[
-    legend pos=south west,
-    xlabel=\textsc{Dof},
-    ylabel=$L_2$ Error
-]
-\addplot coordinates {
-    (5,8.312e-02)    (17,2.547e-02)   (49,7.407e-03)
-    (129,2.102e-03)  (321,5.874e-04)  (769,1.623e-04)
-    (1793,4.442e-05) (4097,1.207e-05) (9217,3.261e-06)
-};
-
-\addplot coordinates{
-    (7,8.472e-02)    (31,3.044e-02)   (111,1.022e-02)
-    (351,3.303e-03)  (1023,1.039e-03) (2815,3.196e-04)
-    (7423,9.658e-05) (18943,2.873e-05)
-    (47103,8.437e-06)};
-
-\addplot coordinates{
-    (9,7.881e-02)     (49,3.243e-02)   (209,1.232e-02)
-    (769,4.454e-03)   (2561,1.551e-03)
-    (7937,5.236e-04)  (23297,1.723e-04)
-    (65537,5.545e-05) (178177,1.751e-05)};
-
-\addplot coordinates{
-    (11,6.887e-02)    (71,3.177e-02)   (351,1.341e-02)
-    (1471,5.334e-03)  (5503,2.027e-03)
-    (18943,7.415e-04) (61183,2.628e-04)
-    (187903,9.063e-05) (553983,3.053e-05)};
-
-\addplot coordinates{
-    (13,5.755e-02)    (97,2.925e-02)   (545,1.351e-02)
-    (2561,5.842e-03)  (10625,2.397e-03)
-    (40193,9.414e-04) (141569,3.564e-04)
-    (471041,1.308e-04) (1496065,4.670e-05)};
-\legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
-\end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -534,26 +282,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={
-    font=\footnotesize,
-    thin,
-    tick style={ultra thin}},
-}
-\begin{tikzpicture}
-    \begin{loglogaxis}[
-        xlabel=\textsc{Dof},
-        ylabel=$L_2$ Error
-    ]
-        % see above for this macro:
-        \plotcoords
-        \legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
-    \end{loglogaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -563,19 +291,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[enlarge x limits=false]
-    \addplot [red,samples=500] {sin(deg(x))};
-    \addplot [orange,samples=7] {sin(deg(x))};
-    \addplot [teal,const plot,samples=14]
-        {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -587,14 +302,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\definecolor{color1}{rgb}{1,1,0}
-\tikz \fill[color1]
-    (0,0) rectangle (1em,0.6em);
-```
-
 
 ---
 
@@ -604,14 +311,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\definecolor{color1}{cmyk}{0.6,0.9,0.5,0.1}
-\tikz \fill[color1]
-    (0,0) rectangle (1em,0.6em);
-```
 
 
 ---
@@ -623,14 +322,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\definecolor{color1}{HTML}{D0B22B}
-\tikz \fill[color1]
-    (0,0) rectangle (1em,0.6em);
-```
-
 
 ---
 
@@ -640,13 +331,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usepackage[cmyk]{xcolor}
-\usepackage{pgfplots}
-```
 
 
 ---
@@ -658,12 +342,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\selectcolormodel{cmyk}
-```
-
 
 ---
 
@@ -673,12 +351,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{colormap={CM}{rgb=(0,0,1) color=(black) rgb255=(238,140,238)}}
-```
 
 
 ---
@@ -690,12 +362,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{colormap={CM}{rgb(-500)=(0,0,1) color(0)=(black) rgb255(1500)=(238,140,238)}}
-```
-
 
 ---
 
@@ -705,26 +371,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap={bw}{
-        gray(0cm)=(0);
-        gray(1cm)=(1);
-    },
-]
-    \addplot+ [
-        scatter,
-        only marks,
-        domain=0:8,
-        samples=100,
-    ] {exp(x)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -736,15 +382,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% non-uniform spacing example: the mesh width is provided as first
-% part of the specification.
-\pgfplotsset{colormap={violetnew}
-    {[1cm] rgb255(0cm)=(25,25,122) color(1cm)=(white) rgb255(5cm)=(238,140,238)}}
-```
-
 
 ---
 
@@ -754,12 +391,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usepackage[cmyk]{xcolor}
-```
 
 
 ---
@@ -771,12 +402,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\selectcolormodel{cmyk}
-```
-
 
 ---
 
@@ -786,14 +411,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colormap name=viridis,
-}
-```
 
 
 ---
@@ -805,14 +422,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={hot}{color(0cm)=(blue); color(1cm)=(yellow); color(2cm)=(orange); color(3cm)=(red)}
-}
-```
-
 
 ---
 
@@ -822,15 +431,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    /pgfplots/colormap={hot2}{[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
-        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)}
-}
-```
 
 
 ---
@@ -842,15 +442,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    /pgfplots/colormap={jet}{rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
-        rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0) rgb255(8cm)=(128,0,0)}
-}
-```
-
 
 ---
 
@@ -860,14 +451,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={blackwhite}{gray(0cm)=(0); gray(1cm)=(1)}
-}
-```
 
 
 ---
@@ -879,16 +462,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={bluered}{
-        rgb255(0cm)=(0,0,180); rgb255(1cm)=(0,255,255); rgb255(2cm)=(100,255,0);
-        rgb255(3cm)=(255,255,0); rgb255(4cm)=(255,0,0); rgb255(5cm)=(128,0,0)}
-}
-```
-
 
 ---
 
@@ -898,18 +471,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[colormap/bluered]
-    \addplot+ [scatter,
-         scatter src=x,samples=50]
-        {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -921,14 +482,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={cool}{rgb255(0cm)=(255,255,255); rgb255(1cm)=(0,128,255); rgb255(2cm)=(255,0,255)}
-}
-```
-
 
 ---
 
@@ -938,14 +491,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={greenyellow}{rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)}
-}
-```
 
 
 ---
@@ -957,14 +502,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={redyellow}{rgb255(0cm)=(255,0,0); rgb255(1cm)=(255,255,0)}
-}
-```
-
 
 ---
 
@@ -974,14 +511,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colormap={violet}{rgb255=(25,25,122) color=(white) rgb255=(238,140,238)}
-}
-```
 
 
 ---
@@ -993,18 +522,6 @@ list}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% convert `hot' -> \result
-    \pgfplotscolormaptoshadingspec{hot}{8cm}\result
-    % define and use a shading in pgf:
-    \def\tempb{\pgfdeclarehorizontalshading{tempshading}{1cm}}%
-    % where `\result' is inserted as last argument:
-    \expandafter\tempb\expandafter{\result}%
-    \pgfuseshading{tempshading}%
-```
-
 
 ---
 
@@ -1014,15 +531,6 @@ list}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-point meta min=0,
-    point meta max=1000,
-    parent axis width/.initial=6cm,
-    parent axis height/.initial=6cm,
-```
 
 
 ---
@@ -1034,19 +542,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=1cm,table/col sep=comma]
-        \pgfplotscolormaptodatafile{hot}{hot.dat}
-    \addplot[red,mark=|]   table[y index=1] {hot.dat};
-    \addplot[green,mark=|] table[y index=2] {hot.dat};
-    \addplot[blue,mark=|]  table[y index=3] {hot.dat};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1056,19 +551,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y=1cm,table/col sep=comma]
-    \pgfplotscolormaptodatafile{viridis}{viridis.dat}
-    \addplot[red]   table[y index=1] {viridis.dat};
-    \addplot[green] table[y index=2] {viridis.dat};
-    \addplot[blue]  table[y index=3] {viridis.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1080,18 +562,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap=(4 of viridis)
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -1101,18 +571,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap=(4 of viridis)
-    },
-    colorbar horizontal,
-    colormap access=map,
-]
-```
 
 
 ---
@@ -1124,18 +582,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap=(4)
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -1145,18 +591,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap=(4)
-    },
-    colorbar horizontal,
-    colormap access=map,
-]
-```
 
 
 ---
@@ -1168,21 +602,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap={
-            5 of viridis,
-            target pos={0,800,850,950,1000},
-        }
-    },
-    colorbar horizontal,
-    colormap access=map,
-]
-```
-
 
 ---
 
@@ -1192,24 +611,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        % simpler alternative:
-        % of colormap={viridis,target pos={...}}
-        samples of colormap={
-            5 of viridis,
-            target pos={0,400,500,700,800,1000},
-            sample for=const,
-        }
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1221,22 +622,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,400,500,700,800,1000},
-            sample for=const,
-        }
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -1246,19 +631,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        color=(green),
-        index of colormap=(2 of viridis)
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1270,14 +642,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
- colormap={example}{color=(red) color=(blue)}}
-\tikz \draw[index of colormap=0 of example] (0,0) -- (1,0);
-```
-
 
 ---
 
@@ -1287,14 +651,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
- colormap={example}{color=(red) color=(blue)}}
-\tikz \fill[index of colormap=1 of example] (0,0) rectangle (1,1);
-```
 
 
 ---
@@ -1306,16 +662,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
- colormap={example}{color=(red) color=(blue)}}
-\tikz \shade[
-    index of colormap=0 of example,left color=.,
-    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
-```
-
 
 ---
 
@@ -1325,20 +671,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        indices of colormap=(0,5,10,12,
-          \pgfplotscolormaplastindexof{viridis}
-          of viridis)
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1350,16 +682,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
- colormap={example}{color=(red) color=(blue)}}
-\tikz \shade[
-    color of colormap=250 of example,left color=.,
-    color of colormap=500 of example,right color=.] (0,0) rectangle (1,1);
-```
-
 
 ---
 
@@ -1369,19 +691,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-      colors of colormap=(0,400,800,900,
-          1000 of viridis)
-    },
-    colorbar horizontal,
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1393,21 +702,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,400,500,700,800,1000},
-        },
-    },
-    colorbar horizontal,
-    colormap access=map,
-]
-```
-
 
 ---
 
@@ -1417,21 +711,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,400,500,700,800,1000},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1443,20 +722,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={viridis,
-            target pos={-10,-3,0,1,2},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
-
 
 ---
 
@@ -1466,21 +731,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={viridis,
-            target pos={-10,-3,0,1,2},
-            sample for=const,
-        },
-    },
-    point meta min=-10,point meta max=2,
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1492,22 +742,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={viridis,
-            target pos={-10,-3,0,1,2},
-            sample for=const,
-        },
-    },
-    point meta min=-10,point meta max=2,
-    colorbar horizontal,
-    colorbar style={xtick=data},
-    colormap access=const]
-```
-
 
 ---
 
@@ -1517,17 +751,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={viridis},
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1539,19 +762,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap={
-            5 of viridis,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
-
 
 ---
 
@@ -1561,20 +771,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,500,850,950,1000},
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1586,21 +782,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap={
-            5 of viridis,
-            target pos={0,500,850,950,1000},
-        },
-    },
-    colormap access/extra interval width=h,
-    colorbar horizontal,
-    colormap access=const]
-```
-
 
 ---
 
@@ -1610,21 +791,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,500,850,950,1000},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1636,21 +802,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        of colormap={
-            viridis,
-            target pos={0,500,850,950,1000},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=map]
-```
-
 
 ---
 
@@ -1660,21 +811,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        samples of colormap={
-            5 of viridis,
-            target pos={0,100,500,850,950,1000},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1686,20 +822,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        colors of colormap={
-            -30000,-10000,0,100000,110000 of viridis,
-            source range=-30000:120000,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
-
 
 ---
 
@@ -1709,33 +831,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    point meta min=-7046,
-    point meta max=2895,
-    colormap={whiteblue}{color=(blue) color=(white)},
-    colormap={gb}{color=(green) color=(yellow)
-        color=(brown)},
-    colormap={CM}{
-        of colormap={
-            whiteblue,
-            target pos={-7046,-6000,-5000,-3000,
-                -1000,-750,-500,-250,-100,-50,0},
-            sample for=const,
-        },
-        of colormap={
-            gb,
-            target pos={10,100,200,500,1000,1100,
-                1200,1500,2000,2895},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const]
-```
 
 
 ---
@@ -1747,45 +842,6 @@ point meta min=0,
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    of colormap/ocean height/.style={
-        target pos={-12000,-10000,-6000,-5000,-3000,
-            -1000,-750,-500,-250,-100,-50,0,10,100,
-            200,500,1000,1100,1200,1500,2000,4000,
-            6000,8000},
-    },
-}
-\pgfplotscolorbardrawstandalone[
-  point meta min=-7046,
-  point meta max=2895,
-  colormap={whiteblue}{color=(blue) color=(white)},
-  colormap={gb}{color=(green) color=(yellow)
-      color=(brown)},
-  colormap={CM}{
-      of colormap={
-        whiteblue,
-        ocean height,
-        target pos min*=
-          \pgfkeysvalueof{/pgfplots/point meta min},
-        target pos max=0,
-        sample for=const,
-      },
-      of colormap={
-        gb,
-        ocean height,
-        target pos min=0.1,
-        target pos max*=
-          \pgfkeysvalueof{/pgfplots/point meta max},
-        sample for=const,
-      },
-  },
-  colorbar horizontal,
-  colormap access=const]
-```
-
 
 ---
 
@@ -1795,15 +851,6 @@ point meta min=0,
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-...
-target pos={-7046,-6000,-5000,-3000,-1000,-750,-500,-250,-100,-50,0}
-...
-target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
-```
 
 
 ---
@@ -1815,49 +862,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\pgfplotsset{
-  colormap={whiteblue}{color=(blue) color=(white)},
-  colormap={gb}{color=(green) color=(yellow)
-      color=(brown)},
-  of colormap/ocean height/.style={
-      target pos={-12000,-10000,-6000,-5000,-3000,
-          -1000,-750,-500,-250,-100,-50,0,10,100,
-          200,500,1000,1100,1200,1500,2000,4000,
-          6000,8000},
-  },
-  colormap={CM}{
-      of colormap={
-          whiteblue,
-          ocean height,
-          target pos max=0,
-          sample for=const,
-      },
-      of colormap={
-          gb,
-          ocean height,
-          target pos min=0.1,
-          sample for=const,
-      },
-  },
-}
-\begin{tikzpicture}
-\begin{axis}[small,colorbar]
-    \addplot3[surf] {x*y};
-\end{axis}
-\end{tikzpicture}
-~
-\begin{tikzpicture}
-\begin{axis}[small,colorbar,
-    colorbar style={colormap access=const}
-]
-    \addplot3[surf,shader=interp,colormap access=const] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1867,15 +871,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-  colormap={example}{color=(red) color=(blue) color=(yellow)}}
-\tikz \fill[const color of colormap=50 of example] (0,0) rectangle (1,1);
-\tikz \fill[const color of colormap=750 of example] (0,0) rectangle (1,1);
-```
 
 
 ---
@@ -1887,21 +882,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        color=(blue)
-        color=(red)
-        color=(black)
-    },
-    colorbar horizontal,
-    colorbar style={xtick=data},
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -1911,21 +891,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        color(0)=(blue)
-        color(500)=(red)
-        color(1000)=(black)
-    },
-    colorbar horizontal,
-    colorbar style={xtick=data},
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1937,22 +902,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={example}{
-        color(0)=(blue)
-        color(500)=(red)
-        color(1000)=(black)
-    },
-    colorbar horizontal,
-    colorbar style={xtick=data},
-    colormap access/extra interval width=h,
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -1962,24 +911,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={nonuniform}{
-        of colormap={
-            viridis,
-            target pos={0,200,300,500,700,1000}
-        },
-    },
-    colorbar horizontal,
-    colormap access=const,
-    colorbar style={xtick=data,font=\tiny,
-        /pgf/number format/precision=0},
-    colormap access=const,
-]
-```
 
 
 ---
@@ -1991,25 +922,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={nonuniform}{
-        of colormap={
-            viridis,
-            target pos={0,200,300,500,700,1000}
-        },
-    },
-    colorbar horizontal,
-    colormap access=const,
-    colormap access/extra interval width=h,
-    colorbar style={xtick=data,font=\tiny,
-        /pgf/number format/precision=0},
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -2019,25 +931,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={nonuniform}{
-        of colormap={
-            viridis,
-            target pos={0,200,300,500,700,1000},
-            sample for=const,
-        },
-    },
-    colorbar horizontal,
-    colormap access=const,
-    colorbar style={xtick=data,font=\tiny,
-        /pgf/number format/precision=0},
-    colormap access=const,
-]
-```
 
 
 ---
@@ -2049,25 +942,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscolorbardrawstandalone[
-    colormap={nonuniform}{
-        of colormap={
-            viridis,
-            target pos={0,200,300,500,700,1000}
-        },
-        color(1100)=(red)
-    },
-    colorbar horizontal,
-    colormap access=const,
-    colorbar style={xtick=data,font=\tiny,
-        /pgf/number format/precision=0},
-    colormap access=const,
-]
-```
-
 
 ---
 
@@ -2077,14 +951,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz\fill [color of colormap={800}, thick,
-    draw=.!60!black]
-        (0,0) -- (1,1) -- (2,1) circle (10pt);
-```
 
 
 ---
@@ -2096,15 +962,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{colormap name=viridis}
-\tikz\fill [color of colormap={1000},thick,
-    draw=.!60!black]
-        (0,0) -- (1,1) -- (2,1) circle (10pt);
-```
-
 
 ---
 
@@ -2114,14 +971,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz\fill [color of colormap={300 of viridis},thick,
-    draw=.!60!black]
-        (0,0) -- (1,1) -- (2,1) circle (10pt);
-```
 
 
 ---
@@ -2133,14 +982,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz\fill [color of colormap={300 of colormap/cool},
-    thick,draw=.!60!black]
-        (0,0) -- (1,1) -- (2,1) circle (10pt);
-```
-
 
 ---
 
@@ -2150,21 +991,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{colormap/jet}
-\foreach \i in {
-    0,...,\pgfplotscolormaplastindexof{jet}
-}{
-    \tikz\fill [
-        index of colormap={\i of jet},
-        thick,
-        draw=.!60!black,
-    ] (0,0) rectangle (10pt,6pt);
-}
-```
 
 
 ---
@@ -2176,31 +1002,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=color,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2210,31 +1011,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=exotic,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2246,31 +1022,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=black white,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2280,31 +1031,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=mark list,
-]
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2316,31 +1042,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=mark list*,
-]
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-  \addplot+ [blue] coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2350,31 +1051,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=color list,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2386,31 +1062,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=linestyles,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2420,31 +1071,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,stack dir=minus,
-    cycle list name=linestyles*,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2456,24 +1082,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{color}{
-    blue,every mark/.append style={fill=blue!80!black},mark=*\\
-    red,every mark/.append style={fill=red!80!black},mark=square*\\
-    brown!60!black,every mark/.append style={fill=brown!80!black},mark=otimes*\\
-    black,mark=star\\
-    blue,every mark/.append style={fill=blue!80!black},mark=diamond*\\
-    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=*\\
-    brown!60!black,densely dashed,every mark/.append style={
-        solid,fill=brown!80!black},mark=square*\\
-    black,densely dashed,every mark/.append style={solid,fill=gray},mark=otimes*\\
-    blue,densely dashed,mark=star,every mark/.append style=solid\\
-    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamond*\\
-}
-```
-
 
 ---
 
@@ -2483,23 +1091,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{black white}{
-    every mark/.append style={fill=gray},mark=*\\
-    every mark/.append style={fill=gray},mark=square*\\
-    every mark/.append style={fill=gray},mark=otimes*\\
-    mark=star\\
-    every mark/.append style={fill=gray},mark=diamond*\\
-    densely dashed,every mark/.append style={solid,fill=gray},mark=*\\
-    densely dashed,every mark/.append style={solid,fill=gray},mark=square*\\
-    densely dashed,every mark/.append style={solid,fill=gray},mark=otimes*\\
-    densely dashed,every mark/.append style={solid},mark=star\\
-    densely dashed,every mark/.append style={solid,fill=gray},mark=diamond*\\
-}
-```
 
 
 ---
@@ -2511,24 +1102,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{exotic}{
-    teal,every mark/.append style={fill=teal!80!black},mark=*\\
-    orange,every mark/.append style={fill=orange!80!black},mark=square*\\
-    cyan!60!black,every mark/.append style={fill=cyan!80!black},mark=otimes*\\
-    red!70!white,mark=star\\
-    lime!80!black,every mark/.append style={fill=lime},mark=diamond*\\
-    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=*\\
-    yellow!60!black,densely dashed,
-        every mark/.append style={solid,fill=yellow!80!black},mark=square*\\
-    black,every mark/.append style={solid,fill=gray},mark=otimes*\\
-    blue,densely dashed,mark=star,every mark/.append style=solid\\
-    red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamond*\\
-}
-```
-
 
 ---
 
@@ -2538,24 +1111,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% note that "." is the currently defined Tikz color.
-\pgfplotscreateplotcyclelist{mark list}{
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=square*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=triangle*\\
-    every mark/.append style={solid},mark=star\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=diamond*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill!40},mark=otimes*\\
-    every mark/.append style={solid},mark=|\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=pentagon*\\
-    every mark/.append style={solid},mark=text,text mark=p\\
-    every mark/.append style={solid},mark=text,text mark=a\\
-}
-```
 
 
 ---
@@ -2567,25 +1122,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% note that "." is the currently defined Tikz color.
-\pgfplotscreateplotcyclelist{mark list*}{
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=square*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=triangle*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=pentagon*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfcircle*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill,rotate=180},mark=halfdiamond*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill!40},mark=otimes*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=diamond*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare right*\\
-    every mark/.append style={solid,fill=\pgfplotsmarklistfill},mark=halfsquare left*\\
-}
-```
-
 
 ---
 
@@ -2595,14 +1131,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{color list}{
-    red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray
-}
-```
 
 
 ---
@@ -2614,13 +1142,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{linestyles}{solid,dashed,dotted}
-\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed,dotted,dashdotted,dashdotdotted}
-```
-
 
 ---
 
@@ -2630,27 +1151,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{loglogaxis}[
-    cycle list={
-        {blue,mark=*},
-        {red,mark=square},
-        {dashed,mark=o},
-        {loosely dotted,mark=+},
-        {brown!60!black,mark=otimes*,
-            mark options={fill=brown!40},
-        }% <-- don't add a comma here
-    },
-]
-    \plotcoords
-    \legend{$d=2$,$d=3$,$d=4$,$d=5$,$d=6$}
-\end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2662,22 +1162,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{mylist}{
-    {blue,mark=*},
-    {red,mark=square},
-    {dashed,mark=o},
-    {loosely dotted,mark=+},
-    {brown!60!black,mark options={fill=brown!40},mark=otimes*}% <-- don't add a comma here
-}
-...
-\begin{axis}[cycle list name=mylist]
-    ...
-\end{axis}
-```
-
 
 ---
 
@@ -2687,18 +1171,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotscreateplotcyclelist{mylist}{
-    {blue,mark=*},
-    {red,mark=square},
-    {dashed,mark=o},
-    {loosely dotted,mark=+},
-    {brown!60!black,mark options={fill=brown!40},mark=otimes*}% <-- don't add a comma here
-}
-```
 
 
 ---
@@ -2710,22 +1182,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{axis}[
-    cycle list={
-        blue,mark=*\\
-        red,mark=square\\
-        dashed,mark=o\\
-        loosely dotted,mark=+\\
-        brown!60!black,mark options={fill=brown!40},mark=otimes*\\
-    },
-]
-...
-\end{axis}
-```
-
 
 ---
 
@@ -2735,16 +1191,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{cycle list shift=3}
-\addplot ...
-
-    \pgfplotsset{cycle list shift=-1}
-\addplot ...
-```
 
 
 ---
@@ -2756,31 +1202,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap name=hot,colorbar,
-    cycle list={[of colormap]},
-    %
-    cycle from colormap manual style,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2790,32 +1211,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap name=hot,colorbar,
-    cycle list={
-        [colors of colormap={0,100,...,1000}]},
-    %
-    cycle from colormap manual style,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2827,32 +1222,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap name=viridis,colorbar,
-    cycle list={
-      [indices of colormap={0,4,8,12,17} of viridis]},
-    %
-    cycle from colormap manual style,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2862,33 +1231,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap name=hot,colorbar,
-    cycle multiindex* list={
-        [samples of colormap=11]\nextlist
-        mark list\nextlist
-    },
-    cycle from colormap manual style,
-]
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-    \addplot coordinates {(0,1) (0.5,1) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2900,23 +1242,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    cycle from colormap manual style/.style={
-        x=3cm,y=10pt,ytick=\empty,
-        colorbar style={x=,y=,ytick=\empty},
-        point meta min=0,point meta max=1,
-        stack plots=y,
-        y dir=reverse,colorbar style={y dir=reverse},
-        every axis plot/.style={line width=2pt},
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    },
-}
-```
-
 
 ---
 
@@ -2926,17 +1251,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    cycle list/.style={%
-        cycle list/.define={@internal@}{#1},%
-        cycle list name={@internal@}%
-    },
-}
-```
 
 
 ---
@@ -2948,36 +1262,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        cycle multi list={
-            red,blue\nextlist
-            solid,{dotted,mark options={solid}}\nextlist
-            mark=*,mark=x,mark=o
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2987,18 +1271,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{axis}[
-    cycle multi list={
-        red\\blue\\\nextlist
-        solid\\dotted,mark options={solid}\\\nextlist
-        mark=*\\mark=x\\mark=o\\
-    },
-]
-```
 
 
 ---
@@ -3010,36 +1282,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title={Cycle color between successive plots, then marks},
-        cycle multi list={
-            mark list\nextlist
-            blue,red
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3049,36 +1291,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title={Cycle 2 marks between successive plots, then colors},
-        cycle multi list={
-            color list\nextlist
-            [2 of]mark list
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3090,36 +1302,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        cycle multiindex list={
-            red,blue,teal\nextlist
-            solid\\dotted,mark options={solid}\\only marks\\\nextlist
-            mark=*,mark=x,mark=oplus\nextlist
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3129,37 +1311,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title={Same index of each input list},
-        cycle multiindex list={
-            [3 of]mark list\nextlist
-            blue,red\nextlist
-            linestyles\nextlist
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3171,37 +1322,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title={Same index of each input list, lists restarted},
-        cycle multiindex* list={
-            [3 of]mark list\nextlist
-            blue,red\nextlist
-            linestyles\nextlist
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3211,39 +1331,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title={Same index of each input list},
-        cycle multiindex* list={
-            red,blue,teal,brown\nextlist
-            mark=*,mark=square*,mark=triangle*\nextlist
-            dashed,every mark/.append style={
-                solid,draw=.!50!black,fill=.,}\\
-            \nextlist
-        },
-        samples=3,
-        legend entries={0,...,20},
-        legend pos=outer north east,
-    ]
-        \addplot {x};
-        \addplot {x-1};
-        \addplot {x-2};
-        \addplot {x-3};
-        \addplot {x-4};
-        \addplot {x-5};
-        \addplot {x-6};
-        \addplot {x-7};
-        \addplot {x-8};
-        \addplot {x-9};
-        \addplot {x-10};
-        \addplot {x-11};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3255,22 +1342,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis background/.style={fill=blue!10},
-]
-    \addplot3 [
-        surf,
-        y domain=0:1,
-    ]
-        {sin(deg(x)) * y*(1-y)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3280,24 +1351,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    axis background/.style={
-        shade,top color=gray,bottom color=white,
-    },
-    legend style={fill=white},
-]
-    \addplot {exp(-x)};
-    \addplot {exp(-4*x)};
-
-    \legend{$e^{-x}$,$e^{-4x}$}
-\end{semilogyaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3309,16 +1362,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[colorbar]
-        \addplot [mesh,point meta=y,thick] {x^2};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3328,22 +1371,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% for 'coordinates':
-% provide color data explicitly using [<data>]
-% behind coordinates:
-\addplot+ [point meta=explicit]
-    coordinates {
-        (0,0) [1.0e10]
-        (1,2) [1.1e10]
-        (2,3) [1.2e10]
-        (3,4) [1.3e10]
-        % ...
-    };
-```
 
 
 ---
@@ -3355,27 +1382,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% for 'table':
-% Assumes a datafile.dat like
-% xcolname  ycolname    colordata
-% 0         0           0.001
-% 1         2           0.3
-% 2         2.1         0.4
-% 3         3           0.5
-% ...
-% the file may have more columns.
-\addplot+ [point meta=explicit]
-    table [x=xcolname,y=ycolname,meta=colordata]
-        {datafile.dat};
-% or, equivalently (perhaps a little bit slower):
-\addplot+ [point meta=\thisrow{colordata}]
-    table [x=xcolname,y=ycolname]
-        {datafile.dat};
-```
-
 
 ---
 
@@ -3385,22 +1391,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% for 'file':
-% Assumes a datafile.dat like
-% 0         0           0.001
-% 1         2           0.3
-% 2         2.1         0.4
-% 3         3           0.5
-% ...
-% the first three columns will be used here as x,y and meta,
-% resp.
-\addplot+ [point meta=explicit]
-    file {datafile.dat};
-```
 
 
 ---
@@ -3412,24 +1402,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% 'table' using expressions which may depend on all
-% columns:
-% Assumes a datafile.dat like
-% xcolname  ycolname    anything    othercol
-% 0         0           4           15
-% 1         2           5           20
-% 2         2.1         8           30
-% 3         3           42          40
-% ...
-% the file may have more columns.
-\addplot+ [point meta={0.5*(\thisrow{anything} + sqrt(\thisrow{othercol}))}]
-    table [x=xcolname,y=ycolname]
-        {datafile.dat};
-```
-
 
 ---
 
@@ -3439,35 +1411,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Axis wide color mapping,
-        colorbar,
-        samples=50,point meta rel=axis wide,
-        point meta=y,
-    ]
-        \addplot [mesh,thick] {sin(deg(x))};
-        \addplot [mesh,thick] {3*tanh(x)};
-    \end{axis}
-\end{tikzpicture}
-~
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Per Plot color mapping,
-        colorbar,
-        samples=50,
-        point meta rel=per plot,
-        point meta=y,
-    ]
-        \addplot [mesh,thick] {sin(deg(x))};
-        \addplot [mesh,thick] {3*tanh(x)};
-   \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3479,36 +1422,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usetikzlibrary{colorbrewer}
-\begin{tikzpicture}
-\begin{axis}[
-    colormap={brewer}{
-        color=(RdPu-B) color=(RdPu-E)
-        color=(RdPu-G) color=(RdPu-I)
-        color=(RdPu-K)
-    },
-    enlargelimits=false,
-    colorbar as palette,
-]
-    \addplot [
-        matrix plot,
-        nodes near coords,mark=*,
-        point meta=explicit,
-        colormap access=direct,
-    ] coordinates {
-        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [NaN]
-
-        (0,1) [3] (1,1) [4] (2,1) [5] (3,1) [99]
-
-        (0,2) [3.5] (1,2) [-1] (2,2) [2.99] (3,2) [3]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3518,27 +1431,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colorbar as palette/.style={
-        colorbar sampled={
-            surf,
-            colormap access=direct,
-            shader=flat corner,
-            samples=\pgfplotscolormapsizeof
-            {\pgfkeysvalueof{/pgfplots/colormap name}}+1,
-        },
-        colorbar style={
-            point meta min=0,
-            point meta max=\pgfplotscolormapsizeof
-            {\pgfkeysvalueof{/pgfplots/colormap name}},
-        },
-    },
-}
-```
 
 
 ---
@@ -3550,18 +1442,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-1 1 194
-1 2 194
-1 3 170
-1 4 193
-1 5 188
-1 6 188
-...
-```
-
 
 ---
 
@@ -3571,23 +1451,6 @@ target pos={10,100,200,500,1000,1100,1200,1500,2000,2895}
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-[Z,cm] = imread('legoplane.tiff');
-size(Z)
-[X,Y]=meshgrid(1:size(Z,2), 1:size(Z,1));
-data = [ X(:) Y(:) Z(:) ];
-fid = fopen('legoplane.dat', 'w');
-fprintf(fid, "%d %d %d\n", data');
-fclose(fid);
-fid = fopen('legoplane_cm.tex', 'w');
-fprintf(fid, "\\pgfplotsset{colormap={legoplane palette}{\n");
-fprintf(fid, "rgb=(%f,%f,%f)\n", cm');
-fprintf(fid, "}}\n");
-fclose(fid);
-```
 
 
 ---
@@ -3599,23 +1462,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    % load and activate the CM:
-    \input{legoplane_cm.tex}
-\begin{axis}[view={0}{90},axis equal,enlargelimits=false]
-    \addplot3 [
-        matrix plot,
-        colormap access=direct,
-        mesh/rows=128,
-        mesh/ordering=colwise,
-    ] table {legoplane.dat};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3625,23 +1471,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{colorbrewer}
-\begin{tikzpicture}
-\begin{axis}[
-    colormap access=piecewise constant,
-    colormap/RdPu-6,
-    colorbar horizontal,
-]
-    \addplot3 [
-        surf,
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3653,24 +1482,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{colorbrewer}
-\begin{tikzpicture}
-\begin{axis}[
-    colormap access=piecewise constant,
-    colormap/RdPu-6,
-    colorbar horizontal,
-]
-    \addplot3 [
-        surf,
-        shader=interp,
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3680,25 +1491,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    colormap access=piecewise constant,
-    colormap={my sampled version of viridis}{
-        samples of colormap=(10 of viridis)
-    },
-    colorbar horizontal,
-]
-    \addplot3 [
-        surf,
-        shader=interp,
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3710,27 +1502,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[grid=major]
-    \addplot+ [
-        unbounded coords=jump,
-        x filter/.expression={x+1},
-        y filter/.expression={y==3 ? nan : y},
-    ] table {
-        x   y
-        1   2
-        1.5 2.5
-        2   3
-        2.5 3.5
-        3   4
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3740,25 +1511,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+[
-        x filter/.expression={
-            \thisrow{W} == 42 ? 0.2 : x
-        },
-    ] table {
-        x y     W
-        0 0     41
-        0.5 0.5 42
-        1 1     43
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3770,30 +1522,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+[
-        y filter/.append expression={
-            abs(x-1) < 1e-4 ? 1.5 : \pgfmathresult
-        },
-        y filter/.append expression={
-            abs(x-3) < 1e-4 ? NaN : \pgfmathresult
-        },
-    ] table {
-        x y
-        0 0
-        1 1
-        2 2
-        3 3
-        4 4
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3803,24 +1531,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    % equivalent to 'x filter/.expression={x+0.5}'
-    x filter/.code={
-        \pgfmathadd{#1}{0.5},
-    },
-]
-    \addplot coordinates {
-        (4,0)
-        (6,1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3832,29 +1542,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    samples=20,
-    % equivalent to
-    % x filter/.expression={
-    %   \coordindex>4 && \coordindex<11 ? nan : x
-    % },
-    x filter/.code={
-        \ifnum\coordindex>4
-            \ifnum\coordindex<11
-                \def\pgfmathresult{}
-            \fi
-        \fi
-    },
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3864,18 +1551,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}
-    \addplot+ [
-        restrict expr to domain={rawy}{1e0:1.5e1},
-    ] {exp(x)};
-\end{semilogyaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3887,20 +1562,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    samples=20,
-    skip coords between index={5}{11},
-    skip coords between index={15}{18},
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3910,27 +1571,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        restrict y to domain=-10:10,
-        samples=1000,
-        % some fine-tuning for the display:
-        width=10cm, height=210pt,
-        xmin=-4.7124, xmax=4.7124,
-        xtick={-4.7124,-1.5708,...,10},
-        xticklabels={$-\frac32 \pi$,$-\pi/2$,$\pi/2$,$\frac32 \pi$},
-        axis x line=center,
-        axis y line=center,
-    ]
-        \addplot [blue] gnuplot [id=tangens,domain=-1.5*pi:1.5*pi] {tan(x)};
-        \legend{$\tan(x)$}
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3942,24 +1582,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \pgfplotsset{
-        every axis post/.style={
-            xmin=0,xmax=1,
-        },
-    }
-    \begin{axis}[
-        xmin=-1,xmax=2,
-        ymin=0,ymax=1,
-    ]
-        ...
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3969,24 +1591,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\pgfplotsset{
-    every axis plot post/.append style={mark=none},
-}
-\begin{axis}[
-    legend pos=north west,
-    domain=0:1,
-]
-    \addplot {x^2};
-    \addplot {exp(x)};
-    \legend{$x^2$,$e^x$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3998,12 +1602,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{every axis title/.style={at={(0.5,1)},above,yshift=6pt}}
-```
-
 
 ---
 
@@ -4013,22 +1611,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    every axis legend/.style={
-        cells={anchor=center},
-        inner xsep=3pt,inner ysep=2pt,
-        nodes={inner sep=2pt,text depth=0.15em},
-        anchor=north east,
-        shape=rectangle,
-        fill=white,draw=black,
-        at={(0.98,0.98)},
-    },
-}
-```
 
 
 ---
@@ -4040,29 +1622,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    every x tick scale label/.style={
-        at={(xticklabel cs:0.9,5pt)},
-        anchor=near xticklabel,
-        inner sep=0pt,
-    },
-    every y tick scale label/.style={
-        at={(yticklabel* cs:1.03,-0.3em)},
-        /pgfplots/near ticklabel align=outside,
-        anchor=near yticklabel opposite,
-        inner sep=0pt,
-    },
-    every z tick scale label/.style={
-        at={(zticklabel* cs:1.2,-0.3em)},
-        anchor=near zticklabel,
-        inner sep=0pt,
-    },
-}
-```
-
 
 ---
 
@@ -4072,15 +1631,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotsset{
-    every extra x tick/.style={/pgfplots/log identify minor tick positions=true},
-    every extra y tick/.style={/pgfplots/log identify minor tick positions=true},
-}
-```
 
 
 ---
@@ -4092,27 +1642,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{every extra x tick/.append style={grid=major}}
-\pgfplotsset{every extra x tick/.append style={major tick length=0pt}}
-\pgfplotsset{every extra x tick/.append style={/pgf/number format=sci subscript}}
-\pgfplotsset{
-    extra x tick style={
-        grid style={
-            color=red,
-        },
-        tickwidth=3mm,
-        % the initial 'every tick style' defines a 'line width'.
-        % this here redefines it:
-        tick style={
-            line width=2mm,
-        },
-    },
-}
-```
-
 
 ---
 
@@ -4122,22 +1651,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{
-    my personal style/.style={
-        grid=major,
-        font=\large,
-    },
-}
-\begin{tikzpicture}
-\begin{axis}[my personal style]
-    \addplot coordinates {(0,0) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4162,18 +1675,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Auto Limits,
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4183,19 +1684,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={\texttt{xmin=0}},
-    xmin=0,
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4207,19 +1695,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={\texttt{ymax=10}},
-    ymax=10,
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4229,27 +1704,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
- % Show (automatically) computed limits:
- title={
-  Axis limits are
-  $
- [\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/xmin}}
- :\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/xmax}}
- ]  \times
- [\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/ymin}}
- :\pgfmathprintnumber{\pgfkeysvalueof{/pgfplots/ymax}}
- ]$ },
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4261,19 +1715,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel=$x$ \emph{decreasing} $\to$,
-    x dir=reverse,
-]
-    \addplot {x + rand*0.3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4283,19 +1724,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    ylabel=$y$ \emph{decreasing} $\to$,
-    y dir=reverse,
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4307,23 +1735,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        ylabel=$y$ \emph{decreasing} $\to$,
-        xlabel=$x$ normal,
-        title=reversed axis,
-        y dir=reverse,
-        colorbar,
-        colorbar style={y dir=reverse},
-    ]
-        \addplot+ [mesh,scatter] {x^15};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4333,18 +1744,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-]
-    \addplot {5 * x^3 - x^2 + 4*x -2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4356,19 +1755,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    enlarge x limits=0.2,
-]
-    \addplot {5 * x^3 - x^2 + 4*x -2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4378,20 +1764,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    minor x tick num=1,
-    enlarge x limits={rel=0.5,upper},
-]
-    \addplot {5 * x^3 - x^2 + 4*x -2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4403,20 +1775,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    minor x tick num=1,
-    enlarge x limits={abs=3},
-]
-    \addplot {5 * x^3 - x^2 + 4*x -2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4427,23 +1785,6 @@ fclose(fid);
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[small,minor x tick num=1,
-    enlarge x limits={abs=1cm},
-]
-    \addplot {5 * x^3 - x^2 + 4*x -2}
-        coordinate [pos=0] (first)
-        coordinate [pos=1] (last);
-
-    \draw [red,->] (first) -- ++(-1cm,0pt);
-    \draw [red,->] (last)  -- ++( 1cm,0pt);
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4453,19 +1794,6 @@ fclose(fid);
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{loglogaxis}[
-    small,
-    enlarge x limits={abs=11},
-]
-    \addplot+ [domain=1:100000] {x^-2};
-\end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---

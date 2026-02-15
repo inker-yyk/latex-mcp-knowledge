@@ -109,30 +109,6 @@ false code} Like ||, but this variant also checks if the next following figure i
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize % activate!
-
-\begin{document}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-A simple image is \tikz \fill (0,0) circle(5pt);.
-\end{document}
-```
-
 
 ---
 
@@ -142,12 +118,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pdflatex -shell-escape main
-```
 
 
 ---
@@ -159,13 +129,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -halt-on-error
-    -interaction=batchmode -jobname "\image" "\texsource"}}
-```
-
 
 ---
 
@@ -175,12 +138,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzsetexternalprefix{figures/}
-```
 
 
 ---
@@ -192,37 +149,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize[prefix=figures/] % activate
-
-\begin{document}
-
-\tikzsetnextfilename{trees}
-\begin{tikzpicture} % will be written to 'figures/trees.pdf'
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-\tikzsetnextfilename{simple}
-A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'figures/simple.pdf'
-
-\begin{tikzpicture} % will be written to 'figures/main-figure0.pdf'
-   \draw[help lines] (0,0) grid (5,5);
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -232,12 +158,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'figures/
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pdflatex -shell-escape main
-```
 
 
 ---
@@ -249,42 +169,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize % activate
-
-\begin{document}
-
-\begin{tikzpicture} % will be written to 'main-figure0.pdf'
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-{
-  \tikzsetfigurename{subset_}
-  A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'subset_0.pdf'
-
-  \begin{tikzpicture} % will be written to 'subset_1.pdf'
-     \draw[help lines] (0,0) grid (5,5);
-  \end{tikzpicture}
-}% here, the old file name will be restored:
-
-\begin{tikzpicture} % will be written to 'main-figure1.pdf'
-   \draw (0,0) -- (5,5);
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -294,15 +178,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{external/force remake}
-\begin{tikzpicture}
-    \draw (0,0) circle(5pt);
-\end{tikzpicture}
-```
 
 
 ---
@@ -314,21 +189,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1);
-
-{
-\tikzset{external/force remake}
-\begin{tikzpicture}
-   \draw (0,0) circle(5pt);
-\end{tikzpicture}
-}
-
-\tikz \draw (0,0) -- (1,1);
-```
-
 
 ---
 
@@ -338,28 +198,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{document}
-\begin{tikzpicture} % will be exported
-    ...
-\end{tikzpicture}
-
-{
-\tikzset{external/export=false}
-\begin{tikzpicture} % won't be exported
-    ...
-\end{tikzpicture}
-...
-}
-
-\begin{tikzpicture} % will be exported
-    ...
-\end{tikzpicture}
-\end{document}
-```
 
 
 ---
@@ -371,18 +209,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\mycommand{My comment}
-
-\begin{tikzpicture}
-
-\node at (0,0) {\mycommand};
-
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -392,40 +218,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize[
-   mode=graphics if exists,
-   figure list=true,
-   prefix=figures/]
-
-\begin{document}
-
-\tikzsetnextfilename{trees}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-\tikzsetnextfilename{simple}
-A simple image is \tikz \fill (0,0) circle(5pt);.
-
-\begin{tikzpicture}
-   \draw[help lines] (0,0) grid (5,5);
-\end{tikzpicture}
-\end{document}
-```
 
 
 ---
@@ -437,12 +229,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex main
-```
-
 
 ---
 
@@ -452,14 +238,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-figures/trees
-figures/simple
-figures/main-figure0
-```
 
 
 ---
@@ -471,12 +249,6 @@ figures/main-figure0
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex -shell-escape
-```
-
 
 ---
 
@@ -486,17 +258,6 @@ pdflatex -shell-escape
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% step 1: generate main.makefile:
-pdflatex main
-% step 2: generate ALL graphics on 2 processors:
-make -j 2 -f main.makefile
-% step 3: include the graphics:
-pdflatex main
-```
 
 
 ---
@@ -508,12 +269,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{external/optimize command away=\includegraphics}
-```
-
 
 ---
 
@@ -523,14 +278,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newcommand{\myExpensiveMacro}[1]{Very expensive!}
-
-\tikzset{external/optimize command away=\myExpensiveMacro}
-```
 
 
 ---
@@ -542,14 +289,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\newcommand{\myExpensiveMacroWithThreeArgs}[3]{Very expensive!}
-
-\tikzset{external/optimize command away={\myExpensiveMacroWithThreeArgs}{3}}
-```
-
 
 ---
 
@@ -559,17 +298,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% A command with optional argument:
-\newcommand{\aFurtherExample}[3][]{Very expensive!}
-
-% consume only two arguments: the first optional one will be processed
-% anyway:
-\tikzset{external/optimize command away={\myExpensiveMacroWithThreeArgs}{2}}
-```
 
 
 ---
@@ -581,19 +309,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    % this picture is currently converted!
-\end{tikzpicture}
-
-This here is outside of the converted picture and contains \myExpensiveMacro. It will be discarded.
-
-This call: \myExpensiveMacro[argument=value]{Argument} as well.
-And this here: \myExpensiveMacro{Argument} also.
-```
-
 
 ---
 
@@ -603,12 +318,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/images/include external/.code={\includegraphics[viewport=0 0 211.28 175.686]{#1}}}
-```
 
 
 ---
@@ -620,12 +329,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/images/include external/.code={\href{file:#1}{\pgfimage{#1}}}}
-```
-
 
 ---
 
@@ -635,17 +338,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-  \pgfkeys{/pgf/images/include external/.code={\includegraphics[viewport=0 0 211.28 175.686]{#1}}}
-  \begin{tikzpicture}
-     ...
-  \end{tikzpicture}
-}% this brace ends the effect of `include external'
-```
 
 
 ---
@@ -657,12 +349,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex -jobname "main-figure0" "\def\tikzexternalrealjob{main}\input{main}"
-```
-
 
 ---
 
@@ -672,12 +358,6 @@ pdflatex -jobname "main-figure0" "\def\tikzexternalrealjob{main}\input{main}"
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pdflatex -jobname "main-figure0" "main"
-```
 
 
 ---
@@ -689,12 +369,6 @@ pdflatex -jobname "main-figure0" "main"
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-latex/pgf/utilities/tikzexternal.sty
-```
-
 
 ---
 
@@ -704,35 +378,6 @@ latex/pgf/utilities/tikzexternal.sty
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-%\usepackage{tikz}
-
-\usepackage{graphicx}
-\usepackage{tikzexternal}
-
-%\usetikzlibrary{external}
-\tikzexternalize
-
-\begin{document}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-A simple image is \tikz \fill (0,0) circle(5pt);.
-
-Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
-\end{document}
-```
 
 
 ---
@@ -744,16 +389,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-tikzexternal.sty
-main.tex
-main-figure0.pdf
-main-figure1.pdf
-main-figure2.pdf
-```
-
 
 ---
 
@@ -763,29 +398,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{
-    % Defines a custom style which generates BOTH, .pdf and .png export
-    % but prefers the .png on inclusion.
-    %
-    % This style is not pre-defined, you may need to copy-paste and
-    % adjust it.
-    png export/.style={
-        external/system call/.append=
-            {; convert -density 300 -transparent white "\image.pdf" "\image.png"},
-        %
-        /pgf/images/external info,
-        /pgf/images/include external/.code={%
-            \includegraphics
-                [width=\pgfexternalwidth,height=\pgfexternalheight]
-                {##1.png}%
-        },
-    }
-}
-```
 
 
 ---
@@ -797,20 +409,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\usetikzlibrary{external}
-
-\tikzifexternalizing{%
-    % don't include package XYZ here
-}{%
-    \usepackage{pdfpages}
-    \usepackage{vmargin}
-    ...
-}%
-```
-
 
 ---
 
@@ -820,17 +418,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\beginpgfgraphicnamed{picture4}
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-   \draw (0,0) -- (4,4);
-\end{tikzpicture}
-\endpgfgraphicnamed
-```
 
 
 ---
@@ -894,15 +481,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill [fill=yellow!80!black]
-     (0,0) node              {first node}
-  -- (1,1) node[behind path] {second node}
-  -- (2,0) node              {third node};
-```
-
 
 ---
 
@@ -912,17 +490,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \path (0,0) node [red]                    {A}
-        (1,0) node [blue]                   {B}
-        (2,0) node [green, node contents=C]
-        (3,0) node [node contents=D]           ;
-}
-```
 
 
 ---
@@ -934,16 +501,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill [fill=blue!50, draw=blue, very thick]
-      (0,0)   node [behind path, fill=red!50]   {first node}
-   -- (1.5,0) node [behind path, fill=green!50] {second node}
-   -- (1.5,1) node [behind path, fill=brown!50] {third node}
-   -- (0,1)   node [             fill=blue!30]  {fourth node};
-```
-
 
 ---
 
@@ -953,15 +510,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill[fill=yellow!80!black]
-      (0,0) node {first node}
-   -- (1,1) node[draw, behind path] {second node}
-   -- (0,2) node[fill=red!20,draw,double,rounded corners] {third node};
-```
 
 
 ---
@@ -973,15 +521,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill[fill=yellow!80!black]
-      (0,0) node                            {first node}
-   -- (1,1) node[ellipse,draw, behind path] {second node}
-   -- (0,2) node[circle,fill=red!20]        {third node};
-```
-
 
 ---
 
@@ -991,16 +530,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \node  :fill opacity = { 0s="1", 2s="0", begin on=click }
-         :rotate = { 0s="0", 2s="90", begin on=click }
-         [fill = blue!20, draw = blue, ultra thick, circle]
-    {Click me!};
-```
 
 
 ---
@@ -1012,12 +541,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) node foreach \x in {1,2,3} at (\x,0) {\x};
-```
-
 
 ---
 
@@ -1027,12 +550,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) node at (1,0) {1} node at (2,0) {2} node at (3,0) {3};
-```
 
 
 ---
@@ -1044,13 +561,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node foreach \x in {1,...,4} foreach \y in {1,2,3}
-            [draw] at (\x,\y) {\x,\y};
-```
-
 
 ---
 
@@ -1060,14 +570,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \draw (0,0) node {A} -- (1,1) node {B};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1079,16 +581,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [every rectangle node/.style={draw},
-   every circle node/.style={draw,double}]
-  \draw (0,0) node[rectangle] {A} -- (1,1) node[circle] {B};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1098,16 +590,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [execute at begin node={A},
-   execute at end node={D}]
-  \node[execute at begin node={B}] {C};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1119,25 +601,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \begin{scope}[name prefix = top-]
-    \node (A) at (0,1) {A};
-    \node (B) at (1,1) {B};
-    \draw (A) -- (B);
-  \end{scope}
-  \begin{scope}[name prefix = bottom-]
-    \node (A) at (0,0) {A};
-    \node (B) at (1,0) {B};
-    \draw (A) -- (B);
-  \end{scope}
-
-  \draw [red] (top-A) -- (bottom-B);
-}
-```
-
 
 ---
 
@@ -1147,22 +610,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \path[yshift=1.5cm,shape=rectangle]
-    (0,0) node(a1){} (1,0) node(a2){}
-    (1,1) node(a3){} (0,1) node(a4){};
-  \filldraw[fill=yellow!80!black] (a1) -- (a2) -- (a3) -- (a4);
-
-  \path[shape=coordinate]
-    (0,0) coordinate(b1) (1,0) coordinate(b2)
-    (1,1) coordinate(b3) (0,1) coordinate(b4);
-  \filldraw[fill=yellow!80!black] (b1) -- (b2) -- (b3) -- (b4);
-\end{tikzpicture}
-```
 
 
 ---
@@ -1174,16 +621,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)     node[inner sep=0pt,draw] {tight}
-        (0cm,2em) node[inner sep=5pt,draw] {loose}
-        (0cm,4em) node[fill=yellow!80!black]   {default};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1193,21 +630,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[line width=5pt]
-    (0,0)  node[fill=yellow!80!black] (f) {filled}
-    (2,0)  node[draw]                 (d) {drawn}
-    (1,-2) node[draw,scale=2]         (s) {scaled};
-
-  \draw[->] (1,-1) -- (f);
-  \draw[->] (1,-1) -- (d);
-  \draw[->] (1,-1) -- (s);
-\end{tikzpicture}
-```
 
 
 ---
@@ -1219,21 +641,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[outer sep=auto]
-  \draw[line width=5pt]
-    (0,0)  node[fill=yellow!80!black] (f) {filled}
-    (2,0)  node[draw]                 (d) {drawn}
-    (1,-2) node[draw,scale=2]         (s) {scaled};
-
-  \draw[->] (1,-1) -- (f);
-  \draw[->] (1,-1) -- (d);
-  \draw[->] (1,-1) -- (s);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1243,15 +650,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) node[minimum height=1cm,draw] {1cm}
-        (2,0) node[minimum height=0cm,draw] {0cm};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1263,14 +661,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) node[minimum height=2cm,minimum width=3cm,draw] {$3 \times 2$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1280,15 +670,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)  node[minimum size=2cm,draw] {square};
-  \draw (0,-2) node[minimum size=2cm,draw,circle] {circle};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1300,15 +681,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)  node[shape aspect=1,diamond,draw] {aspect 1};
-  \draw (0,-2) node[shape aspect=2,diamond,draw] {aspect 2};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1318,15 +690,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every node/.style={dart, shape border uses incircle,
-  inner sep=1pt, draw}}
-\tikz \node foreach \a/\b/\c in {A/0/0, B/45/0, C/0/45, D/45/45}
-            [shape border rotate=\b, rotate=\c] at (\b/36,-\c/36) {\a};
-```
 
 
 ---
@@ -1338,16 +701,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{every node/.style={isosceles triangle, draw}}
-\begin{tikzpicture}
-  \node {abc};
-  \node [shape border uses incircle] at (2,0) {abc};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1357,21 +710,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every node/.style={shape=trapezium, draw, shape border uses incircle}}
-\begin{tikzpicture}
-  \node at (0,0)  (A) {A};
-  \node [shape border rotate=30] at (1.5,0) (B) {B};
-  \foreach \s/\t in
-    {left side/base east, bottom side/north, bottom left corner/base}{
-       \fill[red]  (A.\s) circle(1.5pt) (B.\s) circle(1.5pt);
-       \fill[blue] (A.\t) circle(1.5pt) (B.\t) circle(1.5pt);
-  }
-\end{tikzpicture}
-```
 
 
 ---
@@ -1383,21 +721,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [circle split,draw,double,fill=red!20]
-  {
-    % No \nodepart has been used, yet. So, the following is put in the
-    % ``text'' node part by default.
-    $q_1$
-    \nodepart{lower} % Ok, end ``text'' part, start ``output'' part
-    $00$
-  }; % output part ended.
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1407,13 +730,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [every lower node part/.style={red}]
-  \node [circle split,draw] {$q_1$ \nodepart{lower} $00$};
-```
 
 
 ---
@@ -1425,16 +741,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[red]       (0,0) -- +(1,1) node[above]     {red};
-  \draw[text=red]  (1,0) -- +(1,1) node[above]     {red};
-  \draw            (2,0) -- +(1,1) node[above,red] {red};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1444,14 +750,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[node font=\itshape] (1,0) -- +(1,1) node[above] {italic};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1463,13 +761,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [node font=\tiny,  minimum height=3em, draw] {tiny};
-\tikz \node [node font=\small, minimum height=3em, draw] {small};
-```
-
 
 ---
 
@@ -1479,14 +770,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [font=\itshape] {italic};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1498,13 +781,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [font=\tiny,  minimum height=3em, draw] {tiny};
-\tikz \node [font=\small, minimum height=3em, draw] {small};
-```
-
 
 ---
 
@@ -1514,14 +790,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [every text node part/.style={font=\itshape},
-       every lower node part/.style={font=\footnotesize}]
-  \node [circle split,draw] {state \nodepart{lower} output};
-```
 
 
 ---
@@ -1533,17 +801,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [draw] {
-  \begin{tabular}{cc}
-    upper left & upper right\\
-    lower left & lower right
-  \end{tabular}
-};
-```
-
 
 ---
 
@@ -1553,12 +810,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[align=left] \node[draw] {This is a\\demonstration.};
-```
 
 
 ---
@@ -1570,12 +821,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[align=center] \node[draw] {This is a\\demonstration.};
-```
-
 
 ---
 
@@ -1585,13 +830,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=right]
-  {This is a\\[-2pt] demonstration text for\\[1ex] alignments.};
-```
 
 
 ---
@@ -1603,13 +841,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) node[fill=yellow!80!black,text width=3cm]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -1619,13 +850,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=left]
-  {This is a\\ demonstration text for\\ alignments.};
-```
 
 
 ---
@@ -1637,13 +861,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=left]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -1653,13 +870,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush left]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -1671,13 +881,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=right]
-  {This is a\\ demonstration text for\\ alignments.};
-```
-
 
 ---
 
@@ -1687,13 +890,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=right]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -1705,13 +901,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush right]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -1721,13 +910,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=center]
-  {This is a\\ demonstration text for\\ alignments.};
-```
 
 
 ---
@@ -1739,13 +921,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=center]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -1755,13 +930,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush center]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -1773,13 +941,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=justify]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -1789,13 +950,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\myheader{\hfil\hfil##\hfil\cr}
-\tikz [node halign header=\myheader] ...
-```
 
 
 ---
@@ -1807,13 +961,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[draw]                  {y};
-\tikz \node[draw,text height=10pt] {y};
-```
-
 
 ---
 
@@ -1823,13 +970,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw           (0,0) node[anchor=north east] {first node}
-            rectangle (1,1) node[anchor=west] {second node};
-```
 
 
 ---
@@ -1841,19 +981,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[scale=3,transform shape]
-  % First, center alignment -> wobbles
-  \draw[anchor=center] (0,1)  node{x} -- (0.5,1)  node{y} -- (1,1)  node{t};
-  % Second, base alignment -> no wobble, but too high
-  \draw[anchor=base]   (0,.5) node{x} -- (0.5,.5) node{y} -- (1,.5) node{t};
-  % Third, mid alignment
-  \draw[anchor=mid]    (0,0)  node{x} -- (0.5,0)  node{y} -- (1,0)  node{t};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1863,12 +990,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above] {above};
-```
 
 
 ---
@@ -1880,12 +1001,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above=2pt] {above};
-```
-
 
 ---
 
@@ -1895,12 +1010,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above left] {above left};
-```
 
 
 ---
@@ -1912,12 +1021,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above right] {above right};
-```
-
 
 ---
 
@@ -1927,20 +1030,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-% \begin{tikzpicture}[node distance=1cm]
-%   \draw[help lines] (0,0) grid (3,2);
-%   \node (a)                    {a};
-%   \node (b) [above of=a]       {b};
-%   \node (c) [above of=b]       {c};
-%   \node (d) [right of=c]       {d};
-%   \node (e) [below right of=d] {e};
-% \end{tikzpicture}
-%
-```
 
 
 ---
@@ -1952,15 +1041,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=2pt+3pt,draw] {above};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1970,16 +1050,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=.2,draw] {above};
-  % south border of the node is now 2mm above (1,1)
-\end{tikzpicture}
-```
 
 
 ---
@@ -1991,16 +1061,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=.2 and 3mm,draw] {above};
-  % south border of the node is also 2mm above (1,1)
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2010,18 +1070,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,2);
-  \node (somenode) at (1,1) {some node};
-
-  \node [above=5mm of somenode.north east] {\tiny 5mm of somenode.north east};
-  \node [above=1cm of somenode.north]      {\tiny 1cm of somenode.north};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2033,20 +1081,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,2);
-  \node (some node) at (1,1) {some node};
-
-  \node (other node) [above=1cm of some node] {\tiny above=1cm of some node};
-
-  \draw [<->] (some node.north) -- (other node.south)
-                                node [midway,right,draw=none] {1cm};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2056,24 +1090,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,3);
-
-  % Not gridded
-  \node (a1) at (0,0) {not gridded};
-  \node (b1) [above=1cm of a1] {fooy};
-  \node (c1) [above=1cm of b1] {a};
-
-  % gridded
-  \node (a2) at (2,0) {gridded};
-  \node (b2) [on grid,above=1cm of a2] {fooy};
-  \node (c2) [on grid,above=1cm of b2] {a};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2085,26 +1101,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw,node distance=5mm]
-  \draw[help lines] (0,0) grid (2,3);
-
-  % Not gridded
-  \node (a1) at (0,0) {not gridded};
-  \node (b1) [above=of a1] {fooy};
-  \node (c1) [above=of b1] {a};
-
-  % gridded
-  \begin{scope}[on grid]
-    \node (a2) at (2,0) {gridded};
-    \node (b2) [above=of a2] {fooy};
-    \node (c2) [above=of b2] {a};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2114,28 +1110,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,circle}]
-  \draw[help lines] (0,0) grid (2,5);
-  \begin{scope}[node distance=5mm and 5mm]
-    \node (b) at (1,4) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-  \begin{scope}[node distance=5mm]
-    \node (a) at (1,1) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2147,28 +1121,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,rectangle}]
-  \draw[help lines] (0,0) grid (2,5);
-  \begin{scope}[node distance=5mm and 5mm]
-    \node (b) at (1,4) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-  \begin{scope}[node distance=5mm]
-    \node (a) at (1,1) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2178,28 +1130,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,rectangle},on grid]
-  \draw[help lines] (0,0) grid (4,4);
-  \begin{scope}[node distance=1]
-    \node (a) at (2,3) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-  \begin{scope}[node distance=1 and 1]
-    \node (b) at (2,0) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2211,22 +1141,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[node distance=1ex]
-  \draw[help lines] (0,0) grid (3,1);
-  \huge
-  \node (X) at (0,1)     {X};
-  \node (a) [right=of X] {a};
-  \node (y) [right=of a] {y};
-
-  \node (X) at (0,0)          {X};
-  \node (a) [base right=of X] {a};
-  \node (y) [base right=of a] {y};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2236,22 +1150,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=8mm]
-  \node (root) {root}
-    child { node (a) {a} }
-    child { node (b) {b}
-      child { node (d) {d} }
-      child { node (e) {e} } }
-    child { node (c) {c} };
-
-  \node[draw=red,inner sep=0pt,thick,ellipse,fit=(root) (b) (d) (e)] {};
-  \node[draw=blue,inner sep=0pt,thick,ellipse,fit=(b) (c) (e)] {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2263,24 +1161,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=8mm]
-  \node (root) {root}
-    child { node (a) {a} }
-    child { node (b) {b}
-      child { node (d) {d} }
-      child { node (e) {e} } }
-    child { node (c) {c} };
-
-  \begin{scope}[on background layer]
-    \node[fill=red!20,inner sep=0pt,ellipse,fit=(root) (b) (d) (e)] {};
-    \node[fill=blue!20,inner sep=0pt,ellipse,fit=(b) (c) (e)] {};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2290,20 +1170,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \draw[help lines](0,0) grid (3,2);
-  \draw            (1,0) node{A}
-                   (2,0) node[rotate=90,scale=1.5] {B};
-  \draw[rotate=30] (1,0) node{A}
-                   (2,0) node[rotate=90,scale=1.5] {B};
-  \draw[rotate=60] (1,0) node[transform shape] {A}
-                   (2,0) node[transform shape,rotate=90,scale=1.5] {B};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2315,29 +1181,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-   % Install a nonlinear transformation:
-   \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{10mm}{20mm}}
-      {\pgfpoint{10mm}{10mm}}
-      {\pgfpoint{20mm}{10mm}}
-   \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
-
-   % Draw something:
-   \draw [help lines] (0,-30pt) grid [step=10pt] (80pt,30pt);
-
-   \foreach \x in {0,20,...,80}
-     \node [fill=red!20]  at (\x pt, -20pt) {\x};
-
-   \foreach \x in {0,20,...,80}
-     \node [fill=blue!20, transform shape nonlinear] at (\x pt, 20pt) {\x};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2347,13 +1190,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -- (3,1)
-    node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
 
 
 ---
@@ -2365,16 +1201,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (0,0) grid (3,2);
-  \draw (2,0) arc [x radius=1, y radius=2, start angle=0, end angle=180]
-              node foreach \t in {0,0.125,...,1} [pos=\t,auto] {\t};
-}
-```
-
 
 ---
 
@@ -2384,13 +1210,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) .. controls +(right:3.5cm) and +(right:3.5cm) .. (0,3)
-  node foreach \p in {0,0.125,...,1} [pos=\p]{\p};
-```
 
 
 ---
@@ -2402,13 +1221,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) |- (3,1)
-  node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
-
 
 ---
 
@@ -2418,13 +1230,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -| (3,1)
-  node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
 
 
 ---
@@ -2436,26 +1241,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
-  \node (a) at (-1,-2) {a};
-  \node (b) at ( 1,-2) {b};
-  \node (c) at ( 2,-1) {c};
-  \node (d) at ( 2, 1) {d};
-  \node (e) at ( 1, 2) {e};
-  \node (f) at (-1, 2) {f};
-  \node (g) at (-2, 1) {g};
-  \node (h) at (-2,-1) {h};
-
-  \foreach \from/\to in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/a}
-    \draw [->] (\from) -- (\to)
-               node[midway,fill=red!20] {\from--\to};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2465,20 +1250,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[auto]
-  \draw[help lines,use as bounding box] (0,-.5) grid (4,5);
-
-  \draw (0.5,0) .. controls (9,6) and (-5,6) .. (3.5,0)
-    node foreach \pos in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
-         [pos=\pos,swap,fill=red!20] {\pos}
-    node foreach \pos in {0.025,0.2,0.4,0.6,0.8,0.975}
-         [pos=\pos,fill=blue!20] {\pos};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2490,26 +1261,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto]
-  \draw[help lines] (0,0) grid (3,2);
-
-  \node[state] (q_0)                      {$q_0$};
-  \node[state] (q_1) [above right of=q_0] {$q_1$};
-  \node[state] (q_2) [below right of=q_0] {$q_2$};
-  \node[state] (q_3) [below right of=q_1] {$q_3$};
-
-  \path[->] (q_0) edge              node        {0} (q_1)
-                  edge              node [swap] {1} (q_2)
-            (q_1) edge              node        {1} (q_3)
-                  edge [loop above] node        {0} ()
-            (q_2) edge              node [swap] {0} (q_3)
-                  edge [loop below] node        {1} ();
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2519,13 +1270,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) .. controls +(up:2cm) and +(left:2cm) .. (1,3)
-    node foreach \p in {0,0.25,...,1} [sloped,above,pos=\p]{\p};
-```
 
 
 ---
@@ -2537,15 +1281,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[->]
-  \draw (0,0)   -- (2,0.5) node[midway,sloped,above] {$x$};
-  \draw (2,-.5) -- (0,0)   node[midway,sloped,below] {$y$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2555,14 +1290,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [allow upside down]
-  \draw (0,0) .. controls +(up:2cm) and +(left:2cm) .. (1,3)
-    node foreach \p in {0,0.25,...,1} [sloped,above,pos=\p]{\p};
-```
 
 
 ---
@@ -2574,15 +1301,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[->,allow upside down]
-  \draw (0,0)   -- (2,0.5) node[midway,sloped,above] {$x$};
-  \draw (2,-.5) -- (0,0)   node[midway,sloped,below] {$y$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2592,19 +1310,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) .. controls +(up:2cm) and +(left:3cm) .. (1,5)
-       node[at end]          {\texttt{at end}}
-       node[very near end]   {\texttt{very near end}}
-       node[near end]        {\texttt{near end}}
-       node[midway]          {\texttt{midway}}
-       node[near start]      {\texttt{near start}}
-       node[very near start] {\texttt{very near start}}
-       node[at start]        {\texttt{at start}};
-```
 
 
 ---
@@ -2616,17 +1321,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[near end]
-  \draw (0cm,4em) -- (3cm,4em) node{A};
-  \draw (0cm,3em) --           node{B}          (3cm,3em);
-  \draw (0cm,2em) --           node[midway] {C} (3cm,2em);
-  \draw (0cm,1em) -- (3cm,1em) node[midway] {D} ;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2636,17 +1330,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [circle] {
-  \node [draw] (s) {};
-  \node [draw] (a) [right=of s] {} edge (s);
-  \node [draw] (b) [right=of a] {} edge (a);
-  \node [draw] (t) [right=of b] {} edge (b);
-}
-```
 
 
 ---
@@ -2658,17 +1341,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [circle] {
-  \node [draw] (s) [label=$s$]  {};
-  \node [draw] (a) [right=of s] {} edge (s);
-  \node [draw] (b) [right=of a] {} edge (a);
-  \node [draw] (t) [right=of b, label=$t$] {} edge (b);
-}
-```
-
 
 ---
 
@@ -2678,13 +1350,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [rotate=-80,every label/.style={draw,red}]
-  \node [transform shape,rectangle,draw,label=right:label] {main node};
-```
 
 
 ---
@@ -2696,13 +1361,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [rotate=-80,every label/.style={draw,red},absolute]
-  \node [transform shape,rectangle,draw,label=right:label] {main node};
-```
-
 
 ---
 
@@ -2712,20 +1370,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \node [circle, draw,
-         label=default,
-         label=60:$60^\circ$,
-         label=below:$-90^\circ$,
-         label=3:$3^\circ$,
-         label=2:$2^\circ$,
-         label={[below]180:$180^\circ$},
-         label={[centered]135:$135^\circ$}] {my circle};
-```
 
 
 ---
@@ -2737,13 +1381,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [transform shape,rotate=90,
-             rectangle,draw,label={[red]center:R}] {main node};
-```
-
 
 ---
 
@@ -2753,12 +1390,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node [circle,draw,label={[red]above:X}] {my circle};
-```
 
 
 ---
@@ -2770,15 +1401,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [circle,draw,label={[name=label node]above left:$a,b$}] {};
-  \draw (label node) -- +(1,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2788,15 +1410,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[label distance=5mm]
-  \node [circle,draw,label=right:X,
-                     label=above right:Y,
-                     label=above:Z]       {my circle};
-```
 
 
 ---
@@ -2808,12 +1421,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [circle,fill=blue!50,minimum size=1cm,pin=60:$q_0$] {};
-```
-
 
 ---
 
@@ -2823,15 +1430,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[pin distance=1cm]
-  \node [circle,draw,pin=right:X,
-                     pin=above right:Y,
-                     pin=above:Z]       {my circle};
-```
 
 
 ---
@@ -2843,17 +1441,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [pin distance=15mm,
-       every pin edge/.style={<-,shorten <=1pt,decorate,
-                              decoration={snake,pre length=4pt}}]
-  \node [circle,draw,pin=right:X,
-                     pin=above right:Y,
-                     pin=above:Z]       {my circle};
-```
-
 
 ---
 
@@ -2863,14 +1450,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[pin distance=10mm]
-  \node [circle,draw,pin={[pin edge={blue,thick}]right:X},
-                     pin=above:Z]       {my circle};
-```
 
 
 ---
@@ -2882,15 +1461,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [every pin edge/.style={},
-       initial/.style={pin={[pin distance=5mm,
-                             pin edge={<-,shorten <=1pt}]left:start}}]
-  \node [circle,draw,initial] {my circle};
-```
-
 
 ---
 
@@ -2900,12 +1470,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node ["my label" red, draw] {my node};
-```
 
 
 ---
@@ -2917,12 +1481,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [label={[red]my label}, draw] {my node};
-```
-
 
 ---
 
@@ -2932,20 +1490,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [row sep=5mm] {
-    \node [draw, "label"]                  {A}; \\
-    \node [draw, "label" left]             {B}; \\
-    \node [draw, "label" centered]         {C}; \\
-    \node [draw, "label" color=red]        {D}; \\
-    \node [draw, "label" {red,draw,thick}] {E}; \\
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -2957,13 +1501,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz
-  \node ["$90^\circ$" above, "$180^\circ$" left, circle, draw] {circle};
-```
-
 
 ---
 
@@ -2973,13 +1510,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \node ["90:$90^\circ$", "left:$180^\circ$", circle, draw] {circle};
-```
 
 
 ---
@@ -2991,13 +1521,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [every label quotes/.style=red]
-  \node ["90:$90^\circ$", "left:$180^\circ$", circle, draw] {circle};
-```
-
 
 ---
 
@@ -3007,12 +1530,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node ["{yes, we can}", draw] {foo};
-```
 
 
 ---
@@ -3024,12 +1541,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node ["yes{:} we can", draw] {foo};
-```
-
 
 ---
 
@@ -3039,13 +1550,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [quotes mean pin]
-  \node ["$90^\circ$" above, "$180^\circ$" left, circle, draw] {circle};
-```
 
 
 ---
@@ -3057,17 +1561,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikzset{node quotes mean={label={[#2,name={#1}]#1}}}
-
-\tikz {
-  \node ["1", "2" label position=left, circle, draw] {circle};
-  \draw (1) -- (2);
-}
-```
-
 
 ---
 
@@ -3077,19 +1570,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \path (0,0) node             (x) {Hello World!}
-        (3,1) node[circle,draw](y) {$\int_1^2 x \mathrm d x$};
-
-  \draw[->,blue]   (x) -- (y);
-  \draw[->,red]    (x) -| node[near start,below] {label} (y);
-  \draw[->,orange] (x) .. controls +(up:1cm) and +(left:1cm) .. node[above,sloped] {label} (y);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3101,20 +1581,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node (a) at   (0:1) {$a$};
-  \node (b) at  (90:1) {$b$} edge [->]     (a);
-  \node (c) at (180:1) {$c$} edge [->]     (a)
-                             edge [<-]     (b);
-  \node (d) at (270:1) {$d$} edge [->]     (a)
-                             edge [dotted] (b)
-                             edge [<-]     (c);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3124,22 +1590,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node foreach \name/\angle in {a/0,b/90,c/180,d/270}
-        (\name) at (\angle:1) {$\name$};
-
-  \path[->] (b) edge (a)
-                edge (c)
-                edge [-,dotted] (d)
-            (c) edge (a)
-                edge (d)
-            (d) edge (a);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3151,23 +1601,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node foreach \name/\angle in {a/0,b/90,c/180,d/270}
-        (\name) at (\angle:1.5) {$\name$};
-
-  \path[->] (b) edge            node[above right]  {$5$}     (a)
-                edge                                         (c)
-                edge [-,dotted] node[below,sloped] {missing} (d)
-            (c) edge                                         (a)
-                edge                                         (d)
-            (d) edge [red]      node[above,sloped] {very}
-                                node[below,sloped] {bad}     (a);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3177,14 +1610,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every edge/.style={draw,dashed}]
-  \path (0,0) edge (3,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3196,12 +1621,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) edge ["left", ->] (2,0);
-```
-
 
 ---
 
@@ -3211,13 +1630,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [every edge quotes/.style={auto=right}]
-  \draw (0,0) edge ["right", ->] (2,0);
-```
 
 
 ---
@@ -3229,13 +1641,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [every edge quotes/.style={fill=white,font=\footnotesize}]
-  \draw (0,0) edge ["mid", ->] (2,1);
-```
-
 
 ---
 
@@ -3245,15 +1650,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-  \draw (0,0) edge ["left", "right"',
-                    "start" near start,
-                    "end"' near end] (4,0);
-```
 
 
 ---
@@ -3265,15 +1661,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [tight/.style={inner sep=1pt}, loose/.style={inner sep=.7em}]
-  \draw (0,0) edge ["left"   tight,
-                    "right"' loose,
-                    "start"  near start] (4,0);
-```
-
 
 ---
 
@@ -3283,12 +1670,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every picture/.append style={remember picture}}
-```
 
 
 ---
@@ -3300,12 +1681,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[remember picture] \node[circle,fill=red!50] (n1) {};
-```
-
 
 ---
 
@@ -3315,12 +1690,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[remember picture] \node[fill=blue!50] (n2) {};
-```
 
 
 ---
@@ -3332,14 +1701,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture,overlay]
-  \draw[->,very thick] (n1) -- (n2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3349,17 +1710,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture]
-  \node (c) [circle,draw] {Big circle};
-
-  \draw [overlay,->,very thick,red,opacity=.5]
-    (c) to[bend left] (n1) (n1) -| (n2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3371,19 +1721,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture,overlay]
-  \node [xshift=1cm,yshift=1cm] at (current page.south west)
-        [text width=7cm,fill=red!20,rounded corners,above right]
-  {
-    This is an absolutely positioned text in the
-    lower left corner. No shipout-hackery is used.
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3393,15 +1730,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture,overlay]
-  \draw [line width=1mm,opacity=.25]
-    (current page.center) circle (3cm);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3413,15 +1741,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture,overlay]
-  \node [rotate=60,scale=10,text opacity=0.2]
-    at (current page.center) {Example};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3431,15 +1750,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node      [draw,circle]       (a) {Hello};
-  \node also [label=above:world] (a);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3451,15 +1761,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node      [draw,circle]       (a) {Hello};
-  \path [late options={name=a, label=above:world}];
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3469,15 +1770,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (2,0) coordinate (A) -- (0,0) coordinate (B)
-         -- (-1,-1) coordinate (C)
-           pic [fill=black!50]                      {angle = A--B--C}
-           pic [draw,->,red,thick,angle radius=1cm] {angle = C--B--A};
-```
 
 
 ---
@@ -3489,15 +1781,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [line width=2mm]
-      (2,0) coordinate (A) -- (0,0) coordinate (B)
-   -- (1,1) coordinate (C)
-     pic [draw=blue, fill=blue!50, angle radius=1cm] {angle};
-```
-
 
 ---
 
@@ -3507,14 +1790,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (2,0) coordinate (A) -- (0,0) coordinate (B)
-         -- (1,1) coordinate (C)
-  pic ["$\alpha$", draw, ->] {angle};
-```
 
 
 ---
@@ -3526,14 +1801,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (2,0) coordinate (A) -- (0,0) coordinate (B)
-         -- (1,1) coordinate (C)
-  pic ["$\alpha$", draw, angle eccentricity=1] {angle};
-```
-
 
 ---
 
@@ -3544,18 +1811,6 @@ Expands to the last node on the path.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw (2,0) coordinate (A) -- (0,0) coordinate (B)
-     -- (1,1) coordinate (C)
-      pic (alpha) ["$\alpha$", draw] {angle};
-
-  \draw (alpha) circle [radius=5pt];
-}
-```
-
 
 ---
 
@@ -3565,19 +1820,6 @@ Expands to the last node on the path.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz
-    \draw (0,0,0) coordinate (O)
-      (1,0,0) coordinate (A) -- (O)
-      (0,0,1) coordinate (B) -- (O)
-      (0,1,0) coordinate (C) -- (O)
-      pic [fill=gray,angle radius=4mm] {right angle = A--O--B}
-      pic [draw,red,thick,angle eccentricity=.5,pic text=.]
-        {right angle = A--O--C};
-```
 
 
 ---
@@ -3602,33 +1844,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-  % Adapted from http://www.cs.northwestern.edu/academics/courses/110/html/fib_rec.html
-  function fibonacci(\n) {
-    if \n == 0 then {
-      return 0;
-    } else {
-      return fibonacci2(\n, 0, 1);
-    };
-  };
-  function fibonacci2(\n, \p, \q) {
-    if \n == 1 then {
-      return \q;
-    } else {
-      return fibonacci2(\n-1, \q, \p+\q);
-    };
-  };
-  int \f, \i;
-  for \i in {0,1,...,20} {
-    \f = fibonacci(\i);
-    print {\f, };
-  };
-}
-```
-
 
 ---
 
@@ -3638,24 +1853,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[x=0.25cm,y=0.25cm,
-  evaluate={
-    int \i, \j;
-    for \i in {0,...,10} {
-      for \j in {0,...,10} {
-        \a{\i,\j} = (\i+\j)*5;
-      };
-    };
-  }
-]
-\foreach \i in {0,...,10}
-  \foreach \j in {0,...,10}
-    \fill [red!\a{\i,\j}!yellow]  (\i,\j) rectangle ++(1, 1);
-```
 
 
 ---
@@ -3667,20 +1864,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\newcount\mycount
-\newdimen\mydimen
-\tikzmath{
-  \a = 4*5+6;
-  \b = sin(30)*4;
-  \mycount = log10(2048) / log10(2);
-  \mydimen = 15^2;
-}
-\a, \b, \the\mycount, \the\mydimen
-```
-
 
 ---
 
@@ -3690,15 +1873,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-  \x1 = 3+4; \x2 = 30+40; \x3 = 300+400;
-}
-\x1, \x2, \x3
-```
 
 
 ---
@@ -3710,15 +1884,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-  \c{air} = 340; \c{water} = 1435; \c{steel} = 6100;
-}
-\foreach \medium in {air,steel}{The speed of sound in \medium\ is \c{\medium} m/s. }
-```
-
 
 ---
 
@@ -3728,16 +1893,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-  let \x = (5*4)+1;
-  let \c1 = blue;
-}
-\x, ``\c1''
-```
 
 
 ---
@@ -3749,16 +1904,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-  integer \x;
-  \x1 = 3+4; \x2 = 30+40; \x3 = 300+400;
-}
-\x1, \x2, \x3
-```
-
 
 ---
 
@@ -3768,18 +1913,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-   integer \x, \y, \z;
-   \x = 4*5+6;
-   \y = sin(30)*4;
-   \z = log10(512) / log10(2);
-   print {$x=\x$, $y=\y$, $z=\z$};
-}
-```
 
 
 ---
@@ -3791,16 +1924,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-   coordinate \c;
-   \c = (45:10pt);
-}
-\tikz\draw (0,0) -- (\c);
-```
-
 
 ---
 
@@ -3810,17 +1933,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-   coordinate \c, \d;
-   \c = (-1,2)+(1,-1);
-   \d = (4,1)-(2,-1);
-}
-\tikz\draw (\c) -- (\d);
-```
 
 
 ---
@@ -3832,17 +1944,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-   coordinate \c;
-   \c1 = (30:20pt);
-   \c2 = (210:20pt);
-}
-\tikz\draw (\cx1,\cy1) -- (\cx2,\cy1) -- (\cx2,\cy2) -- (\cx1,\cy2);
-```
-
 
 ---
 
@@ -3852,19 +1953,6 @@ statements\}} This command process a series of statements which can represent as
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-  int \x, \v;
-  \v=1;
-  for \x in {1,...,{random(3,10)}} {
-     \v=\v*2;
-  };
-  print {$x=\x, v=\v$};
-}
-```
 
 
 ---
@@ -3876,21 +1964,6 @@ statements\}} This command process a series of statements which can represent as
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-  int \x, \y;
-  \y = 0;
-  for \x1 in {1,...,5} {
-    for \x2 in {10,20,...,50} {
-      \y = \y+\x1*\x2;
-    };
-  };
-}
-$x_1=\x1, x_2=\x2, y=\y$
-```
-
 
 ---
 
@@ -3900,26 +1973,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \tikzmath{
-    int \x;
-    for \k in {0,10,...,350} {
-      if \k>260 then { let \c = orange; } else {
-        if \k>170 then { let \c = blue; } else {
-          if \k>80 then { let \c = red; } else {
-            let \c = green; }; }; };
-      {
-        \path [fill=\c!50, draw=\c] (\k:0.5cm) -- (\k:1cm) --
-          (\k+5:1cm) -- (\k+5:0.5cm) -- cycle;
-      };
-    };
-  }
-  \end{tikzpicture}
-```
 
 
 ---
@@ -3931,21 +1984,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzmath{
-  function product(\x,\y) {
-    return \x*\y;
-  };
-  int \i, \j, \k;
-  \i = random(1,10);
-  \j = random(20, 40);
-  \k = product(\i, \j);
-  print { $\i\times \j = \k$ };
-}
-```
-
 
 ---
 
@@ -3955,19 +1993,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzmath{
-  int \x, \y, \z;
-  \x = random(2, 5);
-  for \y in {0,...,6} {
-    \z = \x^\y;
-    print {$\x^\y=\z$, };
-  };
-}
-```
 
 
 ---
@@ -3979,21 +2004,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\draw [help lines] grid (3,2);
-\tikzmath{
-  coordinate \c;
-  for \x in {0,10,...,360} {
-    \c = (1.5cm, 1cm) + (\x:1cm and 0.5cm);
-    { \fill (\c) circle [radius=1pt]; };
-  };
-}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4003,15 +2013,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place,label=above:$p_1$,tokens=2]        (p1) {};
-  \node[place,label=below:$p_2\ge1$,right=of p1] (p2) {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4023,17 +2024,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [every place/.style={draw=blue,fill=blue!20,thick,minimum size=9mm}]
-  \node[place,tokens=7,label=above:$p_1$]  (p1) {};
-  \node[place,structured tokens={3,2,9},
-        label=below:$p_2\ge1$,right=of p1] (p2) {};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4044,19 +2034,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place,tokens=2,label=above:$p_1$]        (p1) {};
-  \node[place,label=above:$p_2\ge1$,right=of p1] (p2) {};
-
-  \node[transition,below right=of p1,label=below:$t_1$] {}
-    edge[pre]                 (p1)
-    edge[post] node[auto] {2} (p2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4066,18 +2043,6 @@ $x_1=\x1, x_2=\x2, y=\y$
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place,label=above:$p_1$]             (p1) {};
-  \node[token] at (p1) {};
-
-  \node[place,label=above:$p_2$,right=of p1] (p2) {};
-  \node[token] at (p2) {$y$};
-\end{tikzpicture}
-```
 
 
 ---

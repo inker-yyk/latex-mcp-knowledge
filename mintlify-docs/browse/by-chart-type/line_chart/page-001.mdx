@@ -18,41 +18,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usetikzlibrary{intersections}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [name path=A] {x^3};
-
-    \draw [red,name path=HelperLine]
-        (axis cs:-6,-100) -- (axis cs:6,130);
-
-    \draw [
-        font=\footnotesize,
-        name intersections={of=A and HelperLine},
-    ]
-    node [pin={right:
-      \pgfplotspointgetcoordinates{(intersection-1)}
-        $(\pgfmathprintnumber[fixed]{
-            \pgfkeysvalueof{/data point/x}},
-          \pgfmathprintnumber[fixed]{
-            \pgfkeysvalueof{/data point/y}})$
-      }
-    ] at (intersection-1) {}
-    node [pin={
-      \pgfplotspointgetcoordinates{(intersection-2)}
-        $(\pgfmathprintnumber[fixed]{
-            \pgfkeysvalueof{/data point/x}},
-          \pgfmathprintnumber[fixed]{
-            \pgfkeysvalueof{/data point/y}})$
-      }
-    ] at (intersection-2) {};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -62,18 +27,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    width=5cm,
-]
-    \addplot {x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -85,19 +38,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    width=5cm,
-    scale only axis,
-]
-    \addplot {x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -107,19 +47,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    x=1cm,
-    y=1cm,
-]
-    \addplot expression [domain=0:3] {2*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -131,20 +58,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    x=1cm,
-    y=0.5cm,
-    y dir=reverse,
-]
-    \addplot expression [domain=0:3] {2*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -154,19 +67,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    x=1cm,
-    title=Height is deduced from height option,
-]
-    \addplot expression [domain=0:3] {2*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -178,19 +78,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    x={(1cm,0.1cm)},
-    y=1cm,
-]
-    \addplot expression [domain=0:3] {2*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -200,19 +87,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    x={(5pt,1pt)},
-    y={(-4pt,4pt)},
-]
-    \addplot {1-x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -224,22 +98,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[axis equal=false,grid=major]
-        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
-    \end{axis}
-\end{tikzpicture}
-    \hspace{1cm}
-\begin{tikzpicture}
-    \begin{axis}[axis equal=true,grid=major]
-        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -249,22 +107,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{loglogaxis}[axis equal=false,grid=major]
-        \addplot expression [domain=1:10000] {x^-2};
-    \end{loglogaxis}
-\end{tikzpicture}
-    \hspace{1cm}
-\begin{tikzpicture}
-    \begin{loglogaxis}[axis equal=true,grid=major]
-        \addplot expression [domain=1:10000] {x^-2};
-    \end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -276,17 +118,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[axis equal,small,view={45}{35.26}]
-    \addplot3 [mark=cube, blue, mark size=1cm]
-        coordinates {(0,0,0)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -296,22 +127,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[axis equal image=false,grid=major]
-        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
-    \end{axis}
-\end{tikzpicture}
-    \hspace{1cm}
-\begin{tikzpicture}
-    \begin{axis}[axis equal image=true,grid=major]
-        \addplot [blue] expression [domain=0:2*pi,samples=300] {sin(deg(x))*sin(2*deg(x))};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -323,22 +138,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{loglogaxis}[axis equal image=false,grid=major]
-        \addplot expression [domain=1:10000] {x^-2};
-    \end{loglogaxis}
-\end{tikzpicture}
-\hspace{1cm}
-\begin{tikzpicture}
-    \begin{loglogaxis}[axis equal image=true,grid=major]
-        \addplot expression [domain=1:10000] {x^-2};
-    \end{loglogaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -348,21 +147,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[unit vector ratio=2 1,small]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot table [row sep=\\,col sep=&] {
-        x & y \\
-        0 & 1 \\
-        1 & 0 \\
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -374,21 +158,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[y post scale=1]
-        \addplot {x};
-    \end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{axis}[y post scale=2]
-        \addplot {x};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -398,22 +167,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[normalsize,
-        title=A ``normalsize'' figure,
-        xlabel=The $x$-axis,
-        ylabel=The $y$-axis,
-        minor tick num=1,
-        legend entries={Leg},
-    ]
-        \addplot {max(4*x,7*x)};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -425,23 +178,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    title=A ``small'' figure,
-    xlabel=The $x$-axis,
-    ylabel=The $y$-axis,
-    minor tick num=1,
-    legend entries={Leg},
-]
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -451,25 +187,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    footnotesize,
-    title=A ``footnotesize'' figure,
-    xlabel=The $x$-axis,
-    ylabel=The $y$-axis,
-    minor tick num=1,
-    legend entries={Leg},
-]
-    \addplot+ [const plot] coordinates {
-        (0,0) (1,1) (3,3) (5,10)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -481,24 +198,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[tiny,
-    title=A ``tiny'' figure,
-    xlabel=The $x$-axis,
-    ylabel=The $y$-axis,
-    minor tick num=1,
-    legend entries={Leg},
-]
-    \addplot+ [const plot] coordinates {
-        (0,0) (1,1) (3,3) (5,10)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -508,25 +207,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:1,samples=2] {x};
-
-    \addplot+ [name path=B] table {
-        x   y
-        0   2
-        0.5 -1
-        1   3
-    };
-
-    \addplot fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -538,20 +218,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:1] {sqrt(x)};
-
-    \addplot [red, name path=B,domain=0:1] {sqrt(x/2)};
-
-    \addplot [gray] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -561,22 +227,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:1]
-        {sin(360*x)};
-
-    \addplot [red, name path=B,domain=0:1,samples=2]
-        {0.5};
-
-    \addplot [orange] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -588,22 +238,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-  \addplot+ [name path=A,samples=7,smooth,domain=0:1]
-        {sin(360*x)};
-
-  \addplot+ [name path=B,samples=15,domain=0:1]
-        {cos(360*x)};
-
-  \addplot [orange] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -613,22 +247,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[ymin=-0.2,enlargelimits]
-    \addplot+ [name path=A,smooth]
-        coordinates {(0,0) (1,1) (2,0)};
-
-    \path [name path=B]
-        (0.5,-0.2) -- (1.8,-0.2);
-
-    \addplot [orange] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -640,24 +258,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,samples=15,domain=0:1]
-        {cos(360*x)}
-            coordinate [pos=0.25] (nodeA0) {}
-            coordinate [pos=0.75] (nodeA1) {};
-
-    \draw [name path=B]
-        (nodeA0) -- (nodeA1);
-
-    \addplot [orange] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -667,25 +267,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,samples=7,smooth,domain=0:1]
-        {sin(360*x)};
-
-    \addplot+ [name path=B,samples=15,domain=0:1]
-        {cos(360*x)};
-
-    \addplot [orange] fill between [of=A and B,
-        split,
-        every odd segment/.style={yellow},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -697,34 +278,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,samples=15,
-        smooth,domain=0:1] {sin(720*x)};
-
-    \path [name path=B]
-            (\pgfkeysvalueof{/pgfplots/xmin},0)
-        --  (\pgfkeysvalueof{/pgfplots/xmax},0)
-    ;
-
-    \addplot fill between [of=A and B,
-        split,
-        every segment no 0/.style=
-          {orange},
-        every segment no 1/.style=
-          {pattern=north east lines},
-        every segment no 2/.style=
-          {pattern=north west lines},
-        every segment no 3/.style=
-          {top color=orange, bottom color=blue},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -734,31 +287,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,samples=15,domain=0:1]
-        {cos(360*x)}
-            coordinate[pos=0.25] (nodeA0)
-            coordinate[pos=0.75] (nodeA1)
-    ;
-
-    \draw [name path=B] (nodeA0) -- (nodeA1);
-
-    \addplot [fill=none] % default: fill none
-        fill between [of=A and B,
-            split,
-            % draw only selected ones:
-            % every segment no 0/.style: invisible
-            every segment no 1/.style={fill,orange},
-            % every segment no 2/.style: invisible
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -770,42 +298,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires
-% \usetikzlibrary{decorations.markings,shapes.arrows}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:1,samples=2] {x};
-
-    \addplot+ [name path=B] table {
-        x y
-        0 2
-        0.5 -1
-        1 3
-    };
-
-    \addplot fill between [of=A and B,
-        split,
-        every even segment/.style={
-            postaction={decorate},
-            decoration={
-                markings,
-                mark=between positions 0 and 1
-                  step 1cm with {
-                    \node [single arrow,fill=orange,
-                        single arrow head extend=3pt,
-                        transform shape]
-                    {};
-                },
-            },
-        },
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -815,22 +307,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [orange] fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -842,25 +318,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [orange] fill between [
-        of=A and B,
-        soft clip={domain=3:5},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -870,35 +327,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot[
-        orange,
-        decorate,decoration={
-            footprints,
-            foot of=bird,
-            stride length=15pt,
-            foot sep=2pt,
-            foot length=6pt,
-        },
-    ]
-    fill between [
-        of=A and B,
-        soft clip={domain=3:5},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -910,29 +338,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \draw [help lines,name path=clippath]
-        (0,-5) -- (-5,0) --
-        (2,4) -- (4,-4) --cycle;
-
-    \addplot+ [name path=A] {x};
-
-    \draw [red,name path=B]
-        (0,\pgfkeysvalueof{/pgfplots/ymin}) --
-        (0,\pgfkeysvalueof{/pgfplots/ymax});
-
-    \addplot[gray!50] fill between [
-        of=A and B,
-        soft clip={clippath}
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -942,34 +347,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [gray] fill between [
-        of=A and B,
-        soft clip={
-            (3,-1) rectangle (4,100)
-        },
-    ];
-    \addplot [gray!30] fill between [
-        of=A and B,
-        soft clip={
-            (2,-1) rectangle (3,100)
-        },
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -981,33 +358,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [name path=A,domain=0:5,
-        postaction={decorate,red,thick},
-        decoration={
-            soft clip,
-            soft clip path={domain=3:5},
-        },
-    ] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [orange] fill between [
-        of=A and B,
-        soft clip={
-            (3,-1) rectangle (5,100)
-        },
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1017,22 +367,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,-stealth,name path=A] {x};
-
-    \draw [-stealth,name path=B]
-        (0,-5) -- (0,5);
-
-    \addplot [gray!50]
-        fill between [of=A and B,reverse=true];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1044,29 +378,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[set layers]
-    \addplot [blue,-stealth,name path=A] {x};
-
-    \draw [-stealth,name path=B]
-        (0,-5) -- (0,5);
-
-    \pgfonlayer{pre main}
-        \fill [
-            gray!50,
-            intersection segments={
-                of=A and B,
-                sequence={A* -- B*[reverse]},
-            },
-        ];
-    \endpgfonlayer
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1076,24 +387,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,-stealth,name path=A] {x};
-
-    \draw [-stealth,name path=B]
-        (0,-5) -- (0,5);
-
-    \addplot [gray!50] fill between [
-        of=A and B,
-        reverse=false,
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1105,29 +398,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[set layers]
-    \addplot [blue,-stealth,name path=A] {x};
-
-    \draw [-stealth,name path=B]
-        (0,-5) -- (0,5);
-
-    \pgfonlayer{pre main}
-        \fill [
-            gray!50,
-            intersection segments={
-                of=A and B,
-                sequence={A* -- B*},
-            },
-        ];
-    \endpgfonlayer
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1137,24 +407,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-
-    \addplot [blue,ultra thick,name path=A,
-        jump mark left] {x};
-
-    \path [name path=B]
-        (-5,0) -- (5,0);
-
-    \addplot [top color=red, bottom color=white]
-        fill between [of=A and B];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1166,50 +418,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-
-        \def\verticalbar{2}
-    \begin{axis}[domain=-5:8,samples=25,smooth,width=12cm,height=7cm]
-        % Draw curves
-        \addplot [name path=g0,thin] {exp(-x^2/4)};
-            \addlegendentry{$\mathcal{N}(0)$}
-        \addplot [name path=g2.5,thin] {exp(-(x-2.5)^2/4)};
-            \addlegendentry{$\mathcal{N}(\frac52)$}
-
-        % Draw vertical bar:
-        \draw [name path=red,red,thick]
-            (\verticalbar,-1) -- (\verticalbar,2);
-
-        \path [name path=axis] (-10,0) -- (16,0);
-
-        \addplot [black!10] fill between [
-            of=g0 and g2.5,
-            soft clip={domain=-6:\verticalbar},
-            split,
-            every segment no 0/.style={left color=blue,right color=white},
-            every segment no 1/.style={pattern=grid,pattern color=gray},
-        ];
-            \addlegendentry{fill}
-
-        % compute + label the lower segment (but do not draw it):
-        \path [name path=lower,
-            %draw=red,ultra thick,
-            intersection segments={of=g0 and g2.5,sequence=R1 -- L2}
-        ];
-
-        \addplot [pattern=north west lines, pattern color=orange]
-            fill between [
-                of=axis and lower,
-                soft clip={domain=-6:\verticalbar},
-        ];
-            \addlegendentry{lower}
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1219,35 +427,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[domain=0:10]
-    \addplot [name path=first,blue]
-        {sin(deg(x)) + 2/5*x};
-
-    \addplot [name path=second,red,samples=16,smooth]
-        {cos(deg(1.2*x)) + 2/5*x};
-
-    \draw [
-        black,-stealth,
-        decorate,decoration={
-            saw,
-            post=lineto,
-            post length=10pt,
-        },
-        intersection segments={
-            of=first and second,
-            sequence={
-                L1 -- R2 -- R3 -- R4 -- L4[reverse]
-            },
-        },
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1259,37 +438,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[xmin=0,xmax=5,ymin=0,ymax=5]
-    \addplot [name path=f,domain=0:5,samples=100]
-        {(x - 2)^2/(7*x) + 1};
-
-    \addplot [name path=border,
-            color=blue, ultra thick, dashed]
-        coordinates {(2,0) (2,5) } ;
-
-    \fill [
-        intersection segments={
-            of=f and border,
-            sequence={L1 -- R2}},
-        pattern=north east lines,
-    ]
-    -- cycle;
-
-    \fill [
-        intersection segments={
-            of=f and border,
-            sequence={R2[reverse] -- L2}},
-        pattern=north west lines,
-    ]
-    -- (rel axis cs:1,1) -- cycle;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1299,55 +447,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{patchplots}
-\begin{tikzpicture}
-    \begin{axis}[
-        % tell pgfplots to "grab" the axis at its internal (0,0) coord:
-        anchor=origin,
-        % tell pgfplots to place its anchor at (0,0):
-        % (This is actually the default and can be omitted)
-        at={(0pt,0pt)},
-        % tell pgfplots to use the "natural" dimensions:
-        disabledatascaling,
-        % tell pgfplots to use the same unit vectors as tikz:
-        x=1cm,y=1cm,
-        %
-        hide axis,
-    ]
-        \addplot [patch,patch type=coons,
-            shader=interp,point meta=explicit]
-        coordinates {
-            (0,0)      [0] % first corner
-            (1,-1)     [0] % bezier control point between (0) and (3)
-            (4,0.7)    [0] % bezier control point between (0) and (3)
-            %
-            (3,2)      [1] % second corner
-            (4,3.5)    [1] % bezier control point between (3) and (6)
-            (7,2)      [1] % bezier control point between (3) and (6)
-            %
-            (7,1)      [2] % third corner
-            (6,0.6)    [2] % bezier control point between (6) and (9)
-            (4.5,-0.5) [2] % bezier control point between (6) and (9)
-            %
-            (5,-2)     [3] % fourth corner
-            (4,-2.5)   [3] % bezier control point between (9) and (0)
-            (-1,-2)    [3] % bezier control point between (9) and (0)
-        };
-    \end{axis}
-
-    % this requires pgf 2.10
-    \begin{scope}[every node/.style={circle,inner sep=2pt,fill=black}]
-        \node [pin=140:first] at (0,0) {};
-        \node [pin=second]    at (3,2) {};
-        \node [pin=45:third]  at (7,1) {};
-        \node [pin=0:fourth]  at (5,-2) {};
-    \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1359,28 +458,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=A title,
-    ylabel style={overlay},
-    yticklabel style={overlay},
-    xlabel={$x$},
-    ylabel={$y$},
-    legend style={at={(0.5,0.97)},
-        anchor=north,legend columns=-1},
-    domain=-2:2,
-]
-    \addplot {x^2};
-    \addplot {x^3};
-    \addplot {x^4};
-    \legend{$x^2$,$x^3$,$x^4$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1390,26 +467,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    domain=0:6.2832,samples=200,
-    legend style={
-        overlay,
-        at={(-0.5,0.5)},
-        anchor=center},
-    every axis plot post/.append style={mark=none},
-    enlargelimits=false,
-]
-    \addplot {sin(deg(x)+3) + rand*0.05};
-    \addplot {cos(deg(x)+2) + rand*0.05};
-    \legend{Signal 1,Signal 2}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1421,34 +478,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\setlength{\fboxsep}{0pt}%
-\fbox{%
-\begin{tikzpicture}
-    \begin{axis}[
-        title=A title,
-        xlabel={$x$},
-        ylabel={$y$},
-        legend style={at={(0.5,0.97)},
-            anchor=north,legend columns=-1},
-        domain=-2:2,
-    ]
-        \addplot {x^2};
-        \addplot {x^3};
-        \addplot {x^4};
-        \legend{$x^2$,$x^3$,$x^4$}
-    \end{axis}
-
-    \pgfresetboundingbox
-    \path
-              (current axis.south west)
-    rectangle (current axis.north east);
-\end{tikzpicture}%
-}
-```
-
 
 ---
 
@@ -1458,35 +487,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\setlength{\fboxsep}{0pt}%
-\fbox{%
-\begin{tikzpicture}
-  \begin{pgfinterruptboundingbox}
-    \begin{axis}[
-        title=A title,
-        xlabel={$x$},
-        ylabel={$y$},
-        legend style={at={(0.5,0.97)},
-            anchor=north,legend columns=-1},
-        domain=-2:2,
-    ]
-        \addplot {x^2};
-        \addplot {x^3};
-        \addplot {x^4};
-        \legend{$x^2$,$x^3$,$x^4$}
-    \end{axis}
-  \end{pgfinterruptboundingbox}
-
-    \useasboundingbox
-                  (current axis.below south west)
-        rectangle (current axis.above north east);
-\end{tikzpicture}%
-}
-```
 
 
 ---
@@ -1498,26 +498,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    clip mode=individual,
-]
-    \addplot+ [samples=3] {x^2};
-
-    \begin{scope}
-        \clip \pgfextra{\pgfplotspathaxisoutline};
-        \draw (-20,15) -- (20,15);
-        \draw (-20,20) -- (20,20);
-    \end{scope}
-
-    \addplot+ [samples=2] {x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1527,25 +507,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            y dir=plus,y explicit,
-    ] coordinates {
-        (0,0)     +- (0.5,0.1)
-        (0.1,0.1) +- (0.05,0.2)
-        (0.2,0.2) +- (0,0.05)
-        (0.5,0.5) +- (0.1,0.2)
-        (1,1)     +- (0.3,0.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1557,26 +518,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            y dir=both,y explicit,
-            x dir=both,x explicit,
-    ] coordinates {
-        (0,0)     +- (0.5,0.1)
-        (0.1,0.1) +- (0.05,0.2)
-        (0.2,0.2) +- (0,0.05)
-        (0.5,0.5) +- (0.1,0.2)
-        (1,1)     +- (0.3,0.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1586,25 +527,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            y dir=both,y fixed=0.1,
-    ] coordinates {
-        (0,0)
-        (0.1,0.1)
-        (0.2,0.2)
-        (0.5,0.5)
-        (1,1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1616,25 +538,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[enlargelimits=false]
-    \addplot [red,mark=*] plot [
-        error bars/.cd,
-            y dir=minus,y fixed relative=1,
-            x dir=minus,x fixed relative=1,
-            error mark=none,
-            error bar style={dotted},
-    ] coordinates {
-        (0,0) (0.1,0.1) (0.2,0.2)
-        (0.5,0.5) (1,1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1644,29 +547,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{loglogaxis}
-    \addplot+ [
-        error bars/.cd,
-            x dir=both,x fixed relative=0.5,
-            y dir=both,y explicit relative,
-    ] table [x=x,y=y,y error=error] {
-        x       y       error
-        32      32      0
-        64      64      0
-        128     128     0.3
-        1024    1024    0.2
-        32068   32068   0.6
-        64000   64000   0.6
-        128000  128000  0.6
-    };
-\end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1678,25 +558,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \pgfmathsetseed{42}
-\begin{axis}[
-    ymajorgrids,
-]
-    \addplot+ [
-        domain=0:180,
-        samples=11,
-        error bars/.cd,
-            y dir=both, y fixed=0.1,
-            error mark=diamond*,
-    ] {sin(x) + rand*0.1};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1706,17 +567,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\addplot coordinates {
-    (1,2) +- (0.4,0.2)
-    (2,4) +- (1,0)
-    (3,5)
-    (4,6) +- (0.3,0.001)
-}
-```
 
 
 ---
@@ -1728,25 +578,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            x dir=both, x explicit,
-            y dir=both, y explicit,
-    ] coordinates {
-        (1.1,0.9) += (0.4,0.2) -= (0.1,0.1)
-        (2.7,2)   -= (1,0)
-        (3,3)
-        (3.8,4.2) +- (0.3,0.2)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1756,12 +587,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\addplot coordinates {(0,0) [4]};
-```
 
 
 ---
@@ -1773,12 +598,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\addplot coordinates {(0,0) +- (0.1,0.2) [4]};
-```
-
 
 ---
 
@@ -1788,26 +607,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            x dir=both, x explicit,
-            y dir=both, y explicit,
-    ] table [y error=error] {
-        x   y   error
-        1   0.9 0.4
-        2   2.1 0.2
-        3   3   0.1
-        4   4.2 0.3
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1819,12 +618,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\addplot table[x error index=COLINDEX,y error index=COLINDEX]
-```
-
 
 ---
 
@@ -1834,12 +627,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\addplot table[x error expr=\thisrow{errorx}^2]
-```
 
 
 ---
@@ -1851,31 +638,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        error bars/.cd,
-            x dir=both, x explicit,
-            y dir=both, y explicit,
-    ] table [
-        x error plus=ex+,
-        x error minus=ex-,
-        y error plus=ey+,
-        y error minus=ey-,
-    ] {
-        x   y   ex+  ey+  ex-  ey-
-        1.1 0.9 0.4  0.2  0.1  0.1
-        2.7 2   0    0    1    0
-        3   3   0    0    0    0
-        3.8 4.2 0.3  0.2  0.3  0.2
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1885,21 +647,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    enlarge x limits=0.03,
-    title=Ornstein--Uhlenbeck sample
-        ($13000$ time steps),
-    xlabel=$t$,
-]
-    \addplot [blue] file {plotdata/ou.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1911,22 +658,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    title=Do,
-    samples=2,
-]
-    \addplot+ [
-        declare function={C=4;}
-    ] {C*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1936,21 +667,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    small,
-    title=Don't,
-    samples=2,
-]
-        \def\constantC{4}
-    \addplot {\constantC*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1962,26 +678,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[small,grid=major,title=Do]
-    \addplot+ [
-        unbounded coords=jump,
-        y filter/.expression={y==3 ? nan : y},
-    ] table {
-        x   y
-        1   2
-        1.5 2.5
-        2   3
-        2.5 3.5
-        3   4
-    };
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1991,29 +687,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% [See the TikZ manual if you'd like to learn about nodes and pins]
-\begin{tikzpicture}
-    \tikzset{
-        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-        small dot/.style={fill=black,circle,scale=0.3},
-    }
-    \begin{axis}[
-        clip=false,
-        title=How \texttt{axis description cs} works,
-    ]
-        \addplot {x};
-
-        \node [small dot,pin=120:{$(0,0)$}]      at (axis description cs:0,0)      {};
-        \node [small dot,pin=-30:{$(1,1)$}]      at (axis description cs:1,1)      {};
-        \node [small dot,pin=-90:{$(1.03,0.5)$}] at (axis description cs:1.03,0.5) {};
-        \node [small dot,pin=125:{$(0.5,0.5)$}]  at (axis description cs:0.5,0.5)  {};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2025,23 +698,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        legend entries={$x$,$x^2$},
-        legend style={
-            at={(1.03,0.5)},
-            anchor=west,
-        },
-    ]
-        \addplot {x};
-        \addplot {x^2};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2051,32 +707,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% the same as above for 3D ...
-% [See the TikZ manual if you'd like to learn about nodes and pins]
-\begin{tikzpicture}
-    \tikzset{
-        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-        small dot/.style={fill=black,circle,scale=0.3},
-    }
-    \begin{axis}[
-        clip=false,
-        title=How \texttt{axis description cs} works in 3D,
-    ]
-        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
-
-        \draw [black!15] (axis description cs:0,0) rectangle (axis description cs:1,1);
-
-        \node [small dot,pin=120:{$(0,0)$}]      at (axis description cs:0,0)      {};
-        \node [small dot,pin=-30:{$(1,1)$}]      at (axis description cs:1,1)      {};
-        \node [small dot,pin=-90:{$(1.03,0.5)$}] at (axis description cs:1.03,0.5) {};
-        \node [small dot,pin=125:{$(0.5,0.5)$}]  at (axis description cs:0.5,0.5)  {};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2088,31 +718,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\tikzset{
-    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=black,circle,scale=0.3},
-}
-\begin{tikzpicture}
-    \begin{axis}[
-        clip=false,
-        ticklabel style={draw=red},
-        title=Positioning with \texttt{xticklabel cs},
-    ]
-        \addplot {x};
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:0}}]    at (xticklabel cs:0)   {};
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:0.5}}]  at (xticklabel cs:0.5) {};
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:1}}]    at (xticklabel cs:1)   {};
-
-        \node [small dot,pin=180:{\texttt{yticklabel cs:0}}]    at (yticklabel cs:0)   {};
-        \node [small dot,pin=180:{\texttt{yticklabel cs:0.5}}]  at (yticklabel cs:0.5) {};
-        \node [small dot,pin=180:{\texttt{yticklabel cs:1}}]    at (yticklabel cs:1)   {};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2122,31 +727,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\tikzset{
-    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=black,circle,scale=0.3},
-}
-\begin{tikzpicture}
-    \begin{axis}[
-        clip=false,
-        ticklabel style={draw=red},
-        title=Starred variant \texttt{xticklabel* cs},
-    ]
-        \addplot {x};
-        \node [small dot,pin=-90:{\texttt{xticklabel* cs:0}}]   at (xticklabel* cs:0)   {};
-        \node [small dot,pin=-90:{\texttt{xticklabel* cs:0.5}}] at (xticklabel* cs:0.5) {};
-        \node [small dot,pin=-90:{\texttt{xticklabel* cs:1}}]   at (xticklabel* cs:1)   {};
-
-        \node [small dot,pin=180:{\texttt{yticklabel* cs:0}}]   at (yticklabel* cs:0)   {};
-        \node [small dot,pin=180:{\texttt{yticklabel* cs:0.5}}] at (yticklabel* cs:0.5) {};
-        \node [small dot,pin=180:{\texttt{yticklabel* cs:1}}]   at (yticklabel* cs:1)   {};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2158,37 +738,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% the same as above for 3D ...
-\begin{tikzpicture}
-    \tikzset{
-        every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-        small dot/.style={fill=black,circle,scale=0.3},
-    }
-    \begin{axis}[
-        ticklabel style={draw=red},
-        clip=false,
-        title=Positioning with \texttt{ticklabel cs} in 3D,
-    ]
-        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
-
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:0}}]   at (xticklabel cs:0)   {};
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:0.5}}] at (xticklabel cs:0.5) {};
-        \node [small dot,pin=-90:{\texttt{xticklabel cs:1}}]   at (xticklabel cs:1)   {};
-
-        \node [small dot,pin=-45:{\texttt{yticklabel cs:0}}]   at (yticklabel cs:0)   {};
-        \node [small dot,pin=-45:{\texttt{yticklabel cs:0.5}}] at (yticklabel cs:0.5) {};
-        \node [small dot,pin=-45:{\texttt{yticklabel cs:1}}]   at (yticklabel cs:1)   {};
-
-        \node [small dot,pin=180:{\texttt{zticklabel cs:0}}]   at (zticklabel cs:0)   {};
-        \node [small dot,pin=180:{\texttt{zticklabel cs:0.5}}] at (zticklabel cs:0.5) {};
-        \node [small dot,pin=180:{\texttt{zticklabel cs:1}}]   at (zticklabel cs:1)   {};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2198,34 +747,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\tikzset{
-    every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=black,circle,scale=0.3},
-}
-\begin{tikzpicture}
-    \begin{axis}[
-        xticklabel style={draw=red},
-        clip=false,
-        title=\texttt{ticklabel cs} and its optional shift,
-    ]
-        \addplot3 coordinates {(-5,-5,-5) (5,5,5)};
-
-        \draw [blue,thick,->]      (xticklabel cs:0,0)     -- (xticklabel cs:1,0);
-        \draw [red,thick,->]       (xticklabel cs:0,5pt)   -- (xticklabel cs:1,5pt);
-        \draw [magenta,thick,->]   (xticklabel cs:0,10pt)  -- (xticklabel cs:1,10pt);
-        \draw [green,thick,->]     (xticklabel cs:0,15pt)  -- (xticklabel cs:1,15pt);
-        \node [small dot,pin=0:{\texttt{xticklabel cs:1,0}}]      at (xticklabel cs:1,0) {};
-        \node [small dot,pin=0:{\texttt{xticklabel cs:1,15pt}}]   at (xticklabel cs:1,15pt) {};
-
-        \draw [blue,thick,->]      (xticklabel cs:0,0)     -- (xticklabel cs:0,15pt);
-        \draw [blue,thick,->]      (xticklabel cs:1,0)     -- (xticklabel cs:1,15pt);
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2237,43 +758,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Without \texttt{near ticklabel},
-        ylabel={$f(x)=x$},
-        every axis y label/.style={
-            at={(ticklabel cs:0.5)},rotate=90,anchor=center,
-        },
-        clip=false,                 % to display the \path below
-        ylabel style={draw=red},
-        yticklabel style={draw=red},
-    ]
-        \addplot {x};
-
-        % visualize the position:
-        \fill (yticklabel cs:0.5) circle(2pt);
-    \end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{axis}[
-        title=With \texttt{near ticklabel},
-        ylabel={$f(x)=x$},
-        every axis y label/.style={
-            at={(ticklabel cs:0.5)},rotate=90,anchor=near ticklabel,
-        },
-        clip=false,
-        ylabel style={draw=red},
-        yticklabel style={draw=red},
-    ]
-        \addplot {x};
-        \fill (yticklabel cs:0.5) circle(2pt);
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2283,29 +767,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{loglogaxis}[
-    xlabel=Dof,ylabel=Error,
-    title={$\mu=0.1$, $\sigma=0.2$},
-]
-    \addplot coordinates {
-        (5,    8.312e-02)
-        (17,   2.547e-02)
-        (49,   7.407e-03)
-        (129,  2.102e-03)
-        (321,  5.874e-04)
-        (769,  1.623e-04)
-        (1793, 4.442e-05)
-        (4097, 1.207e-05)
-        (9217, 3.261e-06)
-    };
-\end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2317,23 +778,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotsset{
-    every axis/.append style={
-        extra description/.code={
-            \node at (0.5,0.5) {Center!};
-        },
-    },
-}
-\begin{tikzpicture}
-    \begin{axis}
-        \addplot {x^2};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2343,30 +787,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [smooth,mark=*,blue] coordinates {
-        (0,2)
-        (2,3)
-        (3,1)
-    };
-    \addlegendentry{Case 1}
-
-    \addplot [smooth,color=red,mark=x]
-        coordinates {
-            (0,0)
-            (1,1)
-            (2,1)
-            (3,2)
-        };
-    \addlegendentry{Case 2}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2378,19 +798,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \foreach \p in {1,2,3} {
-        \addplot {x^\p};
-            \addlegendentryexpanded{$x^\p$}
-    }
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2400,19 +807,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend entries={$x$,$x^2$},
-]
-    \addplot {x};
-    \addplot {x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2424,21 +818,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend entries={$x$,$x^2$},
-]
-    \addplot {x};
-    \addplot {x^2};
-
-    \legend{$a$,$b$}    % overrides the option
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2448,20 +827,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend entries={$x$,[red]$x^2$,$x^3$},
-]
-    \addplot {x};
-    \addplot {x^2};
-    \addplot {x^3};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2473,23 +838,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    % this modifies 'every axis legend':
-    legend style={font=\large},
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2499,26 +847,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    % align right:
-    legend style={
-        cells={anchor=east},
-        legend pos=outer north east,
-    },
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$, legend $2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2530,27 +858,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% similar placement as previous example:
-\pgfplotsset{
-    every axis legend/.append style={
-        at={(1.02,1)},
-        anchor=north west,
-    },
-}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2560,28 +867,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\pgfplotsset{
-    every axis legend/.append style={
-        at={(0.5,1.03)},
-        anchor=south
-    },
-}
-\begin{axis}[
-    legend columns=4,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2593,24 +878,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend style={
-        at={(1,0.5)},
-        anchor=east},
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2620,22 +887,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    tiny,
-    title=With legend box,
-]
-    \addplot [blue]{x};
-    \addplot [red]{2*x};
-
-    \legend{$x$,$2x$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2647,23 +898,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    tiny,
-    title=Without legend box,
-    legend style={draw=none},
-]
-    \addplot [blue]{x};
-    \addplot [red]{2*x};
-
-    \legend{$x$,$2x$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2673,22 +907,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend pos=south west,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2700,22 +918,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend pos=south east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2725,22 +927,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend pos=north east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2752,22 +938,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend pos=north west,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2777,22 +947,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend pos=outer north east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{$l_1$,$l_2$,$l_3$}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2804,23 +958,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend cell align=left,
-    legend pos=outer north east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{a,fine,legend}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2830,23 +967,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend cell align=center,
-    legend pos=outer north east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{a,fine,legend}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2858,23 +978,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend cell align=right,
-    legend pos=outer north east,
-]
-    \addplot coordinates {(0,0) (1,1)};
-    \addplot coordinates {(0,1) (1,2)};
-    \addplot coordinates {(0,2) (1,3)};
-
-    \legend{a,fine,legend}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2884,23 +987,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    legend image post style={mark=*},
-]
-    \addplot+ [only marks,forget plot]
-        coordinates {(0.5,0.75) (1,1) (1.5,0.75)};
-    \addplot+ [mark=none,smooth,domain=0:2]
-        {-x*(x-2)};
-
-    \addlegendentry{Parabola}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2912,32 +998,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% \usetikzlibrary{patterns}
-\begin{tikzpicture}
-\begin{axis}[area legend,
-    axis x line=bottom,axis y line=left,
-    domain=0:1,
-    legend pos=north west,
-    axis on top,xmin=0,
-]
-    \addplot [pattern=crosshatch dots,
-        pattern color=blue,draw=blue,
-        samples=500]
-            {sqrt(x)} \closedcycle;
-    \addplot [pattern=crosshatch,
-        pattern color=blue!30!white,
-        draw=blue!30!white]
-            {x^2}     \closedcycle;
-    \addplot [red,line legend]
-        coordinates {(0,0) (1,1)};
-    \legend{$\sqrt x$,$x^2$,$x$}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2947,23 +1007,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    reverse legend,
-]
-    \addplot {x};
-        \addlegendentry{$x$}
-    \addplot {x^2};
-        \addlegendentry{$x^2$}
-    \addplot {x^3};
-        \addlegendentry{$x^3$}
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2975,30 +1018,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        legend columns=2,
-        legend pos=outer north east,
-        cycle multi list={
-            color list\nextlist
-            [2 of]mark list
-        },
-    ]
-        \addplot {-x};          \addlegendentry{A1}
-        \addplot {-x+1};        \addlegendentry{A2}
-
-        \addplot {-1.2*x + 4};  \addlegendentry{B1}
-        \addplot {-1.2*x + 5};  \addlegendentry{B2}
-
-        \addplot {-1.3*x + 9};  \addlegendentry{C1}
-        \addplot {-1.4*x + 10}; \addlegendentry{C2}
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3008,31 +1027,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    transpose legend,
-    legend columns=2,
-    legend style={at={(0.5,-0.1)},anchor=north},
-    cycle multi list={
-        color list\nextlist
-        [2 of]mark list
-    },
-]
-    \addplot {-x};          \addlegendentry{A1}
-    \addplot {-x+1};        \addlegendentry{A2}
-
-    \addplot {-1.2*x + 4};  \addlegendentry{B1}
-    \addplot {-1.2*x + 5};  \addlegendentry{B2}
-
-    \addplot {-1.3*x + 9};  \addlegendentry{C1}
-    \addplot {-1.4*x + 10}; \addlegendentry{C2}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3044,28 +1038,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}[baseline]
-\begin{axis}
-    \addplot+ [
-        only marks,
-        samples=15,
-        error bars/y dir=both,
-        error bars/y fixed=2.5,
-    ] {3*x+2.5*rand};
-        \label{pgfplots:label1}
-
-    \addplot+ [mark=none] {3*x};
-        \label{pgfplots:label2}
-
-    \addplot {4*cos(deg(x))};
-        \label{pgfplots:label3}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3075,12 +1047,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\addplot[/pgfplots/refstyle={pgfplots:label2}]
-```
 
 
 ---
@@ -3092,48 +1058,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotsset{footnotesize,samples=10}
-\begin{center}% note that \centering uses less vspace...
-\begin{tikzpicture}
-    \begin{axis}[
-        legend columns=-1,
-        legend entries={$(x+0)^k$;,$(x+1)^k$;,$(x+2)^k$;,$(x+3)^k$},
-        legend to name=named,
-        title={$k=1$},
-    ]
-        \addplot {x};
-        \addplot {x+1};
-        \addplot {x+2};
-        \addplot {x+3};
-    \end{axis}
-\end{tikzpicture}
-%
-\begin{tikzpicture}
-    \begin{axis}[title={$k=2$}]
-        \addplot {x^2};
-        \addplot {(x+1)^2};
-        \addplot {(x+2)^2};
-        \addplot {(x+3)^2};
-    \end{axis}
-\end{tikzpicture}
-%
-\begin{tikzpicture}
-    \begin{axis}[title={$k=3$}]
-        \addplot {x^3};
-        \addplot {(x+1)^3};
-        \addplot {(x+2)^3};
-        \addplot {(x+3)^3};
-    \end{axis}
-\end{tikzpicture}
-\\
-
-\ref{named}
-\end{center}
-```
-
 
 ---
 
@@ -3143,25 +1067,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    domain=0:4,
-]
-    \addplot {x};   \addlegendentry{$x$}
-    \addplot {x^2}; \addlegendentry{$x^2$}
-    \addplot {x^3}; \addlegendentry{$x^3$}
-    \addlegendimage{empty legend}
-    \addlegendentry{---}
-    \addplot {x^(-1)}; \addlegendentry{$x^{-1}$}
-    \addplot {x^(-2)}; \addlegendentry{$x^{-2}$}
-    \addplot {x^(-3)}; \addlegendentry{$x^{-3}$}
-\end{semilogyaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3173,26 +1078,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    domain=0:4,
-]
-    \addplot {x};   \addlegendentry{$x$}
-    \addplot {x^2}; \addlegendentry{$x^2$}
-    \addplot {x^3}; \addlegendentry{$x^3$}
-    \addlegendimage{empty legend}
-    \addlegendentry [text width=25pt,text depth=]
-        {Neg. Sign:}
-    \addplot {x^(-1)}; \addlegendentry{$x^{-1}$}
-    \addplot {x^(-2)}; \addlegendentry{$x^{-2}$}
-    \addplot {x^(-3)}; \addlegendentry{$x^{-3}$}
-\end{semilogyaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3202,31 +1087,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    domain=0:4,
-    legend entries={
-      $x$,$x^2$,$x^3$,
-      {[text width=25pt,text depth=]Neg. Sign:},
-      $x^{-1}$,$x^{-2}$,$x^{-3}$},
-    % same effect:
-    % legend style={
-    %     nodes={text width=25pt,text depth=},}
-]
-    \addplot {x};
-    \addplot {x^2};
-    \addplot {x^3};
-    \addlegendimage{empty legend}
-    \addplot {x^(-1)};
-    \addplot {x^(-2)};
-    \addplot {x^(-3)};
-\end{semilogyaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3238,21 +1098,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel=$x$,ylabel=$\sin x$,
-]
-    \addplot [
-        blue,mark=none,
-        domain=-10:0,samples=40,
-    ] {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3262,24 +1107,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis x line=middle,
-    axis y line=right,
-    ymax=1.1, ymin=-1.1,
-    xlabel=$x$,ylabel=$\sin x$,
-]
-    \addplot [
-        blue,mark=none,
-        domain=-10:0,samples=40,
-    ] {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3291,23 +1118,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis x line=bottom,
-    axis y line=left,
-    xlabel=$x$,ylabel=$\sqrt{|x|}$,
-]
-    \addplot [
-        blue,mark=none,
-        domain=-4:4,samples=501,
-    ] {sqrt(abs(x))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3317,24 +1127,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    minor tick num=3,
-    axis y line=center,
-    axis x line=middle,
-    xlabel=$x$,ylabel=$\sin x$,
-]
-    \addplot [
-        smooth,blue,mark=none,
-        domain=-5:5,samples=40,
-    ] {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3346,24 +1138,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    minor tick num=3,
-    axis y line=left,
-    axis x line=middle,
-    xlabel=$x$,ylabel=$\sin x$,
-]
-    \addplot [
-        smooth,blue,mark=none,
-        domain=-5:5,samples=40,
-    ] {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3373,23 +1147,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    minor tick num=1,
-    axis x line=middle,
-    axis y line=middle,
-    every inner x axis line/.append style={|->>},
-    every inner y axis line/.append style={|->>},
-    xlabel=$x$,ylabel=$y^3$,
-]
-    \addplot [blue,domain=-3:5] {x^3};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3401,23 +1158,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    separate axis lines, % important !
-    every outer x axis line/.append style={-stealth},
-    every outer y axis line/.append style={-stealth},
-]
-    \addplot [
-        blue,id=DoG,
-        samples=100,domain=-15:15,
-    ] gnuplot {1.3*exp(-x**2/10) - exp(-x**2/20)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3427,28 +1167,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    separate axis lines,
-    every outer x axis line/.append style=
-        {-stealth,red},
-    every outer y axis line/.append style=
-        {-stealth,green!30!black},
-]
-    \addplot [
-        blue,
-        samples=100,domain=-15:15,
-    ] {1.3*exp(0-x^2/10) - exp(0-x^2/20)};
-      % Unfortunately, there is a bug in PGF 2.00
-      % something like exp(-10^2)
-      % must be written as exp(0-10^2) :-(
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3460,25 +1178,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    separate axis lines=false,
-    every outer x axis line/.append style=
-        {-stealth,red},
-    every outer y axis line/.append style=
-        {-stealth,green!30!black},
-]
-    \addplot [
-        blue,id=DoG,
-        samples=100,domain=-15:15,
-    ] gnuplot {1.3*exp(-x**2/10) - exp(-x**2/20)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3488,19 +1187,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis line shift=10pt,
-    grid=major
-]
-    \addplot+ [samples=3] {x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3512,20 +1198,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis lines=left,
-    axis line shift=10pt,
-    grid=major,
-]
-    \addplot+ [samples=3] {x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3535,21 +1207,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis lines=left,
-    axis line style={|-stealth},
-    axis line shift=10pt,
-    grid=major,
-]
-    \addplot+ [samples=3] {x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3561,21 +1218,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis lines=center,
-    axis y line shift=2,
-    axis x line shift=100,
-    grid=major,
-]
-    \addplot+ [samples=3] {30*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3585,34 +1227,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-        % let both axes use the same layers
-        \pgfplotsset{set layers}
-    \begin{axis}[
-        scale only axis,
-        xmin=-5,xmax=5,
-        axis y line*=left, % the '*' avoids arrow heads
-        xlabel=$x$,
-        ylabel=First ordinate,
-    ]
-        \addplot {x^2};
-    \end{axis}
-
-    \begin{axis}[
-        scale only axis,
-        xmin=-5,xmax=5,
-        axis y line*=right,
-        axis x line=none,
-        ylabel=Second ordinate,
-    ]
-        \addplot [red] {3*x};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3624,37 +1238,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% \usepackage{textcomp}
-\begin{tikzpicture}
-    % let both axes use the same layers
-    \pgfplotsset{set layers}
-\begin{axis}[
-    scale only axis,
-    xmin=-5,xmax=5,
-    axis y line*=left,  %'*' avoids arrow heads
-    xlabel=$x$,
-    ylabel=Absolute,
-]
-    \addplot {x^2};
-\end{axis}
-\begin{axis}[
-    scale only axis,
-    xmin=-5,xmax=5,
-    ymin=0,ymax=1000,
-    yticklabel={
-        $\pgfmathprintnumber{\tick}$\textperthousand
-    },
-    axis y line*=right,
-    axis x line=none,
-    ylabel=per thousand,
-]
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3664,27 +1247,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis x line=bottom,
-    axis x discontinuity=parallel,
-    axis y line=left,
-    xmin=360, xmax=600,
-    ymin=0,   ymax=7,
-    enlargelimits=false,
-]
-    \addplot coordinates {
-        (420,2)
-        (500,6)
-        (590,4)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3696,24 +1258,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis x line=bottom,
-    axis y line=center,
-    tick align=outside,
-    axis y discontinuity=crunch,
-    ymin=95, enlargelimits=false,
-]
-    \addplot [blue,mark=none,
-         domain=-4:4,samples=20,
-    ] {x*x+x+104};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3723,26 +1267,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis x line=bottom,
-    axis y line=center,
-    tick align=outside,
-    axis y discontinuity=crunch,
-    xtickmax=3,
-    ytickmin=110,
-    ymin=95, enlargelimits=false,
-]
-    \addplot [blue,mark=none,
-         domain=-4:4,samples=20,
-    ] {x*x+x+104};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3754,20 +1278,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    hide x axis,
-    hide y axis,
-    title={$x^2\cos(x)$},
-]
-    \addplot {cos(x)*x^2};
-\end{axis}
-\end{tikzpicture}% <- eliminate space.
-```
-
 
 ---
 
@@ -3777,20 +1287,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    hide x axis,
-    axis y line=left,
-    title={$x^2\cos(x)$},
-]
-    \addplot {cos(x)*x^2};
-\end{axis}
-\end{tikzpicture}% <- eliminate space
-```
 
 
 ---
@@ -3802,26 +1298,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{patchplots}
-% and compat=1.8 or newer
-\begin{tikzpicture}
-\begin{axis}[hide axis]
-    \addplot3 [
-        patch,
-        patch type=biquadratic,
-        shader=interp,
-    ] coordinates {
-        (0,0,1) (6,1,0) (5,5,0) (-1,5,0)
-        (3,1,0) (6,3,0) (2,6,0) (0,3,0)
-        (3,3.75,0)
-    };
-\end{axis}
-\end{tikzpicture}% <- eliminate space
-```
-
 
 ---
 
@@ -3831,18 +1307,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\axis [
-    every colorbar,
-    colorbar shift,
-    colorbar=false,
-]
-    \addplot graphics {};
-\endaxis
-```
 
 
 ---
@@ -3854,14 +1318,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\addplot [...,colorbar source] ...
-% or
-\addplot+ [colorbar source] ...
-```
-
 
 ---
 
@@ -3871,18 +1327,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{
-    colorbar/draw/.code={
-        \axis [every colorbar,colorbar shift,colorbar=false]
-            \addplot graphics {};
-        \endaxis
-    },
-}
-```
 
 
 ---
@@ -3894,21 +1338,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{polar}
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot coordinates {(90,1) (180,1)};
-    \addplot+ [data cs=cart] coordinates {
-        (1,0)
-        (0.5,0.5)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3918,16 +1347,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [data cs=polar,domain=0:360] (\x,1);
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3939,16 +1358,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [data cs=polarrad,domain=0:2*pi] (\x,1);
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3958,27 +1367,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis equal,
-    minor tick num=1,
-]
-    \def\FREQUENCY{3}
-\addplot [red,domain=0:360,samples=200,
-    smooth,data cs=polar]
-        (x,{30-8*sin(\FREQUENCY*x)});
-
-\addplot [samples=40,domain=0:2*pi,dashed,
-    data cs=polar] (deg(x),30);
-
-\addplot [mark=oplus,only marks] coordinates {(0,0)};
- \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3990,34 +1378,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\documentclass{article}
-\usepackage{pgfplots}
-    \usepgfplotslibrary{external}
-    \tikzexternalize% activate externalization!
-\begin{document}
-    \begin{figure}
-        \begin{tikzpicture}
-            \begin{axis}
-                \addplot {x^2};
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Our first external graphics example}
-    \end{figure}
-
-    \begin{figure}
-        \begin{tikzpicture}
-            \begin{axis}
-                \addplot {x^3};
-            \end{axis}
-        \end{tikzpicture}
-        \caption{A second graphics}
-    \end{figure}
-\end{document}
-```
-
 
 ---
 
@@ -4027,28 +1387,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-    \usepgfplotslibrary{external}
-    \tikzexternalize[prefix=figures/]% activate with a name prefix
-\begin{document}
-\tikzsetnextfilename{firstplot}
-\begin{tikzpicture} % will be written to 'figures/firstplot.pdf'
-    \begin{axis}
-        \addplot {x};
-    \end{axis}
-\end{tikzpicture}
-
-\begin{tikzpicture} % will be written to 'figures/main-figure0.pdf'
-   \draw [help lines] (0,0) grid (5,5);
-\end{tikzpicture}
-\end{document}
-```
 
 
 ---
@@ -4060,41 +1398,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-    \usepgfplotslibrary{external}
-    \tikzexternalize% activate externalization!
-\begin{document}
-% will be written to 'main-figure0.pdf'
-\begin{tikzpicture}
-    \begin{semilogyaxis}
-        \addplot {exp(x)};
-    \end{semilogyaxis}
-\end{tikzpicture}
-
-{
-    \tikzset{external/figure name={subset_}}
-    A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'subset_0.pdf'
-
-    \begin{tikzpicture} % will be written to 'subset_1.pdf'
-        \begin{axis}
-            \addplot {x^2};
-        \end{axis}
-    \end{tikzpicture}
-}% here, the old file name will be restored:
-
-\begin{tikzpicture} % will be written to 'main-figure1.pdf'
-    \begin{axis}
-        \addplot[domain=1e-3:100] {1/x};
-    \end{axis}
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -4104,37 +1407,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\documentclass{article}
-\usepackage{pgfplots}
-    \pgfrealjobname{test}
-\begin{document}
-    \begin{figure}
-        \beginpgfgraphicnamed{testfigure}
-            \begin{tikzpicture}
-                \begin{axis}
-                    \addplot {x^2};
-                \end{axis}
-            \end{tikzpicture}
-        \endpgfgraphicnamed
-        \caption{Our first external graphics example}
-    \end{figure}
-
-    \begin{figure}
-        \beginpgfgraphicnamed{testfigure2}
-            \begin{tikzpicture}
-                \begin{axis}
-                    \addplot {x^3};
-                \end{axis}
-            \end{tikzpicture}
-        \endpgfgraphicnamed
-        \caption{A second graphics}
-    \end{figure}
-\end{document}
-```
 
 
 ---
@@ -4146,21 +1418,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot coordinates {
-        (0,1)
-        (90,1)
-        (180,1)
-        (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4170,16 +1427,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot+ [domain=0:3] (360*x,x); % (angle,radius)
-\end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4191,23 +1438,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot+ [
-        mark=none,
-        domain=0:720,
-        samples=600,
-    ]
-        {sin(2*x)*cos(2*x)};
-    % equivalent to (x,{sin(..)cos(..)}), i.e.
-    % the expression is the RADIUS
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4217,23 +1447,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    xtick={0,90,180,270},
-    title=A polar axis,
-]
-    \addplot coordinates {(0,1) (45,1)};
-        \addlegendentry{First}
-
-    \addplot coordinates {(180,0.5) (0,0)};
-        \addlegendentry{Second}
-    \end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4245,27 +1458,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[title={Degrees and/or Radians}]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-        \addlegendentry{Deg}
-
-    \addplot+ [
-        data cs=polarrad,
-    ] coordinates {
-        (0,1.5) (pi/2,1.5)
-        (pi,1.5) (pi*3/2,1.5)
-    };
-        \addlegendentry{Rad}
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4275,20 +1467,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[title=Cartesian Input]
-    \addplot+ [
-        data cs=cart,
-    ] coordinates {
-        (1,0) (0,1) (-1,0) (0,-1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4300,21 +1478,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot3 [
-        contour lua,
-        domain=-3:3,
-        data cs=cart,
-    ]
-        {exp(-x^2-y^2)};
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4324,21 +1487,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    xlabel=x axis,
-    ylabel=y axis,
-]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4350,22 +1498,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    xlabel=x axis,
-    ylabel=y axis,
-    xticklabel style={sloped like x axis},
-]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4375,24 +1507,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}
-    \addplot+ [
-        polar comb,
-    ] coordinates {
-        (300,1)
-        (20,0.3)
-        (40,0.5)
-        (120,1)
-        (200,0.4)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4404,21 +1518,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    xmin=45,
-    xmax=360,
-]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4428,21 +1527,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{polaraxis}[xmin=90,xmax=270]
-        \addplot coordinates { (0,1) (90,1) (180,1) (270,1) };
-    \end{polaraxis}
-\end{tikzpicture}~%
-\begin{tikzpicture}
-    \begin{polaraxis}[xmin=270,xmax=420]
-        \addplot coordinates { (0,1) (90,1) (180,1) (270,1) };
-    \end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4454,20 +1538,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    ymin=0.3,
-]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4477,21 +1547,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{polaraxis}[
-    xmin=45,
-    xmax=405,
-]
-    \addplot coordinates {
-        (0,1) (90,1) (180,1) (270,1)
-    };
-\end{polaraxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4503,21 +1558,6 @@ Showing items **201-400** of **517** | Page **2** of **3**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-Aligning at .......
-\begin{tikzpicture}[baseline]
-\begin{axis}[small,anchor=aninnernode.center]
-    \addplot {sin(deg(x))};
-    \node
-        [pin=-90:(aninnernode),fill=black,circle,scale=0.3]
-            (aninnernode) at (-2,0.75) {};
-    \draw [help lines] (-6,0.75) -- (6,0.75);
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4527,22 +1567,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-Aligning at .......
-\begin{tikzpicture}[baseline]
-\begin{axis}[
-    small,
-    title={The function $\sin x$ is very pretty.},
-    title style={name=MyTitleNode},
-    anchor=MyTitleNode.base,
-]
-    \addplot {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4554,24 +1578,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% 1. Unaligned:
-\pgfplotsset{domain=-1:1}
-\begin{tikzpicture}
-    \begin{axis}[xlabel=A normal sized $x$ label]
-        \addplot [smooth,blue,mark=*] {x^2};
-    \end{axis}
-\end{tikzpicture}%
-    \hspace{0.15cm}
-\begin{tikzpicture}
-    \begin{axis}[xlabel={$\displaystyle \sum_{i=0}^N n_i $ }]
-        \addplot [smooth,blue,mark=*] {x^2};
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4581,24 +1587,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% 2. Aligned:
-\pgfplotsset{domain=-1:1}
-\begin{tikzpicture}[baseline]
-    \begin{axis}[xlabel=A normal sized $x$ label]
-        \addplot [smooth,blue,mark=*] {x^2};
-    \end{axis}
-\end{tikzpicture}%
-    \hspace{0.15cm}
-\begin{tikzpicture}[baseline]
-    \begin{axis}[xlabel={$\displaystyle \sum_{i=0}^N n_i $ }]
-        \addplot [smooth,blue,mark=*] {x^2};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4610,47 +1598,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotsset{
-    small,
-    title=Trimmed bounding boxes
-}
-\begin{center}
-\begin{tabular}{rl}
-    \begin{tikzpicture}[baseline,trim axis left]
-        \begin{axis}
-            \addplot {x};
-        \end{axis}
-    \end{tikzpicture}
-        &
-    \begin{tikzpicture}[baseline,trim axis right]
-        \begin{axis}[
-            ylabel={$f(x)=x^2$},
-            yticklabel pos=upper,
-            ylabel style={font=\Huge},
-        ]
-            \addplot {x^2};
-        \end{axis}
-    \end{tikzpicture}
-        \\
-    \begin{tikzpicture}[baseline,trim axis left]
-        \begin{axis}[xlabel=$x$,xlabel style={font=\Huge}]
-            \addplot {x^3};
-        \end{axis}
-    \end{tikzpicture}
-        &
-    \begin{tikzpicture}[baseline,trim axis right]
-        \begin{axis}[yticklabel pos=upper]
-            \addplot {x^4};
-        \end{axis}
-    \end{tikzpicture}
-        \\
-\end{tabular}
-\end{center}
-```
-
 
 ---
 
@@ -4660,33 +1607,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-        \pgfplotsset{small}
-    \matrix {
-        \begin{axis}
-            \addplot {x};
-        \end{axis}
-           &
-        % differently large labels are aligned automatically:
-        \begin{axis}[ylabel={$f(x)=x^2$},ylabel style={font=\Huge}]
-            \addplot {x^2};
-        \end{axis}
-            \\
-        \begin{axis}[xlabel=$x$,xlabel style={font=\Huge}]
-            \addplot {x^3};
-        \end{axis}
-            &
-        \begin{axis}
-            \addplot {x^4};
-        \end{axis}
-            \\
-    };
-\end{tikzpicture}
-```
 
 
 ---
@@ -4698,27 +1618,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[use units,
-    x unit=m,x unit prefix=k,
-    y unit=N,y unit prefix=m,
-    xlabel=Distance,ylabel=Force,
-]
-    \addplot coordinates {
-        (1,2.3)
-        (2,2.7)
-        (3,2.1)
-        (4,1.8)
-        (5,1.5)
-        (6,1.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4728,26 +1627,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    change x base,
-    x SI prefix=kilo,x unit=m,
-    y SI prefix=milli,y unit=N,
-    xlabel=Distance,ylabel=Force,
-]
-    \addplot coordinates {
-        (1000,1)
-        (2000,1.1)
-        (3000,1.2)
-        (4000,1.3)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4759,18 +1638,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    log ticks with fixed point,
-]
-    \addplot+ [domain=0:10] {exp(x)};
-\end{semilogyaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4780,41 +1647,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{loglogaxis}[
-        log ticks with fixed point,
-        xlabel=Cost,ylabel=Error,
-    ]
-        \addplot coordinates {
-            (5,     8.31160034e-02)
-            (17,    2.54685628e-02)
-            (49,    7.40715288e-03)
-            (129,   2.10192154e-03)
-            (321,   5.87352989e-04)
-            (769,   1.62269942e-04)
-            (1793,  4.44248889e-05)
-            (4097,  1.20714122e-05)
-            (9217,  3.26101452e-06)
-        };
-        \addplot coordinates {
-            (7,     8.47178381e-02)
-            (31,    3.04409349e-02)
-            (111,   1.02214539e-02)
-            (351,   3.30346265e-03)
-            (1023,  1.03886535e-03)
-            (2815,  3.19646457e-04)
-            (7423,  9.65789766e-05)
-            (18943, 2.87339125e-05)
-            (47103, 8.43749881e-06)
-        };
-        \legend{Case 1,Case 2}
-    \end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4826,33 +1658,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotsset{
-    samples=15,
-    width=7cm,
-    xlabel=$x$,
-    ylabel=$f(x)$,
-    extra y ticks={45},
-    legend pos=north west,
-}
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    log plot exponent style/.style={
-        /pgf/number format/fixed zerofill,
-        /pgf/number format/precision=1,
-    },
-    domain=-5:10,
-]
-    \addplot {exp(x)};
-    \addplot {exp(2*x)};
-
-    \legend{$e^x$,$e^{2x}$}
-\end{semilogyaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4862,34 +1667,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{
-    samples=15,
-    width=7cm,
-    xlabel=$x$,
-    ylabel=$f(x)$,
-    extra y ticks={45},
-    legend pos=north west,
-}
-\begin{tikzpicture}
-\begin{semilogyaxis}[
-    log plot exponent style/.style={
-        /pgf/number format/fixed,
-        /pgf/number format/use comma,
-        /pgf/number format/precision=2,
-    },
-    domain=-5:10,
-]
-    \addplot {exp(x)};
-    \addplot {exp(2*x)};
-
-    \legend{$e^x$,$e^{2x}$}
-\end{semilogyaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4901,23 +1678,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{loglogaxis}[
-    title=Standard options,
-    width=6cm,
-]
-    \addplot coordinates {
-        (1e-2,10)
-        (3e-2,100)
-        (6e-2,200)
-    };
-\end{loglogaxis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4927,48 +1687,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotsset{every axis/.append style={
-        width=6cm,
-        xmin=7e-3,xmax=7e-2,
-        extra x ticks={3e-2,6e-2},
-        extra x tick style={major tick length=0pt,font=\footnotesize},
-    },
-}
-\begin{tikzpicture}
-    \begin{loglogaxis}[
-        xtick={1e-2},
-        title=with minor tick identification,
-        extra x tick style={
-            log identify minor tick positions=true,
-        },
-    ]
-        \addplot coordinates {
-            (1e-2,10)
-            (3e-2,100)
-            (6e-2,200)
-        };
-    \end{loglogaxis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{loglogaxis}[
-        xtick={1e-2},
-        title=without minor tick identification,
-        extra x tick style={
-            log identify minor tick positions=false,
-        },
-    ]
-        \addplot coordinates {
-            (1e-2,10)
-            (3e-2,100)
-            (6e-2,200)
-        };
-    \end{loglogaxis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4980,20 +1698,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel=$x$,
-    ylabel=$y$,
-]
-    \addplot3 coordinates {(0,0,0) (0,0.5,1) (0,1,0)};
-    \addplot3 coordinates {(0,1,0) (0.5,1,1) (1,1,0)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5003,24 +1707,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={60}{30}]
-    \addplot3+ [
-        domain=0:5*pi,
-        samples=60,
-        samples y=0,
-    ] (
-        {sin(deg(x))},
-        {cos(deg(x))},
-        {2*x/(5*pi)}
-    );
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5032,23 +1718,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot3 table {
-        x   y   z
-        0   0   0
-        0.1 0.1 0.1
-        0.1 0.2 0.2
-        0.3 0.3 0.3
-        1   1   1
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5058,30 +1727,6 @@ Aligning at .......
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xmin=3,xmax=6,
-    extra x ticks={4,5},
-    extra x tick style={xticklabel=\empty,grid=major}
-]
-    \addplot3 table [x expr=4,y=a,z=b] {
-        a  b
-        -3 9
-        -2 4
-        -1 1
-        0  0
-        1  1
-        2  4
-        3  9
-    };
-    \addplot3 [red,domain=-3:3,samples y=1] (5,x,x^2);
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5093,43 +1738,6 @@ Aligning at .......
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\pgfplotstableread{
-plot1     plot2     plot3     plot4
-0.0045    0.0029    0.0089    0.0001
-0.0024    0.0023    0.0050    0.0016
-0.0007    0.0012    0.0010    0.0001
-0.0000    0.0004   -0.0000   -0.0015
-0.0001    0.0001    0.0007   -0.0021
-0.0003    0.0000    0.0015   -0.0020
-0.0003    0.0001    0.0017   -0.0018
-0.0003    0.0001    0.0016   -0.0015
-0.0003    0.0001    0.0016   -0.0013
-0.0003    0.0002    0.0015   -0.0012
-}\tabledata
-\begin{axis}[
-    zmin=-0.001,
-    area plot/.style={
-        fill opacity=0.75,
-        draw=orange!80!black,thick,
-        fill=orange,
-        mark=none,
-    },
-    ytick={1,...,4},
-    yticklabel=plot\pgfmathprintnumber{\tick},
-]
-    \pgfplotsinvokeforeach{4,3,...,1}{
-        \addplot3 [area plot] table [
-            x expr=\coordindex, y expr=#1, z=plot#1,
-        ] {\tabledata} \closedcycle;
-    }
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5139,31 +1747,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel=$x$,
-    ylabel=$y$,
-    zlabel={$f(x,y) = x\cdot y$},
-    title=A Scatter Plot Example,
-]
-    % `pgfplotsexample4_grid.dat' contains a
-    % large sequence of input points of the form
-    % x_0   x_1     f(x)
-    % 0     0       0
-    % 0     0.03125 0
-    % 0     0.0625  0
-    % 0     0.09375 0
-    % 0     0.125   0
-    % 0     0.15625 0
-    \addplot3+ [only marks]
-        table {plotdata/pgfplotsexample4_grid.dat};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5175,18 +1758,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-    \addplot3 [
-        contour lua
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5196,18 +1767,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot3 [
-        contour lua
-    ] {exp(0-x^2-y^2)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5219,24 +1778,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-    \addplot3 [
-        contour lua
-    ] coordinates {
-        (0,0,0) (1,0,0)   (2,0,0)   (3,0,0)
-
-        (0,1,0) (1,1,0.6) (2,1,0.7) (3,1,0.5)
-
-        (0,2,0) (1,2,0.7) (2,2,0.8) (3,2,0.5)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5246,23 +1787,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,enlarge x limits,
-    view={0}{90},
-]
-    \addplot3 [
-        contour lua={number=14, labels=false},
-        thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5274,24 +1798,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,
-    enlargelimits,
-    view={0}{90},
-]
-    \addplot3 [
-         contour lua={levels={-0.1,-0.2,-0.6}},
-         thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5301,26 +1807,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,
-]
-    \addplot3 [
-        contour lua={
-            contour dir=x,
-            labels=false,
-            number=15,
-        },
-        thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5332,26 +1818,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,
-]
-    \addplot3 [
-        contour lua={
-            contour dir=y,
-            labels=false,
-            number=15,
-        },
-        thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5361,27 +1827,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={60}{30},axis equal image]
-    \addplot3 [
-        contour lua={
-            contour dir=x,
-            number=20,
-            labels=false,
-        },
-        samples=30,domain=-1:1,y domain=0:2*pi,
-    ] (
-        {sqrt(1-x^2) * cos(deg(y))},
-        {sqrt( 1-x^2 ) * sin(deg(y))},
-         x
-    );
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5393,18 +1838,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-    \addplot3 [
-        contour gnuplot
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5414,18 +1847,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-	\addplot3 [
-		contour gnuplot={number=6}
-	] {exp(-x^2-y^2)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5437,36 +1858,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [contour prepared] table {
-        2           2           0.8
-
-        0.857143    2           0.6
-        1           1           0.6
-        2           0.857143    0.6
-        2.5         1           0.6
-        2.66667     2           0.6
-
-        0.571429    2           0.4
-        0.666667    1           0.4
-        1           0.666667    0.4
-        2           0.571429    0.4
-        3           0.8         0.4
-
-        0.285714    2           0.2
-        0.333333    1           0.2
-        1           0.333333    0.2
-        2           0.285714    0.2
-        3           0.4         0.2
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5476,42 +1867,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [
-        contour prepared,
-        contour prepared format=matlab,
-    ] table {
-% (0.2,5) ==> contour `0.2' (x), 5 points follow (y):
-        2.0000000e-01   5.0000000e+00
-        3.0000000e+00   4.0000000e-01
-        2.0000000e+00   2.8571429e-01
-        1.0000000e+00   3.3333333e-01
-        3.3333333e-01   1.0000000e+00
-        2.8571429e-01   2.0000000e+00
-% (0.4,5) ==> contour `0.4', consists of 5 points
-        4.0000000e-01   5.0000000e+00
-        3.0000000e+00   8.0000000e-01
-        2.0000000e+00   5.7142857e-01
-        1.0000000e+00   6.6666667e-01
-        6.6666667e-01   1.0000000e+00
-        5.7142857e-01   2.0000000e+00
-% (0.6,6) ==> contour `0.6', has 6 points
-        6.0000000e-01   6.0000000e+00
-        2.6666667e+00   2.0000000e+00
-        2.5000000e+00   1.0000000e+00
-        2.0000000e+00   8.5714286e-01
-        1.0000000e+00   1.0000000e+00
-        1.0000000e+00   1.0000000e+00
-        8.5714286e-01   2.0000000e+00
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5523,42 +1878,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Separating $z$ from Color Value,
-    xlabel=$x$,
-    ylabel=$y$,
-]
-    \addplot3 [
-        contour prepared,
-        point meta=\thisrow{level},
-    ] table {
-        x         y         z       level
-        0.857143  2         0.4     0.6
-        1         1         0.6     0.6
-        2         0.857143  0.6     0.6
-        2.5       1         0.6     0.6
-        2.66667   2         0.4     0.6
-
-        0.571429  2         0.2     0.4
-        0.666667  1         0.4     0.4
-        1         0.666667  0.4     0.4
-        2         0.571429  0.4     0.4
-        3         0.8       0.2     0.4
-
-        0.285714  2         0       0.2
-        0.333333  1         0.2     0.2
-        1         0.333333  0.2     0.2
-        2         0.285714  0.2     0.2
-        3         0.4       0       0.2
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5568,26 +1887,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90},small]
-    \addplot3 [
-        contour lua={corners,labels=false}
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-~
-\begin{tikzpicture}
-\begin{axis}[view={0}{90},small]
-    \addplot3 [
-        contour lua={labels=false}
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5599,30 +1898,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,enlarge x limits,
-    view={0}{90},
-]
-    \addplot3 [
-        contour lua={
-            scanline marks=required,
-            number=14,
-            contour label style={
-                /pgf/number format/fixed,
-                /pgf/number format/precision=1,
-            },
-        },
-        thick,
-    ] {exp(0-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5632,21 +1907,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-    \addplot3 [
-        contour lua={
-            labels over line,
-            number=9,
-        },
-    ] {x*y};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5658,22 +1918,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90}]
-    \addplot3 [
-        contour lua={
-            levels={0.1,0.2,0.5,1,2,5},
-            labels=false,
-            handler/.style=smooth,
-        },
-    ] {2*sqrt(x^2+y^2+(-0.5*(x^2-y^2)))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5683,16 +1927,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[colormap name=viridis,colorbar]
-        \addplot3 [contour filled] {x^2*y};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5704,25 +1938,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    domain=-2:2,
-    view={0}{90},
-    colorbar horizontal,
-]
-    \addplot3 [
-        contour filled={
-            number=14,
-        },
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5732,20 +1947,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[colormap/RdYlGn,colorbar, view={0}{90}]
-        \addplot3 [domain=0:2*pi,trig format plots=rad,
-            contour filled={
-                levels={-0.4,-0.25,0,0.3,0.9}
-            },
-        ] {sin(x)*sin(y)};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5757,42 +1958,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90},
-    colormap={whiteblue}{color=(blue) color=(white)},
-    colormap={gb}{color=(green) color=(yellow)
-        color=(brown)},
-    colorbar horizontal,
-    colorbar style={minor x tick num=1},
-    y dir=reverse,
-]
-    \addplot3 [
-        contour filled={
-            levels from colormap={
-                of colormap={
-                    whiteblue,
-                    target pos max=,
-                    target pos={-12000,-10000,-6000,
-                        -5000,-3000,-1000,-750,-500,
-                        -250,-100,-50,0}
-                },
-                of colormap={
-                    gb,
-                    target pos min=,
-                    target pos={10,100,200,500,1000,
-                        1100,1200, 1500,2000,4000,
-                        6000,8000}
-                },
-            },
-        },
-    ] table {plotdata/heightmap.dat};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5802,28 +1967,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={0}{90},colorbar]
-    \addplot3 [
-        domain=-10:10,
-        contour filled={
-            levels from colormap={
-                color(-20)=(white)
-                color(1)=(blue)
-                color(1.3)=(white)
-                color(20)=(white)
-            },
-        },
-        point meta min=-20,
-        point meta max=20,
-    ] {(x+1)^2/4-(y-2)^2/9};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5835,40 +1978,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    view={0}{90},
-    colorbar,
-    domain=-10:10,
-]
-    \addplot3 [
-        contour filled={
-            levels from colormap={
-                color(-20)=(white)
-                color(1)=(blue)
-                color(1.3)=(white)
-                color(20)=(white)
-            },
-        },
-        point meta min=-20,
-        point meta max=20,
-    ] {(x+1)^2/4-(y-2)^2/9};
-
-    \addplot3 [
-        thick,
-        contour lua={
-            draw color=red,
-            levels=1,
-            labels=false,
-        },
-    ] {(x+1)^2/4-(y-2)^2/9};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5878,27 +1987,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[view={60}{30},colormap/YlOrRd]
-    \addplot3 [
-        contour filled={
-            number=7,
-        },
-        point meta=x,
-        z buffer=sort,
-        samples=30,domain=-1:1,y domain=0:2*pi,
-    ] (
-        {sqrt(1-x^2) * cos(deg(y))},
-        {sqrt( 1-x^2 ) * sin(deg(y))},
-        x
-    );
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -5910,25 +1998,6 @@ plot1     plot2     plot3     plot4
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [
-        contour filled,
-        point meta=explicit,
-    ] coordinates {
-        (0,0) [0] (1,0) [0]   (2,0) [0]   (3,0) [0]
-
-        (0,1) [0] (1,1) [0.6] (2,1) [0.7] (3,1) [0.5]
-
-        (0,2) [0] (1,2) [0.7] (2,2) [0.8] (3,2) [0.5]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5938,24 +2007,6 @@ plot1     plot2     plot3     plot4
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot3 [
-        contour filled,
-    ] coordinates {
-        (0,0,0) (1,0,0)   (2,0,0)   (3,0,0)
-
-        (0,1,0) (1,1,0.6) (2,1,0.7) (3,1,0.5)
-
-        (0,2,0) (1,2,0.7) (2,2,0.8) (3,2,0.5)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---

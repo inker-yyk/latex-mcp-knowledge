@@ -18,20 +18,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        ycomb,
-    ] coordinates {
-        (0,3) (1,2) (2,4) (3,1) (4,2)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -41,21 +27,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [
-        blue,
-        quiver={u=1,v=2*x},
-        -stealth,
-        samples=15,
-    ] {x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -67,31 +38,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$ and its gradient},
-    domain=-2:2,
-    view={0}{90},
-    axis background/.style={fill=white},
-]
-    \addplot3 [
-        contour lua={number=9,labels=false},thick,
-            ] {exp(0-x^2-y^2)*x};
-    \addplot3 [
-        blue,-stealth,samples=15,
-        quiver={
-            u={exp(0-x^2-y^2)*(1-2*x^2)},
-            v={exp(0-x^2-y^2)*(-2*x*y)},
-            scale arrows=0.3,
-        },
-    ] {exp(0-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -101,26 +47,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    domain=0:1,
-    xmax=1,
-    ymax=1,
-]
-    \addplot3 [surf] {x*y};
-    \addplot3 [
-        blue,-stealth,samples=10,
-        quiver,quiver/.cd,
-            u=y,v=x,w=0,
-            scale arrows=0.1,
-    ] {1};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -132,34 +58,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    axis equal,
-    axis lines=middle,
-    axis line style={->},
-    tick style={color=black},
-    xtick=\empty,ytick=\empty,
-]
-    \addplot [samples=20, domain=0:2*pi,->,blue,
-        % the default choice 'variable=\x' leads to
-        % unexpected results here!
-        variable=\t,
-        quiver={
-            u={-sin(deg(t))},
-            v={cos(deg(t))},
-            scale arrows=0.5,
-        },
-    ] ( {cos(deg(t))}, {sin(deg(t))} );
-    \addplot [
-        samples=100, domain=0:2*pi,
-    ] ( {cos(deg(x))}, {sin(deg(x))} );
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -169,27 +67,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[title=Quiver and plot table]
-    \addplot [
-        blue,
-        quiver={u=\thisrow{u},v=\thisrow{v}},
-        -stealth,
-    ] table {
-        x y u v
-        0 0 1 0
-        1 1 1 1
-        2 4 1 4
-        3 9 1 6
-        4 16 1 8
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -201,33 +78,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-% define some constants:
-\def\U{1}
-\def\V{2*x}
-\def\LEN{(sqrt((\U)^2 + (\V)^2)}
-
-\begin{axis}[axis equal image,
-    title=Thickness indicates ``strength''.
-]
-\addplot [blue,
-  point meta={\LEN},
-  quiver={
-   u={(\U)/\LEN}, v={(\V)/\LEN},
-   scale arrows=2,
-   every arrow/.append style={
-    line width=2pt*\pgfplotspointmetatransformed/1000
-   },
-  },
-  -stealth,samples=15,
-] {x^2};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -237,22 +87,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[tiny]
-    \addplot [
-        blue,
-        quiver={u=1,v=3*x},
-        -stealth,
-        samples=15,
-    ] {x^3};
-        \addlegendentry{Legend}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -264,24 +98,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[stack plots=y]
-    \addplot coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -291,24 +107,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[stack plots=y,/tikz/ybar]
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -320,24 +118,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[ybar stacked]
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-    \addplot coordinates {
-        (0,1) (1,1) (2,3) (3,2) (4,1.5)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -347,34 +127,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    ybar stacked,
-    enlargelimits=0.15,
-    legend style={at={(0.5,-0.20)},
-        anchor=north,legend columns=-1},
-    ylabel={\#participants},
-    symbolic x coords={tool1, tool2, tool3, tool4,
-        tool5, tool6, tool7},
-    xtick=data,
-    x tick label style={rotate=45,anchor=east},
-]
-\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
-  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
-\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
-  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
-\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
-  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
-\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
-  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
-\legend{never, rarely, sometimes, often}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -386,24 +138,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[stack plots=x,/tikz/xbar]
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -413,24 +147,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[xbar stacked]
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-    \addplot coordinates {
-        (1,0) (2,1) (2,2) (3,3)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -442,25 +158,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-% needs \pgfplotsset{compat=1.9} or newer!
-\begin{tikzpicture}
-\begin{axis}[
-    ybar stacked,nodes near coords,
-    bar width=0.4,
-]
-    \addplot coordinates
-        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
-    \addplot coordinates
-        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
-    \addplot coordinates
-        {(0,1) (1,1) (2,3) (3,2) (4,1.5)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -470,37 +167,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
-
-### Code
-
-```latex
-% needs \pgfplotsset{compat=1.9} or newer!
-\begin{tikzpicture}
-\begin{axis}[
-    ybar stacked,
-    bar width=15pt,
-    nodes near coords,
-    enlargelimits=0.15,
-    legend style={at={(0.5,-0.20)},
-        anchor=north,legend columns=-1},
-    ylabel={\#participants},
-    symbolic x coords={tool1, tool2, tool3, tool4,
-        tool5, tool6, tool7},
-    xtick=data,
-    x tick label style={rotate=45,anchor=east},
-]
-\addplot+ [ybar] coordinates {(tool1,0) (tool2,2)
-  (tool3,2) (tool4,3) (tool5,0) (tool6,2) (tool7,0)};
-\addplot+ [ybar] coordinates {(tool1,0) (tool2,0)
-  (tool3,0) (tool4,3) (tool5,1) (tool6,1) (tool7,0)};
-\addplot+ [ybar] coordinates {(tool1,6) (tool2,6)
-  (tool3,8) (tool4,2) (tool5,6) (tool6,5) (tool7,6)};
-\addplot+ [ybar] coordinates {(tool1,4) (tool2,2)
-  (tool3,0) (tool4,2) (tool5,3) (tool6,2) (tool7,4)};
-\legend{never, rarely, sometimes, often}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -512,24 +178,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    xbar stacked,nodes near coords,
-    bar width=0.5,
-]
-    \addplot coordinates
-        {(1,0) (2,1) (2,2) (3,3)};
-    \addplot coordinates
-        {(1,0) (2,1) (2,2) (3,3)};
-    \addplot coordinates
-        {(1,0) (2,1) (2,2) (3,3)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -539,44 +187,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \pgfplotstableread{
-        Year  Cat1  Cat2  Cat3  Cat4
-        2005  10    50    -10   30
-        2006  -40   60    -15   90
-        2007  -20   60    -15   60
-    }\mytable
-\begin{axis}[
-    xbar stacked,
-    stack negative=on previous,
-    %
-    xmajorgrids,
-    legend style={at={(0.5,-0.1)},
-        anchor=north,legend columns=-1},
-    bar width=10pt,
-    bar shift auto,
-    nodes near coords,
-    nodes near coords style={font=\tiny},
-    y=60pt,
-    ytick distance=1,
-    enlarge y limits=0.3,
-    /pgf/number format/1000 sep=,
-    extra x ticks={0},
-    extra x tick style={grid style={black},
-    xticklabel=\empty},
-]
-    \addplot table [x index=1,y=Year] {\mytable};
-    \addplot table [x index=2,y=Year] {\mytable};
-    \addplot table [x index=3,y=Year] {\mytable};
-    \addplot table [x index=4,y=Year] {\mytable};
-    \legend{Cat1,Cat2,Cat3,Cat4}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -588,41 +198,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: bar_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \pgfplotstableread{
-        Year  Cat1  Cat2  Cat3  Cat4
-        2005  10    50    -10   30
-        2006  -40   60    -15   90
-        2007  -20   60    -15   60
-    }\mytable
-\begin{axis}[
-    xbar stacked,
-    % is default anyway:
-    stack negative=separate,
-    %
-    /pgf/number format/1000 sep=,
-    xmajorgrids,
-    nodes near coords,
-    nodes near coords style={font=\tiny},
-    ytick distance=1,
-    legend style={at={(0.5,-0.1)},
-        anchor=north,legend columns=-1},
-    extra x ticks={0},
-    extra x tick style={grid style={black},
-    xticklabel=\empty},
-]
-    \addplot table [x index=1,y=Year] {\mytable};
-    \addplot table [x index=2,y=Year] {\mytable};
-    \addplot table [x index=3,y=Year] {\mytable};
-    \addplot table [x index=4,y=Year] {\mytable};
-    \legend{Cat1,Cat2,Cat3,Cat4}
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -632,28 +207,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    stack plots=y,
-    area style,
-    enlarge x limits=false,
-]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -665,18 +218,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfplotsset{
-    /pgfplots/area style/.style={
-        area cycle list,
-        area legend,
-        axis on top,
-    },
-}
-```
-
 
 ---
 
@@ -686,29 +227,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        const plot,
-        stack plots=y,
-        area style,
-        enlarge x limits=false,
-    ]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -720,29 +238,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        smooth,
-        stack plots=y,
-        area style,
-        enlarge x limits=false,
-    ]
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \addplot coordinates
-        {(0,1) (1,1) (2,2) (3,2)}
-            \closedcycle;
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -752,13 +247,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
-\pgfplotstabletypeset\loadedtable
-```
 
 
 ---
@@ -770,36 +258,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}{\loadedtable}
-\begin{tikzpicture}
-    \begin{axis}[
-        ymin=0,
-        minor tick num=4,
-        enlarge x limits=false,
-        axis on top,
-        every axis plot post/.append style={mark=none},
-        const plot,
-        legend style={
-            area legend,
-            at={(0.5,-0.15)},
-            anchor=north,
-            legend columns=-1,
-        },
-    ]
-        \addplot [draw=blue,fill=blue!30!white]
-            table [x=time,y=1minload]       from \loadedtable
-                \closedcycle;
-        \addplot table [x=time,y=nodes]     from \loadedtable;
-        \addplot table [x=time,y=cpus]      from \loadedtable;
-        \addplot table [x=time,y=processes] from \loadedtable;
-        \legend{1min load,nodes,cpus,processes}
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -809,41 +267,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\pgfplotstableread{pgfplots.timeseries.dat}\loadedtable
-\begin{tikzpicture}
-    \begin{axis}[
-        ymin=0,
-        minor tick num=4,
-        enlarge x limits=false,
-        const plot,
-        axis on top,
-        stack plots=y,
-        cycle list={
-            {blue!70!black,fill=blue},
-            {blue!60!white,fill=blue!30!white},
-            {draw=none,fill={rgb:red,138;green,82;blue,232}},
-            {red,thick}
-        },
-        ylabel={Mem [GB]},
-        legend style={
-            area legend,
-            at={(0.5,-0.15)},
-            anchor=north,
-            legend columns=2},
-    ]
-    \addplot  table [x=time,y=memused]      from \loadedtable \closedcycle;
-    \addplot  table [x=time,y=memcached]    from \loadedtable \closedcycle;
-    \addplot  table [x=time,y=membuf]       from \loadedtable \closedcycle;
-    \addplot+ [stack plots=false]
-              table [x=time,y=memtotal]     from \loadedtable;
-    \legend{Memory used,Memory cached,Memory buffered,Total memory}
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -855,28 +278,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [name path=A,domain=0:5] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [gray] fill between [
-        of=A and B,soft clip={domain=3:4},
-    ];
-    \addplot [gray!30] fill between [
-        of=A and B,soft clip={domain=2:3},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -886,39 +287,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    % define some common macro
-    \def\clippath{
-        (3,-1) rectangle (4,100)
-    }
-    \draw [help lines] \clippath;
-
-    \addplot+ [name path=A,domain=0:5,
-        mark=none,
-        postaction={decorate,red,line width=2pt,
-            decoration={
-                soft clip,
-                soft clip path={\clippath},
-            },
-        },
-    ] {x^2};
-
-    \path [name path=B]
-        (\pgfkeysvalueof{/pgfplots/xmin},0) --
-        (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-    \addplot [orange] fill between [
-        of=A and B,soft clip={\clippath},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -930,33 +298,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:5] {x^2};
-    \addplot [red,name path=B,smooth] table {
-        x y
-        0 10
-        1 8
-        2 6
-        3 1
-        4 5
-    };
-    \addplot [gray!50] fill between [
-        of=A and B,
-        soft clip={domain=3:4},
-    ];
-    \addplot [gray!10,draw=black] fill between [
-        of=A and B,
-        soft clip={domain=1:2.5},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -966,34 +307,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-% requires \usepgfplotslibrary{fillbetween}
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [blue,name path=A,domain=0:5] {x^2};
-    \addplot [red,name path=B,smooth] table {
-        x y
-        0 10
-        1 8
-        2 6
-        3 1
-        4 5
-    };
-    \addplot [gray] fill between [
-        of=A and B,
-        split,
-        every segment no 0/.style=
-            {pattern color=gray!50,
-             pattern=north east lines},
-        every segment no 1/.style=
-            {pattern=north west lines},
-    ];
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1005,19 +318,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[enlargelimits=false]
-    \addplot+ [
-        only marks,
-        samples=400,
-    ] {rand};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1027,21 +327,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        only marks,
-        samples=50,
-        scatter src=y,
-    ] {x - x^2};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1053,20 +338,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        samples=50,
-        scatter src=y,
-    ] {x^3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1076,51 +347,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}
-        % provide color data explicitly using [<data>]
-        % behind coordinates:
-        \addplot+ [scatter,scatter src=explicit]
-            coordinates {
-                (0,0) [1.0e10]
-                (1,2) [1.1e10]
-                (2,3) [1.2e10]
-                (3,4) [1.3e10]
-                % ...
-            };
-
-        % Assumes a datafile.dat like
-        % xcolname  ycolname    colordata
-        % 0         0           0.001
-        % 1         2           0.3
-        % 2         2.1         0.4
-        % 3         3           0.5
-        % ...
-        % the file may have more columns.
-        \addplot+ [scatter,scatter src=explicit]
-            table [x=xcolname,y=ycolname,meta=colordata]
-                {datafile.dat};
-        % Same data as last example:
-        \addplot+ [scatter,scatter src=\thisrow{colordata}+\thisrow{ycolname}]
-            table [x=xcolname,y=ycolname]
-                {datafile.dat};
-
-        % Assumes a datafile.dat like
-        % 0         0           0.001
-        % 1         2           0.3
-        % 2         2.1         0.4
-        % 3         3           0.5
-        % ...
-        % the first three columns will be used here:
-        \addplot+ [scatter,scatter src=explicit]
-            file {datafile.dat};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1132,19 +358,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[title=Default arguments]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1154,25 +367,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Black fill color and varying draw color,
-    scatter/use mapped color={
-        draw=mapped color,
-        fill=black,
-    },
-]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1184,25 +378,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Black draw color and varying fill color,
-    scatter/use mapped color={
-        draw=black,
-        fill=mapped color,
-    },
-]
-    \addplot+ [
-        scatter,
-        scatter src=y,
-    ] {2*x+3};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1212,28 +387,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[colormap/bluered,colorbar]
-    \addplot3+ [
-        samples=4,
-        z buffer=sort,
-        % enable scatter:
-        scatter,
-        % redefine appearance:
-        scatter/use mapped color={ball color=mapped color},
-        % configure input:
-        scatter src=rand,
-        only marks,
-        mark=ball,
-        mark size=3pt,
-    ] {0};
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1245,40 +398,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    scatter/classes={
-        a={mark=square*,blue},
-        b={mark=triangle*,red},
-        c={mark=o,draw=black}   % <-- don't add comma
-    },
-]
-    % \addplot[] is better than \addplot+[] here:
-    % it avoids scalings of the cycle list
-    \addplot [
-        scatter,only marks,
-        scatter src=explicit symbolic,
-    ] coordinates {
-        (0.1,0.15)  [a]
-        (0.45,0.27) [c]
-        (0.02,0.17) [a]
-        (0.06,0.1)  [a]
-        (0.9,0.5)   [b]
-        (0.5,0.3)   [c]
-        (0.85,0.52) [b]
-        (0.12,0.05) [a]
-        (0.73,0.45) [b]
-        (0.53,0.25) [c]
-        (0.76,0.5)  [b]
-        (0.55,0.32) [c]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1288,44 +407,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[legend pos=south east]
-    % The data file contains:
-    % x     y      label
-    % 0.1   0.15   a
-    % 0.45  0.27   c
-    % 0.02  0.17   a
-    % 0.06  0.1    a
-    % 0.9   0.5    b
-    % 0.5   0.3    c
-    % 0.85  0.52   b
-    % 0.12  0.05   a
-    % 0.73  0.45   b
-    % 0.53  0.25   c
-    % 0.76  0.5    b
-    % 0.55  0.32   c
-    \addplot [
-        % clickable coords={\thisrow{label}},
-        scatter/classes={
-            a={mark=square*,blue},
-            b={mark=triangle*,red},
-            c={mark=o,draw=black,fill=black}% no comma
-        },
-        scatter,only marks,
-        scatter src=explicit symbolic,
-    ] table [x=x,y=y,meta=label]
-        {plotdata/scattercl.dat};
-
-    \addplot coordinates
-        {(0.1,0.1) (0.5,0.3) (0.85,0.5)};
-    \legend{Class 1,Class 2,Class 3,Line}
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1337,29 +418,6 @@ Showing items **1401-1472** of **1472** | Page **8** of **8**
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\addplot [
-    scatter/classes={
-        a={mark=square*,blue},
-        b={mark=triangle*,red},
-        c={mark=o,draw=black,fill=black}    % <-- don't add comma here
-    },
-    scatter,only marks,
-    scatter src=explicit symbolic,
-]
-    % [and coordinate input here... ]
-;
-
-\label[a]{label:for:first:class}
-\label[b]{label:for:second:class}
-\label[c]{label:for:third:class}
-
-...
-First class is \ref{label:for:first:class}, second is \ref{label:for:second:class}.
-```
-
 
 ---
 
@@ -1369,21 +427,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[nodes near coords]
-    \addplot+ [
-        only marks
-    ] coordinates {
-        (0.5,0.2) (0.2,0.1) (0.7,0.6)
-        (0.35,0.4) (0.65,0.1)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1395,25 +438,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[nodes near coords,enlargelimits=0.2]
-    \addplot+ [
-        only marks,
-        point meta=explicit symbolic,
-    ] coordinates {
-        (0.5,0.2) [(1)]
-        (0.2,0.1) [(2)]
-        (0.7,0.6) [(3)]
-        (0.35,0.4) [(4)]
-        (0.65,0.1) [(5)]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1423,31 +447,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[enlargelimits=0.2]
-        \addplot [
-            scatter,mark=*,only marks,
-            % we use 'point meta' as color data...
-            point meta=\thisrow{color},
-            % ... therefore, we can't use it as argument for nodes near coords ...
-            nodes near coords*={$(\pgfmathprintnumber[frac]\myvalue)$},
-            % ... which requires to define a visualization dependency:
-            visualization depends on={\thisrow{myvalue} \as \myvalue},
-        ] table {
-            x      y    color   myvalue
-            0.5    0.2  1       0.25
-            0.2    0.1  2       1.5
-            0.7    0.6  3       0.75
-            0.35   0.4  4       0.125
-            0.65   0.1  5       2
-        };
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1459,34 +458,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        nodes near coords,
-        only marks,
-        coordinate style/.condition=
-            {\coordindex==0}{below},
-        coordinate style/.condition=
-            {\coordindex==1}{red},
-        coordinate style/.condition=
-            {x < 2.1 && y > 4}{green},
-        point meta=explicit symbolic,
-    ] table [meta=label] {
-        Depth Breadth label
-        2.57  3.59    Cambridge
-        2.58  4.27    Dresden
-        2.45  3.77    {Palo Alto}
-        2.61  2.10    Asan
-        2.03  4.17    Heidelberg
-        2.25  4.29    Yamagata
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1496,32 +467,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        nodes near coords,
-        only marks,
-        coordinate style/.from=
-            \thisrow{style},
-        coordinate style/.condition=
-            {x < 2.1 && y > 4}{black},
-        point meta=explicit symbolic,
-    ] table [meta=label] {
-        Depth Breadth label       style
-        2.57  3.59    Cambridge   below
-        2.58  4.27    Dresden     red
-        2.45  3.77    {Palo Alto} green
-        2.61  2.10    Asan        {}
-        2.03  4.17    Heidelberg  {left}
-        2.25  4.29    Yamagata    {}
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1533,20 +478,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [
-        scatter,
-        coordinate style/.condition=
-            {abs(x-1) < 0.001}{scale=3,xshift=4pt},
-    ] coordinates {(0,0) (0.5,0.5) (1,1)};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1556,38 +487,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: scatter_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-% Low-Level scatter plot interface Example:
-% use three different marker classes
-% 0% -- 30%   : first class
-% 30% -- 60%  : second class
-% 60% -- 100% : third class
-\begin{axis}[
-  scatter/@pre marker code/.code={
-    \ifdim\pgfplotspointmetatransformed pt<300pt
-      \def\markopts{mark=square*,fill=blue}
-    \else
-      \ifdim\pgfplotspointmetatransformed pt<600pt
-        \def\markopts{mark=triangle*,fill=orange}
-      \else
-         \def\markopts{mark=pentagon*,fill=red}
-      \fi
-    \fi
-    \expandafter\scope\expandafter[\markopts]
-  },
-  scatter/@post marker code/.code={
-    \endscope
-  },
-]
-    \addplot+ [scatter,scatter src=y,samples=40]
-       {sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1599,16 +498,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [mesh] {x + sin(deg(x))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1618,25 +507,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot [
-        mesh,
-        point meta=explicit,
-    ] coordinates {
-        (0,0)   [0]
-        (1,0.1) [1]
-        (2,0.1) [2]
-        (3,0.3) [3]
-        (4,0.3) [4]
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1648,22 +518,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title=Interrupted data plot,
-]
-    \addplot coordinates {
-        (0,0) (10,50) (20,100) (30,200)
-
-        (50,600) (60,800) (80,1000)
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1673,33 +527,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Discarding unbounded coords,
-        unbounded coords=discard,
-    ]
-        \addplot coordinates {
-            (0,0) (10,50) (20,100) (30,200)
-            (40,inf) (50,600) (60,800) (80,1000)
-        };
-    \end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-    \begin{axis}[
-        title=Jumps at unbounded coords,
-        unbounded coords=jump,
-    ]
-        \addplot coordinates {
-            (0,0) (10,50) (20,100) (30,200)
-            (40,inf) (50,600) (60,800) (80,1000)
-        };
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1711,21 +538,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    unbounded coords=jump,
-    x filter/.expression={
-        x<0 && y<0 ? nan : x
-    },
-]
-    \addplot3 [surf] {exp(-sqrt(x^2 + y^2))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1735,24 +547,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y dir=reverse]
-    \addplot coordinates {(0,0) (3,2)};
-
-    \addplot [surf,point meta=explicit] coordinates {
-        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [3]
-
-        (0,1) [4] (1,1) [5] (2,1) [nan] (3,1) [7]
-
-        (0,2) [8] (1,2) [9] (2,2) [10] (3,2) [11]
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1764,24 +558,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[y dir=reverse,shader=flat corner]
-    \addplot coordinates {(0,0) (3,2)};
-
-    \addplot [surf,point meta=explicit] coordinates {
-        (0,0) [0] (1,0) [1] (2,0) [2] (3,0) [3]
-
-        (0,1) [4] (1,1) [5] (2,1) [nan] (3,1) [7]
-
-        (0,2) [8] (1,2) [9] (2,2) [10] (3,2) [11]
-    };
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1791,24 +567,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    shader=flat corner,
-    domain=-1:1,
-]
-    \addplot3 [
-        surf,
-        point meta={
-            abs(x-y)<0.1 || abs(x-0.5)<0.1 ? nan : z
-        },
-    ] {exp(-x^2-y^2)};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1820,20 +578,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    point meta={
-        x<0 && y<0 ? nan : z
-    },
-]
-    \addplot3 [surf] {exp(-sqrt(x^2 + y^2))};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1843,19 +587,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot3 [
-        surf,
-        mesh/ordering=y varies,
-    ] table {concat_VV_together.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1867,24 +598,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    view/h=40,
-    colorbar horizontal,
-    xlabel=$x$, ylabel=$y$,
-]
-    \addplot3 [
-        surf,
-        mesh/ordering=y varies,
-        shader=interp,
-    ] table {concat_VV_together.dat};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1894,27 +607,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    view/h=40,
-    colorbar horizontal,
-    xlabel=$x$, ylabel=$y$,
-]
-    \addplot3 [surf,mesh/ordering=y varies,
-        shader=interp
-    ] table {concat_VV_together.dat};
-
-    \addplot3 [blue,mark=*,
-        mark options={fill=blue!80!black},
-        only marks,mark size=0.6pt,
-    ] table [z expr=1.2]{concat_VV_together_grid.dat};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1926,20 +618,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1949,24 +627,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: 3d_plot  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 [
-        surf,
-        domain=-2:2,
-        domain y=-1.3:1.3,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1978,24 +638,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    xlabel=$x$, ylabel=$y$,
-    small,
-]
-    \addplot3 [
-        contour lua,
-        domain=-2:2,
-        domain y=-1.3:1.3,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2005,28 +647,6 @@ First class is \ref{label:for:first:class}, second is \ref{label:for:second:clas
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[
-    title={$x \exp(-x^2-y^2)$},
-    enlarge x limits,
-    view={0}{90},
-    xlabel=$x$, ylabel=$y$,
-    small,
-	colorbar,
-]
-    \addplot3[
-        domain=-2:2,
-        domain y=-1.3:1.3,
-        contour lua={number=14,labels=false},
-        thick,
-    ] {exp(-x^2-y^2)*x};
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2051,16 +671,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot {x^2+2} \closedcycle;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2070,16 +680,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [fill] {x^2+2} \closedcycle;
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2091,25 +691,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}[stack plots=y]
-    \addplot+ [fill] coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    }
-        \closedcycle
-    ;
-    \addplot+ [fill] coordinates {
-        (0,1) (1,1) (2,2) (3,2)
-    }
-        \closedcycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2119,18 +700,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: line_chart  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    };
-\end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -2142,20 +711,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    }
-        --cycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2166,20 +721,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Package**: pgfplots  
 **Chart Type**: line_chart  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-\begin{axis}
-    \addplot+ [fill] coordinates {
-        (0,1) (1,2) (0,3) (-1,2)
-    }
-        --cycle
-    ;
-\end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2189,21 +730,6 @@ Provide || as trailing path commands after || to draw a closed line from the las
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: other  
-
-### Code
-
-```latex
-%\pgfplotsset{
-%    % initialize Set1-5:
-%    cycle list/Set1-5,
-%    % combine it with 'mark list*':
-%    cycle multiindex* list={
-%        mark list*\nextlist
-%        Set1-5\nextlist
-%    },
-%}
-%
-```
 
 
 ---

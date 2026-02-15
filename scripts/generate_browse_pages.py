@@ -7,8 +7,18 @@
 import json
 from pathlib import Path
 from typing import List, Dict, Tuple
+import html
 
-ITEMS_PER_PAGE = 200  # 增加每页项数以减少总页面数，避免 Mintlify MCP 索引过载
+ITEMS_PER_PAGE = 200  # 每页条目数
+
+
+def escape_mdx_content(text: str) -> str:
+    """转义可能与 MDX 冲突的内容"""
+    if not text:
+        return text
+    # HTML 实体转义特殊字符
+    text = html.unescape(text)
+    return text
 
 
 def main():
@@ -256,15 +266,9 @@ def format_item(index: int, item: Dict) -> str:
             description = description[:500] + "..."
         output += f"{description}\n\n"
 
-    # 代码 - 直接从顶层获取
-    code = item.get('code', '')
-    if code and code.strip():
-        output += "### Code\n\n"
-        # 限制代码长度
-        if len(code) > 2000:
-            output += f"```latex\n{code[:2000]}\n... (truncated)\n```\n\n"
-        else:
-            output += f"```latex\n{code}\n```\n\n"
+    # 注意：不包含代码块以避免 MDX 解析错误
+    # LaTeX 代码中的 {} 会被 MDX 误认为 JavaScript 表达式
+    # 完整代码示例请参考知识库 JSON 文件
 
     output += "\n---\n\n"
 

@@ -18,56 +18,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[
-  cycle of vertices/.style 2 args={
-    insert path={
-      foreach \i [count=\j,evaluate=\j as \k using
-        {ifthenelse(\j==1,"","-- "}] in {#2}{\k (vert-#1-\i)} -- cycle}},
-  scale=0.7,
-  line join=round,
-  bottom/.style={draw=white!50!black,fill=white!40!black},
-  front/.style={draw=white!50!black,fill=black},
-  side/.style={draw=white!50!black,fill=white!80!black},
-]
-  \begin{scope}[
-    3d view={-20}{0},
-    perspective={
-      p = {(20,0,0)},
-      q = {(0,20,0)},
-      r = {(5,1,50)},
-    }]
-    \path foreach \x/\y/\z [count=\i] in {
-      3.5/2.0/0.0,3.5/2.0/4.0,6.0/2.0/4.0,6.5/2.0/3.5,6.5/2.0/0.5,6.0/2.0/0.0,
-      4.5/2.0/1.0,4.5/2.0/3.0,5.5/2.0/3.0,5.5/2.0/1.0,3.5/0.0/0.0,3.5/0.0/4.0,
-      6.0/0.0/4.0,6.5/0.0/3.5,6.5/0.0/0.5,6.0/0.0/0.0,4.5/0.0/1.0,4.5/0.0/3.0,
-      5.5/0.0/3.0,5.5/0.0/1.0%
-    }{(tpp cs:x=\x,y=\y,z=\z) coordinate[name=vert-D-\i]};
-    \filldraw[front,cycle of vertices={D}{1,...,6},
-      cycle of vertices={D}{7,10,9,8}];
-    \filldraw[side,cycle of vertices={D}{10,9,19,20}];
-    \filldraw[bottom,cycle of vertices={D}{8,9,19,18}];
-    \filldraw[front,cycle of vertices={D}{11,...,16},
-      cycle of vertices={D}{17,20,19,18}];
-    \filldraw[side,cycle of vertices={D}{1,2,12,11}];
-    % '3'
-    \path foreach \x/\y/\z [count=\i] in {
-      0.0/2.0/0.0,0.0/2.0/1.0,2.0/2.0/1.0,2.0/2.0/1.5,0.0/2.0/1.5,0.0/2.0/2.5,
-      2.0/2.0/2.5,2.0/2.0/3.0,0.0/2.0/3.0,0.0/2.0/4.0,3.0/2.0/4.0,3.0/2.0/0.0,
-      0.0/0.0/0.0,0.0/0.0/1.0,2.0/0.0/1.0,2.0/0.0/1.5,0.0/0.0/1.5,0.0/0.0/2.5,
-      2.0/0.0/2.5,2.0/0.0/3.0,0.0/0.0/3.0,0.0/0.0/4.0,3.0/0.0/4.0,3.0/0.0/0.0%
-    }{(tpp cs:x=\x,y=\y,z=\z) coordinate[name=vert-3-\i]};
-    \filldraw[front,cycle of vertices={3}{1,...,12}];
-    \filldraw[side,cycle of vertices={3}{3,4,16,15}];
-    \filldraw[side,cycle of vertices={3}{7,8,20,19}];
-    \filldraw[side,cycle of vertices={3}{1,2,14,13}];
-    \filldraw[side,cycle of vertices={3}{5,6,18,17}];
-    \filldraw[side,cycle of vertices={3}{9,10,22,
-... (truncated)
-```
-
 
 ---
 
@@ -77,12 +27,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfcalendar{cal}{2007-01-20}{2007-02-10}{\pgfcalendarcurrentday\ }
-```
 
 
 ---
@@ -94,16 +38,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfcalendar{cal}{2007-01-20}{2007-02-10}
-{
-  \pgfcalendarcurrentday\
-  \ifdate{Sunday}{\par}{}
-}
-```
-
 
 ---
 
@@ -113,17 +47,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfcalendar{cal}{2007-01-20}{2007-02-10}
-{%
-  \leavevmode%
-  \hbox to0pt{\hskip\pgfcalendarcurrentweekday cm\pgfcalendarcurrentday\hss}%
-  \ifdate{Sunday}{\par}{}%
-}
-```
 
 
 ---
@@ -135,25 +58,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfcalendar{cal}{2007-01-01}{2007-02-28}{%
-  \ifdate{day of month=1}{
-    \par\bigskip\hbox to7.5cm{\itshape\hss\pgfcalendarshorthand mt\hss}\par
-  }{}%
-  \leavevmode%
-  {%
-    \ifdate{weekend}{\color{black!50}}{\color{black}}%
-    \hbox to0pt{%
-      \hskip\pgfcalendarcurrentweekday cm%
-      \hbox to1cm{\hss\pgfcalendarshorthand d-}\hss%
-    }%
-  }%
-  \ifdate{Sunday}{\par}{}%
-}
-```
-
 
 ---
 
@@ -163,14 +67,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\let\%=\pgfcalendarshorthand
-\pgfcalendar{cal}{2007-01-20}{2007-01-20}
-{ ISO form: \%y0-\%m0-\%d0, long form: \%wt, \%mt \%d-, \%y0}
-```
 
 
 ---
@@ -182,14 +78,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% For LaTeX:
-\usepackage{tikz}
-\usetikzlibrary{calc,intersections,through,backgrounds}
-```
-
 
 ---
 
@@ -199,14 +87,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% For plain TeX:
-\input tikz.tex
-\usetikzlibrary{calc,intersections,through,backgrounds}
-```
 
 
 ---
@@ -218,14 +98,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% For ConTeXt:
-\usemodule[tikz]
-\usetikzlibrary[calc,intersections,through,backgrounds]
-```
-
 
 ---
 
@@ -235,17 +107,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate (A) at (0,0);
-  \coordinate (B) at (1.25,0.25);
-
-  \draw[blue] (A) -- (B);
-\end{tikzpicture}
-```
 
 
 ---
@@ -257,17 +118,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:\textcolor{blue}{$A$}]  (A) at (0,0);
-  \coordinate [label=right:\textcolor{blue}{$B$}] (B) at (1.25,0.25);
-
-  \draw[blue] (A) -- (B);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -277,13 +127,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\coordinate [...] (A) at (0+0.1*rand,0+0.1*rand);
-\coordinate [...] (B) at (1.25+0.1*rand,0.25+0.1*rand);
-```
 
 
 ---
@@ -295,13 +138,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\coordinate [...] (A) at ($ (0,0) + .1*(rand,rand) $);
-\coordinate [...] (B) at ($ (1.25,0.25) + .1*(rand,rand) $);
-```
-
 
 ---
 
@@ -311,21 +147,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-
-  \draw (A) let
-              \p1 = ($ (B) - (A) $)
-            in
-              circle ({veclen(\x1,\y1)});
-\end{tikzpicture}
-```
 
 
 ---
@@ -337,22 +158,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-
-  \draw let \p1 = ($ (B) - (A) $),
-            \n2 = {veclen(\x1,\y1)}
-        in
-          (A) circle (\n2)
-          (B) circle (\n2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -362,22 +167,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-
-  \draw let \p1        = ($ (B) - (A) $),
-            \n{radius} = {veclen(\x1,\y1)}
-        in
-          (A) circle (\n{radius})
-          (B) circle (\n{radius});
-\end{tikzpicture}
-```
 
 
 ---
@@ -389,12 +178,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfpointadd{\pgfpoint{\pgf@xa}{\pgf@ya}}{\pgfpoint{\pgf@xb}{\pgf@yb}}
-```
-
 
 ---
 
@@ -404,15 +187,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\immediate\openout\w@pgf@writea=myfile.dat
-\immediate\write\w@pgf@writea{...}%
-\immediate\write\w@pgf@writea{...}%
-\immediate\closeout\w@pgf@writea%
-```
 
 
 ---
@@ -424,21 +198,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\immediate\openin\r@pgf@reada=myfile.dat
-% do something with \macro
-\ifeof\r@pgf@reada
-    % end of file or it doesn't exist
-\else
-    % loop or whatever
-    \immediate\read\r@pgf@reada to\macro
-    ...
-\fi
-\immediate\closein\r@pgf@reada
-```
-
 
 ---
 
@@ -448,35 +207,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\sffamily\scriptsize
-\tikz \pic [
-  transform shape,
-  every calendar/.style={
-    at={(-8ex,4ex)},
-    week list,
-    month label above centered,
-    month text=\bfseries\textcolor{red}{\%mt} \%y0,
-    if={(Sunday) [black!50]}
-  },
-  folding line length=2.5cm,
-  face 1={ \calendar [dates=\the\year-01-01 to \the\year-01-last];},
-  face 2={ \calendar [dates=\the\year-02-01 to \the\year-02-last];},
-  face 3={ \calendar [dates=\the\year-03-01 to \the\year-03-last];},
-  face 4={ \calendar [dates=\the\year-04-01 to \the\year-04-last];},
-  face 5={ \calendar [dates=\the\year-05-01 to \the\year-05-last];},
-  face 6={ \calendar [dates=\the\year-06-01 to \the\year-06-last];},
-  face 7={ \calendar [dates=\the\year-07-01 to \the\year-07-last];},
-  face 8={ \calendar [dates=\the\year-08-01 to \the\year-08-last];},
-  face 9={ \calendar [dates=\the\year-09-01 to \the\year-09-last];},
-  face 10={\calendar [dates=\the\year-10-01 to \the\year-10-last];},
-  face 11={\calendar [dates=\the\year-11-01 to \the\year-11-last];},
-  face 12={\calendar [dates=\the\year-12-01 to \the\year-12-last];}
-] {dodecahedron folding};
-```
 
 
 ---
@@ -488,19 +218,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [
-  transform shape,
-  folding line length=6mm,
-  face 1={ \node[red] {1};},
-  face 2={ \node      {2};},
-  face 3={ \node      {3};},
-  face 4={ \node      {4};}
-] {tetrahedron folding};
-```
-
 
 ---
 
@@ -510,16 +227,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic[
-  every cut/.style=red,
-  every fold/.style=dotted,
-  folding line length=6mm
-] { tetrahedron folding };
-```
 
 
 ---
@@ -531,13 +238,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { tetrahedron truncated folding };
-```
-
 
 ---
 
@@ -547,13 +247,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { cube folding };
-```
 
 
 ---
@@ -565,13 +258,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { cube truncated folding };
-```
-
 
 ---
 
@@ -581,13 +267,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { octahedron folding };
-```
 
 
 ---
@@ -599,13 +278,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { octahedron truncated folding };
-```
-
 
 ---
 
@@ -615,13 +287,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron folding };
-```
 
 
 ---
@@ -633,13 +298,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron' folding };
-```
-
 
 ---
 
@@ -649,13 +307,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron rhombic folding };
-```
 
 
 ---
@@ -667,13 +318,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron golden folding };
-```
-
 
 ---
 
@@ -683,13 +327,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { cuboctahedron folding };
-```
 
 
 ---
@@ -701,13 +338,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { cuboctahedron truncated folding };
-```
-
 
 ---
 
@@ -717,13 +347,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { icosahedron folding };
-```
 
 
 ---
@@ -735,13 +358,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { rhombicuboctahedron folding };
-```
-
 
 ---
 
@@ -751,13 +367,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { snub cube folding };
-```
 
 
 ---
@@ -769,13 +378,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { icosidodecahedron folding };
-```
-
 
 ---
 
@@ -785,14 +387,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
-```
 
 
 ---
@@ -804,33 +398,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarelayer{background layer}
-\pgfdeclarelayer{foreground layer}
-\pgfsetlayers{background layer,main,foreground layer}
-\begin{tikzpicture}
-  % On main layer:
-  \fill[blue] (0,0) circle (1cm);
-
-  \begin{pgfonlayer}{background layer}
-    \fill[yellow] (-1,-1) rectangle (1,1);
-  \end{pgfonlayer}
-
-  \begin{pgfonlayer}{foreground layer}
-    \node[white] {foreground};
-  \end{pgfonlayer}
-
-  \begin{pgfonlayer}{background layer}
-    \fill[black] (-.8,-.8) rectangle (.8,.8);
-  \end{pgfonlayer}
-
-  % On main layer again:
-  \fill[blue!50] (-.5,-1) rectangle (.5,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -840,21 +407,6 @@ Showing items **1401-1600** of **3242** | Page **8** of **17**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newcount\mycount
-\pgfparserdef{myparser}{initial}{the letter a}%
-{\advance\mycount by 1\relax}%
-\pgfparserdef{myparser}{initial}{the letter b}%
-{} % do nothing
-\pgfparserdef{myparser}{initial}{the letter c}%
-{\pgfparserswitch{final}}% done!
-
-\pgfparserparse{myparser}aabaabababbbbbabaabcccc
-There are \the\mycount\ a's.
-```
 
 
 ---
@@ -866,22 +418,6 @@ There are \the\mycount\ a's.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\mycount=0
-% using the shortcut syntax of just placing ; after the state
-\pgfparserdef{different letters}{all};{\pgfparserswitch{final}}%
-\pgfparserdefunknown{different letters}{all}%
-  {\pgfparserdef{different letters}{all}\pgfparsertoken{}\advance\mycount1}%
-\pgfparserdeffinal{different letters}%
-  {\the\mycount\ different letters found}%
-% don't throw errors for unknown letters
-\pgfparserset{different letters/silent=true}%
-
-\pgfparserparse{different letters}udiaternxqlchudiea;
-```
-
 
 ---
 
@@ -891,21 +427,6 @@ There are \the\mycount\ a's.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% using the long syntax of \pgfparserdef
-\pgfparserdef{arguments}{initial}{the letter a}[d()]
-  {\pgfparserifmark{#1}{\textcolor{red}{\textit{use}}}{\textbf{#1}} }%
-% using the shortcut syntax
-\pgfparserdef{arguments}{initial}t[m]{\texttt{#1} }%
-\pgfparserdef{arguments}{initial}c[t*O{blue}m]
-  {\pgfparserifmark{#1}{#3}{\textcolor{#2}{#3}}}%
-\pgfparserdef{arguments}{all};{\pgfparserswitch{final}}%
-
-\pgfparserparse{arguments}t{nobody}a(will)ac[green]{P}c*{arse}c{r};
-```
 
 
 ---
@@ -917,12 +438,6 @@ There are \the\mycount\ a's.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
-```
-
 
 ---
 
@@ -932,16 +447,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \fill[green] (0,0) rectangle (1,1);
-  \shade[left color=green, right color=magenta] (1.25,0) rectangle (3.75,1);
-  \fill[magenta] (4,0) rectangle (5,1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -953,14 +458,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarehorizontalshading{myshadingA}
-  {1cm}{rgb(0cm)=(1,0,0); color(2cm)=(green); color(4cm)=(blue)}
-\pgfuseshading{myshadingA}
-```
-
 
 ---
 
@@ -970,17 +467,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarehorizontalshading[mycolor]{myshadingB}
-  {1cm}{rgb(0cm)=(1,0,0); color(2cm)=(mycolor)}
-\colorlet{mycolor}{green}
-\pgfuseshading{myshadingB}
-\colorlet{mycolor}{blue}
-\pgfuseshading{myshadingB}
-```
 
 
 ---
@@ -992,14 +478,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareverticalshading{myshadingC}
-  {4cm}{rgb(0cm)=(1,0,0); rgb(1.5cm)=(0,1,0); rgb(2cm)=(0,0,1)}
-\pgfuseshading{myshadingC}
-```
-
 
 ---
 
@@ -1009,17 +487,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclareradialshading{sphere}{\pgfpoint{0.5cm}{0.5cm}}%
-  {rgb(0cm)=(0.9,0,0);
-   rgb(0.7cm)=(0.7,0,0);
-   rgb(1cm)=(0.5,0,0);
-   rgb(1.05cm)=(1,1,1)}
-\pgfuseshading{sphere}
-```
 
 
 ---
@@ -1031,30 +498,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarefunctionalshading{twospots}
-    {\pgfpointorigin}{\pgfpoint{4cm}{4cm}}{}{
-  % Save coordinates for later
-  2 copy
-  % Compute distance from (40bp,45bp), with x doubled
-  45 sub dup mul exch
-  40 sub dup mul 0.5 mul add sqrt
-  % exponential decay
-  dup mul neg 1.0005 exch exp 1.0 exch sub
-  % Compute distance from (70bp,70bp) from stored coordinate, scaled
-  3 1 roll
-  70 sub dup mul .5 mul exch
-  70 sub dup mul add sqrt
-  % Decay
-  dup mul neg 1.002 exch exp 1.0 exch sub
-  % red component
-  1.0 3 1 roll
-}
-\pgfuseshading{twospots}
-```
-
 
 ---
 
@@ -1064,39 +507,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefunctionalshading[mycol]{sweep}{\pgfpoint{-1cm}{-1cm}}
-{\pgfpoint{1cm}{1cm}}{\pgfshadecolortorgb{mycol}{\myrgb}}{
-  2 copy        % whirl
-  % Calculate "safe" atan of position
-  2 copy abs exch abs add 0.0001 ge { atan } { pop } ifelse
-  3 1 roll
-  dup mul exch
-  dup mul add sqrt
-  30 mul
-  add
-  sin
-  1 add 2 div
-  dup
-  \myrgb        % push mycol
-  5 4 roll      % multiply all components by calculated value
-  mul
-  3 1 roll
-  3 index
-  mul
-  3 1 roll
-  4 3 roll
-  mul
-  3 1 roll
-}
-\colorlet{mycol}{white}%
-\pgfuseshading{sweep}%
-\colorlet{mycol}{red}%
-\pgfuseshading{sweep}
-```
 
 
 ---
@@ -1108,13 +518,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfshadecolortorgb{orange}{\mycol}
-|\mycol|=\mycol |\mycolred|=\mycolred |\mycolgreen|=\mycolgreen |\mycolblue|=\mycolblue
-```
-
 
 ---
 
@@ -1124,41 +527,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefunctionalshading[col1,col2,col3,col4]{bilinear interpolation}
-{\pgfpointorigin}{\pgfpoint{100bp}{100bp}}
-{
-\pgfshadecolortorgb{col1}{\first}\pgfshadecolortorgb{col2}{\second}
-\pgfshadecolortorgb{col3}{\third}\pgfshadecolortorgb{col4}{\fourth}
-}{
-  100 div exch 100 div 2 copy                   % Calculate y/100 x/100.
-  neg 1 add exch neg 1 add                      % Calculate 1-y/100 1-x/100.
-  3 1 roll 2 copy exch 5 2 roll 6 copy 6 copy   % Set up stack.
-  \firstred mul exch \secondred mul add mul     % Process red component.
-  4 1 roll
-  \thirdred mul exch \fourthred mul add mul
-  add
-  13 1 roll
-  \firstgreen mul exch \secondgreen mul add mul % Process green component.
-  4 1 roll
-  \thirdgreen mul exch \fourthgreen mul add mul
-  add
-  7 1 roll
-  \firstblue mul exch \secondblue mul add mul   % Process blue component.
-  4 1 roll
-  \thirdblue mul exch \fourthblue mul add mul
-  add
-}
-
-\colorlet{col1}{blue}
-\colorlet{col2}{yellow}
-\colorlet{col3}{red}
-\colorlet{col4}{green}
-\pgfuseshading{bilinear interpolation}
-```
 
 
 ---
@@ -1170,28 +538,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarefunctionalshading[black]{portabletwospots}{\pgfpointorigin}{\pgfpoint{3.5cm}{3.5cm}}{}{
-  2 copy
-  45 sub dup mul exch
-  40 sub dup mul 0.5 mul add sqrt
-  dup mul neg 1.0005 exch exp 1.0 exch sub
-  3 1 roll
-  70 sub dup mul .5 mul exch
-  70 sub dup mul add sqrt
-  dup mul neg 1.002 exch exp 1.0 exch sub
-  1.0 3 1 roll
-  \ifpgfshadingmodelcmyk
-    \pgffuncshadingrgbtocmyk
-  \fi
-  \ifpgfshadingmodelgray
-    \pgffuncshadingrgbtogray
-  \fi
-}
-```
-
 
 ---
 
@@ -1201,17 +547,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfdeclareverticalshading{myshadingD}
-    {20pt}{color(0pt)=(red); color(20pt)=(blue)}
-  \pgftext[at=\pgfpoint{1cm}{0cm}]  {\pgfuseshading{myshadingD}}
-  \pgftext[at=\pgfpoint{2cm}{0.5cm}]{\pgfuseshading{myshadingD}}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1223,29 +558,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareverticalshading{myshadingE}{100bp}
- {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
-\pgfuseshading{myshadingE}
-\hskip 1cm
-\begin{pgfpicture}
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
-  \pgfshadepath{myshadingE}{0}
-  \pgfusepath{stroke}
-  \pgfpathrectangle{\pgfpoint{3cm}{0cm}}{\pgfpoint{1cm}{2cm}}
-  \pgfshadepath{myshadingE}{0}
-  \pgfusepath{stroke}
-  \pgfpathrectangle{\pgfpoint{5cm}{0cm}}{\pgfpoint{2cm}{2cm}}
-  \pgfshadepath{myshadingE}{45}
-  \pgfusepath{stroke}
-  \pgfpathcircle{\pgfpoint{9cm}{1cm}}{1cm}
-  \pgfshadepath{myshadingE}{45}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -1255,30 +567,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclareverticalshading{myshadingF}{100bp}
- {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
-\begin{tikzpicture}
-  \draw (50bp,50bp) node {\pgfuseshading{myshadingF}};
-  \draw[white,thick] (25bp,25bp) rectangle (75bp,75bp);
-  \draw (50bp,0bp) node[below] {first two applications};
-
-  \begin{scope}[xshift=5cm]
-    \draw (50bp,50bp) node{\pgfuseshading{myshadingF}};
-    \draw[rotate around={45:(50bp,50bp)},white,thick] (25bp,25bp) rectangle (75bp,75bp);
-    \draw (50bp,0bp) node[below] {third application};
-  \end{scope}
-
-  \begin{scope}[xshift=10cm]
-    \draw (50bp,50bp) node{\pgfuseshading{myshadingF}};
-    \draw[white,thick] (50bp,50bp) circle (25bp);
-    \draw (50bp,0bp) node[below] {fourth application};
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -1290,27 +578,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareradialshading{ballshading}{\pgfpoint{-10bp}{10bp}}
- {color(0bp)=(red!15!white); color(9bp)=(red!75!white);
- color(18bp)=(red!70!black); color(25bp)=(red!50!black); color(50bp)=(black)}
-\pgfuseshading{ballshading}
-\hskip 1cm
-\begin{pgfpicture}
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{1cm}{1cm}}
-  \pgfshadepath{ballshading}{0}
-  \pgfusepath{}
-  \pgfpathcircle{\pgfpoint{3cm}{0cm}}{1cm}
-  \pgfshadepath{ballshading}{0}
-  \pgfusepath{}
-  \pgfpathcircle{\pgfpoint{6cm}{0cm}}{1cm}
-  \pgfshadepath{ballshading}{45}
-  \pgfusepath{}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -1320,24 +587,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclareverticalshading{myshadingG}{100bp}
- {color(0bp)=(red); color(25bp)=(green);  color(75bp)=(blue);  color(100bp)=(black)}
-\begin{pgfpicture}
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
-  \pgfshadepath{myshadingG}{0}
-  \pgfusepath{stroke}
-  \pgfpathrectangle{\pgfpoint{3cm}{0cm}}{\pgfpoint{2cm}{1cm}}
-  \pgfshadepath{myshadingG}{90}
-  \pgfusepath{stroke}
-  \pgfpathrectangle{\pgfpoint{6cm}{0cm}}{\pgfpoint{2cm}{1cm}}
-  \pgfshadepath{myshadingG}{45}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1349,19 +598,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareverticalshading{rainbow}{100bp}
- {color(0bp)=(red); color(25bp)=(red); color(35bp)=(yellow);
-  color(45bp)=(green); color(55bp)=(cyan); color(65bp)=(blue);
-  color(75bp)=(violet); color(100bp)=(violet)}
-\begin{tikzpicture}[shading=rainbow]
-  \shade (0,0) rectangle node[white] {\textsc{pride}} (2,1);
-  \shade[shading angle=90] (3,0) rectangle +(1,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1371,20 +607,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newdimen\myypos
-\begin{pgfpicture}
-  \pgfpathmoveto{\pgfpoint{0cm}{\myypos}}
-  \pgfpathlineto{\pgfpoint{1cm}{\myypos}}
-  \advance \myypos by 1cm
-  \pgfpathlineto{\pgfpoint{1cm}{\myypos}}
-  \pgfpathclose
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1396,17 +618,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
-
 
 ---
 
@@ -1416,17 +627,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
 
 
 ---
@@ -1438,16 +638,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,std,fixed zerofill,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-05}\hspace{1em}
-\pgfmathprintnumber{1}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
-
 
 ---
 
@@ -1457,17 +647,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
 
 
 ---
@@ -1479,17 +658,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci zerofill,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
-
 
 ---
 
@@ -1499,17 +667,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,std,precision=2}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
 
 
 ---
@@ -1521,17 +678,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/relative*={1}}
-\pgfmathprintnumber{6.42e-16}\hspace{1em}
-\pgfmathprintnumber{1.2}\hspace{1em}
-\pgfmathprintnumber{6}\hspace{1em}
-\pgfmathprintnumber{20.6}\hspace{1em}
-\pgfmathprintnumber{87}
-```
-
 
 ---
 
@@ -1541,15 +687,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/relative*={2}}
-\pgfmathprintnumber{123.345}\hspace{1em}
-\pgfmathprintnumber{0.0012}\hspace{1em}
-\pgfmathprintnumber{0.0014}\hspace{1em}
-```
 
 
 ---
@@ -1561,15 +698,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/relative*={-3}}
-\pgfmathprintnumber{123.345}\hspace{1em}
-\pgfmathprintnumber{0.0012}\hspace{1em}
-\pgfmathprintnumber{0.0014}\hspace{1em}
-```
-
 
 ---
 
@@ -1579,14 +707,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,relative*={3},precision=0}
-\pgfmathprintnumber{123456999}\hspace{1em}
-\pgfmathprintnumber{123456999.12}
-```
 
 
 ---
@@ -1598,14 +718,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,relative*={3},precision=0,relative style=fixed}
-\pgfmathprintnumber{123456999}\hspace{1em}
-\pgfmathprintnumber{123456999.12}
-```
-
 
 ---
 
@@ -1615,14 +727,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed relative,precision=6}
-\pgfmathprintnumber{123456999}\hspace{1em}
-\pgfmathprintnumber{123456999.12}
-```
 
 
 ---
@@ -1634,12 +738,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/every relative/.style=std}
-```
-
 
 ---
 
@@ -1649,19 +747,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed relative,precision=3}
-\pgfmathprintnumber{1000.0123}\hspace{1em}
-\pgfmathprintnumber{100.0567}\hspace{1em}
-\pgfmathprintnumber{0.000010003452}\hspace{1em}
-\pgfmathprintnumber{0.010073452}\hspace{1em}
-\pgfmathprintnumber{1.23567}\hspace{1em}
-\pgfmathprintnumber{1003.75}\hspace{1em}
-\pgfmathprintnumber{1006.75}\hspace{1em}
-```
 
 
 ---
@@ -1673,17 +758,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,int detect,precision=2}
-\pgfmathprintnumber{15}\hspace{1em}
-\pgfmathprintnumber{20}\hspace{1em}
-\pgfmathprintnumber{20.4}\hspace{1em}
-\pgfmathprintnumber{0.01}\hspace{1em}
-\pgfmathprintnumber{0}
-```
-
 
 ---
 
@@ -1693,13 +767,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-15 \pgfmathifisint{15}{is an int: \pgfretval.}{is no int}\hspace{1em}
-15.5 \pgfmathifisint{15.5}{is an int: \pgfretval.}{is no int}
-```
 
 
 ---
@@ -1711,17 +778,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,int trunc}
-\pgfmathprintnumber{4.568}\hspace{1em}
-\pgfmathprintnumber{5e-04}\hspace{1em}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{24415.98123}\hspace{1em}
-\pgfmathprintnumber{123456.12345}
-```
-
 
 ---
 
@@ -1731,26 +787,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/frac}
-\pgfmathprintnumber{0.333333333333333}\hspace{1em}
-\pgfmathprintnumber{0.5}\hspace{1em}
-\pgfmathprintnumber{2.133333333333325e-01}\hspace{1em}
-\pgfmathprintnumber{0.12}\hspace{1em}
-\pgfmathprintnumber{2.666666666666646e-02}\hspace{1em}
-\pgfmathprintnumber{-1.333333333333334e-02}\hspace{1em}
-\pgfmathprintnumber{7.200000000000000e-01}\hspace{1em}
-\pgfmathprintnumber{6.666666666666667e-02}\hspace{1em}
-\pgfmathprintnumber{1.333333333333333e-01}\hspace{1em}
-\pgfmathprintnumber{-1.333333333333333e-02}\hspace{1em}
-\pgfmathprintnumber{3.3333333}\hspace{1em}
-\pgfmathprintnumber{1.2345}\hspace{1em}
-\pgfmathprintnumber{1}\hspace{1em}
-\pgfmathprintnumber{-6}
-```
 
 
 ---
@@ -1762,17 +798,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,frac, frac denom=10}
-\pgfmathprintnumber{0.1}\hspace{1em}
-\pgfmathprintnumber{0.5}\hspace{1em}
-\pgfmathprintnumber{1.2}\hspace{1em}
-\pgfmathprintnumber{-0.6}\hspace{1em}
-\pgfmathprintnumber{-1.4}\hspace{1em}
-```
-
 
 ---
 
@@ -1782,17 +807,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,frac, frac whole=false}
-\pgfmathprintnumber{20.1}\hspace{1em}
-\pgfmathprintnumber{5.5}\hspace{1em}
-\pgfmathprintnumber{1.2}\hspace{1em}
-\pgfmathprintnumber{-5.6}\hspace{1em}
-\pgfmathprintnumber{-1.4}\hspace{1em}
-```
 
 
 ---
@@ -1804,13 +818,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/read comma as period}
-\pgfmathprintnumber{1234,56}
-```
-
 
 ---
 
@@ -1820,15 +827,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    read comma as period,
-    use comma}
-\pgfmathprintnumber{1234,56}
-```
 
 
 ---
@@ -1840,17 +838,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,
-    precision=2,
-    set thousands separator={}}
-\pgfmathprintnumber{1234.56}
-```
-
 
 ---
 
@@ -1860,17 +847,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,
-    precision=2,
-    set thousands separator={}}
-\pgfmathprintnumber{1234567890}
-```
 
 
 ---
@@ -1882,17 +858,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,
-    precision=2,
-    set thousands separator={.}}
-\pgfmathprintnumber{1234567890}
-```
-
 
 ---
 
@@ -1902,17 +867,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,
-    precision=2,
-    set thousands separator={,}}
-\pgfmathprintnumber{1234567890}
-```
 
 
 ---
@@ -1924,17 +878,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,
-    precision=2,
-    set thousands separator={{{,}}}}
-\pgfmathprintnumber{1234567890}
-```
-
 
 ---
 
@@ -1944,18 +887,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    precision=999,
-    set thousands separator={\,},
-    1000 sep in fractionals,
-    }
-\pgfmathprintnumber{1234.1234567}
-```
 
 
 ---
@@ -1967,18 +898,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,fixed zerofill,
-    precision=9,
-    set thousands separator={\,},
-    1000 sep in fractionals,
-    }
-\pgfmathprintnumber{1234.1234567}
-```
-
 
 ---
 
@@ -1988,16 +907,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    int detect,
-    1000 sep={\,},
-    min exponent for 1000 sep=0}
-\pgfmathprintnumber{5000}; \pgfmathprintnumber{1000000}
-```
 
 
 ---
@@ -2009,16 +918,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    int detect,
-    1000 sep={\,},
-    min exponent for 1000 sep=4}
-\pgfmathprintnumber{1000}; \pgfmathprintnumber{5000}
-```
-
 
 ---
 
@@ -2028,16 +927,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    int detect,
-    1000 sep={\,},
-    min exponent for 1000 sep=4}
-\pgfmathprintnumber{10000}; \pgfmathprintnumber{1000000}
-```
 
 
 ---
@@ -2049,13 +938,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
-\pgfmathprintnumber{12.3456}
-```
-
 
 ---
 
@@ -2065,13 +947,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
-\pgfmathprintnumber{1234.56}
-```
 
 
 ---
@@ -2083,13 +958,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
-\pgfmathprintnumber{12.3456}
-```
-
 
 ---
 
@@ -2099,13 +967,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
-\pgfmathprintnumber{1234.56}
-```
 
 
 ---
@@ -2117,16 +978,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,precision=2,
-    skip 0.}
-\pgfmathprintnumber{0.56}
-```
-
 
 ---
 
@@ -2136,16 +987,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,
-    fixed,
-    fixed zerofill,precision=2,
-    skip 0.=false}
-\pgfmathprintnumber{0.56}
-```
 
 
 ---
@@ -2157,13 +998,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/showpos}
-\pgfmathprintnumber{12.345}
-```
-
 
 ---
 
@@ -2173,13 +1007,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/showpos=false}
-\pgfmathprintnumber{12.345}
-```
 
 
 ---
@@ -2191,13 +1018,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,showpos,sci}
-\pgfmathprintnumber{12.345}
-```
-
 
 ---
 
@@ -2207,13 +1027,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci 10e}
-\pgfmathprintnumber{12.345}
-```
 
 
 ---
@@ -2225,13 +1038,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci e}
-\pgfmathprintnumber{12.345}
-```
-
 
 ---
 
@@ -2241,13 +1047,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci E}
-\pgfmathprintnumber{12.345}
-```
 
 
 ---
@@ -2259,13 +1058,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci subscript}
-\pgfmathprintnumber{12.345}
-```
-
 
 ---
 
@@ -2275,13 +1067,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/number format/.cd,sci,sci superscript}
-\pgfmathprintnumber{12.345}
-```
 
 
 ---
@@ -2293,17 +1078,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-    /pgf/number format/.cd,
-    sci,
-    sci generic={mantissa sep=\times,exponent={10^{#1}}}}
-\pgfmathprintnumber{12.345};
-\pgfmathprintnumber{0.00012345}
-```
-
 
 ---
 
@@ -2313,18 +1087,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-    /pgf/number format/.cd,
-    sci, retain unit mantissa=false}
-\pgfmathprintnumber{10.5};
-\pgfmathprintnumber{10};
-\pgfmathprintnumber{1010};
-\pgfmathprintnumber[precision=1]{-1010};
-```
 
 
 ---
@@ -2336,20 +1098,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-    /pgf/fpu,
-    /pgf/number format/.cd,
-    sci,
-    verbatim}
-\pgfmathprintnumber{12.345};
-\pgfmathprintnumber{0.00012345};
-\pgfmathparse{exp(15)}
-\pgfmathprintnumber{\pgfmathresult}
-```
-
 
 ---
 
@@ -2359,30 +1107,6 @@ rgb(0cm)=(1,0,0); rgb(2cm)=(0,1,0); rgb(4cm)=(0,0,1)
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize % activate!
-
-\begin{document}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-A simple image is \tikz \fill (0,0) circle(5pt);.
-\end{document}
-```
 
 
 ---
@@ -2394,12 +1118,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex -shell-escape main
-```
-
 
 ---
 
@@ -2409,13 +1127,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -halt-on-error
-    -interaction=batchmode -jobname "\image" "\texsource"}}
-```
 
 
 ---
@@ -2427,12 +1138,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzsetexternalprefix{figures/}
-```
-
 
 ---
 
@@ -2442,12 +1147,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pdflatex -shell-escape main
-```
 
 
 ---
@@ -2459,15 +1158,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{external/force remake}
-\begin{tikzpicture}
-    \draw (0,0) circle(5pt);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2477,21 +1167,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1);
-
-{
-\tikzset{external/force remake}
-\begin{tikzpicture}
-   \draw (0,0) circle(5pt);
-\end{tikzpicture}
-}
-
-\tikz \draw (0,0) -- (1,1);
-```
 
 
 ---
@@ -2503,28 +1178,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{document}
-\begin{tikzpicture} % will be exported
-    ...
-\end{tikzpicture}
-
-{
-\tikzset{external/export=false}
-\begin{tikzpicture} % won't be exported
-    ...
-\end{tikzpicture}
-...
-}
-
-\begin{tikzpicture} % will be exported
-    ...
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -2534,18 +1187,6 @@ pdflatex -shell-escape main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\mycommand{My comment}
-
-\begin{tikzpicture}
-
-\node at (0,0) {\mycommand};
-
-\end{tikzpicture}
-```
 
 
 ---
@@ -2557,12 +1198,6 @@ pdflatex -shell-escape main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex main
-```
-
 
 ---
 
@@ -2572,14 +1207,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-figures/trees
-figures/simple
-figures/main-figure0
-```
 
 
 ---
@@ -2591,12 +1218,6 @@ figures/main-figure0
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex -shell-escape
-```
-
 
 ---
 
@@ -2606,17 +1227,6 @@ pdflatex -shell-escape
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% step 1: generate main.makefile:
-pdflatex main
-% step 2: generate ALL graphics on 2 processors:
-make -j 2 -f main.makefile
-% step 3: include the graphics:
-pdflatex main
-```
 
 
 ---
@@ -2628,12 +1238,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{external/optimize command away=\includegraphics}
-```
-
 
 ---
 
@@ -2643,14 +1247,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\newcommand{\myExpensiveMacro}[1]{Very expensive!}
-
-\tikzset{external/optimize command away=\myExpensiveMacro}
-```
 
 
 ---
@@ -2662,14 +1258,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\newcommand{\myExpensiveMacroWithThreeArgs}[3]{Very expensive!}
-
-\tikzset{external/optimize command away={\myExpensiveMacroWithThreeArgs}{3}}
-```
-
 
 ---
 
@@ -2679,17 +1267,6 @@ pdflatex main
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-% A command with optional argument:
-\newcommand{\aFurtherExample}[3][]{Very expensive!}
-
-% consume only two arguments: the first optional one will be processed
-% anyway:
-\tikzset{external/optimize command away={\myExpensiveMacroWithThreeArgs}{2}}
-```
 
 
 ---
@@ -2701,19 +1278,6 @@ pdflatex main
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    % this picture is currently converted!
-\end{tikzpicture}
-
-This here is outside of the converted picture and contains \myExpensiveMacro. It will be discarded.
-
-This call: \myExpensiveMacro[argument=value]{Argument} as well.
-And this here: \myExpensiveMacro{Argument} also.
-```
-
 
 ---
 
@@ -2723,12 +1287,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/images/include external/.code={\includegraphics[viewport=0 0 211.28 175.686]{#1}}}
-```
 
 
 ---
@@ -2740,12 +1298,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/images/include external/.code={\href{file:#1}{\pgfimage{#1}}}}
-```
-
 
 ---
 
@@ -2755,17 +1307,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-  \pgfkeys{/pgf/images/include external/.code={\includegraphics[viewport=0 0 211.28 175.686]{#1}}}
-  \begin{tikzpicture}
-     ...
-  \end{tikzpicture}
-}% this brace ends the effect of `include external'
-```
 
 
 ---
@@ -2777,12 +1318,6 @@ And this here: \myExpensiveMacro{Argument} also.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-pdflatex -jobname "main-figure0" "\def\tikzexternalrealjob{main}\input{main}"
-```
-
 
 ---
 
@@ -2792,12 +1327,6 @@ pdflatex -jobname "main-figure0" "\def\tikzexternalrealjob{main}\input{main}"
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pdflatex -jobname "main-figure0" "main"
-```
 
 
 ---
@@ -2809,12 +1338,6 @@ pdflatex -jobname "main-figure0" "main"
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-latex/pgf/utilities/tikzexternal.sty
-```
-
 
 ---
 
@@ -2824,16 +1347,6 @@ latex/pgf/utilities/tikzexternal.sty
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-tikzexternal.sty
-main.tex
-main-figure0.pdf
-main-figure1.pdf
-main-figure2.pdf
-```
 
 
 ---
@@ -2845,29 +1358,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{
-    % Defines a custom style which generates BOTH, .pdf and .png export
-    % but prefers the .png on inclusion.
-    %
-    % This style is not pre-defined, you may need to copy-paste and
-    % adjust it.
-    png export/.style={
-        external/system call/.append=
-            {; convert -density 300 -transparent white "\image.pdf" "\image.png"},
-        %
-        /pgf/images/external info,
-        /pgf/images/include external/.code={%
-            \includegraphics
-                [width=\pgfexternalwidth,height=\pgfexternalheight]
-                {##1.png}%
-        },
-    }
-}
-```
-
 
 ---
 
@@ -2877,20 +1367,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\usetikzlibrary{external}
-
-\tikzifexternalizing{%
-    % don't include package XYZ here
-}{%
-    \usepackage{pdfpages}
-    \usepackage{vmargin}
-    ...
-}%
-```
 
 
 ---
@@ -2902,17 +1378,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\beginpgfgraphicnamed{picture4}
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-   \draw (0,0) -- (4,4);
-\end{tikzpicture}
-\endpgfgraphicnamed
-```
-
 
 ---
 
@@ -2922,15 +1387,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill [fill=yellow!80!black]
-     (0,0) node              {first node}
-  -- (1,1) node[behind path] {second node}
-  -- (2,0) node              {third node};
-```
 
 
 ---
@@ -2942,17 +1398,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \path (0,0) node [red]                    {A}
-        (1,0) node [blue]                   {B}
-        (2,0) node [green, node contents=C]
-        (3,0) node [node contents=D]           ;
-}
-```
-
 
 ---
 
@@ -2962,16 +1407,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill [fill=blue!50, draw=blue, very thick]
-      (0,0)   node [behind path, fill=red!50]   {first node}
-   -- (1.5,0) node [behind path, fill=green!50] {second node}
-   -- (1.5,1) node [behind path, fill=brown!50] {third node}
-   -- (0,1)   node [             fill=blue!30]  {fourth node};
-```
 
 
 ---
@@ -2983,15 +1418,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill[fill=yellow!80!black]
-      (0,0) node {first node}
-   -- (1,1) node[draw, behind path] {second node}
-   -- (0,2) node[fill=red!20,draw,double,rounded corners] {third node};
-```
-
 
 ---
 
@@ -3001,15 +1427,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill[fill=yellow!80!black]
-      (0,0) node                            {first node}
-   -- (1,1) node[ellipse,draw, behind path] {second node}
-   -- (0,2) node[circle,fill=red!20]        {third node};
-```
 
 
 ---
@@ -3021,16 +1438,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz
-  \node  :fill opacity = { 0s="1", 2s="0", begin on=click }
-         :rotate = { 0s="0", 2s="90", begin on=click }
-         [fill = blue!20, draw = blue, ultra thick, circle]
-    {Click me!};
-```
-
 
 ---
 
@@ -3040,12 +1447,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) node foreach \x in {1,2,3} at (\x,0) {\x};
-```
 
 
 ---
@@ -3057,12 +1458,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) node at (1,0) {1} node at (2,0) {2} node at (3,0) {3};
-```
-
 
 ---
 
@@ -3072,13 +1467,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node foreach \x in {1,...,4} foreach \y in {1,2,3}
-            [draw] at (\x,\y) {\x,\y};
-```
 
 
 ---
@@ -3090,14 +1478,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \draw (0,0) node {A} -- (1,1) node {B};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3107,16 +1487,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [every rectangle node/.style={draw},
-   every circle node/.style={draw,double}]
-  \draw (0,0) node[rectangle] {A} -- (1,1) node[circle] {B};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3128,16 +1498,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [execute at begin node={A},
-   execute at end node={D}]
-  \node[execute at begin node={B}] {C};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3147,22 +1507,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \path[yshift=1.5cm,shape=rectangle]
-    (0,0) node(a1){} (1,0) node(a2){}
-    (1,1) node(a3){} (0,1) node(a4){};
-  \filldraw[fill=yellow!80!black] (a1) -- (a2) -- (a3) -- (a4);
-
-  \path[shape=coordinate]
-    (0,0) coordinate(b1) (1,0) coordinate(b2)
-    (1,1) coordinate(b3) (0,1) coordinate(b4);
-  \filldraw[fill=yellow!80!black] (b1) -- (b2) -- (b3) -- (b4);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3174,16 +1518,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)     node[inner sep=0pt,draw] {tight}
-        (0cm,2em) node[inner sep=5pt,draw] {loose}
-        (0cm,4em) node[fill=yellow!80!black]   {default};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3193,21 +1527,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[line width=5pt]
-    (0,0)  node[fill=yellow!80!black] (f) {filled}
-    (2,0)  node[draw]                 (d) {drawn}
-    (1,-2) node[draw,scale=2]         (s) {scaled};
-
-  \draw[->] (1,-1) -- (f);
-  \draw[->] (1,-1) -- (d);
-  \draw[->] (1,-1) -- (s);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3219,21 +1538,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[outer sep=auto]
-  \draw[line width=5pt]
-    (0,0)  node[fill=yellow!80!black] (f) {filled}
-    (2,0)  node[draw]                 (d) {drawn}
-    (1,-2) node[draw,scale=2]         (s) {scaled};
-
-  \draw[->] (1,-1) -- (f);
-  \draw[->] (1,-1) -- (d);
-  \draw[->] (1,-1) -- (s);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3243,15 +1547,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) node[minimum height=1cm,draw] {1cm}
-        (2,0) node[minimum height=0cm,draw] {0cm};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3263,14 +1558,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) node[minimum height=2cm,minimum width=3cm,draw] {$3 \times 2$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3280,15 +1567,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)  node[minimum size=2cm,draw] {square};
-  \draw (0,-2) node[minimum size=2cm,draw,circle] {circle};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3300,15 +1578,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0)  node[shape aspect=1,diamond,draw] {aspect 1};
-  \draw (0,-2) node[shape aspect=2,diamond,draw] {aspect 2};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3318,15 +1587,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every node/.style={dart, shape border uses incircle,
-  inner sep=1pt, draw}}
-\tikz \node foreach \a/\b/\c in {A/0/0, B/45/0, C/0/45, D/45/45}
-            [shape border rotate=\b, rotate=\c] at (\b/36,-\c/36) {\a};
-```
 
 
 ---
@@ -3338,16 +1598,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{every node/.style={isosceles triangle, draw}}
-\begin{tikzpicture}
-  \node {abc};
-  \node [shape border uses incircle] at (2,0) {abc};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3357,21 +1607,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzset{every node/.style={shape=trapezium, draw, shape border uses incircle}}
-\begin{tikzpicture}
-  \node at (0,0)  (A) {A};
-  \node [shape border rotate=30] at (1.5,0) (B) {B};
-  \foreach \s/\t in
-    {left side/base east, bottom side/north, bottom left corner/base}{
-       \fill[red]  (A.\s) circle(1.5pt) (B.\s) circle(1.5pt);
-       \fill[blue] (A.\t) circle(1.5pt) (B.\t) circle(1.5pt);
-  }
-\end{tikzpicture}
-```
 
 
 ---
@@ -3383,21 +1618,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [circle split,draw,double,fill=red!20]
-  {
-    % No \nodepart has been used, yet. So, the following is put in the
-    % ``text'' node part by default.
-    $q_1$
-    \nodepart{lower} % Ok, end ``text'' part, start ``output'' part
-    $00$
-  }; % output part ended.
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3407,13 +1627,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [every lower node part/.style={red}]
-  \node [circle split,draw] {$q_1$ \nodepart{lower} $00$};
-```
 
 
 ---
@@ -3425,16 +1638,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[red]       (0,0) -- +(1,1) node[above]     {red};
-  \draw[text=red]  (1,0) -- +(1,1) node[above]     {red};
-  \draw            (2,0) -- +(1,1) node[above,red] {red};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3444,14 +1647,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[node font=\itshape] (1,0) -- +(1,1) node[above] {italic};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3463,13 +1658,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [node font=\tiny,  minimum height=3em, draw] {tiny};
-\tikz \node [node font=\small, minimum height=3em, draw] {small};
-```
-
 
 ---
 
@@ -3479,14 +1667,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [font=\itshape] {italic};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3498,13 +1678,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [font=\tiny,  minimum height=3em, draw] {tiny};
-\tikz \node [font=\small, minimum height=3em, draw] {small};
-```
-
 
 ---
 
@@ -3514,14 +1687,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [every text node part/.style={font=\itshape},
-       every lower node part/.style={font=\footnotesize}]
-  \node [circle split,draw] {state \nodepart{lower} output};
-```
 
 
 ---
@@ -3533,17 +1698,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node [draw] {
-  \begin{tabular}{cc}
-    upper left & upper right\\
-    lower left & lower right
-  \end{tabular}
-};
-```
-
 
 ---
 
@@ -3553,12 +1707,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz[align=left] \node[draw] {This is a\\demonstration.};
-```
 
 
 ---
@@ -3570,12 +1718,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[align=center] \node[draw] {This is a\\demonstration.};
-```
-
 
 ---
 
@@ -3585,13 +1727,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=right]
-  {This is a\\[-2pt] demonstration text for\\[1ex] alignments.};
-```
 
 
 ---
@@ -3603,13 +1738,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) node[fill=yellow!80!black,text width=3cm]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -3619,13 +1747,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=left]
-  {This is a\\ demonstration text for\\ alignments.};
-```
 
 
 ---
@@ -3637,13 +1758,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=left]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -3653,13 +1767,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush left]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -3671,13 +1778,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=right]
-  {This is a\\ demonstration text for\\ alignments.};
-```
-
 
 ---
 
@@ -3687,13 +1787,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=right]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -3705,13 +1798,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush right]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -3721,13 +1807,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,align=center]
-  {This is a\\ demonstration text for\\ alignments.};
-```
 
 
 ---
@@ -3739,13 +1818,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=center]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -3755,13 +1827,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=flush center]
-  {This is a demonstration text for showing how line breaking works.};
-```
 
 
 ---
@@ -3773,13 +1838,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[fill=yellow!80!black,text width=3cm,align=justify]
-  {This is a demonstration text for showing how line breaking works.};
-```
-
 
 ---
 
@@ -3789,13 +1847,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\def\myheader{\hfil\hfil##\hfil\cr}
-\tikz [node halign header=\myheader] ...
-```
 
 
 ---
@@ -3807,13 +1858,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \node[draw]                  {y};
-\tikz \node[draw,text height=10pt] {y};
-```
-
 
 ---
 
@@ -3823,13 +1867,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw           (0,0) node[anchor=north east] {first node}
-            rectangle (1,1) node[anchor=west] {second node};
-```
 
 
 ---
@@ -3841,19 +1878,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[scale=3,transform shape]
-  % First, center alignment -> wobbles
-  \draw[anchor=center] (0,1)  node{x} -- (0.5,1)  node{y} -- (1,1)  node{t};
-  % Second, base alignment -> no wobble, but too high
-  \draw[anchor=base]   (0,.5) node{x} -- (0.5,.5) node{y} -- (1,.5) node{t};
-  % Third, mid alignment
-  \draw[anchor=mid]    (0,0)  node{x} -- (0.5,0)  node{y} -- (1,0)  node{t};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3863,12 +1887,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above] {above};
-```
 
 
 ---
@@ -3880,12 +1898,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above=2pt] {above};
-```
-
 
 ---
 
@@ -3895,12 +1907,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above left] {above left};
-```
 
 
 ---
@@ -3912,12 +1918,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \fill (0,0) circle (2pt) node[above right] {above right};
-```
-
 
 ---
 
@@ -3927,22 +1927,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=8mm]
-  \node (root) {root}
-    child { node (a) {a} }
-    child { node (b) {b}
-      child { node (d) {d} }
-      child { node (e) {e} } }
-    child { node (c) {c} };
-
-  \node[draw=red,inner sep=0pt,thick,ellipse,fit=(root) (b) (d) (e)] {};
-  \node[draw=blue,inner sep=0pt,thick,ellipse,fit=(b) (c) (e)] {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3954,24 +1938,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=8mm]
-  \node (root) {root}
-    child { node (a) {a} }
-    child { node (b) {b}
-      child { node (d) {d} }
-      child { node (e) {e} } }
-    child { node (c) {c} };
-
-  \begin{scope}[on background layer]
-    \node[fill=red!20,inner sep=0pt,ellipse,fit=(root) (b) (d) (e)] {};
-    \node[fill=blue!20,inner sep=0pt,ellipse,fit=(b) (c) (e)] {};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3981,20 +1947,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw}]
-  \draw[help lines](0,0) grid (3,2);
-  \draw            (1,0) node{A}
-                   (2,0) node[rotate=90,scale=1.5] {B};
-  \draw[rotate=30] (1,0) node{A}
-                   (2,0) node[rotate=90,scale=1.5] {B};
-  \draw[rotate=60] (1,0) node[transform shape] {A}
-                   (2,0) node[transform shape,rotate=90,scale=1.5] {B};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4006,13 +1958,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) -- (3,1)
-    node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
-
 
 ---
 
@@ -4022,16 +1967,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (0,0) grid (3,2);
-  \draw (2,0) arc [x radius=1, y radius=2, start angle=0, end angle=180]
-              node foreach \t in {0,0.125,...,1} [pos=\t,auto] {\t};
-}
-```
 
 
 ---
@@ -4043,13 +1978,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) .. controls +(right:3.5cm) and +(right:3.5cm) .. (0,3)
-  node foreach \p in {0,0.125,...,1} [pos=\p]{\p};
-```
-
 
 ---
 
@@ -4059,13 +1987,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) |- (3,1)
-  node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
 
 
 ---
@@ -4077,13 +1998,6 @@ main-figure2.pdf
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) -| (3,1)
-  node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
-```
-
 
 ---
 
@@ -4093,20 +2007,6 @@ main-figure2.pdf
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[auto]
-  \draw[help lines,use as bounding box] (0,-.5) grid (4,5);
-
-  \draw (0.5,0) .. controls (9,6) and (-5,6) .. (3.5,0)
-    node foreach \pos in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
-         [pos=\pos,swap,fill=red!20] {\pos}
-    node foreach \pos in {0.025,0.2,0.4,0.6,0.8,0.975}
-         [pos=\pos,fill=blue!20] {\pos};
-\end{tikzpicture}
-```
 
 
 ---

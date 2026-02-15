@@ -18,39 +18,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: pgfplots  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        clip=false,
-        small,
-        title=\texttt{near ticklabel} (\texttt{opposite}),
-        min=0, max=1,
-    ]
-        \node [draw=yellow,anchor=near xticklabel,font=\small]
-            (namex) at (xticklabel cs:0.2) {\texttt{near xticklabel}.};
-        \fill (xticklabel cs:0.2) circle(2pt);
-        \draw [green,-stealth] (xticklabel* cs:0.2) -- (xticklabel cs:0.2);
-        \draw [blue,-stealth]  (xticklabel cs:0.2)  -- (namex.center);
-        \draw [red,-stealth]   (namex.north east)   -- (xticklabel cs:0.2);
-
-        \node [draw=yellow,anchor=near xticklabel opposite,font=\small]
-            (namexx) at (xticklabel* cs:0.6) {\texttt{near xticklabel opposite}.};
-        \fill [red] (xticklabel* cs:0.6) circle(2pt);
-        \draw [blue,-stealth]       (xticklabel* cs:0.6) -- (namexx.center);
-        \draw [red,thick,-stealth]  (namexx.south west)  -- (xticklabel* cs:0.6);
-
-        \node [draw=yellow,anchor=near yticklabel,font=\small]
-            (name) at (yticklabel cs:1) {\texttt{near yticklabel}.};
-        \fill (yticklabel cs:1) circle(2pt);
-        \draw [green,-stealth] (yticklabel* cs:1) -- (yticklabel cs:1);
-        \draw [blue,-stealth]  (yticklabel cs:1)  -- (name.center);
-        \draw [red,-stealth]   (name.north west)  -- (yticklabel cs:1);
-    \end{axis}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -60,49 +27,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: pgfplots  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-    \begin{axis}[
-        clip=false,
-        small,
-        title=\texttt{near ticklabel align},
-        min=0, max=1,
-        /tikz/node style/.style={
-            draw=yellow,
-            anchor=near yticklabel,
-            font=\tiny,
-        },
-    ]
-        \node [node style,/pgfplots/near ticklabel align=center]
-            (C) at (yticklabel cs:0) {\texttt{center}.};
-
-        \node [node style,/pgfplots/near ticklabel align=inside]
-            (I) at (yticklabel cs:1) {\texttt{inside}.};
-
-        \node [node style,/pgfplots/near ticklabel align=outside]
-            (O) at (yticklabel cs:1) {\texttt{outside}.};
-
-        \fill (yticklabel cs:0) circle(2pt);
-        \fill (yticklabel cs:1) circle(2pt);
-
-        \fill [blue] (C.center)     circle(1pt);
-        \fill [blue] (I.south west) circle(1pt);
-        \fill [blue] (O.north east) circle(1pt);
-
-        \draw [green,-stealth]  (yticklabel* cs:0) -- (yticklabel cs:0);
-        \draw [blue]            (yticklabel cs:0)  -- (C.center);
-        \draw [red,-stealth]    (C.north west)     -- (yticklabel cs:0);
-
-        \draw [green,-stealth]  (yticklabel* cs:1) -- (yticklabel cs:1);
-        \draw [blue]            (yticklabel cs:1)  -- (O.north east);
-        \draw [red,-stealth]    (O.north west)     -- (yticklabel cs:1);
-        \draw [red,-stealth]    (I.north west)     -- (yticklabel cs:1);
-    \end{axis}
-\end{tikzpicture}
-```
 
 
 ---
@@ -114,26 +38,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [root concept/.append style={concept color=blue!20,minimum size=2cm},
-   level 1 concept/.append style={sibling angle=45},
-   mindmap]
-  \node [concept] {Root concept}
-    [clockwise from=45]
-    child { node[concept] (c1) {child}}
-    child { node[concept] (c2) {child}}
-    child { node[concept] (c3) {child}};
-  \begin{pgfonlayer}{background}
-    \draw [concept connection]  (c1) edge (c2)
-                                     edge (c3)
-                                (c2) edge (c3);
-  \end{pgfonlayer}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -143,19 +47,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place]      (waiting)                            {};
-  \node[place]      (critical)       [below=of waiting]  {};
-  \node[place]      (semaphore)      [below=of critical] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
-  \draw [->] (enter critical.east) -- (critical.west);
-\end{tikzpicture}
-```
 
 
 ---
@@ -167,21 +58,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place]      (waiting)                            {};
-  \node[place]      (critical)       [below=of waiting]  {};
-  \node[place]      (semaphore)      [below=of critical] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
-  \draw [->] (enter critical.east) -- (critical.west);
-  \draw [->] (waiting.west) .. controls +(left:5mm) and +(up:5mm)
-                            .. (enter critical.north);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -191,21 +67,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place]      (waiting)                            {};
-  \node[place]      (critical)       [below=of waiting]  {};
-  \node[place]      (semaphore)      [below=of critical] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
-  \draw [->] (enter critical) -- (critical);
-  \draw [->] (waiting) .. controls +(left:8mm) and +(up:8mm)
-                       .. (enter critical);
-\end{tikzpicture}
-```
 
 
 ---
@@ -217,20 +78,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place]      (waiting)                            {};
-  \node[place]      (critical)       [below=of waiting]  {};
-  \node[place]      (semaphore)      [below=of critical] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
-  \draw [->] (enter critical) to                 (critical);
-  \draw [->] (waiting)        to [out=180,in=90] (enter critical);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -240,21 +87,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[place]      (waiting)                            {};
-  \node[place]      (critical)       [below=of waiting]  {};
-  \node[place]      (semaphore)      [below=of critical] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
-  \draw [->] (enter critical) to                 (critical);
-  \draw [->] (waiting)        to [bend right=45] (enter critical);
-  \draw [->] (enter critical) to [bend right=45] (semaphore);
-\end{tikzpicture}
-```
 
 
 ---
@@ -266,20 +98,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[auto,bend right]
-  \node (a) at (0:1) {$0^\circ$};
-  \node (b) at (120:1) {$120^\circ$};
-  \node (c) at (240:1) {$240^\circ$};
-
-  \draw (a) to node {1} node [swap] {1'} (b)
-        (b) to node {2} node [swap] {2'} (c)
-        (c) to node {3} node [swap] {3'} (a);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -289,22 +107,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{scope}[on background layer]
-    \node (r1) [fill=black!10,rounded corners,fit=(w1)(w2)(e1)(e2)(l1)(l2)] {};
-    \node (r2) [fill=black!10,rounded corners,fit=(w1')(w2')(e1')(e2')(l1')(l2')] {};
-  \end{scope}
-
-  \draw [shorten >=1mm,->,thick,decorate,
-         decoration={snake,amplitude=.4mm,segment length=2mm,
-                     pre=moveto,pre length=1mm,post length=2mm}]
-    (r1) -- (r2) node [above=1mm,midway,text width=3cm,align=center]
-      {replacement of the \textcolor{red}{capacity} by \textcolor{red}{two places}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -316,23 +118,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[inner sep=0pt,thick,
-                    dot/.style={fill=blue,circle,minimum size=3pt}]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) {};
-  \node[dot] (b) at (2,2) {};
-  \node[dot] (c) at (1,2) {};
-  \node[dot] (d) at (1.25,0.25) {};
-  \node[dot] (e) at (1.75,1.5) {};
-
-  \node[draw=red,   fit=(a) (b) (c) (d) (e)] {box};
-  \node[draw,circle,fit=(a) (b) (c) (d) (e)] {};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -342,23 +127,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[inner sep=0pt,thick,
-                    dot/.style={fill=blue,circle,minimum size=3pt}]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) {};
-  \node[dot] (b) at (2,2) {};
-  \node[dot] (c) at (1,2) {};
-  \node[dot] (d) at (1.25,0.25) {};
-  \node[dot] (e) at (1.75,1.5) {};
-
-  \node[draw=red,fit=(a) (b) (c) (d) (e)] (fit) {};
-  \node[below] at (fit.north) {box};
-\end{tikzpicture}
-```
 
 
 ---
@@ -370,22 +138,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[inner sep=0pt,thick,
-  dot/.style={fill=blue,circle,minimum size=3pt}]
-  \draw[help lines] (0,0) grid (3,2);
-  \node[dot] (a) at (1,1) {};
-  \node[dot] (b) at (2,2) {};
-  \node[dot] (c) at (1,2) {};
-  \node[dot] (d) at (1.25,0.25) {};
-  \node[dot] (e) at (1.75,1.5) {};
-  \node[draw, fit=(a) (b) (c) (d) (e)] {};
-  \node[draw=red, rotate fit=30, fit=(a) (b) (c) (d) (e)] {};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -395,23 +147,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[node distance=5mm]
-  \node (dot)   [terminal]                {.};
-  \node (digit) [terminal,right=of dot]   {digit};
-  \node (E)     [terminal,right=of digit] {E};
-
-  \draw [help lines] let \p1 = (dot.base),
-                         \p2 = (digit.base),
-                         \p3 = (E.base)
-                     in (-.5,\y1) -- (3.5,\y1)
-                        (-.5,\y2) -- (3.5,\y2)
-                        (-.5,\y3) -- (3.5,\y3);
-\end{tikzpicture}
-```
 
 
 ---
@@ -423,29 +158,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[node distance=5mm and 5mm]
-  \node (dot)   [terminal]                        {.};
-  \node (digit) [terminal,right=of dot]           {digit};
-  \node (E)     [terminal,right=of digit]         {E};
-
-  \path (dot)   edge[->] (digit)  % simple edges
-        (digit) edge[->] (E);
-
-  \draw [->]
-     % start right of digit.east, that is, at the point that is the
-     % linear combination of digit.east and the vector (2mm,0pt). We
-     % use the ($ ... $) notation for computing linear combinations
-     ($ (digit.east) + (2mm,0) $)
-     % Now go down
-     -- ++(0,-.5)
-     % And back to the left of digit.west
-     -| ($ (digit.west) - (2mm,0) $);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -455,19 +167,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [matrix of nodes]
-  {
-    8 & 1 & 6 \\
-    3 & 5 & \node[red]{7}; \draw(0,0) circle(10pt);\\
-    4 & 9 & 2 \\
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -479,21 +178,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (4,2);
-  \node [matrix,fill=red!20,draw=blue,very thick] (my matrix) at (2,1)
-  {
-    \draw (0,0)   circle (4mm); & \node[rotate=10] {Hello};        \\
-    \draw (0.2,0) circle (2mm); & \fill[red]   (0,0) circle (3mm); \\
-  };
-
-  \draw [very thick,->] (0,0) |- (my matrix.west);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -503,23 +187,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,column sep=1cm,nodes=draw]
-  {
-    \node(a) {123}; & \node (b) {1};   & \node {1}; \\
-    \node    {12};  & \node     {12};  & \node {1}; \\
-    \node(c) {1};   & \node (d) {123}; & \node {1}; \\
-  };
-  \draw [red,thick]  (a.east) -- (a.east |- c)
-                     (d.west) -- (d.west |- b);
-  \draw [<->,red,thick] (a.east) -- (d.west |- b)
-    node [above,midway] {1cm};
-\end{tikzpicture}
-```
 
 
 ---
@@ -531,20 +198,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,column sep={1cm,between origins},nodes=draw]
-  {
-    \node(a) {123}; & \node (b) {1};   & \node {1}; \\
-    \node    {12};  & \node     {12};  & \node {1}; \\
-    \node    {1};   & \node     {123}; & \node {1}; \\
-  };
-  \draw [<->,red,thick] (a.center) -- (b.center) node [above,midway] {1cm};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -554,20 +207,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,row sep=1cm,nodes=draw]
-  {
-    \node (a) {123}; & \node {1};   & \node {1}; \\
-    \node (b) {12};  & \node {12};  & \node {1}; \\
-    \node     {1};   & \node {123}; & \node {1}; \\
-  };
-  \draw [<->,red,thick] (a.south) -- (b.north) node [right,midway] {1cm};
-\end{tikzpicture}
-```
 
 
 ---
@@ -579,20 +218,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,row sep={1cm,between origins},nodes=draw]
-  {
-    \node (a) {123}; & \node {1};   & \node {1}; \\
-    \node (b) {12};  & \node {12};  & \node {1}; \\
-    \node     {1};   & \node {123}; & \node {1}; \\
-  };
-  \draw [<->,red,thick] (a.center) -- (b.center) node [right,midway] {1cm};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -602,20 +227,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,nodes=draw,column sep=1mm]
-  {
-    \node {8}; &[2mm] \node(a){1}; &[1cm,between origins] \node(b){6}; \\
-    \node {3}; &      \node   {5}; &                      \node   {7}; \\
-    \node {4}; &      \node   {9}; &                      \node   {2}; \\
-  };
-  \draw [<->,red,thick] (a.center) -- (b.center) node [above,midway] {11mm};
-\end{tikzpicture}
-```
 
 
 ---
@@ -627,21 +238,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \matrix [draw,nodes=draw,column sep={1cm,between origins}]
-  {
-    \node (a) {8}; & \node (b) {1}; &[between borders] \node (c) {6}; \\
-    \node     {3}; & \node     {5}; &                  \node     {7}; \\
-    \node     {4}; & \node     {9}; &                  \node     {2}; \\
-  };
-  \draw [<->,red,thick] (a.center) -- (b.center) node [above,midway] {10mm};
-  \draw [<->,red,thick] (b.east) -- (c.west) node [above,midway] {10mm};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -651,21 +247,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (3,2);
-  \matrix[matrix anchor=inner node.south,anchor=base,row sep=3mm] at (1,1)
-  {
-    \node {a}; & \node             {b}; & \node {c}; & \node {d}; \\
-    \node {a}; & \node(inner node) {b}; & \node {c}; & \node {d}; \\
-    \node {a}; & \node             {b}; & \node {c}; & \node {d}; \\
-  };
-  \draw (inner node.south) circle (1pt);
-\end{tikzpicture}
-```
 
 
 ---
@@ -677,17 +258,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz
-  \matrix [ampersand replacement=\&]
-  {
-    \draw (0,0)   circle (4mm); \& \node[rotate=10] {Hello};        \\
-    \draw (0.2,0) circle (2mm); \& \fill[red]   (0,0) circle (3mm); \\
-  };
-```
-
 
 ---
 
@@ -697,23 +267,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \pgfanimateattribute{translate}{
-    whom = node, begin on = {click},
-    exit control={1}{0},
-    entry = {0s}{\pgfpointorigin},
-    linear, % revert to default
-    entry = {1s}{\pgfpoint{0cm}{-5mm}},
-    entry control={0}{1},
-    entry = {2s}{\pgfpoint{0cm}{-10mm}} }
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
 
 
 ---
@@ -725,23 +278,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \pgfanimateattribute{translate}{
-    whom = node, begin on = {click},
-    entry = {0s}{\pgfpointorigin},
-    stay,
-    entry = {1s}{\pgfpoint{0cm}{-5mm}},
-    linear,
-    entry = {2s}{\pgfpoint{0cm}{-10mm}},
-    entry = {3s}{\pgfpoint{0cm}{-15mm}} }
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
-
 
 ---
 
@@ -751,22 +287,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \pgfanimateattribute{translate}{
-    whom = node, begin on = {click},
-    entry = {0s}{\pgfpointorigin},
-    jump,
-    entry = {1s}{\pgfpoint{0cm}{-1cm}},
-    linear,
-    entry = {2s}{\pgfpoint{0cm}{-2cm}} }
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
 
 
 ---
@@ -778,21 +298,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \pgfanimateattribute{path}{
-    whom = p.path, begin on = {click, of next=node}, arrows = ->,
-    entry = {1s}{\pgfpathmoveto{\pgfpoint{1cm}{0cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{1cm}}},
-    entry = {3s}{\pgfpathmoveto{\pgfpoint{1cm}{1cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{5mm}}}}
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-  \draw [very thick, blue, name=p] (1,0.5) -- (2,0.5);
-}
-```
-
 
 ---
 
@@ -802,23 +307,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \pgfanimateattribute{path}{
-    whom = p.path, begin on = {click, of next=node}, arrows = ->,
-    base = {\pgfpathmoveto{\pgfpoint{1cm}{5mm}}
-            \pgfpathlineto{\pgfpoint{2cm}{5mm}}},
-    entry = {1s}{\pgfpathmoveto{\pgfpoint{1cm}{0cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{1cm}}},
-    entry = {3s}{\pgfpathmoveto{\pgfpoint{1cm}{1cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{5mm}}}}
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-  \draw [very thick, blue, name=p];
-}
-```
 
 
 ---
@@ -830,26 +318,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \pgfanimateattribute{path}{
-    whom = p.path, begin on = {click, of next=node}, arrows = ->,
-    shorten > = 2mm,
-    base = {\pgfpathmoveto{\pgfpoint{1cm}{5mm}}
-            \pgfpathlineto{\pgfpoint{2cm}{5mm}}},
-    entry = {1s}{\pgfpathmoveto{\pgfpoint{1cm}{0cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{1cm}}},
-    entry = {3s}{\pgfpathmoveto{\pgfpoint{1cm}{1cm}}
-                 \pgfpathlineto{\pgfpoint{2cm}{5mm}}}}
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-  \draw              (0.9,-0.1) grid (2.1,1.1);
-  \draw [help lines] (0.9,-0.1) grid[step=1mm] (2.1,1.1);
-  \draw [very thick, blue, name=p];
-}
-```
-
 
 ---
 
@@ -859,24 +327,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz [very thick] {
-  \pgfanimateattribute{view}{
-    whom = me.view, begin on = {click, of next=node}, freeze at end,
-    entry = {0s}{{\pgfpoint{0mm}{0mm}}{\pgfpoint{20mm}{20mm}}},
-    entry = {2s}{{\pgfpoint{10mm}{10mm}}{\pgfpoint{15mm}{15mm}}} }
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-
-  \draw [green!50!black] (1.2,-0.8) rectangle (2.7,0.8);
-  \begin{scope}[name = me, view = {(0,0) (2,2) at (1.2,-0.8) (2.7,0.8)}]
-    \draw [red] (10mm,10mm) rectangle (15mm,15mm);
-    \node at (10mm,10mm) [circle, fill=red, text=white, font=\tiny] {red};
-  \end{scope}
-}
-```
 
 
 ---
@@ -888,32 +338,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [very thick] {
-  \pgfanimateattribute{view}{
-    whom = me.view, begin on = {click, of next=n1}, freeze at end,
-    entry = {0s}{\pgfpoint{0mm}{0mm}}{\pgfpoint{2cm}{2cm}},
-    entry = {2s}{{\pgfpoint{5mm}{5mm}}{\pgfpoint{15mm}{20mm}}} }
-  \pgfanimateattribute{view}{
-    whom = me.view, begin on = {click, of next=n2}, freeze at end,
-    entry = {0s}{\pgfpoint{0mm}{0mm}}{\pgfpoint{2cm}{2cm}},
-    entry = {2s}{{\pgfpoint{10mm}{10mm}}{\pgfpoint{15mm}{15mm}}} }
-  \node (n1) at (0,0) [fill = blue!20, draw = blue, circle] {Zoom blue};
-  \node (n2) at (2,0) [fill = blue!20, draw = blue, circle] {Zoom red};
-
-  \draw [green!50!black] (4,0) rectangle (6,2);
-  \begin{scope}[name = me, view = {(0,0) (2,2) at (4,0) (6,2)}]
-    \draw [blue] (5mm,5mm) rectangle (15mm,20mm);
-    \node at (5mm,5mm) [circle, fill=blue, text=white] {blue};
-
-    \draw [red] (10mm,10mm) rectangle (15mm,15mm);
-    \node at (10mm,10mm) [circle, fill=red, text=white, font=\tiny] {red};
-  \end{scope}
-}
-```
-
 
 ---
 
@@ -923,26 +347,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
-  \draw[help lines] (0,0) grid (3,2);
-
-  \node[state,initial]  (q_0)                      {$q_0$};
-  \node[state]          (q_1) [above right=of q_0] {$q_1$};
-  \node[state]          (q_2) [below right=of q_0] {$q_2$};
-  \node[state,accepting](q_3) [below right=of q_1] {$q_3$};
-
-  \path[->] (q_0) edge              node        {0} (q_1)
-                  edge              node [swap] {1} (q_2)
-            (q_1) edge              node        {1} (q_3)
-                  edge [loop above] node        {0} ()
-            (q_2) edge              node [swap] {0} (q_3)
-                  edge [loop below] node        {1} ();
-\end{tikzpicture}
-```
 
 
 ---
@@ -954,18 +358,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (3,2);
-
-  \node[state without output] {$q_0$};
-
-  \node[state with output] at (2,0) {$q_1$ \nodepart{lower} $00$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -975,17 +367,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[sibling distance=15mm]
-  \node[rectangle,draw] {root}
-    child {node[circle,draw,yshift=-5mm] (left node) {left}}
-    child {node[ellipse,draw] (right node) {right}};
-  \draw[dashed,->] (left node) -- (right node);
-\end{tikzpicture}
-```
 
 
 ---
@@ -997,26 +378,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=2em]
-  \node {C}
-    child[grow=up]    {node {H}}
-    child[grow=left]  {node {H}}
-    child[grow=down]  {node {H}}
-    child[grow=right] {node {C}
-        child[grow=up]    {node {H}}
-        child[grow=right] {node {H}}
-        child[grow=down]  {node {H}}
-      edge from parent[double]
-        coordinate (wrong)
-    };
-  \draw[<-,red] ([yshift=-2mm]wrong) -- +(0,-1)
-    node[below]{This is wrong!};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1026,19 +387,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[rectangle,draw] (a) at (0,0) {start node};
-  \node[rectangle,draw] (b) at (2,1) {end};
-
-  \draw (a) -- (b)
-    node[coordinate,midway] {}
-      child[grow=100,<-] {node[above] {the middle is here}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1050,21 +398,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[level distance=1cm]
-  \node [rectangle,draw] (a) at (0,0) {root}
-  [growth parent anchor=south] child;
-
-  \node [rectangle,draw] (b) at (2,0) {root}
-  [growth parent anchor=north east] child;
-
-  \draw [red,thick,dashed] (a.south) -- (a-1);
-  \draw [red,thick,dashed] (b.north east) -- (b-1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1074,24 +407,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=circle,shape example] {Circle\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/above, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, 10/right, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1103,24 +418,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=rectangle,shape example] {Rectangle\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/above, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, 10/right, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1130,24 +427,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=diamond,shape example] {Diamond\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/above, east/right,
-     mid/above,
-     base/below,
-     south west/below left, south/below, south east/below right,
-     text/left, 10/right, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1159,24 +438,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=ellipse,shape example] {Ellipse\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/above, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, 10/right, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1186,19 +447,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth, every node/.style={text=black},
-    shape border uses incircle, shape border rotate=60]
-  \node [trapezium, fill=gray!25, minimum width=2cm] (t) {};
-  \draw [red, <->] (t.bottom left corner) -- (t.bottom right corner)
-    node [midway, below right] {width};
-  \draw [red, <->] (t.top side) -- (t.bottom side)
-    node [at start, above] {height};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1210,18 +458,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
-\begin{tikzpicture}
-  \draw [help lines] grid (3,2);
-  \node [my node=red]                                      {A};
-  \node [my node=green, minimum height=1.5cm] at (1, 1.25) {B};
-  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    {C};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1231,19 +467,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
-\begin{tikzpicture}
-\tikzset{trapezium stretches=true}
-  \draw [help lines] grid (3,2);
-  \node [my node=red]                                      {A};
-  \node [my node=green, minimum height=1.5cm] at (1, 1.25) {B};
-  \node [my node=blue,  minimum width=1.5cm]  at (2, 0)    {C};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1255,20 +478,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikzset{my node/.style={trapezium, fill=#1!20, draw=#1!75, text=black}}
-\begin{tikzpicture}
-  \draw [help lines] grid (3,2);
-  \node [my node=red]                      at (1.5,.25)  {A};
-  \node [my node=green, minimum width=3cm, trapezium stretches]
-    at (1.5,1)    {B};
-  \node [my node=blue,  minimum width=3cm, trapezium stretches body]
-    at (1.5,1.75) {C};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1278,28 +487,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=trapezium, shape example, inner sep=1cm]
-    {Trapezium\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {bottom left corner/below, top right corner/right,
-     top left corner/left,     bottom right corner/below,
-     bottom side/below,        left side/left,
-     right side/right,         top side/above,
-     center/above,   text/below,      mid/right,       base/below,
-     mid west/right, base west/below, mid east/left,   base east/below,
-     west/above,     east/above,      north/below,     south/above,
-     north west/above, north east/above,
-     south west/below, south east/below, 160/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1311,25 +498,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=semicircle,shape border rotate=0,shape example, inner sep=1cm]
-    {Semicircle\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {apex/above,      arc start/below, arc end/below,  chord center/below,
-     center/above,    base/below,      mid/right,      text/left,
-     base west/below, base east/below, mid west/left, mid east/right,
-     north/below,     south/above,     east/above,     west/above,
-     north west/above left, north east/above right,
-     south west/below,      south east/below, 30/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1339,18 +507,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \a in {3,...,7}{
-    \draw[red, dashed] (\a*2,0)  circle(0.5cm);
-    \node[regular polygon, regular polygon sides=\a, draw,
-     inner sep=0.3535cm] at (\a*2,0) {};
-   }
-\end{tikzpicture}
-```
 
 
 ---
@@ -1362,17 +518,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \foreach \a in {3,...,7}{
-    \draw[blue, dashed] (\a*2,0)  circle(0.5cm);
-    \node[regular polygon, regular polygon sides=\a, minimum size=1cm, draw] at (\a*2,0) {};
-   }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1382,24 +527,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=regular polygon, shape example, inner sep=.5cm]
-    {Regular Polygon\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {corner 1/above, corner 2/above, corner 3/left, corner 4/right, corner 5/above,
-     side 1/above,   side 2/left,    side 3/below,  side 4/right,   side 5/above,
-     center/above, text/left,  mid/right,   base/below, 75/above,
-     west/above,   east/above, north/below, south/above,
-     north east/below, south east/above, north west/below, south west/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1411,18 +538,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-   \draw [help lines]   (0,0) grid (2,2);
-   \draw [blue, dashed]  (1,1) circle(1cm);
-   \draw [red, dashed] (1,1) circle(.5cm);
-   \node [star, star point height=.5cm, minimum size=2cm, draw]
-       at (1,1) {S};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1432,25 +547,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=star, star points=5, star point ratio=1.65, shape example, inner sep=1.5cm]
-    {Star\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-     {inner point 1/above, inner point 2/above, inner point 3/below, inner point 4/right,
-      inner point 5/above, outer point 1/above, outer point 2/above, outer point 3/left,
-      outer point 4/right, outer point 5/above,
-      center/above, text/left,  mid/right,   base/below, 75/above,
-         west/above,   east/above, north/below, south/above,
-         north east/below, south east/above, north west/below, south west/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1462,19 +558,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth, every node/.style={text=black},
-    shape border uses incircle, shape border rotate=-30]
-  \node [isosceles triangle, fill=gray!25, minimum width=1.5cm] (t) {};
-  \draw [red, <->] (t.left corner) -- (t.right corner)
-    node [midway, above left] {width};
-  \draw [red, <->] (t.apex) -- (t.lower side)
-    node [midway, above right] {height};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1484,20 +567,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[paint/.style={draw=#1!75, fill=#1!20}]
-  \tikzset{every node/.style={isosceles triangle, draw, inner sep=0pt,
-    anchor=left corner, shape border rotate=90}}
-  \draw[help lines] grid(4,2);
-  \foreach \a/\c in {1.5/blue, 1/green, 0.5/red}{
-    \node[paint=\c, minimum height=\a cm] at (0,0) {};
-    \node[paint=\c, minimum width=\a cm] at (2,0) {};
-  }
-\end{tikzpicture}
-```
 
 
 ---
@@ -1509,20 +578,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[paint/.style={draw=#1!75, fill=#1!20}]
-  \tikzset{every node/.style={isosceles triangle, draw, inner sep=0pt,
-     anchor=south, shape border rotate=90, isosceles triangle stretches}}
-  \draw[help lines] grid(4,2);
-  \foreach \a/\c in {1.5/blue, 1/green, 0.5/red}{
-    \node[paint=\c, minimum height=\a cm, minimum width=1.5cm] at (0.75,0) {};
-    \node[paint=\c, minimum width=\a cm, minimum height=1.5cm] at (3,0)    {};
-  }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1532,27 +587,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=isosceles triangle, shape example, inner xsep=1cm]
-    {Isosceles Triangle\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {apex/above,      left corner/right, right corner/right,
-     left side/above, right side/below,  lower side/right,
-     center/above,    text/right,        150/above,
-     mid/right,       mid west/above,    mid east/right,
-     base/below,      base west/below,   base east/below,
-     west/above, east/below, north/below, south/above,
-     north west/below, north east/below,
-     south west/above, south east/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1564,27 +598,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=kite, shape example, inner sep=1.5cm]
-    {Kite\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {upper vertex/above, left vertex/above,    lower vertex/below,
-     right vertex/above, upper left side/above, upper right side/above,
-     lower left side/below, lower right side/below,
-     center/above,   text/left,       mid/right,        base/below,
-     mid west/left,  base west/below, mid east/right,   base east/below,
-     west/above,     east/above,      north/below,     south/above,
-     north west/left, north east/right,
-     south west/above, south east/above, 110/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1594,19 +607,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-   \node[dart, draw, gray, shape border uses incircle, shape border rotate=45]
-       (d) {dart};
-   \draw [<->] (d.tip)++(202.5:.5cm) arc(202.5:247.5:.5cm);
-   \node [left=.5cm] at (d.tip) {tip angle};
-   \draw [<->] (d.tail center)++(157.5:.5cm) arc(157.5:292.5:.5cm);
-   \node [right] at (d.tail center) {tail angle};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1618,26 +618,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=dart, shape border rotate=90, shape example, inner sep=1.25cm]
-    {Dart\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {tip/above,       tail center/below, right tail/below,
-     left tail/below, right tail/below,  left side/left,   right side/right,
-     center/above,    text/left,         mid/right,        base/below,
-     mid west/left,   base west/below,   mid east/right,   base east/below,
-     west/above,      east/above,        north/below,      south/above,
-     north west/left, north east/right,  south west/above, south east/above,
-     110/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1647,24 +627,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=circular sector,  style=shape example, inner sep=1cm]
-      {Circular Sector\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-   {sector center/above, arc start/below, arc end/below, arc center/below,
-    center/above,        base/below,      mid/right,     text/below,
-    north/below,         south/above,     east/below,    west/above,
-    north west/above left, north east/above right,
-    south west/below,      south east/below, 30/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1676,19 +638,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth]
-  \node [cylinder, gray!50, rotate=30, draw,
-    minimum height=2cm, minimum width=1cm] (c) {Cylinder};
-  \draw[red, <->] (c.top)   -- (c.bottom)
-    node [at end, below, black]   {height};
-  \draw[red, <->] (c.north) -- (c.south)
-    node [at start, above, black] {width};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1698,27 +647,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=cylinder, shape example, aspect=.5, inner xsep=3cm,
-        inner ysep=1cm] {Cylinder\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {before top/above,    top/above,       after top/below,
-     before bottom/below, bottom/above,    after bottom/above,
-     mid/right,           mid west/right,  mid east/left,
-     base/below,          base west/below, base east/below,
-     center/above,        text/above,      shape center/right,
-     west/right, east/left, north/above, south/below,
-     north west/below, north east/above,
-     south west/above, south east/below, 160/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1730,17 +658,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] grid (3,2);
-  \draw [blue, dashed] (1.5, 1) ellipse (1.5cm and 1cm);
-  \node [cloud, cloud puffs=9, draw, minimum width=3cm, minimum height=2cm]
-    at (1.5, 1) {};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1750,26 +667,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=cloud, style=shape example, cloud puffs=11, aspect=1.5,
-       cloud puff arc=120,inner ysep=1cm] {Cloud\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-   {puff 1/above, puff 2/above,  puff 3/above,  puff 4/below,
-    puff 5/left,  puff 6/below,  puff 7/below,  puff 8/right,
-    puff 9/below, puff 10/above, puff 11/above, 70/right,
-    center/above, base/below,    mid/right,     text/left,
-    north/below,  south/below,   east/above,    west/above,
-    north west/left,             north east/right,
-    south west/below,            south east/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1781,16 +678,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] grid(3,2);
-  \node[starburst, draw, minimum width=3cm, minimum height=2cm]
-    at (1.5, 1) {\bf BOOM!};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1800,29 +687,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=starburst, starburst points=9, starburst point height=3.5cm,
-        style=shape example,inner sep=1cm]
-    {Starburst\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {outer point 1/above, outer point 2/above, outer point 3/right,
-     outer point 4/above, outer point 5/below, outer point 6/above,
-     outer point 7/left,  outer point 8/above, outer point 9/above,
-     inner point 1/below, inner point 2/above, inner point 3/left,
-     inner point 4/above, inner point 5/above, inner point 6/above,
-     inner point 7/below, inner point 8/above, inner point 9/below,
-     center/above, text/left,   mid/right, base/below, 80/above,
-     north/below,  south/below, east/left, west/right,
-     north east/below, south west/below, south east/below, north west/below}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1834,26 +698,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=signal, signal from=west, shape example, inner sep=2cm]
-    {Signal\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {text/left,   center/above,    70/above,
-     base/below,  base east/below, base west/below,
-     mid/right,   mid east/above left,  mid west/above left,
-     north/above,      south/below,
-     east/above,       west/above,
-     north west/above, north east/above,
-     south west/below, south east/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1863,18 +707,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[-stealth]
-  \node[tape, draw, gray, minimum width=2cm](t){Tape};
-  \draw [blue]([yshift=5pt] t.north west) -- ([yshift=5pt]t.north east)
-         node[midway, above, black]{in and out};
-  \draw [blue]([yshift=-5pt]t.south east) -- ([yshift=-5pt]t.south west)
-         node[sloped, allow upside down, midway, above, black]{in and out};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1886,18 +718,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth]
-  \draw [help lines] grid(3,2);
-  \node [tape, fill, minimum size=2cm, red!50, tape bend top=none,
-         tape bend height=1cm] at (1.5,1.5) (t) {};
-  \draw [|<->|, blue] (1.5,0) -- (1.5,1)
-         node [at end, above, black]{tape bend height};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1907,25 +727,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=tape, tape bend height=1cm, shape example, inner xsep=3cm]
-    {Tape\vrule width1pt height2cm};
-   \foreach \anchor/\placement in
-    {text/left,  center/above,    60/above,
-     base/below, base east/below, base west/below,
-     mid/right,  mid east/left,   mid west/right,
-     north/above, south/below,  east/above, west/above,
-     north west/above, north east/above,
-     south west/below, south east/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1937,27 +738,6 @@ Showing items **1-200** of **218** | Page **1** of **2**
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-\node[name=s,shape=magnetic tape,shape example,inner sep=0.75cm,
-magnetic tape tail extend=0.5cm]
-  {Magnetic Tape\vrule width 1pt height 2cm};
-\foreach \anchor/\placement in
-  {north west/above left, north/above, north east/above right,
-  west/left, center/above, east/right,
-  mid west/right, mid/right, mid east/left,
-  base west/below, base/below, base east/right,
-  south west/below left, south/below, south east/left,
-  text/left, 10/right, 130/above,
-  tail east/right, tail south east/below, tail north east/above}
-    \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-      node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1967,20 +747,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth,
-    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
-  \node[rotate border=-30, fill=gray!25, minimum height=3cm, single arrow,
-    single arrow head extend=.5cm, single arrow head indent=.25cm] (arrow) {};
-  \draw[red, <->] (arrow.before tip) -- (arrow.after tip)
-    node [near end, left, black] {width};
-  \draw[red, <->] (arrow.tip) -- (arrow.tail)
-    node [near end, below left, black] {height};
-\end{tikzpicture}
-```
 
 
 ---
@@ -1992,17 +758,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[single arrow, draw, single arrow head extend=.5cm, gray!50, rotate=60]
-     (a) {Arrow};
-  \draw[red, |<->|] (a.before tip) -- (a.before head)
-    node [midway, below, sloped, black] {head extend};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2012,26 +767,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=single arrow, shape example, single arrow head extend=1.5cm]
-    {Single Arrow\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {text/above,      center/above, 20/above,
-     mid west/left,   mid/above,    mid east/above left,
-     base west/below, base/below,   base east/below,
-     tip/above, before tip/above, after tip/below, before head/above,
-     after head/below, after tail/above, before tail/below, tail/right,
-     north/above, south/below, east/below, west/above,
-     north west/above, north east/below, south west/below, south east/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2043,20 +778,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[>=stealth,
-    rotate border/.style={shape border uses incircle, shape border rotate=#1}]
-  \node[rotate border=210, fill=gray!25, minimum height=3cm, double arrow,
-    double arrow head extend=.5cm, double arrow head indent=.25cm] (arrow) {};
-  \draw[red, <->] (arrow.before tip 1) -- (arrow.after tip 1)
-    node [near start, right, black] {width};
-  \draw[red, <->] (arrow.tip 1) -- (arrow.tip 2)
-    node [near end, above left, black] {height};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2066,26 +787,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=double arrow, double arrow head extend=1.5cm, shape example, inner xsep=2cm]
-    {Double Arrow\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {text/above, center/above, 20/above,
-     mid west/above right, mid/above, mid east/above left,
-     base west/below, base/below, base east/below,
-     before head 1/above, before tip 1/above, tip 1/above, after tip 1/below, after head 1/below,
-     before head 2/above, before tip 2/below, tip 2/above, after tip 2/above, after head 2/below,
-     north/above, south/below, east/below, west/below,
-     north west/below, north east/below, south west/above, south east/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2097,17 +798,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \tikzset{box/.style={arrow box, fill=#1}}
-    \draw [help lines] grid(3,2);
-  \node[box=blue!50, arrow box arrows={east:2cm}]             at (1,1.5){One};
-  \node[box=red!50,  arrow box arrows={east:2cm from center}] at (1,0.5){Two};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2117,33 +807,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[shape=arrow box, shape example, inner xsep=1cm, inner ysep=1.5cm, arrow box shaft width=2cm,
-    arrow box arrows={north:3.5cm from border, south, east:5cm from border, west},
-    arrow box head extend=0.75cm, rotate=-90](s) {Arrow Box\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-   {center/above, text/above, mid/right, base/below, 75/above,
-    mid east/right, mid west/left, base east/right, base west/left,
-    north/below, south/below, east/below, west/below,
-    north east/above, south east/above, south west/below, north west/below,
-    north arrow tip/above,south arrow tip/above, east arrow tip/above, west arrow tip/above,
-    before north arrow/above, before north arrow head/below left, before north arrow tip/above left,
-    after north arrow tip/above right, after north arrow head/below right, after north arrow/below,
-    before south arrow/below, before south arrow head/above right, before south arrow tip/below right,
-    after south arrow tip/below left, after south arrow head/above left, after south arrow/above,
-    before east arrow/above, before east arrow head/above right, before east arrow tip/above,
-    after east arrow tip/below, after east arrow head/below right, after east arrow/below,
-    before west arrow/below, before west arrow head/below left, before west arrow tip/below,
-    after west arrow tip/above, after west arrow head/above left, after west arrow/below}
-      \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-        node[\placement, rotate=-90] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2155,24 +818,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=circle split,shape example] {text\nodepart{lower}lower};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/below, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, lower/left, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2182,24 +827,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=circle solidus,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/below, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, lower/left, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2211,23 +838,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=ellipse split,shape example] {text\nodepart{lower}lower};
-  \foreach \anchor/\placement in
-    {center/below, text/left, lower/left, 60/above right,
-     mid/above, mid east/above, mid west/above,
-     base/right, base east/left, base west/right,
-     north/above, south/below, east/below, west/below,
-     north east/above, south east/below, south west/below, north west/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2237,22 +847,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=diamond split,shape example,inner xsep=1cm] {text\nodepart{lower}lower};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/below, east/right, mid/above, base/below,
-     south west/below left, south/below, south east/below right,
-     text/left, lower/left, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2264,31 +858,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=rectangle split, rectangle split parts=4, shape example,
-    inner ysep=0.75cm]
-    {\nodepart{text}text\nodepart{two}two
-        \nodepart{three}three\nodepart{four}four};
-  \foreach \anchor/\placement in
-    {text/left, text east/above, text west/above,
-     two/left, two east/above, two west/above,
-     three/left, three east/below, three west/below,
-     four/left, four east/below, four west/below,
-     text split/left, text split east/above, text split west/above,
-     two split/left, two split east/above, two split west/above,
-     three split/left, three split east/below, three split west/below,
-     north/above, south/below, east/below, west/below,
-     north west/above, north east/above, south west/below, south east/below,
-     center/above, 70/above, mid/above, base/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2298,18 +867,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture, note/.style={rectangle callout, fill=#1}]
-  \draw [help lines] grid(3,2);
-  \node [note=red!50,  callout relative pointer={(0,1)}] at (3,1) {Relative};
-  \node [note=blue!50, callout absolute pointer={(0,1)}] at (1,0) {Absolute};
-  \node [note=green!50, opacity=.5, overlay,
-         callout absolute pointer={(hallo.south)}]       at (1,2) {Outside};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2321,19 +878,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \tikzset{callout/.style={ellipse callout, callout pointer arc=30,
-      callout absolute pointer={#1}}}
-  \draw (0,0) grid (3,2);
-  \node[callout={(3,1.5)}, fill=red!50] at (0,1.5) {A};
-  \node[callout={(3,.5)},  fill=green!50, callout pointer shorten=1cm]
-    at (0,.5)  {B};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2343,27 +887,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=rectangle callout, callout relative pointer={(1.25cm,-1cm)},
-     callout pointer width=2cm, shape example, inner xsep=2cm, inner ysep=1cm]
-      {Rectangle Callout\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {center/above, text/below,      60/above,
-     mid/right,    mid west/left,  mid east/right,
-     base/below,   base west/below, base east/below,
-     north/above,  south/below, east/above, west/above,
-     north west/above, north east/above,
-     south west/below, south east/below,
-     pointer/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2375,27 +898,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=ellipse callout, callout relative pointer={(1.25cm,-1cm)},
-    callout pointer width=2cm, shape example, inner xsep=1cm, inner ysep=.5cm]
-      {Ellipse Callout\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {center/above, text/below,      60/above,
-     mid/above,    mid west/right,  mid east/left,
-     base/below,   base west/below, base east/below,
-     north/above,  south/below, east/above, west/above,
-     north west/above left,    north east/above right,
-     south west/below left,    south east/below right,
-     pointer/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2405,28 +907,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s, shape=cloud callout, style=shape example, cloud puffs=11, aspect=1.5,
-    cloud puff arc=120,inner xsep=.5cm, callout pointer start size=.25 of callout,
-    callout pointer end size=.15 of callout, callout relative pointer={(315:4cm)},
-    callout pointer segments=2] {Cloud Callout\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {puff 1/above, puff 2/above, puff 3/above, puff 4/below,
-     puff 5/left, puff 6/below, puff 7/below, puff 8/right,
-     puff 9/below, puff 10/above, puff 11/above, 70/right,
-     center/above, base/below, mid/right, text/left,
-     north/below, south/below, east/above, west/above,
-     north west/left, north east/right,
-     south west/below, south east/below,pointer/above}
-  \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-    node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2438,15 +918,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \node [cross out,draw=red] at (1.5,1) {cross out};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2456,24 +927,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=cross out,shape example] {cross out\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {north west/above left, north/above, north east/above right,
-     west/left, center/above, east/right,
-     mid west/right, mid/above, mid east/left,
-     base west/left, base/below, base east/right,
-     south west/below left, south/below, south east/below right,
-     text/left, 10/right, 130/above}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2485,25 +938,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=rounded rectangle, shape example, inner xsep=1.5cm, inner ysep=1cm]
-      {Rounded Rectangle\vrule width 1pt height 2cm};
-  \foreach \anchor/\placement in
-    {center/above, text/below,      10/above,
-     mid/above,    mid west/right,  mid east/left,
-     base/below,   base west/below, base east/below,
-     north/above,  south/below, east/above, west/above,
-     north west/above left,    north east/above right,
-     south west/below left,    south east/below right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -2513,28 +947,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=chamfered rectangle, chamfered rectangle sep=1cm,
-        shape example, inner ysep=1cm, inner xsep=.75cm]
-    {Chamfered Rectangle\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {text/right, center/above,    70/above,
-     base/below, base east/left, base west/right,
-     mid/right,  mid east/above,   mid west/above,
-     north/above, south/below, east/above, west/above,
-     before north east/above, north east/above, after north east/above,
-     before north west/above, north west/above, after north west/above,
-     before south west/below, south west/below, after south west/below,
-     before south east/below, south east/below, after south east/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -2546,16 +958,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [spring layout] {
-  \node (a) {a};
-  \node (b) {b};
-  \draw (a) -- (b);
-}
-```
-
 
 ---
 
@@ -2565,18 +967,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz [very thick] {
-  \node (node) at (-2,0)
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-  \draw :path = {
-    0s = "{(0,0) to[out=90, in=180] (.5,1) to[out=0, in=90] (.5,.5)}" base,
-    2s = "{(1,0) to[out=180, in=180] (.25,.5) to[out=0, in=180] (1,.5)}",
-    arrows = <.<->, begin on = {click, of=node} }; }
-```
 
 
 ---
@@ -2588,19 +978,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,.5) circle [radius=1mm];
-  \node :shift = {
-            along = {(0,0) circle[radius=5mm]} upright,
-            0s="0", 2s=".25", begin on=click }
-    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
-}
-```
-
 
 ---
 
@@ -2610,19 +987,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,.5) circle [radius=1mm];
-  \node :shift = {
-            along = {(0,0) circle[radius=5mm]} sloped,
-            0s="0", 2s=".25", begin on=click }
-    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
-}
-```
 
 
 ---
@@ -2634,16 +998,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
-  \node :rotate = { 0s="0", 2s="45", begin on=click}
-    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
-}
-```
-
 
 ---
 
@@ -2653,16 +1007,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
-  \scoped :rotate = { 0s="0", 2s="45", begin on={click, of next=n} }
-    \node (n) at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
-}
-```
 
 
 ---
@@ -2674,17 +1018,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
-  \node :rotate = { 0s="0", 2s="45", begin on=click,
-                    origin = {(1,0)}}
-    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
-}
-```
-
 
 ---
 
@@ -2694,17 +1027,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
-  \node :xshift = { 0s="0cm", 2s="5mm", begin on=click,
-                    transform = {rotate=-90} }
-    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
-}
-```
 
 
 ---
@@ -2716,17 +1038,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,2.2);
-  \node :xshift = { 0s="0cm", 2s="5mm", begin on=click,
-                    transform = {rotate=-45, scale=2} }
-    at (1,1) [fill = blue!20, draw = blue, ultra thick] {Click me};
-}
-```
-
 
 ---
 
@@ -2736,17 +1047,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,.5) circle [radius=1mm] (1.5,0) circle [radius=1mm];
-  \node :position = { 0s="{(1,.5)}", 2s="{(1.5,0)}", begin on=click }
-    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
-}
-```
 
 
 ---
@@ -2758,17 +1058,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,.5) circle [radius=1mm] (1.5,0) circle [radius=1mm];
-  \node :shift = { 0s="{(1,.5)}", 2s="{(1.5,0)}", begin on=click }
-    at (1,.5) [fill = blue, opacity=.5, circle] {Click};
-}
-```
-
 
 ---
 
@@ -2778,19 +1067,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \draw [help lines] (-0.2,-0.2) grid (2.2,1.2);
-  \draw (1,1) circle [radius=1mm] (1.5,0) circle [radius=1mm];
-  \node :position = {
-             along = {(1,1) to[bend left] (1.5,0)} sloped in 2s,
-             begin on = click }
-         at (1,1) [fill = blue, opacity=.5, circle] {Click};
-}
-```
 
 
 ---
@@ -2802,24 +1078,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [very thick] {
-  \node (node) [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-
-  \draw [green!50!black] (1.2,-0.8) rectangle (2.7,0.8);
-  \begin{scope}[view = {(0,0) (2,2) at (1.2,-0.8) (2.7,0.8)},
-                animate = {myself:view = {
-                    begin on = {click, of=node},
-                    0s = "{(0,0) (2,2)}",
-                    2s = "{(1,1) (1.5,1.5)}" }}]
-    \draw [red] (10mm,10mm) rectangle (15mm,15mm);
-    \node at (10mm,10mm) [circle, fill=red, text=white, font=\tiny] {red};
-  \end{scope}
-}
-```
-
 
 ---
 
@@ -2829,19 +1087,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click,
-                    0s = { exit control = {1}{0}, "0cm" },
-                    1s = "-5mm",
-                    2s = "-10mm" }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
 
 
 ---
@@ -2853,19 +1098,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click,
-                    0s = "0cm",
-                    1s = "-5mm",
-                    2s = { entry control = {0}{1}, "-10mm" } }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
-
 
 ---
 
@@ -2875,19 +1107,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click,
-                    0s = { exit control = {1}{0}, "0cm" },
-                    1s = "-5mm",
-                    2s = { entry control = {0}{1}, "-10mm" } }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
 
 
 ---
@@ -2899,16 +1118,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click, ease, 0s = "0cm", 2s = "-10mm" }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
-
 
 ---
 
@@ -2918,19 +1127,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click,
-                    0s = "0cm",
-                    1s = {stay, "-5mm"},
-                    2s = "-10mm" }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
 
 
 ---
@@ -2942,19 +1138,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
-  \node :yshift = { begin on = click,
-                    0s = "0cm",
-                    1s = {jump, "-5mm"},
-                    2s = "-10mm" }
-    [fill = blue!20, draw = blue, very thick, circle] {Click me!};
-}
-```
-
 
 ---
 
@@ -2964,38 +1147,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[
-  3d view,
-  perspective={
-    p = {(2,0,0)},
-    q = {(0,2,0)},
-    r = {(0,0,2)}},
-  scale=4,
-  vanishing point/.style={fill,circle,inner sep=2pt}]
-
-  \simplecuboid{3}{1}{2}
-
-  \node[vanishing point,label = right:p] (p) at (2,0,0){};
-  \node[vanishing point,label = left:q] (q) at (0,2,0){};
-  \node[vanishing point,label = above:r] (r) at (0,0,2){};
-
-  \begin{scope}[dotted]
-    \foreach \y in {0,1}{
-      \foreach \z in {0,2}{
-        \draw (tpp cs:x=0,y=\y,z=\z) -- (p.center);}}
-    \foreach \x in {0,3}{
-      \foreach \z in {0,2}{
-        \draw (tpp cs:x=\x,y=0,z=\z) -- (q.center);}}
-    \foreach \x in {0,3}{
-      \foreach \y in {0,1}{
-        \draw (tpp cs:x=\x,y=\y,z=0) -- (r.center);}}
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3007,22 +1158,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfcalendar{cal}{2007-01-20}{2007-02-10}{%
-    \ifdate{workday}
-      {\tikzset{filling/.style={fill=blue!20}}}
-      {\tikzset{filling/.style={fill=red!20}}}
-    \node (\pgfcalendarsuggestedname) at (\pgfcalendarcurrentweekday,0)
-      [anchor=base,circle,filling] {\pgfcalendarcurrentday};
-    \ifdate{Sunday}{\pgftransformyshift{-3em}}{}%
-  }
-  \draw (cal-2007-01-21) -- (cal-2007-02-03);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3032,18 +1167,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-
-  \node [draw,circle through=(B),label=left:$D$] at (A) {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3055,27 +1178,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-
-  \node (D) [name path=D,draw,circle through=(B),label=left:$D$]  at (A) {};
-  \node (E) [name path=E,draw,circle through=(A),label=right:$E$] at (B) {};
-
-  % Name the coordinates, but do not draw anything:
-  \path [name intersections={of=D and E}];
-
-  \coordinate [label=above:$C$] (C) at (intersection-1);
-
-  \draw [red] (A) -- (C);
-  \draw [red] (B) -- (C);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3085,26 +1187,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw [name path=A--B] (A) -- (B);
-
-  \node (D) [name path=D,draw,circle through=(B),label=left:$D$]  at (A) {};
-  \node (E) [name path=E,draw,circle through=(A),label=right:$E$] at (B) {};
-
-  \path [name intersections={of=D and E, by={[label=above:$C$]C, [label=below:$C'$]C'}}];
-
-  \draw [name path=C--C',red] (C) -- (C');
-
-  \path [name intersections={of=A--B and C--C',by=F}];
-  \node [fill=red,inner sep=1pt,label=-45:$F$] at (F) {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3116,46 +1198,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[thick,help lines/.style={thin,draw=black!50}]
-  \def\A{\textcolor{input}{$A$}}     \def\B{\textcolor{input}{$B$}}
-  \def\C{\textcolor{output}{$C$}}    \def\D{$D$}
-  \def\E{$E$}
-
-  \colorlet{input}{blue!80!black}    \colorlet{output}{red!70!black}
-  \colorlet{triangle}{orange}
-
-  \coordinate [label=left:\A]  (A) at ($ (0,0) + .1*(rand,rand) $);
-  \coordinate [label=right:\B] (B) at ($ (1.25,0.25) + .1*(rand,rand) $);
-
-  \draw [input] (A) -- (B);
-
-  \node [name path=D,help lines,draw,label=left:\D]   (D) at (A) [circle through=(B)] {};
-  \node [name path=E,help lines,draw,label=right:\E]  (E) at (B) [circle through=(A)] {};
-
-  \path [name intersections={of=D and E,by={[label=above:\C]C}}];
-
-  \draw [output] (A) -- (C) -- (B);
-
-  \foreach \point in {A,B,C}
-    \fill [black,opacity=.5] (\point) circle (2pt);
-
-  \begin{pgfonlayer}{background}
-    \fill[triangle!80] (A) -- (C) -- (B) -- cycle;
-  \end{pgfonlayer}
-
-  \node [below right, text width=10cm,align=justify] at (4,3) {
-    \small\textbf{Proposition I}\par
-    \emph{To construct an \textcolor{triangle}{equilateral triangle}
-      on a given \textcolor{input}{finite straight line}.}
-    \par\vskip1em
-    Let \A\B\ be the given \textcolor{input}{finite straight line}.  \dots
-  };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3165,17 +1207,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-  \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3187,20 +1218,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-  \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
-  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at
-    ($ (X) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (A) -- (D) -- (B);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3210,19 +1227,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (1.25,0.25);
-  \draw (A) -- (B);
-  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at
-    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (A) -- (D) -- (B);
-\end{tikzpicture}
-```
 
 
 ---
@@ -3234,22 +1238,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (0.75,0.25);
-  \coordinate [label=above:$C$] (C) at (1,1.5);
-  \draw (A) -- (B) -- (C);
-  \coordinate [label=above:$D$] (D) at
-    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
-  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
-  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3259,25 +1247,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-(A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (0.75,0.25);
-  \coordinate [label=above:$C$] (C) at (1,1.5);
-  \draw (A) -- (B) -- (C);
-  \coordinate [label=above:$D$] (D) at
-    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
-  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
-    post={\end{tikzpicture}},
-]
-  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
-  \path let \p1 = ($ (B) - (C) $) in
-    coordinate [label=left:$G$] (G) at ($ (B) ! veclen(\x1,\y1) ! (F) $);
-  \fill[red,opacity=.5] (G) circle (2pt);
-```
 
 
 ---
@@ -3289,25 +1258,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-(A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (0.75,0.25);
-  \coordinate [label=above:$C$] (C) at (1,1.5);
-  \draw (A) -- (B) -- (C);
-  \coordinate [label=above:$D$] (D) at
-    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
-  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
-    post={\end{tikzpicture}},
-]
-  \node (H) [name path=H,label=135:$H$,draw,circle through=(C)] at (B) {};
-  \path [name path=B--F] (B) -- (F);
-  \path [name intersections={of=H and B--F,by={[label=left:$G$]G}}];
-  \fill[red,opacity=.5] (G) circle (2pt);
-```
-
 
 ---
 
@@ -3317,47 +1267,6 @@ magnetic tape tail extend=0.5cm]
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[thick,help lines/.style={thin,draw=black!50}]
-  \def\A{\textcolor{orange}{$A$}}   \def\B{\textcolor{input}{$B$}}
-  \def\C{\textcolor{input}{$C$}}    \def\D{$D$}
-  \def\E{$E$}                       \def\F{$F$}
-  \def\G{$G$}                       \def\H{$H$}
-  \def\K{$K$}                       \def\L{\textcolor{output}{$L$}}
-
-  \colorlet{input}{blue!80!black}    \colorlet{output}{red!70!black}
-
-  \coordinate [label=left:\A]  (A) at ($ (0,0) + .1*(rand,rand) $);
-  \coordinate [label=right:\B] (B) at ($ (1,0.2) + .1*(rand,rand) $);
-  \coordinate [label=above:\C] (C) at ($ (1,2) + .1*(rand,rand) $);
-
-  \draw [input] (B) -- (C);
-  \draw [help lines] (A) -- (B);
-
-  \coordinate [label=above:\D] (D) at ($ (A)!.5!(B) ! {sin(60)*2} ! 90:(B) $);
-
-  \draw [help lines] (D) -- ($ (D)!3.75!(A) $) coordinate [label=-135:\E] (E);
-  \draw [help lines] (D) -- ($ (D)!3.75!(B) $) coordinate [label=-45:\F] (F);
-
-  \node (H) at (B) [name path=H,help lines,circle through=(C),draw,label=135:\H] {};
-  \path [name path=B--F] (B) -- (F);
-  \path [name intersections={of=H and B--F,by={[label=right:\G]G}}];
-
-  \node (K) at (D) [name path=K,help lines,circle through=(G),draw,label=135:\K] {};
-  \path [name path=A--E] (A) -- (E);
-  \path [name intersections={of=K and A--E,by={[label=below:\L]L}}];
-
-  \draw [output] (A) -- (L);
-
-  \foreach \point in {A,B,C,D,G,L}
-    \fill [black,opacity=.5] (\point) circle (2pt);
-
-  % \node ...
-\end{tikzpicture}
-```
 
 
 ---
@@ -3369,37 +1278,6 @@ magnetic tape tail extend=0.5cm]
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize[prefix=figures/] % activate
-
-\begin{document}
-
-\tikzsetnextfilename{trees}
-\begin{tikzpicture} % will be written to 'figures/trees.pdf'
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-\tikzsetnextfilename{simple}
-A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'figures/simple.pdf'
-
-\begin{tikzpicture} % will be written to 'figures/main-figure0.pdf'
-   \draw[help lines] (0,0) grid (5,5);
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -3409,42 +1287,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'figures/
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize % activate
-
-\begin{document}
-
-\begin{tikzpicture} % will be written to 'main-figure0.pdf'
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-{
-  \tikzsetfigurename{subset_}
-  A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'subset_0.pdf'
-
-  \begin{tikzpicture} % will be written to 'subset_1.pdf'
-     \draw[help lines] (0,0) grid (5,5);
-  \end{tikzpicture}
-}% here, the old file name will be restored:
-
-\begin{tikzpicture} % will be written to 'main-figure1.pdf'
-   \draw (0,0) -- (5,5);
-\end{tikzpicture}
-\end{document}
-```
 
 
 ---
@@ -3456,40 +1298,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);. % will be written to 'figures/
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-\tikzexternalize[
-   mode=graphics if exists,
-   figure list=true,
-   prefix=figures/]
-
-\begin{document}
-
-\tikzsetnextfilename{trees}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-\tikzsetnextfilename{simple}
-A simple image is \tikz \fill (0,0) circle(5pt);.
-
-\begin{tikzpicture}
-   \draw[help lines] (0,0) grid (5,5);
-\end{tikzpicture}
-\end{document}
-```
-
 
 ---
 
@@ -3499,35 +1307,6 @@ A simple image is \tikz \fill (0,0) circle(5pt);.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\documentclass{article}
-% main document, called main.tex
-%\usepackage{tikz}
-
-\usepackage{graphicx}
-\usepackage{tikzexternal}
-
-%\usetikzlibrary{external}
-\tikzexternalize
-
-\begin{document}
-\begin{tikzpicture}
-  \node {root}
-    child {node {left}}
-    child {node {right}
-      child {node {child}}
-      child {node {child}}
-    };
-\end{tikzpicture}
-
-A simple image is \tikz \fill (0,0) circle(5pt);.
-
-Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
-\end{document}
-```
 
 
 ---
@@ -3539,25 +1318,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz {
-  \begin{scope}[name prefix = top-]
-    \node (A) at (0,1) {A};
-    \node (B) at (1,1) {B};
-    \draw (A) -- (B);
-  \end{scope}
-  \begin{scope}[name prefix = bottom-]
-    \node (A) at (0,0) {A};
-    \node (B) at (1,0) {B};
-    \draw (A) -- (B);
-  \end{scope}
-
-  \draw [red] (top-A) -- (bottom-B);
-}
-```
-
 
 ---
 
@@ -3567,20 +1327,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-% \begin{tikzpicture}[node distance=1cm]
-%   \draw[help lines] (0,0) grid (3,2);
-%   \node (a)                    {a};
-%   \node (b) [above of=a]       {b};
-%   \node (c) [above of=b]       {c};
-%   \node (d) [right of=c]       {d};
-%   \node (e) [below right of=d] {e};
-% \end{tikzpicture}
-%
-```
 
 
 ---
@@ -3592,15 +1338,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=2pt+3pt,draw] {above};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3610,16 +1347,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=.2,draw] {above};
-  % south border of the node is now 2mm above (1,1)
-\end{tikzpicture}
-```
 
 
 ---
@@ -3631,16 +1358,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (2,2);
-  \node at (1,1) [above=.2 and 3mm,draw] {above};
-  % south border of the node is also 2mm above (1,1)
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3650,18 +1367,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,2);
-  \node (somenode) at (1,1) {some node};
-
-  \node [above=5mm of somenode.north east] {\tiny 5mm of somenode.north east};
-  \node [above=1cm of somenode.north]      {\tiny 1cm of somenode.north};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3673,20 +1378,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,2);
-  \node (some node) at (1,1) {some node};
-
-  \node (other node) [above=1cm of some node] {\tiny above=1cm of some node};
-
-  \draw [<->] (some node.north) -- (other node.south)
-                                node [midway,right,draw=none] {1cm};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3696,24 +1387,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \draw[help lines] (0,0) grid (2,3);
-
-  % Not gridded
-  \node (a1) at (0,0) {not gridded};
-  \node (b1) [above=1cm of a1] {fooy};
-  \node (c1) [above=1cm of b1] {a};
-
-  % gridded
-  \node (a2) at (2,0) {gridded};
-  \node (b2) [on grid,above=1cm of a2] {fooy};
-  \node (c2) [on grid,above=1cm of b2] {a};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3725,26 +1398,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw,node distance=5mm]
-  \draw[help lines] (0,0) grid (2,3);
-
-  % Not gridded
-  \node (a1) at (0,0) {not gridded};
-  \node (b1) [above=of a1] {fooy};
-  \node (c1) [above=of b1] {a};
-
-  % gridded
-  \begin{scope}[on grid]
-    \node (a2) at (2,0) {gridded};
-    \node (b2) [above=of a2] {fooy};
-    \node (c2) [above=of b2] {a};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3754,28 +1407,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,circle}]
-  \draw[help lines] (0,0) grid (2,5);
-  \begin{scope}[node distance=5mm and 5mm]
-    \node (b) at (1,4) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-  \begin{scope}[node distance=5mm]
-    \node (a) at (1,1) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3787,28 +1418,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,rectangle}]
-  \draw[help lines] (0,0) grid (2,5);
-  \begin{scope}[node distance=5mm and 5mm]
-    \node (b) at (1,4) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-  \begin{scope}[node distance=5mm]
-    \node (a) at (1,1) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3818,28 +1427,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={draw,rectangle},on grid]
-  \draw[help lines] (0,0) grid (4,4);
-  \begin{scope}[node distance=1]
-    \node (a) at (2,3) {a};
-    \node [left=of a] {1};       \node [right=of a] {2};
-    \node [above=of a] {3};      \node [below=of a] {4};
-    \node [above left=of a] {5}; \node [above right=of a] {6};
-    \node [below left=of a] {7}; \node [below right=of a] {8};
-  \end{scope}
-  \begin{scope}[node distance=1 and 1]
-    \node (b) at (2,0) {b};
-    \node [left=of b] {1};       \node [right=of b] {2};
-    \node [above=of b] {3};      \node [below=of b] {4};
-    \node [above left=of b] {5}; \node [above right=of b] {6};
-    \node [below left=of b] {7}; \node [below right=of b] {8};
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -3851,22 +1438,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[node distance=1ex]
-  \draw[help lines] (0,0) grid (3,1);
-  \huge
-  \node (X) at (0,1)     {X};
-  \node (a) [right=of X] {a};
-  \node (y) [right=of a] {y};
-
-  \node (X) at (0,0)          {X};
-  \node (a) [base right=of X] {a};
-  \node (y) [base right=of a] {y};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3876,29 +1447,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-   % Install a nonlinear transformation:
-   \pgfsetcurvilinearbeziercurve
-      {\pgfpoint{0mm}{20mm}}
-      {\pgfpoint{10mm}{20mm}}
-      {\pgfpoint{10mm}{10mm}}
-      {\pgfpoint{20mm}{10mm}}
-   \pgftransformnonlinear{\pgfpointcurvilinearbezierorthogonal\pgf@x\pgf@y}%
-
-   % Draw something:
-   \draw [help lines] (0,-30pt) grid [step=10pt] (80pt,30pt);
-
-   \foreach \x in {0,20,...,80}
-     \node [fill=red!20]  at (\x pt, -20pt) {\x};
-
-   \foreach \x in {0,20,...,80}
-     \node [fill=blue!20, transform shape nonlinear] at (\x pt, 20pt) {\x};
-\end{tikzpicture}
-```
 
 
 ---
@@ -3910,26 +1458,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  [scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
-  \node (a) at (-1,-2) {a};
-  \node (b) at ( 1,-2) {b};
-  \node (c) at ( 2,-1) {c};
-  \node (d) at ( 2, 1) {d};
-  \node (e) at ( 1, 2) {e};
-  \node (f) at (-1, 2) {f};
-  \node (g) at (-2, 1) {g};
-  \node (h) at (-2,-1) {h};
-
-  \foreach \from/\to in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/a}
-    \draw [->] (\from) -- (\to)
-               node[midway,fill=red!20] {\from--\to};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3939,26 +1467,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto]
-  \draw[help lines] (0,0) grid (3,2);
-
-  \node[state] (q_0)                      {$q_0$};
-  \node[state] (q_1) [above right of=q_0] {$q_1$};
-  \node[state] (q_2) [below right of=q_0] {$q_2$};
-  \node[state] (q_3) [below right of=q_1] {$q_3$};
-
-  \path[->] (q_0) edge              node        {0} (q_1)
-                  edge              node [swap] {1} (q_2)
-            (q_1) edge              node        {1} (q_3)
-                  edge [loop above] node        {0} ()
-            (q_2) edge              node [swap] {0} (q_3)
-                  edge [loop below] node        {1} ();
-\end{tikzpicture}
-```
 
 
 ---
@@ -3970,15 +1478,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [circle,draw,label={[name=label node]above left:$a,b$}] {};
-  \draw (label node) -- +(1,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -3988,17 +1487,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikzset{node quotes mean={label={[#2,name={#1}]#1}}}
-
-\tikz {
-  \node ["1", "2" label position=left, circle, draw] {circle};
-  \draw (1) -- (2);
-}
-```
 
 
 ---
@@ -4010,17 +1498,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[remember picture]
-  \node (c) [circle,draw] {Big circle};
-
-  \draw [overlay,->,very thick,red,opacity=.5]
-    (c) to[bend left] (n1) (n1) -| (n2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4030,27 +1507,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\tikz [spring electrical layout, node distance=1.3cm,
-       every edge/.style={
-         decoration={coil, aspect=-.5, post length=1mm,
-                     segment length=1mm, pre length=2mm},
-         decorate, draw}]
-{
-  \foreach \i in {1,...,6}
-    \node (node \i) [fill=blue!50, text=white, circle] {\i};
-
-  \draw (node 1) edge (node 2)
-        (node 2) edge (node 3)
-                 edge (node 4)
-        (node 3) edge (node 4)
-                 edge (node 5)
-                 edge (node 6);
-}
-```
 
 
 ---
@@ -4062,21 +1518,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration=zigzag]
-  \draw [help lines] (0,0) grid (3,5);
-
-  \draw [fill=blue!20,decorate] (1.5,4) circle (1cm);
-
-  \node at (1.5,2.5) [fill=red!20,decorate,ellipse] {Ellipse};
-
-  \node at (1.5,1) [inner sep=6mm,fill=red!20,decorate,ellipse,decoration=
-    {text along path,text={This is getting silly}}] {Ellipse};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4086,19 +1527,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node (a)          {A};
-  \node (b) at (2,1) {B};
-  \draw                                                    (a) -- (b);
-  \draw[decorate,decoration=brace]                         (a) -- (b);
-  \draw[decorate,decoration={brace,mirror},red]            (a) -- (b);
-  \draw[decorate,decoration={brace,mirror,raise=5pt},blue] (a) -- (b);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4110,27 +1538,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [spring layout] {
-  \begin{scope}[tree layout]
-    \node (a) {a};
-    \node (b) {b};
-    \node (c) {c};
-    \draw (a) edge (b) edge (c);
-  \end{scope}
-
-  \begin{scope}[tree layout]
-    \node (1) {1};
-    \node (2) {2};
-    \draw (1) edge (2);
-  \end{scope}
-
-  \draw (a) edge (1);
-}
-```
-
 
 ---
 
@@ -4140,25 +1547,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (2,2);
-
-  % Stuff outside the picture, but still in a transparency group.
-  \node [left,overlay] at (0,1) {
-    \begin{tikzpicture}
-      \pgfsetfillopacity{0.5}
-      \pgftransparencygroup
-      \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
-        {Smoking};
-      \endpgftransparencygroup
-    \end{tikzpicture}
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -4170,19 +1558,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[help lines] (0,0) grid (3,2);
-  \node       (a)         at (2,2) {a};
-
-  \draw       (0,0)       to (0,2);
-  \draw[red]  (10pt,10pt) to (a);
-  \draw[blue] (3,0) -- (3,2) -- (a) to cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4192,21 +1567,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[to path={
-    .. controls +(1,0) and +(1,0) .. (\tikztotarget) \tikztonodes}]
-
-  \node (a) at (0,0) {a};
-  \node (b) at (2,1) {b};
-  \node (c) at (1,2) {c};
-
-  \draw (a) to node {x} (b)
-        (a) to          (c);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4218,23 +1578,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikzset{
-  my loop/.style={to path={
-    .. controls +(80:1) and +(100:1) .. (\tikztotarget) \tikztonodes}},
-  my state/.style={circle,draw}}
-
-\begin{tikzpicture}[shorten >=2pt]
-  \node [my state] (a) at (210:1) {$q_a$};
-  \node [my state] (b) at (330:1) {$q_b$};
-
-  \draw[->] (a) to           node[below]       {1} (b)
-                to [my loop] node[above right] {0} (b);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4244,24 +1587,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,3);
-
-  \coordinate (a) at (rnd,rnd);
-  \coordinate (b) at (3-rnd,3-rnd);
-  \draw (a) -- (b);
-
-  \node (c) at (1,2) {x};
-
-  \draw let \p1 = ($ (a)!(c)!(b) - (c) $),
-            \n1 = {veclen(\x1,\y1)}
-        in circle [at=(c), radius=\n1];
-\end{tikzpicture}
-```
 
 
 ---
@@ -4273,18 +1598,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style={fill,draw}]
-  \draw[line width=2mm,blue!50,line cap=round] (0,0) grid (3,2);
-
-  \node[opacity=0.5] at (1.5,2) {Upper node};
-  \node[draw opacity=0.8,fill opacity=0.2,text opacity=1]
-    at (1.5,0) {Lower node};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4294,22 +1607,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pattern[pattern=checkerboard,pattern color=black!15](-1,-1) rectangle (3,1);
-  \node at (0,0) [forbidden sign,line width=2ex,draw=red,fill=white] {Smoking};
-
-  \begin{scope}[transparency group,opacity=.5]
-    \node (s) at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
-    {Smoking};
-
-    \draw [opacity=.5, line width=2ex, blue] (1.2,0) -- (2.8,0);
-  \end{scope}
-\end{tikzpicture}
-```
 
 
 ---
@@ -4321,66 +1618,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikzset{
-  ld/.style={level distance=#1},lw/.style={line width=#1},
-  level 1/.style={ld=4.5mm, trunk,          lw=1ex ,sibling angle=60},
-  level 2/.style={ld=3.5mm, trunk!80!leaf a,lw=.8ex,sibling angle=56},
-  level 3/.style={ld=2.75mm,trunk!60!leaf a,lw=.6ex,sibling angle=52},
-  level 4/.style={ld=2mm,   trunk!40!leaf a,lw=.4ex,sibling angle=48},
-  level 5/.style={ld=1mm,   trunk!20!leaf a,lw=.3ex,sibling angle=44},
-  level 6/.style={ld=1.75mm,leaf a,         lw=.2ex,sibling angle=40},
-}
-\pgfarrowsdeclare{leaf}{leaf}
-  {\pgfarrowsleftextend{-2pt} \pgfarrowsrightextend{1pt}}
-{
-  \pgfpathmoveto{\pgfpoint{-2pt}{0pt}}
-  \pgfpatharc{150}{30}{1.8pt}
-  \pgfpatharc{-30}{-150}{1.8pt}
-  \pgfusepathqfill
-}
-
-\newcommand{\logo}[5]
-{
-  \colorlet{border}{#1}
-  \colorlet{trunk}{#2}
-  \colorlet{leaf a}{#3}
-  \colorlet{leaf b}{#4}
-  \begin{tikzpicture}
-    \scriptsize\scshape
-    \draw[border,line width=1ex,yshift=.3cm,
-          yscale=1.45,xscale=1.05,looseness=1.42]
-      (1,0) to [out=90, in=0]    (0,1)  to [out=180,in=90]  (-1,0)
-            to [out=-90,in=-180] (0,-1) to [out=0,  in=-90] (1,0) -- cycle;
-
-    \coordinate (root) [grow cyclic,rotate=90]
-    child {
-      child [line cap=round] foreach \a in {0,1} {
-        child foreach \b in {0,1} {
-          child foreach \c in {0,1} {
-            child foreach \d in {0,1} {
-              child foreach \leafcolor in {leaf a,leaf b}
-                { edge from parent [color=\leafcolor,-#5] }
-        } } }
-      } edge from parent [shorten >=-1pt,serif cm-,line cap=butt]
-    };
-
-    \node [align=center,below] at (0pt,-.5ex)
-    { \textcolor{border}{T}heoretical \\ \textcolor{border}{C}omputer \\
-      \textcolor{border}{S}cience };
-  \end{tikzpicture}
-}
-\begin{minipage}{3cm}
-  \logo{green!80!black}{green!25!black}{green}{green!80}{leaf}\\
-  \logo{green!50!black}{black}{green!80!black}{red!80!green}{leaf}\\
-  \logo{red!75!black}{red!25!black}{red!75!black}{orange}{leaf}\\
-  \logo{black!50}{black}{black!50}{black!25}{}
-\end{mini
-... (truncated)
-```
-
 
 ---
 
@@ -4390,33 +1627,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [shorten >=1pt,->,
-   vertex/.style={circle,fill=black!25,minimum size=17pt,inner sep=0pt}]
-
-  \foreach \name/\x in {s/1, 2/2, 3/3, 4/4, 15/11, 16/12, 17/13, 18/14, 19/15, t/16}
-    \node[vertex] (G-\name) at (\x,0) {$\name$};
-
-  \foreach \name/\angle/\text in {P-1/234/5, P-2/162/6, P-3/90/7, P-4/18/8, P-5/-54/9}
-    \node[vertex,xshift=6cm,yshift=.5cm] (\name) at (\angle:1cm) {$\text$};
-
-  \foreach \name/\angle/\text in {Q-1/234/10, Q-2/162/11, Q-3/90/12, Q-4/18/13, Q-5/-54/14}
-    \node[vertex,xshift=9cm,yshift=.5cm] (\name) at (\angle:1cm) {$\text$};
-
-  \foreach \from/\to in {s/2,2/3,3/4,3/4,15/16,16/17,17/18,18/19,19/t}
-    \draw (G-\from) -- (G-\to);
-
-  \foreach \from/\to in {1/2,2/3,3/4,4/5,5/1,1/3,2/4,3/5,4/1,5/2}
-    { \draw (P-\from) -- (P-\to); \draw (Q-\from) -- (Q-\to); }
-
-  \draw (G-3) .. controls +(-30:2cm) and +(-150:1cm) .. (Q-1);
-  \draw (Q-5) -- (G-15);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4428,22 +1638,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [ rdf engine = { prefix = { rels: http://www.example.org/relations/} } ] {
-  \node (fritz)          { Fritz };
-  \node (heinz) at (2,0) { Heinz };
-  \draw [->] (fritz) -- (heinz)
-        [rdf engine = {
-          statement = {
-            subject = (fritz),
-            predicate = rels:isSonOf,
-            object  = (heinz)
-          } } ];
-}
-```
-
 
 ---
 
@@ -4453,48 +1647,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[circuit ee IEC,x=3cm,y=2cm,semithick,
-                    every info/.style={font=\footnotesize},
-                    small circuit symbols,
-                    set resistor graphic=var resistor IEC graphic,
-                    set diode graphic=var diode IEC graphic,
-                    set make contact graphic= var make contact IEC graphic]
-  % Let us start with some contacts:
-  \foreach \contact/\y in {1/1,2/2,3/3.5,4/4.5,5/5.5}
-  {
-    \node [contact] (left contact \contact) at (0,\y) {};
-    \node [contact] (right contact \contact) at (1,\y) {};
-  }
-  \draw (right contact 1) -- (right contact 2) -- (right contact 3)
-     -- (right contact 4) -- (right contact 5);
-
-  \draw (left contact 1) to [diode] ++(down:1)
-                         to [voltage source={near start,
-                                             direction info={volt=3}},
-                             resistor={near end,ohm=3}] ++(right:1)
-                         to (right contact 1);
-  \draw (left contact 1) to [resistor={ohm=4}] (right contact 1);
-  \draw (left contact 1) to [resistor={ohm=3}] (left contact 2);
-  \draw (left contact 2) to [voltage source={near start,
-                                             direction info={<-,volt=8}},
-                             resistor={ohm=2,near end}] (right contact 2);
-  \draw (left contact 2) to [resistor={near start,ohm=1},
-                             make contact={near end,info'={[red]$S_1$}}]
-                         (left contact 3);
-  \draw (left contact 3) to [current direction'={near start,info=$\iota$},
-                             resistor={near end,info={$R=4\Omega$}}]
-                         (right contact 3);
-  \draw (left contact 4) to [voltage source={near start,
-                                             direction info={<-,volt=8}},
-                             resistor={ohm=2,near end}] (right contact 4);
-  \draw (left contact 3) to [resistor={ohm=1}] (left contact 4);
-  \draw (left contact 4) to [resistor={ohm
-... (truncated)
-```
 
 
 ---
@@ -4506,28 +1658,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[circuit logic US]
-  \matrix[column sep=7mm]
-  {
-    \node (i0) {0}; &                            & \\
-                    & \node [and gate] (a1) {};  & \\
-    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
-                    & \node [nand gate] (a2) {}; & \\
-    \node (i2) {1}; &                            & \\
-  };
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4537,28 +1667,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[circuit logic IEC]
-  \matrix[column sep=7mm]
-  {
-    \node (i0) {0}; &                            & \\
-                    & \node [and gate] (a1) {};  & \\
-    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
-                    & \node [nand gate] (a2) {}; & \\
-    \node (i2) {1}; &                            & \\
-  };
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4570,31 +1678,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[circuit logic IEC,
-                    every circuit symbol/.style={
-                      logic gate IEC symbol color=black,
-                      fill=blue!20,draw=blue,very thick}]
-  \matrix[column sep=7mm]
-  {
-    \node (i0) {0}; &                            & \\
-                    & \node [and gate] (a1) {};  & \\
-    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
-                    & \node [nand gate] (a2) {}; & \\
-    \node (i2) {1}; &                            & \\
-  };
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4604,31 +1687,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[circuit logic CDH,
-                    tiny circuit symbols,
-                    every circuit symbol/.style={
-                      fill=white,draw}]
-  \matrix[column sep=7mm]
-  {
-    \node (i0) {0}; &                            & \\
-                    & \node [and gate] (a1) {};  & \\
-    \node (i1) {0}; &                            & \node [or gate] (o) {};\\
-                    & \node [nand gate] (a2) {}; & \\
-    \node (i2) {1}; &                            & \\
-  };
-  \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
-  \draw (i1.east) -- ++(right:3mm) |- (a1.input 2);
-  \draw (i1.east) -- ++(right:3mm) |- (a2.input 1);
-  \draw (i2.east) -- ++(right:3mm) |- (a2.input 2);
-  \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
-  \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
-  \draw (o.output) -- ++(right:3mm);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4640,17 +1698,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[circuit logic IEC]
-  \node[and gate,inputs={inini}] (A) {};
-  \foreach \a in {1,...,5}
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ++(right:5mm);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4660,18 +1707,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[minimum height=0.75cm]
-  \node[and gate IEC, draw, logic gate inputs={inverted, normal, inverted}]
-    (A) {};
-  \foreach \a in {1,...,3}
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ([xshift=0.5cm]A.output);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4683,17 +1718,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[minimum height=0.75cm]
-  \node[or gate US, draw,logic gate inputs=inini] (A) {};
-  \foreach \a in {1,...,5}
-    \draw (A.input \a -| -1,0) -- (A.input \a);
-  \draw (A.output) -- ([xshift=0.5cm]A.output);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4703,20 +1727,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[minimum size=0.75cm]
-  \draw [help lines] grid (3,2);
-  \tikzset{every node/.style={shape=and gate IEC, draw, logic gate inputs=ini}}
-  \node[logic gate input sep=0.33333cm] at (1,1)(A) {A};
-  \node[logic gate input sep=0.5cm]     at (3,1) (B) {B};
-  \foreach \a in {1,...,3}
-    \draw (A.input \a -| 0,0) -- (A.input \a)
-          (B.input \a -| 2,0) -- (B.input \a);
-\end{tikzpicture}
-```
 
 
 ---
@@ -4728,19 +1738,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[minimum height=1.5cm]
-  \node[xnor gate US, draw, gray!50,line width=2pt] (A) {};
-  \foreach \x/\y/\z in {false/blue/1pt, true/red/2pt}
-    \foreach \a in {north, south, east, west, north east,
-      south east, north west, south west}
-      \draw[logic gate anchors use bounding box=\x, color=\y]
-        (A.\a) circle(\z);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4750,26 +1747,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=nand gate US,shape example, inner sep=0cm,
-  logic gate inputs={in},
-  logic gate inverted radius=.5cm] {Nand Gate\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {center/above, text/above, 30/above right,
-     mid/right, mid east/left, mid west/above,
-     base/below, base east/below, base west/left,
-     north/above, south/below, east/above, west/above,
-     north east/above, south east/below, south west/below, north west/above,
-     output/right, input 1/above, input 2/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4781,21 +1758,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[minimum size=1cm, use IEC style logic gates]
-    \tikzset{every node/.style={nor gate, draw}}
-  \node (A) at (0,1.5) {};
-  \node [logic gate symbol align={bottom, right}] (B) at (0,0) {};
-  \foreach \g in {A, B}{
-    \foreach \i in {1,2}
-      \draw ([xshift=-0.5cm]\g.input \i) -- (\g.input \i);
-    \draw (\g.output) -- ([xshift=0.5cm]\g.output);
-  }
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4805,28 +1767,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\Huge
-\begin{tikzpicture}
-  \node[name=s,shape=nand gate IEC ,shape example, inner xsep=1cm, inner ysep=1cm,
-    minimum height=6cm, nand gate IEC symbol=\color{black!30}\char`\&,
-    logic gate inputs={in},
-    logic gate inverted radius=0.65cm]
-  {Nand Gate\vrule width1pt height2cm};
-  \foreach \anchor/\placement in
-    {center/above, text/above, 30/above right,
-     mid/right, mid east/left, mid west/above,
-     base/below, base east/below, base west/left,
-     north/above, south/below, east/above, west/above,
-     north east/above, south east/below, south west/below, north west/above,
-     output/right, input 1/above, input 2/below}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4838,16 +1778,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\tikz [circuit ee IEC] {
-  \node (R1) [resistor,point up,ohm=5] at (3,1) {};
-  \node (R2) [resistor,ohm=10k]        at (0,0) {};
-  \draw (R2) -| (R1);
-}
-```
-
 
 ---
 
@@ -4857,22 +1787,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetarrowoptions{direction ee}{6cm}
-  \node[name=s,shape=direction ee,shape example,minimum height=0.7654*6cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4884,18 +1798,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[direction ee arrow=angle 45]
-  \node[name=s,shape=direction ee,shape example,minimum height=1.75cm] {};
-  \foreach \anchor/\placement in {north/above, south/below,
-                                  output/right, input/left}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4905,21 +1807,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=generic diode IEC,shape example,minimum size=6cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4931,21 +1818,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=breakdown diode IEC,shape example,minimum width=6cm,minimum height=4cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -4955,21 +1827,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=var resistor IEC,shape example,minimum width=7cm,minimum height=1cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -4981,21 +1838,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=inductor IEC,shape example,minimum width=7cm,minimum height=1cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5005,22 +1847,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=capacitor IEC,shape example,
-        minimum width=2cm,minimum height=3cm,inner sep=0pt] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
 
 
 ---
@@ -5032,21 +1858,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node[name=s,shape=make contact IEC,shape example,minimum width=3cm,minimum height=1cm] {};
-  \foreach \anchor/\placement in
-    {center/above, 30/above right,
-     north/above, south/below, east/left, west/right,
-     north east/above, south east/below, south west/below, north west/above,
-     input/left,output/right}
-     \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
-       node[\placement] {\scriptsize\texttt{(s.\anchor)}};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5056,16 +1867,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \node [fill=white] at (1,1) {Hello world};
-  \scoped [on background layer]
-    \draw (0,0) grid (3,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5077,18 +1878,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={bent,aspect=.3}]
-  \draw [decorate,fill=yellow!80!black] (0,0) rectangle (3.5,2);
-  \node[circle,draw] (A) at (.5,.5) {A};
-  \node[circle,draw] (B) at (3,1.5) {B};
-  \draw[->,decorate] (A) -- (B);
-  \draw[->,decorate] (B) -- (A);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5098,20 +1887,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=at position 1cm  with \node[red]{1cm};,
-    mark=at position .5   with \node[green]{mid};,
-    mark=at position -1cm with {\node[blue,transform shape]{1cm from end};}}
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5123,25 +1898,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[domain=0:4,label/.style={postaction={
-      decorate,
-      decoration={
-        markings,
-        mark=at position .75 with \node #1;}}}]
-  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
-
-  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
-  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
-
-  \draw[red,label={[above left]{$f(x)=x$}}]                       plot (\x,\x);
-  \draw[blue,label={[below left]{$f(x)=\sin x$}}]                 plot (\x,{sin(\x r)});
-  \draw[orange,label={[right]{$f(x)= \frac{1}{20} \mathrm e^x$}}] plot (\x,{0.05*exp(\x)});
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5151,18 +1907,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark=between positions 0 and 1 step 1cm
-      with { \node [single arrow,fill=red,
-                    single arrow head extend=3pt,transform shape] {};}}]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5174,21 +1918,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark=between positions 0 and 1 step 1cm with {
-      \node [draw,
-        name=mark-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number},
-        transform shape]
-      {\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}};}}]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-  \draw [red,->] (mark-3) -- (mark-7);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5198,18 +1927,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark connection node=my node,
-    mark=at position .5 with
-      {\node [draw,blue,transform shape] (my node) {my node};}}]
-  \draw [help lines] grid (3,2);
-  \draw decorate { (0,0) -- (3,2) };
-\end{tikzpicture}
-```
 
 
 ---
@@ -5221,18 +1938,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={markings,
-    mark connection node=my node,
-    mark=at position .25 with
-      {\node [draw,red] (my node) {my node};}}]
-  \draw [help lines] grid (3,2);
-  \draw decorate { (0,0) -- (3,2) };
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5242,20 +1947,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[decoration={
-    markings,% switch on markings
-    mark=at position 1cm  with {\node[red]{1cm};},
-    mark=at position .75  with {\arrow[blue,line width=2mm]{>}},
-    mark=at position -1cm with {\arrowreversed[black]{stealth}}}
-    ]
-  \draw [help lines] grid (3,2);
-  \draw [postaction={decorate}] (0,0) -- (3,1) arc (0:180:1.5 and 1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5267,20 +1958,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \filldraw [fill=blue!10,draw=blue,thick] (1.5,1) circle (1)
-    [path picture={
-      \node at (path picture bounding box.center) {
-        This is a long text.
-      };}
-    ];
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5290,24 +1967,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[path image/.style={
-      path picture={
-        \node at (path picture bounding box.center) {
-          \includegraphics[height=3cm]{#1}
-        };}}]
-  \draw     [help lines] (0,0) grid (3,2);
-
-  \draw [path image=brave-gnu-world-logo,draw=blue,thick]
-          (0,1) circle (1);
-  \draw [path image=brave-gnu-world-logo,draw=red,very thick,->]
-          (1,0) parabola[parabola height=2cm] (3,0);
-
-\end{tikzpicture}
-```
 
 
 ---
@@ -5319,34 +1978,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-    \draw (0,1) -- (0,0) -- (1,1) -- cycle;
-    \fill (0,0) circle (2pt);
-    \node[left] at (0,0) {$-1$};
-\end{tikzpicture}
-\par
-\begin{tikzpicture}
-    \draw (0,1) -- (0,0) -- (1,1) -- cycle;
-    \fill (0,0) circle (2pt);
-    \node[left] at (0,0) {$1$};
-\end{tikzpicture}
-\par
-\begin{tikzpicture}[trim left]
-    \draw (0,1) -- (0,0) -- (1,1) -- cycle;
-    \fill (0,0) circle (2pt);
-    \node[left] at (0,0) {$-1$};
-\end{tikzpicture}
-\par
-\begin{tikzpicture}[trim left]
-    \draw (0,1) -- (0,0) -- (1,1) -- cycle;
-    \fill (0,0) circle (2pt);
-    \node[left] at (0,0) {$1$};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5356,44 +1987,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [
-    % Define an interesting style
-    button/.style={
-      % First preaction: Fuzzy shadow
-      preaction={fill=black,path fading=circle with fuzzy edge 20 percent,
-                 opacity=.5,transform canvas={xshift=1mm,yshift=-1mm}},
-      % Second preaction: Background pattern
-      preaction={pattern=#1,
-                 path fading=circle with fuzzy edge 15 percent},
-      % Third preaction: Make background shiny
-      preaction={top color=white,
-                 bottom color=black!50,
-                 shading angle=45,
-                 path fading=circle with fuzzy edge 15 percent,
-                 opacity=0.2},
-      % Fourth preaction: Make edge especially shiny
-      preaction={path fading=fuzzy ring 15 percent,
-                 top color=black!5,
-                 bottom color=black!80,
-                 shading angle=45},
-      inner sep=2ex
-    },
-    button/.default=horizontal lines light blue,
-    circle
-  ]
-
-  \draw [help lines] (0,0) grid (4,3);
-
-  \node [button] at (2.2,1) {\Huge Big};
-  \node [button=crosshatch dots light steel blue,
-         text=white] at (1,1.5) {Small};
-\end{tikzpicture}
-```
 
 
 ---
@@ -5405,39 +1998,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
 
-### Code
-
-```latex
-\begin{tikzpicture}[z={(10:10mm)},x={(-45:5mm)}]
-  \def\wave{
-    \draw[fill,thick,fill opacity=.2]
-     (0,0) sin (1,1) cos (2,0) sin (3,-1) cos (4,0)
-           sin (5,1) cos (6,0) sin (7,-1) cos (8,0)
-           sin (9,1) cos (10,0)sin (11,-1)cos (12,0);
-    \foreach \shift in {0,4,8}
-    {
-      \begin{scope}[xshift=\shift cm,thin]
-        \draw (.5,0)  -- (0.5,0 |- 45:1cm);
-        \draw (1,0)   -- (1,1);
-        \draw (1.5,0) -- (1.5,0 |- 45:1cm);
-        \draw (2.5,0) -- (2.5,0 |- -45:1cm);
-        \draw (3,0)   -- (3,-1);
-        \draw (3.5,0) -- (3.5,0 |- -45:1cm);
-      \end{scope}
-    }
-  }
-  \begin{scope}[canvas is zy plane at x=0,fill=blue]
-    \wave
-    \node at (6,-1.5) [transform shape] {magnetic field};
-  \end{scope}
-  \begin{scope}[canvas is zx plane at y=0,fill=red]
-    \draw[help lines] (0,-2) grid (12,2);
-    \wave
-    \node at (6,1.5) [rotate=180,xscale=-1,transform shape] {electric field};
-  \end{scope}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5447,23 +2007,6 @@ Furthermore, we might want to draw \tikz[baseline]\draw (0,-1) rectangle (1,1);
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}[every node/.style=draw]
-  \pgfsetmatrixcolumnsep{1mm}
-  \pgfmatrix{rectangle}{center}{mymatrix}
-    {\pgfusepath{}}{\pgfpointorigin}{\let\&=\pgfmatrixnextcell}
-  {
-    \node {8}; \&[2mm] \node(a){1}; \&[1cm,between origins] \node(b){6}; \\
-    \node {3}; \&      \node   {5}; \&                      \node   {7}; \\
-    \node {4}; \&      \node   {9}; \&                      \node   {2}; \\
-  }
-  \draw [<->,red,thick,every node/.style=] (a.center) -- (b.center)
-        node [above,midway] {11mm};
-\end{tikzpicture}
-```
 
 
 ---

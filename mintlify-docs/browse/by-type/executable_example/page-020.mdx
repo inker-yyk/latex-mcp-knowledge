@@ -18,17 +18,6 @@ Showing items **4001-4200** of **5325** | Page **21** of **27**
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \graph [tree layout] {
-    a -> { b -> {c, d}, e -> {f, g -> h} };
-
-    / ["left", draw]  // { b, c, d } <->
-    / ["right", draw] // { e, f, g, h};
-  };
-```
-
 
 ---
 
@@ -38,24 +27,6 @@ Showing items **4001-4200** of **5325** | Page **21** of **27**
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-pgf.gd.interface.InterfaceToAlgorithms.declare {
-  key = "very simple demo layout",
-  algorithm = {
-    run =
-      function (self)
-        local alpha = (2 * math.pi) / #self.ugraph.vertices
-        for i,vertex in ipairs(self.ugraph.vertices) do
-          vertex.pos.x = math.cos(i * alpha) * 25
-          vertex.pos.y = math.sin(i * alpha) * 25
-        end
-      end
-  }
-}
-```
 
 
 ---
@@ -67,13 +38,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [very simple demo layout]
-  \graph { f -> c -> e -> a -> {b -> {c, d, f}, e -> b}};
-```
-
 
 ---
 
@@ -83,16 +47,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [very simple demo layout, componentwise]
-  \graph {
-    1 -> 2 ->[orient=right] 3 -> 1;
-    a -- b --[orient=45]  c -- d -- a;
-  };
-```
 
 
 ---
@@ -104,13 +58,6 @@ pgf.gd.interface.InterfaceToAlgorithms.declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- This is the file ExampleLayout.lua
-local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
-```
-
 
 ---
 
@@ -120,22 +67,6 @@ local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-local ExampleClass = {}  -- A local variable holding the class table
-
-declare {
-  key = "very simple demo layout",
-  algorithm = ExampleClass
-}
-
-function ExampleClass:run ()
-  local alpha = (2 * math.pi) / #self.ugraph.vertices
-  ...
-end
-```
 
 
 ---
@@ -147,17 +78,6 @@ end
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- File ExampleLayout.lua
-local declare = require "pgf.gd.interface.InterfaceToAlgorithms".declare
-declare {
-  key = "very simple demo layout",
-  algorithm = "ExampleLayoutImplementation"
-}
-```
-
 
 ---
 
@@ -167,18 +87,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
--- File ExampleLayoutImplementation.lua
-local ExampleClass = {}
-function ExampleClass:run ()
-  local alpha = (2 * math.pi) / #self.ugraph.vertices
-  ...
-end
-return ExampleClass
-```
 
 
 ---
@@ -190,16 +98,6 @@ return ExampleClass
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-declare {
-  key = "radius",
-  type = "length",
-  initial = "25pt"
-}
-```
-
 
 ---
 
@@ -209,13 +107,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-vertex.pos.x = math.cos(i * alpha) * vertex.options.radius
-          vertex.pos.y = math.sin(i * alpha) * vertex.options.radius
-```
 
 
 ---
@@ -227,27 +118,6 @@ vertex.pos.x = math.cos(i * alpha) * vertex.options.radius
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
----
-declare {
-  key = "radius",
-  type = "length",
-  initial = "25pt",
-  summary = [[
-    Specifies the radius of a circle on which the nodes are placed when
-    the |very simple example layout| is used. Each vertex can have a
-    different radius.
-  ]],
-  examples = [[
-    \tikz \graph [very simple example layout, radius=2cm] {
-      a -- b -- c -- d -- e;
-    };
-  ]]
-}
-```
-
 
 ---
 
@@ -257,25 +127,6 @@ declare {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
----
-declare {
-  key               = "very simple demo layout",
-  algorithm         = ExampleClass,
-  documentation_in  = "documentation_file"
-}
-
----
-declare {
-  key               = "radius",
-  type              = "length",
-  initial           = "25",
-  documentation_in  = "documentation_file"
-}
-```
 
 
 ---
@@ -287,32 +138,6 @@ declare {
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
--- File documentation_file.lua
-local key           = require 'pgf.gd.doc'.key
-local documentation = require 'pgf.gd.doc'.documentation
-local summary       = require 'pgf.gd.doc'.summary
-local example       = require 'pgf.gd.doc'.example
-
-key           "very simple demo layout"
-documentation "This layout is a very simple layout that, ..."
-
-key           "radius"
-summary       "Specifies the radius of a circle on which the nodes are placed."
-documentation
-[[
-This key can be used together with |very simple example layout|. An
-important feature is that...
-]]
-example
-[[
-\tikz \graph [very simple example layout, radius=2cm]
-{ a -- b -- c -- d -- e; };
-]]
-```
-
 
 ---
 
@@ -322,13 +147,6 @@ example
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
--- File pgf.gd.example.SomeClass.lua:
-local SomeClass = {}
-```
 
 
 ---
@@ -340,12 +158,6 @@ local SomeClass = {}
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-require("pgf.gd.example").SomeClass = SomeClass
-```
-
 
 ---
 
@@ -355,12 +167,6 @@ require("pgf.gd.example").SomeClass = SomeClass
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-return SomeClass
-```
 
 
 ---
@@ -372,14 +178,6 @@ return SomeClass
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-...
-local SomeClass = require "pgf.gd.examples.SomeClass"
-...
-```
-
 
 ---
 
@@ -389,12 +187,6 @@ local SomeClass = require "pgf.gd.examples.SomeClass"
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-graph { a -- {b, c} }
-```
 
 
 ---
@@ -406,14 +198,6 @@ graph { a -- {b, c} }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-node (a) { a }
-child { node (b) {b} }
-child { node (c) {c} }
-```
-
 
 ---
 
@@ -423,12 +207,6 @@ child { node (c) {c} }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-graph { a -- b --[red] c, b --[green, bend right] c }
-```
 
 
 ---
@@ -440,19 +218,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfsetlinewidth{5mm}
-  \color{red}
-  \pgfpathcircle{\pgfpoint{0cm}{0cm}}{10mm} \pgfusepath{stroke}
-  \color{black}
-  \pgfsetstrokeopacity{0.5}
-  \pgfpathcircle{\pgfpoint{1cm}{0cm}}{10mm} \pgfusepath{stroke}
-\end{pgfpicture}
-```
-
 
 ---
 
@@ -462,17 +227,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetfillopacity{0.5}
-  \fill[red]   (90:1cm)  circle (11mm);
-  \fill[green] (210:1cm) circle (11mm);
-  \fill[blue]  (-30:1cm) circle (11mm);
-\end{tikzpicture}
-```
 
 
 ---
@@ -484,16 +238,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetfillopacity{0.5}
-  \fill[red] (0,0) circle (1);
-  \fill[red] (1,0) circle (1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -503,18 +247,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [transparency group] {
-  \pgfsetblendmode{screen}
-
-  \fill[red!90!black]   ( 90:.6) circle (1);
-  \fill[green!80!black] (210:.6) circle (1);
-  \fill[blue!90!black]  (330:.6) circle (1);
-}
-```
 
 
 ---
@@ -526,18 +258,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclarefading{fading1}{\textcolor{white}{Ti\emph{k}Z}}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading1}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -547,20 +267,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefading{fading2}
-{\tikz \shade[left color=pgftransparent!0,
-              right color=pgftransparent!100] (0,0) rectangle (2,2);}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -572,25 +278,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdeclareradialshading{myshading}{\pgfpointorigin}
-{
-  color(0mm)=(pgftransparent!0);
-  color(5mm)=(pgftransparent!0);
-  color(8mm)=(pgftransparent!100);
-  color(15mm)=(pgftransparent!100)
-}
-\pgfdeclarefading{fading3}{\pgfuseshading{myshading}}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading3}{\pgftransformshift{\pgfpoint{1cm}{1cm}}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -600,20 +287,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarefading{fading2}
-{\tikz \shade[left color=pgftransparent!0,
-              right color=pgftransparent!100] (0,0) rectangle (2,2);}
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -625,19 +298,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-(0,0) rectangle (2,2);}}]
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-  \pgfsetfading{fading2}{\pgftransformshift{\pgfpoint{1cm}{1cm}}
-                         \pgftransformrotate{20}}
-  \fill [red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -647,33 +307,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfdeclarehorizontalshading{shading}{100bp}
-{ color(0pt)=(transparent!0);    color(25bp)=(transparent!0);
-  color(75bp)=(transparent!100); color(100bp)=(transparent!100)}
-
-\pgfdeclarefading{fading}{\pgfuseshading{shading}}
-
-\begin{tikzpicture}
-  \fill [black!20] (0,0) rectangle (2,2);
-  \fill [black!30] (0,0) arc (180:0:1);
-
-  \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2cm}{1cm}}
-  \pgfsetfadingforcurrentpath{fading}{}
-  \pgfusepath{discard}
-
-  \fill [red] (0,0) rectangle (2,1);
-
-  \pgfpathrectangle{\pgfpoint{0cm}{1cm}}{\pgfpoint{2cm}{1cm}}
-  \pgfsetfadingforcurrentpath{fading}{\pgftransformrotate{90}}
-  \pgfusepath{discard}
-
-  \fill [red] (0,1) rectangle (2,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -685,18 +318,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \pgfsetlinewidth{2mm}
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{2cm}{0cm}}
-  \pgfsetfadingforcurrentpathstroked{fading}{}
-  \pgfusepath{stroke}
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -706,25 +327,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: node_graph  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (2,2);
-
-  % Stuff outside the picture, but still in a transparency group.
-  \node [left,overlay] at (0,1) {
-    \begin{tikzpicture}
-      \pgfsetfillopacity{0.5}
-      \pgftransparencygroup
-      \node at (2,0) [forbidden sign,line width=2ex,draw=red,fill=white]
-        {Smoking};
-      \endpgftransparencygroup
-    \end{tikzpicture}
-  };
-\end{tikzpicture}
-```
 
 
 ---
@@ -736,17 +338,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz {
-  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
-  \begin{scope}[meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
-
 
 ---
 
@@ -756,17 +347,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz {
-  \draw [red, very thick] (0,0) rectangle (20mm,20mm);
-  \begin{scope}[slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
 
 
 ---
@@ -778,24 +358,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [animate = {
-  my scope:view = {
-    begin on = { click, of next = here },
-    0s = "{(0.5,0.5) (2.5,1.5)}",
-    2s = "{(0.5,0) (1.5,2)}", forever
-  }}] {
-  \draw [red, fill=red!20, very thick, name=here]
-    (0,0) rectangle (20mm,20mm);
-  \begin{scope}[name = my scope,
-                meet = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
-
 
 ---
 
@@ -805,24 +367,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [animate = {
-  my scope:view = {
-  }}] {
-  \draw [red, fill=red!20, very thick, name=here]
-    (0,0) rectangle (20mm,20mm);
-  \begin{scope}[animate = { myself: = { :view = {
-                  begin on = { click, of = here },
-                  0s = "{(0.5,0.5) (2.5,1.5)}",
-                  2s = "{(0.5,0) (1.5,2)}", forever }}},
-                slice = {(0.5,0.5) (2.5,1.5) at (0,0) (2,2)}]
-    \draw [blue, very thick] (5mm,5mm) rectangle (25mm,15mm);
-    \draw [thick] (1,1) circle [x radius=5mm, y radius=10mm] node {Hi};
-  \end{scope} }
-```
 
 
 ---
@@ -834,12 +378,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsys@beginscope\pgflowlevelsynccm\box#1\pgfsys@endscope
-```
-
 
 ---
 
@@ -849,14 +387,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@moveto{10pt}{10pt}
-\pgfsys@lineto{0pt}{0pt}
-\pgfsys@stroke
-```
 
 
 ---
@@ -868,14 +398,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsys@moveto{10pt}{0pt}
-\pgfsys@curveto{10pt}{5.55pt}{5.55pt}{10pt}{0pt}{10pt}
-\pgfsys@stroke
-```
-
 
 ---
 
@@ -885,16 +407,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@moveto{0pt}{0pt}
-\pgfsys@lineto{10bp}{10bp}
-\pgfsys@lineto{0bp}{10bp}
-\pgfsys@closepath
-\pgfsys@stroke
-```
 
 
 ---
@@ -906,16 +418,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfsys@moveto{0bp}{0bp}
-\pgfsys@lineto{10bp}{10bp}
-\pgfsys@lineto{0bp}{10bp}
-\pgfsys@lineto{0bp}{0bp}
-\pgfsys@stroke
-```
-
 
 ---
 
@@ -925,16 +427,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@declarepattern
-    {hori}{-.5pt}{0pt}{.5pt}{3pt}{3pt}{3pt}%
-    {1.0}{0.0}{0.0}{1.0}{0.0pt}{0.0pt}%
-    {\pgfsys@moveto{0pt}{0pt}\pgfsys@lineto{0pt}{3pt}\pgfsys@stroke}
-    {0}
-```
 
 
 ---
@@ -946,12 +438,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\def\pgfsys@patternmatrix{{1.0}{0.0}{0.0}{1.0}{0.0pt}{0.0pt}}
-```
-
 
 ---
 
@@ -961,15 +447,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@rdf@resource{/fruits/apple}
-\pgfsys@begin@idscope
-  ...
-\pgfsys@end@idscope
-```
 
 
 ---
@@ -981,14 +458,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-<g resource="/fruits/apple">
-  ...
-</g>
-```
-
 
 ---
 
@@ -998,18 +467,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfsys@rdf@resource{/fruits/apple}
-\pgfsys@rdf@resource{/fruits/watermelon}
-\pgfsys@rdf@property{http://foo.com/props/juicy}
-\pgfsys@rdf@property{http://foo.com/props/green}
-\pgfsys@begin@idscope
-  ...
-\pgfsys@end@idscope
-```
 
 
 ---
@@ -1021,15 +478,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-<g resource="/fruits/watermelon"
-   property="http://foo.com/props/juicy http://foo.com/props/green">
-  ...
-</g>
-```
-
 
 ---
 
@@ -1039,12 +487,6 @@ graph { a -- b --[red] c, b --[green, bend right] c }
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-The value of $x$ is \pgfsys@markposition{here}important.
-```
 
 
 ---
@@ -1056,30 +498,6 @@ The value of $x$ is \pgfsys@markposition{here}important.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-The value of $x$ is \pgfsys@markposition{here}important.
-
-Lots of text.
-
-\hbox{\pgfsys@markposition{myorigin}%
-\begin{pgfpicture}
-  % Switch of size protocol
-  \pgfpathmoveto{\pgfpointorigin}
-  \pgfusepath{use as bounding box}
-
-  \pgfsys@getposition{here}{\hereposition}
-  \pgfsys@getposition{myorigin}{\thispictureposition}
-
-  \pgftransformshift{\pgfpointscale{-1}{\thispictureposition}}
-  \pgftransformshift{\hereposition}
-
-  \pgfpathcircle{\pgfpointorigin}{1cm}
-  \pgfusepath{draw}
-\end{pgfpicture}}
-```
-
 
 ---
 
@@ -1089,16 +507,6 @@ Lots of text.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{pgfpicture}
-  \pgfpathsvg{M 0 0 l 20 0 0 20 -20 0 q 10 0 10 10
-              t 10 10 10 10 h -50 z}
-  \pgfusepath{stroke}
-\end{pgfpicture}
-```
 
 
 ---
@@ -1110,24 +518,6 @@ Lots of text.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-    /my group/A1/.code=(A1:#1),
-    /my group/A2/.code=(A2:#1),
-    /my group/A3/.code=(A3:#1),
-    /my group/B/.code=(B:#1),
-    /my group/C/.code=(B:#1),
-    /my group/A/.is family,
-    /my group/A1/.belongs to family=/my group/A,
-    /my group/A2/.belongs to family=/my group/A,
-    /my group/A3/.belongs to family=/my group/A,
-    /pgf/key filters/active families/.install key filter,
-    /my group/A/.activate family,
-}
-```
-
 
 ---
 
@@ -1137,18 +527,6 @@ Lots of text.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-    /my group/A1/.code=(A1:#1),
-    /my group/A2/.code=(A2:#1),
-    /my group/A3/.code=(A3:#1),
-    /my group/B/.code=(B:#1),
-    /my group/C/.code=(B:#1),
-}
-```
 
 
 ---
@@ -1160,12 +538,6 @@ Lots of text.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my group/A1=a1, /my group/A2=a2, /my group/B=b,  /my group/C=c}
-```
-
 
 ---
 
@@ -1175,17 +547,6 @@ Lots of text.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-    /my group/A/.is family,
-    /my group/A1/.belongs to family=/my group/A,
-    /my group/A2/.belongs to family=/my group/A,
-    /my group/A3/.belongs to family=/my group/A,
-}
-```
 
 
 ---
@@ -1197,12 +558,6 @@ Lots of text.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/key filters/active families/.install key filter}
-```
-
 
 ---
 
@@ -1212,14 +567,6 @@ Lots of text.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/my group/A/.activate family}
-\pgfkeysfiltered{/my group/A1=a1, /my group/A2=a2,
- /my group/B=b,  /my group/C=c}
-```
 
 
 ---
@@ -1231,14 +578,6 @@ Lots of text.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/my group/A/.activate family}
-\pgfkeysfiltered{/my group/A1=a1, /my group/A2=a2,
- /my group/B=b,  /my group/C=c, /tikz/color=blue, /my group/A3=a3}
-```
-
 
 ---
 
@@ -1248,18 +587,6 @@ Lots of text.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/key filter handlers/append filtered to/.install key filter handler=\remainingoptions}
-\def\remainingoptions{}
-\pgfkeysfiltered{/my group/A1=a1, /my group/A2=a2,
- /my group/B=b,  /my group/C=c, /tikz/color=blue, /my group/A3=a3}
-
-Remaining: `\remainingoptions'.
-\pgfkeysalsofrom{\remainingoptions}
-```
 
 
 ---
@@ -1271,13 +598,6 @@ Remaining: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/foo/bar/true key filter/.code={\pgfkeysfiltercontinuetrue}}
-\pgfkeys{/foo/bar/true key filter/.install key filter}
-```
-
 
 ---
 
@@ -1287,14 +607,6 @@ Remaining: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/pgf/key filters/equals/.install key filter={/my group/A1}}
-\pgfkeysfiltered{/my group/A1=a1, /my group/A2=a2,
-/my group/B=b,  /my group/C=c, /tikz/color=blue, /my group/A3=a3}
-```
 
 
 ---
@@ -1306,17 +618,6 @@ Remaining: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{/pgf/key filter handlers/append filtered to/.install key filter handler=\remainingoptions}
-\def\remainingoptions{}
-\pgfkeysfiltered{/my group/A1=a1, /my group/A2=a2,
- /my group/B=b,  /my group/C=c, /tikz/color=blue}
-
-Remaining options: `\remainingoptions'.
-```
-
 
 ---
 
@@ -1326,16 +627,6 @@ Remaining options: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{/foo/bar/.is family}
-\pgfkeys{
-    /foo/a/.belongs to family=/foo/bar,
-    /foo/b/.belongs to family=/foo/bar
-}
-```
 
 
 ---
@@ -1347,16 +638,6 @@ Remaining options: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeysinstallkeyfilter
-    {/pgf/key filters/active families or no family}
-    {{/pgf/key filters/is descendant of=/tikz}% for keys without family
-     {/pgf/key filters/false}% for unknown keys
-    }%
-```
-
 
 ---
 
@@ -1366,17 +647,6 @@ Remaining options: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-/group 1/A/.code={(A:#1)},
-/group 1/foo/bar/B/.code={(B:#1)},
-/group 2/C/.code={(C:#1)},
-/pgf/key filters/is descendant of/.install key filter=/group 1}
-\pgfkeysfiltered{/group 1/A=a,/group 1/foo/bar/B=b,/group 2/C=c}
-```
 
 
 ---
@@ -1388,16 +658,6 @@ Remaining options: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeys{
-/group 1/A/.code={(A:#1)},
-/group 1/B/.code={(B:#1)},
-/pgf/key filters/equals/.install key filter=/group 1/A}
-\pgfqkeysfiltered{/group 1}{A=a,B=b}
-```
-
 
 ---
 
@@ -1407,18 +667,6 @@ Remaining options: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-/group 1/A/.code={(A:#1)},
-/group 1/foo/bar/B/.code={(B:#1)},
-/group 2/C/.code={(C:#1)},
-/pgf/key filters/not/.install key filter=
-    {/pgf/key filters/is descendant of=/group 1}}
-\pgfkeysfiltered{/group 1/A=a,/group 1/foo/bar/B=b,/group 2/C=c}
-```
 
 
 ---
@@ -1430,14 +678,6 @@ Remaining options: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfkeysactivatefamilies{/family 1,/family 2,/family 3}{\deactivatename}
-\pgfkeysfiltered{foo,bar}
-\deactivatename
-```
-
 
 ---
 
@@ -1447,12 +687,6 @@ Remaining options: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeysevalkeyfilterwith{/pgf/key filters/equals=/tikz}
-```
 
 
 ---
@@ -1464,29 +698,6 @@ Remaining options: `\remainingoptions'.
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization data group {function classes} = {
-  data [set=log, format=function] {
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};
-```
-
 
 ---
 
@@ -1496,33 +707,6 @@ Remaining options: `\remainingoptions'.
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};}]
-\tikz \datavisualization [
-  school book axes, all axes={unit length=7.5mm},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -1534,33 +718,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};}]
-\tikz \datavisualization [
-  school book axes, all axes={unit length=7.5mm},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  style sheet=vary dashing]
-data group {function classes};
-```
-
 
 ---
 
@@ -1570,38 +727,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};}]
-\tikz \datavisualization [
-  school book axes, all axes={unit length=7.5mm},
-  x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=vary dashing]
-data group {function classes};
-```
 
 
 ---
@@ -1613,41 +738,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};}]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  every data set label/.append style={text colored},
-  log=    {pin in data={text'=$\log x$, when=y is -1}},
-  lin=    {pin in data={text=$x/2$, when=x is 2,
-                        pin length=1ex}},
-  squared={pin in data={text=$x^2$, when=x is 1.1,
-                        pin angle=230}},
-  exp=    {label in data={text=$e^x$, when=x is -2}},
-  style sheet=vary hue]
-data group {function classes};
-```
-
 
 ---
 
@@ -1657,35 +747,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes, all axes={unit length=7.5mm},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  style sheet=vary thickness and dashing,
-  style sheet=vary hue]
-data group {function classes};
-```
 
 
 ---
@@ -1697,12 +758,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/data point/set/.style sheet=strong colors
-```
-
 
 ---
 
@@ -1712,14 +767,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-/pgf/data visualization/style sheets/test/foo/.style={red},
-/pgf/data visualization/style sheets/test/bar/.style={green},
-/pgf/data visualization/style sheets/test/foobar/.style={dashed, blue},
-```
 
 
 ---
@@ -1731,12 +778,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/data point/code/.style sheet=test
-```
-
 
 ---
 
@@ -1746,31 +787,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\pgfkeys{
-  /pgf/data visualization/style sheets/traffic light/.cd,
-  % All these styles have the above prefix.
-  1/.style={green!50!black},
-  2/.style={yellow!90!black},
-  3/.style={red!80!black},
-  default style/.style={black}
-}
-\tikz \datavisualization [
-  school book axes,
-  visualize as line=1,
-  visualize as line=2,
-  visualize as line=3,
-  style sheet=traffic light]
-data point [x=0, y=0, set=1]
-data point [x=2, y=2, set=1]
-data point [x=0, y=1, set=2]
-data point [x=2, y=1, set=2]
-data point [x=0.5, y=1.5, set=3]
-data point [x=2.25, y=1.75, set=3];
-```
 
 
 ---
@@ -1782,32 +798,6 @@ data point [x=2.25, y=1.75, set=3];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-% Definition of traffic light keys as above
-\begin{tikzpicture}
-  \datavisualization data group {lines} = {
-    data point [x=0, y=0,       set=normal]
-    data point [x=2, y=2,       set=normal]
-    data point [x=0, y=1,       set=heated]
-    data point [x=2, y=1,       set=heated]
-    data point [x=0.5, y=1.5,   set=critical]
-    data point [x=2.25, y=1.75, set=critical]
-  };
-  \datavisualization [
-    school book axes,
-    visualize as line=normal,
-    visualize as line=heated,
-    visualize as line=critical,
-    /data point/set/normal/.initial=1,
-    /data point/set/heated/.initial=2,
-    /data point/set/critical/.initial=3,
-    style sheet=traffic light]
-  data group {lines};
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -1817,27 +807,6 @@ data point [x=2.25, y=1.75, set=3];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-data point [x=2, y=2,       set=normal]
-    data point [x=0, y=1,       set=heated]
-    data point [x=2, y=1,       set=heated]
-    data point [x=0.5, y=1.5,   set=critical]
-    data point [x=2.25, y=1.75, set=critical]
-};},
-]
-% Definition of traffic light keys as above
-\tikz \datavisualization [
-  school book axes,
-  visualize as line=normal,
-  visualize as line=heated,
-  visualize as line=critical,
-  /data point/set/critical/.initial=1, % same styling as first set
-  style sheet=traffic light]
-data group {lines};
-```
 
 
 ---
@@ -1849,17 +818,6 @@ data group {lines};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\pgfdvdeclarestylesheet{traffic light}{
-  1/.style={green!50!black},
-  2/.style={yellow!90!black},
-  3/.style={red!80!black},
-  default style/.style={black}
-}
-```
-
 
 ---
 
@@ -1869,28 +827,6 @@ data group {lines};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-data point [x=2, y=2,       set=normal]
-    data point [x=0, y=1,       set=heated]
-    data point [x=2, y=1,       set=heated]
-    data point [x=0.5, y=1.5,   set=critical]
-    data point [x=2.25, y=1.75, set=critical]
-};},
-]
-\pgfdvdeclarestylesheet{my dashings}{
-  default style/.style={dash pattern={on #1pt off 1pt}}
-}
-\tikz \datavisualization [
-  school book axes,
-  visualize as line=normal,
-  visualize as line=heated,
-  visualize as line=critical,
-  style sheet=my dashings]
-data group {lines};
-```
 
 
 ---
@@ -1902,32 +838,6 @@ data group {lines};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-data point [x=2, y=2,       set=normal]
-    data point [x=0, y=1,       set=heated]
-    data point [x=2, y=1,       set=heated]
-    data point [x=0.5, y=1.5,   set=critical]
-    data point [x=2.25, y=1.75, set=critical]
-};},
-]
-\pgfdvdeclarestylesheet{my colors}
-{
-  default style/.style={visualizer color=black},
-  1/.style={visualizer color=black},
-  2/.style={visualizer color=red!80!black},
-  3/.style={visualizer color=blue!80!black},
-}
-\tikz \datavisualization [
-  school book axes,
-  visualize as line=normal,
-  visualize as line=heated,
-  visualize as line=critical,
-  style sheet=my colors]
-data group {lines};
-```
-
 
 ---
 
@@ -1937,26 +847,6 @@ data group {lines};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-data point [x=2, y=2,       set=normal]
-    data point [x=0, y=1,       set=heated]
-    data point [x=2, y=1,       set=heated]
-    data point [x=0.5, y=1.5,   set=critical]
-    data point [x=2.25, y=1.75, set=critical]
-};},
-]
-\tikzdvdeclarestylesheetcolorseries{greens}{hsb}{0.3,1.3,0.8}{0,-.4,-.1}
-\tikz \datavisualization [
-  school book axes,
-  visualize as line=normal,
-  visualize as line=heated,
-  visualize as line=critical,
-  style sheet=greens]
-data group {lines};
-```
 
 
 ---
@@ -1968,29 +858,6 @@ data group {lines};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}
-```
-
 
 ---
 
@@ -2000,18 +867,6 @@ data group {lines};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization data group {sin functions} = {
-  data [format=function] {
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};
-```
 
 
 ---
@@ -2023,42 +878,6 @@ data group {lines};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=vary thickness]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2068,42 +887,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=vary dashing]
-data group {sin functions};
-```
 
 
 ---
@@ -2115,43 +898,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=vary thickness
-              and dashing]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2161,43 +907,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=vary thickness,
-  style sheet=vary dashing]
-data group {sin functions};
-```
 
 
 ---
@@ -2209,42 +918,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as scatter/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=cross marks]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2254,42 +927,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=cross marks]
-data group {sin functions};
-```
 
 
 ---
@@ -2301,42 +938,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=strong colors]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2346,43 +947,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=strong colors,
-  style sheet=vary dashing]
-data group {sin functions};
-```
 
 
 ---
@@ -2394,42 +958,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=vary hue]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2439,42 +967,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=shades of blue]
-data group {sin functions};
-```
 
 
 ---
@@ -2486,42 +978,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=shades of red]
-data group {sin functions};
-```
-
 
 ---
 
@@ -2531,42 +987,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  example visualization/.style={
-    scientific axes=clean,
-    y axis={ticks={style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=2}}},
-    x axis={ticks={tick suffix=${}^\circ$}},
-    1={label in legend={text=$\frac{1}{6}\sin 11x$}},
-    2={label in legend={text=$\frac{1}{7}\sin 12x$}},
-    3={label in legend={text=$\frac{1}{8}\sin 13x$}},
-    4={label in legend={text=$\frac{1}{9}\sin 14x$}},
-    5={label in legend={text=$\frac{1}{10}\sin 15x$}},
-    6={label in legend={text=$\frac{1}{11}\sin 16x$}},
-    7={label in legend={text=$\frac{1}{12}\sin 17x$}},
-    8={label in legend={text=$\frac{1}{13}\sin 18x$}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list=
-    {1,2,3,4,5,6,7,8},
-  example visualization,
-  style sheet=gray scale]
-data group {sin functions};
-```
 
 
 ---
@@ -2578,12 +998,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/visualizer label options
-```
-
 
 ---
 
@@ -2593,41 +1007,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  log=    {label in data={text'=$\log x$, when=y is -1,
-                          text colored}},
-  lin=    {label in data={text=$x/2$,     when=x is 2}},
-  squared={label in data={text=$x^2$,     when=x is 1.1}},
-  exp=    {label in data={text=$e^x$,     when=x is -2,
-                          text colored}},
-  style sheet=vary hue]
-data group {function classes};
-```
 
 
 ---
@@ -2639,39 +1018,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line/.list={exp},
-  exp=    {label in data={text=$5$, index=5},
-           label in data={text=$10$, index=10},
-           label in data={text=$20$, index=20},
-           style={mark=x}},
-  style sheet=vary hue]
-data group {function classes};
-```
-
 
 ---
 
@@ -2681,39 +1027,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line=exp,
-  exp=    {label in data={text=$.2$, pos=0.2},
-           label in data={text=$.5$, pos=0.5},
-           label in data={text=$.95$, pos=0.95},
-           style={mark=x}},
-  style sheet=vary hue]
-data group {function classes};
-```
 
 
 ---
@@ -2725,29 +1038,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes=clean,
-  visualize as smooth line/.list={linear, squared, cubed},
-  linear ={label in data={text=$2x$}},
-  squared={label in data={text=$x^2$}},
-  cubed  ={label in data={text=$x^3$}}]
-data [set=linear, format=function] {
-  var x : interval [0:1.5];
-  func y = 2*\value x;
-}
-data [set=squared, format=function] {
-  var x : interval [0:1.5];
-  func y = \value x * \value x;
-}
-data [set=cubed, format=function] {
-  var x : interval [0:1.5];
-  func y = \value x * \value x * \value x;
-};
-```
-
 
 ---
 
@@ -2757,42 +1047,6 @@ data [set=cubed, format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  every data set label/.append style={text colored},
-  log=    {label in data={text'=$\log x$, when=y is -1}},
-  lin=    {label in data={text=$x/2$,
-                    node style=sloped,    when=x is 2}},
-  squared={label in data={text=$x^2$,     when=x is 1.1}},
-  exp=    {label in data={text=$e^x$,
-                    node style=sloped,    when=x is -2}},
-  style sheet=vary hue]
-data group {function classes};
-```
 
 
 ---
@@ -2804,29 +1058,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes=clean,
-  visualize as smooth line/.list={linear, squared, cubed},
-  linear ={pin in data={text=$2x$}},
-  squared={pin in data={text=$x^2$}},
-  cubed  ={pin in data={text=$x^3$}}]
-data [set=linear, format=function] {
-  var x : interval [0:1.5];
-  func y = \value x;
-}
-data [set=squared, format=function] {
-  var x : interval [0:1.5];
-  func y = \value x * \value x;
-}
-data [set=cubed, format=function] {
-  var x : interval [0:1.5];
-  func y = \value x * \value x * \value x;
-};
-```
-
 
 ---
 
@@ -2836,42 +1067,6 @@ data [set=cubed, format=function] {
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  school book axes,
-  x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  every data set label/.append style={text colored},
-  log=    {pin in data={text'=$\log x$, when=y is -1}},
-  lin=    {pin in data={text=$x/2$, when=x is 2,
-                        pin length=1ex}},
-  squared={pin in data={text=$x^2$, when=x is 1.1,
-                        pin angle=230}},
-  exp=    {label in data={text=$e^x$, when=x is -2}},
-  style sheet=vary hue]
-data group {function classes};
-```
 
 
 ---
@@ -2883,12 +1078,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/legend options
-```
-
 
 ---
 
@@ -2898,40 +1087,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={matrix node style={fill=black!25}},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=vary dashing]
-data group {function classes};
-```
 
 
 ---
@@ -2943,42 +1098,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes, x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  new legend={upper legend},
-  new legend={lower legend},
-  upper legend=above,
-  lower legend=below,
-  log=    {label in legend={text=$\log x$, legend=upper legend}},
-  lin=    {label in legend={text=$x/2$, legend=upper legend}},
-  squared={label in legend={text=$x^2$, legend=lower legend}},
-  exp=    {label in legend={text=$e^x$, legend=lower legend}},
-  style sheet=vary dashing]
-data group {function classes};
-```
-
 
 ---
 
@@ -2988,39 +1107,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes, x axis={label=$x$},
-  visualize as smooth line/.list={log, lin, squared, exp},
-  legend=below,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=vary dashing]
-data group {function classes};
-```
 
 
 ---
@@ -3032,12 +1118,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/legend entry options
-```
-
 
 ---
 
@@ -3047,39 +1127,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes, x axis={label=$x$},
-  visualize as smooth line/.list=
-  {log, lin, squared, exp},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={pin in data    ={text=$x^2$, pos=0.1}},
-  exp=    {label in data  ={text=$e^x$}},
-  style sheet=vary dashing]
-data group {function classes};
-```
 
 
 ---
@@ -3091,36 +1138,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={down then right, columns=3}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3130,24 +1147,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}
-```
 
 
 ---
@@ -3159,36 +1158,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={down then left, columns=3}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3198,36 +1167,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={up then right, columns=3}]
-data group {sin functions};
-```
 
 
 ---
@@ -3239,36 +1178,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={up then left, columns=3}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3278,36 +1187,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={left then up, columns=3}]
-data group {sin functions};
-```
 
 
 ---
@@ -3319,36 +1198,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={left then down, columns=3}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3358,36 +1207,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={right then up, columns=3}]
-data group {sin functions};
-```
 
 
 ---
@@ -3399,36 +1218,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={right then down, columns=3}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3438,36 +1227,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={max rows=3}]
-data group {sin functions};
-```
 
 
 ---
@@ -3479,36 +1238,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={max rows=4}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3518,36 +1247,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={max rows=5}]
-data group {sin functions};
-```
 
 
 ---
@@ -3559,36 +1258,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={right then down, max columns=2}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3598,36 +1267,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={right then down,max columns=3}]
-data group {sin functions};
-```
 
 
 ---
@@ -3639,36 +1278,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={right then down,max columns=4}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3678,36 +1287,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={ideal number of columns=2}]
-data group {sin functions};
-```
 
 
 ---
@@ -3719,36 +1298,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={ideal number of columns=4}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3758,36 +1307,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={max rows=3,ideal number of columns=2}]
-data group {sin functions};
-```
 
 
 ---
@@ -3799,36 +1318,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={ideal number of rows=2}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3838,36 +1327,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={ideal number of rows=4}]
-data group {sin functions};
-```
 
 
 ---
@@ -3879,36 +1338,6 @@ data group {sin functions};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var set : {1,...,8};
-    var x : interval [0:50];
-    func y = sin(\value x * (\value{set}+10))/(\value{set}+5);
-  }
-};%
-\tikzdatavisualizationset {
-  legend example/.style={
-    scientific axes, all axes={length=1cm, ticks=none},
-    1={label in legend={text=1}},
-    2={label in legend={text=2}},
-    3={label in legend={text=3}},
-    4={label in legend={text=4}},
-    5={label in legend={text=5}},
-    6={label in legend={text=6}},
-    7={label in legend={text=7}},
-    8={label in legend={text=8}}
-  }
-}},
-]
-\tikz \datavisualization [
-  visualize as smooth line/.list={1,2,3,4,5,6,7,8},
-  legend example, style sheet=vary hue,
-  main legend={max columns=3,ideal number of rows=2}]
-data group {sin functions};
-```
-
 
 ---
 
@@ -3918,41 +1347,6 @@ data group {sin functions};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes, x axis={label=$x$},
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={anchor=north west, at=
-    (data visualization bounding box.north east)},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=vary dashing]
-data group {function classes};
-```
 
 
 ---
@@ -3964,40 +1358,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=east outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4007,40 +1367,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=north east outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4052,40 +1378,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=south east outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4095,40 +1387,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=west outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4140,40 +1398,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=north west outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4183,40 +1407,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=south west outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4228,40 +1418,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=north outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4271,40 +1427,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=south outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4316,38 +1438,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin},
-  legend=south east inside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4357,37 +1447,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list={log, lin},
-  legend=south inside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4399,37 +1458,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list={log, lin},
-  legend={at values={x=-1, y=2}},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4439,37 +1467,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list={log, lin},
-  legend={right of={x=-1, y=2}},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4481,43 +1478,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  every label in legend/.style={node style=
-    {fill=red!30}},
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=north east outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$,
-      node style={circle, draw=red}}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4527,41 +1487,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={label style={node style=draw}},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$,
-      node style={circle, draw=red}}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4573,41 +1498,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend=north east outside,
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$,
-      node style={circle, draw=red}}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4617,40 +1507,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={label style=text colored},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4662,40 +1518,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={label style=text left},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
-
 
 ---
 
@@ -4705,41 +1527,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-{
-    var x : interval [0.2:2.5];
-    func y = ln(\value x);
-  }
-  data [set=lin, format=function] {
-    var x : interval [-2:2.5];
-    func y = 0.5*\value x;
-  }
-  data [set=squared, format=function] {
-    var x : interval [-1.5:1.5];
-    func y = \value x*\value x;
-  }
-  data [set=exp, format=function] {
-    var x : interval [-2.5:1];
-    func y = exp(\value x);
-  }
-};},
-]
-\tikz \datavisualization [
-  scientific axes,
-  visualize as smooth line/.list=
-    {log, lin, squared, exp},
-  legend={south east inside, rows=2,
-          label style=text only},
-  log=    {label in legend={text=$\log x$}},
-  lin=    {label in legend={text=$x/2$}},
-  squared={label in legend={text=$x^2$}},
-  exp=    {label in legend={text=$e^x$}},
-  style sheet=strong colors]
-data group {function classes};
-```
 
 
 ---
@@ -4751,12 +1538,6 @@ data group {function classes};
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-/tikz/data visualization/legend entry options/text
-```
-
 
 ---
 
@@ -4766,22 +1547,6 @@ data group {function classes};
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  style sheet=vary dashing,
-  a={label in legend={text=a}},
-  new legend entry={
-    text=spacer,
-    visualizer in legend={\draw[solid] (0,0) circle[radius=2pt];}
-  },
-  b={label in legend={text=b}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
 
 
 ---
@@ -4793,17 +1558,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  style sheet=vary dashing,
-  a={label in legend={text=a}},  b={label in legend={text=b}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
-
 
 ---
 
@@ -4813,19 +1567,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  legend entry options/default label in legend path/.style=
-    straight label in legend line,
-  style sheet=vary dashing,
-  a={label in legend={text=a}},  b={label in legend={text=b}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
 
 
 ---
@@ -4837,19 +1578,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  visualize as scatter/.list={a,b,c},
-  style sheet=cross marks,
-  legend entry options/default label in legend mark/.style=
-    label in legend three marks,
-  a={label in legend={text=example a}},
-  b={label in legend={text=example b}},
-  c={label in legend={text=example c}}];
-```
-
 
 ---
 
@@ -4859,20 +1587,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  style sheet=vary dashing,
-  a={label in legend={text=a,
-      label in legend line coordinates={(-1em,0), (0,0)}}},
-  b={label in legend={text=b,
-      label in legend line coordinates={(-2em,0), (0,0)}}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
 
 
 ---
@@ -4884,20 +1598,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  legend={up then right}, style sheet=vary dashing,
-  a={label in legend={text=a,
-      label in legend line coordinates={(-2em,-.25ex), (0,0)}}},
-  b={label in legend={text=b,
-      label in legend line coordinates={(-2em,.25ex), (0,0)}}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
-
 
 ---
 
@@ -4907,22 +1607,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  legend={up then right}, style sheet=vary dashing,
-  a={label in legend={text=a,
-      label in legend line coordinates={
-        (-2em,-.2ex), (-1em,.2ex), (0,-.2ex)}}},
-  b={label in legend={text=b,
-      label in legend line coordinates={
-        (-2em,-.2ex), (-1em,.2ex), (0,-.2ex)}}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
 
 
 ---
@@ -4934,28 +1618,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  school book axes, visualize as line/.list={a,b},
-  legend={up then right},
-  style sheet=vary dashing,
-  style sheet=cross marks,
-  a={label in legend={text=a,
-      label in legend line coordinates={
-        (-2em,-.2ex), (-1em,.2ex), (0,-.2ex)},
-      label in legend mark coordinates={
-        (-1em,.2ex)}}},
-  b={label in legend={text=b,
-      label in legend line coordinates={
-        (-2em,-.2ex), (-1em,.2ex), (0,-.2ex)},
-      label in legend mark coordinates={
-        (-2em,-.2ex), (0,-.2ex)}}}]
-data point [x=-1, y=-1, set=a]   data point [x=1, y=0, set=a]
-data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
-```
-
 
 ---
 
@@ -4965,14 +1627,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [visualize as line,
-  line={style={mark=x}, label in legend={text=example,
-    straight label in legend line}}];
-```
 
 
 ---
@@ -4984,17 +1638,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [visualize as line/.list={a,b,c},
-  legend entry options/default label in legend path/.style=
-    straight label in legend line,
-  a={style={mark=+}, label in legend={text=bad example a}},
-  b={style={mark=-}, label in legend={text=bad example b}},
-  c={style={mark=|}, label in legend={text=bad example c}}];
-```
-
 
 ---
 
@@ -5004,17 +1647,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  visualize as line=a,
-  visualize as smooth line/.list={b,c},
-  a={style={mark=+}, label in legend={text=better example a}},
-  b={style={mark=-}, label in legend={text=better example b}},
-  c={style={mark=|}, label in legend={text=better example c}}];
-```
 
 
 ---
@@ -5026,18 +1658,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  visualize as line/.list={a,b},
-  visualize as smooth line=c,
-  style sheet=cross marks,
-  a={label in legend={text=good example a}},
-  b={label in legend={text=good example b}},
-  c={gap line, label in legend={text=good example c}}];
-```
-
 
 ---
 
@@ -5047,31 +1667,6 @@ data point [x=-1, y=1,  set=b]   data point [x=1, y=0.5, set=b];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes={clean}, all axes={length=3cm},
-  visualize as line/.list={a,b,c},
-  a={polygon}, b={smooth cycle},
-  style sheet=cross marks,
-  a={label in legend={text=polygon}},
-  b={label in legend={text=circle}},
-  c={label in legend={text=line}}]
-data [format=function, set=a] {
-  var t : {0,72,...,359};
-  func x = cos(\value t);
-  func y = sin(\value t);
-}
-data [format=function, set=b] {
-  var t : [0:2*pi];
-  func x = .8*cos(\value t r);
-  func y = .8*sin(\value t r);
-}
-data point [x=-1, y=0.5, set=c]
-data point [x=1,  y=0.25, set=c];
-```
 
 
 ---
@@ -5083,32 +1678,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [
-  scientific axes={clean}, all axes={length=3cm},
-  visualize as line/.list={a,b,c},
-  a={gap cycle}, b={smooth cycle}, c={gap line},
-  a={style={mark=*, mark size=0.5pt},
-     label in legend={text=polygon}},
-  b={label in legend={text=circle}},
-  c={style={mark=*, mark size=0.5pt, mark options=red},
-     label in legend={text=line}}]
-data [format=function, set=a] {
-  var t : {0,72,...,359};
-  func x = cos(\value t);
-  func y = sin(\value t);
-}
-data [format=function, set=b] {
-  var t : [0:352];
-  func x = .8*cos(\value t);
-  func y = .8*sin(\value t);
-}
-data point [x=-1, y=0.5, set=c]
-data point [x=1,  y=0.25, set=c];
-```
-
 
 ---
 
@@ -5118,16 +1687,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \datavisualization [visualize as scatter/.list={a,b,c},
-   style sheet=cross marks,
-  a={label in legend={text=example a}},
-  b={label in legend={text=example b}},
-  c={label in legend={text=example c}}];
-```
 
 
 ---
@@ -5139,16 +1698,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \datavisualization [visualize as scatter/.list={a,b,c},
-  style sheet=cross marks,
-  a={label in legend={text=example a, label in legend three marks}},
-  b={label in legend={text=example b, label in legend three marks}},
-  c={label in legend={text=example c, label in legend three marks}}];
-```
-
 
 ---
 
@@ -5158,14 +1707,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1)
-           [rounded corners] -- (2,0) -- (3,1)
-           [sharp corners] -- (3,0) -- (2,1);
-```
 
 
 ---
@@ -5177,14 +1718,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1)
-           {[rounded corners] -- (2,0) -- (3,1)}
-           -- (3,0) -- (2,1);
-```
-
 
 ---
 
@@ -5194,14 +1727,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw (0,0) -- (1,1)
-           [color=red] -- (2,0) -- (3,1)
-           [color=blue] -- (3,0) -- (2,1);
-```
 
 
 ---
@@ -5213,14 +1738,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz{\draw (0,0) -- (1,1);
-      \draw [color=red] (1,1) -- (2,0) -- (3,1);
-      \draw [color=blue] (3,1) -- (3,0) -- (2,1);}
-```
-
 
 ---
 
@@ -5230,17 +1747,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  [fill=yellow!80!black,      % only sets the color
-   every path/.style={draw}]  % all paths are drawn
-  \fill  (0,0) rectangle +(1,1);
-  \shade (2,0) rectangle +(1,1);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5252,13 +1758,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz [c/.style={insert path={circle[radius=2pt]}}]
-  \draw (0,0) -- (1,1) [c] -- (3,2) [c];
-```
-
 
 ---
 
@@ -5268,12 +1767,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw node [append after command={(foo)--(1,1)},draw] (foo){foo};
-```
 
 
 ---
@@ -5285,14 +1778,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) --(2,0) (0,1) --(2,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5302,14 +1787,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz [line width=2mm]
-  \draw (0,0) -- (1,0) -- (1,1)
-        -- (0,1) -- (current subpath start);
-```
 
 
 ---
@@ -5321,16 +1798,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[line width=10pt]
-  \draw (0,0) --(1,1)  (1,1) --(2,0);
-  \draw (3,0) -- (4,1) -- (5,0);
-  \useasboundingbox (0,1.5); % make bounding box higher
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5340,16 +1807,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[line width=10pt]
-  \draw (0,0) -- (1,1) -- (1,0) -- (0,0) (2,0) -- (3,1) -- (3,0) -- (2,0);
-  \draw (5,0) -- (6,1) -- (6,0) -- cycle (7,0) -- (8,1) -- (8,0) -- cycle;
-  \useasboundingbox (0,1.5); % make bounding box higher
-\end{tikzpicture}
-```
 
 
 ---
@@ -5361,16 +1818,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) node(a) [draw] {A}  (1,1) node(b) [draw] {B};
-  \draw (a.north) |- (b.west);
-  \draw[color=red] (a.east) -| (2,1.5) -| (b.north);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5380,14 +1827,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[ultra thick]
-  \draw (0,0) -- (1,1) -| cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -5399,16 +1838,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[line width=10pt] (0,0) .. controls (1,1) .. (4,0)
-                               .. controls (5,0) and (5,1) .. (4,1);
-  \draw[color=gray] (0,0) -- (1,1) -- (4,0) -- (5,0) -- (5,1) -- (4,1);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5418,14 +1847,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[line width=10pt] (0,0) -- (2,0) .. controls (1,1) .. cycle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -5437,16 +1858,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[line width=10pt]
-  \draw (0,0) -- (1,1) (1,1) .. controls (1,0) and (2,0) .. (2,0);
-  \draw [yshift=-1.5cm]
-        (0,0) -- (1,1)       .. controls (1,0) and (2,0) .. (2,0);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5456,15 +1867,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) rectangle (1,1);
-  \draw (.5,1) rectangle (2,0.5) (3,0) rectangle (3.5,1.5) -- (2,0);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5476,13 +1878,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz \draw [rounded corners] (0,0) -- (1,1)
-           -- (2,0) .. controls (3,1) .. (4,0);
-```
-
 
 ---
 
@@ -5492,15 +1887,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw[color=gray,very thin] (10pt,15pt) circle[radius=10pt];
-  \draw[rounded corners=10pt] (0,0) -- (0pt,25pt) -- (40pt,25pt);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5512,16 +1898,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) [rounded corners=10pt] -- (1,1) -- (2,1)
-                     [sharp corners] -- (2,0)
-               [rounded corners=5pt] -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5531,12 +1907,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw[rounded corners=1ex] (0,0) rectangle (20pt,2ex);
-```
 
 
 ---
@@ -5548,15 +1918,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (1,0) circle [radius=1.5];
-  \fill (1,0) circle [x radius=1cm, y radius=5mm, rotate=30];
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5566,14 +1927,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[radius=2pt]
-  \draw (0,0) circle -- (1,1) circle -- ++(0,1) circle;
-\end{tikzpicture}
-```
 
 
 ---
@@ -5585,12 +1938,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikzset{r/.style={radius=#1},rx/.style={x radius=#1},ry/.style={y radius=#1}}
-```
-
 
 ---
 
@@ -5600,15 +1947,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw [help lines] (0,0) grid (3,2);
-  \draw (1,1) ellipse [x radius=1cm,y radius=.5cm];
-\end{tikzpicture}
-```
 
 
 ---
@@ -5620,19 +1958,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}[radius=1cm]
-  \draw (0,0)  arc[start angle=180, end angle=90]
-     -- (2,.5) arc[start angle=90,  delta angle=-90];
-  \draw (4,0) -- +(30:1cm)
-              arc [start angle=30,  delta angle=30] -- cycle;
-  \draw (8,0) arc [start angle=0,   end angle=270,
-                   x radius=1cm, y radius=5mm] -- cycle;
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5642,19 +1967,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[radius=1cm,delta angle=30]
-  \draw (-1,0) -- +(3.5,0);
-  \draw (1,0) ++(210:2cm) -- +(30:4cm);
-  \draw (1,0) +(0:1cm) arc [start angle=0];
-  \draw (1,0) +(180:1cm) arc [start angle=180];
-  \path (1,0) ++(15:.75cm) node{$\alpha$};
-  \path (1,0) ++(15:-.75cm) node{$\beta$};
-\end{tikzpicture}
-```
 
 
 ---
@@ -5666,12 +1978,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\tikz[rotate=30] \draw[step=1mm] (0,0) grid (2,2);
-```
-
 
 ---
 
@@ -5681,19 +1987,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\begin{tikzpicture}[x=.5cm]
-  \draw[thick] (0,0) grid [step=1]     (3,2);
-  \draw[red]   (0,0) grid [step=.75cm] (3,2);
-\end{tikzpicture}
-\begin{tikzpicture}
-  \draw        (0,0) circle [radius=1];
-  \draw[blue]  (0,0) grid [step=(45:1)] (3,2);
-\end{tikzpicture}
-```
 
 
 ---
@@ -5705,15 +1998,6 @@ data point [x=1,  y=0.25, set=c];
 **Package**: tikz-pgf  
 **Chart Type**: other  
 
-### Code
-
-```latex
-\begin{tikzpicture}
-  \draw (0,0) grid [xstep=.5,ystep=.75] (3,2);
-  \draw[ultra thick] (0,0) grid [ystep=0] (3,2);
-\end{tikzpicture}
-```
-
 
 ---
 
@@ -5723,12 +2007,6 @@ data point [x=1,  y=0.25, set=c];
 **Type**: executable_example  
 **Package**: tikz-pgf  
 **Chart Type**: other  
-
-### Code
-
-```latex
-\tikz \draw[help lines] (0,0) grid (3,3);
-```
 
 
 ---
