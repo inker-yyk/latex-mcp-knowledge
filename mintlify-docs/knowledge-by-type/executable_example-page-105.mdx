@@ -1,0 +1,1250 @@
+---
+title: "Executable Examples - Page 106"
+description: "Items 5251-5300 of 5325 executable examples"
+---
+
+# Executable Examples - Page 106
+
+Showing items **5251-5300** of **5325**
+
+[← Previous](executable_example-page-104) | Page 106 of 107 | [Next →](executable_example-page-106)
+
+---
+
+## 5251. Other
+
+**ID**: `9b4d0970e902`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \datavisualization [school book axes, visualize as line]
+    data [format=TeX code] &#123;
+      \pgfkeys&#123;/data point/.cd,x=0, y=0&#125; \pgfdatapoint
+      \pgfkeys&#123;/data point/.cd,x=1, y=1&#125; \pgfdatapoint
+      \pgfkeys&#123;/data point/x=2&#125;          \pgfdatapoint
+      \pgfkeyssetvalue&#123;/data point/x&#125;&#123;3&#125;
+      \pgfkeyssetvalue&#123;/data point/y&#125;&#123;0&#125; \pgfdatapoint
+    &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5252. Other
+
+**ID**: `663700931b2b`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz
+  \datavisualization [school book axes, visualize as smooth line]
+    data [format=function] &#123;
+      var x : interval [-1.5:1.5];
+
+      func y = \value x * \value x;
+    &#125;;
+</code></pre>
+
+</details>
+
+---
+
+## 5253. Other
+
+**ID**: `92db0c373eb4`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \datavisualization [
+  school book axes,
+  all axes=&#123;unit length=5mm, ticks=&#123;step=2&#125;&#125;,
+  visualize as smooth line]
+data [format=function] &#123;
+  var t : interval [0:2*pi];
+
+  func x = \value t * cos(\value t r);
+  func y = \value t * sin(\value t r);
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## 5254. Other
+
+**ID**: `40fe13216cd8`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \datavisualization [
+  scientific axes=clean,
+  y axis=&#123;ticks=&#123;style=&#123;
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2&#125;&#125;&#125;,
+  x axis=&#123;ticks=&#123;tick suffix=$&#123;&#125;^\circ$&#125;&#125;,
+  visualize as smooth line/.list=&#123;1,2,3,4,5,6&#125;,
+  style sheet=vary hue]
+data [format=function] &#123;
+  var set : &#123;1,...,6&#125;;
+  var x : interval [0:50];
+  func y = sin(\value x * (\value&#123;set&#125;+10))/(\value&#123;set&#125;+5);
+&#125;;
+</code></pre>
+
+</details>
+
+---
+
+## 5255. Other
+
+**ID**: `47333f69a3f5`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% Data is read from two external files:
+\pgfdata[format=table, read from file=file1.csv]
+\pgfdata[format=table, read from file=file2.csv]
+</code></pre>
+
+</details>
+
+---
+
+## 5256. Other
+
+**ID**: `8d82300a6669`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% Data is given inline:
+\pgfdata[format=table]
+&#123;
+  x, y
+  1, 2
+  2, 3
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5257. Other
+
+**ID**: `e4638a922d5b`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+# This is some data formatted according to the "coordinates" format
+(0,0)
+(0.5,0.25)
+(1,1)
+(1.5,2.25)
+(2,4)
+</code></pre>
+
+</details>
+
+---
+
+## 5258. Other
+
+**ID**: `32ac725f823c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfdeclaredataformat&#123;coordinates&#125;
+% First comes the catcode argument. We turn the hash mark into a comment character.
+&#123;\catcode`\#=14\relax&#125;
+% Second comes the startup code. Since we do not need to setup things, we can leave
+% it empty. Note that we could also set it to something like \begingroup, provided we
+% put an \endgroup in the end code
+&#123;&#125;
+% Now comes the arguments for non-empty lines. Well, these should be of the form
+% (#1,#2), so we specify that:
+&#123;(#1,#2)&#125;
+% Now we must do something with a line of this form. We store the #1 argument in
+% /data point/x and #2 in /data point/y. Then we call \pgfdatapoint to create a data point.
+&#123;
+  \pgfkeyssetvalue&#123;/data point/x&#125;&#123;#1&#125;
+  \pgfkeyssetvalue&#123;/data point/y&#125;&#123;#2&#125;
+  \pgfdatapoint
+&#125;
+% We ignore empty lines:
+&#123;&#125;
+% And we also have no end-of-line code.
+&#123;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5259. Other
+
+**ID**: `7e0375032f31`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \datavisualization[school book axes, visualize as smooth line]
+  data [format=coordinates] &#123;
+    # This is some data formatted according
+    # to the "coordinates" format
+    (0,0)
+    (0.5,0.25)
+    (1,1)
+    (1.5,2.25)
+    (2,4)
+  &#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5260. Other
+
+**ID**: `605317bafd20`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (4,3);
+  &#123;
+    \pgftransformshift&#123;\pgfpoint&#123;1.5cm&#125;&#123;1cm&#125;&#125;
+    \pgfnode&#123;rectangle&#125;&#123;north&#125;&#123;Hello World&#125;&#123;hellonode&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+  &#125;
+  &#123;
+    \color&#123;red!20&#125;
+    \pgftransformrotate&#123;10&#125;
+    \pgftransformshift&#123;\pgfpoint&#123;3cm&#125;&#123;1cm&#125;&#125;
+    \pgfnode&#123;rectangle&#125;&#123;center&#125;
+      &#123;\color&#123;black&#125;Hello World&#125;&#123;hellonode&#125;&#123;\pgfusepath&#123;fill&#125;&#125;
+  &#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5261. Other
+
+**ID**: `b2ab697b143c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (0,0) grid (4,3);
+  &#123;
+    \color&#123;red!20&#125;
+    \pgftransformrotate&#123;10&#125;
+    \pgftransformshift&#123;\pgfpoint&#123;3cm&#125;&#123;1cm&#125;&#125;
+    \pgftransformresetnontranslations
+    \pgfnode&#123;rectangle&#125;&#123;center&#125;
+      &#123;\color&#123;black&#125;Hello World&#125;&#123;hellonode&#125;&#123;\pgfusepath&#123;fill&#125;&#125;
+  &#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5262. Other
+
+**ID**: `adbf8cd34e6c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\setbox\pgfnodeparttextbox=\hbox&#123;$q_1$&#125;
+\setbox\pgfnodepartlowerbox=\hbox&#123;01&#125;
+\begin&#123;pgfpicture&#125;
+  \pgfmultipartnode&#123;circle split&#125;&#123;center&#125;&#123;my state&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5263. Other
+
+**ID**: `ab6a0a6f662b`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newbox\pgfnodepartlowerbox
+\let\pgfnodepartmethodsbox=\pgfnodepartlowerbox
+</code></pre>
+
+</details>
+
+---
+
+## 5264. Other
+
+**ID**: `43cad4f621cc`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newbox\mybox
+\expandafter\let\csname pgfnodepartclass namebox\endcsname=\mybox
+</code></pre>
+
+</details>
+
+---
+
+## 5265. Other
+
+**ID**: `b9ba8ecef2d1`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset&#123;minimum width=3cm&#125;
+  \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World&#125;&#123;&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5266. Other
+
+**ID**: `fd939577d5e4`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset&#123;inner xsep=1cm&#125;
+  \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World&#125;&#123;&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5267. Other
+
+**ID**: `81329b1e9e1e`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw[help lines] (-2,0) grid (2,1);
+
+  \pgfset&#123;outer xsep=.5cm&#125;
+  \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World&#125;&#123;x&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;north&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;south&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;east&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;west&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;north east&#125;&#125;&#123;2pt&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5268. Node Graph
+
+**ID**: `c273497924d5`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\newbox\mybox
+
+\def\mysaver&#123;
+  \global\setbox\mybox=\box\pgfpositionnodelaterbox
+  \global\let\myname=\pgfpositionnodelatername
+  \global\let\myminx=\pgfpositionnodelaterminx
+  \global\let\myminy=\pgfpositionnodelaterminy
+  \global\let\mymaxx=\pgfpositionnodelatermaxx
+  \global\let\mymaxy=\pgfpositionnodelatermaxy
+&#125;
+
+\begin&#123;tikzpicture&#125;
+  &#123;
+    \pgfpositionnodelater&#123;\mysaver&#125;
+    \node [fill=blue!20,below,rotate=30] (hi) &#123;Hello world&#125;;
+  &#125;
+  \draw [help lines] (0,0) grid (3,2);
+
+  \let\pgfpositionnodelatername=\myname
+  \let\pgfpositionnodelaterminx=\myminx
+  \let\pgfpositionnodelaterminy=\myminy
+  \let\pgfpositionnodelatermaxx=\mymaxx
+  \let\pgfpositionnodelatermaxy=\mymaxy
+  \setbox\pgfpositionnodelaterbox=\box\mybox
+  \pgfpositionnodenow&#123;\pgfqpoint&#123;2cm&#125;&#123;2cm&#125;&#125;
+
+  \draw (hi) -- (0,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5269. Other
+
+**ID**: `a3ce92cab3eb`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgftransformrotate&#123;30&#125;
+  \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World!&#125;&#123;x&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;north&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;south&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;east&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;west&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointanchor&#123;x&#125;&#123;north east&#125;&#125;&#123;2pt&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5270. Other
+
+**ID**: `a17b914ac887`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgftransformrotate&#123;30&#125;
+  \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World!&#125;&#123;x&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+
+  &#123;
+    \pgftransformreset
+    \pgfpointanchor&#123;x&#125;&#123;east&#125;
+    \xdef\mycoordinate&#123;\noexpand\pgfpoint&#123;\the\pgf@x&#125;&#123;\the\pgf@y&#125;&#125;
+  &#125;
+
+  \pgfpathcircle&#123;\mycoordinate&#125;&#123;2pt&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5271. Other
+
+**ID**: `d3f80f31e9be`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \begin&#123;pgfscope&#125;
+    \pgftransformrotate&#123;30&#125;
+    \pgfnode&#123;rectangle&#125;&#123;center&#125;&#123;Hello World!&#125;&#123;x&#125;&#123;\pgfusepath&#123;stroke&#125;&#125;
+  \end&#123;pgfscope&#125;
+  \pgfpathcircle&#123;\pgfpointshapeborder&#123;x&#125;&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;2cm&#125;&#123;1cm&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpointshapeborder&#123;x&#125;&#123;\pgfpoint&#123;-1cm&#125;&#123;1cm&#125;&#125;&#125;&#123;2pt&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;-1cm&#125;&#123;1cm&#125;&#125;&#123;2pt&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5272. Other
+
+**ID**: `bda0c0e222a6`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfpointanchor&#123;current bounding box&#125;&#123;south east&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5273. Other
+
+**ID**: `e42f2b6bc22a`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfrememberpicturepositiononpagetrue
+\begin&#123;pgfpicture&#125;
+  \pgfusepath&#123;use as bounding box&#125;
+  \pgftransformshift&#123;\pgfpointanchor&#123;current page&#125;&#123;south west&#125;&#125;
+  \pgftransformshift&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgftext[left,base]&#123;
+    \textcolor&#123;red&#125;&#123;
+      Text absolutely positioned in
+      the lower left corner.&#125;
+  &#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5274. Other
+
+**ID**: `2106537d804b`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;
+  \draw [help lines] (0,0) grid (3,2);
+  &#123; [local bounding box=outer box]
+    \draw (1,1) circle (.5) [local bounding box=inner box] (2,2) circle (.5);
+  &#125;
+  \draw      (outer box.south west) rectangle (outer box.north east);
+  \draw[red] (inner box.south west) rectangle (inner box.north east);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5275. Other
+
+**ID**: `4b9847868ecf`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfdeclareshape&#123;coordinate&#125;
+&#123;
+  \savedanchor\centerpoint&#123;%
+    \pgf@x=.5\wd\pgfnodeparttextbox%
+    \pgf@y=.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\dp\pgfnodeparttextbox%
+  &#125;
+  \anchor&#123;center&#125;&#123;\centerpoint&#125;
+  \anchorborder&#123;\centerpoint&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5276. Other
+
+**ID**: `5aac022ddad8`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfdeclareshape&#123;simple rectangle&#125;&#123;
+  ...
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5277. Other
+
+**ID**: `7a13b242cdd8`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\savedanchor&#123;\upperrightcorner&#125;&#123;
+  \pgf@y=.5\ht\pgfnodeparttextbox % height of the box, ignoring the depth
+  \pgf@x=.5\wd\pgfnodeparttextbox % width of the box
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5278. Other
+
+**ID**: `3d82600fee71`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\savedanchor&#123;\upperrightcorner&#125;&#123;
+  \pgf@y=.\ht\pgfnodeparttextbox % height of the box
+  \pgf@x=.\wd\pgfnodeparttextbox % width of the box
+  \setlength&#123;\pgf@xa&#125;&#123;\pgfshapeminwidth&#125;
+  \ifdim\pgf@x&lt;.5\pgf@xa
+    \pgf@x=.5\pgf@xa
+  \fi
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5279. Other
+
+**ID**: `e77c39c052f3`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\saveddimen&#123;\depth&#125;&#123;
+  \pgf@x=\dp\pgfnodeparttextbox
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5280. Other
+
+**ID**: `38d9f3f0b031`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\savedmacro&#123;\sides&#125;&#123;\let\sides\pgfpolygonsides&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5281. Other
+
+**ID**: `effce486a6f9`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchor&#123;north east&#125;&#123;\upperrightcorner&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5282. Other
+
+**ID**: `1f6f4513d933`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchor&#123;north west&#125;&#123;
+  \upperrightcorner
+  \pgf@x=-\pgf@x
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5283. Other
+
+**ID**: `aa38626eae33`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchor&#123;center&#125;&#123;\pgfpointorigin&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5284. Other
+
+**ID**: `8bf1251f0582`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchor&#123;text&#125;&#123;%
+  \upperrightcorner%
+  \pgf@x=-\pgf@x%
+  \pgf@y=-\pgf@y%
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5285. Other
+
+**ID**: `828c406d9f65`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchor&#123;text&#125;&#123;\pgfpoint&#123;-.5\wd\pgfnodeparttextbox&#125;&#123;-.5\ht\pgfnodeparttextbox&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5286. Other
+
+**ID**: `91aced0d3856`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\makeatletter
+\def\foo&#123;foo&#125;
+\pgfdeclareshape&#123;simple shape&#125;&#123;%
+  \savedanchor&#123;\center&#125;&#123;%
+    \pgfpointorigin&#125;
+  \anchor&#123;center&#125;&#123;\center&#125;
+  \savedanchor&#123;\anchorfoo&#125;&#123;%
+    \pgf@x=1cm
+    \pgf@y=0cm&#125;
+  \deferredanchor&#123;anchor \foo&#125;&#123;\anchorfoo&#125;&#125;
+
+\begin&#123;tikzpicture&#125;
+  \node[simple shape] (Test1) at (0,0) &#123;&#125;;
+  \fill (Test1.anchor foo) circle (2pt) node[below] &#123;anchor foo anchor&#125;;
+  %
+  \def\foo&#123;bar&#125;
+  \node[simple shape] (Test2) at (2,2) &#123;&#125;;
+  \fill (Test2.anchor bar) circle (2pt) node[below] &#123;anchor bar anchor&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5287. Other
+
+**ID**: `15de8af5d7ec`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\anchorborder&#123;%
+  % Call a function that computes a border point. Since this
+  % function will modify dimensions like \pgf@x, we must move them to
+  % other dimensions.
+  \@tempdima=\pgf@x
+  \@tempdimb=\pgf@y
+  \pgfpointborderrectangle&#123;\pgfpoint&#123;\@tempdima&#125;&#123;\@tempdimb&#125;&#125;&#123;\upperrightcorner&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5288. Other
+
+**ID**: `90142cef0025`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\backgroundpath&#123;
+  \pgfpathrectanglecorners
+    &#123;\upperrightcorner&#125;
+    &#123;\pgfpointscale&#123;-1&#125;&#123;\upperrightcorner&#125;&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5289. Node Graph
+
+**ID**: `ab51d1211a0f`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfdeclareshape&#123;document&#125;&#123;
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]&#123;center&#125;
+  \inheritanchor[from=rectangle]&#123;north&#125;
+  \inheritanchor[from=rectangle]&#123;south&#125;
+  \inheritanchor[from=rectangle]&#123;west&#125;
+  \inheritanchor[from=rectangle]&#123;east&#125;
+  % ... and possibly more
+  \backgroundpath&#123;% this is new
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    % compute corner of ``flipped page''
+    \pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
+    \pgf@yc=\pgf@yb \advance\pgf@yc by-5pt
+    % construct main path
+    \pgfpathmoveto&#123;\pgfpoint&#123;\pgf@xa&#125;&#123;\pgf@ya&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xa&#125;&#123;\pgf@yb&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xc&#125;&#123;\pgf@yb&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xb&#125;&#123;\pgf@yc&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xb&#125;&#123;\pgf@ya&#125;&#125;
+    \pgfpathclose
+    % add little corner
+    \pgfpathmoveto&#123;\pgfpoint&#123;\pgf@xc&#125;&#123;\pgf@yb&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xc&#125;&#123;\pgf@yc&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xb&#125;&#123;\pgf@yc&#125;&#125;
+    \pgfpathlineto&#123;\pgfpoint&#123;\pgf@xc&#125;&#123;\pgf@yc&#125;&#125;
+ &#125;
+&#125;\hskip-1.2cm
+\begin&#123;tikzpicture&#125;
+  \node[shade,draw,shape=document,inner sep=2ex] (x) &#123;Remark&#125;;
+  \node[fill=yellow!80!black,draw,ellipse,double]
+    at ([shift=(-80:3cm)]x) (y) &#123;Use Case&#125;;
+
+  \draw[dashed] (x) -- (y);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5290. Other
+
+**ID**: `4be03fbe9052`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5291. Other
+
+**ID**: `9db74490526d`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5292. Other
+
+**ID**: `baf1e6faae71`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;stroke,clip&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;&#123;0.5cm&#125;
+  \pgfusepath&#123;fill&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5293. Other
+
+**ID**: `cb24325a4a2f`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetlinewidth&#123;1mm&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;0mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;0mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+  \pgfsetlinewidth&#123;2\pgflinewidth&#125; % double in size
+  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;5mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;5mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5294. Other
+
+**ID**: `0b22e26a46b2`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetdash&#123;&#123;0.5cm&#125;&#123;0.5cm&#125;&#123;0.1cm&#125;&#123;0.2cm&#125;&#125;&#123;0cm&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;0mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;0mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+  \pgfsetdash&#123;&#123;0.5cm&#125;&#123;0.5cm&#125;&#123;0.1cm&#125;&#123;0.2cm&#125;&#125;&#123;0.1cm&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;1mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;1mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+  \pgfsetdash&#123;&#123;0.5cm&#125;&#123;0.5cm&#125;&#123;0.1cm&#125;&#123;0.2cm&#125;&#125;&#123;0.2cm&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;0mm&#125;&#123;2mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;2cm&#125;&#123;2mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5295. Other
+
+**ID**: `927377b57ff2`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetlinewidth&#123;1pt&#125;
+  \color&#123;red&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;0cm&#125;&#123;0cm&#125;&#125;&#123;3mm&#125; \pgfusepath&#123;fill,stroke&#125;
+  \pgfsetstrokecolor&#123;black&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;&#123;3mm&#125; \pgfusepath&#123;fill,stroke&#125;
+  \color&#123;red&#125;
+  \pgfpathcircle&#123;\pgfpoint&#123;2cm&#125;&#123;0cm&#125;&#125;&#123;3mm&#125; \pgfusepath&#123;fill,stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5296. Other
+
+**ID**: `be11967c5a9c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetlinewidth&#123;2pt&#125;
+  \pgfsetinnerlinewidth&#123;1pt&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5297. Other
+
+**ID**: `e8ab5bff8296`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;1cm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfsetlinewidth&#123;2pt&#125;
+  \pgfsetinnerlinewidth&#123;1pt&#125;
+  \pgfsetinnerstrokecolor&#123;red!50&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5298. Other
+
+**ID**: `b0cdd31fa5e4`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetarrowsstart&#123;Latex[length=10pt]&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+  \pgfsetarrowsstart&#123;Computer Modern Rightarrow&#125;
+  \pgfpathmoveto&#123;\pgfpoint&#123;0cm&#125;&#123;2mm&#125;&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;2mm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5299. Other
+
+**ID**: `6fdeaa8ae56c`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetarrowsstart&#123;Latex[length=10pt]&#125;
+  \pgfsetarrowsend&#123;Computer Modern Rightarrow&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 5300. Other
+
+**ID**: `a14744794062`  
+**Package**: tikz-pgf  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;pgfpicture&#125;
+  \pgfsetarrows&#123;Latex[length=10pt]-&gt;&gt;&#125;
+  \pgfpathmoveto&#123;\pgfpointorigin&#125;
+  \pgfpathlineto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;
+  \pgfusepath&#123;stroke&#125;
+\end&#123;pgfpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](executable_example-page-104) | Page 106 of 107 | [Next →](executable_example-page-106)

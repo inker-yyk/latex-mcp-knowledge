@@ -1,0 +1,1194 @@
+---
+title: "Executable Examples - Page 13"
+description: "Items 601-650 of 5325 executable examples"
+---
+
+# Executable Examples - Page 13
+
+Showing items **601-650** of **5325**
+
+[← Previous](executable_example-page-011) | Page 13 of 107 | [Next →](executable_example-page-013)
+
+---
+
+## 601. Circuit
+
+**ID**: `a49b553936c0`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    \path (0,4) node[muxdemux, muxdemux def=&#123;NL=2,Lh=2,Rh=2,NB=1&#125;,
+        external pins width = 0.5](mdemux)&#123;&#125;;
+    \draw (mdemux.blpin 1) node[wedgeinv,anchor=apex]&#123;&#125;;
+    \draw (mdemux.brpin 1) node[wedgeinv]&#123;&#125;;
+    \draw (mdemux.bbpin 1) node[wedgeinv, anchor=apex,
+        rotate=90]&#123;&#125;;
+    \ctikzset&#123;wedge inversion mark/.cd, width=0.1&#125;
+    \ctikzset&#123;muxdemuxes/.cd, fill=yellow, thickness=3, scale=0.8&#125;
+    \path (0,2) node[muxdemux, muxdemux def=&#123;NL=2,Lh=2,Rh=2,NB=0&#125;,
+        external pins width = 0.5](mdemux)&#123;&#125;;
+    \draw (mdemux.blpin 1) node[wedgeinv,anchor=apex]&#123;&#125;;
+    \draw (mdemux.brpin 1) node[wedgeinv]&#123;&#125;;
+    \path (0,0) node[muxdemux, muxdemux def=&#123;NL=2,Lh=2,Rh=2,NB=0&#125;,
+        external pins width = 0.5](mdemux)&#123;&#125;;
+    \draw (mdemux.blpin 1) node[circleinv,anchor=apex]&#123;&#125;;
+    \draw (mdemux.brpin 1) node[circleinv]&#123;&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 602. Circuit
+
+**ID**: `8184cdc7ebb5`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\ctikzset&#123;muxdemux/outer label font=&#123;\tiny\ttfamily\color&#123;blue&#125;&#125;&#125;
+\tikzset&#123;myICwl/.style=&#123;muxdemux,
+    muxdemux def=&#123;Lh=4, Rh=4, w=3, NR=1, NL=2, NB=0, NT=0,
+    bgpicture/.code=&#123;%
+        \pgfsetcolor&#123;gray!50&#125;\pgfsetlinewidth&#123;1mm&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-1cm&#125;&#123;1cm*4/3&#125;&#125; \pgfpathlineto&#123;\pgfpointorigin&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;-1cm&#125;&#123;-1cm*4/3&#125;&#125;\pgfpathlineto&#123;\pgfpointorigin&#125;
+        \pgfpathmoveto&#123;\pgfpoint&#123;1cm&#125;&#123;0cm&#125;&#125;      \pgfpathlineto&#123;\pgfpointorigin&#125;
+        \pgfpathcircle&#123;\pgfpointorigin&#125;&#123;0.5cm&#125;
+        \pgfusepath&#123;draw&#125;
+        &#125;,
+    &#125;,
+    muxdemux label=&#123;RU1=3, LU1=1, LU2=2, N=flux, Ni=converter&#125;,&#125;
+&#125;
+\draw (0, 0) node[myICwl]&#123;&#125;&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 603. Circuit
+
+**ID**: `34efa901a072`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\ctikzset&#123;muxdemux/outer label font=&#123;\tiny\ttfamily\color&#123;blue&#125;&#125;&#125;
+\tikzset&#123;myICwl/.style=&#123;muxdemux,
+    muxdemux def=&#123;Lh=4, Rh=4, w=3, NR=1, NL=2, NB=0, NT=0,
+    bgpicture/.code=&#123;%
+            \pgfdeclareimage[width=1.5cm]&#123;myimg&#125;&#123;example-image-a&#125;
+            \pgftext&#123;\pgfuseimage&#123;myimg&#125;&#125;
+        &#125;,
+    &#125;,
+    muxdemux label=&#123;RU1=3, LU1=1, LU2=2, N=embedding, Ni=images&#125;,&#125;
+&#125;
+\draw (0, 0) node[myICwl]&#123;&#125;&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 604. Circuit
+
+**ID**: `fbd1d4c91abc`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\tgate#1&#123;
+    node[simple triangle, anchor=left, no input leads](#1-LR)&#123;&#125;
+    (#1-LR.right) node[simple triangle, xscale=-1,
+    anchor=left](#1-RL)&#123;&#125;
+    ([yshift=.5ex]#1-RL.btpin 1) node[ocirc]&#123;&#125;&#125;
+\begin&#123;circuitikz&#125;[
+    simple triangle/.style=&#123;muxdemux, muxdemux def=&#123;
+            NL=1, NR=1, NB=1, NT=1, w=2, Lh=2, Rh=0,
+    &#125;&#125;]
+    \draw (0,0) \tgate&#123;A&#125; (0,-2) \tgate&#123;B&#125;;
+    \draw (A-RL.bpin 1) -- (B-RL.tpin 1);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 605. Circuit
+
+**ID**: `1219f834dd88`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.7, transform shape]
+    \tikzset&#123;ic555/.style=&#123;muxdemux,
+            muxdemux def=&#123;Lh=10, NL=5, Rh=10, NR=5, NB=2, w=6, NT=2,
+            square pins=1&#125;,
+        no input leads, external pins width=0.4,
+        circuitikz/muxdemuxes/fill=blue!10&#125;
+    &#125;
+    \node [ic555, font=\small\ttfamily,align=center](A) at (0,0) &#123;555\\Astable&#125;;
+    % left pins
+    \foreach \rawpin/\npin/\label in &#123;2/7/Discharge, 4/2/Trigger, 5/6/Threshold&#125;&#123;
+        \draw (A.lpin \rawpin) -- (A.blpin \rawpin)
+            node[midway, blue, font=\small, above]&#123;\npin&#125;
+            node[right, font=\small]&#123;\label&#125;;
+    &#125;
+    % top pins
+    \foreach \rawpin/\npin in &#123;1/8, 2/4&#125; &#123;
+        \draw (A.tpin \rawpin) -- (A.btpin \rawpin)
+            node[midway, blue, font=\small, left]&#123;\npin&#125;;
+    &#125;
+    % bottom pins
+    \foreach \rawpin/\npin in &#123;1/5, 2/1&#125; &#123;
+        \draw (A.bpin \rawpin) -- (A.bbpin \rawpin)
+            node[midway, blue, font=\small, left]&#123;\npin&#125;;
+    &#125;
+    % finally, right
+    \draw (A.rpin 3) -- (A.brpin 3)
+        node[midway, blue, font=\small, above]&#123;3&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 606. Circuit
+
+**ID**: `7c5754c805bc`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[scale=0.7, transform shape]
+\ctikzset&#123;muxdemux/inner label font=\small&#125;
+\ctikzset&#123;muxdemux/outer label font=&#123;\small\color&#123;blue&#125;&#125;&#125;
+    \tikzset&#123;ic555/.style=&#123;muxdemux,
+        muxdemux def=&#123;Lh=10, NL=5, Rh=10, NR=1, NB=2, w=6, NT=2&#125;,
+        muxdemux label=&#123;L2=Discharge, L4=Trigger, L5=Threshold,
+        T1=VCC, B2=GND,
+        LU2=7, LU4=2, LU5=6, TL1=8, TL2=4, RU1=3, BL1=5, BL2=1&#125;,
+        external pins width=0.4,
+        draw only left pins=&#123;2,4,5&#125;,
+        circuitikz/muxdemuxes/fill=blue!10&#125;
+    &#125;
+    \node [ic555, font=\small\ttfamily,align=center](A)
+        at (0,0) &#123;555\\Astable&#125;;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 607. Circuit
+
+**ID**: `9146bc145d8c`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \ctikzset&#123;multipoles/thickness=4&#125;
+        \ctikzset&#123;multipoles/external pins thickness=2&#125;
+        \draw (0,0) node[dipchip,
+          num pins=12,
+          hide numbers,
+          external pins width=0.3,
+          external pad fraction=4 ](C)&#123;IC1&#125;;
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-3) node[ground]&#123;&#125;;
+          \node [right, font=\tiny]
+          at (C.bpin 1) &#123;RST&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 608. Circuit
+
+**ID**: `462ae635fd1e`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \draw (0,0) node[dipchip,
+          num pins=8, no topmark,
+          external pins width=0.0](C)&#123;IC1&#125;;
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-1.5) node[ground]&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 609. Circuit
+
+**ID**: `2d45a516a0e4`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \ctikzset&#123;multipoles/font=&#123;\color&#123;red&#125;\tiny&#125;&#125;
+        \draw (0,0) node[qfpchip,
+          num pins=16,
+          external pad fraction=6](C)&#123;IC1&#125;;
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+          ++(0,-2) node[ground]&#123;&#125;;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 610. Circuit
+
+**ID**: `1d856013fab4`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \draw (0,3) node[dipchip,
+        num pins=8,
+        draw only pins=&#123;1, 3, 5-8&#125;](C)&#123;IC1&#125;;
+        \draw (C.pin 1) -- ++(-0.5,0) to[R]
+        ++(0,-1.5) node[ground]&#123;&#125;;
+        \foreach \x in &#123;1,...,8&#125; &#123;
+            \draw[red] (C.pin \x) circle[radius=2pt];
+            \draw[blue] (C.bpin \x) circle[radius=1pt];
+        &#125;
+        \draw (0, 0) node[qfpchip, draw only pins=&#123;1-2, 6, 8, 4&#125;,
+             external pad fraction=4, num pins=12](Q)&#123;&#125;;
+        \foreach \x in &#123;1,...,12&#125; &#123;
+            \draw[red] (Q.pin \x) circle[radius=2pt];
+            \draw[blue] (Q.bpin \x) circle[radius=1pt];
+        &#125;
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 611. Circuit
+
+**ID**: `deb39b3fea7a`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) node[dipchip,
+        rotate=90]&#123;%
+        \rotatebox&#123;-90&#125;&#123;IC2&#125;&#125;;
+    \draw (3,0) node[qfpchip,
+        rotated numbers,
+        rotate=45]&#123;IC3&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 612. Circuit
+
+**ID**: `ed48ef225bde`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;multipoles/thickness=3&#125;
+    \ctikzset&#123;multipoles/dipchip/width=2&#125;
+    \draw (0,0) node[dipchip,
+        num pins=10, hide numbers, no topmark,
+        external pins width=0](C)&#123;Block&#125;;
+    \node [right, font=\tiny] at (C.bpin 1) &#123;RST&#125;;
+    \node [right, font=\tiny] at (C.bpin 2) &#123;IN1&#125;;
+    \node [right, font=\tiny] at (C.bpin 4) &#123;/IN2&#125;;
+    \node [left, font=\tiny]  at (C.bpin 8) &#123;OUT&#125;;
+    \draw (C.bpin 2) -- ++(-0.5,0) coordinate(extpin);
+    \node [ocirc, anchor=0](notin2) at (C.bpin 4) &#123;&#125;;
+    \draw (notin2.180) -- (C.bpin 4 -| extpin);
+    \draw (C.bpin 8) to[short,-o] ++(0.5,0);
+    \draw (C.bpin 5) ++(0,0.1) -- ++(0.1,-0.1)
+        node[right, font=\tiny]&#123;CLK&#125; -- ++(-0.1,-0.1);
+    \draw (C.n) -- ++(0,1) node[vcc]&#123;&#125;;
+    \draw (C.s) -- ++(0,-1) node[ground]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 613. Circuit
+
+**ID**: `8a4244ad497f`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) node[seven segment val=A dot off box on]&#123;&#125;;
+    \draw (1,0) node[seven segment val=- dot none box on]&#123;&#125;;
+    \draw (0,-2) node[seven segment bits=1001001 dot empty box on]&#123;&#125;;
+    \draw (1,-2) node[seven segment bits=0011101 dot none box off]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 614. Circuit
+
+**ID**: `c51f1bb501f9`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[scale=0.5]
+\ctikzset&#123;seven seg/width=0.2, seven seg/thickness=2pt&#125;
+\foreach \i in &#123;0,...,15&#125; \path (\i,0)
+    node[seven segment val=\i dot on box off]&#123;&#125;;
+\ctikzset&#123;seven seg/color on=black&#125;
+\foreach \i in &#123;0,...,15&#125; \path (\i,-1.5)
+    node[seven segment val=\i dot off box off, fill=gray!30!white]&#123;&#125;;
+\ctikzset&#123;seven seg/color on=green, seven seg/color off=yellow!30&#125;
+\foreach \i in &#123;0,...,15&#125; \path[color=red] (\i,-3)
+    node[seven segment val=\i dot none box on, xslant=0.2]&#123;&#125;;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 615. Circuit
+
+**ID**: `70c2daf9093b`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, l=$R_1$, f=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 616. Circuit
+
+**ID**: `825cc22a034a`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) to[R=$R_1$, a=\SI&#123;1&#125;&#123;\kohm&#125;] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 617. Circuit
+
+**ID**: `4f2c9812e73d`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 618. Circuit
+
+**ID**: `06fbcece2c17`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, v=$v_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 619. Circuit
+
+**ID**: `fa77456922f7`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R=$R_1$, i=$i_1$, v=$v_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 620. Circuit
+
+**ID**: `3db1449577a7`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R=$R_1$, i=$i_1$, v=$v_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 621. Circuit
+
+**ID**: `9ad2126aeb27`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;\draw
+  (0,0) to[resistor=1&lt;\kilo\ohm&gt;] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 622. Circuit
+
+**ID**: `b6494a7a2308`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, l=$R_1$,a=1&lt;\kilo\ohm&gt;] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 623. Circuit
+
+**ID**: `d8609f087c5c`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, l_=$R_1$,a^=1&lt;\kilo\ohm&gt;] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 624. Circuit
+
+**ID**: `0422a4a1e2f3`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R=$R_1$,a=1&lt;\kilo\ohm&gt;] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 625. Circuit
+
+**ID**: `c692ffa317f9`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (0,0) to[sR, l=$R$, label distance=-4pt] (2,0)
+    to [sR, l=$R$] (4,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 626. Circuit
+
+**ID**: `2f5840ad6b9b`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    \ctikzset&#123;bipoles/inductors/core distance=4pt&#125;
+    \draw (0,1) to[L=$L$, name=myL] ++(2,0);
+    \draw[thick, double] (myL.core west) -- (myL.core east);
+    \draw (0,0) to[L=$L$, name=myL, label distance=2pt] ++(2,0);
+    \draw[thick, double] (myL.core west) -- (myL.core east);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 627. Circuit
+
+**ID**: `6301eb5ac5d9`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        % the following will fail:
+        % \draw (0,0) to[R, l=$R=3$]
+        \draw (0,0) to[R, l=&#123;$R=3$&#125;] (3,0);
+        \draw (0,0) to[R=&#123;$R=3$&#125;] (0,3);
+        \draw (3,3) to[R=&#123;$R,3$&#125;] (3,0);
+        % this works, but it has wrong spacing
+        \draw (0,3) to[R, l=$R&#123;=&#125;3$] (3,3);
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 628. Circuit
+
+**ID**: `0a2eb90dd27c`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+        \def\eq&#123;=&#125;
+        % the following will fail up to 1.2.7:
+        % \draw (0,0) to[R, l=&#123;$R=3$&#125;] (3,0);
+        \draw (0,0) to[R, l=\mbox&#123;$R=3$&#125;] (3,0);
+        \draw (0,0) to[R, l=$R\eq3$] (0,3);
+        \draw (3,3) to[R, l=\mbox&#123;$R,3$&#125;] (3,0);
+        % this works, but it has wrong spacing
+        \draw (0,3) to[R, l=$R&#123;=&#125;3$] (3,3);
+    \end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 629. Circuit
+
+**ID**: `5150748c8ebf`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\ctikzset&#123;label/align = straight&#125;
+\def\DIR&#123;0,45,90,135,180,-90,-45,-135&#125;
+\foreach \i in \DIR &#123;
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+&#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 630. Circuit
+
+**ID**: `315ef7cb4d8e`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\ctikzset&#123;label/align = rotate&#125;
+\def\DIR&#123;0,45,90,135,180,-90,-45,-135&#125;
+\foreach \i in \DIR &#123;
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+&#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 631. Circuit
+
+**ID**: `7a3cebdaa347`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+\ctikzset&#123;label/align = smart&#125;
+\def\DIR&#123;0,45,90,135,180,-90,-45,-135&#125;
+\foreach \i in \DIR &#123;
+  \draw (0,0) to[R=\i, *-o] (\i:2.5);
+&#125;
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 632. Circuit
+
+**ID**: `610e274de379`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;[american]
+    %
+    % default for l2 is: l2 halign=l, l2 valign=c. DO NOT USE the &lt;...&gt; notation
+    %
+    \draw (0,0) to[R, l2_=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;,            , l2 valign=t] ++(2,0);
+    \draw (0,0) to[R, l2_=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;,            ,            ] ++(0,2);
+    \draw (0,0) to[R, l2_=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;, l2 halign=c, l2 valign=b] ++(-2,0);
+    \draw (0,0) to[R, l2_=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;, l2 halign=r, l2 valign=c] ++(0,-2);
+    \draw (5,0) to[R, l2^=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;, l2 halign=c, l2 valign=b] ++(2,0);
+    \draw (5,0) to[R, l2^=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;, l2 halign=c,            ] ++(0,2);
+    \draw (5,0) to[R, l2^=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;,            , l2 valign=t] ++(-2,0);
+    \draw (5,0) to[R, l2^=$R_&#123;CC&#125;$ and \SI&#123;4.7&#125;&#123;k\ohm&#125;, l2 halign=c, l2 valign=t] ++(0,-2);
+    \draw (10,2) to[R, l2=&#123;A=B&#125; and X, a2=&#123;C=D&#125; and Y] ++(0,-4);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 633. Circuit
+
+**ID**: `c8f7909c0959`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \draw (-1,1) to[R, v=$v$, i=$i$, f&gt;^=$f$] (1,1);
+    \draw (-2,0) to[R, v=$v$, i=$i$, f&gt;^=$f$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 634. Circuit
+
+**ID**: `02258f2362ef`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) to[R, v=1&lt;\volt&gt;] (2,0); \par
+\ctikzset&#123;voltage/distance from node=.1&#125;
+\ctikzset&#123;voltage/bump b=2.5&#125;
+\tikz \draw (0,0) to[R, v=1&lt;\volt&gt;] (2,0);
+</code></pre>
+
+</details>
+
+---
+
+## 635. Circuit
+
+**ID**: `bda35963ad77`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;voltage/distance from node=0.25&#125;
+    \draw (0, 2) to[D, v=$v_1$] ++(4,0);
+    \draw (0, 1) to[D, v=$v_1$] ++(3,0);
+    \draw (0, 0) to[D, v=$v_1$] ++(2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 636. Circuit
+
+**ID**: `8e4cb4eb3997`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+    \ctikzset&#123;voltage/distance from node=0.25cm&#125;
+    \draw (0, 2) to[D, v=$v_1$] ++(4,0);
+    \draw (0, 1) to[D, v=$v_1$] ++(3,0);
+    \draw (0, 0) to[D, v=$v_1$] ++(2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 637. Circuit
+
+**ID**: `50a845c4bdb9`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) to[C, i=$\imath$] (2,0); \par
+\ctikzset&#123;current/distance = .2&#125;
+\tikz \draw (0,0) to[C, i=$\imath$] (2,0);
+</code></pre>
+
+</details>
+
+---
+
+## 638. Circuit
+
+**ID**: `b0ab4e9fa48f`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikz \draw (0,0) to[R, v=1&lt;\volt&gt;] (1.5,0)
+       to[C, v=2&lt;\volt&gt;] (3,0); \par
+\ctikzset&#123;bipoles/capacitor/voltage/distance from node/.initial=.7&#125;
+\tikz \draw (0,0) to[R, v=1&lt;\volt&gt;] (1.5,0)
+       to[C, v=2&lt;\volt&gt;] (3,0); \par
+</code></pre>
+
+</details>
+
+---
+
+## 639. Circuit
+
+**ID**: `1f1715eb987b`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    \draw (0,0) to[sV, v=$V_s$] ++(2,0)
+        to[battery, v=$V_B$] ++(2,0)
+        to[R, v=$V_R$] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 640. Circuit
+
+**ID**: `0f11cdc2b869`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    \draw (0,0) to[sV, bipole/is voltage=false,
+            v=$V_s$] ++(2,0)
+        to[battery, bipole/is voltage=false,
+            v=$V_B$] ++(2,0)
+        to[R, v=$V_R$] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 641. Circuit
+
+**ID**: `188471df1a09`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    % correct way
+    \draw (0,0) to[sV, bipole/is voltage=false, v=$V_s$] ++(2,0)
+    % wrong way, setting voltage before changing type
+        to[sV=$V_B$ , bipole/is voltage=false, ] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 642. Circuit
+
+**ID**: `27cdc946e5bd`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[]
+    \draw (0,0) to [battery=vb] ++(2,0)
+        to[sV=sV] ++(2,0) to[R, v=vR] ++(2,0);
+    \ctikzset&#123;bipole/override source vif=true&#125;
+    \draw (0,-2) to [battery=vb] ++(2,0)
+        to[sV=sV] ++(2,0) to[R, v=vR] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 643. Circuit
+
+**ID**: `2aa2a0dd883b`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;tikzpicture&#125;[american]
+    % dangerous option ahead: USE WITH CARE
+    \ctikzset&#123;bipole/override source vif=true&#125;
+    % ugly output, you should really use V&gt;=va
+    \draw (0,6) to [V=va] ++(2,0);
+    % not working!
+    \draw (0,4) to [V=va, bipole/override source vif=false] ++(2,0);
+    % ok, this one is working --- you need both settings!
+    \draw (0,2) to [V,
+        bipole/override source vif=false,
+        bipole/is voltage=true,
+        v=va] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 644. Circuit
+
+**ID**: `b1ffe99e95a7`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\tikzset&#123;myV/.style=&#123;V, bipole/override source vif=false,
+    bipole/is voltage=true, v=&#123;#1&#125;&#125;&#125;%
+\begin&#123;tikzpicture&#125;[american]
+    % dangerous option ahead: USE WITH CARE
+    \ctikzset&#123;bipole/override source vif=true&#125;
+    \draw (0,0) to [V&gt;=va] ++(2,0);
+    \draw (0,-2) to[myV=vb] ++(2,0);
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 645. Circuit
+
+**ID**: `a97825b60511`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i^&gt;=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 646. Circuit
+
+**ID**: `4194f8fc89b2`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i_&gt;=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 647. Circuit
+
+**ID**: `ea951ccb7b10`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i^&lt;=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 648. Circuit
+
+**ID**: `98a2902f1580`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i_&lt;=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 649. Circuit
+
+**ID**: `66826221e235`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i&gt;^=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 650. Circuit
+
+**ID**: `b0fc0a1b1ca1`  
+**Package**: circuitikz  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;circuitikz&#125;
+   \draw (0,0) to[R, i&gt;_=$i_1$] (2,0);
+\end&#123;circuitikz&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](executable_example-page-011) | Page 13 of 107 | [Next →](executable_example-page-013)

@@ -1,0 +1,1098 @@
+---
+title: "Executable Examples - Page 33"
+description: "Items 1601-1650 of 5325 executable examples"
+---
+
+# Executable Examples - Page 33
+
+Showing items **1601-1650** of **5325**
+
+[← Previous](executable_example-page-031) | Page 33 of 107 | [Next →](executable_example-page-033)
+
+---
+
+## 1601. Other
+
+**ID**: `130d861f04be`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% requires \usepackage&#123;array&#125;
+\pgfplotstableset&#123;% configuration, for example in preamble:
+    create on use/slopes1/.style=&#123;create col/gradient semilogy=&#123;level&#125;&#123;error1&#125;&#125;,
+    columns=&#123;level,error1,slopes1&#125;,
+    % display styles:
+    columns/level/.style=&#123;int detect&#125;,
+    columns/error1/.style=&#123;sci,sci zerofill,sci subscript&#125;,
+    columns/slopes1/.style=&#123;dec sep align&#125;
+&#125;
+\pgfplotstabletypeset&#123;pgfplotstable.example1.dat&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1602. Other
+
+**ID**: `cfba7f8b316b`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+% load table from somewhere:
+\pgfplotstableread&#123;
+    x y
+    1 1
+    2 4
+    3 9
+    4 16
+    5 25
+    6 36
+&#125;\loadedtbl
+
+% create the `regression' column:
+\pgfplotstablecreatecol[linear regression]
+    &#123;regression&#125;
+    &#123;\loadedtbl&#125;
+% store slope
+\xdef\slope&#123;\pgfplotstableregressiona&#125;
+
+\pgfplotstabletypeset\loadedtbl\\
+
+The slope is `\slope'.
+</code></pre>
+
+</details>
+
+---
+
+## 1603. Line Chart
+
+**ID**: `8d110d3f3d1e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstablenew[
+    create on use/cut/.style=&#123;create col/function graph cut y=
+        &#123;2.5e-4&#125; % search for fixed L2 = 2.5e-4
+        &#123;x=Basis,y=L2,ymode=log,xmode=log&#125; % double log, each function is L2(Basis)
+        % now, provide each single function f_i(Basis):
+        &#123;&#123;table=plotdata/newexperiment1.dat&#125;,&#123;table=plotdata/newexperiment2.dat&#125;&#125;
+    &#125;,
+    columns=&#123;cut&#125;]
+    &#123;2&#125;
+    \loadedtable
+
+% Show the data:
+\pgfplotstabletypeset&#123;\loadedtable&#125;
+
+\begin&#123;tikzpicture&#125;
+\begin&#123;loglogaxis&#125;
+    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment1.dat&#125;;
+    \addplot table[x=Basis,y=L2] &#123;plotdata/newexperiment2.dat&#125;;
+    \draw[blue!30!white] (1,2.5e-4) -- (1e5,2.5e-4);
+    \node[pin=-90:&#123;$x=53.66$&#125;] at (53.66,2.5e-4) &#123;&#125;;
+    \node[pin=45:&#123;$x=601.83$&#125;] at (601.83,2.5e-4) &#123;&#125;;
+\end&#123;loglogaxis&#125;
+\end&#123;tikzpicture&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1604. Other
+
+**ID**: `9e15d978086d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstablenew[
+    % same as above...
+    create on use/cut/.style=&#123;create col/function graph cut y=
+        &#123;2.5e-4&#125;% search for fixed L2 = 2.5e-4
+        &#123;x=Basis,y=L2,ymode=log,xmode=log,
+         foreach=&#123;\i in &#123;1,2&#125;&#125;&#123;plotdata/newexperiment\i.dat&#125;&#125;%
+        &#123;&#125;% just leave this empty.
+    &#125;,
+    columns=&#123;cut&#125;]
+    &#123;2&#125;
+    \loadedtable
+% Show the data:
+\pgfplotstabletypeset&#123;\loadedtable&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1605. Other
+
+**ID**: `28a24eb4bfd5`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstablesave[
+    create on use/postproc1/.style=&#123;create col/dyadic refinement rate=error1&#125;,
+    columns=&#123;dof,error1,postproc1&#125;
+]
+    &#123;pgfplotstable.example1.dat&#125;
+    &#123;pgfplotstable.example1.out.dat&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1606. Other
+
+**ID**: `d5624f918e00`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstableset&#123;columns=&#123;a column&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
+\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,another&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;';
+\pgfplotstableset&#123;columns/.add=&#123;&#125;&#123;,and one more&#125;&#125;
+`\pgfkeysvalueof&#123;/pgfplots/table/columns&#125;'.
+</code></pre>
+
+</details>
+
+---
+
+## 1607. Other
+
+**ID**: `a7015f8036c1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    My Code/.code=&#123;This is a pgfkeys feature. Argument=`#1'&#125;&#125;
+\pgfplotsset&#123;My Code=&#123;is here&#125;&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1608. Other
+
+**ID**: `72a02927cf3d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstableforeachcolumn\loadedtable\as\col&#123;%
+    column name is `\col'; index is \pgfplotstablecol;\par
+&#125;
+\end&#123;minipage&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1609. Other
+
+**ID**: `55a362cacdc2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\begin&#123;minipage&#125;&#123;0.8\linewidth&#125;
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstableforeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
+    I have now cell element `\cell' at row index `\pgfplotstablerow';\par
+&#125;
+\end&#123;minipage&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1610. Other
+
+**ID**: `d0f04cbb690e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;\loadedtable
+\pgfplotstablemodifyeachcolumnelement&#123;error1&#125;\of\loadedtable\as\cell&#123;%
+    \edef\cell&#123;\#\pgfplotstablerow: \cell&#125;%
+&#125;
+\pgfplotstabletypeset[columns=error1,string type]&#123;\loadedtable&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1611. Other
+
+**ID**: `db62f3f379f2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
+\pgfplotstablegetelem&#123;4&#125;&#123;error1&#125;\of&#123;\loadedtable&#125;
+The value (4,error1) is `\pgfplotsretval'.
+
+\pgfplotstablegetelem&#123;2&#125;&#123;[index]0&#125;\of&#123;\loadedtable&#125;
+The value (2,0) is `\pgfplotsretval'.
+</code></pre>
+
+</details>
+
+---
+
+## 1612. Other
+
+**ID**: `60daf4043b41`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstableread&#123;pgfplotstable.example1.dat&#125;&#123;\loadedtable&#125;
+\pgfplotstablegetcolumnnamebyindex&#123;4&#125;\of&#123;\loadedtable&#125;\to\pgfplotsretval
+The name of column 4 `\pgfplotsretval'.
+</code></pre>
+
+</details>
+
+---
+
+## 1613. Other
+
+**ID**: `2c5077af7334`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletypeset[string type]&#123;pgfplotstable.example3.dat&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1614. Other
+
+**ID**: `79ba4413191d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+</details>
+
+---
+
+## 1615. Other
+
+**ID**: `d4d36baacab8`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[colnames from=c]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+</details>
+
+---
+
+## 1616. Other
+
+**ID**: `837cdf4ca3a1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[input colnames to=Input]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+</details>
+
+---
+
+## 1617. Other
+
+**ID**: `36a657d31279`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[input colnames to=]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+</details>
+
+---
+
+## 1618. Other
+
+**ID**: `a4631d98e6fc`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstabletranspose[columns=&#123;a,b&#125;]\loadedtable&#123;pgfplotstable.example3.dat&#125;
+\pgfplotstabletypeset[string type]\loadedtable
+</code></pre>
+
+</details>
+
+---
+
+## 1619. Other
+
+**ID**: `a81927da7d05`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstablesort\result&#123;%
+    a      b  c
+    19     2 [a]
+    -6   -14 [b]
+     4   -14 [c]
+   -11    -9 [d]
+    11    14 [e]
+    -9    -9 [f]
+     1    13 [g]
+     8   -10 [h]
+    16    18 [i]
+    19    -6 [j]
+&#125;
+\pgfplotstabletypeset[columns/c/.style=&#123;string type&#125;]&#123;\result&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## 1620. Other
+
+**ID**: `80df3ef56d02`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotstablesort[sort cmp=string &lt;]\result&#123;% 'Header' is the column name:
+    Header
+    the
+    quick
+    brown
+    fox
+    jumps
+    over
+    the
+    lazy
+    dog
+&#125;
+\pgfplotstabletypeset[string type]&#123;\result&#125;%
+</code></pre>
+
+</details>
+
+---
+
+## 1621. Other
+
+**ID**: `677886551603`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\makeatletter
+\pgfplotsset&#123;
+    string &lt;/.style=&#123;%
+        iflessthan/.code args=&#123;##1##2##3##4&#125;&#123;%
+            \t@pgfplots@toka=\expandafter&#123;##1&#125;%
+            \t@pgfplots@tokb=\expandafter&#123;##2&#125;%
+            \edef\pgfplots@loc@TMPa&#123;&#123;\the\t@pgfplots@toka&#125;&#123;\the\t@pgfplots@tokb&#125;&#125;%
+            \expandafter\pgfplotsutilstrcmp\pgfplots@loc@TMPa
+            \if1\pgfplotsretval ##3\else ##4\fi
+        &#125;%
+    &#125;,%
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1622. Other
+
+**ID**: `0f1fb00f6c8a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    sort cmp=&#123;
+        iflessthan/.code args=&#123;#1#2#3#4&#125;&#123;%
+            % here comes your code
+        &#125;%
+    &#125;,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1623. Other
+
+**ID**: `01fbb1462d58`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\foreach \x in &#123;1,2,...,4&#125; &#123;Iterating \x. &#125;%
+</code></pre>
+
+</details>
+
+---
+
+## 1624. Line Chart
+
+**ID**: `f4ba9e3362c2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\foreach \i in &#123;1,2,...,10&#125; &#123;\addplot table &#123;datafile\i&#125;; &#125;%
+</code></pre>
+
+</details>
+
+---
+
+## 1625. Other
+
+**ID**: `7d8ee86708b2`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\def\allcollected&#123;&#125;
+\pgfplotsforeachungrouped \x in &#123;1,2,...,4&#125; &#123;Iterating \x. \edef\allcollected&#123;\allcollected, \x&#125;&#125;%
+All collected = \allcollected.
+</code></pre>
+
+</details>
+
+---
+
+## 1626. Other
+
+**ID**: `b9c065150d1e`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsforeachungrouped \i in &#123;1,2,...,10&#125; &#123;%
+    \pgfplotstablevertcat&#123;\output&#125;&#123;datafile\i&#125; % appends `datafile\i' -&gt; `\output'
+&#125;%
+% since it was ungrouped, \output is still defined (would not work
+% with \foreach)
+</code></pre>
+
+</details>
+
+---
+
+## 1627. Other
+
+**ID**: `6901b800d402`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  otherstyle a/.code=&#123;[a]&#125;,
+  otherstyle b/.code=&#123;[b]&#125;,
+  otherstyle c/.code=&#123;[c]&#125;,
+  otherstyle d/.code=&#123;[d]&#125;&#125;
+\pgfplotsinvokeforeach&#123;a,b,c,d&#125;
+    &#123;\pgfkeys&#123;key #1/.style=&#123;otherstyle #1&#125;&#125;&#125;
+Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1628. Other
+
+**ID**: `0fbe6336e336`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfkeys&#123;
+  otherstyle a/.code=&#123;[a]&#125;,
+  otherstyle b/.code=&#123;[b]&#125;,
+  otherstyle c/.code=&#123;[c]&#125;,
+  otherstyle d/.code=&#123;[d]&#125;&#125;
+\pgfplotsforeachungrouped \x in &#123;a,b,c,d&#125;
+    &#123;\pgfkeys&#123;key \x/.style=&#123;otherstyle \x&#125;&#125;&#125;
+Invoke them: \pgfkeys&#123;key a&#125; \pgfkeys&#123;key b&#125; \pgfkeys&#123;key c&#125; \pgfkeys&#123;key d&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1629. Other
+
+**ID**: `33a8df01a7b5`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;autumn&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1630. Other
+
+**ID**: `fb461fb77047`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bled&#125;&#123;rgb255=(0,0,0) rgb255=(43,43,0) rgb255=(0,85,0)
+        rgb255=(0,128,128) rgb255=(0,0,170) rgb255=(213,0,213) rgb255=(255,0,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1631. Other
+
+**ID**: `36b81fe0c326`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bright&#125;&#123;rgb255=(0,0,0) rgb255=(78,3,100) rgb255=(2,74,255)
+        rgb255=(255,21,181) rgb255=(255,113,26) rgb255=(147,213,114) rgb255=(230,255,0)
+        rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1632. Other
+
+**ID**: `6c4d7d5b8d6d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;bone&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(84,84,116)
+        rgb255(6cm)=(167,199,199) rgb255(8cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1633. Other
+
+**ID**: `8ec6753cee11`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;cold&#125;&#123;rgb255=(0,0,0) rgb255=(0,0,255) rgb255=(0,255,255)
+        rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1634. Other
+
+**ID**: `91b77d670630`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;copper&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(4cm)=(255,159,101)
+        rgb255(5cm)=(255,199,127)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1635. Other
+
+**ID**: `3066a9fc0e95`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;copper2&#125;&#123;rgb255=(0,0,0) rgb255=(68,62,63) rgb255=(170,112,95)
+        rgb255=(207,194,138) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1636. Other
+
+**ID**: `f795b00fb32d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;earth&#125;&#123;rgb255=(0,0,0) rgb255=(0,28,15) rgb255=(42,39,6)
+        rgb255=(28,73,33) rgb255=(67,85,24) rgb255=(68,112,46) rgb255=(81,129,83)
+        rgb255=(124,137,87) rgb255=(153,147,122) rgb255=(145,173,164) rgb255=(144,202,180)
+        rgb255=(171,220,177) rgb255=(218,229,168) rgb255=(255,235,199) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1637. Other
+
+**ID**: `3a7830afebaf`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;gray&#125;&#123;rgb255=(0,0,0) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1638. Other
+
+**ID**: `1e61cf3d1d5f`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hot2&#125;&#123;[1cm]rgb255(0cm)=(0,0,0) rgb255(3cm)=(255,0,0)
+        rgb255(6cm)=(255,255,0) rgb255(8cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1639. Other
+
+**ID**: `71ecf76b4851`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hsv&#125;&#123;rgb255=(255,0,0) rgb255=(255,255,0) rgb255=(0,255,0)
+        rgb255=(0,255,255) rgb255=(0,0,255) rgb255=(255,0,255) rgb255=(255,0,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1640. Other
+
+**ID**: `169c4892801a`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;hsv2&#125;&#123;rgb255=(0,0,0) rgb255=(128,0,128) rgb255=(0,0,230)
+        rgb255=(0,255,255) rgb255=(0,255,0) rgb255=(255,255,0) rgb255=(255,0,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1641. Other
+
+**ID**: `ee445e71a9a4`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;jet&#125;&#123;rgb255(0cm)=(0,0,128) rgb255(1cm)=(0,0,255)
+        rgb255(3cm)=(0,255,255) rgb255(5cm)=(255,255,0) rgb255(7cm)=(255,0,0)
+        rgb255(8cm)=(128,0,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1642. Other
+
+**ID**: `c744da80dc93`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;pastel&#125;&#123;rgb255=(0,0,0) rgb255=(120,0,5) rgb255=(0,91,172)
+        rgb255=(215,35,217) rgb255=(120,172,78) rgb255=(255,176,24) rgb255=(230,255,0)
+        rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1643. Other
+
+**ID**: `2eaef43d128b`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;pink&#125;&#123;rgb255=(0,0,0) rgb255=(12,16,46) rgb255=(62,22,43)
+        rgb255=(53,53,65) rgb255=(79,72,58) rgb255=(122,80,67) rgb255=(147,91,102)
+        rgb255=(147,115,140) rgb255=(144,145,154) rgb255=(173,163,146) rgb255=(216,171,149)
+        rgb255=(250,179,179) rgb255=(255,198,227) rgb255=(246,229,255) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1644. Other
+
+**ID**: `b4c5de40997d`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;sepia&#125;&#123;rgb255(0cm)=(0,0,0) rgb255(1cm)=(26,13,0)
+        rgb255(18cm)=(255,230,204) rgb255(20cm)=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1645. Other
+
+**ID**: `53263b943506`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;spring&#125;&#123;rgb255=(255,0,255) rgb255=(255,255,0)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1646. Other
+
+**ID**: `48b8e53fcee1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;summer&#125;&#123;rgb255=(0,128,102) rgb255=(255,255,102)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1647. Other
+
+**ID**: `9bf013ce4ab1`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;temp&#125;&#123;rgb255=(36,0,217) rgb255=(25,29,247) rgb255=(41,87,255)
+        rgb255=(61,135,255) rgb255=(87,176,255) rgb255=(117,211,255) rgb255=(153,235,255)
+        rgb255=(189,249,255) rgb255=(235,255,255) rgb255=(255,255,235) rgb255=(255,242,189)
+        rgb255=(255,214,153) rgb255=(255,172,117) rgb255=(255,120,87) rgb255=(255,61,61)
+        rgb255=(247,40,54) rgb255=(217,22,48) rgb255=(166,0,33)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1648. Other
+
+**ID**: `62fb0a146c58`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;thermal&#125;&#123;rgb255=(0,0,0) rgb255=(77,0,179) rgb255=(255,51,0)
+        rgb255=(255,255,0) rgb255=(255,255,255)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1649. Other
+
+**ID**: `fd80a5741ffc`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    /pgfplots/colormap=&#123;winter&#125;&#123;rgb255=(0,0,255) rgb255=(0,255,128)&#125;
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+## 1650. Other
+
+**ID**: `efafd4103be4`  
+**Package**: pgfplots  
+**Type**: Executable Example  
+
+<details>
+<summary>View LaTeX Code</summary>
+
+<pre><code class="language-latex">
+\pgfplotsset&#123;
+    colormap name=viridis,
+&#125;
+</code></pre>
+
+</details>
+
+---
+
+
+[← Previous](executable_example-page-031) | Page 33 of 107 | [Next →](executable_example-page-033)

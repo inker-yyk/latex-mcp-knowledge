@@ -1,0 +1,515 @@
+---
+title: "Command Specifications - Page 7"
+description: "Items 301-350 of 1103 command specifications"
+---
+
+# Command Specifications - Page 7
+
+Showing items **301-350** of **1103**
+
+[← Previous](command-page-005) | Page 7 of 23 | [Next →](command-page-007)
+
+---
+
+## 301. Command: `\pgfarrowshullpoint\marg{x dimension`
+
+**ID**: `524a0a0711be`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: y dimension&#125; Adds a point to the convex hull of the arrow tip. As for the previous commands, no math parsing is done; instead \ says |@x=|x dimension and then |@y=|y dimension. Thus, both ``dimensions'' can contain code for advancing and thus modifying |@x| and |@y|. In our example we would write codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; -3cm&#123;-2cm&#125; codeexample
+
+---
+
+## 302. Command: `\pgfarrowsupperhullpoint\marg{x dimension`
+
+**ID**: `263437697762`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: y dimension&#125; This command works like the previous command, only it normally adds two points to the convex hull: First, the point $(x dimension,y dimension)$ and, secondly, the point $(x dimension,-y dimension)$. However, the second point is only added if the arrow is not a harpoon. Thus, in our example we could simplify the convex hull to codeexample[code only] 1cm&#123;0pt&#125; -3cm&#123;2cm&#125; codeexample If the y dimension is zero or less, only one point, namely $(x dimension,y dimension)$, is added to the h
+
+---
+
+## 303. Command: `\pgfarrowssave\marg{macro`
+
+**ID**: `942f7c129904`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; As explained earlier, the setup code needs to ``communicate'' with the drawing code via ``saved values''. This command get the name of a macro and will store the value this macro had internally. Then, each time drawing code is executed, the value of this macro will be restored.
+
+---
+
+## 304. Command: `\pgfarrowssavethe\marg{register`
+
+**ID**: `12453b5f397f`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Works like ||, only the parameter must be a register and ||register will be saved. Typically, you will write something like codeexample[code only] codeexample To ensure that inside the drawing code the the dimension registers || and || are setup with the values they had during the setup.
+
+---
+
+## 305. Command: `\pgfarrowsaddtooptions\marg{code`
+
+**ID**: `cfad944ed0a6`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; This command should be called by keys with the prefix |/pgf/arrow keys| to add code to the arrow option cache. For our |depth| key example, we could use this key as follows: codeexample[code only] /pgf/arrow keys/depth/.code= &#123;&#123;&#123;#1&#125;&#125; codeexample Actually, this is still not optimal since the expensive || command is now called each time an arrow tip is used with the |depth| option set. The trick is to do the expensive operation only once and then store only very quick code in the arrow option ca
+
+---
+
+## 306. Command: `\pgfarrowsaddtolateoptions\marg{code`
+
+**ID**: `8c4ae20db260`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; This command works like ||, only the code will be executed ``later'' than the code added by the normal version of the command. This is useful for keys that depend on the length of an arrow: Keys like |width'| want to define the arrow width as a multiple of the arrow length, but when the |width'| key is given, the length may not yet have been specified. By making the computation of the width a ``late'' option, we ensure that || will have been setup correctly.
+
+---
+
+## 307. Command: `\pgfarrowsaddtolengthscalelist\marg{dimension register`
+
+**ID**: `91b246a907f2`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Each time an arrow tip is used, the given dimension register will be multiplied by the |scale length| factor prior to the actual drawing. You call this command only once in the preamble somewhere.
+
+---
+
+## 308. Command: `\pgfarrowsaddtowidthscalelist\marg{dimension register`
+
+**ID**: `560f52dd68a7`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Works like ||, only for width parameters.
+
+---
+
+## 309. Command: `\pgfarrowsthreeparameters\marg{line-width dependent size specification`
+
+**ID**: `ecb86c834ad3`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; This command is useful for parsing the values given to keys like |length| or |width| the expect a dimension followed optionally for some numbers. This command converts the line-width dependent size specification, which may consist of one, two, or three numbers, into a triple of three numbers in curly braces, which gets stored in the macro ||. Here is an example, where || is used in this example to show the value stored in a macro: codeexample[setup code,hidden] #1&#123; @gobble#1 &#125; codeexample code
+
+---
+
+## 310. Command: `\pgfarrowslinewidthdependent\marg{dimension`
+
+**ID**: `1969c80b9bf5`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: line width factorouter factor&#125; This command takes three parameters and does the ``line width dependent computation'' described on page~length-arrow-key for the |length| key. The result is returned in |@x|. The idea is that you can setup line-width dependent keys like |length| or |width| using code like the following: codeexample[code only] /pgf/arrow keys/depth/.code=&#123; &#123;#1 @x &#125; codeexample
+
+---
+
+## 311. Command: `\pgfarrowslengthdependent\marg{dimension`
+
+**ID**: `bd6b19295f4e`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: length factordummy&#125; This command takes three parameters, of which the last one is ignored, and does the ``length dependent computation'' described for the |width'| and |inset'| keys. The result is returned in |@x|. You can setup length dependent keys using code like the following: codeexample[code only] /pgf/arrow keys/depth'/.code=&#123; &#123;#1 @x &#125; codeexample
+
+---
+
+## 312. Command: `\pgflibraryfpuifactive\marg{true-code`
+
+**ID**: `d0b7825cca7d`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: false-code&#125; This command can be used to execute either true-code or false-code, depending on whether the FPU has been activated or not.
+
+---
+
+## 313. Command: `\pgfmathfloatparsenumber\marg{x`
+
+**ID**: `484c9b8d7b92`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Reads a number of arbitrary magnitude and precision and stores its result into || as floating point number $m 10^e$ with mantissa and exponent base~$10$. The algorithm and the storage format is purely text-based. The number is stored as a triple of flags, a positive mantissa and an exponent, such as codeexample[] 2 codeexample Please do not rely on the low-level representation here, use || (and its variants) and || if you want to work with these components. The flags encoded in || are represen
+
+---
+
+## 314. Command: `\pgfmathfloatqparsenumber\marg{x`
+
+**ID**: `5d0baa7eaa36`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; The same as ||, but does not perform sanity checking.
+
+---
+
+## 315. Command: `\pgfmathfloattofixed{\marg{x`
+
+**ID**: `88a3865c89bc`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; Converts a number in floating point representation to a fixed point number. It is a counterpart to ||. The algorithm is purely text based and defines || as a string sequence which represents the floating point number x as a fixed point number (of arbitrary precision). codeexample[] 0.00052 &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent $$ codeexample codeexample[] 123.456e4 &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent $$ codeexample
+
+---
+
+## 316. Command: `\pgfmathfloattoint\marg{x`
+
+**ID**: `ed8adbadee62`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Converts a number from low-level floating point representation to an integer (by truncating the fractional part). codeexample[] 123456 codeexample See also || which returns the result as float.
+
+---
+
+## 317. Command: `\pgfmathfloattosci\marg{float`
+
+**ID**: `9246b7eaa8df`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Converts a number from low-level floating point representation to scientific format, $1.234e4$. The result will be assigned to the macro ||.
+
+---
+
+## 318. Command: `\pgfmathfloatvalueof\marg{float`
+
+**ID**: `e1cb66e69847`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Expands a number from low-level floating point representation to scientific format, $1.234e4$. Use || in contexts where only expandable macros are allowed.
+
+---
+
+## 319. Command: `\pgfmathfloatcreate{\marg{flags`
+
+**ID**: `0c8afa917981`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;mantissa&#125;&#123;exponent&#125;&#125; Defines || as the floating point number encoded by flags, mantissa and exponent. All arguments are characters and will be expanded using ||. codeexample[] 1&#123;1.0&#125;&#123;327&#125; &#123;&#125;&#123;&#125;&#123;&#125; Flags: ; Mantissa ; Exponent codeexample
+
+---
+
+## 320. Command: `\pgfmathfloatifflags\marg{floating point number`
+
+**ID**: `0fd1f63f41eb`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: flagtrue-codefalse-code&#125; Invokes true-code if the flag of floating point number equals flag and false-code otherwise. The argument flag can be one of description [0] to test for zero, [1] to test for positive numbers, [+] to test for positive numbers, [2] to test for negative numbers, [-] to test for negative numbers, [3] for ``not-a-number'', [4] for $+$, [5] for $-$. description codeexample[preamble=&#123;fpu&#125;] 42 &#123;0&#125;&#123;It's zero!&#125;&#123;It's not zero!&#125; &#123;1&#125;&#123;It's positive!&#125;&#123;It's not positive!&#125; &#123;2&#125;&#123;It's nega
+
+---
+
+## 321. Command: `\pgfmathfloattomacro{\marg{x`
+
+**ID**: `9f1772a37b3b`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;flagsmacro&#125;&#123;mantissamacro&#125;&#123;exponentmacro&#125;&#125; Extracts the flags of a floating point number x to flagsmacro, the mantissa to mantissamacro and the exponent to exponentmacro.
+
+---
+
+## 322. Command: `\pgfmathfloattoregisters{\marg{x`
+
+**ID**: `7e4c7bf86255`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;flagscount&#125;&#123;mantissadimen&#125;&#123;exponentcount&#125;&#125; Takes a floating point number x as input and writes flags to count register flagscount, mantissa to dimen register mantissadimen and exponent to count register exponentcount. Please note that this method rounds the mantissa to -precision.
+
+---
+
+## 323. Command: `\pgfmathfloattoregisterstok{\marg{x`
+
+**ID**: `503296d169ec`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;flagscount&#125;&#123;mantissatoks&#125;&#123;exponentcount&#125;&#125; A variant of || which writes the mantissa into a token register. It maintains the full input precision.
+
+---
+
+## 324. Command: `\pgfmathfloatgetflags{\marg{x`
+
+**ID**: `78607f576a39`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;flagscount&#125;&#125; Extracts the flags of x into the count register flagscount.
+
+---
+
+## 325. Command: `\pgfmathfloatgetflagstomacro{\marg{x`
+
+**ID**: `62bf45fff71f`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;macro&#125;&#125; Extracts the flags of x into the macro macro.
+
+---
+
+## 326. Command: `\pgfmathfloatgetmantissa{\marg{x`
+
+**ID**: `9d360c63075c`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;mantissadimen&#125;&#125; Extracts the mantissa of x into the dimen register mantissadimen.
+
+---
+
+## 327. Command: `\pgfmathfloatgetmantissatok{\marg{x`
+
+**ID**: `684038ab086c`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;mantissatoks&#125;&#125; Extracts the mantissa of x into the token register mantissatoks.
+
+---
+
+## 328. Command: `\pgfmathfloatgetexponent{\marg{x`
+
+**ID**: `3d26130db266`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;exponentcount&#125;&#125; Extracts the exponent of x into the count register exponentcount.
+
+---
+
+## 329. Command: `\pgfmathroundto{\marg{x`
+
+**ID**: `32a4291d6e1d`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; Rounds a fixed point number to prescribed precision and writes the result to ||. The desired precision can be configured with |/pgf/number format/precision|, see section~pgfmath-numberprinting. This section does also contain application examples. Any trailing zeros after the period are discarded. The algorithm is purely text based and allows to deal with precisions beyond 's fixed point support. As a side effect, the global boolean || will be set to true if and only if the resulting mantissa 
+
+---
+
+## 330. Command: `\pgfmathroundtozerofill{\marg{x`
+
+**ID**: `1d9c77a7e7c2`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; A variant of || which always uses a fixed number of digits behind the period. It fills missing digits with zeros. codeexample[] 1 codeexample codeexample[] 4.685 codeexample codeexample[] 19999.9996 codeexample
+
+---
+
+## 331. Command: `\pgfmathfloatround{\marg{x`
+
+**ID**: `6e9bbabf7c75`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; Rounds a normalized floating point number to a prescribed precision and writes the result to ||. The desired precision can be configured with |/pgf/number format/precision|, see section~pgfmath-numberprinting. This method employs || to round the mantissa and applies renormalization if necessary. As a side effect, the global boolean || will be set to true if and only if the resulting mantissa has a period. codeexample[] 52.5864 codeexample codeexample[] 9.995 codeexample
+
+---
+
+## 332. Command: `\pgfmathfloatroundzerofill{\marg{x`
+
+**ID**: `ecd2cb96a87b`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; A variant of || produces always the same number of digits after the period (it includes zeros if necessary). codeexample[] 52.5864 codeexample codeexample[] 9.995 codeexample
+
+---
+
+## 333. Command: `\pgfmathfloat\meta{op`
+
+**ID**: `2b05068a16d3`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Methods of this form constitute the replacement operations where op can be any of the well-known math operations. Thus, is the counterpart for || and so on. The semantics and number of arguments is the same, but all input and output arguments are expected to be floating point numbers.
+
+---
+
+## 334. Command: `\pgfmathfloattoextentedprecision{\marg{x`
+
+**ID**: `20f658aa5629`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; Renormalizes x to extended precision mantissa, meaning $100 m &lt; 1000$ instead of $1 m &lt; 10$. The ``extended precision'' means we have higher accuracy when we apply pgfmath operations to mantissas. The input argument is expected to be a normalized floating point number; the output argument is a non-normalized floating point number (well, normalized to extended precision). The operation is supposed to be very fast.
+
+---
+
+## 335. Command: `\pgfmathfloatsetextprecision\marg{shift`
+
+**ID**: `71ad678e3f5e`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Sets the precision used inside of || to shift. The different choices are tabular&#123;llrll&#125; 0 & normalization to & $0$ & $ m &lt; 1$ & (disable extended precision) \\ 1 & normalization to & $10$ & $ m &lt; 100$ & \\ 2 & normalization to & $100$ & $ m &lt; 1000$ & (default of ||) \\ 3 & normalization to & $1000$ & $ m &lt; 10000$ & \\ tabular
+
+---
+
+## 336. Command: `\pgfmathfloatlessthan{\marg{x`
+
+**ID**: `7130f79dfdb7`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;y&#125;&#125; Defines || as $1.0$ if $x &lt; y$, but $0.0$ otherwise. It also sets the global -boolean || accordingly. The arguments x and y are expected to be numbers which have already been processed by ||. Arithmetic is carried out using -registers for exponent- and mantissa comparison.
+
+---
+
+## 337. Command: `\pgfmathfloatmultiplyfixed\marg{float`
+
+**ID**: `967f974db655`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: fixed&#125; Defines || to be $float fixed$ where float is a floating point number and fixed is a fixed point number. The computation is performed in floating point arithmetic, that means we compute $m fixed$ and renormalize the result where $m$ is the mantissa of float. This operation renormalizes float with || before the operation, that means it is intended for relatively small arguments of fixed. The result is a floating point number.
+
+---
+
+## 338. Command: `\pgfmathfloatifapproxequalrel\marg{a`
+
+**ID**: `ae6bdbeac2dd`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: btrue-codefalse-code&#125; Computes the relative error between a and b (assuming b$ 0$) and invokes true-code if the relative error is below |/pgf/fpu/rel thresh| and false-code if that is not the case. The input arguments will be parsed with ||. key&#123;/pgf/fpu/rel thresh=number (initially 1e-4)&#125; A threshold used by || to decide whether numbers are approximately equal. key
+
+---
+
+## 339. Command: `\pgfmathfloatshift{\marg{x`
+
+**ID**: `08bae621bace`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#123;num&#125;&#125; Defines || to be $x 10^&#123;num&#125;$. The operation is an arithmetic shift base ten and modifies only the exponent of x. The argument num is expected to be a (positive or negative) integer.
+
+---
+
+## 340. Command: `\pgfmathfloatabserror\marg{x`
+
+**ID**: `a4445821ec49`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: y&#125; Defines || to be the absolute error between two floating point numbers $x$ and $y$, $ x - y $ and returns the result as floating point number.
+
+---
+
+## 341. Command: `\pgfmathfloatrelerror\marg{x`
+
+**ID**: `c75e6ae6402e`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: y&#125; Defines || to be the relative error between two floating point numbers $x$ and $y$, $ x - y / y $ and returns the result as floating point number.
+
+---
+
+## 342. Command: `\pgfmathfloatint\marg{x`
+
+**ID**: `131720a0d53e`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; Returns the integer part of the floating point number x, by truncating any digits after the period. This methods truncates the absolute value $ x $ to the next smaller integer and restores the original sign afterwards. The result is returned as floating point number as well. See also || which returns the number in integer format.
+
+---
+
+## 343. Command: `\pgfmathlog{\marg{x`
+
+**ID**: `1d4b447852d0`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125;&#125; Defines || to be the natural logarithm of x, $(x)$. This method is logically the same as ||, but it applies floating point arithmetic to read number x and employs the logarithm identity \[ (m 10^e) = (m) + e (10) \] to get the result. The factor $(10)$ is a constant, so only $(m)$ with $1 m &lt; 10$ needs to be computed. This is done using standard pgf math operations. Please note that x needs to be a number, expression parsing is not possible here. If x is not a bounded positive real number (fo
+
+---
+
+## 344. Command: `\spy \opt{\oarg{options`
+
+**ID**: `70ba903d71d9`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; |on| coordinate in node node options|;|&#125; This command can only be used inside a |spy scope|. Let us start with the syntax: itemize The || command is not a special case of ||. Rather, it has a small parser of its own. Following the optional options, you must write |on|, followed by a coordinate. This coordinate will be the center of the area that is to be magnified. Following the coordinate, you must write |in node| followed by some node options. The syntax for these options is the same as for 
+
+---
+
+## 345. Command: `\pgfpathmoveto\marg{coordinate`
+
+**ID**: `173219ce403e`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; This command expects a -coordinate like || as its parameter. When the current path is empty, this operation will start the path at the given coordinate. If a path has already been partly constructed, this command will end the current part of the path and start a new one. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0.5cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; &#123;3cm&#123;0.5cm&#125;&#125; &#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,s
+
+---
+
+## 346. Command: `\pgfpathlineto\marg{coordinate`
+
+**ID**: `a8a9188a75c0`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: &#125; This command extends the current path in a straight line to the given coordinate. If this command is given at the beginning of path without any other path construction command given before (in particular without a move-to operation), the \ file may compile without an error message, but a viewer application may display an error message when trying to render the picture. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125; &#123;2cm&#123;1cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample The command will apply the c
+
+---
+
+## 347. Command: `\pgfpathcurveto\marg{support 1`
+
+**ID**: `989fd4b39a2f`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: support 2coordinate&#125; This command extends the current path with a Bézier curve from the last point of the path to coordinate. The support 1 and support 2 are the first and second support point of the Bézier curve. For more information on Bézier curves, please consult a standard textbook on computer graphics. Like the line-to command, this command may not be the first path construction command in a path. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125;&#123;2cm&#123;1cm&#125;&#125;&#123;3cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpictur
+
+---
+
+## 348. Command: `\pgfpathquadraticcurveto\marg{support`
+
+**ID**: `107479182dbe`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: coordinate&#125; This command works like ||, only it uses a quadratic Bézier curve rather than a cubic one. This means that only one support point is needed. codeexample[] pgfpicture &#123;1cm&#123;1cm&#125;&#125;&#123;2cm&#123;0cm&#125;&#125; yellow!80!black fill,stroke pgfpicture codeexample Internally, the quadratic curve is converted into a cubic curve. The only noticeable effect of this is that the points used for computing the bounding box are the control points of the converted curve rather than support. The main effect of this is t
+
+---
+
+## 349. Command: `\pgfpathcurvebetweentime\marg{time $t_1$`
+
+**ID**: `e862f21b4735`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: time $t_2$point ppoint $s_1$point $s_2$point q&#125; This command draws the part of the curve described by $p$, $s_1$, $s_2$ and $q$ between the times $t_1$ and $t_2$. A time value of 0 indicates the point $p$ and a time value of 1 indicates point $q$. This command includes a moveto operation to the first point. codeexample[] tikzpicture [thin] (0,0) .. controls (0,2) and (3,0) .. (3,2); 0.25&#123;0.9&#125;&#123;0&#123;0&#125;&#125;&#123;0&#123;2&#125;&#125; &#123;3&#123;0&#125;&#125;&#123;3&#123;2&#125;&#125; red 0.5 2pt stroke tikzpicture codeexample
+
+---
+
+## 350. Command: `\pgfpathcurvebetweentimecontinue\marg{time $t_1$`
+
+**ID**: `413abce5fb93`  
+**Package**: tikz-pgf  
+**Type**: Command Specification  
+
+**Description**: time $t_2$point ppoint $s_1$point $s_2$point q&#125; This command works like ||, except that a moveto operation is not made to the first point.
+
+---
+
+
+[← Previous](command-page-005) | Page 7 of 23 | [Next →](command-page-007)
