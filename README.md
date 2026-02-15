@@ -1,6 +1,6 @@
 # LaTeX Graphics Knowledge Base
 
-A comprehensive Mintlify-powered documentation site containing 6,812 structured knowledge items from 6 major LaTeX graphics packages, optimized for AI model consumption via Model Context Protocol (MCP).
+A comprehensive Mintlify-powered documentation site containing 8,809 structured knowledge items from 19 LaTeX packages, optimized for AI model consumption via Model Context Protocol (MCP).
 
 ## 📚 Included Packages
 
@@ -8,16 +8,29 @@ A comprehensive Mintlify-powered documentation site containing 6,812 structured 
 |---------|-------|--------|
 | **tikz-pgf** | 3,696 | General-purpose graphics engine |
 | **pgfplots** | 1,472 | Data visualization & scientific plots |
+| **xspace** | 1,107 | Space handling utilities |
 | **circuitikz** | 816 | Electronic circuit diagrams |
 | **tkz-euclide** | 467 | Euclidean geometry |
 | **chemfig** | 290 | Chemical structure formulas |
-| **tikz-network** | 71 | Network & graph visualization |
+| **pst-solides3d** | 262 | 3D solid geometry |
+| **fullpage** | 193 | Page layout utilities |
+| **amscd** | 140 | Commutative diagrams |
+| **tkz-base** | 97 | TKZ base library |
+| **tkz-graph** | 92 | Graph theory diagrams |
+| **tikz-network** | 71 | Network visualization |
+| **tikz-cd** | 31 | Commutative diagrams (TikZ) |
+| **comment** | 25 | Comment environments |
+| **tikz-3dplot** | 21 | 3D plotting coordinates |
+| **tikz-qtree** | 15 | Tree diagrams |
+| **soul** | 8 | Text decoration |
+| **forest** | 5 | Advanced tree diagrams |
+| **tcolorbox** | 1 | Colored boxes |
 
 ## 🎯 Purpose
 
 This project enables AI models (Claude, GPT, Cursor, etc.) to access LaTeX graphics knowledge through MCP, allowing them to:
 
-- Search 6,812+ examples and specifications
+- Search 8,809+ examples and specifications
 - Generate accurate LaTeX graphics code
 - Reference package documentation in context
 - Provide executable examples with proper syntax
