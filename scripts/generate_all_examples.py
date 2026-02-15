@@ -20,6 +20,11 @@ def escape_for_mdx(text: str) -> str:
     # 转义其他可能的问题字符
     text = text.replace('<', '&lt;')
     text = text.replace('>', '&gt;')
+    # 转义 MDX/JavaScript 保留关键字（在行首）
+    # 在 export/import 前添加零宽度空格
+    import re
+    zwsp = '\u200B'  # 零宽度空格
+    text = re.sub(r'^(export|import)(\s)', lambda m: m.group(1) + zwsp + m.group(2), text, flags=re.MULTILINE)
     return text
 
 def generate_package_pages(package_name: str, items: List[Dict], output_dir: Path):
